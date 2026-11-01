@@ -250,6 +250,32 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
     <h3>两点间的距离</h3>
     <p>$\mathrm{A}(x_1,y_1)$、$\mathrm{B}(x_2,y_2)$ 之间的距离（<span lang="ja">2点間の距離</span>）为</p>
     $$\mathrm{AB}=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}.$$
+    <p><strong>为什么成立：</strong>过 A 作平行于 $x$ 轴的直线，过 B 作平行于 $y$ 轴的直线，两线交于 $\mathrm{C}(x_2,y_1)$。$\triangle\mathrm{ABC}$ 在 C 处是直角，两条直角边长为 $|x_2-x_1|$ 和 $|y_2-y_1|$，由勾股定理（<span lang="ja">三平方の定理</span>）得 $\mathrm{AB}^2=(x_2-x_1)^2+(y_2-y_1)^2$。平方之后绝对值自然消失，所以两点的先后顺序不影响结果。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　距离与等距点</b><span class="origin">原创</span></div>
+      <p>已知 $\mathrm{A}(-2,1)$、$\mathrm{B}(4,9)$。(1) 求 $\mathrm{AB}$。(2) 求 $x$ 轴上满足 $\mathrm{PA}=\mathrm{PB}$ 的点 P。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 坐标差为 $4-(-2)=6$、$9-1=8$，所以 $\mathrm{AB}=\sqrt{6^2+8^2}=\sqrt{100}=10$。</li>
+          <li>(2) $x$ 轴上的点纵坐标为 $0$，设 $\mathrm{P}(p,0)$。距离非负，$\mathrm{PA}=\mathrm{PB}$ 等价于 $\mathrm{PA}^2=\mathrm{PB}^2$。</li>
+          <li>列式：$(p+2)^2+1^2=(p-4)^2+9^2$，展开得 $p^2+4p+5=p^2-8p+97$。</li>
+          <li>$p^2$ 抵消，$12p=92$，$p=\dfrac{23}{3}$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\mathrm{AB}=10$；(2) $\mathrm{P}\left(\dfrac{23}{3},0\right)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $(x_2-x_1)^2$ 写成 $x_2^2-x_1^2$，或忘记开根号。</li>
+        <li>坐标为负数时漏掉括号：$x_1=-2$ 时应为 $(x_2+2)^2$。</li>
+        <li>比较距离时带着根号硬算；应先平方，两边同为非负数，平方不会增减解。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>距离的结果常要填成 $a\sqrt b$，根号内要化到最小，如 $\sqrt{72}=6\sqrt2$。看到“$x$ 轴上的点”“直线 $y=x$ 上的点”，立刻用一个未知数设点。</p>
+      <p><strong>日语术语：</strong><span lang="ja">三平方の定理</span>（<span class="kana" lang="ja">さんへいほうのていり</span>）：勾股定理；<span lang="ja">座標</span>（<span class="kana" lang="ja">ざひょう</span>）：坐标；<span lang="ja">2点間の距離</span>（<span class="kana" lang="ja">にてんかんのきょり</span>）：两点间距离。</p>
+    </div>
 
     <h3>内分点与外分点</h3>
     <p>把线段 $\mathrm{AB}$ 按 $m:n$ <strong>内分</strong>（<span lang="ja">内分</span>）和<strong>外分</strong>（<span lang="ja">外分</span>，$m\ne n$）的点分别为</p>
@@ -264,6 +290,33 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
     </div>
     <div class="box good">
       <p><strong>例：</strong>$\mathrm{A}(1,2)$、$\mathrm{B}(7,5)$。按 $2:1$ 内分的点是 $\left(\dfrac{1+14}{3},\dfrac{2+10}{3}\right)=(5,4)$；按 $2:1$ 外分的点是 $\left(\dfrac{-1+14}{1},\dfrac{-2+10}{1}\right)=(13,8)$。</p>
+    </div>
+    <p><strong>为什么成立：</strong>P 按 $m:n$ 内分 AB，意味着从 A 走到 B 的路程中 P 走了 $\dfrac{m}{m+n}$。两个坐标分别按同一比例变化，所以 $x=x_1+\dfrac{m}{m+n}(x_2-x_1)=\dfrac{nx_1+mx_2}{m+n}$，$y$ 同理。这也说明：离 B 越近（$m$ 越大），B 的权重越大，这正是“$m$ 乘 B”的原因。外分点满足 $\mathrm{AP}:\mathrm{PB}=m:n$，但 P 在线段延长线上，P 相对 A 的位移比例为 $\dfrac{m}{m-n}$，代入同一算法得 $\dfrac{-nx_1+mx_2}{m-n}$。</p>
+    <p>中点是 $m=n=1$ 的内分点。重心（<span lang="ja">重心</span>）是三条中线的交点，它把每条中线按 $2:1$ 内分（顶点一侧为 $2$）：设 BC 的中点为 $\mathrm{M}\left(\dfrac{x_2+x_3}{2},\dfrac{y_2+y_3}{2}\right)$，把 AM 按 $2:1$ 内分，横坐标为 $\dfrac{x_1+2\cdot\frac{x_2+x_3}{2}}{3}=\dfrac{x_1+x_2+x_3}{3}$，纵坐标同理。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　分点与重心</b><span class="origin">原创</span></div>
+      <p>已知 $\mathrm{A}(-3,4)$、$\mathrm{B}(5,-8)$、$\mathrm{C}(4,7)$。求 AB 按 $3:1$ 内分的点、按 $3:1$ 外分的点，以及 $\triangle\mathrm{ABC}$ 的重心。</p>
+      <div class="ans">
+        <ol>
+          <li>内分（$m=3,n=1$）：$x=\dfrac{1\cdot(-3)+3\cdot5}{4}=3$，$y=\dfrac{1\cdot4+3\cdot(-8)}{4}=-5$。</li>
+          <li>外分：把 $n$ 换成 $-1$，分母为 $3-1=2$。$x=\dfrac{-(-3)+3\cdot5}{2}=9$，$y=\dfrac{-4+3\cdot(-8)}{2}=-14$。</li>
+          <li>检查：比是 $3:1$ 且 $m&gt;n$，外分点应在 B 的外侧；$9&gt;5$，方向正确。</li>
+          <li>重心：$\left(\dfrac{-3+5+4}{3},\dfrac{4-8+7}{3}\right)=(2,1)$。</li>
+        </ol>
+        <p><strong>答案：</strong>内分点 $(3,-5)$，外分点 $(9,-14)$，重心 $(2,1)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $m,n$ 乘反，算成 $\dfrac{mx_1+nx_2}{m+n}$。</li>
+        <li>外分时只改分子不改分母：分母必须是 $m-n$；$m&lt;n$ 时分母为负，不要丢掉符号。</li>
+        <li>把 $m:n$ 外分和 $n:m$ 外分当成同一点；前者靠近 B 一侧（$m&gt;n$ 时），后者靠近 A 一侧。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目的语序很重要：<span lang="ja">線分ABを2:1に内分する点</span> 中，比的前项 $2$ 对应从 A 出发的一段。算完用“点是否在正确方向”做一次几秒钟的检查。</p>
+      <p><strong>日语术语：</strong><span lang="ja">線分</span>（<span class="kana" lang="ja">せんぶん</span>）：线段；<span lang="ja">内分</span>（<span class="kana" lang="ja">ないぶん</span>）：内分；<span lang="ja">外分</span>（<span class="kana" lang="ja">がいぶん</span>）：外分；<span lang="ja">中線</span>（<span class="kana" lang="ja">ちゅうせん</span>）：中线；<span lang="ja">重心</span>（<span class="kana" lang="ja">じゅうしん</span>）：重心。</p>
     </div>
   </section>
 
@@ -281,6 +334,32 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
       </tbody>
     </table></div>
     <p>例如过 $(1,2)$ 和 $(3,8)$ 的直线，斜率 $\dfrac{8-2}{3-1}=3$，方程为 $y=3x-1$。</p>
+    <p><strong>为什么成立：</strong>斜率（<span lang="ja">傾き</span>）是直线上任意两点的“纵向变化量 ÷ 横向变化量”，由相似三角形可知它与所选的两点无关。动点 $(x,y)$ 与定点 $(x_1,y_1)$ 连线的斜率恒为 $m$，即 $\dfrac{y-y_1}{x-x_1}=m$，去分母就得点斜式 $y-y_1=m(x-x_1)$。竖直线的横向变化量为 $0$，斜率不存在，因此点斜式写不出竖直线，而一般形式 $ax+by+c=0$（取 $b=0$）可以。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由两点求直线</b><span class="origin">原创</span></div>
+      <p>(1) 求过 $(-1,5)$、$(3,-3)$ 的直线，写成 $y=mx+k$ 和一般形式，并求 $x$ 截距。(2) 求过 $(2,1)$、$(2,7)$ 的直线。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 斜率 $m=\dfrac{-3-5}{3-(-1)}=\dfrac{-8}{4}=-2$。</li>
+          <li>点斜式：$y-5=-2(x+1)$，整理得 $y=-2x+3$，即 $2x+y-3=0$。</li>
+          <li>用另一点检验：$x=3$ 时 $y=-6+3=-3$，正确。令 $y=0$ 得 $x=\dfrac32$。</li>
+          <li>(2) 两点横坐标相同，是竖直线，斜率不存在，方程为 $x=2$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $y=-2x+3$（$2x+y-3=0$），$x$ 截距 $\dfrac32$；(2) $x=2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>分子分母顺序不一致，如 $\dfrac{y_2-y_1}{x_1-x_2}$，符号会错。</li>
+        <li>设 $y=mx+k$ 时漏掉竖直线 $x=c$。</li>
+        <li>把“$y$ 截距”当成截距点的坐标：截距是数 $k$，对应的点是 $(0,k)$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目未说明直线不竖直时，设直线要想到斜率不存在的情况。答案形式看方框：$y=\B{A}x+\B{B}$ 与 $\B{A}x+\B{B}y=\B{C}$ 的写法要配合。</p>
+      <p><strong>日语术语：</strong><span lang="ja">傾き</span>（<span class="kana" lang="ja">かたむき</span>）：斜率；<span lang="ja">切片</span>（<span class="kana" lang="ja">せっぺん</span>）：截距；<span lang="ja">直線の方程式</span>（<span class="kana" lang="ja">ちょくせんのほうていしき</span>）：直线方程。</p>
+    </div>
 
     <h3>平行与垂直</h3>
     <div class="tw"><table>
@@ -295,12 +374,88 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
       <div>平行：$a(x-x_1)+b(y-y_1)=0$</div>
       <div>垂直：$b(x-x_1)-a(y-y_1)=0$</div>
     </div>
+    <p><strong>为什么成立：</strong>$ax+by+c=0$ 上任取两点相减，得 $a\Delta x+b\Delta y=0$，说明向量 $(a,b)$ 与直线上的任何位移都垂直，它是直线的法向量（<span lang="ja">法線ベクトル</span>）。两直线平行等价于法向量共线，即 $a_1b_2-a_2b_1=0$；两直线垂直等价于法向量垂直，即内积 $a_1a_2+b_1b_2=0$。对 $y=m_ix+k_i$，取法向量 $(m_i,-1)$，内积为 $0$ 就得 $m_1m_2+1=0$。上面“直接写”的两个公式也由此而来：平行线法向量仍为 $(a,b)$，垂线的法向量换成 $(b,-a)$，再让它过 $(x_1,y_1)$。</p>
+    <p>注意：$a_1b_2-a_2b_1=0$ 同时包含“平行”和“重合”两种情况，题目要求严格平行时还要排除重合。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　含参数的平行与垂直</b><span class="origin">原创</span></div>
+      <p>两直线 $\ell_1:ax+2y-1=0$、$\ell_2:x+(a-1)y+2=0$。分别求 $\ell_1\parallel\ell_2$、$\ell_1\perp\ell_2$ 时 $a$ 的值。</p>
+      <div class="ans">
+        <ol>
+          <li>平行条件：$a(a-1)-2\cdot1=0$，即 $a^2-a-2=0$，$(a-2)(a+1)=0$，$a=2$ 或 $a=-1$。</li>
+          <li>排除重合。$a=2$：$\ell_1$ 为 $2x+2y-1=0$，$\ell_2$ 为 $x+y+2=0$，即 $2x+2y+4=0$，常数项不同，不重合。</li>
+          <li>$a=-1$：$\ell_1$ 为 $-x+2y-1=0$，即 $x-2y+1=0$；$\ell_2$ 为 $x-2y+2=0$，不重合。两个值都成立。</li>
+          <li>垂直条件：$a\cdot1+2(a-1)=0$，即 $3a-2=0$，$a=\dfrac23$。</li>
+        </ol>
+        <p><strong>答案：</strong>平行时 $a=2$ 或 $-1$；垂直时 $a=\dfrac23$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只用 $m_1m_2=-1$，漏掉一条竖直、一条水平的情况（此时斜率不存在，但两线垂直）。</li>
+        <li>平行时忘记检验重合。</li>
+        <li>把垂线斜率写成 $\dfrac1m$，少了负号；应为 $-\dfrac1m$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>含字母的直线一律用 $a_1b_2-a_2b_1=0$、$a_1a_2+b_1b_2=0$，不必除以可能为 $0$ 的系数，也就不必分类。</p>
+      <p><strong>日语术语：</strong><span lang="ja">平行</span>（<span class="kana" lang="ja">へいこう</span>）：平行；<span lang="ja">垂直</span>（<span class="kana" lang="ja">すいちょく</span>）：垂直；<span lang="ja">法線ベクトル</span>（<span class="kana" lang="ja">ほうせんベクトル</span>）：法向量；<span lang="ja">一致する</span>（<span class="kana" lang="ja">いっちする</span>）：重合。</p>
+    </div>
 
     <h3>对称点</h3>
     <p>求 A 关于直线 $\ell$ 的对称点 B，列两个条件：① $\mathrm{AB}\perp\ell$；② $\mathrm{AB}$ 的中点在 $\ell$ 上。</p>
+    <p><strong>为什么成立：</strong>对称轴（<span lang="ja">対称軸</span>）就是线段 AB 的垂直平分线（<span lang="ja">垂直二等分線</span>）。“垂直”和“平分”正好是两个独立条件，对应未知数 B 的两个坐标，所以联立后恰好确定一点。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　求对称点</b><span class="origin">原创</span></div>
+      <p>求点 $\mathrm{A}(4,1)$ 关于直线 $\ell:2x+y-4=0$ 的对称点 B。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $\mathrm{B}(a,b)$。$\ell$ 的斜率为 $-2$，所以 AB 的斜率为 $\dfrac12$：$\dfrac{b-1}{a-4}=\dfrac12$，即 $a-2b=2$。</li>
+          <li>中点 $\left(\dfrac{a+4}{2},\dfrac{b+1}{2}\right)$ 在 $\ell$ 上：$a+4+\dfrac{b+1}{2}-4=0$，即 $2a+b=-1$。</li>
+          <li>联立 $a-2b=2$ 与 $2a+b=-1$：由第二式 $b=-1-2a$，代入第一式得 $5a+2=2$，$a=0$，$b=-1$。</li>
+          <li>检验：中点 $(2,0)$ 满足 $2\cdot2+0-4=0$；AB 斜率 $\dfrac{1-(-1)}{4-0}=\dfrac12$，正确。</li>
+        </ol>
+        <p><strong>答案：</strong>$\mathrm{B}(0,-1)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只用了垂直条件，或把 A 本身代入 $\ell$。应代入的是<strong>中点</strong>。</li>
+        <li>把垂线斜率与 $\ell$ 的斜率混用。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>“折线最短”题（<span lang="ja">PA+PB の最小値</span>）常用对称点：把 A 翻到直线另一侧，两点连线与直线的交点就是所求的 P。</p>
+      <p><strong>日语术语：</strong><span lang="ja">対称な点</span>（<span class="kana" lang="ja">たいしょうなてん</span>）：对称点；<span lang="ja">対称軸</span>（<span class="kana" lang="ja">たいしょうじく</span>）：对称轴；<span lang="ja">垂直二等分線</span>（<span class="kana" lang="ja">すいちょくにとうぶんせん</span>）：垂直平分线。</p>
+    </div>
 
     <h3>过定点的直线系</h3>
     <p>若 $k$ 取任意实数，直线 $(x+y-3)+k(x-2y)=0$ 总经过 $x+y-3=0$ 与 $x-2y=0$ 的交点 $(2,1)$。EJU 常用这种写法求“与 $k$ 无关的定点”：把式子按 $k$ 整理，令 $k$ 的系数和常数部分都为 $0$。</p>
+    <p><strong>为什么成立：</strong>把等式看成关于 $k$ 的恒等式：$k\cdot Q+R=0$ 对所有 $k$ 都成立，当且仅当 $Q=0$ 且 $R=0$（取 $k=0$ 得 $R=0$，再取 $k=1$ 得 $Q=0$）。所以定点就是两直线 $Q=0$、$R=0$ 的交点。另外，这个直线系能表示除 $Q=0$ 以外所有过该点的直线，$Q=0$ 本身对应不到任何有限的 $k$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　定点与直线系</b><span class="origin">原创</span></div>
+      <p>直线 $(2k+1)x+(k-1)y-5k-1=0$（$k$ 为实数）。(1) 求它恒过的定点。(2) 求经过点 $(5,3)$ 时 $k$ 的值。</p>
+      <div class="ans">
+        <ol>
+          <li>按 $k$ 整理：$k(2x+y-5)+(x-y-1)=0$。</li>
+          <li>(1) 令 $2x+y-5=0$ 且 $x-y-1=0$。两式相加得 $3x=6$，$x=2$，$y=1$。</li>
+          <li>(2) 代入 $(5,3)$：$k(10+3-5)+(5-3-1)=0$，即 $8k+1=0$，$k=-\dfrac18$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $(2,1)$；(2) $k=-\dfrac18$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>展开后不按 $k$ 归类，直接代几个值却算错；应先整理成 $k\cdot Q+R=0$。</li>
+        <li>用直线系设方程时漏掉 $Q=0$ 这一条直线，答案可能恰好是它。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目出现 <span lang="ja">$k$ の値にかかわらず</span>（不论 $k$ 取何值）就是这个模型。同样的想法可用于圆系：过两圆或圆与直线交点的曲线。</p>
+      <p><strong>日语术语：</strong><span lang="ja">定点</span>（<span class="kana" lang="ja">ていてん</span>）：定点；<span lang="ja">恒等式</span>（<span class="kana" lang="ja">こうとうしき</span>）：恒等式；<span lang="ja">値にかかわらず</span>（<span class="kana" lang="ja">あたいにかかわらず</span>）：不论取值如何。</p>
+    </div>
   </section>
 
   <section id="distance">
@@ -309,8 +464,60 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
     <p>点 $(x_1,y_1)$ 到直线 $ax+by+c=0$ 的距离：</p>
     $$d=\frac{|ax_1+by_1+c|}{\sqrt{a^2+b^2}}.$$
     <p>使用前必须把直线化成 <strong>$ax+by+c=0$</strong> 的形式。例如 $(1,2)$ 到 $3x+4y-1=0$ 的距离为 $\dfrac{|3+8-1|}{\sqrt{9+16}}=2$。</p>
+    <p><strong>为什么成立：</strong>过 $\mathrm{P}(x_1,y_1)$ 沿法向量 $(a,b)$ 方向走到直线，设垂足为 $\mathrm{H}(x_1+ta,\ y_1+tb)$。H 在直线上，代入得 $a(x_1+ta)+b(y_1+tb)+c=0$，所以 $t=-\dfrac{ax_1+by_1+c}{a^2+b^2}$。而 $\mathrm{PH}=|t|\sqrt{a^2+b^2}$，代入后约去一个 $\sqrt{a^2+b^2}$，得到 $d=\dfrac{|ax_1+by_1+c|}{\sqrt{a^2+b^2}}$。分子的绝对值内的符号还表示点在直线的哪一侧，这正是第 7 节判断区域的依据。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　点到直线、两平行线间距离</b><span class="origin">原创</span></div>
+      <p>(1) 求点 $(2,3)$ 到直线 $y=\dfrac34x+\dfrac12$ 的距离。(2) 求平行线 $3x-4y+2=0$ 与 $3x-4y-8=0$ 之间的距离。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 先化为一般形式：两边乘 $4$ 得 $4y=3x+2$，即 $3x-4y+2=0$。</li>
+          <li>代入公式：$d=\dfrac{|3\cdot2-4\cdot3+2|}{\sqrt{3^2+(-4)^2}}=\dfrac{|-4|}{5}=\dfrac45$。</li>
+          <li>(2) 在第一条直线上取一点：令 $x=0$，得 $y=\dfrac12$，即 $\left(0,\dfrac12\right)$。</li>
+          <li>它到第二条直线的距离：$\dfrac{|0-2-8|}{5}=2$。平行线间距处处相等，所以这就是所求距离。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\dfrac45$；(2) $2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>直线还是 $y=mx+k$ 的形式就直接代公式。</li>
+        <li>漏掉绝对值，得到负的“距离”。</li>
+        <li>分母写成 $a^2+b^2$，忘记开根号。</li>
+        <li>两条平行线的 $x,y$ 系数不一致时直接相减常数项；要先化成相同系数。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>系数常设计成勾股数（$3,4,5$；$5,12,13$），分母为整数时计算很快。分母不是整数时要有理化，如 $\dfrac{7}{\sqrt2}=\dfrac{7\sqrt2}{2}$，填空的形式通常已经暗示了这一点。</p>
+      <p><strong>日语术语：</strong><span lang="ja">点と直線の距離</span>（<span class="kana" lang="ja">てんとちょくせんのきょり</span>）：点到直线的距离；<span lang="ja">垂線</span>（<span class="kana" lang="ja">すいせん</span>）：垂线；<span lang="ja">垂線の足</span>（<span class="kana" lang="ja">すいせんのあし</span>）：垂足；<span lang="ja">有理化</span>（<span class="kana" lang="ja">ゆうりか</span>）：有理化。</p>
+    </div>
     <div class="box good">
       <p><strong>三角形面积：</strong>以 $\mathrm{O}(0,0)$、$\mathrm{A}(x_1,y_1)$、$\mathrm{B}(x_2,y_2)$ 为顶点的三角形面积为 $S=\dfrac12|x_1y_2-x_2y_1|$。例如 $\mathrm{A}(4,1)$、$\mathrm{B}(2,3)$ 时，$S=\dfrac12|12-2|=5$。顶点不在原点时，先整体平移，或用 $S=\dfrac12\times\text{底}\times\text{点到直线距离}$。</p>
+    </div>
+    <p><strong>为什么成立：</strong>取 OA 为底，$\mathrm{OA}=\sqrt{x_1^2+y_1^2}$；直线 OA 的方程是 $y_1x-x_1y=0$，B 到它的距离为 $\dfrac{|y_1x_2-x_1y_2|}{\sqrt{x_1^2+y_1^2}}$。两者相乘再乘 $\dfrac12$，根号约去，得 $S=\dfrac12|x_1y_2-x_2y_1|$。平移不改变图形的形状和大小，所以一般三角形可以先把一个顶点移到原点。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　任意三角形的面积</b><span class="origin">原创</span></div>
+      <p>求以 $\mathrm{A}(1,1)$、$\mathrm{B}(5,2)$、$\mathrm{C}(3,6)$ 为顶点的三角形面积。</p>
+      <div class="ans">
+        <ol>
+          <li>整体平移使 A 到原点（各点减 $(1,1)$）：$\mathrm{B}$ 变为 $(4,1)$，C 变为 $(2,5)$。</li>
+          <li>代入公式：$S=\dfrac12|4\cdot5-2\cdot1|=\dfrac12\cdot18=9$。</li>
+          <li>用“底×高”验算：$\mathrm{AB}=\sqrt{4^2+1^2}=\sqrt{17}$，直线 AB 的方程为 $x-4y+3=0$。</li>
+          <li>C 到 AB 的距离为 $\dfrac{|3-24+3|}{\sqrt{17}}=\dfrac{18}{\sqrt{17}}$，所以 $S=\dfrac12\cdot\sqrt{17}\cdot\dfrac{18}{\sqrt{17}}=9$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>$S=9$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>没有平移就把非原点的顶点坐标代入 $\dfrac12|x_1y_2-x_2y_1|$。</li>
+        <li>漏掉绝对值或系数 $\dfrac12$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目分步问“直线方程 → 距离 → 面积”时，前一问的结果就是后一问的底和高，按题目的路线做最不易错；有余力时用平移公式验算。</p>
+      <p><strong>日语术语：</strong><span lang="ja">三角形の面積</span>（<span class="kana" lang="ja">さんかくけいのめんせき</span>）：三角形面积；<span lang="ja">底辺</span>（<span class="kana" lang="ja">ていへん</span>）：底边；<span lang="ja">高さ</span>（<span class="kana" lang="ja">たかさ</span>）：高；<span lang="ja">平行移動</span>（<span class="kana" lang="ja">へいこういどう</span>）：平移。</p>
     </div>
   </section>
 
@@ -324,12 +531,76 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
     <p>一般形式要通过配方（<span lang="ja">平方完成</span>）读出圆心和半径。例如</p>
     $$x^2+y^2-6x+4y-3=0\iff(x-3)^2+(y+2)^2=16,$$
     <p>圆心 $(3,-2)$，半径 $4$。配方后右边必须为正才表示圆：为 $0$ 时只表示一点，为负时不表示任何图形。</p>
+    <p><strong>为什么成立：</strong>圆是到圆心 $(a,b)$ 距离等于 $r$ 的点的全体。由距离公式 $\sqrt{(x-a)^2+(y-b)^2}=r$，两边平方（两边都非负）就得到标准形式。展开后 $x^2,y^2$ 的系数相同且没有 $xy$ 项，这就是一般形式的来历。反过来配方：$x^2+y^2+lx+my+n=0$ 化为 $\left(x+\dfrac l2\right)^2+\left(y+\dfrac m2\right)^2=\dfrac{l^2+m^2-4n}{4}$，所以圆心为 $\left(-\dfrac l2,-\dfrac m2\right)$，并且表示圆的条件是 $l^2+m^2-4n&gt;0$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由一般形式读圆</b><span class="origin">原创</span></div>
+      <p>方程 $x^2+y^2+4x-6y+k=0$ 表示圆，求 $k$ 的取值范围；并求 $k=4$ 时的圆心和半径。</p>
+      <div class="ans">
+        <ol>
+          <li>配方：$(x^2+4x+4)+(y^2-6y+9)+k=4+9$，即 $(x+2)^2+(y-3)^2=13-k$。</li>
+          <li>表示圆要求右边为正：$13-k&gt;0$，$k&lt;13$。</li>
+          <li>$k=4$ 时右边为 $9$，所以圆心 $(-2,3)$，半径 $3$。</li>
+        </ol>
+        <p><strong>答案：</strong>$k&lt;13$；圆心 $(-2,3)$，半径 $3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>圆心符号读反：$(x+2)^2$ 对应的圆心横坐标是 $-2$。</li>
+        <li>把右边的 $r^2$ 当成半径，如 $r^2=9$ 却写 $r=9$。</li>
+        <li>配方时只在左边加 $4$ 和 $9$，右边忘记同时加。</li>
+        <li>求参数范围时写成 $13-k\ge0$；等于 $0$ 时只是一个点，不是圆。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>一般形式的题第一步永远是配方，把圆心和半径写在草稿纸上，后面的切线、弦长、位置关系都要用。</p>
+      <p><strong>日语术语：</strong><span lang="ja">円</span>（<span class="kana" lang="ja">えん</span>）：圆；<span lang="ja">中心</span>（<span class="kana" lang="ja">ちゅうしん</span>）：圆心；<span lang="ja">半径</span>（<span class="kana" lang="ja">はんけい</span>）：半径；<span lang="ja">平方完成</span>（<span class="kana" lang="ja">へいほうかんせい</span>）：配方。</p>
+    </div>
     <h3>怎样选形式</h3>
     <ul>
       <li>已知圆心或半径的信息（如与坐标轴相切）：用标准形式。</li>
       <li>已知圆上三点：用一般形式，代入后解 $l,m,n$ 的联立方程。</li>
       <li>圆与 $x$ 轴相切时 $r=|b|$，与 $y$ 轴相切时 $r=|a|$。</li>
     </ul>
+    <p><strong>为什么成立：</strong>圆的方程含 $3$ 个独立未知量（$a,b,r$ 或 $l,m,n$），所以需要 $3$ 个独立条件。已知三点时，每个点给出一个方程；用一般形式，$x^2+y^2$ 项是已知数，得到的是关于 $l,m,n$ 的<strong>一次</strong>方程组，比标准形式的二次方程好解。与 $x$ 轴相切时，圆心到 $x$ 轴的距离 $|b|$ 就是半径，$y$ 轴同理。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　三点定圆</b><span class="origin">原创</span></div>
+      <p>求过 $\mathrm{A}(1,1)$、$\mathrm{B}(5,1)$、$\mathrm{C}(1,5)$ 的圆的方程。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $x^2+y^2+lx+my+n=0$，代入三点：$l+m+n=-2$，$5l+m+n=-26$，$l+5m+n=-26$。</li>
+          <li>第二式减第一式：$4l=-24$，$l=-6$。第三式减第一式：$4m=-24$，$m=-6$。</li>
+          <li>代回第一式：$n=-2+6+6=10$。方程为 $x^2+y^2-6x-6y+10=0$。</li>
+          <li>配方得 $(x-3)^2+(y-3)^2=8$。验算：$\angle\mathrm{A}$ 是直角，BC 应为直径，BC 中点确实是 $(3,3)$。</li>
+        </ol>
+        <p><strong>答案：</strong>$(x-3)^2+(y-3)^2=8$，圆心 $(3,3)$，半径 $2\sqrt2$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　与两轴都相切的圆</b><span class="origin">原创</span></div>
+      <p>求过点 $(2,1)$ 且与 $x$ 轴、$y$ 轴都相切的圆的方程。</p>
+      <div class="ans">
+        <ol>
+          <li>点 $(2,1)$ 在第一象限，圆又与两轴相切而不能越过坐标轴，所以圆在第一象限，圆心为 $(r,r)$，$r&gt;0$。</li>
+          <li>设 $(x-r)^2+(y-r)^2=r^2$，代入 $(2,1)$：$(2-r)^2+(1-r)^2=r^2$。</li>
+          <li>展开整理：$r^2-6r+5=0$，$(r-1)(r-5)=0$，$r=1$ 或 $5$。</li>
+        </ol>
+        <p><strong>答案：</strong>$(x-1)^2+(y-1)^2=1$ 或 $(x-5)^2+(y-5)^2=25$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>相切条件写成 $r=b$，漏掉绝对值；圆心在第四象限时 $b&lt;0$。</li>
+        <li>与两轴相切时只求出一个解；这类题通常有两个圆。</li>
+        <li>把“与 $x$ 轴相切”对应成 $r=|a|$；$x$ 轴相切看的是纵坐标 $b$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>三点中若有直角，斜边就是直径（<span lang="ja">直径</span>），圆心、半径可以心算，是最快的验算。答案有两组时，方框往往按“小的在前”排列，先看清题目的说明。</p>
+      <p><strong>日语术语：</strong><span lang="ja">通る</span>（<span class="kana" lang="ja">とおる</span>）：经过；<span lang="ja">直径</span>（<span class="kana" lang="ja">ちょっけい</span>）：直径；<span lang="ja">x軸に接する</span>（<span class="kana" lang="ja">エックスじくにせっする</span>）：与 $x$ 轴相切；<span lang="ja">連立方程式</span>（<span class="kana" lang="ja">れんりつほうていしき</span>）：联立方程。</p>
+    </div>
   </section>
 
   <section id="circle-line">
@@ -344,6 +615,31 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
         <tr><td>相离（<span lang="ja">共有点をもたない</span>）</td><td>$d&gt;r$</td><td>$D&lt;0$</td><td>$0$ 个</td></tr>
       </tbody>
     </table></div>
+    <p><strong>为什么成立：</strong>直线上离圆心最近的点是垂足，距离为 $d$。$d&lt;r$ 时垂足在圆内，直线必穿过圆，有两个交点；$d=r$ 时垂足恰在圆上，其余点都在圆外；$d&gt;r$ 时整条直线在圆外。代数上，交点坐标是联立方程的实数解，消元后得到一元二次方程，实数解的个数由 $D$ 决定，所以两种方法结论相同。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用两种方法判断共有点</b><span class="origin">原创</span></div>
+      <p>讨论圆 $x^2+y^2=4$ 与直线 $y=2x+k$ 的共有点个数。</p>
+      <div class="ans">
+        <ol>
+          <li>距离法：直线化为 $2x-y+k=0$，$d=\dfrac{|k|}{\sqrt5}$。比较 $d$ 与 $r=2$：$|k|$ 与 $2\sqrt5$ 的大小决定结果。</li>
+          <li>判别式法：代入得 $x^2+(2x+k)^2=4$，即 $5x^2+4kx+k^2-4=0$。</li>
+          <li>$\dfrac D4=(2k)^2-5(k^2-4)=20-k^2$，它的符号同样由 $|k|$ 与 $2\sqrt5$ 决定，两法一致。</li>
+        </ol>
+        <p><strong>答案：</strong>$|k|&lt;2\sqrt5$ 时 $2$ 个；$|k|=2\sqrt5$ 时 $1$ 个；$|k|&gt;2\sqrt5$ 时 $0$ 个。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>比较时用 $d$ 与直径比较，应该与半径比较。</li>
+        <li>判别式法代入后展开出错，如把 $(2x+k)^2$ 写成 $4x^2+k^2$。</li>
+        <li>把判别式 $D$ 与两圆圆心距 $D$ 混淆（本页两处用了同一字母）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>只问位置关系或参数范围，用距离法；要求交点坐标，才用联立。<span lang="ja">異なる2点で交わる</span> 要严格不等号 $d&lt;r$；只说 <span lang="ja">共有点をもつ</span> 时要取 $d\le r$。</p>
+      <p><strong>日语术语：</strong><span lang="ja">共有点</span>（<span class="kana" lang="ja">きょうゆうてん</span>）：公共点；<span lang="ja">判別式</span>（<span class="kana" lang="ja">はんべつしき</span>）：判别式；<span lang="ja">異なる2点</span>（<span class="kana" lang="ja">ことなるにてん</span>）：不同的两点；<span lang="ja">接する</span>（<span class="kana" lang="ja">せっする</span>）：相切。</p>
+    </div>
 
     <h3>弦长与切线</h3>
     <div class="formula-grid">
@@ -356,6 +652,48 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
     </div>
     <div class="box warn">
       <p><strong>从圆外一点作切线：</strong>切点公式只能用于圆上的点。圆外的点要设切线 $y-y_1=m(x-x_1)$，用 $d=r$ 解 $m$，并单独检查竖直线 $x=x_1$ 是否也是切线。</p>
+    </div>
+    <p><strong>为什么成立：</strong><strong>弦长：</strong>圆心到弦的垂线平分弦（等腰三角形的高也是中线），半弦、$d$、$r$ 构成直角三角形，所以半弦为 $\sqrt{r^2-d^2}$。<strong>切线：</strong>切线垂直于过切点的半径。对圆 $x^2+y^2=r^2$ 上的点 $(x_1,y_1)$，切线上的点 $(x,y)$ 满足 $x_1(x-x_1)+y_1(y-y_1)=0$，移项并用 $x_1^2+y_1^2=r^2$，得 $x_1x+y_1y=r^2$。圆心为 $(a,b)$ 时把坐标整体平移即得另一个公式。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　弦长与切点处的切线</b><span class="origin">原创</span></div>
+      <p>圆 $C:x^2+y^2-2x-4y-20=0$。(1) 求 $C$ 截直线 $4x+3y+5=0$ 所得的弦长。(2) 求 $C$ 上点 $(4,6)$ 处的切线。</p>
+      <div class="ans">
+        <ol>
+          <li>配方：$(x-1)^2+(y-2)^2=25$，圆心 $(1,2)$，$r=5$。</li>
+          <li>(1) $d=\dfrac{|4+6+5|}{\sqrt{16+9}}=\dfrac{15}{5}=3$，弦长 $=2\sqrt{25-9}=8$。</li>
+          <li>(2) 先确认点在圆上：$(4-1)^2+(6-2)^2=25$，成立。</li>
+          <li>切线公式：$(4-1)(x-1)+(6-2)(y-2)=25$，即 $3x-3+4y-8=25$，所以 $3x+4y=36$。</li>
+          <li>验算：圆心到切线的距离 $\dfrac{|3+8-36|}{5}=5=r$，正确。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $8$；(2) $3x+4y=36$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　圆外一点的切线（含竖直线）</b><span class="origin">原创</span></div>
+      <p>求从点 $(3,5)$ 向圆 $x^2+y^2=9$ 所作的切线方程。</p>
+      <div class="ans">
+        <ol>
+          <li>$3^2+5^2=34&gt;9$，点在圆外，应有两条切线。</li>
+          <li>先看竖直线 $x=3$：到原点距离为 $3=r$，它是一条切线（切点 $(3,0)$）。</li>
+          <li>再设斜率存在：$y-5=m(x-3)$，即 $mx-y+5-3m=0$。由 $d=r$ 得 $\dfrac{|5-3m|}{\sqrt{m^2+1}}=3$。</li>
+          <li>两边平方：$25-30m+9m^2=9m^2+9$，$m^2$ 抵消，$30m=16$，$m=\dfrac{8}{15}$。</li>
+          <li>切线为 $y-5=\dfrac{8}{15}(x-3)$，即 $8x-15y+51=0$。只解出一个 $m$，正好说明另一条切线是竖直线。</li>
+        </ol>
+        <p><strong>答案：</strong>$x=3$ 和 $8x-15y+51=0$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把切点公式用在圆外的点上，$x_1x+y_1y=r^2$ 此时表示的并不是切线。</li>
+        <li>只解出一个斜率就停止；圆外的点一定有两条切线，少一条就要查竖直线。</li>
+        <li>弦长忘记乘 $2$，算成半弦 $\sqrt{r^2-d^2}$。</li>
+        <li>圆心不在原点时仍用 $x_1x+y_1y=r^2$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>求弦长优先用 $2\sqrt{r^2-d^2}$，不用求交点。切线求完用 $d=r$ 验算一次，只需几秒钟。</p>
+      <p><strong>日语术语：</strong><span lang="ja">接線</span>（<span class="kana" lang="ja">せっせん</span>）：切线；<span lang="ja">接点</span>（<span class="kana" lang="ja">せってん</span>）：切点；<span lang="ja">弦</span>（<span class="kana" lang="ja">げん</span>）：弦；<span lang="ja">切り取られる線分の長さ</span>（<span class="kana" lang="ja">きりとられるせんぶんのながさ</span>）：截得的线段长（弦长）。</p>
     </div>
 
     <h3>探索器：拖动滑块观察 $d$ 与 $r$</h3>
@@ -375,6 +713,31 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
       </div>
       <div class="status" id="r-s" aria-live="polite"></div>
     </div>
+    <p><strong>怎样用探索器：</strong>固定 $r$ 和 $m$，只拖动截距 $k$，直线平行移动，$d$ 连续变化；状态从“相离”变成“相切”再变成“相交”的那一刻，就是 $d=r$。这个探索器里 $d=\dfrac{|m-1+k|}{\sqrt{m^2+1}}$，因为圆心固定在 $(1,1)$，直线为 $mx-y+k=0$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　手算并用探索器核对</b><span class="origin">原创</span></div>
+      <p>圆心 $(1,1)$，$r=3$，$m=\dfrac12$。(1) $k=1$ 时求 $d$ 与弦长。(2) 求相切时 $k$ 的值。然后在上面的探索器中核对。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 直线 $\dfrac12x-y+1=0$，$d=\dfrac{\left|\frac12-1+1\right|}{\sqrt{\frac14+1}}=\dfrac{\frac12}{\frac{\sqrt5}{2}}=\dfrac{1}{\sqrt5}=\dfrac{\sqrt5}{5}\approx0.447$。</li>
+          <li>弦长 $=2\sqrt{9-\dfrac15}=2\sqrt{\dfrac{44}{5}}=\dfrac{4\sqrt{55}}{5}\approx5.933$。</li>
+          <li>(2) 令 $d=3$：$\dfrac{\left|k-\frac12\right|}{\frac{\sqrt5}{2}}=3$，所以 $\left|k-\dfrac12\right|=\dfrac{3\sqrt5}{2}$。</li>
+          <li>$k=\dfrac12\pm\dfrac{3\sqrt5}{2}$，约为 $3.85$ 或 $-2.85$。在默认状态（$k=1$）点“调到相切”，读数为 $3.85$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $d=\dfrac{\sqrt5}{5}$，弦长 $\dfrac{4\sqrt{55}}{5}$；(2) $k=\dfrac12\pm\dfrac{3\sqrt5}{2}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>以为切线只有一条；平行移动时直线从圆的两侧各切一次，所以 $k$ 有两个值。</li>
+        <li>把截距 $k$ 的变化量当成 $d$ 的变化量；$d$ 的变化量还要除以 $\sqrt{m^2+1}$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>考场上没有探索器，但这个画面要记住：“同斜率的一族平行线”与圆的关系，正是第 7 节 $ax+by$ 最值问题的几何图景。</p>
+      <p><strong>日语术语：</strong><span lang="ja">平行移動</span>（<span class="kana" lang="ja">へいこういどう</span>）：平移；<span lang="ja">定数</span>（<span class="kana" lang="ja">ていすう</span>）：常数（题中的参数）。</p>
+    </div>
 
     <h3>两圆的位置关系</h3>
     <p>设圆心距为 $D$，两圆半径为 $r_1,r_2$（$r_1\ge r_2$）：</p>
@@ -383,6 +746,32 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
       <tbody><tr><td>$D&gt;r_1+r_2$</td><td>$D=r_1+r_2$</td><td>$r_1-r_2&lt;D&lt;r_1+r_2$</td><td>$D=r_1-r_2$</td><td>$D&lt;r_1-r_2$</td></tr></tbody>
     </table></div>
     <p>两圆相交时，两个方程相减得到公共弦所在的直线。例如 $x^2+y^2=4$ 与 $x^2+y^2-2x-2y-2=0$ 相减，整理得 $x+y=1$。</p>
+    <p><strong>为什么成立：</strong>两个圆心与一个交点构成三角形，三边为 $D,r_1,r_2$。三角形存在的条件是 $r_1-r_2&lt;D&lt;r_1+r_2$，这就是“相交”；三角形压扁成一条线时恰为外切或内切；不满足时没有交点。至于公共弦：两个交点同时满足两个圆的方程，也就满足它们的差；相减后二次项消失，差是一次方程，表示直线。两点确定一条直线，所以它就是公共弦所在的直线。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　公共弦与弦长</b><span class="origin">原创</span></div>
+      <p>圆 $C_1:x^2+y^2=10$，圆 $C_2:(x-4)^2+(y-2)^2=10$。判断位置关系，并求公共弦所在直线与公共弦长。</p>
+      <div class="ans">
+        <ol>
+          <li>圆心距 $D=\sqrt{16+4}=2\sqrt5$，$r_1=r_2=\sqrt{10}$。因 $0&lt;2\sqrt5&lt;2\sqrt{10}$，两圆相交。</li>
+          <li>$C_2$ 展开为 $x^2+y^2-8x-4y+10=0$。与 $C_1$ 相减：$8x+4y-20=0$，即 $2x+y=5$。</li>
+          <li>原点到该直线的距离 $d=\dfrac{5}{\sqrt5}=\sqrt5$，弦长 $=2\sqrt{10-5}=2\sqrt5$。</li>
+          <li>验算：代入 $y=5-2x$ 得 $5x^2-20x+15=0$，$x=1,3$，交点 $(1,3)$、$(3,-1)$，距离 $\sqrt{4+16}=2\sqrt5$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>相交；公共弦所在直线 $2x+y=5$；弦长 $2\sqrt5$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只考虑外切，漏掉内切（如练习题 9 中 $r$ 有两个值）。</li>
+        <li>未化成 $x^2+y^2+\cdots=0$ 就相减，二次项消不掉。</li>
+        <li>内切条件写成 $D=r_1+r_2$；内切时是半径之差，并要加绝对值 $D=|r_1-r_2|$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目说 <span lang="ja">2つの円が接する</span> 而未指明内外时，必须内切、外切都算。圆心距的平方通常是整数，比较时可以平方后比较，避免根号估算。</p>
+      <p><strong>日语术语：</strong><span lang="ja">外接する</span>（<span class="kana" lang="ja">がいせつする</span>）：外切；<span lang="ja">内接する</span>（<span class="kana" lang="ja">ないせつする</span>）：内切；<span lang="ja">中心間の距離</span>（<span class="kana" lang="ja">ちゅうしんかんのきょり</span>）：圆心距；<span lang="ja">共通弦</span>（<span class="kana" lang="ja">きょうつうげん</span>）：公共弦。</p>
+    </div>
   </section>
 
   <section id="locus">
@@ -406,6 +795,58 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
     <div class="box warn">
       <p><strong>注意范围：</strong>消去参数时，参数的范围会转化为 $x,y$ 的范围。例如 $x=t$ 且 $t\ge0$，轨迹就只是曲线上 $x\ge0$ 的部分。</p>
     </div>
+    <p><strong>为什么成立：</strong>求轨迹要证明两件事：① 满足条件的点都在所得图形上；② 图形上的点都满足条件。化简时每一步若都是等价变形，两件事就同时成立。不等价的步骤（如去分母、消参数、原题排除某些位置）正是需要“除外点”的地方。距离比的情形：$\mathrm{A},\mathrm{B}$ 固定、$\mathrm{PA}:\mathrm{PB}=m:n$ 时，平方后 $x^2,y^2$ 的系数均为 $n^2-m^2$，$m\ne n$ 时可以除掉，并且没有 $xy$ 项，所以结果是圆；$m=n$ 时二次项消失，退化为垂直平分线。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　距离比：阿波罗尼斯圆</b><span class="origin">原创</span></div>
+      <p>$\mathrm{A}(0,0)$、$\mathrm{B}(4,0)$，求满足 $\mathrm{PA}:\mathrm{PB}=3:1$ 的点 P 的轨迹。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $\mathrm{P}(x,y)$。条件化为 $\mathrm{PA}=3\mathrm{PB}$，两边平方：$x^2+y^2=9\{(x-4)^2+y^2\}$。</li>
+          <li>展开移项：$8x^2+8y^2-72x+144=0$，除以 $8$ 得 $x^2+y^2-9x+18=0$。</li>
+          <li>配方：$\left(x-\dfrac92\right)^2+y^2=\dfrac94$。</li>
+          <li>验算：AB 按 $3:1$ 内分的点 $(3,0)$、外分的点 $(6,0)$ 都满足条件，它们恰好是这个圆的直径两端，圆心 $\left(\dfrac92,0\right)$、半径 $\dfrac32$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>以 $\left(\dfrac92,0\right)$ 为圆心、$\dfrac32$ 为半径的圆。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　联动点：重心的轨迹与除外点</b><span class="origin">原创</span></div>
+      <p>$\mathrm{A}(3,0)$、$\mathrm{B}(0,3)$，点 Q 在圆 $x^2+y^2=9$ 上运动（Q 与 A、B 不同）。求 $\triangle\mathrm{ABQ}$ 的重心 G 的轨迹。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $\mathrm{G}(x,y)$、$\mathrm{Q}(s,t)$。重心公式：$x=\dfrac{3+s}{3}$，$y=\dfrac{3+t}{3}$，所以 $s=3x-3$，$t=3y-3$。</li>
+          <li>代入 $s^2+t^2=9$：$(3x-3)^2+(3y-3)^2=9$，除以 $9$ 得 $(x-1)^2+(y-1)^2=1$。</li>
+          <li>处理除外点：Q 不能是 A，代入 $s=3,t=0$ 得 $(x,y)=(2,1)$；Q 不能是 B，代入 $s=0,t=3$ 得 $(x,y)=(1,2)$。（三点共线的情况只有这两种，因为直线与圆至多两个交点。）</li>
+        </ol>
+        <p><strong>答案：</strong>圆 $(x-1)^2+(y-1)^2=1$，但除去点 $(2,1)$、$(1,2)$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　消参数：两动直线的交点</b><span class="origin">原创</span></div>
+      <p>$m$ 取所有实数，求直线 $y=mx$ 与 $x+my=2$ 的交点 P 的轨迹。</p>
+      <div class="ans">
+        <ol>
+          <li>若交点的 $x=0$，由 $y=mx$ 得 $y=0$，代入第二式得 $0=2$，矛盾，所以 $x\ne0$。</li>
+          <li>于是 $m=\dfrac yx$，代入第二式：$x+\dfrac{y^2}{x}=2$，乘 $x$ 得 $x^2+y^2-2x=0$，即 $(x-1)^2+y^2=1$（且 $x\ne0$）。</li>
+          <li>反过来，圆上任一 $x\ne0$ 的点，取 $m=\dfrac yx$ 就满足两条直线的方程，所以这些点都能取到。</li>
+          <li>圆上 $x=0$ 的点只有原点，要除去。也可由 $x=\dfrac{2}{1+m^2}&gt;0$ 确认这一点。几何上，两直线互相垂直，分别过 $(0,0)$、$(2,0)$，这就是以这两点为直径的圆。</li>
+        </ol>
+        <p><strong>答案：</strong>圆 $(x-1)^2+y^2=1$，但除去原点 $(0,0)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只写出方程，不检查除外点或取值范围（三角形退化、分母为 $0$ 等）。</li>
+        <li>联动点题中把动点 Q 的方程直接当成答案，忘记用 $x,y$ 表示 $s,t$ 后再代入。</li>
+        <li>$\mathrm{PA}:\mathrm{PB}=3:1$ 写成 $3\mathrm{PA}=\mathrm{PB}$，比例方向反了。</li>
+        <li>除以含 $x$ 的式子时未讨论 $x=0$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>答题时也要留意 <span lang="ja">ただし</span>（但是）后面的条件：这通常就是除外点的提示。阿波罗尼斯圆可用内分点、外分点作直径端点，几秒钟就能验算。</p>
+      <p><strong>日语术语：</strong><span lang="ja">軌跡</span>（<span class="kana" lang="ja">きせき</span>）：轨迹；<span lang="ja">媒介変数</span>（<span class="kana" lang="ja">ばいかいへんすう</span>）：参数；<span lang="ja">消去する</span>（<span class="kana" lang="ja">しょうきょする</span>）：消去；<span lang="ja">除く</span>（<span class="kana" lang="ja">のぞく</span>）：除去；<span lang="ja">動く</span>（<span class="kana" lang="ja">うごく</span>）：运动。</p>
+    </div>
   </section>
 
   <section id="region">
@@ -421,6 +862,33 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
       </tbody>
     </table></div>
     <p>$\le,\ge$ 包含边界（<span lang="ja">境界線を含む</span>），$&lt;,&gt;$ 不包含。联立不等式取各区域的公共部分；形如 $AB&gt;0$ 的不等式要分成“$A&gt;0$ 且 $B&gt;0$”或“$A&lt;0$ 且 $B&lt;0$”两种情况。</p>
+    <p><strong>为什么成立：</strong>固定某个 $x_0$，竖直线 $x=x_0$ 与直线 $y=mx+k$ 交于 $y_0=mx_0+k$；$y&gt;y_0$ 的点就在交点的上方。对每个 $x_0$ 都如此，合起来就是直线的上方。圆的情形：$(x-a)^2+(y-b)^2&lt;r^2$ 就是“到圆心的距离小于 $r$”，所以是内部。曲线把平面分成几块时，每一块内部 $f(x,y)$ 的符号不变，因此只需要代入一个不在边界上的<strong>试验点</strong>就能判断整块是否满足。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　乘积型与面积</b><span class="origin">原创</span></div>
+      <p>(1) 描述 $(x-y+1)(x+y-3)&gt;0$ 表示的区域。(2) 求 $y\ge|x|,\ x^2+y^2\le4$ 表示的区域的面积。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 两条边界 $y=x+1$、$y=3-x$ 交于 $(1,2)$，把平面分成四块。</li>
+          <li>情况一 $A&gt;0,B&gt;0$：$y&lt;x+1$ 且 $y&gt;3-x$，这是交点右侧的一块。情况二 $A&lt;0,B&lt;0$：$y&gt;x+1$ 且 $y&lt;3-x$，这是交点左侧的一块。</li>
+          <li>试验点检验：$(3,1)$ 代入得 $3\cdot1=3&gt;0$（右块）；$(-2,2)$ 代入得 $(-3)(-3)=9&gt;0$（左块）；$(1,3)$ 得 $-1&lt;0$（上块）；$(1,0)$ 得 $-4&lt;0$（下块），上下两块不在区域内。</li>
+          <li>(2) $y\ge|x|$ 是原点上方、夹在 $y=x$ 与 $y=-x$ 之间的角形，张角为 $90^\circ$。</li>
+          <li>与半径 $2$ 的圆取公共部分，是四分之一圆，面积 $\dfrac14\cdot\pi\cdot2^2=\pi$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) 两直线交点 $(1,2)$ 左右相对的两块（不含边界）；(2) 面积 $\pi$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $ax+by+c&gt;0$ 一律当成“上方”；$y$ 的系数为负时方向相反，如 $x-y+1&gt;0$ 是 $y&lt;x+1$，为直线下方。</li>
+        <li>$AB&gt;0$ 只考虑 $A&gt;0,B&gt;0$，漏掉两个都为负的情况。</li>
+        <li>实线和虚线不分，边界是否包含要看有没有等号。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>判断区域不必想太多，代入原点这样的试验点最快（原点在边界上时换一个点）。乘积型的区域一定是“相间”分布：跨过一条边界，符号就变一次。</p>
+      <p><strong>日语术语：</strong><span lang="ja">領域</span>（<span class="kana" lang="ja">りょういき</span>）：区域；<span lang="ja">境界線</span>（<span class="kana" lang="ja">きょうかいせん</span>）：边界线；<span lang="ja">上側</span>（<span class="kana" lang="ja">うえがわ</span>）：上方；<span lang="ja">下側</span>（<span class="kana" lang="ja">したがわ</span>）：下方；<span lang="ja">内部</span>（<span class="kana" lang="ja">ないぶ</span>）：内部；<span lang="ja">外部</span>（<span class="kana" lang="ja">がいぶ</span>）：外部。</p>
+    </div>
 
     <h3>区域内的最大值与最小值</h3>
     <p>求 $3x+4y$ 的最大值时，令 $3x+4y=k$，把它看作斜率固定的直线。让直线平移并保持与区域有公共点，$y$ 截距 $\dfrac k4$ 最大时 $k$ 也最大。</p>
@@ -441,6 +909,46 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
     <p>比较目标直线与边界的斜率：$-\dfrac34$ 介于 $x+2y=6$ 的斜率 $-\dfrac12$ 和 $x+y=4$ 的斜率 $-1$ 之间，所以直线在顶点 $(2,2)$ 处截距最大，最大值为 $3\cdot2+4\cdot2=14$。</p>
     <div class="box good">
       <p><strong>$x^2+y^2$ 型：</strong>把它看作到原点距离的平方。最大值一般在离原点最远的顶点取得；圆形区域或 $(x-a)^2+(y-b)^2$ 型则看相切或圆心连线。</p>
+    </div>
+    <p><strong>为什么成立：</strong>$ax+by=k$（$b\ne0$）可改写为 $y=-\dfrac abx+\dfrac kb$：$k$ 变化时斜率不变，直线平行移动，$\dfrac kb$ 是 $y$ 截距。在凸多边形上移动这条直线，最后离开区域的位置一定是顶点（或一整条边），所以最值在顶点取得。注意：$b&gt;0$ 时截距越大 $k$ 越大；$b&lt;0$ 时反过来，截距越大 $k$ 越<strong>小</strong>。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　线性目标的最值（含 $b&lt;0$）</b><span class="origin">原创</span></div>
+      <p>实数 $x,y$ 满足 $x\ge0,\ y\ge0,\ x+y\le5,\ 2x+y\le8$。(1) 求 $3x+2y$ 的最大值。(2) 求 $x-2y$ 的最大值和最小值。</p>
+      <div class="ans">
+        <ol>
+          <li>先求顶点：$x+y=5$ 与 $2x+y=8$ 相减得 $x=3$，$y=2$。$2x+y=8$ 与 $x$ 轴交于 $(4,0)$，$x+y=5$ 与 $y$ 轴交于 $(0,5)$。区域的顶点为 $(0,0),(4,0),(3,2),(0,5)$。</li>
+          <li>(1) 令 $3x+2y=k$，斜率 $-\dfrac32$ 介于边界斜率 $-1$ 与 $-2$ 之间，所以在 $(3,2)$ 处截距最大，$k=9+4=13$。</li>
+          <li>四个顶点的值依次为 $0,12,13,10$，确认最大值为 $13$。</li>
+          <li>(2) 令 $x-2y=k$，即 $y=\dfrac12x-\dfrac k2$，截距为 $-\dfrac k2$，截距<strong>越大 $k$ 越小</strong>。</li>
+          <li>截距在 $(0,5)$ 处最大，所以 $k$ 最小，为 $-10$；截距在 $(4,0)$ 处最小，所以 $k$ 最大，为 $4$。四个顶点的值依次为 $0,4,-1,-10$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) 最大值 $13$，在 $(3,2)$ 取得；(2) 最大值 $4$，在 $(4,0)$ 取得；最小值 $-10$，在 $(0,5)$ 取得。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　圆形区域上的距离型最值</b><span class="origin">原创</span></div>
+      <p>实数 $x,y$ 满足 $x^2+y^2\le25$。求 $(x-6)^2+(y-8)^2$ 的最小值、最大值和取得时的 $(x,y)$。</p>
+      <div class="ans">
+        <ol>
+          <li>所求式是点 $(x,y)$ 到 $\mathrm{A}(6,8)$ 距离的平方。A 到原点的距离为 $10$，大于半径 $5$，A 在区域外。</li>
+          <li>圆内的点到 A 的距离最小、最大都发生在直线 OA 与圆的交点处，最小距离 $10-5=5$，最大距离 $10+5=15$。</li>
+          <li>直线 OA 的方向是 $\left(\dfrac35,\dfrac45\right)$，所以两交点为 $\pm5\left(\dfrac35,\dfrac45\right)$，即 $(3,4)$ 和 $(-3,-4)$。</li>
+        </ol>
+        <p><strong>答案：</strong>最小值 $25$，在 $(3,4)$ 取得；最大值 $225$，在 $(-3,-4)$ 取得。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只凭图估计最优顶点。斜率接近时图会骗人，要比较斜率，或把各顶点都代入。</li>
+        <li>$y$ 的系数为负时仍认为“截距最大对应 $k$ 最大”。</li>
+        <li>$x^2+y^2$ 的最小值不一定在顶点取得：离原点最近的点可能是垂足。</li>
+        <li>求出距离后忘记平方，把距离当成 $x^2+y^2$ 的值。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>EJU 常分三步问：交点 → 线性式最大值 → $x^2+y^2$ 最大值。时间紧时，凸多边形上的线性式可以直接把所有顶点代入比较，保证正确。</p>
+      <p><strong>日语术语：</strong><span lang="ja">最大値</span>（<span class="kana" lang="ja">さいだいち</span>）：最大值；<span lang="ja">最小値</span>（<span class="kana" lang="ja">さいしょうち</span>）：最小值；<span lang="ja">頂点</span>（<span class="kana" lang="ja">ちょうてん</span>）：顶点；<span lang="ja">連立不等式</span>（<span class="kana" lang="ja">れんりつふとうしき</span>）：不等式组。</p>
     </div>
   </section>
 
@@ -507,6 +1015,32 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
         <p>(3) $x^2+y^2$ 是到原点距离的平方。四边形是凸的，最远点在顶点取得：三个非原点顶点的值依次为 $9,13,16$，所以最大值 $16$ 在 $(0,4)$ 取得。</p>
       </div>
     </article>
+    <p><strong>这些题怎么想：</strong>四道例题的共同特点是“前一问为后一问铺路”：先求基本量（分点、圆心、交点），再用距离公式或几何含义得到最终结果。每次卡住时，先回头看上一问的结果能怎样用。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　切线、参数与弦长</b><span class="origin">原创</span></div>
+      <p>圆 $C:(x-3)^2+(y-1)^2=10$。</p>
+      <p>(1) $C$ 经过原点 O，O 处的切线方程为 $y=-\B{A}\,x$。</p>
+      <p>(2) 直线 $y=x+k$ 与 $C$ 相切时，$k=-\B{B}\pm\B{C}\sqrt{\B{D}}$。</p>
+      <p>(3) 直线 $y=x$ 被 $C$ 截得的弦长为 $\B{E}\sqrt{\B{F}}$，O 以外的交点为 $(\B{G},\ \B{G})$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 3</li><li>B = 2</li><li>C = 2</li><li>D = 5</li><li>E = 4</li><li>F = 2</li><li>G = 4</li></ul>
+        <p>(1) $(0-3)^2+(0-1)^2=10$，O 确实在圆上。切线公式：$(0-3)(x-3)+(0-1)(y-1)=10$，展开得 $-3x+9-y+1=10$，即 $y=-3x$。</p>
+        <p>(2) 直线化为 $x-y+k=0$，圆心 $(3,1)$，由 $d=r$ 得 $\dfrac{|3-1+k|}{\sqrt2}=\sqrt{10}$，所以 $|k+2|=\sqrt{20}=2\sqrt5$，$k=-2\pm2\sqrt5$。</p>
+        <p>(3) $d=\dfrac{|3-1|}{\sqrt2}=\sqrt2$，弦长 $=2\sqrt{10-2}=4\sqrt2$。把 $y=x$ 代入 $C$：$2x^2-8x=0$，$x=0,4$，另一交点为 $(4,4)$；到 O 的距离也是 $4\sqrt2$，一致。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>分数没约到最简、根号内没化到最小，导致方框位数对不上；方框数对不上时，往往说明前面算错或没化简。</li>
+        <li>把同一字母的两个方框（如上题的 $\B{G}$）填成不同的数。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>EJU 是填空（マークシート）形式，方框的个数和位置本身就是提示：如 $\B{A}\sqrt{\B{B}}$ 告诉你结果含根号。本节题目也要先独立算完，再展开答案核对。</p>
+      <p><strong>日语术语：</strong><span lang="ja">マークシート</span>（<span class="kana" lang="ja">マークシート</span>）：答题卡；<span lang="ja">既約分数</span>（<span class="kana" lang="ja">きやくぶんすう</span>）：最简分数；<span lang="ja">根号</span>（<span class="kana" lang="ja">こんごう</span>）：根号。</p>
+    </div>
   </section>
 
   <section id="practice">
@@ -580,6 +1114,31 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
       <p>$x^2+y^2\le5$ 时，求 $x+2y$ 的最大值及此时的 $(x,y)$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
       <div class="ans" hidden><p>令 $x+2y=k$。直线与圆有共有点的条件是 $\dfrac{|k|}{\sqrt5}\le\sqrt5$，所以 $k$ 的最大值为 $5$。此时直线与圆相切，切点 $(1,2)$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>14　补充例题</b>圆上的点到直线的距离</div>
+      <p>点 P 在圆 $x^2+y^2=25$ 上运动。求 P 到直线 $3x+4y-50=0$ 距离的最大值、最小值及此时 P 的坐标。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ol>
+          <li>圆心 O 到直线的距离 $\dfrac{|-50|}{5}=10&gt;5$，直线在圆外。</li>
+          <li>过 O 作直线的垂线，方向 $\left(\dfrac35,\dfrac45\right)$。圆上离直线最近的点在这条垂线上靠近直线一侧，最远的点在另一侧。</li>
+          <li>最小值 $10-5=5$，此时 $\mathrm{P}=5\left(\dfrac35,\dfrac45\right)=(3,4)$；最大值 $10+5=15$，此时 $\mathrm{P}=(-3,-4)$。</li>
+          <li>验算：$\dfrac{|9+16-50|}{5}=5$，$\dfrac{|-9-16-50|}{5}=15$，正确。</li>
+        </ol>
+        <p><strong>答案：</strong>最大值 $15$，$\mathrm{P}(-3,-4)$；最小值 $5$，$\mathrm{P}(3,4)$。</p>
+      </div></div>
+    <p><strong>练习方法：</strong>第 1–4 题练基本公式，第 5–9 题练圆，第 10–11 题练轨迹，第 12–14 题练区域与最值。每题做完用另一种方法验算一次（如距离法与判别式法互相核对）；错题要写下错在哪一步，而不只是看答案。</p>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>一看到答案和自己不同就直接抄；更有效的做法是找到第一个出错的步骤。</li>
+        <li>两种答案的题（如第 7、9 题）只写一个。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>コース2 全卷时间紧，这些基础题要做到一分钟左右完成，把时间留给后面的综合题。计时做一遍，看哪些步骤还不够熟练。</p>
+      <p><strong>日语术语：</strong><span lang="ja">練習問題</span>（<span class="kana" lang="ja">れんしゅうもんだい</span>）：练习题；<span lang="ja">計算ミス</span>（<span class="kana" lang="ja">けいさんミス</span>）：计算错误。</p>
+    </div>
   </section>
 
   <section id="terms">
@@ -592,6 +1151,32 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
       <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
       <tbody></tbody>
     </table></div>
+    <p><strong>怎样用这张表：</strong>考试题目用日语写成，读不懂题意比不会算更可惜。建议把“动词 + 条件”的短语整句记忆，如 <span lang="ja">点Aを通る</span>（经过点 A）、<span lang="ja">直線 $\ell$ に接する</span>（与直线 $\ell$ 相切）、<span lang="ja">線分ABを $2:1$ に内分する</span>（把线段 AB 按 $2:1$ 内分）。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　读日语题面并求解</b><span class="origin">原创</span></div>
+      <p><span lang="ja">円 $x^2+y^2=10$ と直線 $y=3x+k$ が接するとき，定数 $k$ の値を求めよ。また，$k&gt;0$ のときの接点の座標を求めよ。</span></p>
+      <div class="ans">
+        <ol>
+          <li>读题：<span lang="ja">接するとき</span> = 相切时；<span lang="ja">定数 $k$ の値を求めよ</span> = 求常数 $k$ 的值；<span lang="ja">接点の座標</span> = 切点的坐标。</li>
+          <li>直线化为 $3x-y+k=0$，由 $d=r$：$\dfrac{|k|}{\sqrt{10}}=\sqrt{10}$，$|k|=10$，$k=\pm10$。</li>
+          <li>$k=10$ 时代入圆：$x^2+(3x+10)^2=10$，即 $10x^2+60x+90=0$，$(x+3)^2=0$。</li>
+          <li>重根 $x=-3$，$y=3\cdot(-3)+10=1$，切点为 $(-3,1)$。</li>
+        </ol>
+        <p><strong>答案：</strong>$k=\pm10$；$k&gt;0$ 时切点为 $(-3,1)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 <span lang="ja">接線</span>（切线）与 <span lang="ja">接点</span>（切点）看混，答案要求的对象就错了。</li>
+        <li>把 <span lang="ja">外接</span> 只理解为“三角形的外接圆”；两圆题中它的意思是外切。</li>
+        <li>汉字相同但含义不同：日语 <span lang="ja">切片</span> 是截距，不是中文的“切片”。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题尾常见的动词要熟悉：<span lang="ja">求めよ</span>（求）、<span lang="ja">示せ</span>（证明）。EJU 的题面还常写 <span lang="ja">次の文中の … にあてはまる数を答えなさい</span>（填入适合的数）。</p>
+      <p><strong>日语术语：</strong><span lang="ja">求める</span>（<span class="kana" lang="ja">もとめる</span>）：求；<span lang="ja">定数</span>（<span class="kana" lang="ja">ていすう</span>）：常数；<span lang="ja">値</span>（<span class="kana" lang="ja">あたい</span>）：值；<span lang="ja">座標</span>（<span class="kana" lang="ja">ざひょう</span>）：坐标。</p>
+    </div>
   </section>
 
   <footer>

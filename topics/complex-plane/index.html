@@ -201,6 +201,7 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
 .hero .back { margin: 0 0 14px; }
 .hero .back a { color: #c5d3ef; }
 #presets .chip { font-size: 13.5px; }
+.box.tip { background: var(--surface-2); }
 </style>
 </head>
 <body>
@@ -257,6 +258,29 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <li>加法 $\alpha+\beta$ 与向量加法相同，符合平行四边形法则；$\beta-\alpha$ 对应向量 $\overrightarrow{\mathrm{AB}}$。</li>
     </ul>
 
+    <p><strong>为什么是一一对应？</strong>两个复数相等（<span lang="ja">複素数の相等</span><span class="kana">（ふくそすうのそうとう）</span>）的定义是：$a,b,c,d$ 为实数时，$a+bi=c+di\iff a=c$ 且 $b=d$。所以一个复数只对应一组实数对 $(a,b)$，也就只对应一个点；反过来，每个点也只对应一个复数。</p>
+    <p><strong>为什么加法就是向量加法？</strong>$(a+bi)+(c+di)=(a+c)+(b+d)i$，实部、虚部分别相加，这正是向量的分量相加。由 $\alpha+(\beta-\alpha)=\beta$ 可知，$\beta-\alpha$ 就是从 $\mathrm{A}$ 指向 $\mathrm{B}$ 的向量，把它的起点平移到原点后，终点就是复数 $\beta-\alpha$ 对应的点。</p>
+    <div class="box good">
+      <p><strong>补充例题 1-1（平行四边形的第四个顶点）：</strong>设 $\mathrm{A}(1+2i)$，$\mathrm{B}(4+3i)$，$\mathrm{C}(6+7i)$。求使四边形 $\mathrm{ABCD}$ 为平行四边形的点 $\mathrm{D}(\delta)$。</p>
+      <ol>
+        <li>平行四边形的两条对角线 $\mathrm{AC},\mathrm{BD}$ 互相平分，所以中点相同：$\dfrac{\alpha+\gamma}{2}=\dfrac{\beta+\delta}{2}$。</li>
+        <li>解出 $\delta=\alpha+\gamma-\beta=(1+2i)+(6+7i)-(4+3i)=3+6i$。</li>
+        <li>检验：$\overrightarrow{\mathrm{AB}}$ 对应 $\beta-\alpha=3+i$，$\overrightarrow{\mathrm{DC}}$ 对应 $\gamma-\delta=3+i$，两者相等。</li>
+      </ol>
+      <p>答：$\delta=3+6i$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $0$ 当成纯虚数。$0$ 是实数，不是纯虚数。</li>
+        <li>把虚部写成带 $i$ 的数：$3-4i$ 的虚部（<span lang="ja">虚部</span><span class="kana">（きょぶ）</span>）是 $-4$，不是 $-4i$。</li>
+        <li>把 $\overrightarrow{\mathrm{AB}}$ 写成 $\alpha-\beta$。向量是“终点减起点”，应为 $\beta-\alpha$。</li>
+        <li>平行四边形的顶点顺序看错。$\mathrm{ABCD}$ 中 $\mathrm{A}$ 与 $\mathrm{C}$ 相对，所以是 $\delta=\alpha+\gamma-\beta$。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>题干的 <span lang="ja">点 $\mathrm{A}(\alpha)$</span> 读作“点 A，对应复数 α”。遇到位置关系的题，先想能不能直接用向量的做法：中点、平行、平行四边形的公式都可以照搬，通常不必设 $x,y$，能节省时间。</p>
+    </div>
     <h3>绝对值与共轭</h3>
     <p>绝对值（<span lang="ja">絶対値</span>）$|z|=\sqrt{a^2+b^2}$ 是点 $z$ 到原点的距离。共轭复数（<span lang="ja">共役複素数</span>）$\overline{z}=a-bi$ 是 $z$ 关于实轴的对称点。</p>
     <div class="formula-grid">
@@ -273,6 +297,41 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <li>$z$ 是实数 $\iff\overline{z}=z$</li>
         <li>$z$ 是纯虚数 $\iff\overline{z}=-z$ 且 $z\ne0$</li>
       </ul>
+    </div>
+    <h3>绝对值与共轭：推导与补充</h3>
+    <p><strong>$|z|^2=z\overline{z}$ 的来历：</strong>用平方差公式和 $i^2=-1$，$(a+bi)(a-bi)=a^2-(bi)^2=a^2+b^2$。这个式子能把“绝对值”变成“可以展开的乘积”，是复数计算里最常用的工具。同样由它得到 $\dfrac1z=\dfrac{\overline{z}}{|z|^2}$，也就是分母实数化的原理。</p>
+    <p><strong>$\overline{\alpha\beta}=\overline{\alpha}\,\overline{\beta}$ 的验证：</strong>设 $\alpha=a+bi,\ \beta=c+di$。则 $\alpha\beta=(ac-bd)+(ad+bc)i$，其共轭是 $(ac-bd)-(ad+bc)i$；而 $(a-bi)(c-di)=(ac-bd)-(ad+bc)i$，两者相同。</p>
+    <p><strong>$|\alpha\beta|=|\alpha||\beta|$ 的推导：</strong>$|\alpha\beta|^2=\alpha\beta\,\overline{\alpha\beta}=\alpha\overline{\alpha}\cdot\beta\overline{\beta}=|\alpha|^2|\beta|^2$，两边都非负，开方即得。</p>
+    <p><strong>判别法的推导：</strong>设 $z=a+bi$，则 $z-\overline{z}=2bi$，$z+\overline{z}=2a$。所以 $\overline{z}=z\iff b=0$（实数）；$\overline{z}=-z\iff a=0$，再加上 $z\ne0$ 才是纯虚数。由此还得到 $\mathrm{Re}\,z=\dfrac{z+\overline{z}}{2}$。</p>
+    <div class="box good">
+      <p><strong>补充例题 1-2（只知道绝对值）：</strong>$|\alpha|=2$，$|\beta|=3$，$|\alpha+\beta|=4$。求 $\alpha\overline{\beta}+\overline{\alpha}\beta$ 和 $|\alpha-\beta|$。</p>
+      <ol>
+        <li>用 $|z|^2=z\overline{z}$ 展开：$|\alpha+\beta|^2=(\alpha+\beta)(\overline{\alpha}+\overline{\beta})=|\alpha|^2+|\beta|^2+(\alpha\overline{\beta}+\overline{\alpha}\beta)$。</li>
+        <li>代入数值：$16=4+9+(\alpha\overline{\beta}+\overline{\alpha}\beta)$，所以 $\alpha\overline{\beta}+\overline{\alpha}\beta=3$。</li>
+        <li>同样展开：$|\alpha-\beta|^2=|\alpha|^2+|\beta|^2-(\alpha\overline{\beta}+\overline{\alpha}\beta)=13-3=10$。</li>
+      </ol>
+      <p>答：$\alpha\overline{\beta}+\overline{\alpha}\beta=3$，$|\alpha-\beta|=\sqrt{10}$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 1-3（单位圆上的点）：</strong>设 $z=\dfrac{3+4i}{5}$。求 $|z|$ 和 $z+\dfrac1z$。</p>
+      <ol>
+        <li>$|z|=\dfrac{\sqrt{3^2+4^2}}{5}=1$。</li>
+        <li>由 $z\overline{z}=|z|^2=1$，得 $\dfrac1z=\overline{z}$。</li>
+        <li>所以 $z+\dfrac1z=z+\overline{z}=2\,\mathrm{Re}\,z=2\cdot\dfrac35=\dfrac65$。</li>
+      </ol>
+      <p>答：$|z|=1$，$z+\dfrac1z=\dfrac65$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $|z|^2$ 和 $z^2$ 混同。例如 $z=i$ 时 $|z|^2=1$，而 $z^2=-1$。</li>
+        <li>算绝对值时把 $i$ 带进根号：$|3-4i|=\sqrt{3^2+(-4)^2}=5$，不是 $\sqrt{3^2+(-4i)^2}$。</li>
+        <li>以为 $|\alpha+\beta|=|\alpha|+|\beta|$。一般只有不等式；积和商才能拆开。</li>
+        <li>判断纯虚数时漏掉 $z\ne0$。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>条件里只有绝对值、没有具体复数时，首选“平方后用 $z\overline{z}$ 展开”。看到 $|z|=1$，立刻想到 $\overline{z}=\dfrac1z$。术语：<span lang="ja">共役複素数</span><span class="kana">（きょうやくふくそすう）</span>、<span lang="ja">絶対値</span><span class="kana">（ぜったいち）</span>。</p>
     </div>
   </section>
 
@@ -304,6 +363,28 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <figcaption>$a=r\cos\theta,\ b=r\sin\theta,\ r=\sqrt{a^2+b^2}$。</figcaption>
     </figure>
 
+    <p><strong>为什么可以这样写？</strong>点 $z=a+bi$ 到原点的距离是 $r$，所以由三角函数的定义 $a=r\cos\theta,\ b=r\sin\theta$，代入即得 $z=r(\cos\theta+i\sin\theta)$。$z=0$ 时 $r=0$，方向不确定，所以 $0$ 没有辐角，极形式只对 $z\ne0$ 讨论。</p>
+    <p><strong>共轭与倒数的极形式：</strong>$\overline{z}$ 与 $z$ 关于实轴对称，所以 $\overline{z}=r\{\cos(-\theta)+i\sin(-\theta)\}$；又 $\dfrac1z=\dfrac{\overline{z}}{|z|^2}$，所以 $\dfrac1z=\dfrac1r\{\cos(-\theta)+i\sin(-\theta)\}$。</p>
+    <div class="box good">
+      <p><strong>补充例题 2-1（辐角的范围）：</strong>把 $z=-3-3\sqrt3\,i$ 化为极形式，辐角分别取 $0\le\theta&lt;2\pi$ 和 $-\pi&lt;\theta\le\pi$。</p>
+      <ol>
+        <li>$r=\sqrt{(-3)^2+(-3\sqrt3)^2}=\sqrt{9+27}=6$。</li>
+        <li>$\cos\theta=\dfrac{-3}{6}=-\dfrac12,\ \sin\theta=\dfrac{-3\sqrt3}{6}=-\dfrac{\sqrt3}{2}$，点在第 3 象限（<span lang="ja">第3象限</span>）。</li>
+        <li>$0\le\theta&lt;2\pi$ 时 $\theta=\dfrac43\pi$；$-\pi&lt;\theta\le\pi$ 时减去 $2\pi$，得 $\theta=-\dfrac23\pi$。</li>
+      </ol>
+      <p>答：$6\Bigl(\cos\dfrac43\pi+i\sin\dfrac43\pi\Bigr)=6\Bigl\{\cos\Bigl(-\dfrac23\pi\Bigr)+i\sin\Bigl(-\dfrac23\pi\Bigr)\Bigr\}$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只看 $\tan\theta=\dfrac ba$ 定角。$\tan$ 相同的角相差 $\pi$，必须同时看 $\cos,\sin$ 的符号或点所在的象限。</li>
+        <li>忽略题目指定的辐角范围，答案虽然等价，却填不进答案栏。</li>
+        <li>给 $z=0$ 写辐角。$0$ 没有辐角。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>先在草稿上标出点在哪个象限，再定角，能避免大多数辐角错误。题干的 <span lang="ja">偏角</span><span class="kana">（へんかく）</span>、<span lang="ja">極形式で表せ</span><span class="kana">（きょくけいしきであらわせ）</span>（“用极形式表示”）要能一眼认出。</p>
+    </div>
     <h3>化为极形式的步骤</h3>
     <p>先求 $r$，把 $r$ 提出来，再由 $\cos\theta,\sin\theta$ 的值确定 $\theta$。例如</p>
     $$\sqrt3-i=2\Bigl(\frac{\sqrt3}{2}-\frac12i\Bigr)=2\Bigl(\cos\frac{11}{6}\pi+i\sin\frac{11}{6}\pi\Bigr).$$
@@ -315,6 +396,42 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       </ul>
     </div>
 
+    <p><strong>详细步骤：</strong></p>
+    <ol>
+      <li>算 $r=\sqrt{a^2+b^2}$，并把 $r$ 提到括号外，使括号内为 $\dfrac ar+\dfrac bri$。</li>
+      <li>由 $\cos\theta=\dfrac ar,\ \sin\theta=\dfrac br$ 和象限确定 $\theta$，注意题目的范围。</li>
+      <li>检查形式：$r&gt;0$，$\cos$ 与 $\sin$ 同角，中间是加号，$\cos$ 在实部。</li>
+    </ol>
+    <p>式子本身已含三角函数时，用 $\cos(-\theta)=\cos\theta$，$\sin(-\theta)=-\sin\theta$，$\cos\bigl(\dfrac{\pi}{2}-\theta\bigr)=\sin\theta$，$\cos(\theta+\pi)=-\cos\theta$ 等公式调整成标准形式。上面“易错”框中的第二个式子，就是用 $-1=\cos\pi+i\sin\pi$ 把负号变成辐角加 $\pi$。</p>
+    <div class="box good">
+      <p><strong>补充例题 2-2（$\sin$、$\cos$ 位置相反）：</strong>把 $z=\sin\dfrac{\pi}{5}+i\cos\dfrac{\pi}{5}$ 化为极形式。</p>
+      <ol>
+        <li>实部必须是 $\cos$，所以用余角公式：$\sin\dfrac{\pi}{5}=\cos\Bigl(\dfrac{\pi}{2}-\dfrac{\pi}{5}\Bigr)=\cos\dfrac{3}{10}\pi$。</li>
+        <li>同样 $\cos\dfrac{\pi}{5}=\sin\Bigl(\dfrac{\pi}{2}-\dfrac{\pi}{5}\Bigr)=\sin\dfrac{3}{10}\pi$。</li>
+      </ol>
+      <p>答：$z=\cos\dfrac{3}{10}\pi+i\sin\dfrac{3}{10}\pi$（辐角不是 $\dfrac{\pi}{5}$）。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 2-3（提出来的系数可能为负）：</strong>把 $z=1+\cos\dfrac43\pi+i\sin\dfrac43\pi$ 化为极形式（$0\le\theta&lt;2\pi$）。</p>
+      <ol>
+        <li>用半角公式 $1+\cos\theta=2\cos^2\dfrac{\theta}{2}$ 和倍角公式 $\sin\theta=2\sin\dfrac{\theta}{2}\cos\dfrac{\theta}{2}$，得 $z=2\cos\dfrac{\theta}{2}\Bigl(\cos\dfrac{\theta}{2}+i\sin\dfrac{\theta}{2}\Bigr)$，其中 $\theta=\dfrac43\pi$。</li>
+        <li>$\dfrac{\theta}{2}=\dfrac23\pi$，系数 $2\cos\dfrac23\pi=-1&lt;0$，还不是极形式。</li>
+        <li>负号化为辐角加 $\pi$：$z=-\Bigl(\cos\dfrac23\pi+i\sin\dfrac23\pi\Bigr)=\cos\dfrac53\pi+i\sin\dfrac53\pi$。</li>
+        <li>检验：直接计算 $z=1-\dfrac12-\dfrac{\sqrt3}{2}i=\dfrac12-\dfrac{\sqrt3}{2}i$，与上式一致。</li>
+      </ol>
+      <p>答：$z=\cos\dfrac53\pi+i\sin\dfrac53\pi$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>看到 $\sin\alpha+i\cos\alpha$ 就说辐角是 $\alpha$。实部应是 $\cos$，辐角是 $\dfrac{\pi}{2}-\alpha$。</li>
+        <li>提出系数后不看符号。系数为负时不是极形式，$r$ 也不等于它。</li>
+        <li>把 $r$ 提出后括号里还留着 $\sqrt{a^2+b^2}$ 以外的公因数，导致 $\cos^2\theta+\sin^2\theta\ne1$。可以用这个等式自查。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>写完后心算一次 $\cos^2\theta+\sin^2\theta=1$，再代回特殊值核对实部、虚部的符号。$\dfrac{\pi}{6},\dfrac{\pi}{4},\dfrac{\pi}{3}$ 及其对称角的三角函数值要能直接写出，考试不能使用计算器。</p>
+    </div>
     <h3>积与商</h3>
     <p>设 $z_1=r_1(\cos\theta_1+i\sin\theta_1)$，$z_2=r_2(\cos\theta_2+i\sin\theta_2)$。由加法定理可得：</p>
     $$z_1z_2=r_1r_2\{\cos(\theta_1+\theta_2)+i\sin(\theta_1+\theta_2)\},$$
@@ -322,6 +439,32 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <p>也就是说：<strong>乘法时绝对值相乘、辐角相加；除法时绝对值相除、辐角相减。</strong></p>
     <div class="box good">
       <p><strong>例：</strong>$1+i$ 的绝对值是 $\sqrt2$、辐角是 $\dfrac{\pi}{4}$；$\sqrt3+i$ 的绝对值是 $2$、辐角是 $\dfrac{\pi}{6}$。所以 $(1+i)(\sqrt3+i)=2\sqrt2\Bigl(\cos\dfrac{5}{12}\pi+i\sin\dfrac{5}{12}\pi\Bigr)$。展开后等于 $(\sqrt3-1)+(\sqrt3+1)i$，两种算法一致。</p>
+    </div>
+    <h3>积与商：推导与补充</h3>
+    <p><strong>积的推导：</strong>展开后用加法定理（<span lang="ja">加法定理</span><span class="kana">（かほうていり）</span>）：</p>
+    $$(\cos\theta_1+i\sin\theta_1)(\cos\theta_2+i\sin\theta_2)=(\cos\theta_1\cos\theta_2-\sin\theta_1\sin\theta_2)+i(\sin\theta_1\cos\theta_2+\cos\theta_1\sin\theta_2),$$
+    <p>右边正是 $\cos(\theta_1+\theta_2)+i\sin(\theta_1+\theta_2)$，再乘上 $r_1r_2$ 即可。</p>
+    <p><strong>商的推导：</strong>由 $\dfrac{1}{z_2}=\dfrac{1}{r_2}\{\cos(-\theta_2)+i\sin(-\theta_2)\}$，把 $\dfrac{z_1}{z_2}$ 看成 $z_1$ 与 $\dfrac{1}{z_2}$ 的积，辐角就是 $\theta_1+(-\theta_2)=\theta_1-\theta_2$。</p>
+    <div class="box good">
+      <p><strong>补充例题 2-4（用两种方法求商，并得到三角函数值）：</strong>设 $z=\dfrac{-1+i}{\sqrt3+i}$。把 $z$ 化为极形式和 $a+bi$ 形式，并求 $\cos\dfrac{7}{12}\pi$。</p>
+      <ol>
+        <li>$-1+i=\sqrt2\Bigl(\cos\dfrac34\pi+i\sin\dfrac34\pi\Bigr)$，$\sqrt3+i=2\Bigl(\cos\dfrac{\pi}{6}+i\sin\dfrac{\pi}{6}\Bigr)$。</li>
+        <li>相除：绝对值 $\dfrac{\sqrt2}{2}$，辐角 $\dfrac34\pi-\dfrac{\pi}{6}=\dfrac{7}{12}\pi$，所以 $z=\dfrac{\sqrt2}{2}\Bigl(\cos\dfrac{7}{12}\pi+i\sin\dfrac{7}{12}\pi\Bigr)$。</li>
+        <li>分母实数化：$z=\dfrac{(-1+i)(\sqrt3-i)}{(\sqrt3+i)(\sqrt3-i)}=\dfrac{(1-\sqrt3)+(1+\sqrt3)i}{4}$。</li>
+        <li>比较实部：$\dfrac{\sqrt2}{2}\cos\dfrac{7}{12}\pi=\dfrac{1-\sqrt3}{4}$，所以 $\cos\dfrac{7}{12}\pi=\dfrac{1-\sqrt3}{2\sqrt2}=\dfrac{\sqrt2-\sqrt6}{4}$。</li>
+      </ol>
+      <p>答：$z=\dfrac{1-\sqrt3}{4}+\dfrac{1+\sqrt3}{4}i$，$\cos\dfrac{7}{12}\pi=\dfrac{\sqrt2-\sqrt6}{4}$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把绝对值和辐角的运算混淆：绝对值相乘，辐角是相加，不是相乘。</li>
+        <li>除法时把辐角减反，应为“分子的辐角减分母的辐角”。</li>
+        <li>结果超出指定范围后忘记加减 $2\pi$。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>积、商、乘方混合的式子，先把每个因子化成极形式，通常比直接展开快。两种算法比较实部、虚部，还可以反过来求 $\dfrac{5}{12}\pi,\dfrac{7}{12}\pi$ 这类角的三角函数值。</p>
     </div>
   </section>
 
@@ -334,15 +477,84 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     </div>
     <p>因此 $z=r(\cos\theta+i\sin\theta)$ 时，$z^n=r^n(\cos n\theta+i\sin n\theta)$。$n$ 为负整数时同样成立，例如 $\dfrac{1}{(1+i)^2}=(\sqrt2)^{-2}\Bigl\{\cos\Bigl(-\dfrac{\pi}{2}\Bigr)+i\sin\Bigl(-\dfrac{\pi}{2}\Bigr)\Bigr\}=-\dfrac12i$。</p>
 
+    <p><strong>为什么成立？</strong>$n$ 为正整数时用数学归纳法（<span lang="ja">数学的帰納法</span><span class="kana">（すうがくてききのうほう）</span>）。$n=1$ 显然成立；设 $n=k$ 时成立，则由积的公式</p>
+    $$(\cos\theta+i\sin\theta)^{k+1}=(\cos k\theta+i\sin k\theta)(\cos\theta+i\sin\theta)=\cos(k+1)\theta+i\sin(k+1)\theta.$$
+    <p>$n=0$ 时两边都是 $1$。$n=-m$（$m$ 为正整数）时，由 $\dfrac{1}{\cos\phi+i\sin\phi}=\cos(-\phi)+i\sin(-\phi)$ 取 $\phi=m\theta$，得 $(\cos\theta+i\sin\theta)^{-m}=\cos(-m\theta)+i\sin(-m\theta)$。从图形上看，乘方就是把同一个旋转重复 $n$ 次。</p>
+    <p><strong>应用：三倍角公式。</strong>取 $n=3$，左边用二项式展开，比较实部和虚部，再用 $\sin^2\theta=1-\cos^2\theta$ 等整理，得 $\cos3\theta=4\cos^3\theta-3\cos\theta$，$\sin3\theta=3\sin\theta-4\sin^3\theta$（<span lang="ja">3倍角の公式</span><span class="kana">（さんばいかくのこうしき）</span>）。</p>
+    <div class="box good">
+      <p><strong>补充例题 3-1（负整数次方）：</strong>计算 $(1-\sqrt3\,i)^{-4}$。</p>
+      <ol>
+        <li>$1-\sqrt3\,i=2\Bigl\{\cos\Bigl(-\dfrac{\pi}{3}\Bigr)+i\sin\Bigl(-\dfrac{\pi}{3}\Bigr)\Bigr\}$。</li>
+        <li>由棣莫弗定理，绝对值为 $2^{-4}=\dfrac{1}{16}$，辐角为 $(-4)\cdot\Bigl(-\dfrac{\pi}{3}\Bigr)=\dfrac43\pi$。</li>
+        <li>所以原式 $=\dfrac{1}{16}\Bigl(\cos\dfrac43\pi+i\sin\dfrac43\pi\Bigr)=\dfrac{1}{16}\Bigl(-\dfrac12-\dfrac{\sqrt3}{2}i\Bigr)$。</li>
+      </ol>
+      <p>答：$-\dfrac{1}{32}-\dfrac{\sqrt3}{32}i$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只把辐角乘 $n$，忘记绝对值要变成 $r^n$。</li>
+        <li>底数不是标准形式就直接用定理。例如 $(\cos\theta-i\sin\theta)^n$ 要先改写成 $\{\cos(-\theta)+i\sin(-\theta)\}^n$，结果是 $\cos n\theta-i\sin n\theta$。</li>
+        <li>负整数次方时符号出错：负号要同时作用于绝对值的指数和辐角的倍数。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>指数较大时不要展开，先化极形式，再用“辐角每差 $2\pi$ 就回到原位”化简。问“$z^n$ 为实数或纯虚数的最小正整数 $n$”时，把条件写成 $n\theta=k\pi$ 或 $n\theta=\dfrac{\pi}{2}+k\pi$（$k$ 为整数）。</p>
+    </div>
     <h3>求 $n$ 次方根</h3>
     <p>解 $z^n=w$，其中 $w=R(\cos\phi+i\sin\phi)$。设 $z=r(\cos\theta+i\sin\theta)$，比较绝对值和辐角：</p>
     $$r^n=R,\qquad n\theta=\phi+2k\pi\quad(k\text{ 为整数}).$$
     <p>所以 $r=\sqrt[n]{R}$，$\theta=\dfrac{\phi+2k\pi}{n}$，取 $k=0,1,\dots,n-1$ 恰好得到 $n$ 个不同的解。这一步最容易漏掉 $2k\pi$。$n\ge3$ 时，这些解是圆心在原点、半径为 $\sqrt[n]{R}$ 的圆的内接<strong>正 $n$ 边形</strong>的顶点。</p>
+    <p><strong>为什么恰好 $n$ 个？</strong>$k$ 增加 $n$ 时，$\theta$ 增加 $2\pi$，点回到原位，所以只需看 $k=0,1,\dots,n-1$。这 $n$ 个角彼此相差不足 $2\pi$，对应的点互不相同。相邻两解的辐角相差 $\dfrac{2\pi}{n}$，绝对值又都相同，因此在圆上等距排列。</p>
+    <p><strong>详细步骤：</strong>① 把 $w$ 化为极形式；② 设 $z=r(\cos\theta+i\sin\theta)$ 并用棣莫弗定理；③ 比较绝对值和辐角，辐角要写 $+2k\pi$；④ 代入 $k=0,\dots,n-1$，再化成 $a+bi$。</p>
+    <div class="box good">
+      <p><strong>补充例题 3-2（4 次方根）：</strong>解方程 $z^4=-8+8\sqrt3\,i$，并求解所对应的四点构成的正方形的面积。</p>
+      <ol>
+        <li>$|w|=\sqrt{64+192}=16$，$\cos\phi=-\dfrac12,\ \sin\phi=\dfrac{\sqrt3}{2}$，所以 $w=16\Bigl(\cos\dfrac23\pi+i\sin\dfrac23\pi\Bigr)$。</li>
+        <li>设 $z=r(\cos\theta+i\sin\theta)$，则 $r^4=16$，$4\theta=\dfrac23\pi+2k\pi$，得 $r=2$，$\theta=\dfrac{\pi}{6}+\dfrac{k\pi}{2}$。</li>
+        <li>$k=0,1,2,3$ 时 $\theta=\dfrac{\pi}{6},\dfrac23\pi,\dfrac76\pi,\dfrac53\pi$，所以 $z=\sqrt3+i,\ -1+\sqrt3\,i,\ -\sqrt3-i,\ 1-\sqrt3\,i$。</li>
+        <li>相邻两点的距离的平方：$|(\sqrt3+i)-(-1+\sqrt3\,i)|^2=(\sqrt3+1)^2+(1-\sqrt3)^2=8$，这就是正方形的面积。</li>
+      </ol>
+      <p>答：四个解如上，面积为 $8$。可以在下面的演示中切换到“方根”，令 $|w|=16$，$\arg w=120^\circ$，$n=4$ 进行核对。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>比较辐角时漏掉 $2k\pi$，只得到一个解。</li>
+        <li>$k$ 取到 $n$，把同一个解多算一次；或除以 $n$ 时只除了 $\phi$，没有除 $2k\pi$。</li>
+        <li>把 $r^n=R$ 中的 $r$ 取成负数。$r$ 是绝对值，必须为正，$r$ 就是 $R$ 的正的 $n$ 次方根。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>解出第一个根后，其余的根可以用“绕原点每次转 $\dfrac{2\pi}{n}$”快速写出，画一个草图还能顺便得到边长和面积。术语：<span lang="ja">$n$ 乗根</span><span class="kana">（エヌじょうこん）</span>、<span lang="ja">正多角形</span><span class="kana">（せいたかっけい）</span>。</p>
+    </div>
     <h3>1 的 $n$ 次方根</h3>
     <p>$z^n=1$ 的解为 $\cos\dfrac{2k\pi}{n}+i\sin\dfrac{2k\pi}{n}$。令 $\omega=\cos\dfrac{2\pi}{n}+i\sin\dfrac{2\pi}{n}$，所有解就是 $1,\omega,\omega^2,\dots,\omega^{n-1}$。$n\ge2$ 时，由 $z^n-1=(z-1)(z^{n-1}+\cdots+z+1)$ 和 $\omega\ne1$ 得</p>
     $$1+\omega+\omega^2+\cdots+\omega^{n-1}=0.$$
     <p>$n=3$ 时，$\omega=-\dfrac12+\dfrac{\sqrt3}{2}i$，满足 $\omega^3=1$，$\omega^2+\omega+1=0$。</p>
 
+    <p><strong>更多性质：</strong>$|\omega|=1$，所以 $\overline{\omega}=\dfrac{1}{\omega}=\omega^{n-1}$。$\omega$ 的指数只需看除以 $n$ 的余数，因为 $\omega^{n}=1$。又因 $1,\omega,\dots,\omega^{n-1}$ 是 $z^n-1=0$ 的全部解，所以 $z^n-1=(z-1)(z-\omega)\cdots(z-\omega^{n-1})$（练习 13 用的就是这个分解）。</p>
+    <p><strong>和为 $0$ 的图形含义：</strong>这 $n$ 个点构成正 $n$ 边形（$n\ge3$），重心在原点，所以从原点指向各顶点的向量之和为 $0$。</p>
+    <div class="box good">
+      <p><strong>补充例题 3-3（$\omega$ 的计算）：</strong>设 $\omega=\cos\dfrac23\pi+i\sin\dfrac23\pi$。求 (1) $\omega^{100}+\omega^{50}+1$；(2) $(1+\omega)^5$；(3) $(1-\omega)(1-\omega^2)$。</p>
+      <ol>
+        <li>(1) $100=3\cdot33+1$，$50=3\cdot16+2$，由 $\omega^3=1$ 得原式 $=\omega+\omega^2+1=0$。</li>
+        <li>(2) 由 $1+\omega+\omega^2=0$ 得 $1+\omega=-\omega^2$，所以 $(1+\omega)^5=-\omega^{10}=-\omega=\dfrac12-\dfrac{\sqrt3}{2}i$。</li>
+        <li>(3) 展开：$1-\omega-\omega^2+\omega^3=2-(\omega+\omega^2)=2-(-1)=3$。</li>
+      </ol>
+      <p>答：(1) $0$；(2) $\dfrac12-\dfrac{\sqrt3}{2}i$；(3) $3$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>由 $\omega^3=1$ 得出 $\omega=1$。复数范围内有 3 个解，$\omega\ne1$ 正是推出 $\omega^2+\omega+1=0$ 的条件。</li>
+        <li>和为 $0$ 的公式用在 $n=1$ 或包含 $\omega=1$ 的情形。公式要求 $\omega\ne1$。</li>
+        <li>化简 $(1+\omega)^5$ 时丢掉负号：$(-\omega^2)^5$ 的奇数次方仍为负。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>含 $\omega$ 的高次式，第一步是把指数除以 $n$ 取余数，第二步是用 $1+\omega+\cdots+\omega^{n-1}=0$ 降次，一般不必代入具体值。术语：<span lang="ja">1の $n$ 乗根</span><span class="kana">（いちのエヌじょうこん）</span>。</p>
+    </div>
     <div class="explorer" id="demo">
       <h3 style="margin-top:0">动手试试：乘方与方根</h3>
       <div class="ex-head" role="group" aria-label="演示模式">
@@ -355,6 +567,27 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <div class="ctrl"><label for="n-in">$n$</label><input id="n-in" type="range" min="1" max="12" step="1" value="6"><output id="n-out"></output></div>
       <div class="marks" id="presets"></div>
       <div class="status" id="demo-status" aria-live="polite"></div>
+    </div>
+    <h3>演示的读法与补充</h3>
+    <p>“乘方”模式下，连续的点是 $z,z^2,\dots,z^n$：$r&gt;1$ 时向外螺旋，$r&lt;1$ 时向内螺旋，$r=1$ 时一直留在单位圆（<span lang="ja">単位円</span><span class="kana">（たんいえん）</span>）上。“方根”模式下，红点是 $k=0$ 的解，其他解依次转 $\dfrac{2\pi}{n}$。</p>
+    <div class="box good">
+      <p><strong>补充例题 3-4（用辐角求周期）：</strong>设 $z=\cos150^\circ+i\sin150^\circ$。求使 $z^n=1$ 的最小正整数 $n$，以及使 $z^n=-1$ 的最小正整数 $n$。</p>
+      <ol>
+        <li>$z^n$ 的绝对值恒为 $1$，辐角为 $150^\circ n$，所以只需比较辐角。</li>
+        <li>$z^n=1$ 要求 $150n$ 是 $360$ 的倍数，即 $5n$ 是 $12$ 的倍数。$5$ 与 $12$ 互质，所以最小的 $n=12$。</li>
+        <li>$z^n=-1$ 要求 $150n=180+360k$，两边除以 $30$ 得 $5n=6+12k$（$k$ 为整数）。$k=2$ 时 $5n=30$，$n=6$；更小的正整数 $n$ 都不满足。</li>
+      </ol>
+      <p>答：$n=12$；$n=6$。在演示中令 $r=1$，$\theta=150^\circ$，把 $n$ 调到 $6$ 和 $12$ 就能看到这两个结果。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $\dfrac{360}{150}$ 不是整数误认为“$z^n$ 永远回不到 $1$”。应找 $150n$ 与 $360$ 的公倍关系。</li>
+        <li>$r\ne1$ 时还说 $z^n=1$ 能成立。此时 $|z^n|=r^n\ne1$（$n\ge1$），不可能等于 $1$。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>考试时可以把这个演示的图形画成草图：标出第一个点和每次转过的角，几个点就能看出周期。演示只用于理解，答案仍要靠辐角方程写清楚。</p>
     </div>
   </section>
 
@@ -369,6 +602,26 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <div>乘 $1+i$：转 $\dfrac{\pi}{4}$ 并放大 $\sqrt2$ 倍，如 $2(1+i)=2+2i$</div>
     </div>
 
+    <p><strong>为什么是旋转？</strong>设 $z$ 的绝对值为 $\rho$，辐角为 $\phi$。由积的公式，$(\cos\theta+i\sin\theta)z$ 的绝对值仍是 $\rho$，辐角变成 $\phi+\theta$：到原点的距离不变，只是方向转了 $\theta$，这就是旋转（<span lang="ja">回転</span><span class="kana">（かいてん）</span>）。$\theta&gt;0$ 为逆时针（<span lang="ja">反時計回り</span><span class="kana">（はんとけいまわり）</span>），$\theta&lt;0$ 为顺时针（<span lang="ja">時計回り</span><span class="kana">（とけいまわり）</span>）。</p>
+    <div class="box good">
+      <p><strong>补充例题 4-1（顺时针旋转并放大）：</strong>把点 $4+2i$ 绕原点顺时针旋转 $\dfrac{\pi}{6}$，再把到原点的距离放大为 $2$ 倍，求所得的点。</p>
+      <ol>
+        <li>顺时针 $\dfrac{\pi}{6}$ 对应 $\cos\Bigl(-\dfrac{\pi}{6}\Bigr)+i\sin\Bigl(-\dfrac{\pi}{6}\Bigr)=\dfrac{\sqrt3}{2}-\dfrac12i$。</li>
+        <li>再乘 $2$，总的乘数是 $\sqrt3-i$。</li>
+        <li>$(\sqrt3-i)(4+2i)=4\sqrt3+2\sqrt3\,i-4i-2i^2=(4\sqrt3+2)+(2\sqrt3-4)i$。</li>
+      </ol>
+      <p>答：$(4\sqrt3+2)+(2\sqrt3-4)i$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>顺时针时仍用 $+\theta$。顺时针应乘 $\cos\theta-i\sin\theta$。</li>
+        <li>把“乘 $2i$”只当作旋转，忘了还放大 $2$ 倍。乘数的绝对值不为 $1$ 时，一定有伸缩。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>先确认题干的方向：<span lang="ja">原点のまわりに $\theta$ だけ回転</span>（绕原点旋转 $\theta$）默认按正角即逆时针理解，$\theta$ 为负时才是顺时针。把旋转和伸缩合成一个乘数再计算，步骤最少。</p>
+    </div>
     <h3>绕任意点旋转</h3>
     <p>把点 $\beta$ 绕点 $\alpha$ 旋转 $\theta$ 得到 $\gamma$，分“平移到原点 → 旋转 → 平移回去”三步：</p>
     $$\gamma-\alpha=(\cos\theta+i\sin\theta)(\beta-\alpha).$$
@@ -392,6 +645,27 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <p><strong>例：</strong>点 $4+2i$ 绕点 $2+i$ 逆时针旋转 $\dfrac{\pi}{2}$：$\gamma=(2+i)+\{(4+2i)-(2+i)\}\,i=(2+i)+(2+i)i=1+3i$。</p>
     </div>
 
+    <p><strong>公式的来历：</strong>平移 $-\alpha$ 后，$\alpha$ 到了原点，$\beta$ 到了 $\beta-\alpha$；绕原点旋转得到 $(\cos\theta+i\sin\theta)(\beta-\alpha)$；再平移 $+\alpha$，就是 $\gamma$。如果同时把到 $\alpha$ 的距离放大 $r$ 倍，只需再乘 $r$：$\gamma-\alpha=r(\cos\theta+i\sin\theta)(\beta-\alpha)$。</p>
+    <div class="box good">
+      <p><strong>补充例题 4-2（正方形的顶点）：</strong>正方形 $\mathrm{ABCD}$ 的顶点按逆时针排列，$\mathrm{A}(1+i)$，$\mathrm{B}(4+2i)$。求 $\mathrm{C},\mathrm{D}$ 和正方形的面积。</p>
+      <ol>
+        <li>$\beta-\alpha=3+i$。逆时针排列时，$\mathrm{D}$ 是 $\mathrm{B}$ 绕 $\mathrm{A}$ 逆时针转 $\dfrac{\pi}{2}$ 所得：$\delta=\alpha+i(\beta-\alpha)=(1+i)+(3i-1)=4i$。</li>
+        <li>$\overrightarrow{\mathrm{DC}}=\overrightarrow{\mathrm{AB}}$，所以 $\gamma=\delta+(\beta-\alpha)=4i+3+i=3+5i$。</li>
+        <li>面积 $=|\beta-\alpha|^2=3^2+1^2=10$。</li>
+      </ol>
+      <p>答：$\mathrm{C}(3+5i)$，$\mathrm{D}(4i)$，面积 $10$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>直接旋转 $\beta$，写成 $\gamma=(\cos\theta+i\sin\theta)\beta$。这是绕原点旋转，不是绕 $\alpha$。</li>
+        <li>算完 $(\cos\theta+i\sin\theta)(\beta-\alpha)$ 后忘记加回 $\alpha$。</li>
+        <li>没有注意顶点是逆时针还是顺时针排列，转的方向反了。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>记住“先减、再乘、后加”三步。题干的 <span lang="ja">点 $\alpha$ のまわりに回転</span>（绕点 $\alpha$ 旋转）一出现，就把 $\beta-\alpha$ 写在草稿第一行，再代入计算。</p>
+    </div>
     <h3>用商判断角度</h3>
     <p>对三点 $\mathrm{A}(\alpha),\mathrm{B}(\beta),\mathrm{C}(\gamma)$，从 $\overrightarrow{\mathrm{AB}}$ 转到 $\overrightarrow{\mathrm{AC}}$ 的角是 $\arg\dfrac{\gamma-\alpha}{\beta-\alpha}$。由此得到：</p>
     <div class="tw"><table>
@@ -402,6 +676,43 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <tr><td>$\cos\Bigl(\pm\dfrac{\pi}{3}\Bigr)+i\sin\Bigl(\pm\dfrac{\pi}{3}\Bigr)$</td><td>$\triangle\mathrm{ABC}$ 是正三角形</td></tr>
       </tbody>
     </table></div>
+    <h3>商的含义：推导与补充</h3>
+    <p><strong>为什么商能表示角？</strong>令 $w=\dfrac{\gamma-\alpha}{\beta-\alpha}$，由商的公式，$|w|=\dfrac{\mathrm{AC}}{\mathrm{AB}}$，$\arg w$ 等于从 $\overrightarrow{\mathrm{AB}}$ 转到 $\overrightarrow{\mathrm{AC}}$ 的角。所以 $w$ 同时包含了边长之比和夹角：</p>
+    <ul>
+      <li>$w$ 为实数 $\iff\arg w=0$ 或 $\pi$，方向相同或相反，三点共线；</li>
+      <li>$w$ 为纯虚数 $\iff\arg w=\pm\dfrac{\pi}{2}$，两向量垂直；</li>
+      <li>$|w|=1$ 且 $\arg w=\pm\dfrac{\pi}{3}$ $\iff$ $\mathrm{AB}=\mathrm{AC}$ 且夹角为 $\dfrac{\pi}{3}$，是正三角形。</li>
+    </ul>
+    <div class="box good">
+      <p><strong>补充例题 4-3（判断三角形的形状）：</strong>设 $\mathrm{A}(1+i)$，$\mathrm{B}(2+3i)$，$\mathrm{C}(-1+2i)$。判断 $\triangle\mathrm{ABC}$ 的形状并求面积。</p>
+      <ol>
+        <li>$\beta-\alpha=1+2i$，$\gamma-\alpha=-2+i$。</li>
+        <li>$\dfrac{\gamma-\alpha}{\beta-\alpha}=\dfrac{-2+i}{1+2i}=\dfrac{(-2+i)(1-2i)}{5}=\dfrac{5i}{5}=i$。</li>
+        <li>绝对值为 $1$，所以 $\mathrm{AB}=\mathrm{AC}$；辐角为 $\dfrac{\pi}{2}$，所以 $\angle\mathrm{A}=\dfrac{\pi}{2}$。</li>
+        <li>面积 $=\dfrac12\mathrm{AB}^2=\dfrac12\cdot5=\dfrac52$。</li>
+      </ol>
+      <p>答：以 $\mathrm{A}$ 为直角顶点的等腰直角三角形（<span lang="ja">直角二等辺三角形</span><span class="kana">（ちょっかくにとうへんさんかくけい）</span>），面积 $\dfrac52$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 4-4（由等式判断图形）：</strong>$\beta,\gamma$ 不为 $0$，且 $\beta^2-\beta\gamma+\gamma^2=0$。判断 $\mathrm{O},\mathrm{B}(\beta),\mathrm{C}(\gamma)$ 构成的三角形的形状。</p>
+      <ol>
+        <li>两边除以 $\beta^2$，令 $t=\dfrac{\gamma}{\beta}$，得 $t^2-t+1=0$。</li>
+        <li>解得 $t=\dfrac{1\pm\sqrt3\,i}{2}=\cos\Bigl(\pm\dfrac{\pi}{3}\Bigr)+i\sin\Bigl(\pm\dfrac{\pi}{3}\Bigr)$。</li>
+        <li>$|t|=1$ 说明 $\mathrm{OB}=\mathrm{OC}$，$\arg t=\pm\dfrac{\pi}{3}$ 说明 $\angle\mathrm{BOC}=\dfrac{\pi}{3}$。</li>
+      </ol>
+      <p>答：正三角形。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>分子分母写反：分母是起始边 $\beta-\alpha$，写反后辐角变号，绝对值变成倒数。</li>
+        <li>把顶点放错：$\dfrac{\gamma-\alpha}{\beta-\alpha}$ 讲的是顶点 $\mathrm{A}$ 处的角，三个差都要减同一个 $\alpha$。</li>
+        <li>求 $\angle\mathrm{AOB}$ 这种几何角时直接写负的辐角。角的大小要取绝对值。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>题中有未知实数时（如练习 11），把商分母实数化，再令实部或虚部为 $0$。$w$ 为纯虚数时要确认虚部不为 $0$。术语：<span lang="ja">一直線上にある</span>（在同一直线上）、<span lang="ja">垂直に交わる</span>（垂直相交）。</p>
+    </div>
   </section>
 
   <section id="distance">
@@ -418,6 +729,42 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="box">
       <p><strong>圆上点的距离最值：</strong>$z$ 在圆心 $\mathrm{C}$、半径 $\rho$ 的圆上，$\mathrm{P}$ 是圆外的定点时，$|z-\mathrm{P}|$ 的最大值是 $\mathrm{CP}+\rho$，最小值是 $\mathrm{CP}-\rho$。这种题画图就能解，不需要设 $x,y$。</p>
     </div>
+    <h3>推导与补充</h3>
+    <p><strong>距离公式：</strong>$\beta-\alpha$ 是向量 $\overrightarrow{\mathrm{AB}}$，它的绝对值就是长度。设 $\alpha=a+bi,\ \beta=c+di$，则 $|\beta-\alpha|=\sqrt{(c-a)^2+(d-b)^2}$，与坐标平面的两点距离公式相同。</p>
+    <p><strong>分点公式：</strong>$m:n$ 内分点 $\mathrm{P}$ 满足 $\overrightarrow{\mathrm{AP}}=\dfrac{m}{m+n}\overrightarrow{\mathrm{AB}}$，所以 $\alpha+\dfrac{m}{m+n}(\beta-\alpha)=\dfrac{n\alpha+m\beta}{m+n}$。外分点相当于把比率换成 $\dfrac{m}{m-n}$，整理得 $\dfrac{-n\alpha+m\beta}{m-n}$。</p>
+    <p><strong>三角不等式：</strong>$\mathrm{O},\ \alpha,\ \alpha+\beta$ 三点构成三边长为 $|\alpha|,|\beta|,|\alpha+\beta|$ 的三角形（可以退化），“两边之和不小于第三边，两边之差不大于第三边”就是这个不等式。代数证明：$|\alpha+\beta|^2=|\alpha|^2+|\beta|^2+2\,\mathrm{Re}(\alpha\overline{\beta})\le|\alpha|^2+|\beta|^2+2|\alpha||\beta|=(|\alpha|+|\beta|)^2$。右边等号在 $\alpha,\beta$ 方向相同时成立（含其中一个为 $0$）；左边等号在方向相反时成立（含其中一个为 $0$）。</p>
+    <p><strong>定点在圆内时：</strong>若 $\mathrm{P}$ 在圆内或圆上（$\mathrm{CP}\le\rho$），最大值仍是 $\mathrm{CP}+\rho$，最小值变成 $\rho-\mathrm{CP}$。两种情况可以合写为最小值 $|\mathrm{CP}-\rho|$。</p>
+    <div class="box good">
+      <p><strong>补充例题 5-1（距离、分点、重心）：</strong>设 $\mathrm{A}(1+i)$，$\mathrm{B}(7+9i)$，$\mathrm{C}(1-4i)$。求 $\mathrm{AB}$，线段 $\mathrm{AB}$ 的 $1:3$ 内分点、$3:1$ 外分点、$1:3$ 外分点，以及 $\triangle\mathrm{ABC}$ 的重心。</p>
+      <ol>
+        <li>$\mathrm{AB}=|6+8i|=10$。</li>
+        <li>$1:3$ 内分点：$\dfrac{3\alpha+\beta}{4}=\dfrac{10+12i}{4}=\dfrac52+3i$。</li>
+        <li>$3:1$ 外分点（$m=3,n=1$）：$\dfrac{-\alpha+3\beta}{2}=\dfrac{20+26i}{2}=10+13i$。</li>
+        <li>$1:3$ 外分点（$m=1,n=3$）：$\dfrac{-3\alpha+\beta}{1-3}=\dfrac{4+6i}{-2}=-2-3i$。</li>
+        <li>重心：$\dfrac{\alpha+\beta+\gamma}{3}=\dfrac{9+6i}{3}=3+2i$。</li>
+      </ol>
+      <p>答：$10$；$\dfrac52+3i$；$10+13i$；$-2-3i$；$3+2i$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 5-2（定点在圆内的最值）：</strong>(1) $z$ 满足 $|z-(3+4i)|=6$，求 $|z|$ 的最大值和最小值。(2) $|\alpha|=3,\ |\beta|=5$，求 $|\alpha+\beta|$ 的取值范围。</p>
+      <ol>
+        <li>(1) $z$ 在圆心 $\mathrm{C}(3+4i)$、半径 $6$ 的圆上，$|z|$ 是到原点的距离。$\mathrm{OC}=5&lt;6$，所以原点在圆内。</li>
+        <li>最大值 $=\mathrm{OC}+6=11$，最小值 $=6-\mathrm{OC}=1$（都在直线 $\mathrm{OC}$ 与圆的交点处取得）。</li>
+        <li>(2) 由三角不等式 $|3-5|\le|\alpha+\beta|\le3+5$；方向相反时取 $2$，方向相同时取 $8$，夹角连续变化时中间的值都能取到。</li>
+      </ol>
+      <p>答：(1) 最大值 $11$，最小值 $1$；(2) $2\le|\alpha+\beta|\le8$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>内分公式中系数放反：靠近 $\mathrm{B}$ 的权重是 $m$，公式是 $n\alpha+m\beta$，不是 $m\alpha+n\beta$。</li>
+        <li>外分点的 $m-n$ 为负时丢掉符号，如上面的 $1:3$ 外分点。</li>
+        <li>不判断定点在圆内还是圆外，就写最小值 $\mathrm{CP}-\rho$，结果得到负的距离。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>最值题先比较 $\mathrm{CP}$ 和 $\rho$ 的大小。术语：<span lang="ja">内分点</span><span class="kana">（ないぶんてん）</span>、<span lang="ja">外分点</span><span class="kana">（がいぶんてん）</span>、<span lang="ja">重心</span><span class="kana">（じゅうしん）</span>、<span lang="ja">最大値</span><span class="kana">（さいだいち）</span>、<span lang="ja">最小値</span><span class="kana">（さいしょうち）</span>。</p>
+    </div>
   </section>
 
   <section id="locus">
@@ -431,6 +778,28 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <tr><td>$|z-\alpha|=k|z-\beta|\ (k&gt;0,\ k\ne1,\ \alpha\ne\beta)$</td><td>阿波罗尼奥斯圆（<span lang="ja">アポロニウスの円</span>）</td></tr>
       </tbody>
     </table></div>
+    <p><strong>这些方程为什么是这些图形？</strong>$|z-\alpha|$ 是点 $z$ 到 $\mathrm{A}$ 的距离。所以 $|z-\alpha|=r$ 就是“到定点距离一定”，是圆；$|z-\alpha|=|z-\beta|$ 是“到两定点距离相等”，是垂直平分线；$|z-\alpha|=k|z-\beta|$ 是“到两定点距离之比为 $k:1$”，是阿波罗尼奥斯圆。这个圆以线段 $\mathrm{AB}$ 的 $k:1$ 内分点和 $k:1$ 外分点为直径的两端。$k=1$ 时外分点不存在，圆退化成直线，所以要单独处理。</p>
+    <div class="box good">
+      <p><strong>补充例题 6-1（阿波罗尼奥斯圆）：</strong>求满足 $|z+3|=2|z-3|$ 的点 $z$ 的轨迹。</p>
+      <ol>
+        <li>设 $z=x+yi$，两边平方：$(x+3)^2+y^2=4\{(x-3)^2+y^2\}$。</li>
+        <li>展开整理：$3x^2+3y^2-30x+27=0$，即 $x^2+y^2-10x+9=0$。</li>
+        <li>配方：$(x-5)^2+y^2=16$。</li>
+        <li>检验：连接 $-3$ 和 $3$ 的线段的 $2:1$ 内分点是 $1$，$2:1$ 外分点是 $9$，它们正是直径的两端，中点是 $5$，半径是 $4$。</li>
+      </ol>
+      <p>答：圆心 $5$、半径 $4$ 的圆。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $|z+3|$ 的“圆心”看成 $3$。$|z+3|=|z-(-3)|$，定点是 $-3$。</li>
+        <li>两边不平方就去掉绝对值，或平方时右边的 $k$ 没有平方。</li>
+        <li>$k=1$ 时还按圆来答。此时是直线。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>先把方程读成“距离的条件”，判断出图形的类型，再计算圆心和半径。用内分点、外分点检验直径两端，能很快发现计算错误。术语：<span lang="ja">軌跡</span><span class="kana">（きせき）</span>、<span lang="ja">中心</span><span class="kana">（ちゅうしん）</span>、<span lang="ja">半径</span><span class="kana">（はんけい）</span>。</p>
+    </div>
     <h3>三种常用方法</h3>
     <ol>
       <li><strong>设 $z=x+yi$：</strong>两边平方后化成 $x,y$ 的方程。例如 $|z|=2|z-3|$ 给出 $x^2+y^2=4\{(x-3)^2+y^2\}$，整理得 $(x-4)^2+y^2=4$，即圆心 $4$、半径 $2$ 的圆。又如 $|z-2|=|z-4i|$ 给出直线 $x-2y+3=0$。</li>
@@ -442,6 +811,49 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     </div>
     <div class="box warn">
       <p><strong>注意除外点：</strong>像 $w=\dfrac1z$ 这样的变换，$z\ne0$，所以圆 $|z-1|=1$ 上的 $z=0$ 要除外，其像只是直线 $\mathrm{Re}\,w=\dfrac12$（见练习 15）。</p>
+    </div>
+    <h3>方法的补充与例题</h3>
+    <p><strong>怎么选方法：</strong>$\alpha,\beta$ 是简单的实数或纯虚数时，设 $x,y$ 不容易出错；式子对称、含 $\overline{z}$ 时，用 $z\overline{z}$ 计算量更小；已知 $z$ 的轨迹求 $w$ 的轨迹时，用“解出 $z$ 再代入”。</p>
+    <p><strong>线性变换为什么把圆变成圆：</strong>若 $|z-c|=\rho$，$w=\alpha z+\beta$，则 $w-(\alpha c+\beta)=\alpha(z-c)$，取绝对值得 $|w-(\alpha c+\beta)|=|\alpha|\rho$，这正是圆心 $\alpha c+\beta$、半径 $|\alpha|\rho$ 的圆。</p>
+    <div class="box good">
+      <p><strong>补充例题 6-2（方法 2：$z\overline{z}$）：</strong>求满足 $|z-4|=2|z-1|$ 的点 $z$ 的轨迹。</p>
+      <ol>
+        <li>平方：$(z-4)(\overline{z}-4)=4(z-1)(\overline{z}-1)$。</li>
+        <li>展开：$z\overline{z}-4z-4\overline{z}+16=4z\overline{z}-4z-4\overline{z}+4$。</li>
+        <li>$z,\overline{z}$ 的一次项正好抵消：$3z\overline{z}=12$，$|z|^2=4$。</li>
+      </ol>
+      <p>答：原点为圆心、半径 $2$ 的圆，即 $|z|=2$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 6-3（方法 3：分式变换）：</strong>点 $z$ 在圆 $|z|=1$ 上移动，令 $w=\dfrac{1}{z-2}$。求点 $w$ 的轨迹。</p>
+      <ol>
+        <li>$|z|=1$ 上没有 $z=2$，所以 $w$ 有定义且 $w\ne0$。解出 $z=2+\dfrac1w$。</li>
+        <li>代入：$\left|2+\dfrac1w\right|=1$，去分母得 $|2w+1|=|w|$。</li>
+        <li>平方展开：$(2w+1)(2\overline{w}+1)=w\overline{w}$，即 $3w\overline{w}+2w+2\overline{w}+1=0$。</li>
+        <li>除以 $3$ 并配方：$\Bigl(w+\dfrac23\Bigr)\Bigl(\overline{w}+\dfrac23\Bigr)=\dfrac49-\dfrac13=\dfrac19$。</li>
+        <li>检验：$z=1$ 时 $w=-1$，$z=-1$ 时 $w=-\dfrac13$，都在所得的圆上，也是直径的两端。这个圆不经过 $w=0$，所以没有除外点。</li>
+      </ol>
+      <p>答：圆心 $-\dfrac23$、半径 $\dfrac13$ 的圆。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 6-4（圆变成直线）：</strong>点 $z$ 在圆 $|z|=1$ 上，$z\ne-1$，令 $w=\dfrac{z-1}{z+1}$。求点 $w$ 的轨迹。</p>
+      <ol>
+        <li>$w(z+1)=z-1$，整理得 $z(1-w)=1+w$。$w=1$ 时左边为 $0$，右边为 $2$，矛盾，所以 $w\ne1$，$z=\dfrac{1+w}{1-w}$。</li>
+        <li>代入 $|z|=1$：$|w+1|=|w-1|$，所以 $w$ 在连接 $-1$ 和 $1$ 的线段的垂直平分线上，即虚轴上。</li>
+        <li>反过来，$w=ti$（$t$ 为实数）时，$z=\dfrac{1+ti}{1-ti}$，分子分母互为共轭，所以 $|z|=1$，且 $z\ne-1$。虚轴上的点都能取到（$t=0$ 对应 $z=1$）。</li>
+      </ol>
+      <p>答：虚轴全体（含原点）。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>解出 $z$ 时不检查分母，漏掉除外点，或者多除了一个点。除外的点要代回确认。</li>
+        <li>以为圆的像一定是圆。分式变换下，经过使分母为 $0$ 的点的圆会变成直线。</li>
+        <li>线性变换时把半径算成 $\alpha\rho$。半径必须是 $|\alpha|\rho$，并且 $\beta$ 不影响半径。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>题干如 <span lang="ja">点 $w$ はどのような図形を描くか</span>（点 $w$ 描出什么图形）。求出方程后取一两个特殊的 $z$ 代入检验，几秒钟就能发现错误。答案是圆时，把圆心和半径都按要求的形式写好。</p>
     </div>
   </section>
 
@@ -510,6 +922,38 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <p>(3) $z_1=2\Bigl(\cos\dfrac{\pi}{6}+i\sin\dfrac{\pi}{6}\Bigr)=\sqrt3+i$，$z_1^{\,6}=64(\cos\pi+i\sin\pi)=-64$。</p>
       </div>
     </article>
+    <h3>补充：综合填空</h3>
+    <p>解填空题的一般流程：① 通读全部小问，看后面的小问用到什么；② 把条件翻译成图形（圆、旋转、正多边形）；③ 按小问顺序计算，前一问的结果通常是后一问的线索；④ 用答案栏的形式（有几位数、有无根号）核对结果。</p>
+
+    <article class="q">
+      <div class="q-head"><b>补充例题 7-1　正六边形与旋转</b><span class="origin">原创</span></div>
+      <p>复数平面上有一个以 $\mathrm{C}(1+i)$ 为中心的正六边形，一个顶点是 $\mathrm{P}(3+i)$。</p>
+      <p>(1) 把 $\mathrm{P}$ 绕 $\mathrm{C}$ 逆时针旋转 $\dfrac{\pi}{3}$ 得到的顶点是 $\B{A}+(\B{B}+\sqrt{\B{C}})\,i$。</p>
+      <p>(2) 这个正六边形的面积是 $\B{D}\sqrt{\B{E}}$。</p>
+      <p>(3) 六个顶点 $z$ 都满足 $(z-1-i)^6=\B{FG}$。</p>
+      <p>(4) 六个顶点中离原点最远的点，到原点的距离是 $\sqrt{\B{H}+\B{I}\sqrt{\B{J}}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 1</li><li>C = 3</li><li>D = 6</li><li>E = 3</li><li>F = 6</li><li>G = 4</li><li>H = 8</li><li>I = 2</li><li>J = 3</li></ul>
+        <p>(1) $\mathrm{P}-\mathrm{C}=2$，所以所求的点是 $(1+i)+2\Bigl(\dfrac12+\dfrac{\sqrt3}{2}i\Bigr)=2+(1+\sqrt3)i$。</p>
+        <p>(2) 中心到顶点的距离是 $2$，正六边形由 $6$ 个边长 $2$ 的正三角形组成，面积 $=6\cdot\dfrac{\sqrt3}{4}\cdot2^2=6\sqrt3$。</p>
+        <p>(3) 顶点可写成 $z=(1+i)+2\Bigl(\cos\dfrac{k\pi}{3}+i\sin\dfrac{k\pi}{3}\Bigr)$，所以 $(z-1-i)^6=2^6(\cos2k\pi+i\sin2k\pi)=64$。</p>
+        <p>(4) 设 $\phi=\dfrac{k\pi}{3}$。$1+i$ 的绝对值是 $\sqrt2$，辐角是 $\dfrac{\pi}{4}$，所以</p>
+        $$|z|^2=|1+i|^2+2^2+2\cdot\sqrt2\cdot2\cos\Bigl(\phi-\frac{\pi}{4}\Bigr)=6+4\sqrt2\cos\Bigl(\phi-\frac{\pi}{4}\Bigr).$$
+        <p>$\phi$ 最接近 $\dfrac{\pi}{4}$ 时最大，即 $\phi=\dfrac{\pi}{3}$，$\cos\dfrac{\pi}{12}=\dfrac{\sqrt6+\sqrt2}{4}$，得 $|z|^2=6+\sqrt2(\sqrt6+\sqrt2)=8+2\sqrt3$。这个顶点就是 (1) 的点，直接验算：$2^2+(1+\sqrt3)^2=8+2\sqrt3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把多位数的字母拆错：$\B{FG}=64$ 表示 $\mathrm{F}=6,\mathrm{G}=4$。</li>
+        <li>把 (3) 写成 $z^6=64$。中心不在原点时要先平移，方程是 $(z-1-i)^6=64$。</li>
+        <li>求最远点时只算一两个顶点就下结论。应比较各顶点方向与 $\overrightarrow{\mathrm{OC}}$ 的夹角。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>答案栏的格式本身就是提示：如果栏里有根号而你的结果没有，先回头检查。分数要约到最简，根号内的数要尽量小，否则填不进去。某一小问卡住时先跳过，后面的小问未必依赖它。</p>
+    </div>
   </section>
 
   <section id="practice">
@@ -593,6 +1037,28 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <p>$z$ 在圆 $|z-1|=1$ 上且 $z\ne0$，令 $w=\dfrac1z$。求点 $w$ 的轨迹。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
       <div class="ans" hidden><p>$z=\dfrac1w$ 代入，得 $\left|\dfrac1w-1\right|=1$，即 $|1-w|=|w|$。所以 $w$ 在连接 $0$ 和 $1$ 的线段的垂直平分线上，即直线 $\mathrm{Re}\,w=\dfrac12$。</p></div></div>
+    <h3>练习的方法与补充</h3>
+    <p>建议先遮住解析独立做，再对照。第 1–3 题练基本化形，第 4–6 题练棣莫弗定理与方根，第 7、8、11 题练旋转和角，第 9、10、14、15 题练距离和轨迹，第 12、13 题是综合。做错的题，回到对应小节的“常见错误”框，确认是哪一类错误。</p>
+    <div class="box good">
+      <p><strong>补充例题 8-1（$z+\dfrac1z$ 型，与练习 12 对照）：</strong>$z+\dfrac1z=\sqrt3$ 时，求 $z^{10}+\dfrac{1}{z^{10}}$。</p>
+      <ol>
+        <li>去分母：$z^2-\sqrt3\,z+1=0$，解得 $z=\dfrac{\sqrt3\pm i}{2}$。</li>
+        <li>化为极形式：$z=\cos\Bigl(\pm\dfrac{\pi}{6}\Bigr)+i\sin\Bigl(\pm\dfrac{\pi}{6}\Bigr)$，绝对值为 $1$。</li>
+        <li>由棣莫弗定理，$z^{10}$ 和 $\dfrac{1}{z^{10}}$ 的辐角互为相反数，虚部抵消，所以 $z^{10}+\dfrac{1}{z^{10}}=2\cos\dfrac{10}{6}\pi=2\cos\dfrac53\pi=2\cdot\dfrac12=1$。</li>
+      </ol>
+      <p>答：$1$（$z$ 取哪一个解，结果都相同）。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只取 $z$ 的一个解就结束，没有确认另一个解的结果。这里两个解互为共轭，结果相同，但要知道原因。</li>
+        <li>把 $z^{n}+\dfrac{1}{z^{n}}$ 写成 $2\cos n\theta+2i\sin n\theta$。虚部互相抵消，只剩 $2\cos n\theta$。</li>
+        <li>练习 15 中漏写 $z\ne0$ 的条件，不理解为什么圆变成了直线。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>练习时给自己限时，并养成同一题用两种方法核对的习惯（极形式和直接展开、图形和计算）。指数很大的题，先找周期再取余数。</p>
+    </div>
   </section>
 
   <section id="terms">
@@ -605,6 +1071,39 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
       <tbody></tbody>
     </table></div>
+    <h3>读懂日语题干</h3>
+    <p>EJU 数学可以选择日语或英语试卷。如果用日语作答，下面这些题干表达要能直接读懂：</p>
+    <div class="tw"><table>
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody>
+        <tr><td lang="ja">極形式で表せ</td><td class="kana" lang="ja">きょくけいしきであらわせ</td><td>用极形式表示</td></tr>
+        <tr><td lang="ja">偏角を求めよ</td><td class="kana" lang="ja">へんかくをもとめよ</td><td>求辐角</td></tr>
+        <tr><td lang="ja">方程式を解け</td><td class="kana" lang="ja">ほうていしきをとけ</td><td>解方程</td></tr>
+        <tr><td lang="ja">原点のまわりに回転する</td><td class="kana" lang="ja">げんてんのまわりにかいてんする</td><td>绕原点旋转</td></tr>
+        <tr><td lang="ja">図形を描く</td><td class="kana" lang="ja">ずけいをえがく</td><td>描出图形（用于轨迹）</td></tr>
+        <tr><td lang="ja">ただし</td><td class="kana" lang="ja">ただし</td><td>但是（后面常是范围条件）</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box good">
+      <p><strong>补充例题 9-1（日语题干）：</strong><span lang="ja">複素数 $z=1-\sqrt3\,i$ を極形式で表せ。ただし、偏角 $\theta$ は $0\leqq\theta&lt;2\pi$ とする。</span></p>
+      <ol>
+        <li>翻译：把复数 $z=1-\sqrt3\,i$ 用极形式表示，其中辐角 $\theta$ 满足 $0\le\theta&lt;2\pi$。（日本教材常把 $\le$ 写成 $\leqq$。）</li>
+        <li>$r=\sqrt{1+3}=2$，$\cos\theta=\dfrac12,\ \sin\theta=-\dfrac{\sqrt3}{2}$，点在第 4 象限。</li>
+        <li>在指定范围内 $\theta=\dfrac53\pi$。</li>
+      </ol>
+      <p>答：$z=2\Bigl(\cos\dfrac53\pi+i\sin\dfrac53\pi\Bigr)$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 <span lang="ja">偏角</span> 读成“へんがく”。正确读音是 へんかく。</li>
+        <li>把 <span lang="ja">共役</span> 读成“きょうえき”。正确读音是 きょうやく。</li>
+        <li>忽略 <span lang="ja">ただし</span> 后面的条件，常常因此把辐角范围看漏。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>用上面的搜索框按中文、日文或假名查词。记术语时连同题干句型一起记，例如“<span lang="ja">偏角を求めよ</span>”。考前至少用日语题干做一遍例题，熟悉读题速度。</p>
+    </div>
   </section>
 
   <footer>本页例题与练习均为原创，答案已用 Python（SymPy）验算。</footer>
@@ -622,19 +1121,23 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       ['複素数', 'ふくそすう', '复数'], ['複素数平面', 'ふくそすうへいめん', '复数平面'], ['実軸', 'じつじく', '实轴'],
       ['虚軸', 'きょじく', '虚轴'], ['実部', 'じつぶ', '实部'], ['虚部', 'きょぶ', '虚部'],
       ['虚数単位', 'きょすうたんい', '虚数单位'], ['純虚数', 'じゅんきょすう', '纯虚数'], ['共役複素数', 'きょうやくふくそすう', '共轭复数'],
-      ['絶対値', 'ぜったいち', '绝对值'], ['原点', 'げんてん', '原点']
+      ['絶対値', 'ぜったいち', '绝对值'], ['原点', 'げんてん', '原点'],
+      ['複素数の相等', 'ふくそすうのそうとう', '复数相等'], ['単位円', 'たんいえん', '单位圆'], ['象限', 'しょうげん', '象限']
     ]],
     ['极形式与棣莫弗定理', [
       ['極形式', 'きょくけいしき', '极形式'], ['偏角', 'へんかく', '辐角'], ['ド・モアブルの定理', 'ド・モアブルのていり', '棣莫弗定理'],
       ['n乗根', 'エヌじょうこん', 'n 次方根'], ['1のn乗根', 'いちのエヌじょうこん', '1 的 n 次方根'], ['加法定理', 'かほうていり', '（三角函数）加法定理'],
-      ['正多角形', 'せいたかっけい', '正多边形']
+      ['正多角形', 'せいたかっけい', '正多边形'],
+      ['数学的帰納法', 'すうがくてききのうほう', '数学归纳法'], ['3倍角の公式', 'さんばいかくのこうしき', '三倍角公式']
     ]],
     ['图形：旋转与距离', [
       ['回転', 'かいてん', '旋转'], ['拡大', 'かくだい', '放大'], ['縮小', 'しゅくしょう', '缩小'],
       ['平行移動', 'へいこういどう', '平移'], ['距離', 'きょり', '距离'], ['中点', 'ちゅうてん', '中点'],
       ['内分点', 'ないぶんてん', '内分点'], ['外分点', 'がいぶんてん', '外分点'], ['重心', 'じゅうしん', '重心'],
       ['正三角形', 'せいさんかくけい', '正三角形'], ['一直線上', 'いっちょくせんじょう', '在同一直线上'], ['垂直', 'すいちょく', '垂直'],
-      ['三角不等式', 'さんかくふとうしき', '三角不等式']
+      ['三角不等式', 'さんかくふとうしき', '三角不等式'],
+      ['反時計回り', 'はんとけいまわり', '逆时针'], ['時計回り', 'とけいまわり', '顺时针'], ['直角二等辺三角形', 'ちょっかくにとうへんさんかくけい', '等腰直角三角形'],
+      ['最大値', 'さいだいち', '最大值'], ['最小値', 'さいしょうち', '最小值']
     ]],
     ['轨迹', [
       ['軌跡', 'きせき', '轨迹'], ['円', 'えん', '圆'], ['中心', 'ちゅうしん', '圆心（中心）'],

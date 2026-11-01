@@ -255,6 +255,36 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <p>无穷等比级数（<span lang="ja">無限等比級数</span>）：首项 $a\ne 0$，当且仅当 $|r|&lt;1$ 时收敛，</p>
     $$\sum_{n=1}^{\infty}ar^{n-1}=\frac{a}{1-r}.$$
 
+        <p><strong>为什么 $|r|&lt;1$ 时 $r^n\to0$：</strong>$r=0$ 时显然。$r\ne0$ 时令 $\dfrac{1}{|r|}=1+p\ (p&gt;0)$，由二项式定理 $(1+p)^n\ge1+np$，所以 $0\le|r|^n\le\dfrac{1}{1+np}\to0$，再由夹逼得 $r^n\to0$。</p>
+    <p><strong>为什么级数公式成立：</strong>部分和 $S_n=a+ar+\cdots+ar^{n-1}$。两边乘 $r$ 再相减，得 $(1-r)S_n=a(1-r^n)$，即 $S_n=\dfrac{a(1-r^n)}{1-r}$（$r\ne1$）。$|r|&lt;1$ 时 $r^n\to0$，于是 $S_n\to\dfrac{a}{1-r}$。$|r|\ge1$ 时通项 $ar^{n-1}$ 不趋于 $0$，级数必发散。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">部分和（ぶぶんわ）／初項（しょこう）／循環小数（じゅんかんしょうすう）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 1</b><span class="origin">原创</span></div>
+      <p>求 $\displaystyle\lim_{n\to\infty}\frac{3^{n+1}+2^n}{3^n-2^n}$。</p>
+      <ol>
+        <li>分子分母的主导项都含 $3^n$（底最大），同除以 $3^n$：原式 $=\dfrac{3+(2/3)^n}{1-(2/3)^n}$。</li>
+        <li>因为 $\left|\dfrac23\right|&lt;1$，所以 $\left(\dfrac23\right)^n\to0$。</li>
+        <li>代入得 $\dfrac{3+0}{1-0}=3$。</li>
+      </ol>
+      <p><strong>答案：</strong>$3$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 2</b><span class="origin">原创</span></div>
+      <p>把循环小数 $0.272727\cdots$ 化成既约分数。</p>
+      <ol>
+        <li>写成级数：$0.2727\cdots=\dfrac{27}{100}+\dfrac{27}{100^2}+\dfrac{27}{100^3}+\cdots$。</li>
+        <li>这是首项 $a=\dfrac{27}{100}$、公比 $r=\dfrac1{100}$ 的无穷等比级数，$|r|&lt;1$，所以收敛。</li>
+        <li>和为 $\dfrac{27/100}{1-1/100}=\dfrac{27}{99}=\dfrac{3}{11}$。</li>
+      </ol>
+      <p><strong>答案：</strong>$\dfrac{3}{11}$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 认为 $r=-1$ 时 $r^n$ 收敛（实际在 $\pm1$ 间振荡）；② $r=1$ 时数列 $r^n$ 收敛于 $1$，但 $a\ne0$ 的级数 $\sum a$ 发散，两者的条件不同；③ 把“通项趋于 $0$”当成级数收敛的充分条件，反例是 $\sum\dfrac1n$ 发散；④ $\sum_{n=1}^\infty\left(\dfrac23\right)^n$ 的首项是 $\dfrac23$，不是 $1$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>指数型分式一律同除以“底的绝对值最大”的那一项。含参数的 $r$ 要分 $|r|&lt;1$、$r=1$、$r=-1$、$|r|&gt;1$ 讨论；级数收敛的题还要单独考虑首项 $a=0$（此时和为 $0$）。</p>
+    </div>
+
     <h3>函数极限：化解不定式</h3>
     <p>遇到 $\dfrac00$、$\dfrac\infty\infty$、$\infty-\infty$（<span lang="ja">不定形</span>）不能直接代入，要先变形：</p>
     <div class="tw"><table>
@@ -266,6 +296,36 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <tr><td>夹逼（<span lang="ja">はさみうちの原理</span>）</td><td>$-\dfrac1x\le\dfrac{\sin x}{x}\le\dfrac1x\ (x&gt;0)$，所以 $\displaystyle\lim_{x\to\infty}\frac{\sin x}{x}=0$</td></tr>
       </tbody>
     </table></div>
+
+        <p><strong>为什么叫“不定式”：</strong>同样是 $\dfrac00$ 型，$x\to0$ 时 $\dfrac{x^2}{x}\to0$，$\dfrac{x}{x}\to1$，$\dfrac{x}{x^2}$ 的绝对值 $\to\infty$。结果取决于分子分母趋于 $0$ 的快慢，只看形式无法确定，所以必须先变形，消去造成不定的因子。</p>
+    <p><strong>约分为什么合法：</strong>极限只考察 $x\ne a$ 处的取值，$x\to2$ 时 $x\ne2$，所以可以约去 $x-2$。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">分子（ぶんし）／分母（ぶんぼ）／有理化（ゆうりか）／因数分解（いんすうぶんかい）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 3</b><span class="origin">原创</span></div>
+      <p>求 $\displaystyle\lim_{x\to-\infty}\bigl(\sqrt{x^2+2x}+x\bigr)$。</p>
+      <ol>
+        <li>这是 $\infty-\infty$ 型。令 $x=-t$，则 $t\to+\infty$，原式 $=\sqrt{t^2-2t}-t$。</li>
+        <li>分子有理化：$\sqrt{t^2-2t}-t=\dfrac{(t^2-2t)-t^2}{\sqrt{t^2-2t}+t}=\dfrac{-2t}{\sqrt{t^2-2t}+t}$。</li>
+        <li>分子分母同除以 $t\ (t&gt;0)$：$\dfrac{-2}{\sqrt{1-2/t}+1}\to\dfrac{-2}{1+1}=-1$。</li>
+      </ol>
+      <p><strong>答案：</strong>$-1$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 4</b><span class="origin">原创</span></div>
+      <p>求 $\displaystyle\lim_{x\to1}\frac{\sqrt{x+3}-2}{x-1}$。</p>
+      <ol>
+        <li>代入得 $\dfrac00$ 型。分子分母同乘 $\sqrt{x+3}+2$。</li>
+        <li>分子变为 $(x+3)-4=x-1$，所以原式 $=\dfrac{x-1}{(x-1)(\sqrt{x+3}+2)}=\dfrac{1}{\sqrt{x+3}+2}$。</li>
+        <li>令 $x\to1$：$\dfrac{1}{2+2}=\dfrac14$。</li>
+      </ol>
+      <p><strong>答案：</strong>$\dfrac14$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① $x\to-\infty$ 时直接写 $\sqrt{x^2}=x$，正确的是 $\sqrt{x^2}=|x|=-x$；② 把 $\infty-\infty$ 当成 $0$；③ 把 $\dfrac{\sin x}{x}\to1$ 用在 $x\to\infty$ 上，那里极限是 $0$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>$x\to-\infty$ 时先令 $x=-t$，把问题化成 $t\to+\infty$，可避开符号错误。洛必达法则不在日本高中课程内，只宜用来验算，主要解法仍是变形。</p>
+    </div>
 
     <h3>必背的重要极限</h3>
     <div class="formula-grid">
@@ -283,6 +343,45 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <p>得 $a=1,\ b=-2$。</p>
     </div>
     <p>函数连续（<span lang="ja">連続</span>）指 $\displaystyle\lim_{x\to a}f(x)=f(a)$：左极限、右极限和函数值三者都存在且相等。例如 $x\to+0$ 时 $\dfrac1x\to+\infty$，$x\to-0$ 时 $\dfrac1x\to-\infty$，所以 $x\to0$ 时极限不存在。</p>
+    <p><strong>$\dfrac{\sin x}{x}\to1$ 的推导：</strong>在单位圆中，$0&lt;x&lt;\dfrac\pi2$ 时比较三角形与扇形的面积：$\dfrac12\sin x&lt;\dfrac12x&lt;\dfrac12\tan x$。除以 $\dfrac12\sin x$ 再取倒数，得 $\cos x&lt;\dfrac{\sin x}{x}&lt;1$。$x\to+0$ 时 $\cos x\to1$，由夹逼得极限为 $1$；$\dfrac{\sin x}{x}$ 是偶函数，所以左极限也是 $1$。</p>
+    <p><strong>其余公式的来源：</strong>$\dfrac{1-\cos x}{x^2}=\dfrac{1-\cos^2x}{x^2(1+\cos x)}=\left(\dfrac{\sin x}{x}\right)^2\dfrac{1}{1+\cos x}\to\dfrac12$。$\dfrac{\log(1+h)}{h}=\log(1+h)^{\frac1h}\to\log e=1$。令 $t=e^h-1$，则 $h=\log(1+t)$，$\dfrac{e^h-1}{h}=\dfrac{t}{\log(1+t)}\to1$。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">弧度法（こどほう）／右側極限（みぎがわきょくげん）／左側極限（ひだりがわきょくげん）／連続（れんぞく）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 5</b><span class="origin">原创</span></div>
+      <p>求 $\displaystyle\lim_{x\to0}\frac{\sin3x}{\tan5x}$。</p>
+      <ol>
+        <li>$\tan5x=\dfrac{\sin5x}{\cos5x}$，所以原式 $=\dfrac{\sin3x}{\sin5x}\cdot\cos5x$。</li>
+        <li>凑出标准形：$\dfrac{\sin3x}{3x}\cdot\dfrac{5x}{\sin5x}\cdot\dfrac35\cdot\cos5x$。</li>
+        <li>令 $x\to0$：$1\cdot1\cdot\dfrac35\cdot1=\dfrac35$。</li>
+      </ol>
+      <p><strong>答案：</strong>$\dfrac35$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 6</b><span class="origin">原创</span></div>
+      <p>求 $\displaystyle\lim_{x\to\infty}\Bigl(1+\frac3x\Bigr)^{2x}$。</p>
+      <ol>
+        <li>令 $h=\dfrac3x$，则 $x\to\infty$ 时 $h\to+0$，且 $2x=\dfrac6h$。</li>
+        <li>原式 $=\displaystyle\lim_{h\to+0}\bigl\{(1+h)^{\frac1h}\bigr\}^6=e^6$。</li>
+      </ol>
+      <p><strong>答案：</strong>$e^6$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 7</b><span class="origin">原创</span></div>
+      <p>(1) 设 $f(x)=\dfrac{\sin2x}{x}\ (x\ne0)$，$f(0)=c$。求使 $f$ 在 $x=0$ 连续的 $c$。(2) 已知 $\displaystyle\lim_{x\to2}\frac{\sqrt{x+a}-b}{x-2}=\frac16$，求 $a,b$。</p>
+      <ol>
+        <li>(1) $\displaystyle\lim_{x\to0}\frac{\sin2x}{x}=\lim_{x\to0}2\cdot\frac{\sin2x}{2x}=2$。连续要求极限等于函数值，所以 $c=2$。</li>
+        <li>(2) 分母 $\to0$ 而极限有限，分子也必须 $\to0$：$\sqrt{2+a}=b$，即 $b^2=a+2$（必要条件）。</li>
+        <li>有理化：$\dfrac{\sqrt{x+a}-b}{x-2}=\dfrac{x+a-b^2}{(x-2)(\sqrt{x+a}+b)}=\dfrac{x-2}{(x-2)(\sqrt{x+a}+b)}=\dfrac{1}{\sqrt{x+a}+b}$。</li>
+        <li>令 $x\to2$：$\dfrac{1}{2b}=\dfrac16$，所以 $b=3$，$a=b^2-2=7$。这一步同时说明条件也是充分的。</li>
+      </ol>
+      <p><strong>答案：</strong>(1) $c=2$；(2) $a=7,\ b=3$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① $\dfrac{\sin3x}{x}$ 也写成 $1$（应为 $3$）；② 把 $\left(1+\dfrac3x\right)^{2x}$ 写成 $e$ 或 $e^2$，底里的 $3$ 和指数里的 $2$ 都要算进去；③ 这些公式要求 $x$ 用弧度，角度制下不成立；④ 判断连续时只算极限，不与函数值比较。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>看到 $\sin$ 就凑“角度相同”的 $\dfrac{\sin\square}{\square}$；看到 $1^\infty$ 型就凑 $(1+h)^{1/h}$。“由极限求系数”的固定流程是：分母 $\to0$ ⇒ 分子 $\to0$ ⇒ 约分 ⇒ 代入求值。</p>
+    </div>
   </section>
 
   <section id="deriv">
@@ -290,6 +389,27 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <p class="jp-sub" lang="ja">微分法 — 導関数の計算</p>
     <p>$f'(a)$ 是曲线在 $x=a$ 处的瞬时变化率，日语称<span lang="ja">微分係数</span>；把它看成 $a$ 的函数就是<strong>导函数</strong> <span lang="ja">導関数</span>：</p>
     $$f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}.$$
+
+        <p><strong>从定义算一次：</strong>$f(x)=x^3$ 时，$\dfrac{(x+h)^3-x^3}{h}=3x^2+3xh+h^2\to3x^2$。$\dfrac{f(x+h)-f(x)}{h}$ 是割线斜率（<span lang="ja">平均変化率</span>），$h\to0$ 时割线趋于切线，所以极限就是切线斜率。</p>
+    <p><strong>可导与连续：</strong>$f$ 在 $x=a$ 可导（<span lang="ja">微分可能</span>）⇒ 连续，因为 $f(a+h)-f(a)=\dfrac{f(a+h)-f(a)}{h}\cdot h\to f'(a)\cdot0=0$。反之不成立：$y=|x|$ 在 $x=0$ 连续，但右侧比值恒为 $1$、左侧比值恒为 $-1$，所以不可导。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">微分可能（びぶんかのう）／微分する（びぶんする）／瞬間の変化率（しゅんかんのへんかりつ）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 8</b><span class="origin">原创</span></div>
+      <p>(1) 用定义求 $f(x)=\dfrac1x$ 的导函数。(2) $f$ 可导时，用 $f'(a)$ 表示 $\displaystyle\lim_{h\to0}\frac{f(a+2h)-f(a-h)}{h}$。</p>
+      <ol>
+        <li>(1) $\dfrac{1}{h}\left(\dfrac{1}{x+h}-\dfrac1x\right)=\dfrac1h\cdot\dfrac{x-(x+h)}{x(x+h)}=-\dfrac{1}{x(x+h)}$，令 $h\to0$ 得 $-\dfrac{1}{x^2}$。</li>
+        <li>(2) 在分子中加减 $f(a)$：$\dfrac{f(a+2h)-f(a)}{h}+\dfrac{f(a)-f(a-h)}{h}$。</li>
+        <li>第一项 $=2\cdot\dfrac{f(a+2h)-f(a)}{2h}\to2f'(a)$；第二项 $=\dfrac{f(a+(-h))-f(a)}{-h}\to f'(a)$。</li>
+        <li>相加得 $3f'(a)$。</li>
+      </ol>
+      <p><strong>答案：</strong>(1) $f'(x)=-\dfrac{1}{x^2}$；(2) $3f'(a)$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>定义式的增量必须与分母一致：$\dfrac{f(a+2h)-f(a)}{h}$ 的极限是 $2f'(a)$，不是 $f'(a)$；$\dfrac{f(a)-f(a-h)}{h}$ 的极限是 $+f'(a)$，符号容易写反。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>这类题的固定动作是“加减 $f(a)$ 拆成两项，再调整分母”。选择或填空时，也可代入 $f(x)=x^2$ 这样的具体函数快速核对系数。</p>
+    </div>
 
     <h3>基本函数</h3>
     <div class="formula-grid">
@@ -301,6 +421,30 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <div>$(\sin x)'=\cos x$</div>
       <div>$(\cos x)'=-\sin x$</div>
       <div>$(\tan x)'=\dfrac{1}{\cos^2x}$</div>
+    </div>
+
+        <p><strong>这些公式从哪里来：</strong></p>
+    <p>• $(\sin x)'$：$\dfrac{\sin(x+h)-\sin x}{h}=\sin x\cdot\dfrac{\cos h-1}{h}+\cos x\cdot\dfrac{\sin h}{h}\to\sin x\cdot0+\cos x\cdot1=\cos x$。</p>
+    <p>• $(e^x)'$：$\dfrac{e^{x+h}-e^x}{h}=e^x\cdot\dfrac{e^h-1}{h}\to e^x$。</p>
+    <p>• $(\log x)'$：$\dfrac{\log(x+h)-\log x}{h}=\dfrac1x\cdot\dfrac{\log(1+h/x)}{h/x}\to\dfrac1x$。$x&lt;0$ 时 $\log|x|=\log(-x)$，由复合函数求导同样得 $\dfrac{-1}{-x}=\dfrac1x$。</p>
+    <p>• $(a^x)'$：$a^x=e^{x\log a}$，所以 $(a^x)'=a^x\log a$。$(\log_ax)'$：由换底公式 $\log_ax=\dfrac{\log x}{\log a}$ 得出。$(\tan x)'$：对 $\dfrac{\sin x}{\cos x}$ 用商的法则，分子为 $\cos^2x+\sin^2x=1$。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">三角関数（さんかくかんすう）／指数関数（しすうかんすう）／対数関数（たいすうかんすう）／底の変換公式（ていのへんかんこうしき）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 9</b><span class="origin">原创</span></div>
+      <p>求 $y=x\sqrt x+3^x+\log_2x\ (x&gt;0)$ 的导数。</p>
+      <ol>
+        <li>先把根式化为幂：$x\sqrt x=x^{3/2}$，所以 $(x^{3/2})'=\dfrac32x^{1/2}=\dfrac32\sqrt x$。</li>
+        <li>$(3^x)'=3^x\log3$（指数函数公式，不是幂函数公式）。</li>
+        <li>$(\log_2x)'=\dfrac{1}{x\log2}$。</li>
+        <li>逐项相加。</li>
+      </ol>
+      <p><strong>答案：</strong>$y'=\dfrac32\sqrt x+3^x\log3+\dfrac{1}{x\log2}$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① $(\cos x)'$ 漏负号；② $(3^x)'$ 与 $(x^3)'$ 混淆；③ $(\log_2x)'$ 漏掉分母的 $\log2$；④ 把 $\left(\dfrac1x\right)'$ 写成 $\log x$，那是积分的公式，方向反了。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>求导前先化简：根式化为分数指数，$\dfrac{1}{x^n}$ 化为 $x^{-n}$，$\log$ 中的积商先拆开，可以少用一次商的法则。答案里的 $\log$ 按日本写法就是自然对数。</p>
     </div>
 
     <h3>运算法则</h3>
@@ -319,6 +463,47 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="box warn">
       <p><strong>常见失分：</strong>$(\sin 2x)'$ 忘记乘内层导数 $2$；把 $(2^x)'$ 写成 $x2^{x-1}$（那是幂函数公式）；商的法则分子顺序写反。</p>
     </div>
+    <p><strong>积的法则：</strong>$\dfrac{f(x+h)g(x+h)-f(x)g(x)}{h}=\dfrac{f(x+h)-f(x)}{h}g(x+h)+f(x)\dfrac{g(x+h)-g(x)}{h}\to f'g+fg'$。其中 $g(x+h)\to g(x)$ 用到了“可导 ⇒ 连续”。</p>
+    <p><strong>商的法则：</strong>令 $u=\dfrac fg$，则 $f=ug$，由积的法则 $f'=u'g+ug'$，解出 $u'=\dfrac{f'-ug'}{g}=\dfrac{f'g-fg'}{g^2}$。</p>
+    <p><strong>复合函数：</strong>$y=f(u),\ u=g(x)$ 时，$\dfrac{\Delta y}{\Delta x}=\dfrac{\Delta y}{\Delta u}\cdot\dfrac{\Delta u}{\Delta x}$，取极限得 $\dfrac{dy}{dx}=\dfrac{dy}{du}\cdot\dfrac{du}{dx}$。反函数与参数式也都由这一关系得出。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">積の微分法（せきのびぶんほう）／商の微分法（しょうのびぶんほう）／陰関数（いんかんすう）／対数微分法（たいすうびぶんほう）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 10</b><span class="origin">原创</span></div>
+      <p>求 $y=\log\bigl(x+\sqrt{x^2+1}\bigr)$ 的导数。</p>
+      <ol>
+        <li>外层是 $\log u$，内层 $u=x+\sqrt{x^2+1}$，所以 $y'=\dfrac{u'}{u}$。</li>
+        <li>$u'=1+\dfrac{2x}{2\sqrt{x^2+1}}=\dfrac{\sqrt{x^2+1}+x}{\sqrt{x^2+1}}$，分子恰好等于 $u$。</li>
+        <li>约去 $u$，得 $y'=\dfrac{1}{\sqrt{x^2+1}}$。</li>
+      </ol>
+      <p><strong>答案：</strong>$y'=\dfrac{1}{\sqrt{x^2+1}}$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 11</b><span class="origin">原创</span></div>
+      <p>曲线 $x=t^2+1,\ y=t^3-t\ (t&gt;0)$。求 $t=2$ 时的 $\dfrac{dy}{dx}$ 和 $\dfrac{d^2y}{dx^2}$。</p>
+      <ol>
+        <li>$\dfrac{dx}{dt}=2t$，$\dfrac{dy}{dt}=3t^2-1$，所以 $\dfrac{dy}{dx}=\dfrac{3t^2-1}{2t}=\dfrac32t-\dfrac{1}{2t}$。$t=2$ 时为 $\dfrac{11}{4}$。</li>
+        <li>二阶导要对 $x$ 求导：$\dfrac{d^2y}{dx^2}=\dfrac{d}{dt}\left(\dfrac{dy}{dx}\right)\cdot\dfrac{dt}{dx}=\left(\dfrac32+\dfrac{1}{2t^2}\right)\cdot\dfrac{1}{2t}$。</li>
+        <li>$t=2$ 时为 $\dfrac{13}{8}\cdot\dfrac14=\dfrac{13}{32}$。</li>
+      </ol>
+      <p><strong>答案：</strong>$\dfrac{dy}{dx}=\dfrac{11}{4}$，$\dfrac{d^2y}{dx^2}=\dfrac{13}{32}$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 12</b><span class="origin">原创</span></div>
+      <p>(1) 曲线 $x^2+xy+y^2=3$，求点 $(1,1)$ 处的 $y'$。(2) $y=x^{\sin x}\ (x&gt;0)$，求 $x=\dfrac\pi2$ 处的 $y'$。</p>
+      <ol>
+        <li>(1) 两边对 $x$ 求导，$xy$ 用积的法则：$2x+y+xy'+2yy'=0$。</li>
+        <li>解得 $y'=-\dfrac{2x+y}{x+2y}$，代入 $(1,1)$ 得 $-1$。</li>
+        <li>(2) 取对数：$\log y=\sin x\log x$。两边求导：$\dfrac{y'}{y}=\cos x\log x+\dfrac{\sin x}{x}$。</li>
+        <li>$x=\dfrac\pi2$ 时 $y=\dfrac\pi2$，括号内为 $0+\dfrac2\pi$，所以 $y'=\dfrac\pi2\cdot\dfrac2\pi=1$。</li>
+      </ol>
+      <p><strong>答案：</strong>(1) $-1$；(2) $1$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 隐函数中把 $(y^2)'$ 写成 $2y$，漏了 $y'$；$(xy)'$ 写成 $y'$。② 参数式二阶导写成 $\dfrac{d^2y/dt^2}{d^2x/dt^2}$，这是错的，要先对 $t$ 求导，再除以 $\dfrac{dx}{dt}$。③ 对 $x^{\sin x}$ 套用幂函数公式或指数函数公式，底和指数都含 $x$ 时必须取对数。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>复合函数从外到内逐层求导，每层写一个因子，多层时不易漏。隐函数题通常只问某一点的斜率，求导后直接代入坐标，往往比先解出 $y'$ 的一般式更快。</p>
+    </div>
   </section>
 
   <section id="tangent">
@@ -328,6 +513,45 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     $$\text{切线：}\ y-f(a)=f'(a)(x-a),\qquad \text{法线：}\ y-f(a)=-\frac{1}{f'(a)}(x-a).$$
     <div class="box good">
       <p><strong>曲线外一点作切线：</strong>切点未知时，先设切点。求原点到 $y=\log x$ 的切线：设切点 $(t,\log t)$，切线为 $y-\log t=\dfrac1t(x-t)$。代入 $(0,0)$ 得 $\log t=1$，所以 $t=e$，切线为 $y=\dfrac xe$。</p>
+    </div>
+
+        <p><strong>公式为什么是这样：</strong>过点 $(a,f(a))$、斜率为 $m$ 的直线是 $y-f(a)=m(x-a)$，切线取 $m=f'(a)$。法线与切线垂直，两条不平行于坐标轴的垂直直线斜率之积为 $-1$，所以法线斜率是 $-\dfrac{1}{f'(a)}$。若 $f'(a)=0$，切线水平，法线就是竖直线 $x=a$。</p>
+    <p><strong>解题三步：</strong>① 求切点坐标 $(a,f(a))$；② 求斜率 $f'(a)$；③ 代入点斜式。切点未知时设切点为 $(t,f(t))$，先写切线再代入已知条件。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">接する（せっする）／垂直（すいちょく）／共通接線（きょうつうせっせん）／通る（とおる）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 13</b><span class="origin">原创</span></div>
+      <p>求曲线 $y=\sqrt x$ 在 $x=4$ 处的法线方程。</p>
+      <ol>
+        <li>切点 $(4,2)$。$y'=\dfrac{1}{2\sqrt x}$，在 $x=4$ 处为 $\dfrac14$。</li>
+        <li>法线斜率 $=-4$，所以 $y-2=-4(x-4)$，整理得 $y=-4x+18$。</li>
+      </ol>
+      <p><strong>答案：</strong>$y=-4x+18$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 14</b><span class="origin">原创</span></div>
+      <p>过点 $(1,-3)$ 作抛物线 $y=x^2$ 的切线，求切线方程。</p>
+      <ol>
+        <li>点 $(1,-3)$ 不在曲线上（$1^2\ne-3$），设切点 $(t,t^2)$。切线为 $y-t^2=2t(x-t)$，即 $y=2tx-t^2$。</li>
+        <li>代入 $(1,-3)$：$-3=2t-t^2$，即 $t^2-2t-3=0$，所以 $t=3$ 或 $t=-1$。</li>
+        <li>$t=3$ 时 $y=6x-9$；$t=-1$ 时 $y=-2x-1$。</li>
+      </ol>
+      <p><strong>答案：</strong>$y=6x-9$ 和 $y=-2x-1$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 15</b><span class="origin">原创</span></div>
+      <p>曲线 $y=\log x$ 与 $y=ax^2$ 相切，求 $a$ 与切点的 $x$ 坐标。</p>
+      <ol>
+        <li>相切指在切点处函数值和斜率都相等。设切点横坐标为 $t\ (t&gt;0)$：$\log t=at^2$ …①，$\dfrac1t=2at$ …②。</li>
+        <li>由②得 $at^2=\dfrac12$，代入①得 $\log t=\dfrac12$，所以 $t=\sqrt e$。</li>
+        <li>再代回：$a=\dfrac{1}{2t^2}=\dfrac{1}{2e}$。</li>
+      </ol>
+      <p><strong>答案：</strong>$a=\dfrac{1}{2e}$，切点横坐标 $x=\sqrt e$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 把曲线外的点直接当切点，用该点算导数；② 相切只列“函数值相等”一个条件，漏了“斜率相等”；③ $f'(a)=0$ 时仍写法线斜率 $-\dfrac1{f'(a)}$；④ 从外点作切线时只写一条，二次方程有两解就有两条。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>题干出现「接線」「接する」就先设切点 $t$。题干说“点 $(p,q)$ を通る接線”时，先代入检查该点是否在曲线上，再决定是否要设切点。</p>
     </div>
 
     <div class="explorer" id="explorer">
@@ -360,6 +584,26 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <div class="status" id="ex-status" aria-live="polite"></div>
     </div>
     <p style="font-size:14.5px;color:var(--ink-3)">在图上左右拖动或拖动滑块都能改变切点；键盘可用方向键调节滑块。图中数值四舍五入到两位小数。</p>
+    <p><strong>建议这样使用探索器：</strong>① 选 $x^3-3x$，勾选“显示割线”，把 $h$ 从 $2$ 慢慢拖到接近 $0$，观察割线转向切线，这就是导数的定义；② 勾选“显示导函数”，确认 $f'(x)=0$ 的位置对应图上的水平切线；③ 把切点拖过极大、极小点，观察切线斜率的符号如何改变；④ 选 $\log x$，把切点拖到 $x=e$，会看到切线恰好过原点。</p>
+    <p><strong>切线可以穿过曲线：</strong>“切线只碰曲线一次”是圆的性质，一般曲线不成立。$f(x)=x^3-3x$ 在 $x=a$ 处的切线满足 $f(x)-\{f(a)+f'(a)(x-a)\}=(x-a)^2(x+2a)$：$x=a$ 是重根（相切），$x=-2a$ 是另一个交点（$a\ne0$ 时）。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">割線（かっせん）／重解（じゅうかい）／交点（こうてん）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 16</b><span class="origin">原创</span></div>
+      <p>设 $f(x)=x^3-3x$。(1) 求 $a=1$ 处割线的斜率（用 $h$ 表示）及 $h\to0$ 的极限。(2) 求 $x=2$ 处的切线，以及它与曲线的另一个交点。</p>
+      <ol>
+        <li>(1) $f(1+h)=(1+h)^3-3(1+h)=h^3+3h^2-2$，$f(1)=-2$，所以斜率 $=\dfrac{h^3+3h^2}{h}=h^2+3h$。</li>
+        <li>$h\to0$ 时趋于 $0$，与 $f'(1)=0$ 一致。可在探索器中核对：$h=1$ 时斜率为 $4$。</li>
+        <li>(2) $f(2)=2$，$f'(2)=9$，切线 $y=9x-16$。</li>
+        <li>联立：$x^3-3x-(9x-16)=x^3-12x+16=(x-2)^2(x+4)=0$，另一交点 $x=-4$，此时 $y=9\cdot(-4)-16=-52$。</li>
+      </ol>
+      <p><strong>答案：</strong>(1) $h^2+3h$，极限 $0$；(2) $y=9x-16$，另一交点 $(-4,-52)$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>把割线斜率的极限写成 $f(a)$（应为 $f'(a)$）；联立切线与曲线后忘记 $x=a$ 必为重根，因式分解时反而走弯路。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>求切线与三次曲线的另一交点时，由于已知因子 $(x-a)^2$，只需比较常数项或用根与系数的关系，就能很快求出第三个根。</p>
+    </div>
   </section>
 
   <section id="graph">
@@ -373,6 +617,26 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <li>$f''(x)&gt;0$ 下凸（<span lang="ja">下に凸</span>），$f''(x)&lt;0$ 上凸（<span lang="ja">上に凸</span>）；$f''$ 变号的点是拐点（<span lang="ja">変曲点</span>）。</li>
       <li>也可用二阶导判别：$f'(a)=0$ 且 $f''(a)&lt;0$ 时极大，$f''(a)&gt;0$ 时极小。</li>
     </ul>
+
+        <p><strong>为什么 $f'&gt;0$ 就单调增：</strong>平均值定理（<span lang="ja">平均値の定理</span>）说，对 $a&lt;b$ 存在 $c\ (a&lt;c&lt;b)$，使 $f(b)-f(a)=f'(c)(b-a)$。若 $f'$ 处处为正，右边为正，于是 $f(b)&gt;f(a)$。</p>
+    <p><strong>二阶导判别为什么成立：</strong>$f'(a)=0$ 且 $f''(a)&gt;0$ 时，$f'$ 在 $a$ 附近递增，从负值经过 $0$ 变为正值，所以是极小。$f''(a)=0$ 时此法失效：$x^4$ 在 $0$ 处极小，$x^3$ 在 $0$ 处没有极值，两者都有 $f'(0)=f''(0)=0$，要回到增减表。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">単調増加（たんちょうぞうか）／単調減少（たんちょうげんしょう）／定義域（ていぎいき）／第2次導関数（だいにじどうかんすう）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 17</b><span class="origin">原创</span></div>
+      <p>研究 $f(x)=x^4-4x^3$ 的极值与拐点。</p>
+      <ol>
+        <li>$f'(x)=4x^3-12x^2=4x^2(x-3)$，零点 $x=0,3$。</li>
+        <li>$x^2\ge0$，所以 $f'$ 的符号由 $x-3$ 决定：$x&lt;3$ 时 $f'\le0$，$x&gt;3$ 时 $f'&gt;0$。$x=0$ 处不变号，不是极值；$x=3$ 处由负变正，是极小，$f(3)=81-108=-27$。</li>
+        <li>$f''(x)=12x^2-24x=12x(x-2)$，在 $x=0,2$ 处变号，都是拐点：$(0,0)$，$(2,-16)$。</li>
+      </ol>
+      <p><strong>答案：</strong>极小值 $-27$（$x=3$），无极大值；拐点 $(0,0)$、$(2,-16)$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 把 $f'(a)=0$ 的点都当作极值点；② 把 $f''(a)=0$ 的点都当作拐点，如 $x^4$ 在 $0$ 处 $f''=0$，但不变号，不是拐点；③ 忘记不可导点也可能是极值点，如 $|x|$ 在 $0$ 处极小；④ 忽略定义域。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>答卷时最稳妥的是“因式分解 $f'$ → 列增减表”。「極値をとる」给出的 $f'(a)=0$ 只是必要条件，求出参数后要验证确实变号。</p>
+    </div>
 
     <h3>例 1：$f(x)=x^3-3x$</h3>
     <p>$f'(x)=3(x+1)(x-1)$，$f''(x)=6x$。增减表（<span lang="ja">増減表</span>）：</p>
@@ -390,6 +654,27 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <figcaption>$y=xe^{-x}$：$x\to\infty$ 时贴近 $x$ 轴（渐近线）。</figcaption></figure>
     </div>
 
+        <p><strong>完整作图步骤：</strong>① $f'(x)=3x^2-3=3(x+1)(x-1)$，这是开口向上的抛物线，两根之外为正，两根之间为负，增减表由此得出；② 代入得 $f(-1)=2$，$f(1)=-2$；③ $f(-x)=-f(x)$，图像关于原点对称，所以极值互为相反数；④ 令 $f(x)=0$，得与 $x$ 轴的交点 $x=0,\pm\sqrt3$；⑤ $x\to\pm\infty$ 时 $f\to\pm\infty$。</p>
+    <p><strong>三次函数的对称性：</strong>任何三次函数的图像都关于拐点中心对称，所以拐点的纵坐标等于极大值与极小值的平均数（当两个极值都存在时）。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">奇関数（きかんすう）／偶関数（ぐうかんすう）／点対称（てんたいしょう）／グラフの概形（グラフのがいけい）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 18</b><span class="origin">原创</span></div>
+      <p>$f(x)=x^3-3x^2-9x+5$。求极值、拐点，以及在 $-2\le x\le4$ 上的最大值和最小值。</p>
+      <ol>
+        <li>$f'(x)=3x^2-6x-9=3(x+1)(x-3)$。$x=-1$ 处由正变负，极大值 $f(-1)=-1-3+9+5=10$；$x=3$ 处由负变正，极小值 $f(3)=27-27-27+5=-22$。</li>
+        <li>$f''(x)=6x-6$，拐点 $x=1$，$f(1)=-6$。核对：$\dfrac{10+(-22)}{2}=-6$，与对称性一致。</li>
+        <li>端点值：$f(-2)=-8-12+18+5=3$，$f(4)=64-48-36+5=-15$。</li>
+        <li>比较 $10,-22,3,-15$：最大值 $10$，最小值 $-22$。</li>
+      </ol>
+      <p><strong>答案：</strong>极大值 $10$，极小值 $-22$，拐点 $(1,-6)$；区间上最大值 $10$（$x=-1$），最小值 $-22$（$x=3$）。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 把「極大値」等同于「最大値」，极大只是局部性质；② 闭区间上忘记比较端点值；③ 表中把 $f'$ 的符号写反，$x^3$ 系数为负时尤其要注意。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>算完极值后用“拐点纵坐标 = 两极值的平均数”核对一次，只需几秒，能发现大部分代入错误。</p>
+    </div>
+
     <h3>例 2：$f(x)=xe^{-x}$（含凹凸）</h3>
     <p>$f'(x)=(1-x)e^{-x}$，$f''(x)=(x-2)e^{-x}$。又 $\displaystyle\lim_{x\to\infty}xe^{-x}=0$，$\displaystyle\lim_{x\to-\infty}xe^{-x}=-\infty$。</p>
     <div class="tw"><table class="sign">
@@ -401,10 +686,70 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       </tbody>
     </table></div>
 
+        <p><strong>逐步推导：</strong>积的法则给出 $f'(x)=e^{-x}+x\cdot(-e^{-x})=(1-x)e^{-x}$；再求一次，$f''(x)=-e^{-x}-(1-x)e^{-x}=(x-2)e^{-x}$。由于 $e^{-x}&gt;0$ 恒成立，$f'$、$f''$ 的符号分别只由 $1-x$、$x-2$ 决定。</p>
+    <p><strong>渐近线的依据：</strong>指数函数比任何多项式增长得快，$\displaystyle\lim_{x\to\infty}\frac{x}{e^x}=0$，所以 $x$ 轴是右侧渐近线（<span lang="ja">漸近線</span>）。同样，$\log x$ 比 $x$ 增长得慢，$\displaystyle\lim_{x\to\infty}\frac{\log x}{x}=0$。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">凹凸（おうとつ）／漸近線（ぜんきんせん）／増加の度合い（ぞうかのどあい）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 19</b><span class="origin">原创</span></div>
+      <p>研究 $f(x)=\dfrac{\log x}{x}\ (x&gt;0)$ 的增减、凹凸和渐近线，并比较 $e^\pi$ 与 $\pi^e$ 的大小。</p>
+      <ol>
+        <li>定义域 $x&gt;0$。商的法则：$f'(x)=\dfrac{1-\log x}{x^2}$，$x=e$ 处由正变负，极大值 $f(e)=\dfrac1e$。</li>
+        <li>$f''(x)=\dfrac{-\frac1x\cdot x^2-(1-\log x)\cdot2x}{x^4}=\dfrac{2\log x-3}{x^3}$，$x=e^{3/2}$ 处变号，拐点 $\left(e^{3/2},\ \dfrac32e^{-3/2}\right)$。</li>
+        <li>$x\to+0$ 时 $f\to-\infty$（$y$ 轴是渐近线）；$x\to\infty$ 时 $f\to0$（$x$ 轴是渐近线）。</li>
+        <li>$x&gt;e$ 时 $f$ 递减，而 $e&lt;\pi$，所以 $\dfrac{\log e}{e}&gt;\dfrac{\log\pi}{\pi}$，即 $\pi\log e&gt;e\log\pi$，因此 $e^\pi&gt;\pi^e$。</li>
+      </ol>
+      <p><strong>答案：</strong>极大值 $\dfrac1e$，拐点 $x=e^{3/2}$，渐近线为两坐标轴；$e^\pi&gt;\pi^e$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 含 $\log x$ 的函数忘记 $x&gt;0$，把增减表画到负半轴；② 二阶导通分时符号出错；③ 只看极值，漏写 $x\to+0$ 和 $x\to\infty$ 的极限，导致图像概形错误。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>$e^{-x}$、$x^2$、$e^x$ 这类恒正因子不影响符号，判断时可以先把它们拿掉。比较 $a^b$ 与 $b^a$ 时，取对数后化为比较 $\dfrac{\log a}{a}$ 与 $\dfrac{\log b}{b}$。</p>
+    </div>
+
     <h3>应用：实根个数与不等式</h3>
     <p><strong>实根个数：</strong>$x^3-3x=k$ 的实根数就是 $y=x^3-3x$ 与水平线 $y=k$ 的交点数。由例 1：$|k|&gt;2$ 时 1 个，$|k|=2$ 时 2 个，$|k|&lt;2$ 时 3 个。把参数 $k$ 分离出来，是这类题的标准做法。</p>
     <p><strong>不等式证明：</strong>证 $e^x\ge 1+x$：令 $g(x)=e^x-1-x$，$g'(x)=e^x-1$，$g$ 在 $x=0$ 取最小值 $g(0)=0$，所以 $g(x)\ge0$。</p>
     <p><strong>最大最小：</strong>闭区间上比较极值与端点值，不要漏掉端点。</p>
+    <p><strong>为什么分离参数有效：</strong>$g(x)=k$ 的实根就是 $y=g(x)$ 与水平线 $y=k$ 交点的横坐标。$k$ 只让水平线上下移动，曲线本身不变，所以只需画一次图，交点数的变化都发生在 $k$ 等于极值或极限值时。</p>
+    <p><strong>证明不等式的原理：</strong>证 $A(x)\ge B(x)$ 就是证 $g=A-B$ 的最小值 $\ge0$，或证 $g$ 单调且端点值 $\ge0$。一次求导看不出符号时，就继续求导。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">実数解の個数（じっすうかいのこすう）／定数分離（ていすうぶんり）／不等式（ふとうしき）／証明する（しょうめいする）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 20</b><span class="origin">原创</span></div>
+      <p>讨论方程 $xe^{-x}=k$ 的实数解个数（$k$ 为实常数）。</p>
+      <ol>
+        <li>由第 4 节例 2：$y=xe^{-x}$ 在 $x&lt;1$ 递增，从 $-\infty$ 升到极大值 $\dfrac1e$；在 $x&gt;1$ 递减，并从上方趋于 $0$。</li>
+        <li>水平线 $y=k$ 与曲线的交点数：$k&gt;\dfrac1e$ 时 $0$ 个；$k=\dfrac1e$ 时 $1$ 个；$0&lt;k&lt;\dfrac1e$ 时 $2$ 个。</li>
+        <li>$k\le0$ 时只与 $x\le0$ 的递增部分相交，$1$ 个（$k=0$ 时 $x=0$，右侧曲线只趋近而不到达 $x$ 轴）。</li>
+      </ol>
+      <p><strong>答案：</strong>$k&gt;\dfrac1e$：$0$ 个；$k=\dfrac1e$ 或 $k\le0$：$1$ 个；$0&lt;k&lt;\dfrac1e$：$2$ 个。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 21</b><span class="origin">原创</span></div>
+      <p>证明：$x&gt;0$ 时 $\log(1+x)&gt;x-\dfrac{x^2}{2}$。</p>
+      <ol>
+        <li>令 $g(x)=\log(1+x)-x+\dfrac{x^2}{2}$，则 $g(0)=0$。</li>
+        <li>$g'(x)=\dfrac{1}{1+x}-1+x=\dfrac{1-(1+x)+x(1+x)}{1+x}=\dfrac{x^2}{1+x}$。</li>
+        <li>$x&gt;0$ 时 $g'(x)&gt;0$，$g$ 严格递增，所以 $g(x)&gt;g(0)=0$。</li>
+      </ol>
+      <p><strong>答案：</strong>命题成立。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 22</b><span class="origin">原创</span></div>
+      <p>求 $f(x)=x-2\sin x\ (0\le x\le\pi)$ 的最大值和最小值。</p>
+      <ol>
+        <li>$f'(x)=1-2\cos x=0$，在区间内只有 $x=\dfrac\pi3$。此处 $f'$ 由负变正，是极小。</li>
+        <li>$f\left(\dfrac\pi3\right)=\dfrac\pi3-\sqrt3$（约 $-0.685$）。</li>
+        <li>端点：$f(0)=0$，$f(\pi)=\pi$。比较三个值即得。</li>
+      </ol>
+      <p><strong>答案：</strong>最大值 $\pi$（$x=\pi$），最小值 $\dfrac\pi3-\sqrt3$（$x=\dfrac\pi3$）。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 只讨论 $k&gt;0$，漏掉 $k\le0$；② 把渐近线的值算作交点，曲线趋于 $0$ 但在 $x&gt;0$ 上取不到；③ 除以含 $x$ 的式子分离参数时，没有单独检查该式为 $0$ 的情况，也没有注意不等号方向。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>实根个数题先分离参数，再画图并标出极值与两端极限，答案就是分段结论。填空题常问“恰有 2 个解的 $k$ 的范围”，注意端点是否取到。</p>
+    </div>
   </section>
 
   <section id="integral">
@@ -425,6 +770,37 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <p><strong>奇偶性：</strong>偶函数 $\displaystyle\int_{-a}^a f=2\int_0^a f$；奇函数 $\displaystyle\int_{-a}^a f=0$。</p>
     <p><strong>三角降次：</strong>$\sin^2x=\dfrac{1-\cos2x}{2}$，$\cos^2x=\dfrac{1+\cos2x}{2}$。<strong>分式拆分：</strong>$\dfrac{1}{x(x+1)}=\dfrac1x-\dfrac1{x+1}$。</p>
 
+        <p><strong>基本定理为什么成立：</strong>令 $S(x)=\displaystyle\int_a^xf(t)\,dt$。$S(x+h)-S(x)$ 是宽 $h$ 的窄条面积，约等于 $f(x)h$，更严格地说，它介于该段上 $f$ 的最小值与最大值分别乘 $h$ 之间。除以 $h$ 再令 $h\to0$，由连续性得 $S'(x)=f(x)$。因此 $S$ 是 $f$ 的原函数，与任一原函数 $F$ 只差常数，代入端点就得到 $\displaystyle\int_a^bf=F(b)-F(a)$。</p>
+    <p><strong>奇偶性的推导：</strong>在 $\displaystyle\int_{-a}^0f(x)\,dx$ 中令 $x=-u$，得 $\displaystyle\int_0^af(-u)\,du$。偶函数时它等于 $\displaystyle\int_0^af$，奇函数时等于 $-\displaystyle\int_0^af$，与右半部分相加即得结论。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">原始関数（げんしかんすう）／被積分関数（ひせきぶんかんすう）／上端（じょうたん）／下端（かたん）／半角の公式（はんかくのこうしき）／部分分数分解（ぶぶんぶんすうぶんかい）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 23</b><span class="origin">原创</span></div>
+      <p>计算 (1) $\displaystyle\int_{-1}^{1}(x^3+3x^2+\sin x)\,dx$；(2) $\displaystyle\int_1^2\frac{dx}{x(x+1)}$。</p>
+      <ol>
+        <li>(1) $x^3$、$\sin x$ 是奇函数，积分为 $0$；$3x^2$ 是偶函数：$2\displaystyle\int_0^13x^2dx=2$。</li>
+        <li>(2) 拆分：$\dfrac{1}{x(x+1)}=\dfrac1x-\dfrac{1}{x+1}$。</li>
+        <li>$\bigl[\log x-\log(x+1)\bigr]_1^2=(\log2-\log3)-(0-\log2)=2\log2-\log3=\log\dfrac43$。</li>
+      </ol>
+      <p><strong>答案：</strong>(1) $2$；(2) $\log\dfrac43$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 24</b><span class="origin">原创</span></div>
+      <p>(1) 连续函数 $f$ 满足 $f(x)=3x^2+x\displaystyle\int_0^1f(t)\,dt$，求 $f(x)$。(2) 已知 $\displaystyle\int_a^xf(t)\,dt=x^2-3x+2$，求 $f(x)$ 和 $a$。</p>
+      <ol>
+        <li>(1) 定积分是常数，令 $c=\displaystyle\int_0^1f(t)\,dt$，则 $f(x)=3x^2+cx$。</li>
+        <li>代回：$c=\displaystyle\int_0^1(3t^2+ct)\,dt=1+\dfrac c2$，解得 $c=2$，所以 $f(x)=3x^2+2x$。</li>
+        <li>(2) 两边对 $x$ 求导：$f(x)=2x-3$。</li>
+        <li>令 $x=a$，左边为 $0$：$a^2-3a+2=0$，所以 $a=1$ 或 $a=2$。</li>
+      </ol>
+      <p><strong>答案：</strong>(1) $f(x)=3x^2+2x$；(2) $f(x)=2x-3$，$a=1$ 或 $2$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 不定积分漏写 $C$；② $\displaystyle\int\frac{dx}{2x+1}$ 漏掉系数 $\dfrac12$；③ 对 $\dfrac1x$ 使用幂函数公式；④ 上限是函数时，$\dfrac{d}{dx}\displaystyle\int_a^{g(x)}f(t)\,dt=f(g(x))g'(x)$，漏乘 $g'(x)$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>积分区间关于原点对称时，先用奇偶性删去奇函数部分。含 $\displaystyle\int_0^1f(t)\,dt$ 的函数方程，一律把定积分设为常数；上限含 $x$ 时则对 $x$ 求导，并令 $x$ 等于下限。</p>
+    </div>
+
     <h3>换元积分法（<span lang="ja">置換積分法</span>）</h3>
     $$\int_a^b f(g(x))\,g'(x)\,dx=\int_{g(a)}^{g(b)}f(t)\,dt\qquad(t=g(x)).$$
     <p>定积分换元时，<strong>上下限必须同时更换</strong>。常用模式：</p>
@@ -436,6 +812,37 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <tr><td>$\dfrac{1}{x^2+a^2}$</td><td>$x=a\tan\theta$</td><td>$\displaystyle\int_0^1\frac{dx}{1+x^2}=\int_0^{\pi/4}d\theta=\frac\pi4$</td></tr>
       </tbody>
     </table></div>
+
+        <p><strong>为什么成立：</strong>换元公式是复合函数求导的逆运算。设 $F'=f$，则 $\{F(g(x))\}'=f(g(x))g'(x)$，所以 $\displaystyle\int_a^bf(g(x))g'(x)\,dx=F(g(b))-F(g(a))=\int_{g(a)}^{g(b)}f(t)\,dt$。</p>
+    <p><strong>上下限对应：</strong>$x=a$ 对应 $t=g(a)$，$x=b$ 对应 $t=g(b)$，新的下限可能大于上限，按对应关系写即可，不必调换。令 $x=a\sin\theta$ 时取 $-\dfrac\pi2\le\theta\le\dfrac\pi2$，这时 $\cos\theta\ge0$，根号才能去掉：$\sqrt{a^2-x^2}=a\cos\theta\ (a&gt;0)$。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">置き換える（おきかえる）／積分区間（せきぶんくかん）／対応表（たいおうひょう）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 25</b><span class="origin">原创</span></div>
+      <p>计算 (1) $\displaystyle\int_1^e\frac{(\log x)^2}{x}dx$；(2) $\displaystyle\int_0^1x^2\sqrt{1-x^2}\,dx$；(3) $\displaystyle\int_0^{\sqrt3}\frac{dx}{x^2+3}$。</p>
+      <ol>
+        <li>(1) 令 $t=\log x$，$dt=\dfrac{dx}{x}$，$x:1\to e$ 对应 $t:0\to1$。原式 $=\displaystyle\int_0^1t^2dt=\dfrac13$。</li>
+        <li>(2) 令 $x=\sin\theta$，$dx=\cos\theta\,d\theta$，$\theta:0\to\dfrac\pi2$。原式 $=\displaystyle\int_0^{\pi/2}\sin^2\theta\cos^2\theta\,d\theta=\frac14\int_0^{\pi/2}\sin^22\theta\,d\theta$。</li>
+        <li>再降次：$\dfrac14\displaystyle\int_0^{\pi/2}\frac{1-\cos4\theta}{2}d\theta=\frac18\cdot\frac\pi2=\frac{\pi}{16}$。</li>
+        <li>(3) 令 $x=\sqrt3\tan\theta$，$dx=\dfrac{\sqrt3}{\cos^2\theta}d\theta$，$x^2+3=\dfrac{3}{\cos^2\theta}$，$\theta:0\to\dfrac\pi4$。原式 $=\displaystyle\int_0^{\pi/4}\frac{\sqrt3}{3}d\theta=\frac{\sqrt3\,\pi}{12}$。</li>
+      </ol>
+      <p><strong>答案：</strong>(1) $\dfrac13$；(2) $\dfrac{\pi}{16}$；(3) $\dfrac{\sqrt3\,\pi}{12}$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 26</b><span class="origin">原创</span></div>
+      <p>计算 $I=\displaystyle\int_0^{\pi/2}\frac{\sin x}{\sin x+\cos x}dx$。</p>
+      <ol>
+        <li>令 $x=\dfrac\pi2-u$，则 $\sin x=\cos u$，$\cos x=\sin u$，$dx=-du$，$u:\dfrac\pi2\to0$，所以 $I=\displaystyle\int_0^{\pi/2}\frac{\cos u}{\sin u+\cos u}du$。</li>
+        <li>把两个表达式相加：$2I=\displaystyle\int_0^{\pi/2}\frac{\sin x+\cos x}{\sin x+\cos x}dx=\frac\pi2$。</li>
+        <li>所以 $I=\dfrac\pi4$。</li>
+      </ol>
+      <p><strong>答案：</strong>$\dfrac\pi4$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 换元后上下限没换，或最后又代回原来的 $x$ 上下限；② 漏换 $dx$，如 $x=\sin\theta$ 时漏掉 $\cos\theta$；③ $\sqrt{\cos^2\theta}$ 不看范围直接开方；④ 把 $\dfrac{1}{x^2+3}$ 按 $\log$ 来积分，分子不是分母的导数。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>被积函数里出现“某式及其导数”时，直接令 $t$ 为该式；$\dfrac{f'}{f}$ 型可以一步写出 $\log|f|$，节省时间。换元时在草稿上写一张 $x$ 与 $t$ 的对应表，就不容易漏换上下限。</p>
+    </div>
 
     <h3>分部积分法（<span lang="ja">部分積分法</span>）</h3>
     $$\int_a^b f(x)g'(x)\,dx=\bigl[f(x)g(x)\bigr]_a^b-\int_a^b f'(x)g(x)\,dx.$$
@@ -450,9 +857,60 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       </tbody>
     </table></div>
 
+        <p><strong>公式来源：</strong>积的求导法则 $(fg)'=f'g+fg'$ 两边从 $a$ 到 $b$ 积分，得 $\bigl[fg\bigr]_a^b=\displaystyle\int_a^bf'g\,dx+\int_a^bfg'\,dx$，移项即得分部公式。可见它的作用是把“$f$ 的求导”换成“$g'$ 的积分”，所以 $f$ 要选求导后变简单的因子，$g'$ 要选容易积分的因子。</p>
+    <p><strong>为什么循环型能解：</strong>分部两次后原积分 $I$ 再次出现，得到关于 $I$ 的一次方程，解方程即可，不需要真正“积出来”。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">部分積分（ぶぶんせきぶん）／漸化式（ぜんかしき）／多項式（たこうしき）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 27</b><span class="origin">原创</span></div>
+      <p>计算 (1) $\displaystyle\int_0^1x^2e^{-x}dx$；(2) $\displaystyle\int_1^ex^2\log x\,dx$；(3) $\displaystyle\int_0^\pi e^x\sin x\,dx$。</p>
+      <ol>
+        <li>(1) 第一次：$\bigl[-x^2e^{-x}\bigr]_0^1+2\displaystyle\int_0^1xe^{-x}dx=-\frac1e+2\int_0^1xe^{-x}dx$。</li>
+        <li>第二次：$\displaystyle\int_0^1xe^{-x}dx=\bigl[-xe^{-x}\bigr]_0^1+\int_0^1e^{-x}dx=-\frac1e+\left(1-\frac1e\right)=1-\frac2e$。合计 $-\dfrac1e+2-\dfrac4e=2-\dfrac5e$。</li>
+        <li>(2) 取 $f=\log x$，$g'=x^2$：$\left[\dfrac{x^3}{3}\log x\right]_1^e-\displaystyle\int_1^e\frac{x^2}{3}dx=\frac{e^3}{3}-\frac{e^3-1}{9}=\frac{2e^3+1}{9}$。</li>
+        <li>(3) 设积分为 $I$。$I=\bigl[e^x\sin x\bigr]_0^\pi-\displaystyle\int_0^\pi e^x\cos x\,dx=-\int_0^\pi e^x\cos x\,dx$。</li>
+        <li>再分部：$\displaystyle\int_0^\pi e^x\cos x\,dx=\bigl[e^x\cos x\bigr]_0^\pi+I=-e^\pi-1+I$。所以 $I=e^\pi+1-I$，$I=\dfrac{e^\pi+1}{2}$。</li>
+      </ol>
+      <p><strong>答案：</strong>(1) $2-\dfrac5e$；(2) $\dfrac{2e^3+1}{9}$；(3) $\dfrac{e^\pi+1}{2}$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 减号后面的积分整体变号时出错，这是最常见的失分点，负负要得正；② 选反了 $f$ 和 $g'$，如对 $\log x$ 积分、对 $x^2$ 求导，积分反而变难；③ 边界项 $\bigl[fg\bigr]_a^b$ 忘记代入上下限；④ $e^{-x}$ 的原函数漏掉负号。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>多项式 × $e^{ax}$ 或三角函数时，多项式几次就分部几次。含 $I_n$ 的题通常第一问求递推式（<span lang="ja">漸化式</span>），后面逐项代入，所以要先算好 $I_0$。</p>
+    </div>
+
     <h3>和式极限化为定积分（<span lang="ja">区分求積法</span>）</h3>
     <p>把和式的极限化为定积分：$\displaystyle\lim_{n\to\infty}\frac1n\sum_{k=1}^n f\Bigl(\frac kn\Bigr)=\int_0^1f(x)\,dx$。</p>
     $$\lim_{n\to\infty}\sum_{k=1}^n\frac{1}{n+k}=\lim_{n\to\infty}\frac1n\sum_{k=1}^n\frac{1}{1+\frac kn}=\int_0^1\frac{dx}{1+x}=\log2.$$
+    <p><strong>几何意义：</strong>把 $[0,1]$ 等分成 $n$ 份，每个小矩形宽 $\dfrac1n$，高 $f\left(\dfrac kn\right)$，面积和就是 $\dfrac1n\displaystyle\sum_{k=1}^nf\left(\dfrac kn\right)$。$n\to\infty$ 时矩形和趋于曲线下方的面积。$k$ 从 $0$ 到 $n-1$（左端点）结果相同，因为两者只差一项 $\dfrac{f(1)-f(0)}{n}\to0$。</p>
+    <p><strong>一般形式：</strong>$\displaystyle\lim_{n\to\infty}\frac{b-a}{n}\sum_{k=1}^nf\left(a+\frac{(b-a)k}{n}\right)=\int_a^bf(x)\,dx$。若 $k$ 取到 $2n$，$\dfrac kn$ 就走到 $2$，积分区间相应变为 $[0,2]$。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">長方形（ちょうほうけい）／等分する（とうぶんする）／和の極限（わのきょくげん）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 28</b><span class="origin">原创</span></div>
+      <p>求 (1) $\displaystyle\lim_{n\to\infty}\sum_{k=1}^n\frac{n}{n^2+k^2}$；(2) $\displaystyle\lim_{n\to\infty}\frac1n\sum_{k=1}^{2n}\Bigl(\frac kn\Bigr)^2$。</p>
+      <ol>
+        <li>(1) 提出 $\dfrac1n$：$\dfrac{n}{n^2+k^2}=\dfrac1n\cdot\dfrac{1}{1+(k/n)^2}$。所以极限 $=\displaystyle\int_0^1\frac{dx}{1+x^2}=\frac\pi4$。</li>
+        <li>(2) $x=\dfrac kn$ 从 $\dfrac1n$ 走到 $2$，所以极限 $=\displaystyle\int_0^2x^2dx=\frac83$。</li>
+      </ol>
+      <p><strong>答案：</strong>(1) $\dfrac\pi4$；(2) $\dfrac83$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 29</b><span class="origin">原创</span></div>
+      <p>求 $\displaystyle\lim_{n\to\infty}\left\{\frac{(2n)!}{n!\,n^n}\right\}^{\frac1n}$。</p>
+      <ol>
+        <li>$\dfrac{(2n)!}{n!}=(n+1)(n+2)\cdots(n+n)$，所以括号内 $=\displaystyle\prod_{k=1}^n\frac{n+k}{n}=\prod_{k=1}^n\Bigl(1+\frac kn\Bigr)$。</li>
+        <li>取对数：$\dfrac1n\displaystyle\sum_{k=1}^n\log\Bigl(1+\frac kn\Bigr)\to\int_0^1\log(1+x)\,dx$。</li>
+        <li>分部积分：$\displaystyle\int_1^2\log u\,du=\bigl[u\log u-u\bigr]_1^2=2\log2-1$。</li>
+        <li>所以原极限 $=e^{2\log2-1}=\dfrac4e$。</li>
+      </ol>
+      <p><strong>答案：</strong>$\dfrac4e$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 没有提出 $\dfrac1n$ 就写积分，或把 $n$ 错认为 $x$；② $k$ 到 $2n$ 时上限仍写 $1$；③ 乘积型取对数后，最后忘记还原指数。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>识别信号是“$\sum$、$n\to\infty$，且每项是 $k$ 与 $n$ 的同次分式”。做法固定：提 $\dfrac1n$，把剩下的部分写成 $\dfrac kn$ 的函数，再由 $k$ 的范围定积分区间。</p>
+    </div>
   </section>
 
   <section id="area">
@@ -472,6 +930,47 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     </div>
     <p>曲线写成 $x=h(y)$ 更方便时，可对 $y$ 积分：$\displaystyle S=\int_c^d|h(y)|\,dy$。</p>
 
+        <p><strong>为什么面积是“上减下”的积分：</strong>把区域切成宽 $dx$ 的竖条，每条高为 $f(x)-g(x)$，面积 $\approx\{f(x)-g(x)\}dx$，求和取极限就是定积分。这个差与两条曲线是否在 $x$ 轴上方无关，所以不必分别考虑正负。</p>
+    <p><strong>$\dfrac16$ 公式的推导：</strong>令 $u=x-\alpha$，$\gamma=\beta-\alpha$，则 $\displaystyle\int_\alpha^\beta(x-\alpha)(x-\beta)\,dx=\int_0^\gamma u(u-\gamma)\,du=\frac{\gamma^3}{3}-\frac{\gamma^3}{2}=-\frac{\gamma^3}{6}$。若抛物线二次项系数为 $a$，上减下后面积为 $\dfrac{|a|(\beta-\alpha)^3}{6}$。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">囲まれた部分（かこまれたぶぶん）／放物線（ほうぶつせん）／交点（こうてん）／上下関係（じょうげかんけい）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 30</b><span class="origin">原创</span></div>
+      <p>求抛物线 $y=x^2-x-2$ 与直线 $y=x+1$ 围成的面积。</p>
+      <ol>
+        <li>交点：$x^2-x-2=x+1$，即 $x^2-2x-3=(x+1)(x-3)=0$，$x=-1,3$。</li>
+        <li>在 $-1&lt;x&lt;3$ 上直线在上：差 $=-(x+1)(x-3)$。</li>
+        <li>由 $\dfrac16$ 公式：$S=\dfrac{(3-(-1))^3}{6}=\dfrac{64}{6}=\dfrac{32}{3}$。</li>
+      </ol>
+      <p><strong>答案：</strong>$\dfrac{32}{3}$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 31</b><span class="origin">原创</span></div>
+      <p>求 $y=\sin x$、$y=\cos x$ 在 $0\le x\le\pi$ 上与直线 $x=0,\ x=\pi$ 围成的面积。</p>
+      <ol>
+        <li>交点：$\sin x=\cos x$ 得 $x=\dfrac\pi4$。$0&lt;x&lt;\dfrac\pi4$ 时 $\cos x$ 在上，$\dfrac\pi4&lt;x&lt;\pi$ 时 $\sin x$ 在上，需要分段。</li>
+        <li>$\displaystyle\int_0^{\pi/4}(\cos x-\sin x)\,dx=\bigl[\sin x+\cos x\bigr]_0^{\pi/4}=\sqrt2-1$。</li>
+        <li>$\displaystyle\int_{\pi/4}^{\pi}(\sin x-\cos x)\,dx=\bigl[-\cos x-\sin x\bigr]_{\pi/4}^{\pi}=1+\sqrt2$。</li>
+        <li>相加得 $2\sqrt2$。</li>
+      </ol>
+      <p><strong>答案：</strong>$2\sqrt2$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 32</b><span class="origin">原创</span></div>
+      <p>求抛物线 $y^2=x$ 与直线 $y=x-2$ 围成的面积。</p>
+      <ol>
+        <li>写成 $x$ 关于 $y$ 的形式：$x=y^2$，$x=y+2$。交点：$y^2-y-2=0$，$y=-1,2$。</li>
+        <li>在 $-1&lt;y&lt;2$ 上直线在右，$S=\displaystyle\int_{-1}^2(y+2-y^2)\,dy$。</li>
+        <li>$=\left[\dfrac{y^2}{2}+2y-\dfrac{y^3}{3}\right]_{-1}^2=\dfrac{10}{3}-\left(-\dfrac76\right)=\dfrac92$，也可用 $\dfrac{3^3}{6}=\dfrac92$ 核对。</li>
+      </ol>
+      <p><strong>答案：</strong>$\dfrac92$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 曲线在区间内交叉却不分段，正负相消后结果偏小；② 区域在 $x$ 轴下方时，直接把定积分当面积，得到负值；③ $\dfrac16$ 公式漏掉系数 $|a|$；④ 把 $\dfrac16$ 公式用于三次曲线，它只适用于二次式的两根之间。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>先画草图，再动笔积分。抛物线与直线、两条抛物线围成的面积都可以用 $\dfrac{|a|(\beta-\alpha)^3}{6}$（$a$ 为两式相减后的二次项系数），比展开积分快得多，也可以用来核对。</p>
+    </div>
+
     <h3>体积</h3>
     <p>截面积 $S(x)$ 已知时，$\displaystyle V=\int_a^bS(x)\,dx$。旋转体（<span lang="ja">回転体</span>）是它的特例：</p>
     $$\text{绕 }x\text{ 轴：}\ V=\pi\int_a^b y^2\,dx,\qquad\text{绕 }y\text{ 轴：}\ V=\pi\int_c^d x^2\,dy.$$
@@ -482,6 +981,35 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     </ul>
     <div class="box warn">
       <p><strong>常见错误：</strong>把“外减内”写成 $\pi\int(y_{外}-y_{内})^2dx$。正确写法是 $\pi\int(y_{外}^2-y_{内}^2)\,dx$，平方差和差的平方不同。</p>
+    </div>
+    <p><strong>为什么体积是截面积的积分：</strong>把立体垂直于 $x$ 轴切成厚 $dx$ 的薄片，每片体积 $\approx S(x)\,dx$，求和取极限得 $\displaystyle\int_a^bS(x)\,dx$。绕 $x$ 轴旋转时截面是半径 $|y|$ 的圆，$S(x)=\pi y^2$，就得到旋转体公式。</p>
+    <p><strong>为什么外减内：</strong>两曲线间的区域旋转后，截面是圆环，面积 $=\pi y_1^2-\pi y_2^2$（$y_1\ge y_2\ge0$），而不是以 $y_1-y_2$ 为半径的圆。</p>
+    <p class="kana"><strong>日语术语：</strong><span lang="ja">断面積（だんめんせき）／立体（りったい）／1回転（いちかいてん）／y軸のまわりに回転（ワイじくのまわりにかいてん）／円錐（えんすい）</span></p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 33</b><span class="origin">原创</span></div>
+      <p>求下列旋转体的体积：(1) $y=e^x\ (0\le x\le1)$ 与 $x$ 轴、直线 $x=0,x=1$ 围成的区域绕 $x$ 轴；(2) $y=x^2$ 与直线 $y=4$ 围成的区域绕 $y$ 轴；(3) $y=x^2$ 与 $y=2x$ 围成的区域绕 $x$ 轴。</p>
+      <ol>
+        <li>(1) $V=\pi\displaystyle\int_0^1e^{2x}dx=\pi\left[\frac{e^{2x}}{2}\right]_0^1=\frac{\pi(e^2-1)}{2}$。</li>
+        <li>(2) 绕 $y$ 轴要对 $y$ 积分，$x^2=y$：$V=\pi\displaystyle\int_0^4y\,dy=8\pi$。</li>
+        <li>(3) 交点 $x=0,2$，在 $0&lt;x&lt;2$ 上 $2x&gt;x^2\ge0$。$V=\pi\displaystyle\int_0^2\{(2x)^2-(x^2)^2\}dx=\pi\left(\frac{32}{3}-\frac{32}{5}\right)=\frac{64\pi}{15}$。</li>
+      </ol>
+      <p><strong>答案：</strong>(1) $\dfrac{\pi(e^2-1)}{2}$；(2) $8\pi$；(3) $\dfrac{64\pi}{15}$。</p>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 34</b><span class="origin">原创</span></div>
+      <p>立体的底面是圆 $x^2+y^2\le1$，垂直于 $x$ 轴的截面都是正方形，且正方形的一边在底面内。求体积。</p>
+      <ol>
+        <li>在 $x$ 处，底面内弦长为 $2\sqrt{1-x^2}$，这就是正方形的边长。</li>
+        <li>截面积 $S(x)=4(1-x^2)$。</li>
+        <li>$V=\displaystyle\int_{-1}^14(1-x^2)\,dx=8\int_0^1(1-x^2)\,dx=8\cdot\frac23=\frac{16}{3}$。</li>
+      </ol>
+      <p><strong>答案：</strong>$\dfrac{16}{3}$。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 漏写 $\pi$，或在截面不是圆的题里多写 $\pi$；② 绕 $y$ 轴时仍对 $x$ 积分；③ 区域跨过旋转轴时直接外减内。此时上下两部分的旋转结果会重叠，要在每个 $x$ 处取 $|y|$ 的较大者作外半径。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>旋转体题的流程是：画图 → 定旋转轴和积分变量 → 写截面积 → 积分。题干的「$x$軸のまわりに1回転」说明绕 $x$ 轴转一周。结果可以用圆锥 $\dfrac13\pi r^2h$ 或球的公式做特例核对。</p>
     </div>
   </section>
 
@@ -504,6 +1032,7 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <p>(1) 积的法则：$f'(x)=2xe^x+(x^2-3)e^x=(x^2+2x-3)e^x=(x+3)(x-1)e^x$。</p>
         <p>(2) $f'$ 在 $x=-3$ 由正变负，在 $x=1$ 由负变正。$f(-3)=6e^{-3}$，$f(1)=-2e$。</p>
         <p>(3) $f(0)=-3$，$f'(0)=-3$，切线为 $y=-3x-3$。</p>
+        <p><strong>详细步骤：</strong>因 $e^x&gt;0$，$f'$ 的符号只由 $(x+3)(x-1)$ 决定：$x&lt;-3$ 时为正，$-3&lt;x&lt;1$ 时为负，$x&gt;1$ 时为正，由此得到极大、极小的判断。代入时注意 $f(-3)=(9-3)e^{-3}$，$f(1)=(1-3)e$。切线由点斜式得出：$y-(-3)=-3(x-0)$。</p>
       </div>
     </article>
 
@@ -520,6 +1049,7 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <p>(2) 底 $e$、高 $1$ 的三角形减去曲线下方部分：$S=\dfrac e2-\displaystyle\int_1^e\log x\,dx=\dfrac e2-1$。</p>
         <p>(3) 分部积分：$\displaystyle\int_1^e(\log x)^2dx=\bigl[x(\log x)^2\bigr]_1^e-2\int_1^e\log x\,dx=e-2$。体积 = 圆锥 − 曲线旋转部分：</p>
         $$V=\frac13\pi\cdot1^2\cdot e-\pi(e-2)=\pi\Bigl(2-\frac{2e}{3}\Bigr)=\frac{2\pi(3-e)}{3}.$$
+        <p><strong>详细步骤：</strong>区域 $D$ 的上边界在 $0\le x\le e$ 上是直线 $\ell$，下边界在 $0\le x\le1$ 上是 $x$ 轴，在 $1\le x\le e$ 上是 $C$，所以要用“三角形面积减曲线下方面积”。旋转时 $\ell$ 生成底面半径 $1$、高 $e$ 的圆锥，$C$ 的 $1\le x\le e$ 部分生成要挖去的部分，所以体积是两者之差。</p>
       </div>
     </article>
 
@@ -535,8 +1065,30 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <p>(1) 分部积分：$\displaystyle I_{n+1}=\bigl[x^{n+1}e^x\bigr]_0^1-(n+1)\int_0^1x^ne^x dx=e-(n+1)I_n$。</p>
         <p>(2) $I_0=e-1$，$I_1=e-I_0=1$，$I_2=e-2I_1=e-2$，$I_3=e-3(e-2)=6-2e$。</p>
         <p>(3) 在 $0\le x\le1$ 上 $x^n\le x^ne^x\le e\,x^n$，积分得 $\dfrac{1}{n+1}\le I_n\le\dfrac{e}{n+1}$，由夹逼得极限为 $0$。</p>
+        <p><strong>详细步骤：</strong>(1) 取 $f=x^{n+1}$，$g'=e^x$，则 $f'=(n+1)x^n$，$g=e^x$；边界项 $\bigl[x^{n+1}e^x\bigr]_0^1=e$。(2) 从 $I_0=\displaystyle\int_0^1e^xdx=e-1$ 开始，依次取 $n=0,1,2$ 代入递推式。(3) 不等式 $1\le e^x\le e$ 乘以 $x^n\ge0$ 后积分，再用 $\displaystyle\int_0^1x^ndx=\frac{1}{n+1}$。</p>
       </div>
     </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 35　切线、面积与旋转体</b><span class="origin">原创</span></div>
+      <p>从原点向曲线 $C:y=e^x$ 作切线 $\ell$。设 $C$、$\ell$ 和 $y$ 轴围成的区域为 $D$。</p>
+      <p>(1) 切点坐标为 $(\B{A},\ e)$，$\ell$ 的方程为 $y=ex$。</p>
+      <p>(2) $D$ 的面积为 $\dfrac{e}{\B{B}}-\B{C}$。</p>
+      <p>(3) $D$ 绕 $x$ 轴旋转一周所得立体的体积为 $\dfrac{\pi(e^2-\B{D})}{\B{E}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 1</li><li>B = 2</li><li>C = 1</li><li>D = 3</li><li>E = 6</li></ul>
+        <p>(1) 设切点 $(t,e^t)$，切线 $y-e^t=e^t(x-t)$。代入原点：$-e^t=-te^t$，因 $e^t&gt;0$，所以 $t=1$。切点 $(1,e)$，切线 $y=ex$。</p>
+        <p>(2) $e^x$ 是下凸函数，图像在切线上方，所以 $S=\displaystyle\int_0^1(e^x-ex)\,dx=(e-1)-\frac e2=\frac e2-1$。</p>
+        <p>(3) 在 $0\le x\le1$ 上 $e^x\ge ex\ge0$，外半径 $e^x$，内半径 $ex$：</p>
+        <p>$V=\pi\displaystyle\int_0^1(e^{2x}-e^2x^2)\,dx=\pi\left(\frac{e^2-1}{2}-\frac{e^2}{3}\right)=\frac{\pi(e^2-3)}{6}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 分数没有约到最简就填写，答案格子会对不上；② 前一问答错后后面全部连带失分，所以每问都要核对；③ 把 $e^x$ 平方写成 $e^{x^2}$，正确的是 $e^{2x}$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>EJU 数学的大题由一串小问引导，前一问的结果通常就是下一问的工具，要顺着题目的提示走。方框的位数和形式本身也是线索：例如分母只有一格，就说明约分后分母是一位数；算出的结果放不进方框时，先回头检查。</p>
+    </div>
   </section>
 
   <section id="practice">
@@ -549,62 +1101,78 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="q"><div class="q-head"><b>1</b>极限</div>
       <p>求 $\displaystyle\lim_{x\to0}\frac{1-\cos2x}{x^2}$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$1-\cos2x=2\sin^2x$，所以极限为 $2\displaystyle\lim_{x\to0}\Bigl(\frac{\sin x}{x}\Bigr)^2=\mathbf 2$。</p></div></div>
+      <div class="ans" hidden><p>$1-\cos2x=2\sin^2x$，所以极限为 $2\displaystyle\lim_{x\to0}\Bigl(\frac{\sin x}{x}\Bigr)^2=\mathbf 2$。</p><p><strong>详细步骤：</strong>由倍角公式 $\cos2x=1-2\sin^2x$ 得 $1-\cos2x=2\sin^2x$。也可以用 $\dfrac{1-\cos u}{u^2}\to\dfrac12$，令 $u=2x$：$\dfrac{1-\cos2x}{x^2}=4\cdot\dfrac{1-\cos2x}{(2x)^2}\to2$，结果相同。</p></div></div>
 
     <div class="q"><div class="q-head"><b>2</b>极限</div>
       <p>求 $\displaystyle\lim_{n\to\infty}\Bigl(1+\frac2n\Bigr)^n$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>令 $h=\dfrac2n$，原式 $=\displaystyle\lim_{h\to+0}\bigl\{(1+h)^{1/h}\bigr\}^2=\boldsymbol{e^2}$。</p></div></div>
+      <div class="ans" hidden><p>令 $h=\dfrac2n$，原式 $=\displaystyle\lim_{h\to+0}\bigl\{(1+h)^{1/h}\bigr\}^2=\boldsymbol{e^2}$。</p><p><strong>详细步骤：</strong>关键是指数的调整：$n=\dfrac2h$，所以 $\left(1+\dfrac2n\right)^n=(1+h)^{2/h}=\bigl\{(1+h)^{1/h}\bigr\}^2$。</p></div></div>
 
     <div class="q"><div class="q-head"><b>3</b>级数</div>
       <p>求 $\displaystyle\sum_{n=1}^\infty\Bigl(\frac23\Bigr)^n$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>首项 $\dfrac23$，公比 $\dfrac23$：$\dfrac{2/3}{1-2/3}=\mathbf 2$。</p></div></div>
+      <div class="ans" hidden><p>首项 $\dfrac23$，公比 $\dfrac23$：$\dfrac{2/3}{1-2/3}=\mathbf 2$。</p><p><strong>详细步骤：</strong>求和从 $n=1$ 开始，所以首项取 $n=1$ 的值 $\dfrac23$。又 $\left|\dfrac23\right|&lt;1$，满足收敛条件。</p></div></div>
 
     <div class="q"><div class="q-head"><b>4</b>求导</div>
       <p>求 $y=\sin^3 2x$ 的导数。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>两层复合：$y'=3\sin^22x\cdot\cos2x\cdot2=\boldsymbol{6\sin^22x\cos2x}$。</p></div></div>
+      <div class="ans" hidden><p>两层复合：$y'=3\sin^22x\cdot\cos2x\cdot2=\boldsymbol{6\sin^22x\cos2x}$。</p><p><strong>详细步骤：</strong>从外到内：$u^3$ 的导数 $3u^2$（$u=\sin2x$）→ $\sin v$ 的导数 $\cos v$（$v=2x$）→ $2x$ 的导数 $2$，三个因子相乘。</p></div></div>
 
     <div class="q"><div class="q-head"><b>5</b>求导</div>
       <p>求 $y=\dfrac{x}{x^2+1}$ 的导数。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$y'=\dfrac{(x^2+1)-x\cdot2x}{(x^2+1)^2}=\dfrac{1-x^2}{(x^2+1)^2}$。</p></div></div>
+      <div class="ans" hidden><p>$y'=\dfrac{(x^2+1)-x\cdot2x}{(x^2+1)^2}=\dfrac{1-x^2}{(x^2+1)^2}$。</p><p><strong>详细步骤：</strong>商的法则中 $f=x,\ g=x^2+1$，分子 $f'g-fg'=1\cdot(x^2+1)-x\cdot2x=1-x^2$。</p></div></div>
 
     <div class="q"><div class="q-head"><b>6</b>切线</div>
       <p>求曲线 $y=e^{2x}$ 在 $x=0$ 处的切线和法线方程。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>点 $(0,1)$，$y'=2e^{2x}$ 在此为 $2$。切线 $y=2x+1$，法线 $y=-\dfrac12x+1$。</p></div></div>
+      <div class="ans" hidden><p>点 $(0,1)$，$y'=2e^{2x}$ 在此为 $2$。切线 $y=2x+1$，法线 $y=-\dfrac12x+1$。</p><p><strong>详细步骤：</strong>切线：$y-1=2(x-0)$。法线斜率是 $-\dfrac12$，所以 $y-1=-\dfrac12(x-0)$。</p></div></div>
 
     <div class="q"><div class="q-head"><b>7</b>最值</div>
       <p>求 $f(x)=x\log x\ (x&gt;0)$ 的最小值。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$f'(x)=\log x+1$，在 $x=\dfrac1e$ 由负变正，该处取最小值 $f\Bigl(\dfrac1e\Bigr)=-\dfrac1e$。</p></div></div>
+      <div class="ans" hidden><p>$f'(x)=\log x+1$，在 $x=\dfrac1e$ 由负变正，该处取最小值 $f\Bigl(\dfrac1e\Bigr)=-\dfrac1e$。</p><p><strong>详细步骤：</strong>积的法则：$f'(x)=\log x+x\cdot\dfrac1x=\log x+1$。令其为 $0$ 得 $\log x=-1$，即 $x=\dfrac1e$。定义域内极小点只有这一个，且 $f$ 在其左侧递减、右侧递增，所以它就是最小值点。</p></div></div>
 
     <div class="q"><div class="q-head"><b>8</b>极值</div>
       <p>$f(x)=x^3+ax^2+bx$ 在 $x=1$ 处取极小值 $-1$，求 $a,b$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$f'(1)=3+2a+b=0$，$f(1)=1+a+b=-1$，解得 $a=-1,\ b=-1$。</p><p><strong>必须验证：</strong>$f'(x)=3x^2-2x-1=(3x+1)(x-1)$，在 $x=1$ 由负变正，确为极小。</p></div></div>
+      <div class="ans" hidden><p>$f'(1)=3+2a+b=0$，$f(1)=1+a+b=-1$，解得 $a=-1,\ b=-1$。</p><p><strong>必须验证：</strong>$f'(x)=3x^2-2x-1=(3x+1)(x-1)$，在 $x=1$ 由负变正，确为极小。</p><p><strong>详细步骤：</strong>两个条件分别来自“$x=1$ 是临界点”和“函数值为 $-1$”。联立：由 $2a+b=-3$ 和 $a+b=-2$ 相减得 $a=-1$，再得 $b=-1$。</p></div></div>
 
     <div class="q"><div class="q-head"><b>9</b>换元</div>
       <p>计算 $\displaystyle\int_0^1\frac{x}{x^2+1}dx$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$\dfrac12\cdot\dfrac{f'}{f}$ 型：$\dfrac12\bigl[\log(x^2+1)\bigr]_0^1=\dfrac12\log2$。</p></div></div>
+      <div class="ans" hidden><p>$\dfrac12\cdot\dfrac{f'}{f}$ 型：$\dfrac12\bigl[\log(x^2+1)\bigr]_0^1=\dfrac12\log2$。</p><p><strong>详细步骤：</strong>分子 $x$ 只差常数倍就是分母的导数 $2x$，所以写成 $\dfrac12\cdot\dfrac{2x}{x^2+1}$，上下限不变，因为这里没有换变量。</p></div></div>
 
     <div class="q"><div class="q-head"><b>10</b>分部</div>
       <p>计算 $\displaystyle\int_1^ex\log x\,dx$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$\Bigl[\dfrac{x^2}{2}\log x\Bigr]_1^e-\displaystyle\int_1^e\frac x2dx=\frac{e^2}{2}-\frac{e^2-1}{4}=\frac{e^2+1}{4}$。</p></div></div>
+      <div class="ans" hidden><p>$\Bigl[\dfrac{x^2}{2}\log x\Bigr]_1^e-\displaystyle\int_1^e\frac x2dx=\frac{e^2}{2}-\frac{e^2-1}{4}=\frac{e^2+1}{4}$。</p><p><strong>详细步骤：</strong>取 $f=\log x$，$g'=x$，则 $f'=\dfrac1x$，$g=\dfrac{x^2}{2}$，于是 $f'g=\dfrac x2$。边界项在 $x=1$ 处为 $0$，在 $x=e$ 处为 $\dfrac{e^2}{2}$。通分：$\dfrac{2e^2-e^2+1}{4}=\dfrac{e^2+1}{4}$。</p></div></div>
 
     <div class="q"><div class="q-head"><b>11</b>面积</div>
       <p>求抛物线 $y=x^2-2x$ 与 $x$ 轴围成的面积。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>交点 $x=0,2$，图形在 $x$ 轴下方。用 $\dfrac16$ 公式：$S=\dfrac{2^3}{6}=\dfrac43$。</p></div></div>
+      <div class="ans" hidden><p>交点 $x=0,2$，图形在 $x$ 轴下方。用 $\dfrac16$ 公式：$S=\dfrac{2^3}{6}=\dfrac43$。</p><p><strong>详细步骤：</strong>图形在 $x$ 轴下方，所以 $S=-\displaystyle\int_0^2(x^2-2x)\,dx=\Bigl[x^2-\frac{x^3}{3}\Bigr]_0^2=4-\frac83=\frac43$，与公式一致。</p></div></div>
 
     <div class="q"><div class="q-head"><b>12</b>体积</div>
       <p>$y=\sin x\ (0\le x\le\pi)$ 与 $x$ 轴围成的区域绕 $x$ 轴旋转，求体积。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$\displaystyle V=\pi\int_0^\pi\sin^2x\,dx=\pi\int_0^\pi\frac{1-\cos2x}{2}dx=\frac{\pi^2}{2}$。</p></div></div>
+      <div class="ans" hidden><p>$\displaystyle V=\pi\int_0^\pi\sin^2x\,dx=\pi\int_0^\pi\frac{1-\cos2x}{2}dx=\frac{\pi^2}{2}$。</p><p><strong>详细步骤：</strong>降次后 $\displaystyle\int_0^\pi\frac{1-\cos2x}{2}dx=\Bigl[\frac x2-\frac{\sin2x}{4}\Bigr]_0^\pi=\frac\pi2$，再乘 $\pi$。</p></div></div>
+    <article class="q">
+      <div class="q-head"><b>补充例题 36　综合</b><span class="origin">原创</span></div>
+      <p>求 $\displaystyle\lim_{x\to0}\frac{e^{2x}-1}{\sin3x}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        
+        <p>凑两个标准形：$\dfrac{e^{2x}-1}{\sin3x}=\dfrac{e^{2x}-1}{2x}\cdot\dfrac{3x}{\sin3x}\cdot\dfrac23$。</p>
+        <p>令 $x\to0$：$\dfrac{e^{2x}-1}{2x}\to1$，$\dfrac{3x}{\sin3x}\to1$，所以极限为 $\dfrac23$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>只对答案不看过程：结果对了但方法绕远，考试时仍然会时间不够。练习 8 这类题还容易漏掉“验证确实是极小”这一步。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>EJU 数学不能使用计算器，所以练习时也不要用，要习惯手算分数和含 $e$、$\pi$ 的结果。做完后把错题按“概念错、计算错、读题错”分类，读题错要回到第 9 节复习日语表达。</p>
+    </div>
   </section>
 
   <section id="terms">
@@ -617,6 +1185,38 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
       <tbody></tbody>
     </table></div>
+    <p><strong>题干常用句式：</strong>考试时要能直接读懂日语题干，下面是微积分题常见的表达。</p>
+    <div class="tw"><table>
+      <thead><tr><th>日语表达</th><th>读音</th><th>中文含义</th></tr></thead>
+      <tbody>
+        <tr><td lang="ja">極限値を求めよ</td><td class="kana" lang="ja">きょくげんちをもとめよ</td><td>求极限值</td></tr>
+        <tr><td lang="ja">次の定積分を計算せよ</td><td class="kana" lang="ja">つぎのていせきぶんをけいさんせよ</td><td>计算下面的定积分</td></tr>
+        <tr><td lang="ja">点 P における接線</td><td class="kana" lang="ja">てん P におけるせっせん</td><td>点 P 处的切线（P 是切点）</td></tr>
+        <tr><td lang="ja">点 P を通る接線</td><td class="kana" lang="ja">てん P をとおるせっせん</td><td>过点 P 的切线（P 不一定是切点）</td></tr>
+        <tr><td lang="ja">極値をとる</td><td class="kana" lang="ja">きょくちをとる</td><td>取极值</td></tr>
+        <tr><td lang="ja">$x$ 軸で囲まれた部分の面積</td><td class="kana" lang="ja">エックスじくでかこまれたぶぶんのめんせき</td><td>与 $x$ 轴围成部分的面积</td></tr>
+        <tr><td lang="ja">$x$ 軸のまわりに1回転してできる立体</td><td class="kana" lang="ja">エックスじくのまわりにいちかいてんしてできるりったい</td><td>绕 $x$ 轴旋转一周所得的立体</td></tr>
+        <tr><td lang="ja">以上／以下</td><td class="kana" lang="ja">いじょう／いか</td><td>$\ge$ ／ $\le$（含等号）</td></tr>
+        <tr><td lang="ja">より大きい／未満</td><td class="kana" lang="ja">よりおおきい／みまん</td><td>$&gt;$ ／ $&lt;$（不含等号）</td></tr>
+        <tr><td lang="ja">ただし</td><td class="kana" lang="ja">ただし</td><td>但是，其中（常用于给条件）</td></tr>
+      </tbody>
+    </table></div>
+    <article class="q">
+      <div class="q-head"><b>补充例题 37</b><span class="origin">原创</span></div>
+      <p><span lang="ja">関数 $f(x)=x^3-6x^2+9x$ の極大値と極小値を求めよ。</span>（译：求函数 $f(x)=x^3-6x^2+9x$ 的极大值和极小值。）</p>
+      <ol>
+        <li>$f'(x)=3x^2-12x+9=3(x-1)(x-3)$。</li>
+        <li>$x=1$ 处 $f'$ 由正变负，是极大：$f(1)=1-6+9=4$。</li>
+        <li>$x=3$ 处 $f'$ 由负变正，是极小：$f(3)=27-54+27=0$。</li>
+      </ol>
+      <p><strong>答案：</strong><span lang="ja">極大値</span> $4$（$x=1$），<span lang="ja">極小値</span> $0$（$x=3$）。</p>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>① 把「$\sim$における接線」和「$\sim$を通る接線」当成同一件事，后者通常要设切点；② 把「未満」当作含等号；③ 日语分数读法是先分母后分子，$\dfrac23$ 读作「さんぶんのに」，听写或读题时容易把分子分母说反。</p>
+    </div>
+    <div class="box good">
+      <p><strong>EJU 应试提示：</strong>优先记住题干动词（求めよ・示せ・計算せよ）和图形用语（接線・囲まれた・回転）。搜索框支持中文、日文和假名，可以用来查词；考前把本表过一遍，读题速度会明显提高。</p>
+    </div>
   </section>
 
   <footer>
@@ -635,29 +1235,29 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       ['極限', 'きょくげん', '极限'], ['数列', 'すうれつ', '数列'], ['収束', 'しゅうそく', '收敛'],
       ['発散', 'はっさん', '发散'], ['振動', 'しんどう', '振荡'], ['無限等比級数', 'むげんとうひきゅうすう', '无穷等比级数'],
       ['公比', 'こうひ', '公比'], ['不定形', 'ふていけい', '不定式'], ['はさみうちの原理', 'はさみうちのげんり', '夹逼定理'],
-      ['連続', 'れんぞく', '连续'], ['自然対数', 'しぜんたいすう', '自然对数'], ['底', 'てい', '（对数的）底']
+      ['連続', 'れんぞく', '连续'], ['自然対数', 'しぜんたいすう', '自然对数'], ['底', 'てい', '（对数的）底'], ['右側極限', 'みぎがわきょくげん', '右极限'], ['左側極限', 'ひだりがわきょくげん', '左极限'], ['部分和', 'ぶぶんわ', '部分和'], ['循環小数', 'じゅんかんしょうすう', '循环小数'], ['有理化', 'ゆうりか', '有理化'], ['弧度法', 'こどほう', '弧度制']
     ]],
     ['微分法', [
       ['微分係数', 'びぶんけいすう', '（某点的）导数值'], ['導関数', 'どうかんすう', '导函数'], ['第2次導関数', 'だいにじどうかんすう', '二阶导数'],
       ['平均変化率', 'へいきんへんかりつ', '平均变化率'], ['合成関数', 'ごうせいかんすう', '复合函数'], ['逆関数', 'ぎゃくかんすう', '反函数'],
       ['媒介変数', 'ばいかいへんすう', '参数'], ['接線', 'せっせん', '切线'], ['法線', 'ほうせん', '法线'],
-      ['接点', 'せってん', '切点'], ['傾き', 'かたむき', '斜率']
+      ['接点', 'せってん', '切点'], ['傾き', 'かたむき', '斜率'], ['微分可能', 'びぶんかのう', '可导'], ['割線', 'かっせん', '割线'], ['陰関数', 'いんかんすう', '隐函数'], ['対数微分法', 'たいすうびぶんほう', '对数求导法'], ['共通接線', 'きょうつうせっせん', '公切线'], ['垂直', 'すいちょく', '垂直']
     ]],
     ['函数图像', [
       ['増減表', 'ぞうげんひょう', '增减表'], ['増加', 'ぞうか', '增加'], ['減少', 'げんしょう', '减少'],
       ['極大値', 'きょくだいち', '极大值'], ['極小値', 'きょくしょうち', '极小值'], ['極値', 'きょくち', '极值'],
       ['最大値', 'さいだいち', '最大值'], ['最小値', 'さいしょうち', '最小值'], ['変曲点', 'へんきょくてん', '拐点'],
       ['上に凸', 'うえにとつ', '上凸（$f&#39;&#39;&lt;0$）'], ['下に凸', 'したにとつ', '下凸（$f&#39;&#39;&gt;0$）'], ['漸近線', 'ぜんきんせん', '渐近线'],
-      ['実数解', 'じっすうかい', '实数解']
+      ['実数解', 'じっすうかい', '实数解'], ['平均値の定理', 'へいきんちのていり', '平均值定理'], ['単調増加', 'たんちょうぞうか', '单调递增'], ['単調減少', 'たんちょうげんしょう', '单调递减'], ['定義域', 'ていぎいき', '定义域'], ['奇関数', 'きかんすう', '奇函数'], ['偶関数', 'ぐうかんすう', '偶函数'], ['定数分離', 'ていすうぶんり', '分离参数']
     ]],
     ['积分法', [
       ['不定積分', 'ふていせきぶん', '不定积分'], ['定積分', 'ていせきぶん', '定积分'], ['原始関数', 'げんしかんすう', '原函数'],
       ['積分定数', 'せきぶんていすう', '积分常数'], ['置換積分法', 'ちかんせきぶんほう', '换元积分法'], ['部分積分法', 'ぶぶんせきぶんほう', '分部积分法'],
-      ['区分求積法', 'くぶんきゅうせきほう', '和式极限化为定积分的方法'], ['漸化式', 'ぜんかしき', '递推公式']
+      ['区分求積法', 'くぶんきゅうせきほう', '和式极限化为定积分的方法'], ['漸化式', 'ぜんかしき', '递推公式'], ['被積分関数', 'ひせきぶんかんすう', '被积函数'], ['積分区間', 'せきぶんくかん', '积分区间'], ['上端', 'じょうたん', '积分上限'], ['下端', 'かたん', '积分下限'], ['半角の公式', 'はんかくのこうしき', '半角公式（降次）'], ['部分分数分解', 'ぶぶんぶんすうぶんかい', '分式拆分']
     ]],
     ['面积与体积', [
       ['面積', 'めんせき', '面积'], ['体積', 'たいせき', '体积'], ['断面積', 'だんめんせき', '截面积'],
-      ['回転体', 'かいてんたい', '旋转体'], ['囲まれた部分', 'かこまれたぶぶん', '围成的部分'], ['x軸のまわりに回転', 'エックスじくのまわりにかいてん', '绕 x 轴旋转']
+      ['回転体', 'かいてんたい', '旋转体'], ['囲まれた部分', 'かこまれたぶぶん', '围成的部分'], ['x軸のまわりに回転', 'エックスじくのまわりにかいてん', '绕 x 轴旋转'], ['放物線', 'ほうぶつせん', '抛物线'], ['交点', 'こうてん', '交点'], ['立体', 'りったい', '立体'], ['円錐', 'えんすい', '圆锥']
     ]]
   ];
 
