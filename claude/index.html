@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2｜导数与微积分讲义</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：极限、微分法、积分法，含原创例题、练习题、切线探索器和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#ex-svg { touch-action: pan-y; cursor: ew-resize; user-select: none; -webkit-user-select: none; background: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <p class="eyebrow">EJU 数学コース2 · 極限 / 微分法 / 積分法</p>
+      <h1>导数与微积分讲义</h1>
+      <p class="lead">从极限一路讲到旋转体体积：每个知识点都配例子，最后用原创的 EJU 风格填空题和练习题检验。日语术语随文标注，文末有完整对照表。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}$$
+      $$\int_a^b f(x)\,dx=\Bigl[F(x)\Bigr]_a^b$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#limit">1 极限</a></li>
+        <li><a href="#deriv">2 求导法则</a></li>
+        <li><a href="#tangent">3 切线与探索器</a></li>
+        <li><a href="#graph">4 极值与图像</a></li>
+        <li><a href="#integral">5 积分</a></li>
+        <li><a href="#area">6 面积与体积</a></li>
+        <li><a href="#examples">7 原创例题</a></li>
+        <li><a href="#practice">8 练习题</a></li>
+        <li><a href="#terms">9 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box warn" style="margin-top:28px">
+    <p><strong>符号提醒：</strong>日本教材和 EJU 中，$\log x$ 通常就是自然对数（底为 $e$），相当于中文教材的 $\ln x$。本讲义统一按日本写法使用 $\log x$，除非另外标明底数。</p>
+  </div>
+
+  <section id="limit">
+    <h2>1 极限</h2>
+    <p class="jp-sub" lang="ja">極限 — 収束・発散・連続</p>
+
+    <h3>数列的极限</h3>
+    <p>当 $n\to\infty$ 时，$a_n$ 趋于定值 $\alpha$，称数列<strong>收敛</strong>（<span lang="ja">収束</span>）；否则称<strong>发散</strong>（<span lang="ja">発散</span>）。发散包括趋于 $\pm\infty$ 和振荡（<span lang="ja">振動</span>）。最常用的是等比数列 $r^n$：</p>
+    <div class="tw"><table>
+      <thead><tr><th>$r$ 的范围</th><th>$r\le -1$</th><th>$-1&lt;r&lt;1$</th><th>$r=1$</th><th>$r&gt;1$</th></tr></thead>
+      <tbody><tr><td>$\displaystyle\lim_{n\to\infty}r^n$</td><td>振荡（发散）</td><td>$0$</td><td>$1$</td><td>$+\infty$</td></tr></tbody>
+    </table></div>
+    <p>无穷等比级数（<span lang="ja">無限等比級数</span>）：首项 $a\ne 0$，当且仅当 $|r|&lt;1$ 时收敛，</p>
+    $$\sum_{n=1}^{\infty}ar^{n-1}=\frac{a}{1-r}.$$
+
+    <h3>函数极限：化解不定式</h3>
+    <p>遇到 $\dfrac00$、$\dfrac\infty\infty$、$\infty-\infty$（<span lang="ja">不定形</span>）不能直接代入，要先变形：</p>
+    <div class="tw"><table>
+      <thead><tr><th>方法</th><th>例子</th></tr></thead>
+      <tbody>
+        <tr><td>因式分解约分</td><td>$\displaystyle\lim_{x\to2}\frac{x^2-4}{x-2}=\lim_{x\to2}(x+2)=4$</td></tr>
+        <tr><td>分子有理化</td><td>$\displaystyle\lim_{n\to\infty}\bigl(\sqrt{n^2+n}-n\bigr)=\lim_{n\to\infty}\frac{n}{\sqrt{n^2+n}+n}=\frac12$</td></tr>
+        <tr><td>除以最高次项</td><td>$\displaystyle\lim_{x\to\infty}\frac{2x^2+1}{x^2-3x}=\lim_{x\to\infty}\frac{2+\frac1{x^2}}{1-\frac3x}=2$</td></tr>
+        <tr><td>夹逼（<span lang="ja">はさみうちの原理</span>）</td><td>$-\dfrac1x\le\dfrac{\sin x}{x}\le\dfrac1x\ (x&gt;0)$，所以 $\displaystyle\lim_{x\to\infty}\frac{\sin x}{x}=0$</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>必背的重要极限</h3>
+    <div class="formula-grid">
+      <div>$\displaystyle\lim_{x\to0}\frac{\sin x}{x}=1$（$x$ 为弧度）</div>
+      <div>$\displaystyle\lim_{x\to0}\frac{1-\cos x}{x^2}=\frac12$</div>
+      <div>$\displaystyle\lim_{h\to0}(1+h)^{\frac1h}=e$</div>
+      <div>$\displaystyle\lim_{x\to\infty}\Bigl(1+\frac1x\Bigr)^{x}=e$</div>
+      <div>$\displaystyle\lim_{h\to0}\frac{e^h-1}{h}=1$</div>
+      <div>$\displaystyle\lim_{h\to0}\frac{\log(1+h)}{h}=1$</div>
+    </div>
+
+    <div class="box good">
+      <p><strong>高频题型：由极限求系数。</strong>已知 $\displaystyle\lim_{x\to1}\frac{x^2+ax+b}{x-1}=3$。分母趋于 $0$ 而极限有限，分子也必须趋于 $0$，所以 $1+a+b=0$，即 $b=-a-1$。于是</p>
+      $$\frac{x^2+ax-a-1}{x-1}=\frac{(x-1)(x+a+1)}{x-1}=x+a+1\ \longrightarrow\ a+2=3,$$
+      <p>得 $a=1,\ b=-2$。</p>
+    </div>
+    <p>函数连续（<span lang="ja">連続</span>）指 $\displaystyle\lim_{x\to a}f(x)=f(a)$：左极限、右极限和函数值三者都存在且相等。例如 $x\to+0$ 时 $\dfrac1x\to+\infty$，$x\to-0$ 时 $\dfrac1x\to-\infty$，所以 $x\to0$ 时极限不存在。</p>
+  </section>
+
+  <section id="deriv">
+    <h2>2 求导法则</h2>
+    <p class="jp-sub" lang="ja">微分法 — 導関数の計算</p>
+    <p>$f'(a)$ 是曲线在 $x=a$ 处的瞬时变化率，日语称<span lang="ja">微分係数</span>；把它看成 $a$ 的函数就是<strong>导函数</strong> <span lang="ja">導関数</span>：</p>
+    $$f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}.$$
+
+    <h3>基本函数</h3>
+    <div class="formula-grid">
+      <div>$(x^\alpha)'=\alpha x^{\alpha-1}$</div>
+      <div>$(e^x)'=e^x$</div>
+      <div>$(a^x)'=a^x\log a$</div>
+      <div>$(\log|x|)'=\dfrac1x$</div>
+      <div>$(\log_a x)'=\dfrac{1}{x\log a}$</div>
+      <div>$(\sin x)'=\cos x$</div>
+      <div>$(\cos x)'=-\sin x$</div>
+      <div>$(\tan x)'=\dfrac{1}{\cos^2x}$</div>
+    </div>
+
+    <h3>运算法则</h3>
+    <div class="tw"><table>
+      <thead><tr><th>法则</th><th>公式</th><th>例子</th></tr></thead>
+      <tbody>
+        <tr><td>积</td><td>$(fg)'=f'g+fg'$</td><td>$(x^2\sin x)'=2x\sin x+x^2\cos x$</td></tr>
+        <tr><td>商</td><td>$\Bigl(\dfrac fg\Bigr)'=\dfrac{f'g-fg'}{g^2}$</td><td>$\Bigl(\dfrac{\log x}{x}\Bigr)'=\dfrac{1-\log x}{x^2}$</td></tr>
+        <tr><td>复合（<span lang="ja">合成関数</span>）</td><td>$\{f(g(x))\}'=f'(g(x))\,g'(x)$</td><td>$(e^{-x^2})'=-2x\,e^{-x^2}$</td></tr>
+        <tr><td>反函数（<span lang="ja">逆関数</span>）</td><td>$\dfrac{dy}{dx}=\dfrac{1}{dx/dy}$</td><td>$y=\sqrt[3]{x}$，即 $x=y^3$：$\dfrac{dy}{dx}=\dfrac{1}{3y^2}$</td></tr>
+        <tr><td>参数式（<span lang="ja">媒介変数</span>）</td><td>$\dfrac{dy}{dx}=\dfrac{dy/dt}{dx/dt}$</td><td>$x=\cos t,\ y=\sin t$：$\dfrac{dy}{dx}=-\dfrac{\cos t}{\sin t}$</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>隐函数：</strong>两边对 $x$ 求导，把 $y$ 看作 $x$ 的函数。例如 $x^2+y^2=1$ 给出 $2x+2yy'=0$，所以 $y'=-\dfrac xy$（$y\ne0$）。</p>
+    <p><strong>对数求导法：</strong>底和指数都含 $x$ 时先取对数。$y=x^x\ (x&gt;0)$：$\log y=x\log x$，两边求导得 $\dfrac{y'}{y}=\log x+1$，所以 $y'=x^x(\log x+1)$。</p>
+    <div class="box warn">
+      <p><strong>常见失分：</strong>$(\sin 2x)'$ 忘记乘内层导数 $2$；把 $(2^x)'$ 写成 $x2^{x-1}$（那是幂函数公式）；商的法则分子顺序写反。</p>
+    </div>
+  </section>
+
+  <section id="tangent">
+    <h2>3 切线与探索器</h2>
+    <p class="jp-sub" lang="ja">接線・法線の方程式</p>
+    <p>曲线 $y=f(x)$ 在点 $(a,f(a))$ 处的切线和法线（$f'(a)\ne0$）为</p>
+    $$\text{切线：}\ y-f(a)=f'(a)(x-a),\qquad \text{法线：}\ y-f(a)=-\frac{1}{f'(a)}(x-a).$$
+    <div class="box good">
+      <p><strong>曲线外一点作切线：</strong>切点未知时，先设切点。求原点到 $y=\log x$ 的切线：设切点 $(t,\log t)$，切线为 $y-\log t=\dfrac1t(x-t)$。代入 $(0,0)$ 得 $\log t=1$，所以 $t=e$，切线为 $y=\dfrac xe$。</p>
+    </div>
+
+    <div class="explorer" id="explorer">
+      <h3 style="margin:0 0 10px">切线探索器</h3>
+      <div class="ex-head" id="ex-fns" role="group" aria-label="选择函数"></div>
+      <svg id="ex-svg" class="chart" role="img" aria-label="函数曲线及其在切点处的切线，可左右拖动改变切点"></svg>
+      <div class="legend" id="ex-legend"></div>
+      <div class="ctrl">
+        <label for="ex-a">切点 $a$</label>
+        <input id="ex-a" type="range">
+        <output id="ex-a-out" for="ex-a"></output>
+      </div>
+      <div class="marks" id="ex-marks"></div>
+      <div class="toggles">
+        <label><input type="checkbox" id="ex-sec">显示割线（看 $h\to0$）</label>
+        <label><input type="checkbox" id="ex-der">显示导函数 $y=f'(x)$</label>
+      </div>
+      <div class="ctrl" id="ex-h-row" hidden>
+        <label for="ex-h">增量 $h$</label>
+        <input id="ex-h" type="range" min="0.02" max="2" step="0.01" value="1">
+        <output id="ex-h-out" for="ex-h"></output>
+      </div>
+      <div class="read" id="ex-read">
+        <div class="wide"><small>函数与导数</small><span id="r-fn"></span></div>
+        <div><small>切点</small><span id="r-pt"></span></div>
+        <div><small>切线斜率</small><span id="r-slope"></span></div>
+        <div><small>切线方程</small><span id="r-eq"></span></div>
+        <div class="wide" id="r-sec-box" hidden><small>割线斜率（平均变化率）</small><span id="r-sec"></span></div>
+      </div>
+      <div class="status" id="ex-status" aria-live="polite"></div>
+    </div>
+    <p style="font-size:14.5px;color:var(--ink-3)">在图上左右拖动或拖动滑块都能改变切点；键盘可用方向键调节滑块。图中数值四舍五入到两位小数。</p>
+  </section>
+
+  <section id="graph">
+    <h2>4 极值与函数图像</h2>
+    <p class="jp-sub" lang="ja">増減表・極値・変曲点・グラフの概形</p>
+    <h3>判断规则</h3>
+    <ul>
+      <li>$f'(x)&gt;0$ 单调增，$f'(x)&lt;0$ 单调减。</li>
+      <li>$f'$ 在 $x=a$ 由正变负 → <strong>极大</strong>（<span lang="ja">極大</span>）；由负变正 → <strong>极小</strong>（<span lang="ja">極小</span>）。</li>
+      <li><strong>$f'(a)=0$ 不足以说明是极值：</strong>$f(x)=x^3$ 在 $x=0$ 处 $f'=0$，但前后都增加。一定要看符号是否变化。</li>
+      <li>$f''(x)&gt;0$ 下凸（<span lang="ja">下に凸</span>），$f''(x)&lt;0$ 上凸（<span lang="ja">上に凸</span>）；$f''$ 变号的点是拐点（<span lang="ja">変曲点</span>）。</li>
+      <li>也可用二阶导判别：$f'(a)=0$ 且 $f''(a)&lt;0$ 时极大，$f''(a)&gt;0$ 时极小。</li>
+    </ul>
+
+    <h3>例 1：$f(x)=x^3-3x$</h3>
+    <p>$f'(x)=3(x+1)(x-1)$，$f''(x)=6x$。增减表（<span lang="ja">増減表</span>）：</p>
+    <div class="tw"><table class="sign">
+      <thead><tr><th>$x$</th><th>$\cdots$</th><th>$-1$</th><th>$\cdots$</th><th>$1$</th><th>$\cdots$</th></tr></thead>
+      <tbody>
+        <tr><td>$f'(x)$</td><td>$+$</td><td>$0$</td><td>$-$</td><td>$0$</td><td>$+$</td></tr>
+        <tr><td>$f(x)$</td><td>↗</td><td>极大 $2$</td><td>↘</td><td>极小 $-2$</td><td>↗</td></tr>
+      </tbody>
+    </table></div>
+    <div class="fig-pair">
+      <figure class="plot"><svg class="chart" id="fig-cubic" role="img" aria-label="y 等于 x 的三次方减 3x 的图像，极大点(-1,2)，极小点(1,-2)，拐点(0,0)"></svg>
+        <figcaption>$y=x^3-3x$：极大、极小点和拐点。</figcaption></figure>
+      <figure class="plot"><svg class="chart" id="fig-xexp" role="img" aria-label="y 等于 x 乘 e 的负 x 次方的图像，极大点(1,1/e)，拐点(2,2/e²)，x 轴为右侧渐近线"></svg>
+        <figcaption>$y=xe^{-x}$：$x\to\infty$ 时贴近 $x$ 轴（渐近线）。</figcaption></figure>
+    </div>
+
+    <h3>例 2：$f(x)=xe^{-x}$（含凹凸）</h3>
+    <p>$f'(x)=(1-x)e^{-x}$，$f''(x)=(x-2)e^{-x}$。又 $\displaystyle\lim_{x\to\infty}xe^{-x}=0$，$\displaystyle\lim_{x\to-\infty}xe^{-x}=-\infty$。</p>
+    <div class="tw"><table class="sign">
+      <thead><tr><th>$x$</th><th>$\cdots$</th><th>$1$</th><th>$\cdots$</th><th>$2$</th><th>$\cdots$</th></tr></thead>
+      <tbody>
+        <tr><td>$f'(x)$</td><td>$+$</td><td>$0$</td><td>$-$</td><td>$-$</td><td>$-$</td></tr>
+        <tr><td>$f''(x)$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$0$</td><td>$+$</td></tr>
+        <tr><td>$f(x)$</td><td>增·上凸</td><td>极大 $\dfrac1e$</td><td>减·上凸</td><td>拐点 $\dfrac{2}{e^2}$</td><td>减·下凸</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>应用：实根个数与不等式</h3>
+    <p><strong>实根个数：</strong>$x^3-3x=k$ 的实根数就是 $y=x^3-3x$ 与水平线 $y=k$ 的交点数。由例 1：$|k|&gt;2$ 时 1 个，$|k|=2$ 时 2 个，$|k|&lt;2$ 时 3 个。把参数 $k$ 分离出来，是这类题的标准做法。</p>
+    <p><strong>不等式证明：</strong>证 $e^x\ge 1+x$：令 $g(x)=e^x-1-x$，$g'(x)=e^x-1$，$g$ 在 $x=0$ 取最小值 $g(0)=0$，所以 $g(x)\ge0$。</p>
+    <p><strong>最大最小：</strong>闭区间上比较极值与端点值，不要漏掉端点。</p>
+  </section>
+
+  <section id="integral">
+    <h2>5 积分</h2>
+    <p class="jp-sub" lang="ja">積分法 — 不定積分・定積分・置換積分法・部分積分法</p>
+    <h3>基本公式（$C$ 为积分常数）</h3>
+    <div class="formula-grid">
+      <div>$\displaystyle\int x^\alpha dx=\frac{x^{\alpha+1}}{\alpha+1}+C\ (\alpha\ne-1)$</div>
+      <div>$\displaystyle\int\frac{dx}{x}=\log|x|+C$</div>
+      <div>$\displaystyle\int e^x dx=e^x+C$</div>
+      <div>$\displaystyle\int a^x dx=\frac{a^x}{\log a}+C$</div>
+      <div>$\displaystyle\int\sin x\,dx=-\cos x+C$</div>
+      <div>$\displaystyle\int\cos x\,dx=\sin x+C$</div>
+      <div>$\displaystyle\int\frac{dx}{\cos^2x}=\tan x+C$</div>
+      <div>$\displaystyle\int\frac{f'(x)}{f(x)}dx=\log|f(x)|+C$</div>
+    </div>
+    <p><strong>微积分基本定理：</strong>$\displaystyle\frac{d}{dx}\int_a^x f(t)\,dt=f(x)$。$\displaystyle\int_a^b f(x)\,dx=\bigl[F(x)\bigr]_a^b=F(b)-F(a)$。</p>
+    <p><strong>奇偶性：</strong>偶函数 $\displaystyle\int_{-a}^a f=2\int_0^a f$；奇函数 $\displaystyle\int_{-a}^a f=0$。</p>
+    <p><strong>三角降次：</strong>$\sin^2x=\dfrac{1-\cos2x}{2}$，$\cos^2x=\dfrac{1+\cos2x}{2}$。<strong>分式拆分：</strong>$\dfrac{1}{x(x+1)}=\dfrac1x-\dfrac1{x+1}$。</p>
+
+    <h3>换元积分法（<span lang="ja">置換積分法</span>）</h3>
+    $$\int_a^b f(g(x))\,g'(x)\,dx=\int_{g(a)}^{g(b)}f(t)\,dt\qquad(t=g(x)).$$
+    <p>定积分换元时，<strong>上下限必须同时更换</strong>。常用模式：</p>
+    <div class="tw"><table>
+      <thead><tr><th>被积函数特征</th><th>换元</th><th>例子</th></tr></thead>
+      <tbody>
+        <tr><td>含 $g(x)$ 和它的导数</td><td>$t=g(x)$</td><td>$\displaystyle\int_0^1x\sqrt{1-x^2}\,dx$，令 $t=1-x^2$：$\displaystyle\frac12\int_0^1\sqrt t\,dt=\frac13$</td></tr>
+        <tr><td>$\sqrt{a^2-x^2}$</td><td>$x=a\sin\theta$</td><td>$\displaystyle\int_0^1\sqrt{1-x^2}\,dx=\int_0^{\pi/2}\cos^2\theta\,d\theta=\frac\pi4$</td></tr>
+        <tr><td>$\dfrac{1}{x^2+a^2}$</td><td>$x=a\tan\theta$</td><td>$\displaystyle\int_0^1\frac{dx}{1+x^2}=\int_0^{\pi/4}d\theta=\frac\pi4$</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>分部积分法（<span lang="ja">部分積分法</span>）</h3>
+    $$\int_a^b f(x)g'(x)\,dx=\bigl[f(x)g(x)\bigr]_a^b-\int_a^b f'(x)g(x)\,dx.$$
+    <p>选取原则：让 $f$ 求导后变简单。多项式 × $e^x$ 或三角函数：多项式作 $f$；多项式 × $\log x$：$\log x$ 作 $f$。</p>
+    <div class="tw"><table>
+      <thead><tr><th>类型</th><th>计算</th></tr></thead>
+      <tbody>
+        <tr><td>多项式 × 三角</td><td>$\displaystyle\int_0^{\pi/2}x\cos x\,dx=\bigl[x\sin x\bigr]_0^{\pi/2}-\int_0^{\pi/2}\sin x\,dx=\frac\pi2-1$</td></tr>
+        <tr><td>$\log x$ 看成 $1\cdot\log x$</td><td>$\displaystyle\int_1^e\log x\,dx=\bigl[x\log x\bigr]_1^e-\int_1^e dx=e-(e-1)=1$</td></tr>
+        <tr><td>分部两次</td><td>$\displaystyle\int_0^1x^2e^x dx=\bigl[x^2e^x\bigr]_0^1-2\int_0^1xe^x dx=e-2\cdot1=e-2$</td></tr>
+        <tr><td>循环型</td><td>$\displaystyle I=\int e^x\sin x\,dx$ 分部两次得 $I=e^x\sin x-e^x\cos x-I$，所以 $I=\dfrac{e^x(\sin x-\cos x)}{2}+C$</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>和式极限化为定积分（<span lang="ja">区分求積法</span>）</h3>
+    <p>把和式的极限化为定积分：$\displaystyle\lim_{n\to\infty}\frac1n\sum_{k=1}^n f\Bigl(\frac kn\Bigr)=\int_0^1f(x)\,dx$。</p>
+    $$\lim_{n\to\infty}\sum_{k=1}^n\frac{1}{n+k}=\lim_{n\to\infty}\frac1n\sum_{k=1}^n\frac{1}{1+\frac kn}=\int_0^1\frac{dx}{1+x}=\log2.$$
+  </section>
+
+  <section id="area">
+    <h2>6 面积与体积</h2>
+    <p class="jp-sub" lang="ja">面積・体積・回転体</p>
+    <div class="fig-pair">
+      <figure class="plot"><svg class="chart" id="fig-area" role="img" aria-label="直线 y=x 与抛物线 y=x² 在 0 到 1 之间围成的阴影区域"></svg>
+        <figcaption>$y=x$（上）与 $y=x^2$（下）围成的区域，面积 $\dfrac16$。</figcaption></figure>
+      <figure class="plot"><svg class="chart" id="fig-volume" role="img" aria-label="曲线 y 等于根号 x 绕 x 轴旋转形成的立体，用若干圆盘表示截面"></svg>
+        <figcaption>$y=\sqrt x$ 绕 $x$ 轴旋转：每个截面都是半径为 $y$ 的圆。</figcaption></figure>
+    </div>
+    <h3>面积</h3>
+    <p>在 $a\le x\le b$ 上，曲线 $y=f(x)$、$y=g(x)$ 围成的面积为 $\displaystyle S=\int_a^b|f(x)-g(x)|\,dx$。解题顺序：求交点 → 判断上下 → 分段积分。</p>
+    <p>例：$y=x$ 与 $y=x^2$ 交于 $x=0,1$，且 $0&lt;x&lt;1$ 时 $x&gt;x^2$：$\displaystyle S=\int_0^1(x-x^2)\,dx=\frac12-\frac13=\frac16$。</p>
+    <div class="box good">
+      <p><strong>$\dfrac16$ 公式：</strong>$\displaystyle\int_\alpha^\beta(x-\alpha)(x-\beta)\,dx=-\frac{(\beta-\alpha)^3}{6}$。抛物线与直线围成的面积可以直接套用；上面的例子就是 $\dfrac{(1-0)^3}{6}$。</p>
+    </div>
+    <p>曲线写成 $x=h(y)$ 更方便时，可对 $y$ 积分：$\displaystyle S=\int_c^d|h(y)|\,dy$。</p>
+
+    <h3>体积</h3>
+    <p>截面积 $S(x)$ 已知时，$\displaystyle V=\int_a^bS(x)\,dx$。旋转体（<span lang="ja">回転体</span>）是它的特例：</p>
+    $$\text{绕 }x\text{ 轴：}\ V=\pi\int_a^b y^2\,dx,\qquad\text{绕 }y\text{ 轴：}\ V=\pi\int_c^d x^2\,dy.$$
+    <ul>
+      <li>$y=\sqrt x\ (0\le x\le4)$ 绕 $x$ 轴：$\displaystyle V=\pi\int_0^4x\,dx=8\pi$。</li>
+      <li>半径 $r$ 的球：$\displaystyle V=\pi\int_{-r}^r(r^2-x^2)\,dx=\frac43\pi r^3$。</li>
+      <li>$y=x$ 与 $y=x^2$ 之间的区域绕 $x$ 轴：外圆减内圆，$\displaystyle V=\pi\int_0^1(x^2-x^4)\,dx=\frac{2\pi}{15}$。</li>
+    </ul>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>把“外减内”写成 $\pi\int(y_{外}-y_{内})^2dx$。正确写法是 $\pi\int(y_{外}^2-y_{内}^2)\,dx$，平方差和差的平方不同。</p>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2>7 原创 EJU 风格例题</h2>
+    <p class="jp-sub">以下题目均为本讲义<strong>原创</strong>，仅模仿 EJU 的填空形式，并非真题。</p>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框字母对应一个数字（$0$–$9$），例如 $\B{AB}$ 是两位数；分数要约到最简，根号内的数要尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>例题 1　增减与切线</b><span class="origin">原创</span></div>
+      <p>函数 $f(x)=(x^2-3)e^x$。</p>
+      <p>(1) $f'(x)=(x+\B{A})(x-\B{B})e^x$。</p>
+      <p>(2) $f(x)$ 在 $x=-\B{C}$ 处取极大值 $\B{D}\,e^{-\B{E}}$，在 $x=\B{F}$ 处取极小值 $-\B{G}\,e$。</p>
+      <p>(3) 曲线 $y=f(x)$ 在 $x=0$ 处的切线为 $y=-\B{H}\,x-\B{I}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 3</li><li>B = 1</li><li>C = 3</li><li>D = 6</li><li>E = 3</li><li>F = 1</li><li>G = 2</li><li>H = 3</li><li>I = 3</li></ul>
+        <p>(1) 积的法则：$f'(x)=2xe^x+(x^2-3)e^x=(x^2+2x-3)e^x=(x+3)(x-1)e^x$。</p>
+        <p>(2) $f'$ 在 $x=-3$ 由正变负，在 $x=1$ 由负变正。$f(-3)=6e^{-3}$，$f(1)=-2e$。</p>
+        <p>(3) $f(0)=-3$，$f'(0)=-3$，切线为 $y=-3x-3$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 2　面积与旋转体</b><span class="origin">原创</span></div>
+      <p>从原点向曲线 $C:y=\log x$ 作切线 $\ell$。设 $C$、$\ell$ 和 $x$ 轴围成的区域为 $D$。</p>
+      <p>(1) 切点的坐标为 $(e,\ \B{A})$，$\ell$ 的方程为 $y=\dfrac{x}{e}$。</p>
+      <p>(2) $D$ 的面积为 $\dfrac{e}{\B{B}}-\B{C}$。</p>
+      <p>(3) $\displaystyle\int_1^e(\log x)^2dx=e-\B{D}$，因此 $D$ 绕 $x$ 轴旋转一周所得立体的体积为 $\dfrac{\B{E}\,\pi(\B{F}-e)}{\B{G}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 1</li><li>B = 2</li><li>C = 1</li><li>D = 2</li><li>E = 2</li><li>F = 3</li><li>G = 3</li></ul>
+        <p>(1) 由第 3 节，切点 $t=e$，纵坐标 $\log e=1$。</p>
+        <p>(2) 底 $e$、高 $1$ 的三角形减去曲线下方部分：$S=\dfrac e2-\displaystyle\int_1^e\log x\,dx=\dfrac e2-1$。</p>
+        <p>(3) 分部积分：$\displaystyle\int_1^e(\log x)^2dx=\bigl[x(\log x)^2\bigr]_1^e-2\int_1^e\log x\,dx=e-2$。体积 = 圆锥 − 曲线旋转部分：</p>
+        $$V=\frac13\pi\cdot1^2\cdot e-\pi(e-2)=\pi\Bigl(2-\frac{2e}{3}\Bigr)=\frac{2\pi(3-e)}{3}.$$
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 3　递推与极限</b><span class="origin">原创</span></div>
+      <p>对 $n=0,1,2,\dots$，令 $\displaystyle I_n=\int_0^1x^ne^x\,dx$。</p>
+      <p>(1) $I_{n+1}=e-(n+\B{A})I_n$。</p>
+      <p>(2) $I_1=\B{B}$，$I_2=e-\B{C}$，$I_3=\B{D}-\B{E}\,e$。</p>
+      <p>(3) $\displaystyle\lim_{n\to\infty}I_n=\B{F}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 1</li><li>B = 1</li><li>C = 2</li><li>D = 6</li><li>E = 2</li><li>F = 0</li></ul>
+        <p>(1) 分部积分：$\displaystyle I_{n+1}=\bigl[x^{n+1}e^x\bigr]_0^1-(n+1)\int_0^1x^ne^x dx=e-(n+1)I_n$。</p>
+        <p>(2) $I_0=e-1$，$I_1=e-I_0=1$，$I_2=e-2I_1=e-2$，$I_3=e-3(e-2)=6-2e$。</p>
+        <p>(3) 在 $0\le x\le1$ 上 $x^n\le x^ne^x\le e\,x^n$，积分得 $\dfrac{1}{n+1}\le I_n\le\dfrac{e}{n+1}$，由夹逼得极限为 $0$。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>8 练习题</h2>
+    <div class="bar">
+      <p class="jp-sub" style="margin:0">先自己算，再点按钮核对。题目为本讲义原创。</p>
+      <button class="chip" id="toggle-all" type="button">显示全部答案</button>
+    </div>
+
+    <div class="q"><div class="q-head"><b>1</b>极限</div>
+      <p>求 $\displaystyle\lim_{x\to0}\frac{1-\cos2x}{x^2}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$1-\cos2x=2\sin^2x$，所以极限为 $2\displaystyle\lim_{x\to0}\Bigl(\frac{\sin x}{x}\Bigr)^2=\mathbf 2$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>2</b>极限</div>
+      <p>求 $\displaystyle\lim_{n\to\infty}\Bigl(1+\frac2n\Bigr)^n$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>令 $h=\dfrac2n$，原式 $=\displaystyle\lim_{h\to+0}\bigl\{(1+h)^{1/h}\bigr\}^2=\boldsymbol{e^2}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>3</b>级数</div>
+      <p>求 $\displaystyle\sum_{n=1}^\infty\Bigl(\frac23\Bigr)^n$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>首项 $\dfrac23$，公比 $\dfrac23$：$\dfrac{2/3}{1-2/3}=\mathbf 2$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>4</b>求导</div>
+      <p>求 $y=\sin^3 2x$ 的导数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>两层复合：$y'=3\sin^22x\cdot\cos2x\cdot2=\boldsymbol{6\sin^22x\cos2x}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>5</b>求导</div>
+      <p>求 $y=\dfrac{x}{x^2+1}$ 的导数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$y'=\dfrac{(x^2+1)-x\cdot2x}{(x^2+1)^2}=\dfrac{1-x^2}{(x^2+1)^2}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>6</b>切线</div>
+      <p>求曲线 $y=e^{2x}$ 在 $x=0$ 处的切线和法线方程。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>点 $(0,1)$，$y'=2e^{2x}$ 在此为 $2$。切线 $y=2x+1$，法线 $y=-\dfrac12x+1$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>7</b>最值</div>
+      <p>求 $f(x)=x\log x\ (x&gt;0)$ 的最小值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$f'(x)=\log x+1$，在 $x=\dfrac1e$ 由负变正，该处取最小值 $f\Bigl(\dfrac1e\Bigr)=-\dfrac1e$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>8</b>极值</div>
+      <p>$f(x)=x^3+ax^2+bx$ 在 $x=1$ 处取极小值 $-1$，求 $a,b$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$f'(1)=3+2a+b=0$，$f(1)=1+a+b=-1$，解得 $a=-1,\ b=-1$。</p><p><strong>必须验证：</strong>$f'(x)=3x^2-2x-1=(3x+1)(x-1)$，在 $x=1$ 由负变正，确为极小。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>9</b>换元</div>
+      <p>计算 $\displaystyle\int_0^1\frac{x}{x^2+1}dx$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\dfrac12\cdot\dfrac{f'}{f}$ 型：$\dfrac12\bigl[\log(x^2+1)\bigr]_0^1=\dfrac12\log2$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>10</b>分部</div>
+      <p>计算 $\displaystyle\int_1^ex\log x\,dx$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\Bigl[\dfrac{x^2}{2}\log x\Bigr]_1^e-\displaystyle\int_1^e\frac x2dx=\frac{e^2}{2}-\frac{e^2-1}{4}=\frac{e^2+1}{4}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>11</b>面积</div>
+      <p>求抛物线 $y=x^2-2x$ 与 $x$ 轴围成的面积。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>交点 $x=0,2$，图形在 $x$ 轴下方。用 $\dfrac16$ 公式：$S=\dfrac{2^3}{6}=\dfrac43$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>12</b>体积</div>
+      <p>$y=\sin x\ (0\le x\le\pi)$ 与 $x$ 轴围成的区域绕 $x$ 轴旋转，求体积。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\displaystyle V=\pi\int_0^\pi\sin^2x\,dx=\pi\int_0^\pi\frac{1-\cos2x}{2}dx=\frac{\pi^2}{2}$。</p></div></div>
+  </section>
+
+  <section id="terms">
+    <h2>9 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页按極限、微分法、積分法三大块组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。所有例题和练习题均为原创。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['极限', [
+      ['極限', 'きょくげん', '极限'], ['数列', 'すうれつ', '数列'], ['収束', 'しゅうそく', '收敛'],
+      ['発散', 'はっさん', '发散'], ['振動', 'しんどう', '振荡'], ['無限等比級数', 'むげんとうひきゅうすう', '无穷等比级数'],
+      ['公比', 'こうひ', '公比'], ['不定形', 'ふていけい', '不定式'], ['はさみうちの原理', 'はさみうちのげんり', '夹逼定理'],
+      ['連続', 'れんぞく', '连续'], ['自然対数', 'しぜんたいすう', '自然对数'], ['底', 'てい', '（对数的）底']
+    ]],
+    ['微分法', [
+      ['微分係数', 'びぶんけいすう', '（某点的）导数值'], ['導関数', 'どうかんすう', '导函数'], ['第2次導関数', 'だいにじどうかんすう', '二阶导数'],
+      ['平均変化率', 'へいきんへんかりつ', '平均变化率'], ['合成関数', 'ごうせいかんすう', '复合函数'], ['逆関数', 'ぎゃくかんすう', '反函数'],
+      ['媒介変数', 'ばいかいへんすう', '参数'], ['接線', 'せっせん', '切线'], ['法線', 'ほうせん', '法线'],
+      ['接点', 'せってん', '切点'], ['傾き', 'かたむき', '斜率']
+    ]],
+    ['函数图像', [
+      ['増減表', 'ぞうげんひょう', '增减表'], ['増加', 'ぞうか', '增加'], ['減少', 'げんしょう', '减少'],
+      ['極大値', 'きょくだいち', '极大值'], ['極小値', 'きょくしょうち', '极小值'], ['極値', 'きょくち', '极值'],
+      ['最大値', 'さいだいち', '最大值'], ['最小値', 'さいしょうち', '最小值'], ['変曲点', 'へんきょくてん', '拐点'],
+      ['上に凸', 'うえにとつ', '上凸（$f&#39;&#39;&lt;0$）'], ['下に凸', 'したにとつ', '下凸（$f&#39;&#39;&gt;0$）'], ['漸近線', 'ぜんきんせん', '渐近线'],
+      ['実数解', 'じっすうかい', '实数解']
+    ]],
+    ['积分法', [
+      ['不定積分', 'ふていせきぶん', '不定积分'], ['定積分', 'ていせきぶん', '定积分'], ['原始関数', 'げんしかんすう', '原函数'],
+      ['積分定数', 'せきぶんていすう', '积分常数'], ['置換積分法', 'ちかんせきぶんほう', '换元积分法'], ['部分積分法', 'ぶぶんせきぶんほう', '分部积分法'],
+      ['区分求積法', 'くぶんきゅうせきほう', '和式极限化为定积分的方法'], ['漸化式', 'ぜんかしき', '递推公式']
+    ]],
+    ['面积与体积', [
+      ['面積', 'めんせき', '面积'], ['体積', 'たいせき', '体积'], ['断面積', 'だんめんせき', '截面积'],
+      ['回転体', 'かいてんたい', '旋转体'], ['囲まれた部分', 'かこまれたぶぶん', '围成的部分'], ['x軸のまわりに回転', 'エックスじくのまわりにかいてん', '绕 x 轴旋转']
+    ]]
+  ];
+
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja"><strong>' + t[0] + '</strong></td><td class="kana" lang="ja">' + t[1] + '</td><td>' + t[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = document.getElementById('term-count');
+  function filterTerms() {
+    var q = document.getElementById('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  document.getElementById('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 答案按钮 ---------- */
+  function setAns(btn, open) {
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '隐藏答案' : '显示答案';
+    btn.nextElementSibling.hidden = !open;
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.classList && e.target.classList.contains('toggle-ans')) {
+      setAns(e.target, e.target.getAttribute('aria-expanded') !== 'true');
+    }
+  });
+  var allBtn = document.getElementById('toggle-all');
+  allBtn.addEventListener('click', function () {
+    var btns = document.querySelectorAll('#practice .toggle-ans');
+    var open = allBtn.textContent.indexOf('显示') === 0;
+    btns.forEach(function (b) { setAns(b, open); });
+    allBtn.textContent = open ? '隐藏全部答案' : '显示全部答案';
+  });
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = document.getElementById('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('on', on);
+          if (on && a.parentNode.parentNode.scrollWidth > a.parentNode.parentNode.clientWidth) {
+            var ol = a.parentNode.parentNode;
+            ol.scrollLeft = a.offsetLeft - ol.offsetLeft - 20;
+          }
+        });
+      });
+    }, { rootMargin: '-25% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 绘图工具 ---------- */
+  var NS = 'http://www.w3.org/2000/svg';
+  function mount(svg, ratio, draw) {
+    function render() {
+      var w = svg.clientWidth || 640;
+      var h = Math.round(Math.max(250, Math.min(470, w * ratio)));
+      svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      svg.style.height = h + 'px';
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      draw(svg, w, h);
+    }
+    render();
+    if ('ResizeObserver' in window) {
+      var last = svg.clientWidth;
+      new ResizeObserver(function () {
+        if (svg.clientWidth !== last) { last = svg.clientWidth; render(); }
+      }).observe(svg);
+    }
+    return render;
+  }
+  var clipN = 0;
+  function Plot(svg, w, h, v) {
+    var m = 6, p = this;
+    this.w = w; this.h = h; this.v = v;
+    this.sx = function (x) { return m + (x - v.x0) / (v.x1 - v.x0) * (w - 2 * m); };
+    this.sy = function (y) { return h - m - (y - v.y0) / (v.y1 - v.y0) * (h - 2 * m); };
+    this.ix = function (px) { return v.x0 + (px - m) / (w - 2 * m) * (v.x1 - v.x0); };
+    this.el = function (name, attrs, parent) {
+      var e = document.createElementNS(NS, name);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      (parent || p.g).appendChild(e);
+      return e;
+    };
+    var id = 'clip' + (++clipN);
+    var defs = document.createElementNS(NS, 'defs'); svg.appendChild(defs);
+    var cp = document.createElementNS(NS, 'clipPath'); cp.setAttribute('id', id); defs.appendChild(cp);
+    var cr = document.createElementNS(NS, 'rect');
+    cr.setAttribute('x', m); cr.setAttribute('y', m); cr.setAttribute('width', w - 2 * m); cr.setAttribute('height', h - 2 * m);
+    cp.appendChild(cr);
+    this.g = svg;
+    this.clip = this.el('g', { 'clip-path': 'url(#' + id + ')' });
+    this.text = function (x, y, s, opt) {
+      opt = opt || {};
+      var t = p.el('text', { x: p.sx(x) + (opt.dx || 0), y: p.sy(y) + (opt.dy || 0), 'class': opt.cls || 'lbl', 'text-anchor': opt.anchor || 'start' });
+      t.textContent = s;
+      return t;
+    };
+    this.axes = function (sx, sy, labelFn) {
+      var fmt = labelFn || function (t) { return String(Math.round(t * 100) / 100); };
+      var x, y;
+      for (x = Math.ceil(v.x0 / sx) * sx; x <= v.x1 + 1e-9; x += sx) {
+        p.el('line', { x1: p.sx(x), x2: p.sx(x), y1: m, y2: h - m, 'class': 'grid' }, p.clip);
+      }
+      for (y = Math.ceil(v.y0 / sy) * sy; y <= v.y1 + 1e-9; y += sy) {
+        p.el('line', { y1: p.sy(y), y2: p.sy(y), x1: m, x2: w - m, 'class': 'grid' }, p.clip);
+      }
+      p.el('line', { x1: m, x2: w - m, y1: p.sy(0), y2: p.sy(0), 'class': 'axis' }, p.clip);
+      p.el('line', { y1: m, y2: h - m, x1: p.sx(0), x2: p.sx(0), 'class': 'axis' }, p.clip);
+      var minGap = 34, lastX = -1e9;
+      for (x = Math.ceil(v.x0 / sx) * sx; x <= v.x1 + 1e-9; x += sx) {
+        if (Math.abs(x) < 1e-9 || p.sx(x) - lastX < minGap || p.sx(x) > w - 18) continue;
+        lastX = p.sx(x);
+        p.text(x, 0, fmt(x), { cls: 'tick', dy: 15, anchor: 'middle' });
+      }
+      for (y = Math.ceil(v.y0 / sy) * sy; y <= v.y1 + 1e-9; y += sy) {
+        if (Math.abs(y) < 1e-9 || p.sy(y) < 14 || p.sy(y) > h - 12) continue;
+        p.text(0, y, fmt(y), { cls: 'tick', dx: -6, dy: 4, anchor: 'end' });
+      }
+    };
+    this.path = function (f, cls, a, b, n) {
+      a = a === undefined ? v.x0 : a; b = b === undefined ? v.x1 : b; n = n || 420;
+      var d = '', pen = false, span = v.y1 - v.y0;
+      for (var i = 0; i <= n; i++) {
+        var x = a + (b - a) * i / n, y = f(x);
+        if (!isFinite(y) || y < v.y0 - 2 * span || y > v.y1 + 2 * span) { pen = false; continue; }
+        d += (pen ? 'L' : 'M') + p.sx(x).toFixed(1) + ' ' + p.sy(y).toFixed(1);
+        pen = true;
+      }
+      return p.el('path', { d: d, 'class': cls }, p.clip);
+    };
+    this.dot = function (x, y, cls, r) { return p.el('circle', { cx: p.sx(x), cy: p.sy(y), r: r || 5, 'class': cls || 'dot' }); };
+  }
+
+  /* ---------- 静态图 ---------- */
+  mount(document.getElementById('fig-cubic'), .8, function (svg, w, h) {
+    var p = new Plot(svg, w, h, { x0: -2.6, x1: 2.6, y0: -3.6, y1: 3.6 });
+    p.axes(1, 1);
+    var f = function (x) { return x * x * x - 3 * x; };
+    p.path(f, 's1');
+    p.dot(-1, 2); p.dot(1, -2); p.dot(0, 0, 'dot3');
+    p.text(-1, 2, '极大 (−1, 2)', { dy: -11, anchor: 'middle' });
+    p.text(1, -2, '极小 (1, −2)', { dy: 21, anchor: 'middle' });
+    p.text(0, 0, '拐点', { dx: 9, dy: -8 });
+  });
+  mount(document.getElementById('fig-xexp'), .8, function (svg, w, h) {
+    var p = new Plot(svg, w, h, { x0: -1, x1: 6, y0: -1.1, y1: .75 });
+    p.axes(1, .5);
+    var f = function (x) { return x * Math.exp(-x); };
+    p.path(f, 's1');
+    p.dot(1, 1 / Math.E); p.dot(2, 2 / Math.E / Math.E, 'dot3');
+    p.text(1, 1 / Math.E, '极大 (1, 1/e)', { dy: -11, anchor: 'middle' });
+    p.text(2, 2 / Math.E / Math.E, '拐点 (2, 2/e²)', { dx: 8, dy: -9 });
+  });
+  mount(document.getElementById('fig-area'), .8, function (svg, w, h) {
+    var p = new Plot(svg, w, h, { x0: -.22, x1: 1.35, y0: -.16, y1: 1.32 });
+    p.axes(.5, .5);
+    var d = '', i, x;
+    for (i = 0; i <= 60; i++) { x = i / 60; d += (i ? 'L' : 'M') + p.sx(x) + ' ' + p.sy(x); }
+    for (i = 60; i >= 0; i--) { x = i / 60; d += 'L' + p.sx(x) + ' ' + p.sy(x * x); }
+    p.el('path', { d: d + 'Z', 'class': 'fillc' }, p.clip);
+    p.path(function (x) { return x; }, 's2');
+    p.path(function (x) { return x * x; }, 's1');
+    p.dot(0, 0); p.dot(1, 1);
+    p.text(.72, .72, 'y = x', { dx: -44, dy: -8 });
+    p.text(1.05, 1.1, 'y = x²', { dx: 12, dy: 6 });
+    p.text(.56, .42, 'S', { anchor: 'middle', dy: 4 });
+  });
+  mount(document.getElementById('fig-volume'), .8, function (svg, w, h) {
+    var p = new Plot(svg, w, h, { x0: -.5, x1: 5, y0: -2.6, y1: 2.6 });
+    p.axes(1, 1);
+    var d = '', i, x;
+    for (i = 0; i <= 80; i++) { x = 4 * i / 80; d += (i ? 'L' : 'M') + p.sx(x) + ' ' + p.sy(Math.sqrt(x)); }
+    for (i = 80; i >= 0; i--) { x = 4 * i / 80; d += 'L' + p.sx(x) + ' ' + p.sy(-Math.sqrt(x)); }
+    p.el('path', { d: d + 'Z', 'class': 'fillc' }, p.clip);
+    [1, 2, 3, 4].forEach(function (c) {
+      var r = Math.abs(p.sy(Math.sqrt(c)) - p.sy(0));
+      p.el('ellipse', { cx: p.sx(c), cy: p.sy(0), rx: r * .22, ry: r, 'class': 'disc' }, p.clip);
+    });
+    p.path(Math.sqrt, 's1', 0, 4);
+    p.path(function (x) { return -Math.sqrt(x); }, 'sm', 0, 4);
+    p.text(2.2, Math.sqrt(2.2), 'y = √x', { dx: -8, dy: -12, anchor: 'end' });
+  });
+
+  /* ---------- 切线探索器 ---------- */
+  var PI = Math.PI;
+  var FNS = [
+    { key: 'cubic', name: 'x³−3x', tex: 'f(x)=x^3-3x', dtex: "f'(x)=3x^2-3",
+      f: function (x) { return x * x * x - 3 * x; }, d: function (x) { return 3 * x * x - 3; }, dd: function (x) { return 6 * x; },
+      view: { x0: -2.8, x1: 2.8, y0: -4.4, y1: 4.4 }, a: [-2.4, 2.4], a0: 1.6, sx: 1, sy: 2,
+      marks: [[-1, '极大'], [1, '极小'], [0, '拐点']] },
+    { key: 'sin', name: 'sin x', tex: 'f(x)=\\sin x', dtex: "f'(x)=\\cos x",
+      f: Math.sin, d: Math.cos, dd: function (x) { return -Math.sin(x); },
+      view: { x0: -6.8, x1: 6.8, y0: -2.2, y1: 2.2 }, a: [-6.28, 6.28], a0: .8, sx: 2, sy: 1,
+      marks: [[-PI / 2, '极小'], [PI / 2, '极大'], [0, '拐点']] },
+    { key: 'exp', name: 'eˣ', tex: 'f(x)=e^x', dtex: "f'(x)=e^x",
+      f: Math.exp, d: Math.exp, dd: Math.exp,
+      view: { x0: -3.2, x1: 2.8, y0: -1.2, y1: 8.4 }, a: [-3, 2], a0: .5, sx: 1, sy: 2, marks: [] },
+    { key: 'log', name: 'log x', tex: 'f(x)=\\log x', dtex: "f'(x)=\\dfrac1x",
+      f: Math.log, d: function (x) { return 1 / x; }, dd: function (x) { return -1 / (x * x); },
+      view: { x0: -.8, x1: 7.2, y0: -3.2, y1: 3.2 }, a: [.15, 6.8], a0: 1, sx: 1, sy: 1, marks: [[Math.E, '过原点的切线']] },
+    { key: 'xexp', name: 'x·e⁻ˣ', tex: 'f(x)=xe^{-x}', dtex: "f'(x)=(1-x)e^{-x}",
+      f: function (x) { return x * Math.exp(-x); }, d: function (x) { return (1 - x) * Math.exp(-x); }, dd: function (x) { return (x - 2) * Math.exp(-x); },
+      view: { x0: -1, x1: 6, y0: -1.6, y1: 1.1 }, a: [-.8, 5.6], a0: .3, sx: 1, sy: .5,
+      marks: [[1, '极大'], [2, '拐点']] }
+  ];
+  var S = { fn: FNS[0], a: FNS[0].a0, h: 1, sec: false, der: false };
+  var $ = function (id) { return document.getElementById(id); };
+  var exSvg = $('ex-svg'), aInput = $('ex-a'), hInput = $('ex-h'), curPlot = null;
+
+  function tex(el, s) {
+    if (window.katex) window.katex.render(s, el, { throwOnError: false });
+    else el.textContent = s;
+  }
+  function num(v) {
+    var s = v.toFixed(2);
+    return s === '-0.00' ? '0.00' : s;
+  }
+  function pointLabel(p, x, y) {
+    var flipX = p.sx(x) > p.w - 118, nearTop = p.sy(y) < 30;
+    p.text(x, y, '(' + num(x) + ', ' + num(y) + ')', { dx: flipX ? -11 : 11, dy: nearTop ? 22 : -11, anchor: flipX ? 'end' : 'start' });
+  }
+
+  function drawExplorer(svg, w, h) {
+    var fn = S.fn, a = S.a, p = new Plot(svg, w, h, fn.view), m = fn.d(a), ya = fn.f(a);
+    curPlot = p;
+    p.axes(fn.sx, fn.sy);
+    if (S.der) p.path(fn.d, 's4');
+    p.path(fn.f, 's1');
+    p.path(function (x) { return ya + m * (x - a); }, 's2', fn.view.x0, fn.view.x1, 2);
+    if (S.sec) {
+      var q = a + S.h, yq = fn.f(q), ms = (yq - ya) / S.h;
+      p.path(function (x) { return ya + ms * (x - a); }, 's3', fn.view.x0, fn.view.x1, 2);
+      if (yq >= fn.view.y0 && yq <= fn.view.y1) p.dot(q, yq, 'dot3');
+    }
+    if (ya >= fn.view.y0 && ya <= fn.view.y1) {
+      p.dot(a, ya, 'dot2', 7);
+      pointLabel(p, a, ya);
+    }
+  }
+  var renderEx = mount(exSvg, .62, drawExplorer);
+
+  function legend() {
+    var items = [['var(--c1)', 'solid', '曲线 y = f(x)'], ['var(--c2)', 'solid', '切线']];
+    if (S.sec) items.push(['var(--c3)', 'dashed', '割线']);
+    if (S.der) items.push(['var(--c4)', 'dotted', "导函数 y = f′(x)"]);
+    var box = $('ex-legend');
+    box.textContent = '';
+    items.forEach(function (it) {
+      var s = document.createElement('span'), i = document.createElement('i');
+      i.style.borderTopColor = it[0];
+      i.style.borderTopStyle = it[1];
+      s.appendChild(i);
+      s.appendChild(document.createTextNode(it[2]));
+      box.appendChild(s);
+    });
+  }
+
+  function update() {
+    var fn = S.fn, a = S.a, ya = fn.f(a), m = fn.d(a), dd = fn.dd(a);
+    renderEx();
+    aInput.value = a;
+    $('ex-a-out').textContent = num(a);
+    $('ex-h-out').textContent = num(S.h);
+    var c = ya - m * a, mz = Math.abs(m) < .005, cz = Math.abs(c) < .005;
+    var eq = 'y=' + (mz ? num(ya) : num(m) + 'x' + (cz ? '' : (c > 0 ? '+' : '-') + num(Math.abs(c))));
+    tex($('r-fn'), fn.tex + ',\\quad ' + fn.dtex);
+    tex($('r-pt'), '(' + num(a) + ',\\ ' + num(ya) + ')');
+    tex($('r-slope'), "f'(" + num(a) + ')=' + num(m));
+    tex($('r-eq'), eq);
+    $('r-sec-box').hidden = !S.sec;
+    if (S.sec) {
+      var ms = (fn.f(a + S.h) - ya) / S.h;
+      tex($('r-sec'), '\\dfrac{f(a+h)-f(a)}{h}=' + num(ms) + ',\\ \\text{差 }' + num(Math.abs(ms - m)));
+    }
+    var mono = mz ? '切线水平（$f\'=0$）' : (m > 0 ? '斜率为正：函数在此处增加（増加）' : '斜率为负：函数在此处减少（減少）');
+    var conv = Math.abs(dd) < .005 ? '二阶导为 0：这里是拐点候选' : (dd > 0 ? '$f\'\'&gt;0$：下凸（下に凸）' : '$f\'\'&lt;0$：上凸（上に凸）');
+    var extra = '';
+    if (mz) extra = dd < -.005 ? '，且上凸 → 极大值。' : (dd > .005 ? '，且下凸 → 极小值。' : '。');
+    var st = $('ex-status');
+    st.innerHTML = mono.replace(/\$f'=0\$/, "<span data-t=\"f'=0\"></span>") + (mz ? extra : '；');
+    if (!mz) {
+      var span = document.createElement('span');
+      span.innerHTML = conv.replace(/\$[^$]+\$/, function (s) {
+        return '<span data-t="' + s.slice(1, -1).replace(/&gt;/, '>').replace(/&lt;/, '<') + '"></span>';
+      }) + '。';
+      st.appendChild(span);
+    }
+    st.querySelectorAll('[data-t]').forEach(function (e) { tex(e, e.getAttribute('data-t')); });
+    Array.prototype.forEach.call($('ex-marks').querySelectorAll('button'), function (b) {
+      b.setAttribute('aria-pressed', Math.abs(parseFloat(b.dataset.a) - a) < .005);
+    });
+  }
+
+  function selectFn(fn) {
+    S.fn = fn; S.a = fn.a0;
+    aInput.min = fn.a[0]; aInput.max = fn.a[1]; aInput.step = .01;
+    Array.prototype.forEach.call($('ex-fns').children, function (b) {
+      b.setAttribute('aria-pressed', b.dataset.key === fn.key);
+    });
+    var marks = $('ex-marks');
+    marks.textContent = '';
+    fn.marks.forEach(function (mk, i) {
+      if (i === 0) marks.appendChild(document.createTextNode('跳到：'));
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.dataset.a = mk[0];
+      b.textContent = mk[1] + '（x = ' + num(mk[0]) + '）';
+      b.addEventListener('click', function () { S.a = mk[0]; update(); });
+      marks.appendChild(b);
+    });
+    update();
+  }
+  FNS.forEach(function (fn) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.dataset.key = fn.key; b.textContent = 'y = ' + fn.name;
+    b.addEventListener('click', function () { selectFn(fn); });
+    $('ex-fns').appendChild(b);
+  });
+  aInput.addEventListener('input', function () { S.a = parseFloat(aInput.value); update(); });
+  hInput.addEventListener('input', function () { S.h = parseFloat(hInput.value); update(); });
+  $('ex-sec').addEventListener('change', function (e) { S.sec = e.target.checked; $('ex-h-row').hidden = !S.sec; legend(); update(); });
+  $('ex-der').addEventListener('change', function (e) { S.der = e.target.checked; legend(); update(); });
+
+  function fromPointer(e) {
+    var r = exSvg.getBoundingClientRect();
+    var x = curPlot.ix((e.clientX - r.left) * (curPlot.w / r.width));
+    var lo = S.fn.a[0], hi = S.fn.a[1];
+    S.a = Math.max(lo, Math.min(hi, Math.round(x * 100) / 100));
+    update();
+  }
+  var dragging = false;
+  exSvg.addEventListener('pointerdown', function (e) {
+    dragging = true;
+    if (exSvg.setPointerCapture) exSvg.setPointerCapture(e.pointerId);
+    fromPointer(e);
+  });
+  exSvg.addEventListener('pointermove', function (e) { if (dragging) fromPointer(e); });
+  ['pointerup', 'pointercancel'].forEach(function (n) {
+    exSvg.addEventListener(n, function () { dragging = false; });
+  });
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['status', 'read'],
+      throwOnError: false
+    });
+    update();
+  }
+  legend();
+  selectFn(FNS[0]);
+  window.addEventListener('load', renderMath);
+})();
+</script>
+</body>
+</html>
