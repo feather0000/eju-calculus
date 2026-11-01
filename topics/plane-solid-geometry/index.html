@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 07 图形的性质</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：三角形边比与五心、切恩瓦与梅涅劳斯定理、圆幂定理、两圆位置关系、空间图形与欧拉多面体定理，含原创例题、练习题、交互演示和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#ex-svg { touch-action: pan-y; cursor: ew-resize; user-select: none; -webkit-user-select: none; background: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+.back { display: inline-block; color: #c5d3ef; text-decoration: none; font-size: 15px; margin-bottom: 18px; }
+.back:hover { text-decoration: underline; }
+#tri-svg { background: var(--surface); user-select: none; -webkit-user-select: none; touch-action: pan-y; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <a class="back" href="../../">← 目录</a>
+      <p class="eyebrow">EJU 数学コース2 · 出题项目 07 · 図形の性質</p>
+      <h1>图形的性质</h1>
+      <p class="lead">从三角形的边比与五心，到切恩瓦、梅涅劳斯定理、圆幂定理，再到空间图形与欧拉多面体定理：每个知识点都配小例子，再用原创的 EJU 风格填空题和练习题检验。日语术语随文标注，文末有完整对照表。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$\frac{AF}{FB}\cdot\frac{BD}{DC}\cdot\frac{CE}{EA}=1$$
+      $$PA\cdot PB=PC\cdot PD$$
+      $$v-e+f=2$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#ratio">1 边的比</a></li>
+        <li><a href="#centers">2 三角形五心</a></li>
+        <li><a href="#ceva">3 切恩瓦与梅涅劳斯</a></li>
+        <li><a href="#cyclic">4 圆内接四边形</a></li>
+        <li><a href="#circle-line">5 圆与直线</a></li>
+        <li><a href="#power">6 圆幂定理</a></li>
+        <li><a href="#two-circles">7 两圆位置关系</a></li>
+        <li><a href="#solid">8 直线与平面</a></li>
+        <li><a href="#polyhedron">9 多面体</a></li>
+        <li><a href="#examples">10 原创例题</a></li>
+        <li><a href="#practice">11 练习题</a></li>
+        <li><a href="#terms">12 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box warn" style="margin-top:28px">
+    <p><strong>范围说明：</strong>本页对应 JASSO 2026 年度起适用的数学シラバス中的项目 07「図形の性質」：三角形の辺の比、五心、チェバ・メネラウスの定理；円に内接する四角形、円と直線、方べきの定理、2円の位置関係；空間図形（直線と平面、多面体・オイラーの多面体定理）。</p>
+  </div>
+
+  <section id="ratio">
+    <h2>1 三角形的边比</h2>
+    <p class="jp-sub" lang="ja">三角形の辺の比 — 平行線と線分の比・角の二等分線</p>
+
+    <h3>平行线与线段的比</h3>
+    <p>在 $\triangle ABC$ 中，点 $P,Q$ 分别在边 $AB,AC$ 上。若 $PQ\parallel BC$，则</p>
+    $$AP:AB=AQ:AC=PQ:BC,\qquad AP:PB=AQ:QC.$$
+    <p>特别地，连接两边中点的线段平行于第三边，且等于第三边的一半（<span lang="ja">中点連結定理</span>）。相似比为 $k$ 的两个图形，面积比为 $k^2$，体积比为 $k^3$。</p>
+
+    <h3>角平分线定理</h3>
+    <p>设 $AD$ 是 $\angle A$ 的内角平分线（$D$ 在边 $BC$ 上），$AE$ 是外角平分线（$E$ 在直线 $BC$ 上，$AB\ne AC$）。它们都把 $BC$ 按 $AB:AC$ 分割：</p>
+    $$BD:DC=AB:AC,\qquad BE:EC=AB:AC.$$
+    <p>区别是 $D$ 为<strong>内分点</strong>（<span lang="ja">内分</span>），$E$ 为<strong>外分点</strong>（<span lang="ja">外分</span>）。内角平分线长还可以用下式快速求出：</p>
+    $$AD^2=AB\cdot AC-BD\cdot DC.$$
+    <div class="box good">
+      <p><strong>小例子：</strong>$AB=6,\ AC=4,\ BC=5$ 时，$BD:DC=3:2$，故 $BD=3,\ DC=2$，$AD^2=24-6=18$，$AD=3\sqrt2$。</p>
+    </div>
+  </section>
+
+  <section id="centers">
+    <h2>2 三角形的五心</h2>
+    <p class="jp-sub" lang="ja">五心 — 外心・内心・重心・垂心・傍心</p>
+    <div class="tw"><table>
+      <thead><tr><th>名称</th><th>定义（交点）</th><th>关键性质</th></tr></thead>
+      <tbody>
+        <tr><td><strong>外心</strong> <span lang="ja">外心</span> $O$</td><td>三边垂直平分线的交点</td><td>$OA=OB=OC=R$；锐角 $A$ 时 $\angle BOC=2\angle A$</td></tr>
+        <tr><td><strong>内心</strong> <span lang="ja">内心</span> $I$</td><td>三内角平分线的交点</td><td>到三边距离都是 $r$；$\angle BIC=90^\circ+\dfrac12\angle A$；$S=rs$，$s=\dfrac{a+b+c}{2}$</td></tr>
+        <tr><td><strong>重心</strong> <span lang="ja">重心</span> $G$</td><td>三中线的交点</td><td>把每条中线按 $2:1$ 分割（顶点一侧为 $2$）；$\triangle GBC=\dfrac13\triangle ABC$</td></tr>
+        <tr><td><strong>垂心</strong> <span lang="ja">垂心</span> $H$</td><td>三条高所在直线的交点</td><td>$AH=2R|\cos A|$；$\angle A$ 为锐角时 $\angle BHC=180^\circ-\angle A$</td></tr>
+        <tr><td><strong>傍心</strong> <span lang="ja">傍心</span> $I_A$</td><td>$\angle A$ 内角平分线与 $\angle B,\angle C$ 外角平分线的交点</td><td>旁切圆半径 $r_a=\dfrac{S}{s-a}$；一个三角形有 $3$ 个傍心</td></tr>
+      </tbody>
+    </table></div>
+    <p>此外，$AI:ID=(AB+AC):BC$（$D$ 为 $AI$ 与 $BC$ 的交点），这是对 $\triangle ABD$ 再用一次角平分线定理得到的。不是等边三角形时，$O,G,H$ 共线（欧拉线），且 $OG:GH=1:2$。</p>
+    <div class="box warn">
+      <p><strong>易错：</strong>钝角三角形的外心和垂心都在三角形外部；直角三角形的外心是斜边中点，垂心是直角顶点。可以在下面的演示里拖动顶点观察。</p>
+    </div>
+
+    <h3>五心探索器</h3>
+    <div class="explorer" id="centers-demo">
+      <div class="ex-head" id="tri-presets" role="group" aria-label="选择三角形形状"></div>
+      <div class="toggles" id="tri-toggles"></div>
+      <figure style="margin:0">
+        <svg class="chart" id="tri-svg" viewBox="0 0 640 440" role="img" aria-label="可拖动顶点的三角形，显示五心"></svg>
+        <figcaption>拖动顶点 A、B、C（也可用下方滑块移动顶点 A）。点或圆移出画面时，表示它离三角形很远。</figcaption>
+      </figure>
+      <div class="ctrl"><label for="ax">A 水平</label><input type="range" id="ax" min="20" max="620" step="1"><output id="ax-o"></output></div>
+      <div class="ctrl"><label for="ay">A 垂直</label><input type="range" id="ay" min="20" max="420" step="1"><output id="ay-o"></output></div>
+      <div class="read" id="tri-read"></div>
+    </div>
+  </section>
+
+  <section id="ceva">
+    <h2>3 切恩瓦定理与梅涅劳斯定理</h2>
+    <p class="jp-sub" lang="ja">チェバの定理・メネラウスの定理</p>
+    <div class="fig-pair">
+      <figure class="plot"><svg class="chart" viewBox="0 0 360 250" role="img" aria-label="切恩瓦定理示意图"><line class="s1" x1="170.0" y1="28.0" x2="35.0" y2="220.0"/><line class="s1" x1="35.0" y1="220.0" x2="320.0" y2="220.0"/><line class="s1" x1="320.0" y1="220.0" x2="170.0" y2="28.0"/><line class="sm" x1="170.0" y1="28.0" x2="149.0" y2="220.0"/><line class="sm" x1="35.0" y1="220.0" x2="270.0" y2="156.0"/><line class="sm" x1="320.0" y1="220.0" x2="68.8" y2="172.0"/><circle class="dot" cx="170.0" cy="28.0" r="4"/><circle class="dot" cx="35.0" cy="220.0" r="4"/><circle class="dot" cx="320.0" cy="220.0" r="4"/><circle class="dot" cx="149.0" cy="220.0" r="4"/><circle class="dot" cx="270.0" cy="156.0" r="4"/><circle class="dot" cx="68.8" cy="172.0" r="4"/><circle class="dot2" cx="152.5" cy="188.0" r="4"/><text class="lbl" text-anchor="middle" x="170.0" y="18.0">A</text><text class="lbl" text-anchor="middle" x="25.0" y="236.0">B</text><text class="lbl" text-anchor="middle" x="330.0" y="236.0">C</text><text class="lbl" text-anchor="middle" x="149.0" y="240.0">D</text><text class="lbl" text-anchor="middle" x="282.0" y="152.0">E</text><text class="lbl" text-anchor="middle" x="56.8" y="170.0">F</text><text class="lbl" text-anchor="middle" x="163.5" y="181.0">O</text></svg><figcaption>切恩瓦：$AD,BE,CF$ 交于一点 $O$（图中为 $AF:FB=3:1,\ BD:DC=2:3,\ CE:EA=1:2$）。</figcaption></figure>
+      <figure class="plot"><svg class="chart" viewBox="0 0 360 250" role="img" aria-label="梅涅劳斯定理示意图"><line class="s1" x1="120.0" y1="28.0" x2="30.0" y2="215.0"/><line class="s1" x1="30.0" y1="215.0" x2="230.0" y2="215.0"/><line class="s1" x1="230.0" y1="215.0" x2="120.0" y2="28.0"/><line class="sm" x1="230.0" y1="215.0" x2="330.0" y2="215.0"/><line class="s2" x1="60.0" y1="152.7" x2="330.0" y2="215.0"/><circle class="dot" cx="120.0" cy="28.0" r="4"/><circle class="dot" cx="30.0" cy="215.0" r="4"/><circle class="dot" cx="230.0" cy="215.0" r="4"/><circle class="dot" cx="60.0" cy="152.7" r="4"/><circle class="dot" cx="214.3" cy="188.3" r="4"/><circle class="dot" cx="330.0" cy="215.0" r="4"/><text class="lbl" text-anchor="middle" x="120.0" y="18.0">A</text><text class="lbl" text-anchor="middle" x="22.0" y="233.0">B</text><text class="lbl" text-anchor="middle" x="226.0" y="235.0">C</text><text class="lbl" text-anchor="middle" x="334.0" y="235.0">D</text><text class="lbl" text-anchor="middle" x="224.3" y="178.3">E</text><text class="lbl" text-anchor="middle" x="47.0" y="149.7">F</text></svg><figcaption>梅涅劳斯：一条直线截三角形三边所在直线于 $F,E,D$（图中 $AF:FB=2:1,\ BD:DC=3:1,\ CE:EA=1:6$）。</figcaption></figure>
+    </div>
+    <h3>切恩瓦定理（チェバ）</h3>
+    <p>$\triangle ABC$ 的三条线 $AD,BE,CF$ 交于一点时，</p>
+    $$\frac{AF}{FB}\cdot\frac{BD}{DC}\cdot\frac{CE}{EA}=1.$$
+    <h3>梅涅劳斯定理（メネラウス）</h3>
+    <p>一条不过顶点的直线与直线 $AB,BC,CA$ 分别交于 $F,D,E$ 时，公式形式相同：</p>
+    $$\frac{AF}{FB}\cdot\frac{BD}{DC}\cdot\frac{CE}{EA}=1.$$
+    <div class="box">
+      <p><strong>记忆方法：</strong>从一个顶点出发，沿三角形绕一圈：顶点 → 分点 → 顶点 → 分点 → 顶点 → 分点 → 回到起点。依次写成「分子、分母」交替。梅涅劳斯定理的关键是选好<strong>哪个三角形</strong>和<strong>哪条截线</strong>：要求 $BO:OE$，就选以 $BE$ 为一边的 $\triangle ABE$，截线取 $C,O,F$ 所在直线。</p>
+    </div>
+    <p>两个定理的逆命题也成立，可用于证明三线共点（切恩瓦）或三点共线（梅涅劳斯）。线段比求出后，常继续用「同高的三角形面积比等于底边比」求面积比。</p>
+  </section>
+
+  <section id="cyclic">
+    <h2>4 圆内接四边形</h2>
+    <p class="jp-sub" lang="ja">円に内接する四角形 — 円周角の定理</p>
+    <p>基础是<strong>圆周角定理</strong>（<span lang="ja">円周角の定理</span>）：同弧所对的圆周角相等，且等于圆心角的一半；直径所对的圆周角为 $90^\circ$。</p>
+    <p>四边形 $ABCD$ 内接于圆时：</p>
+    <ul>
+      <li>对角互补：$\angle A+\angle C=\angle B+\angle D=180^\circ$；</li>
+      <li>外角等于内对角；</li>
+      <li>同弧上的角相等，如 $\angle ACB=\angle ADB$。</li>
+    </ul>
+    <p>逆命题同样成立：只要满足对角互补，或同侧两点对同一线段的张角相等，四点就共圆（<span lang="ja">4点が同一円周上にある</span>）。</p>
+    <p>计算时最常用的是对对角线 $AC$ 用两次余弦定理，并代入 $\cos D=-\cos B$：</p>
+    $$AB^2+BC^2-2AB\cdot BC\cos B=CD^2+DA^2+2CD\cdot DA\cos B.$$
+  </section>
+
+  <section id="circle-line">
+    <h2>5 圆与直线</h2>
+    <p class="jp-sub" lang="ja">円と直線 — 接線の長さ・接弦定理</p>
+    <p>设圆心到直线的距离为 $d$，半径为 $r$：$d&lt;r$ 时有 $2$ 个交点，$d=r$ 时相切（$1$ 个切点），$d&gt;r$ 时没有公共点。切线垂直于过切点的半径。</p>
+    <h3>切线长定理</h3>
+    <p>从圆外一点 $P$ 引两条切线，切点为 $A,B$，则 $PA=PB$。应用到内切圆：设切点把三边分开，$a=BC,\ b=CA,\ c=AB$，则从 $A$ 到切点的长度为</p>
+    $$\frac{b+c-a}{2}=s-a.$$
+    <h3>接弦定理（弦切角定理）</h3>
+    <p>圆的切线与过切点的弦所成的角，等于该角内部的弧所对的圆周角（<span lang="ja">接弦定理</span>）。</p>
+  </section>
+
+  <section id="power">
+    <h2>6 圆幂定理</h2>
+    <p class="jp-sub" lang="ja">方べきの定理</p>
+    <div class="fig-pair">
+      <figure class="plot"><svg class="chart" viewBox="0 0 360 240" role="img" aria-label="圆内一点的圆幂定理示意图"><circle cx="170" cy="120" r="95" fill="none" class="s1"/><line class="s2" x1="80.7" y1="87.5" x2="259.3" y2="152.5"/><line class="s2" x1="202.5" y1="30.7" x2="122.5" y2="202.3"/><circle class="dot" cx="80.7" cy="87.5" r="4"/><circle class="dot" cx="259.3" cy="152.5" r="4"/><circle class="dot" cx="202.5" cy="30.7" r="4"/><circle class="dot" cx="122.5" cy="202.3" r="4"/><circle class="dot2" cx="162.2" cy="117.2" r="4"/><text class="lbl" text-anchor="middle" x="68.7" y="91.5">A</text><text class="lbl" text-anchor="middle" x="271.3" y="156.5">B</text><text class="lbl" text-anchor="middle" x="210.5" y="22.7">C</text><text class="lbl" text-anchor="middle" x="114.5" y="220.3">D</text><text class="lbl" text-anchor="middle" x="174.2" y="109.2">P</text></svg><figcaption>点 $P$ 在圆内：两弦相交。</figcaption></figure>
+      <figure class="plot"><svg class="chart" viewBox="0 0 360 240" role="img" aria-label="圆外一点的圆幂定理示意图"><circle cx="235" cy="120" r="90" fill="none" class="s1"/><line class="s2" x1="28.0" y1="120.0" x2="312.9" y2="165.1"/><line class="s2" x1="28.0" y1="120.0" x2="195.9" y2="39.0"/><circle class="dot" cx="147.0" cy="138.8" r="4"/><circle class="dot" cx="312.9" cy="165.1" r="4"/><circle class="dot" cx="195.9" cy="39.0" r="4"/><circle class="dot2" cx="28.0" cy="120.0" r="4"/><text class="lbl" text-anchor="middle" x="26.0" y="110.0">P</text><text class="lbl" text-anchor="middle" x="145.0" y="158.8">A</text><text class="lbl" text-anchor="middle" x="322.9" y="183.1">B</text><text class="lbl" text-anchor="middle" x="193.9" y="29.0">T</text></svg><figcaption>点 $P$ 在圆外：割线与切线。</figcaption></figure>
+    </div>
+    <p>过点 $P$ 的两条直线分别与圆交于 $A,B$ 和 $C,D$，无论 $P$ 在圆内还是圆外，都有</p>
+    $$PA\cdot PB=PC\cdot PD.$$
+    <p>$P$ 在圆外且 $PT$ 为切线（$T$ 为切点）时，</p>
+    $$PA\cdot PB=PT^2.$$
+    <p>这个定理来自相似三角形：例如圆外情形中 $\triangle PAD\sim\triangle PCB$，所以 $PA:PC=PD:PB=AD:CB$。这个相似关系本身也经常被考。</p>
+    <p>设圆心为 $O$，半径为 $r$，还可以统一写成 $PA\cdot PB=|OP^2-r^2|$。逆定理也成立，可用于判断四点共圆或相切。</p>
+    <div class="box warn">
+      <p><strong>易错：</strong>$PA,PB$ 都是<strong>从 $P$ 量起</strong>的长度。圆外情形下 $PB=PA+AB$，不要把 $AB$ 直接代入。</p>
+    </div>
+  </section>
+
+  <section id="two-circles">
+    <h2>7 两圆的位置关系</h2>
+    <p class="jp-sub" lang="ja">2円の位置関係 — 共通接線</p>
+    <p>设半径 $R&gt;r$，圆心距为 $d$：</p>
+    <div class="tw"><table>
+      <thead><tr><th>位置关系</th><th>条件</th><th>公共点</th><th>公切线条数</th></tr></thead>
+      <tbody>
+        <tr><td>外离 <span lang="ja">離れている</span></td><td>$d&gt;R+r$</td><td>$0$</td><td>$4$</td></tr>
+        <tr><td>外切 <span lang="ja">外接</span></td><td>$d=R+r$</td><td>$1$</td><td>$3$</td></tr>
+        <tr><td>相交 <span lang="ja">2点で交わる</span></td><td>$R-r&lt;d&lt;R+r$</td><td>$2$</td><td>$2$</td></tr>
+        <tr><td>内切 <span lang="ja">内接</span></td><td>$d=R-r$</td><td>$1$</td><td>$1$</td></tr>
+        <tr><td>内含 <span lang="ja">内部にある</span></td><td>$d&lt;R-r$</td><td>$0$</td><td>$0$</td></tr>
+      </tbody>
+    </table></div>
+    <p>公切线（<span lang="ja">共通接線</span>）上两切点间的距离，用勾股定理求（把一个半径平移过去造直角三角形）：</p>
+    <div class="formula-grid">
+      <div>外公切线：$\sqrt{d^2-(R-r)^2}$</div>
+      <div>内公切线：$\sqrt{d^2-(R+r)^2}$</div>
+    </div>
+    <p>两圆外切时，外公切线上的切点距离化简为 $2\sqrt{Rr}$。</p>
+  </section>
+
+  <section id="solid">
+    <h2>8 空间图形：直线与平面</h2>
+    <p class="jp-sub" lang="ja">空間図形 — 直線と平面・三垂線の定理</p>
+    <h3>位置关系</h3>
+    <ul>
+      <li>两直线：相交、平行、<strong>异面</strong>（<span lang="ja">ねじれの位置</span>，既不相交也不平行）。</li>
+      <li>直线与平面：包含于平面、相交（一个公共点）、平行。</li>
+      <li>两平面：相交（交线为直线）、平行。</li>
+    </ul>
+    <p>异面直线所成的角：平移其中一条使它们相交后量取的角。</p>
+    <h3>直线与平面垂直</h3>
+    <p>直线 $\ell$ 垂直于平面 $\alpha$ 内的<strong>两条相交直线</strong>时，$\ell\perp\alpha$，此时 $\ell$ 与 $\alpha$ 内所有直线都垂直。</p>
+    <h3>三垂线定理</h3>
+    <p>设 $\ell$ 是平面 $\alpha$ 内的直线，$A$ 是 $\alpha$ 内不在 $\ell$ 上的点，$P$ 是 $\alpha$ 外的点，$H$ 是 $\ell$ 上的点。</p>
+    <ul>
+      <li>$PA\perp\alpha,\ AH\perp\ell\ \Rightarrow\ PH\perp\ell$；</li>
+      <li>$PA\perp\alpha,\ PH\perp\ell\ \Rightarrow\ AH\perp\ell$；</li>
+      <li>$PH\perp\ell,\ AH\perp\ell,\ PA\perp AH\ \Rightarrow\ PA\perp\alpha$。</li>
+    </ul>
+    <div class="box good">
+      <p><strong>解题技巧：</strong>求点到平面的距离时，常用「等体积法」：用两种底面表示同一个四面体的体积，$V=\dfrac13 Sh$，再解出 $h$。棱长为 $a$ 的正四面体，高为 $\dfrac{\sqrt6}{3}a$，体积为 $\dfrac{\sqrt2}{12}a^3$。</p>
+    </div>
+  </section>
+
+  <section id="polyhedron">
+    <h2>9 多面体与欧拉多面体定理</h2>
+    <p class="jp-sub" lang="ja">多面体・オイラーの多面体定理</p>
+    <p>对凸多面体（<span lang="ja">凸多面体</span>），设顶点数 $v$、棱数 $e$、面数 $f$，<strong>欧拉多面体定理</strong>为</p>
+    $$v-e+f=2.$$
+    <p>每个面全等于同一种正多边形、每个顶点汇集的面数都相同的凸多面体叫<strong>正多面体</strong>（<span lang="ja">正多面体</span>），只有 $5$ 种：</p>
+    <div class="tw"><table>
+      <thead><tr><th>名称</th><th>面的形状</th><th>$v$</th><th>$e$</th><th>$f$</th><th>每顶点的面数</th></tr></thead>
+      <tbody>
+        <tr><td>正四面体 <span lang="ja">正四面体</span></td><td>正三角形</td><td>$4$</td><td>$6$</td><td>$4$</td><td>$3$</td></tr>
+        <tr><td>正六面体 <span lang="ja">正六面体</span></td><td>正方形</td><td>$8$</td><td>$12$</td><td>$6$</td><td>$3$</td></tr>
+        <tr><td>正八面体 <span lang="ja">正八面体</span></td><td>正三角形</td><td>$6$</td><td>$12$</td><td>$8$</td><td>$4$</td></tr>
+        <tr><td>正十二面体 <span lang="ja">正十二面体</span></td><td>正五边形</td><td>$20$</td><td>$30$</td><td>$12$</td><td>$3$</td></tr>
+        <tr><td>正二十面体 <span lang="ja">正二十面体</span></td><td>正三角形</td><td>$12$</td><td>$30$</td><td>$20$</td><td>$5$</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box">
+      <p><strong>数棱的技巧：</strong>每条棱恰好被两个面共用，所以 $2e=$（各面边数之和）。例如全由三角形构成时，$3f=2e$。把这个关系和 $v-e+f=2$ 联立，就能由一个量求出其余的量。</p>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2>10 原创 EJU 风格例题</h2>
+    <p class="jp-sub">以下题目均为本讲义<strong>原创</strong>，仅模仿 EJU 的填空形式，并非真题。</p>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框字母对应一个数字（$0$–$9$），例如 $\B{AB}$ 是两位数；分数要约到最简，根号内的数要尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>例题 1　角平分线与内心</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中，$AB=6,\ BC=5,\ CA=4$。$\angle A$ 的平分线与边 $BC$ 交于 $D$，$\triangle ABC$ 的内心为 $I$。</p>
+      <p>(1) $BD=\B{A}$，$DC=\B{B}$，$AD=\B{C}\sqrt{\B{D}}$。</p>
+      <p>(2) $AI:ID=\B{E}:\B{F}$。</p>
+      <p>(3) 内切圆的半径为 $\dfrac{\sqrt{\B{G}}}{\B{H}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 3</li><li>B = 2</li><li>C = 3</li><li>D = 2</li><li>E = 2</li><li>F = 1</li><li>G = 7</li><li>H = 2</li></ul>
+        <p>(1) $BD:DC=AB:AC=3:2$，又 $BC=5$，故 $BD=3,\ DC=2$。$AD^2=AB\cdot AC-BD\cdot DC=24-6=18$，$AD=3\sqrt2$。</p>
+        <p>(2) $BI$ 是 $\triangle ABD$ 中 $\angle B$ 的平分线，所以 $AI:ID=BA:BD=6:3=2:1$。</p>
+        <p>(3) $s=\dfrac{15}{2}$，海伦公式给出 $S=\sqrt{\dfrac{15}{2}\cdot\dfrac32\cdot\dfrac52\cdot\dfrac72}=\dfrac{15\sqrt7}{4}$。由 $S=rs$ 得 $r=\dfrac{\sqrt7}{2}$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 2　切恩瓦、梅涅劳斯与面积比</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中，边 $AB$ 上的点 $F$ 满足 $AF:FB=1:2$，边 $AC$ 上的点 $E$ 满足 $AE:EC=3:2$。线段 $BE$ 与 $CF$ 交于 $O$，直线 $AO$ 与边 $BC$ 交于 $D$。</p>
+      <p>(1) $BD:DC=\B{A}:\B{B}$。</p>
+      <p>(2) $BO:OE=\B{C}:\B{D}$。</p>
+      <p>(3) $\triangle OBC$ 的面积是 $\triangle ABC$ 面积的 $\dfrac{\B{E}}{\B{F}}$ 倍。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 3</li><li>B = 1</li><li>C = 5</li><li>D = 1</li><li>E = 1</li><li>F = 3</li></ul>
+        <p>(1) 切恩瓦定理：$\dfrac12\cdot\dfrac{BD}{DC}\cdot\dfrac23=1$，所以 $\dfrac{BD}{DC}=3$。</p>
+        <p>(2) 对 $\triangle ABE$ 和截线 $F,O,C$ 用梅涅劳斯定理：$\dfrac{AF}{FB}\cdot\dfrac{BO}{OE}\cdot\dfrac{EC}{CA}=1$，即 $\dfrac12\cdot\dfrac{BO}{OE}\cdot\dfrac25=1$，得 $\dfrac{BO}{OE}=5$。</p>
+        <p>(3) $\triangle EBC=\dfrac25\triangle ABC$，$\triangle OBC=\dfrac56\triangle EBC$，所以 $\triangle OBC=\dfrac25\cdot\dfrac56\triangle ABC=\dfrac13\triangle ABC$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 3　圆内接四边形与圆幂定理</b><span class="origin">原创</span></div>
+      <p>四边形 $ABCD$ 内接于圆，$AB=5,\ BC=6,\ CD=2,\ DA=3$。</p>
+      <p>(1) $\cos\angle ABC=\dfrac{\B{A}}{\B{B}}$，$AC=\sqrt{\B{CD}}$。</p>
+      <p>(2) 四边形 $ABCD$ 的面积为 $\B{E}\sqrt{\B{F}}$。</p>
+      <p>(3) 延长 $BA$ 与 $CD$，两线交于 $P$。则 $PA=\B{G}$，$PD=\B{H}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 3</li><li>CD = 21</li><li>E = 6</li><li>F = 5</li><li>G = 3</li><li>H = 4</li></ul>
+        <p>(1) 设 $c=\cos\angle ABC$，则 $\cos\angle ADC=-c$。对 $AC$ 用两次余弦定理：$61-60c=13+12c$，故 $c=\dfrac23$，$AC^2=61-40=21$。</p>
+        <p>(2) $\sin\angle ABC=\dfrac{\sqrt5}{3}$，面积 $=\dfrac12(5\cdot6+2\cdot3)\cdot\dfrac{\sqrt5}{3}=6\sqrt5$。</p>
+        <p>(3) $\triangle PAD\sim\triangle PCB$，相似比 $AD:CB=1:2$，所以 $PC=2PA$，$PB=2PD$。设 $PA=x,\ PD=y$，由 $PC=y+2$，$PB=x+5$ 得 $y+2=2x$，$x+5=2y$，解得 $x=3,\ y=4$。验算：$PA\cdot PB=3\cdot8=24=4\cdot6=PD\cdot PC$，符合圆幂定理。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 4　两圆与公切线</b><span class="origin">原创</span></div>
+      <p>半径为 $9$ 的圆 $O_1$ 与半径为 $4$ 的圆 $O_2$ 外切，且都与直线 $\ell$ 相切于同一侧，切点分别为 $S,T$。</p>
+      <p>(1) $O_1O_2=\B{AB}$，$ST=\B{CD}$。</p>
+      <p>(2) 再作一个圆 $O_3$，它与 $O_1,O_2$ 都外切，也与 $\ell$ 相切，且位于 $O_1,O_2$ 与 $\ell$ 围成的区域内。它的半径为 $\dfrac{\B{EF}}{\B{GH}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>AB = 13</li><li>CD = 12</li><li>EF = 36</li><li>GH = 25</li></ul>
+        <p>(1) $O_1O_2=9+4=13$，$ST=\sqrt{13^2-(9-4)^2}=12$（也等于 $2\sqrt{9\cdot4}$）。</p>
+        <p>(2) 设 $O_3$ 半径为 $r$，它与 $\ell$ 的切点为 $U$。同理 $SU=2\sqrt{9r}=6\sqrt r$，$UT=2\sqrt{4r}=4\sqrt r$。由 $SU+UT=ST$ 得 $10\sqrt r=12$，$\sqrt r=\dfrac65$，$r=\dfrac{36}{25}$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 5　切去角的立方体</b><span class="origin">原创</span></div>
+      <p>棱长为 $6$ 的立方体 $ABCD\text{-}EFGH$（$AE,BF,CG,DH$ 为平行的棱）。</p>
+      <p>(1) 过每个顶点出发的三条棱的中点作平面，切去全部 $8$ 个角，得到的凸多面体有顶点 $\B{AB}$ 个、棱 $\B{CD}$ 条、面 $\B{EF}$ 个，体积为 $\B{GHI}$。</p>
+      <p>(2) 回到原立方体，$\triangle BDE$ 的面积为 $\B{JK}\sqrt{\B{L}}$，点 $A$ 到平面 $BDE$ 的距离为 $\B{M}\sqrt{\B{N}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>AB = 12</li><li>CD = 24</li><li>EF = 14</li><li>GHI = 180</li><li>JK = 18</li><li>L = 3</li><li>M = 2</li><li>N = 3</li></ul>
+        <p>(1) 顶点是立方体 $12$ 条棱的中点，$v=12$。面：原来 $6$ 个面各剩一个正方形，加上切出的 $8$ 个正三角形，$f=14$。棱：$2e=6\cdot4+8\cdot3=48$，$e=24$。验算：$12-24+14=2$。每个切去的三棱锥体积为 $\dfrac13\cdot\dfrac12\cdot3\cdot3\cdot3=\dfrac92$，所以体积 $=216-8\cdot\dfrac92=180$。</p>
+        <p>(2) $\triangle BDE$ 是边长 $6\sqrt2$ 的正三角形，面积 $=\dfrac{\sqrt3}{4}\cdot72=18\sqrt3$。三棱锥 $A\text{-}BDE$ 的体积 $=\dfrac13\cdot\dfrac12\cdot6\cdot6\cdot6=36$。设距离为 $h$，则 $\dfrac13\cdot18\sqrt3\cdot h=36$，$h=2\sqrt3$。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>11 练习题</h2>
+    <div class="bar">
+      <p class="jp-sub" style="margin:0">共 16 题，全部原创，点击按钮查看答案与解析。</p>
+      <button class="chip" id="toggle-all" type="button">显示全部答案</button>
+    </div>
+    <div class="q"><div class="q-head"><b>练习 1　外心与圆心角</b><span class="origin">原创</span></div>
+      <p>$O$ 是锐角 $\triangle ABC$ 的外心，$\angle BAC=50^\circ$。求 $\angle BOC$ 和 $\angle OBC$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\angle BOC=100^\circ$，$\angle OBC=40^\circ$。圆心角是圆周角的 $2$ 倍；$\triangle OBC$ 是等腰三角形，$\angle OBC=\dfrac{180^\circ-100^\circ}{2}$。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 2　内心的角度</b><span class="origin">原创</span></div>
+      <p>$I$ 是 $\triangle ABC$ 的内心，$\angle A=70^\circ$。求 $\angle BIC$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\angle BIC=90^\circ+\dfrac{70^\circ}{2}=125^\circ$。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 3　重心与平行线</b><span class="origin">原创</span></div>
+      <p>$G$ 是 $\triangle ABC$ 的重心，$BC=12$。过 $G$ 作 $BC$ 的平行线，交 $AB,AC$ 于 $P,Q$。求 $PQ$ 以及 $\triangle APQ$ 与 $\triangle ABC$ 的面积比。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$PQ=8$，面积比 $4:9$。$AG$ 是中线的 $\dfrac23$，故相似比为 $2:3$，$PQ=\dfrac23\cdot12=8$。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 4　外角平分线</b><span class="origin">原创</span></div>
+      <p>$AB=6,\ AC=4,\ BC=5$。$\angle A$ 的外角平分线与直线 $BC$ 交于 $E$，求 $CE$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$CE=10$。$BE:EC=6:4=3:2$，$E$ 在 $BC$ 延长线上（$C$ 一侧），$BE-EC=5$，故 $EC=10$，$BE=15$。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 5　内切圆与旁切圆</b><span class="origin">原创</span></div>
+      <p>三边为 $3,4,5$ 的直角三角形，求内切圆半径 $r$，以及与斜边相切的旁切圆半径 $r_c$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$r=1$，$r_c=6$。$S=6,\ s=6$，$r=\dfrac Ss=1$，$r_c=\dfrac{S}{s-5}=6$。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 6　垂心与外接圆</b><span class="origin">原创</span></div>
+      <p>锐角 $\triangle ABC$ 中 $\angle A=60^\circ$，外接圆半径 $R=5$，$H$ 为垂心。求 $AH$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$AH=5$。$AH=2R\cos A=2\cdot5\cdot\dfrac12=5$。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 7　切恩瓦定理</b><span class="origin">原创</span></div>
+      <p>$AD,BE,CF$ 交于一点，$BD:DC=2:3$，$CE:EA=1:2$。求 $AF:FB$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$AF:FB=3:1$。$\dfrac{AF}{FB}\cdot\dfrac23\cdot\dfrac12=1$，所以 $\dfrac{AF}{FB}=3$。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 8　梅涅劳斯定理</b><span class="origin">原创</span></div>
+      <p>直线与边 $AB,AC$ 分别交于 $F,E$，与边 $BC$ 在 $C$ 一侧的延长线交于 $D$。$AF:FB=2:1$，$BD:DC=3:1$。求 $AE:EC$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$AE:EC=6:1$。$2\cdot3\cdot\dfrac{CE}{EA}=1$，所以 $\dfrac{CE}{EA}=\dfrac16$。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 9　圆内接四边形的角</b><span class="origin">原创</span></div>
+      <p>四边形 $ABCD$ 内接于圆，$\angle ABD=40^\circ$，$\angle ADB=60^\circ$。求 $\angle BCD$ 和 $\angle ACB$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\angle BCD=100^\circ$，$\angle ACB=60^\circ$。$\angle BAD=80^\circ$，对角互补得 $\angle BCD=100^\circ$；$\angle ACB$ 与 $\angle ADB$ 对同弧 $AB$，相等。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 10　弦切角定理</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 内接于圆，点 $A$ 处的切线与弦 $AB$ 所成的角为 $50^\circ$（该角内部的弧不含 $C$），$\angle ABC=70^\circ$。求 $\angle BAC$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\angle BAC=60^\circ$。由接弦定理 $\angle ACB=50^\circ$，所以 $\angle BAC=180^\circ-50^\circ-70^\circ$。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 11　内切圆的切点</b><span class="origin">原创</span></div>
+      <p>$AB=7,\ BC=8,\ CA=9$，内切圆与 $BC$ 切于 $D$。求 $BD$ 和 $DC$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$BD=3,\ DC=5$。$s=12$，$BD=s-CA=3$，$DC=s-AB=5$。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 12　圆幂定理：圆内与圆外</b><span class="origin">原创</span></div>
+      <p>(1) 两弦 $AB,CD$ 交于圆内一点 $P$，$PA=4,\ PB=6,\ PC=3$，求 $PD$。(2) 从圆外一点 $P$ 引割线交圆于 $A,B$（$PA&lt;PB$），$PA=3,\ AB=5$，切线切圆于 $T$，求 $PT$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>(1) $PD=8$，因为 $4\cdot6=3\cdot PD$。(2) $PT=2\sqrt6$，因为 $PB=8$，$PT^2=3\cdot8=24$。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 13　两圆的公切线</b><span class="origin">原创</span></div>
+      <p>两圆半径为 $5$ 和 $3$，圆心距为 $10$。求外公切线和内公切线上两切点间的距离。另外，圆心距分别为 $9,8,5,2,1$ 时，公切线各有几条？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>外公切线 $\sqrt{100-4}=4\sqrt6$，内公切线 $\sqrt{100-64}=6$。公切线条数依次为 $4,3,2,1,0$（$R+r=8$，$R-r=2$）。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 14　欧拉多面体定理</b><span class="origin">原创</span></div>
+      <p>(1) 一个凸多面体的面全为三角形，顶点数为 $12$，求棱数和面数。(2) 足球形状的多面体有 $12$ 个正五边形和 $20$ 个正六边形，求 $v,e,f$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>(1) $e=30,\ f=20$：$3f=2e$ 与 $12-e+f=2$ 联立。(2) $f=32$；$2e=12\cdot5+20\cdot6=180$，$e=90$；$v=2+e-f=60$。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 15　正四面体</b><span class="origin">原创</span></div>
+      <p>棱长为 $6$ 的正四面体，求高、体积和内切球半径。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>高 $2\sqrt6$，体积 $18\sqrt2$，内切球半径 $\dfrac{\sqrt6}{2}$。底面重心到顶点距离 $2\sqrt3$，高 $=\sqrt{36-12}$；底面积 $9\sqrt3$；由 $V=\dfrac13\cdot4S\cdot r$ 得 $r=\dfrac{3V}{4S}$，也就是高的 $\dfrac14$。</p></div></div>
+    <div class="q"><div class="q-head"><b>练习 16　异面直线与三垂线</b><span class="origin">原创</span></div>
+      <p>(1) 立方体 $ABCD\text{-}EFGH$（$AE,BF,CG,DH$ 为棱）中，求异面直线 $AC$ 与 $BG$ 所成的角。(2) $PA$ 垂直于平面 $\alpha$，$PA=3$；$\alpha$ 内直线 $\ell$ 与点 $A$ 的距离为 $4$。求 $P$ 到 $\ell$ 的距离。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>(1) $60^\circ$：$BG\parallel AH$，而 $AC,CH,HA$ 都是面对角线，$\triangle ACH$ 是正三角形。(2) $5$：设 $H$ 是 $A$ 到 $\ell$ 的垂足，由三垂线定理 $PH\perp\ell$，$PH=\sqrt{9+16}$。</p></div></div>
+
+  </section>
+
+  <section id="terms">
+    <h2>12 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页按 JASSO 数学シラバス项目 07 组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。所有例题和练习题均为原创，答案已用 Python（SymPy）计算核对。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['三角形', [
+      ['内分', 'ないぶん', '内分'], ['外分', 'がいぶん', '外分'], ['中点連結定理', 'ちゅうてんれんけつていり', '中位线定理'],
+      ['角の二等分線', 'かくのにとうぶんせん', '角平分线'], ['垂直二等分線', 'すいちょくにとうぶんせん', '垂直平分线'], ['中線', 'ちゅうせん', '中线'],
+      ['外心', 'がいしん', '外心'], ['内心', 'ないしん', '内心'], ['重心', 'じゅうしん', '重心'],
+      ['垂心', 'すいしん', '垂心'], ['傍心', 'ぼうしん', '旁心'], ['外接円', 'がいせつえん', '外接圆'],
+      ['内接円', 'ないせつえん', '内切圆'], ['傍接円', 'ぼうせつえん', '旁切圆'], ['チェバの定理', 'チェバのていり', '切恩瓦定理（塞瓦定理）'],
+      ['メネラウスの定理', 'メネラウスのていり', '梅涅劳斯定理']
+    ]],
+    ['圆', [
+      ['円周角', 'えんしゅうかく', '圆周角'], ['中心角', 'ちゅうしんかく', '圆心角'], ['弦', 'げん', '弦'],
+      ['弧', 'こ', '弧'], ['接線', 'せっせん', '切线'], ['接点', 'せってん', '切点'],
+      ['接弦定理', 'せつげんていり', '弦切角定理'], ['方べきの定理', 'ほうべきのていり', '圆幂定理'], ['円に内接する四角形', 'えんにないせつするしかくけい', '圆内接四边形'],
+      ['対角', 'たいかく', '对角'], ['外接する', 'がいせつする', '外切'], ['内接する', 'ないせつする', '内切、内接'],
+      ['共通接線', 'きょうつうせっせん', '公切线'], ['中心間の距離', 'ちゅうしんかんのきょり', '圆心距']
+    ]],
+    ['空间图形', [
+      ['ねじれの位置', 'ねじれのいち', '异面（直线）'], ['垂線', 'すいせん', '垂线'], ['三垂線の定理', 'さんすいせんのていり', '三垂线定理'],
+      ['平行', 'へいこう', '平行'], ['交線', 'こうせん', '交线'], ['四面体', 'しめんたい', '四面体'],
+      ['三角錐', 'さんかくすい', '三棱锥'], ['多面体', 'ためんたい', '多面体'], ['凸多面体', 'とつためんたい', '凸多面体'],
+      ['正多面体', 'せいためんたい', '正多面体'], ['頂点', 'ちょうてん', '顶点'], ['辺', 'へん', '边、棱'],
+      ['面', 'めん', '面'], ['オイラーの多面体定理', 'オイラーのためんたいていり', '欧拉多面体定理'], ['立方体', 'りっぽうたい', '立方体']
+    ]]
+  ];
+
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja"><strong>' + t[0] + '</strong></td><td class="kana" lang="ja">' + t[1] + '</td><td>' + t[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = $('term-count');
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 答案按钮 ---------- */
+  function setAns(btn, open) {
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '隐藏答案' : '显示答案';
+    btn.nextElementSibling.hidden = !open;
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.classList && e.target.classList.contains('toggle-ans')) {
+      setAns(e.target, e.target.getAttribute('aria-expanded') !== 'true');
+    }
+  });
+  var allBtn = $('toggle-all');
+  allBtn.addEventListener('click', function () {
+    var btns = document.querySelectorAll('#practice .toggle-ans');
+    var open = allBtn.textContent.indexOf('显示') === 0;
+    btns.forEach(function (b) { setAns(b, open); });
+    allBtn.textContent = open ? '隐藏全部答案' : '显示全部答案';
+  });
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('on', on);
+          if (on && a.scrollIntoView && window.innerWidth <= 900) a.parentNode.parentNode.scrollLeft = a.offsetLeft - 40;
+        });
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 五心探索器 ---------- */
+  var svg = $('tri-svg'), W = 640, H = 440;
+  var PRESETS = [
+    ['锐角三角形', [250, 70], [110, 350], [530, 350]],
+    ['直角三角形', [190, 90], [190, 350], [540, 350]],
+    ['钝角三角形', [200, 190], [270, 330], [560, 330]],
+    ['等边三角形', [320, 70], [160, 347], [480, 347]]
+  ];
+  var SHOW = [
+    ['O', '外心 O', 'var(--c1)', true], ['I', '内心 I', 'var(--c2)', true], ['G', '重心 G', 'var(--c4)', true],
+    ['H', '垂心 H', 'var(--c3)', true], ['J', '傍心 I_A', 'var(--warn)', false], ['E', '欧拉线', 'var(--ink-3)', false]
+  ];
+  var S = { A: [250, 70], B: [110, 350], C: [530, 350], on: {} };
+  SHOW.forEach(function (it) {
+    S.on[it[0]] = it[3];
+    var l = document.createElement('label'), c = document.createElement('input');
+    c.type = 'checkbox'; c.checked = it[3];
+    c.addEventListener('change', function () { S.on[it[0]] = c.checked; draw(); });
+    l.appendChild(c); l.appendChild(document.createTextNode(it[1]));
+    $('tri-toggles').appendChild(l);
+  });
+  PRESETS.forEach(function (p, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.textContent = p[0]; b.dataset.i = i;
+    b.addEventListener('click', function () {
+      S.A = p[1].slice(); S.B = p[2].slice(); S.C = p[3].slice(); draw();
+    });
+    $('tri-presets').appendChild(b);
+  });
+  function dist(p, q) { return Math.hypot(p[0] - q[0], p[1] - q[1]); }
+  function cross(A, B, C) { return (B[0] - A[0]) * (C[1] - A[1]) - (B[1] - A[1]) * (C[0] - A[0]); }
+  function wavg(A, B, C, u, v, w) { var s = u + v + w; return [(u * A[0] + v * B[0] + w * C[0]) / s, (u * A[1] + v * B[1] + w * C[1]) / s]; }
+  function angle(a, b, c) { return Math.acos(Math.max(-1, Math.min(1, (b * b + c * c - a * a) / (2 * b * c)))) * 180 / Math.PI; }
+  function circumcenter(A, B, C) {
+    var d = 2 * (A[0] * (B[1] - C[1]) + B[0] * (C[1] - A[1]) + C[0] * (A[1] - B[1]));
+    var a2 = A[0] * A[0] + A[1] * A[1], b2 = B[0] * B[0] + B[1] * B[1], c2 = C[0] * C[0] + C[1] * C[1];
+    return [(a2 * (B[1] - C[1]) + b2 * (C[1] - A[1]) + c2 * (A[1] - B[1])) / d, (a2 * (C[0] - B[0]) + b2 * (A[0] - C[0]) + c2 * (B[0] - A[0])) / d];
+  }
+  function ln(p, q, st, cl) { return '<line x1="' + p[0].toFixed(1) + '" y1="' + p[1].toFixed(1) + '" x2="' + q[0].toFixed(1) + '" y2="' + q[1].toFixed(1) + '" style="' + (st || '') + '" class="' + (cl || '') + '"/>'; }
+  function circ(c, r, col) { return '<circle cx="' + c[0].toFixed(1) + '" cy="' + c[1].toFixed(1) + '" r="' + r.toFixed(1) + '" fill="none" stroke="' + col + '" stroke-width="1.4" opacity=".75"/>'; }
+  function pt(c, col, name) {
+    return '<circle cx="' + c[0].toFixed(1) + '" cy="' + c[1].toFixed(1) + '" r="5" fill="' + col + '" stroke="var(--surface)" stroke-width="1.5"/>' +
+      '<text class="lbl" x="' + (c[0] + 8).toFixed(1) + '" y="' + (c[1] - 7).toFixed(1) + '">' + name + '</text>';
+  }
+  function draw() {
+    var A = S.A, B = S.B, C = S.C, a = dist(B, C), b = dist(C, A), c = dist(A, B);
+    var area = Math.abs(cross(A, B, C)) / 2, s = (a + b + c) / 2;
+    var O = circumcenter(A, B, C), R = dist(O, A), G = wavg(A, B, C, 1, 1, 1);
+    var Hh = [A[0] + B[0] + C[0] - 2 * O[0], A[1] + B[1] + C[1] - 2 * O[1]];
+    var I = wavg(A, B, C, a, b, c), r = area / s, J = wavg(A, B, C, -a, b, c), ra = area / (s - a);
+    var h = '<polygon points="' + [A, B, C].map(function (p) { return p.join(','); }).join(' ') + '" class="fillc"/>';
+    h += ln(A, B, 'stroke:var(--ink);stroke-width:2') + ln(B, C, 'stroke:var(--ink);stroke-width:2') + ln(C, A, 'stroke:var(--ink);stroke-width:2');
+    if (S.on.E && dist(O, Hh) > 1) {
+      var ux = (Hh[0] - O[0]) / dist(O, Hh), uy = (Hh[1] - O[1]) / dist(O, Hh);
+      h += ln([O[0] - ux * 1500, O[1] - uy * 1500], [O[0] + ux * 1500, O[1] + uy * 1500], 'stroke:var(--ink-3);stroke-width:1.5;stroke-dasharray:7 5');
+    }
+    if (S.on.O) h += circ(O, R, 'var(--c1)') + pt(O, 'var(--c1)', 'O');
+    if (S.on.I) h += circ(I, r, 'var(--c2)') + pt(I, 'var(--c2)', 'I');
+    if (S.on.G) h += ln(A, [(B[0] + C[0]) / 2, (B[1] + C[1]) / 2], 'stroke:var(--c4);stroke-width:1;stroke-dasharray:3 4') + pt(G, 'var(--c4)', 'G');
+    if (S.on.H) h += pt(Hh, 'var(--c3)', 'H');
+    if (S.on.J) h += circ(J, ra, 'var(--warn)') + pt(J, 'var(--warn)', 'I_A');
+    [['A', A], ['B', B], ['C', C]].forEach(function (v) {
+      h += '<text class="lbl" style="font-weight:700;font-size:15px" x="' + (v[1][0] + 10) + '" y="' + (v[1][1] + 20) + '">' + v[0] + '</text>';
+      h += '<circle cx="' + v[1][0] + '" cy="' + v[1][1] + '" r="7" fill="var(--c2)" stroke="var(--surface)" stroke-width="2"/>';
+      h += '<circle data-v="' + v[0] + '" cx="' + v[1][0] + '" cy="' + v[1][1] + '" r="22" fill="transparent" style="cursor:grab;touch-action:none"/>';
+    });
+    svg.innerHTML = h;
+    var ga = angle(a, b, c), gb = angle(b, c, a), gc = angle(c, a, b), mx = Math.max(ga, gb, gc);
+    var kind = Math.abs(mx - 90) < 0.5 ? '直角三角形：外心在斜边中点，垂心在直角顶点' : mx > 90 ? '钝角三角形：外心、垂心都在外部' : '锐角三角形：外心、垂心都在内部';
+    $('tri-read').innerHTML =
+      '<div class="wide"><small>类型</small>' + kind + '</div>' +
+      '<div><small>内角 A / B / C</small>' + ga.toFixed(1) + '° / ' + gb.toFixed(1) + '° / ' + gc.toFixed(1) + '°</div>' +
+      '<div><small>半径 R / r / r_a（以画面单位计）</small>' + R.toFixed(1) + ' / ' + r.toFixed(1) + ' / ' + ra.toFixed(1) + '</div>' +
+      '<div><small>∠BIC 与 90°+A/2</small>' + (180 - (gb + gc) / 2).toFixed(1) + '° = ' + (90 + ga / 2).toFixed(1) + '°</div>' +
+      '<div><small>OG : GH</small>' + (dist(G, Hh) < 1 ? '三心重合（等边）' : '1 : ' + (dist(G, Hh) / dist(O, G)).toFixed(2)) + '</div>';
+    $('ax').value = A[0]; $('ay').value = A[1];
+    $('ax-o').textContent = Math.round(A[0]); $('ay-o').textContent = Math.round(A[1]);
+    Array.prototype.forEach.call($('tri-presets').children, function (b) {
+      var p = PRESETS[+b.dataset.i];
+      b.setAttribute('aria-pressed', String(p[1] + '' === A + '' && p[2] + '' === B + '' && p[3] + '' === C + ''));
+    });
+  }
+  function moveTo(k, x, y) {
+    var old = S[k];
+    S[k] = [Math.round(Math.max(20, Math.min(W - 20, x))), Math.round(Math.max(20, Math.min(H - 20, y)))];
+    /* 三点接近共线时拒绝移动，避免外心、傍心发散 */
+    if (Math.abs(cross(S.A, S.B, S.C)) < 2000) S[k] = old;
+    draw();
+  }
+  var drag = null;
+  function toSvg(e) { var r = svg.getBoundingClientRect(); return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height]; }
+  svg.addEventListener('pointerdown', function (e) {
+    var k = e.target.getAttribute && e.target.getAttribute('data-v');
+    if (!k) return;
+    drag = k; e.preventDefault();
+    if (svg.setPointerCapture) svg.setPointerCapture(e.pointerId);
+  });
+  svg.addEventListener('pointermove', function (e) { if (drag) { var p = toSvg(e); moveTo(drag, p[0], p[1]); } });
+  ['pointerup', 'pointercancel'].forEach(function (n) { svg.addEventListener(n, function () { drag = null; }); });
+  $('ax').addEventListener('input', function () { moveTo('A', +this.value, S.A[1]); });
+  $('ay').addEventListener('input', function () { moveTo('A', S.A[0], +this.value); });
+  draw();
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['read'],
+      throwOnError: false
+    });
+  }
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

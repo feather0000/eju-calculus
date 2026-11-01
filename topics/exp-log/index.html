@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 10 指数函数与对数函数</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：指数的扩张、指数函数、对数的性质、对数函数、常用对数，含原创例题、练习题、互动演示和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#ex-svg { touch-action: pan-y; cursor: ew-resize; user-select: none; -webkit-user-select: none; background: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+.back { display: inline-block; color: #c5d3ef; text-decoration: none; font-size: 15px; margin-bottom: 18px; }
+.back:hover { text-decoration: underline; }
+.hero-in { position: relative; }
+html { scroll-padding-top: 100px; }
+@media (max-width: 900px) {
+  nav.toc { top: 34px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <a class="back" href="../../">← 目录</a>
+      <p class="eyebrow">EJU 数学コース2 · 出题项目 10 · 指数関数・対数関数</p>
+      <h1>指数函数与对数函数</h1>
+      <p class="lead">从指数的扩张讲到常用对数求位数：每个知识点都配小例子，再用原创的 EJU 风格填空题和练习题检验。日语术语随文标注，文末有完整对照表。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$a^{\frac{m}{n}}=\sqrt[n]{a^m}$$
+      $$a^p=M\iff p=\log_a M$$
+      $$\log_a b=\frac{\log_c b}{\log_c a}$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#power">1 指数的扩张</a></li>
+        <li><a href="#expfn">2 指数函数</a></li>
+        <li><a href="#logprop">3 对数的性质</a></li>
+        <li><a href="#logfn">4 对数函数</a></li>
+        <li><a href="#common">5 常用对数</a></li>
+        <li><a href="#examples">6 原创例题</a></li>
+        <li><a href="#practice">7 练习题</a></li>
+        <li><a href="#terms">8 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box" style="margin-top:28px">
+    <p><strong>范围说明：</strong>本页对应 JASSO 2026 年度起适用的数学シラバス中的项目 10「指数関数・対数関数」：指数の拡張、指数関数とグラフ；対数の性質、対数関数とグラフ、常用対数（桁数）。</p>
+  </div>
+  <div class="box warn">
+    <p><strong>符号提醒：</strong>本页的对数一律写出底数，如 $\log_2 x$、$\log_{10} x$。而在日本的微积分内容中，省略底数的 $\log x$ 通常表示自然对数（中文教材的 $\ln x$），见<a href="../../claude/">微分与积分</a>页。</p>
+  </div>
+
+  <section id="power">
+    <h2>1 指数的扩张</h2>
+    <p class="jp-sub" lang="ja">指数の拡張 — 累乗根・有理数の指数・実数の指数</p>
+    <p>指数最初只表示“乘几次”。为了让指数律继续成立，人们把它一步步扩张（<span lang="ja">拡張</span>）：正整数 → $0$ 和负整数 → 有理数 → 实数。</p>
+
+    <h3>1.1 零指数与负指数</h3>
+    <p>设 $a\ne 0$，$n$ 为正整数：</p>
+    $$a^0=1,\qquad a^{-n}=\frac{1}{a^n}$$
+    <p>例如 $2^{-3}=\dfrac18$。</p>
+
+    <h3>1.2 $n$ 次方根（累乗根）</h3>
+    <p>$n$ 次方等于 $a$ 的数叫 $a$ 的 $n$ 次方根（<span lang="ja">$n$ 乗根</span>）。实数范围内：</p>
+    <ul>
+      <li>$n$ 为奇数：恰有一个，记作 $\sqrt[n]{a}$，$a$ 可以为负，如 $\sqrt[3]{-8}=-2$。</li>
+      <li>$n$ 为偶数且 $a&gt;0$：有正负两个，$\sqrt[n]{a}$ 只表示<strong>正</strong>的那个，如 $\sqrt[4]{16}=2$，另一个是 $-\sqrt[4]{16}=-2$。</li>
+    </ul>
+    <p>设 $a&gt;0,\ b&gt;0$，$m,n,k$ 为正整数：</p>
+    <div class="formula-grid">
+      <div>$$\sqrt[n]{a}\,\sqrt[n]{b}=\sqrt[n]{ab}$$</div>
+      <div>$$\frac{\sqrt[n]{a}}{\sqrt[n]{b}}=\sqrt[n]{\frac{a}{b}}$$</div>
+      <div>$$\bigl(\sqrt[n]{a}\bigr)^m=\sqrt[n]{a^m}$$</div>
+      <div>$$\sqrt[m]{\sqrt[n]{a}}=\sqrt[mn]{a}$$</div>
+    </div>
+
+    <h3>1.3 有理数指数与指数律</h3>
+    <p>设 $a&gt;0$，$m$ 为整数，$n$ 为正整数：</p>
+    $$a^{\frac{m}{n}}=\sqrt[n]{a^m}$$
+    <p>例如 $8^{\frac23}=(\sqrt[3]{8})^2=4$，$16^{\frac34}=8$，$27^{-\frac13}=\dfrac13$。再用有理数逼近无理数，就能定义任意实数指数（如 $2^{\sqrt2}$）。对 $a&gt;0,\ b&gt;0$ 和任意实数 $r,s$，指数律（<span lang="ja">指数法則</span>）成立：</p>
+    <div class="formula-grid">
+      <div>$$a^r a^s=a^{r+s}$$</div>
+      <div>$$\frac{a^r}{a^s}=a^{r-s}$$</div>
+      <div>$$(a^r)^s=a^{rs}$$</div>
+      <div>$$(ab)^r=a^r b^r$$</div>
+    </div>
+    <p>计算技巧：先把所有数化成同一个底的幂。例如 $2^{\frac12}\times 2^{\frac13}\div 2^{-\frac16}=2^{\frac12+\frac13+\frac16}=2$。</p>
+    <div class="box warn">
+      <p><strong>易错：</strong>有理数指数的前提是<strong>底 $a&gt;0$</strong>。$\sqrt[3]{-8}$ 有意义，但不写成 $(-8)^{\frac13}$。另外，$\sqrt{x^2}=|x|$，不一定等于 $x$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>对称式常用结论：</strong>令 $t=a^x+a^{-x}$，由 $a^x\cdot a^{-x}=1$ 得</p>
+      $$a^{2x}+a^{-2x}=t^2-2,\qquad a^{3x}+a^{-3x}=t^3-3t.$$
+    </div>
+  </section>
+
+  <section id="expfn">
+    <h2>2 指数函数与图像</h2>
+    <p class="jp-sub" lang="ja">指数関数とグラフ</p>
+    <p>$y=a^x$（$a&gt;0,\ a\ne1$）叫指数函数（<span lang="ja">指数関数</span>），$a$ 叫底（<span lang="ja">底</span>）。规定 $a\ne1$，因为 $1^x$ 恒为 $1$，只是常数函数。</p>
+    <div class="tw"><table>
+      <thead><tr><th>性质</th><th>$a&gt;1$</th><th>$0&lt;a&lt;1$</th></tr></thead>
+      <tbody>
+        <tr><td>定义域（<span lang="ja">定義域</span>）</td><td colspan="2">全体实数</td></tr>
+        <tr><td>值域（<span lang="ja">値域</span>）</td><td colspan="2">$y&gt;0$</td></tr>
+        <tr><td>必过的点</td><td colspan="2">$(0,1)$ 和 $(1,a)$</td></tr>
+        <tr><td>渐近线（<span lang="ja">漸近線</span>）</td><td colspan="2">$x$ 轴（$y=0$）</td></tr>
+        <tr><td>单调性</td><td>单调递增：$x_1&lt;x_2\iff a^{x_1}&lt;a^{x_2}$</td><td>单调递减：$x_1&lt;x_2\iff a^{x_1}&gt;a^{x_2}$</td></tr>
+      </tbody>
+    </table></div>
+    <figure class="plot">
+      <svg class="chart" id="fig-exp" role="img" aria-label="y 等于 2 的 x 次方递增，y 等于二分之一的 x 次方递减，两者关于 y 轴对称并都过点 (0,1)"></svg>
+      <figcaption>$y=2^x$ 与 $y=\left(\frac12\right)^x=2^{-x}$ 关于 $y$ 轴对称，都过 $(0,1)$，都以 $x$ 轴为渐近线。</figcaption>
+    </figure>
+
+    <h3>2.1 图像变换</h3>
+    <p>$y=a^{x-p}+q$ 是把 $y=a^x$ 向右平移 $p$、向上平移 $q$（<span lang="ja">平行移動</span>），渐近线变为 $y=q$。例如 $y=2^{x-1}+3$ 的渐近线是 $y=3$，图像过点 $(1,4)$。</p>
+
+    <h3>2.2 方程与不等式</h3>
+    <p>第一步都是<strong>化成同底</strong>，然后比较指数：</p>
+    <ul>
+      <li>方程：$8^x=4\Rightarrow 2^{3x}=2^2\Rightarrow x=\dfrac23$。</li>
+      <li>不等式，$a&gt;1$ 时不等号方向不变，$0&lt;a&lt;1$ 时<strong>方向反转</strong>：$\left(\dfrac12\right)^x&gt;4=\left(\dfrac12\right)^{-2}\Rightarrow x&lt;-2$。</li>
+    </ul>
+    <div class="box warn">
+      <p><strong>换元必写范围：</strong>令 $t=a^x$ 时一定有 $t&gt;0$；若 $x$ 有范围，$t$ 的范围也要跟着变。很多题正是靠这一点舍去负根，或确定最大、最小值。</p>
+    </div>
+  </section>
+
+  <section id="logprop">
+    <h2>3 对数的性质</h2>
+    <p class="jp-sub" lang="ja">対数の定義と性質・底の変換公式</p>
+    <p>对 $a&gt;0,\ a\ne1,\ M&gt;0$，定义对数（<span lang="ja">対数</span>）：</p>
+    $$a^p=M\iff p=\log_a M$$
+    <p>$a$ 叫底（<span lang="ja">底</span>），$M$ 叫真数（<span lang="ja">真数</span>）。一句话：<strong>$\log_a M$ 就是“$a$ 的几次方等于 $M$”</strong>。例如 $\log_2 8=3$，$\log_3\dfrac19=-2$，$\log_{10}0.01=-2$，$\log_9 27=\dfrac32$。</p>
+
+    <h3>3.1 基本性质</h3>
+    <p>设 $a,c$ 是不等于 $1$ 的正数，$M,N,b&gt;0$，$r$ 为实数：</p>
+    <div class="formula-grid">
+      <div>$$\log_a 1=0,\quad \log_a a=1$$</div>
+      <div>$$a^{\log_a M}=M$$</div>
+      <div>$$\log_a MN=\log_a M+\log_a N$$</div>
+      <div>$$\log_a\frac{M}{N}=\log_a M-\log_a N$$</div>
+      <div>$$\log_a M^r=r\log_a M$$</div>
+      <div>$$\log_a\frac1N=-\log_a N$$</div>
+    </div>
+    <p>例如 $\log_2 12-\log_2 3=\log_2 4=2$，$\log_6 4+\log_6 9=\log_6 36=2$。</p>
+    <div class="box warn">
+      <p><strong>易错：</strong>$\log_a(M+N)\ne\log_a M+\log_a N$；$(\log_a M)^2\ne\log_a M^2=2\log_a M$（后者要求 $M&gt;0$）。</p>
+    </div>
+
+    <h3>3.2 换底公式（底の変換公式）</h3>
+    <p>底不相同时，先换成同一个底（$b&gt;0$，$c&gt;0,\ c\ne1$）：</p>
+    $$\log_a b=\frac{\log_c b}{\log_c a}$$
+    <p>由此得到两个常用推论（$b\ne1$，$k\ne0$）：</p>
+    <div class="formula-grid">
+      <div>$$\log_a b\cdot\log_b a=1$$</div>
+      <div>$$\log_{a^k}b^m=\frac{m}{k}\log_a b$$</div>
+    </div>
+    <p>例如 $\log_4 8=\dfrac{\log_2 8}{\log_2 4}=\dfrac32$，$\log_8 32=\dfrac53$。</p>
+  </section>
+
+  <section id="logfn">
+    <h2>4 对数函数与图像</h2>
+    <p class="jp-sub" lang="ja">対数関数とグラフ</p>
+    <p>$y=\log_a x$ 是 $y=a^x$ 的反函数（<span lang="ja">逆関数</span>），因此两者的图像<strong>关于直线 $y=x$ 对称</strong>：指数函数上的点 $(p,q)$ 对应对数函数上的点 $(q,p)$。</p>
+    <div class="tw"><table>
+      <thead><tr><th>性质</th><th>$a&gt;1$</th><th>$0&lt;a&lt;1$</th></tr></thead>
+      <tbody>
+        <tr><td>定义域</td><td colspan="2">$x&gt;0$（真数条件）</td></tr>
+        <tr><td>值域</td><td colspan="2">全体实数</td></tr>
+        <tr><td>必过的点</td><td colspan="2">$(1,0)$ 和 $(a,1)$</td></tr>
+        <tr><td>渐近线</td><td colspan="2">$y$ 轴（$x=0$）</td></tr>
+        <tr><td>单调性</td><td>单调递增：$0&lt;x_1&lt;x_2\iff\log_a x_1&lt;\log_a x_2$</td><td>单调递减：$0&lt;x_1&lt;x_2\iff\log_a x_1&gt;\log_a x_2$</td></tr>
+      </tbody>
+    </table></div>
+    <figure class="plot">
+      <svg class="chart" id="fig-log" role="img" aria-label="y 等于以 2 为底 x 的对数递增，y 等于以二分之一为底 x 的对数递减，两者关于 x 轴对称并都过点 (1,0)"></svg>
+      <figcaption>$y=\log_2 x$ 与 $y=\log_{\frac12}x=-\log_2 x$ 关于 $x$ 轴对称，都过 $(1,0)$，都以 $y$ 轴为渐近线。</figcaption>
+    </figure>
+
+    <div class="explorer" id="explorer">
+      <h3 style="margin-top:0">互动：拖动看指数与对数的镜像关系</h3>
+      <div class="ex-head" id="ex-presets" role="group" aria-label="选择底数"></div>
+      <svg id="ex-svg" class="chart" role="img" aria-label="y 等于 a 的 x 次方、y 等于以 a 为底 x 的对数，以及对称轴 y 等于 x 的图像，可左右拖动改变点的位置"></svg>
+      <div class="legend">
+        <span><i style="border-color:var(--c1)"></i>y = a<sup>x</sup></span>
+        <span><i style="border-color:var(--c2)"></i>y = log<sub>a</sub> x</span>
+        <span><i style="border-color:var(--ink-3);border-top-style:dashed"></i>对称轴 y = x 与对应点连线</span>
+      </div>
+      <div class="ctrl">
+        <label for="ex-a">底 a</label>
+        <input type="range" id="ex-a" min="0.2" max="4" step="0.05" value="2">
+        <output id="ex-a-out" for="ex-a"></output>
+      </div>
+      <div class="ctrl">
+        <label for="ex-x">点 P 的 x</label>
+        <input type="range" id="ex-x" min="-3" max="3" step="0.05" value="1">
+        <output id="ex-x-out" for="ex-x"></output>
+      </div>
+      <div class="read" id="ex-read">
+        <div><small>指数函数上的点 P</small><span id="r-p"></span></div>
+        <div><small>对数函数上的对应点 Q</small><span id="r-q"></span></div>
+      </div>
+      <div class="status" id="ex-status" aria-live="polite"></div>
+    </div>
+
+    <h3>4.1 对数方程与不等式</h3>
+    <p>固定流程：<strong>① 写真数条件（和底的条件）→ ② 化成同底 → ③ 去掉 $\log$ 解题 → ④ 用条件筛选</strong>。</p>
+    <ul>
+      <li>方程：$\log_2(x+1)=3\Rightarrow x+1=2^3\Rightarrow x=7$。</li>
+      <li>$a&gt;1$，方向不变：$\log_3 x&lt;2\Rightarrow 0&lt;x&lt;9$。</li>
+      <li>$0&lt;a&lt;1$，方向反转：$\log_{\frac13}x&lt;2\Rightarrow x&gt;\dfrac19$。</li>
+    </ul>
+    <div class="box warn">
+      <p><strong>易错：</strong>$0&lt;x&lt;9$ 中的“$0&lt;x$”来自真数条件，漏写就错。合并对数后真数条件会放宽，所以<strong>必须在合并之前</strong>写好条件，否则容易留下增根。</p>
+    </div>
+
+    <h3>4.2 大小比较</h3>
+    <p>化成同底后比较真数。例如比较 $\log_2 3$ 与 $\log_4 8$：$\log_4 8=\dfrac32=\log_2 2^{\frac32}=\log_2\sqrt8$。因为 $\sqrt8&lt;3$ 且底 $2&gt;1$，所以 $\log_4 8&lt;\log_2 3$。</p>
+  </section>
+
+  <section id="common">
+    <h2>5 常用对数</h2>
+    <p class="jp-sub" lang="ja">常用対数 — 桁数・最高位の数字</p>
+    <p>以 $10$ 为底的对数 $\log_{10}N$ 叫常用对数（<span lang="ja">常用対数</span>）。考题通常给出 $\log_{10}2=0.3010$、$\log_{10}3=0.4771$；其余数值可由它们推出，如 $\log_{10}5=1-\log_{10}2=0.6990$。</p>
+    <div class="tw"><table class="sign">
+      <thead><tr><th>$k$</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr></thead>
+      <tbody><tr><td>$\log_{10}k$</td><td>0.3010</td><td>0.4771</td><td>0.6021</td><td>0.6990</td><td>0.7782</td><td>0.8451</td><td>0.9031</td><td>0.9542</td></tr></tbody>
+    </table></div>
+
+    <h3>5.1 求位数（桁数）</h3>
+    <p>$N$ 的整数部分是 $n$ 位数时：</p>
+    $$10^{n-1}\le N&lt;10^n\iff n-1\le\log_{10}N&lt;n$$
+    <p>例：$\log_{10}2^{100}=100\times0.3010=30.10$，所以 $30\le\log_{10}2^{100}&lt;31$，$2^{100}$ 是 <strong>$31$ 位数</strong>。</p>
+
+    <h3>5.2 求小数首个非零数字的位置</h3>
+    <p>$0&lt;N&lt;1$，且小数第 $n$ 位首次出现非零数字时：</p>
+    $$10^{-n}\le N&lt;10^{-n+1}\iff -n\le\log_{10}N&lt;-n+1$$
+    <p>例：$\log_{10}0.2^{10}=10(0.3010-1)=-6.990$，所以 $-7\le\log_{10}0.2^{10}&lt;-6$，首个非零数字在<strong>小数第 $7$ 位</strong>。注意 $-6.990$ 向下取整是 $-7$，不是 $-6$。</p>
+
+    <h3>5.3 求最高位数字</h3>
+    <p>把 $\log_{10}N$ 写成“整数 + 小数部分 $q$”（$0\le q&lt;1$），若 $\log_{10}k\le q&lt;\log_{10}(k+1)$，则最高位数字（<span lang="ja">最高位の数字</span>）是 $k$。</p>
+    <p>例：$\log_{10}5^{20}=20\times0.6990=13.98$，$5^{20}$ 是 $14$ 位数。由 $\log_{10}9=0.9542\le0.98&lt;1$，最高位数字是 $9$。</p>
+
+    <div class="explorer">
+      <h3 style="margin-top:0">互动：位数计算器</h3>
+      <div class="ctrl">
+        <label for="dg-a">底 a</label>
+        <input type="range" id="dg-a" min="2" max="20" step="1" value="2">
+        <output id="dg-a-out" for="dg-a"></output>
+      </div>
+      <div class="ctrl">
+        <label for="dg-n">指数 n</label>
+        <input type="range" id="dg-n" min="1" max="200" step="1" value="100">
+        <output id="dg-n-out" for="dg-n"></output>
+      </div>
+      <div class="status" id="dg-status" aria-live="polite"></div>
+    </div>
+
+    <h3>5.4 应用：反复变化的量</h3>
+    <p>“每次变为原来的 $r$ 倍，几次后超过（或低于）某值”这类题，两边取常用对数即可。若 $\log_{10}r&lt;0$，两边同除以它时不等号要反向。</p>
+  </section>
+
+  <section id="examples">
+    <h2>6 原创 EJU 风格例题</h2>
+    <p class="jp-sub">以下题目均为本讲义<strong>原创</strong>，仅模仿 EJU 的填空形式，并非真题。</p>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框字母对应一个数字（$0$–$9$），例如 $\B{AB}$ 是两位数；分数要约到最简，根号内的数要尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>例题 1　指数函数的最值</b><span class="origin">原创</span></div>
+      <p>考虑函数 $y=4^x-2^{x+3}+10\quad(-1\le x\le3)$。令 $t=2^x$。</p>
+      <p>(1) $t$ 的取值范围是 $\dfrac{1}{\B{A}}\le t\le\B{B}$。</p>
+      <p>(2) 用 $t$ 表示，$y=t^2-\B{C}\,t+\B{DE}$。</p>
+      <p>(3) $y$ 在 $x=\B{F}$ 时取最小值 $-\B{G}$，在 $x=\B{H}$ 时取最大值 $\B{IJ}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 8</li><li>C = 8</li><li>DE = 10</li><li>F = 2</li><li>G = 6</li><li>H = 3</li><li>IJ = 10</li></ul>
+        <p>(1) $2^x$ 单调递增，所以 $2^{-1}\le t\le2^3$。</p>
+        <p>(2) $4^x=t^2$，$2^{x+3}=8t$，故 $y=t^2-8t+10$。</p>
+        <p>(3) $y=(t-4)^2-6$。$t=4$（即 $x=2$）在范围内，最小值为 $-6$。两端比较：$t=\dfrac12$ 时 $y=\dfrac{25}{4}$，$t=8$ 时 $y=10$，所以最大值为 $10$，此时 $x=3$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 2　对数方程与不等式</b><span class="origin">原创</span></div>
+      <p>(1) 方程 $\log_2(x-2)+\log_2(x+5)=3$ 的真数条件为 $x&gt;\B{A}$。去掉对数后得 $x^2+\B{B}\,x-\B{CD}=0$，所以解为 $x=\B{E}$。</p>
+      <p>(2) 不等式 $\log_{\frac12}(x-1)+\log_{\frac12}(x-3)\ge-3$ 的解为 $\B{F}&lt;x\le\B{G}$。</p>
+      <p>(3) 方程 $(\log_3 x)^2-\log_3 x^4+3=0$ 的解为 $x=\B{H}$ 和 $x=\B{IJ}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 3</li><li>CD = 18</li><li>E = 3</li><li>F = 3</li><li>G = 5</li><li>H = 3</li><li>IJ = 27</li></ul>
+        <p>(1) 由 $x-2&gt;0$ 且 $x+5&gt;0$ 得 $x&gt;2$。$(x-2)(x+5)=2^3$，即 $x^2+3x-18=0$，$(x+6)(x-3)=0$。$x=-6$ 不满足条件，舍去，故 $x=3$。</p>
+        <p>(2) 真数条件为 $x&gt;3$。$-3=\log_{\frac12}8$，底小于 $1$，不等号反向：$(x-1)(x-3)\le8$，即 $(x+1)(x-5)\le0$，$-1\le x\le5$。与条件合并得 $3&lt;x\le5$。</p>
+        <p>(3) 令 $t=\log_3 x$（$x&gt;0$），$\log_3 x^4=4t$，$t^2-4t+3=0$，$t=1,3$，所以 $x=3,27$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 3　常用对数与位数</b><span class="origin">原创</span></div>
+      <p>已知 $\log_{10}2=0.3010$，$\log_{10}3=0.4771$。</p>
+      <p>(1) $6^{30}$ 是 $\B{AB}$ 位数，最高位数字是 $\B{C}$，个位数字是 $\B{D}$。</p>
+      <p>(2) $\left(\dfrac16\right)^{20}$ 写成小数时，首个非零数字出现在小数第 $\B{EF}$ 位，这个数字是 $\B{G}$。</p>
+      <p>(3) 满足 $\left(\dfrac32\right)^n&gt;1000$ 的最小正整数 $n$ 是 $\B{HI}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>AB = 24</li><li>C = 2</li><li>D = 6</li><li>EF = 16</li><li>G = 2</li><li>HI = 18</li></ul>
+        <p>(1) $\log_{10}6=0.7781$，$\log_{10}6^{30}=23.343$，所以是 $24$ 位数。由 $0.3010\le0.343&lt;0.4771$ 知最高位是 $2$。$6$ 的任意正整数次幂个位都是 $6$。</p>
+        <p>(2) $\log_{10}\left(\dfrac16\right)^{20}=-15.562=-16+0.438$，所以在小数第 $16$ 位。由 $0.3010\le0.438&lt;0.4771$ 知这个数字是 $2$。</p>
+        <p>(3) $\log_{10}\dfrac32=0.1761$，由 $0.1761\,n&gt;3$ 得 $n&gt;17.03\cdots$，所以 $n=18$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 4　对称式换元</b><span class="origin">原创</span></div>
+      <p>对全体实数 $x$，考虑函数 $y=4^x+4^{-x}-6(2^x+2^{-x})+10$。令 $t=2^x+2^{-x}$。</p>
+      <p>(1) $t\ge\B{A}$，等号在 $x=\B{B}$ 时成立。</p>
+      <p>(2) 用 $t$ 表示，$y=t^2-\B{C}\,t+\B{D}$。</p>
+      <p>(3) $y$ 的最小值为 $-\B{E}$，此时 $t=\B{F}$，$2^x=\dfrac{\B{G}\pm\sqrt{\B{H}}}{\B{I}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 0</li><li>C = 6</li><li>D = 8</li><li>E = 1</li><li>F = 3</li><li>G = 3</li><li>H = 5</li><li>I = 2</li></ul>
+        <p>(1) $2^x&gt;0,\ 2^{-x}&gt;0$，由算术—几何平均不等式 $t\ge2\sqrt{2^x\cdot2^{-x}}=2$，等号当 $2^x=2^{-x}$ 即 $x=0$ 时成立。</p>
+        <p>(2) $4^x+4^{-x}=t^2-2$，所以 $y=t^2-2-6t+10=t^2-6t+8$。</p>
+        <p>(3) $y=(t-3)^2-1$，$t=3\ge2$ 可取到，最小值为 $-1$。令 $s=2^x$，由 $s+\dfrac1s=3$ 得 $s^2-3s+1=0$，$s=\dfrac{3\pm\sqrt5}{2}$，两根都为正，均符合。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>7 练习题</h2>
+    <div class="bar">
+      <p class="jp-sub" style="margin:0">全部<strong>原创</strong>。常用对数题使用 $\log_{10}2=0.3010$，$\log_{10}3=0.4771$。</p>
+      <button class="chip" id="toggle-all" type="button">显示全部答案</button>
+    </div>
+    <article class="q">
+      <div class="q-head"><b>练习 1</b><span>指数运算</span><span class="origin">原创</span></div>
+      <p>计算 $27^{\frac23}\times 9^{-\frac12}\div 3^{-2}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>$27$</p>
+        <p>化成底 $3$：$3^{2}\times3^{-1}\div3^{-2}=3^{2-1+2}=3^3=27$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 2</b><span>根式运算</span><span class="origin">原创</span></div>
+      <p>化简 $\sqrt[3]{54}-\sqrt[3]{16}+\sqrt[3]{\dfrac14}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>$\dfrac32\sqrt[3]{2}$</p>
+        <p>$\sqrt[3]{54}=3\sqrt[3]{2}$，$\sqrt[3]{16}=2\sqrt[3]{2}$，$\sqrt[3]{\dfrac14}=\sqrt[3]{\dfrac{2}{8}}=\dfrac12\sqrt[3]{2}$，合计 $\left(3-2+\dfrac12\right)\sqrt[3]{2}$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 3</b><span>对称式</span><span class="origin">原创</span></div>
+      <p>设 $a&gt;0$，$a^{\frac12}+a^{-\frac12}=3$。求 $a+a^{-1}$ 和 $a^{\frac32}+a^{-\frac32}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>$7$；$18$</p>
+        <p>平方：$a+a^{-1}=3^2-2=7$。立方公式：$a^{\frac32}+a^{-\frac32}=3^3-3\cdot3=18$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 4</b><span>大小比较</span><span class="origin">原创</span></div>
+      <p>将 $2^{\frac12},\ 3^{\frac13},\ 5^{\frac15}$ 按从小到大排列。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>$5^{\frac15}&lt;2^{\frac12}&lt;3^{\frac13}$</p>
+        <p>都取 $30$ 次方：$2^{15}=32768$，$3^{10}=59049$，$5^{6}=15625$。$x^{30}$ 在 $x&gt;0$ 时递增，顺序不变。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 5</b><span>指数不等式</span><span class="origin">原创</span></div>
+      <p>解不等式 $\left(\dfrac13\right)^{x^2-2x}&gt;\dfrac1{27}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>$-1&lt;x&lt;3$</p>
+        <p>$\dfrac1{27}=\left(\dfrac13\right)^3$，底小于 $1$，方向反转：$x^2-2x&lt;3$，即 $(x+1)(x-3)&lt;0$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 6</b><span>换元解不等式</span><span class="origin">原创</span></div>
+      <p>解不等式 $4^x-3\cdot2^{x+1}+8&lt;0$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>$1&lt;x&lt;2$</p>
+        <p>令 $t=2^x&gt;0$：$t^2-6t+8&lt;0$，$2&lt;t&lt;4$，即 $2^1&lt;2^x&lt;2^2$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 7</b><span>对数计算</span><span class="origin">原创</span></div>
+      <p>计算 $2\log_3 6-\log_3 4$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>$2$</p>
+        <p>$\log_3 36-\log_3 4=\log_3 9=2$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 8</b><span>换底公式</span><span class="origin">原创</span></div>
+      <p>计算 $\log_2 9\cdot\log_3 8$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>$6$</p>
+        <p>$\log_2 9=2\log_2 3$，$\log_3 8=3\log_3 2$，且 $\log_2 3\cdot\log_3 2=1$，故积为 $6$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 9</b><span>用字母表示</span><span class="origin">原创</span></div>
+      <p>设 $\log_2 3=a$，$\log_3 5=b$。用 $a,b$ 表示 $\log_6 15$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>$\dfrac{a+ab}{1+a}$</p>
+        <p>$\log_2 5=\log_2 3\cdot\log_3 5=ab$。换成底 $2$：$\log_6 15=\dfrac{\log_2 3+\log_2 5}{\log_2 2+\log_2 3}=\dfrac{a+ab}{1+a}$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 10</b><span>真数条件</span><span class="origin">原创</span></div>
+      <p>解方程 $2\log_3(x-1)=\log_3(x+5)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>$x=4$</p>
+        <p>真数条件 $x&gt;1$。$(x-1)^2=x+5$，$x^2-3x-4=0$，$x=4,-1$。$x=-1$ 不满足条件，舍去。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 11</b><span>底小于 1 的不等式</span><span class="origin">原创</span></div>
+      <p>解不等式 $\log_{\frac12}(x-1)&gt;\log_{\frac12}(3-x)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>$1&lt;x&lt;2$</p>
+        <p>真数条件 $1&lt;x&lt;3$。底小于 $1$，方向反转：$x-1&lt;3-x$，$x&lt;2$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 12</b><span>对数函数的最值</span><span class="origin">原创</span></div>
+      <p>求 $y=(\log_2 x)^2-\log_2 x^2+3\ \ (1\le x\le8)$ 的最大值、最小值及对应的 $x$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>最大值 $6$（$x=8$）；最小值 $2$（$x=2$）</p>
+        <p>令 $t=\log_2 x$，$0\le t\le3$，$y=t^2-2t+3=(t-1)^2+2$。$t=1$ 时最小；$t=3$ 时 $y=6$，大于 $t=0$ 时的 $y=3$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 13</b><span>位数与最高位</span><span class="origin">原创</span></div>
+      <p>$3^{40}$ 是几位数？最高位数字是多少？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>$20$ 位；最高位是 $1$</p>
+        <p>$40\times0.4771=19.084$，所以是 $20$ 位数。$0\le0.084&lt;0.3010$，最高位是 $1$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 14</b><span>小数的位置</span><span class="origin">原创</span></div>
+      <p>$(0.3)^{20}$ 写成小数时，首个非零数字出现在小数第几位？这个数字是多少？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>第 $11$ 位；数字是 $3$</p>
+        <p>$20(0.4771-1)=-10.458=-11+0.542$，所以在第 $11$ 位。$0.4771\le0.542&lt;0.6021$，数字是 $3$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 15</b><span>应用题</span><span class="origin">原创</span></div>
+      <p>一层滤网能去除 $20\%$ 的杂质。至少叠加多少层，才能使杂质残留不超过原来的 $1\%$？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>$21$ 层</p>
+        <p>$0.8^n\le0.01$。$\log_{10}0.8=3\times0.3010-1=-0.0970$。$-0.0970\,n\le-2$，方向反转得 $n\ge20.6\cdots$，故至少 $21$ 层。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 16</b><span>图像变换</span><span class="origin">原创</span></div>
+      <p>$y=\log_2(2x-4)$ 的图像由 $y=\log_2 x$ 怎样平移得到？求其渐近线。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <p><strong>答案：</strong>向右平移 $2$、向上平移 $1$；渐近线 $x=2$</p>
+        <p>$\log_2(2x-4)=\log_2 2(x-2)=\log_2(x-2)+1$，定义域 $x&gt;2$。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="terms">
+    <h2>8 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页按 JASSO 数学シラバス项目 10 组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。所有例题和练习题均为原创，答案已用 Python（SymPy）计算核对。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['指数', [
+      ['指数', 'しすう', '指数'], ['累乗', 'るいじょう', '乘方、幂'], ['累乗根', 'るいじょうこん', '方根（n 次根的总称）'],
+      ['平方根', 'へいほうこん', '平方根'], ['立方根', 'りっぽうこん', '立方根'], ['n乗根', 'エヌじょうこん', 'n 次方根'],
+      ['指数法則', 'しすうほうそく', '指数律'], ['指数の拡張', 'しすうのかくちょう', '指数的扩张'], ['有理数', 'ゆうりすう', '有理数'],
+      ['無理数', 'むりすう', '无理数'], ['実数', 'じっすう', '实数']
+    ]],
+    ['函数与图像', [
+      ['指数関数', 'しすうかんすう', '指数函数'], ['対数関数', 'たいすうかんすう', '对数函数'], ['逆関数', 'ぎゃくかんすう', '反函数'],
+      ['定義域', 'ていぎいき', '定义域'], ['値域', 'ちいき', '值域'], ['漸近線', 'ぜんきんせん', '渐近线'],
+      ['単調増加', 'たんちょうぞうか', '单调递增'], ['単調減少', 'たんちょうげんしょう', '单调递减'], ['平行移動', 'へいこういどう', '平移'],
+      ['対称移動', 'たいしょういどう', '对称变换'], ['最大値', 'さいだいち', '最大值'], ['最小値', 'さいしょうち', '最小值']
+    ]],
+    ['对数', [
+      ['対数', 'たいすう', '对数'], ['底', 'てい', '底（底数）'], ['真数', 'しんすう', '真数'],
+      ['真数条件', 'しんすうじょうけん', '真数大于 0 的条件'], ['底の変換公式', 'ていのへんかんこうしき', '换底公式'], ['自然対数', 'しぜんたいすう', '自然对数']
+    ]],
+    ['常用对数', [
+      ['常用対数', 'じょうようたいすう', '常用对数'], ['桁数', 'けたすう', '位数'], ['最高位の数字', 'さいこういのすうじ', '最高位数字'],
+      ['一の位', 'いちのくらい', '个位'], ['小数第n位', 'しょうすうだいエヌい', '小数第 n 位']
+    ]],
+    ['方程与解题', [
+      ['指数方程式', 'しすうほうていしき', '指数方程'], ['指数不等式', 'しすうふとうしき', '指数不等式'], ['対数方程式', 'たいすうほうていしき', '对数方程'],
+      ['対数不等式', 'たいすうふとうしき', '对数不等式'], ['置き換え', 'おきかえ', '换元'], ['大小比較', 'だいしょうひかく', '大小比较'],
+      ['不等号の向き', 'ふとうごうのむき', '不等号的方向'], ['相加平均・相乗平均', 'そうかへいきん・そうじょうへいきん', '算术平均与几何平均']
+    ]]
+  ];
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja"><strong>' + t[0] + '</strong></td><td class="kana" lang="ja">' + t[1] + '</td><td>' + t[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = $('term-count');
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 答案按钮 ---------- */
+  function setAns(btn, open) {
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '隐藏答案' : '显示答案';
+    btn.nextElementSibling.hidden = !open;
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.classList && e.target.classList.contains('toggle-ans')) {
+      setAns(e.target, e.target.getAttribute('aria-expanded') !== 'true');
+    }
+  });
+  var allBtn = $('toggle-all');
+  allBtn.addEventListener('click', function () {
+    var open = allBtn.textContent.indexOf('显示') === 0;
+    document.querySelectorAll('#practice .toggle-ans').forEach(function (b) { setAns(b, open); });
+    allBtn.textContent = open ? '隐藏全部答案' : '显示全部答案';
+  });
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('on', on);
+          if (on) {
+            var ol = a.parentNode.parentNode;
+            if (ol.scrollWidth > ol.clientWidth) ol.scrollLeft = a.offsetLeft - ol.offsetLeft - 20;
+          }
+        });
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 坐标图 ---------- */
+  var clipId = 0;
+  function plotter(svg, W, H, xr, yr) {
+    var sx = function (x) { return (x - xr[0]) / (xr[1] - xr[0]) * W; };
+    var sy = function (y) { return H - (y - yr[0]) / (yr[1] - yr[0]) * H; };
+    var id = 'clip' + (++clipId);
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var head = '<defs><clipPath id="' + id + '"><rect width="' + W + '" height="' + H + '"/></clipPath></defs>';
+    var i;
+    for (i = Math.ceil(xr[0]); i <= xr[1]; i++) if (i) head += '<line class="grid" x1="' + sx(i) + '" x2="' + sx(i) + '" y1="0" y2="' + H + '"/>';
+    for (i = Math.ceil(yr[0]); i <= yr[1]; i++) if (i) head += '<line class="grid" y1="' + sy(i) + '" y2="' + sy(i) + '" x1="0" x2="' + W + '"/>';
+    head += '<line class="axis" x1="0" x2="' + W + '" y1="' + sy(0) + '" y2="' + sy(0) + '"/>';
+    head += '<line class="axis" y1="0" y2="' + H + '" x1="' + sx(0) + '" x2="' + sx(0) + '"/>';
+    for (i = Math.ceil(xr[0]); i <= xr[1]; i++) if (i) head += '<text class="tick" text-anchor="middle" x="' + sx(i) + '" y="' + (sy(0) + 16) + '">' + i + '</text>';
+    for (i = Math.ceil(yr[0]); i <= yr[1]; i++) if (i) head += '<text class="tick" text-anchor="end" x="' + (sx(0) - 6) + '" y="' + (sy(i) + 4) + '">' + i + '</text>';
+    head += '<text class="tick" x="' + (W - 12) + '" y="' + (sy(0) - 7) + '">x</text>';
+    head += '<text class="tick" x="' + (sx(0) + 7) + '" y="12">y</text>';
+    return {
+      sx: sx, sy: sy, W: W, H: H, head: head, clip: id,
+      path: function (pts, cls) {
+        var lim = 1e5, d = '', pen = false;
+        pts.forEach(function (p) {
+          var X = sx(p[0]), Y = sy(p[1]);
+          if (!isFinite(X) || !isFinite(Y) || Math.abs(X) > lim || Math.abs(Y) > lim) { pen = false; return; }
+          d += (pen ? 'L' : 'M') + X.toFixed(1) + ' ' + Y.toFixed(1);
+          pen = true;
+        });
+        return '<path class="' + cls + '" d="' + d + '" clip-path="url(#' + id + ')"/>';
+      },
+      label: function (x, y, s, anchor) {
+        return '<text class="lbl" text-anchor="' + (anchor || 'start') + '" x="' + sx(x) + '" y="' + sy(y) + '">' + s + '</text>';
+      },
+      dot: function (x, y, cls) {
+        return '<circle class="' + cls + '" r="5" cx="' + sx(x) + '" cy="' + sy(y) + '" clip-path="url(#' + id + ')"/>';
+      }
+    };
+  }
+  function expPts(a, xr) {
+    var out = [];
+    for (var x = xr[0]; x <= xr[1] + 1e-9; x += 0.04) out.push([x, Math.pow(a, x)]);
+    return out;
+  }
+  function logPts(a, yr) {
+    var out = [];
+    for (var y = yr[0]; y <= yr[1] + 1e-9; y += 0.02) out.push([Math.pow(a, y), y]);
+    return out;
+  }
+  (function () {
+    var p = plotter($('fig-exp'), 620, 320, [-4.5, 4.5], [-0.8, 3.85]);
+    $('fig-exp').innerHTML = p.head + p.path(expPts(2, [-4.5, 4.5]), 's1') + p.path(expPts(0.5, [-4.5, 4.5]), 's2')
+      + p.dot(0, 1, 'dot') + p.label(0.15, 1.15, '(0, 1)')
+      + p.label(1.9, 3.3, 'y = 2ˣ', 'start') + p.label(-1.95, 3.3, 'y = (1/2)ˣ', 'end');
+    var q = plotter($('fig-log'), 620, 320, [-0.8, 8.2], [-2.35, 2.3]);
+    $('fig-log').innerHTML = q.head + q.path(logPts(2, [-2.5, 2.5]), 's1') + q.path(logPts(0.5, [-2.5, 2.5]), 's2')
+      + q.dot(1, 0, 'dot') + q.label(1.1, 0.2, '(1, 0)')
+      + q.label(5.5, 2.05, 'y = log₂ x') + q.label(5.5, -2.0, 'y = log½ x');
+  })();
+
+  /* ---------- 指数—对数探索器 ---------- */
+  var exSvg = $('ex-svg'), aIn = $('ex-a'), xIn = $('ex-x');
+  var EX = plotter(exSvg, 640, 440, [-4.5, 7.5], [-3.6, 4.65]);
+  var PRESETS = [['1/4', 0.25], ['1/2', 0.5], ['1', 1], ['2', 2], ['3', 3]];
+  var presetBox = $('ex-presets');
+  PRESETS.forEach(function (p) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.textContent = 'a = ' + p[0];
+    b.dataset.a = p[1];
+    b.addEventListener('click', function () { aIn.value = p[1]; drawEx(); });
+    presetBox.appendChild(b);
+  });
+  function fmt(v) {
+    if (!isFinite(v)) return '∞';
+    if (Math.abs(v) >= 1000) return v.toExponential(2);
+    return String(Math.round(v * 1000) / 1000);
+  }
+  function drawEx() {
+    var a = Number(aIn.value), x = Number(xIn.value), y = Math.pow(a, x), isOne = Math.abs(a - 1) < 1e-9;
+    $('ex-a-out').textContent = a.toFixed(2);
+    $('ex-x-out').textContent = x.toFixed(2);
+    presetBox.querySelectorAll('.chip').forEach(function (b) {
+      b.setAttribute('aria-pressed', Math.abs(Number(b.dataset.a) - a) < 1e-9);
+    });
+    var h = EX.head + EX.path([[-4.5, -4.5], [7.5, 7.5]], 'sm') + EX.label(3.5, 3.95, 'y = x');
+    if (isOne) {
+      h += EX.path([[-4.5, 1], [7.5, 1]], 's1') + EX.dot(x, 1, 'dot') + EX.label(x + 0.15, 1.2, 'P');
+      $('r-p').textContent = '(' + fmt(x) + ', 1)';
+      $('r-q').textContent = '不存在';
+      $('ex-status').textContent = 'a = 1 时 y = 1ˣ 恒为 1，只是一条水平直线，不是指数函数，也没有反函数。所以定义要求 a ≠ 1。';
+    } else {
+      h += EX.path(expPts(a, [-4.5, 7.5]), 's1') + EX.path(logPts(a, [-3.6, 4.65]), 's2');
+      h += EX.path([[x, y], [y, x]], 'sm') + EX.dot(x, y, 'dot') + EX.dot(y, x, 'dot2');
+      if (y < 4.4) h += EX.label(x + 0.15, y + 0.2, 'P');
+      if (y < 7.2) h += EX.label(y + 0.15, x + 0.2, 'Q');
+      $('r-p').textContent = '(' + fmt(x) + ', ' + fmt(y) + ')';
+      $('r-q').textContent = '(' + fmt(y) + ', ' + fmt(x) + ')';
+      $('ex-status').textContent = (a > 1
+        ? 'a > 1：两条曲线都单调递增。'
+        : '0 < a < 1：两条曲线都单调递减，解不等式时方向要反转。')
+        + ' P 与 Q 坐标互换，关于 y = x 对称：' + a.toFixed(2) + ' 的 ' + fmt(x) + ' 次方约为 ' + fmt(y) + '，也就是 log 以 ' + a.toFixed(2) + ' 为底 ' + fmt(y) + ' 约为 ' + fmt(x) + '。';
+    }
+    exSvg.innerHTML = h;
+  }
+  aIn.addEventListener('input', drawEx);
+  xIn.addEventListener('input', drawEx);
+  var dragging = false;
+  function dragTo(e) {
+    var r = exSvg.getBoundingClientRect();
+    var x = -4.5 + (e.clientX - r.left) / r.width * 12;
+    xIn.value = Math.max(-3, Math.min(3, x));
+    drawEx();
+  }
+  exSvg.addEventListener('pointerdown', function (e) { dragging = true; exSvg.setPointerCapture(e.pointerId); dragTo(e); });
+  exSvg.addEventListener('pointermove', function (e) { if (dragging) dragTo(e); });
+  ['pointerup', 'pointercancel'].forEach(function (n) {
+    exSvg.addEventListener(n, function () { dragging = false; });
+  });
+  drawEx();
+
+  /* ---------- 位数计算器（用 BigInt 精确核对） ---------- */
+  function drawDigits() {
+    var a = Number($('dg-a').value), n = Number($('dg-n').value);
+    $('dg-a-out').textContent = a;
+    $('dg-n-out').textContent = n;
+    var s = (BigInt(a) ** BigInt(n)).toString();
+    var v = n * Math.log10(a);
+    var shown = s.length > 14 ? s.slice(0, 6) + '…' + s.slice(-6) : s;
+    $('dg-status').innerHTML = 'log<sub>10</sub> ' + a + '<sup>' + n + '</sup> = ' + n + ' × log<sub>10</sub> ' + a + ' ≈ ' + v.toFixed(4)
+      + '，所以 ' + a + '<sup>' + n + '</sup> 是 <strong>' + s.length + ' 位数</strong>，最高位数字是 <strong>' + s.charAt(0) + '</strong>。<br>精确值：' + shown;
+  }
+  $('dg-a').addEventListener('input', drawDigits);
+  $('dg-n').addEventListener('input', drawDigits);
+  drawDigits();
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['status', 'read'],
+      throwOnError: false
+    });
+  }
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 02 集合与命题</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：集合、德摩根定律、命题与条件、必要条件・充分条件、逆・裏・対偶、背理法，含原创例题、练习题、交互演示和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+
+/* 本页追加 */
+html { scroll-padding-top: 110px; }
+.backbar { max-width: 1160px; margin: auto; padding: 8px 24px; font-size: 15px; }
+nav.toc { top: 38px; padding-top: 24px; }
+.status .katex { white-space: nowrap; }
+.vr { fill: transparent; }
+.vr.on { fill: var(--c1); fill-opacity: .38; }
+.vl { fill: none; stroke: var(--ink-2); stroke-width: 2; }
+.vt { fill: var(--ink); font: italic 600 20px var(--serif); }
+.vn { fill: var(--ink); font: 600 20px var(--sans); font-variant-numeric: tabular-nums; }
+.ltick { fill: var(--ink-3); font: 15px var(--sans); }
+.vname { fill: var(--ink); font: italic 600 17px var(--serif); }
+.lp { stroke: var(--c2); stroke-width: 6; stroke-linecap: round; }
+.lq { stroke: var(--c1); stroke-width: 6; stroke-linecap: round; }
+.lpd { fill: var(--c2); }
+.lqd { fill: var(--c1); }
+.chip .katex { font-size: 1em; }
+.chip[aria-pressed="true"] .katex { color: var(--surface); }
+.square { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 8px; align-items: center; max-width: 560px; margin: 16px auto; }
+.square .cell { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px; text-align: center; min-width: 0; }
+.square .cell small { display: block; color: var(--ink-3); font-size: 13px; }
+.square .arr { text-align: center; color: var(--ink-2); font-size: 14px; white-space: nowrap; }
+.square .arr.muted { color: var(--accent); }
+.q > p, .ans > p { overflow-wrap: anywhere; }
+@media (max-width: 900px) {
+  nav.toc { top: 36px; padding-top: 6px; }
+  .backbar { padding: 8px 16px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+<div class="backbar"><a href="../../">← 目录</a></div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <p class="eyebrow">EJU 数学コース2 · 出题项目 02 · 集合と命題</p>
+      <h1>集合与命题</h1>
+      <p class="lead">从子集、交并补和德摩根定律，到必要条件・充分条件、逆・裏・対偶和背理法：每个知识点都配例子，并附原创 EJU 风格填空题、练习题和日语术语对照表。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$\overline{A\cup B}=\overline{A}\cap\overline{B}$$
+      $$\overline{A\cap B}=\overline{A}\cup\overline{B}$$
+      $$(p\Rightarrow q)\iff(\overline{q}\Rightarrow\overline{p})$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#sets">1 集合与子集</a></li>
+        <li><a href="#ops">2 交并补・德摩根</a></li>
+        <li><a href="#prop">3 命题与条件</a></li>
+        <li><a href="#cond">4 必要与充分</a></li>
+        <li><a href="#conv">5 逆・裏・対偶</a></li>
+        <li><a href="#contra">6 背理法</a></li>
+        <li><a href="#examples">7 原创例题</a></li>
+        <li><a href="#practice">8 练习题</a></li>
+        <li><a href="#terms">9 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box warn" style="margin-top:28px">
+    <p><strong>符号提醒：</strong>日本教材的记号和中文教材略有不同。补集写作 $\overline{A}$（中文常写 $\complement_U A$）；$A\subset B$ <em>包含</em> $A=B$ 的情形（相当于中文的 $A\subseteq B$）；条件 $p$ 的否定写作 $\overline{p}$。本页统一使用日本写法。</p>
+  </div>
+
+  <section id="sets">
+    <h2>1 集合与子集</h2>
+    <p class="jp-sub" lang="ja">集合・要素・部分集合・空集合</p>
+    <p>范围明确的一些对象的全体叫<strong>集合</strong>（集合），其中每个对象叫<strong>元素</strong>（要素）。$a$ 属于 $A$ 记作 $a\in A$，不属于记作 $a\notin A$。</p>
+    <p>集合有两种写法，EJU 中都会出现：</p>
+    <ul>
+      <li>列举法：$A=\{1,\,2,\,3,\,6\}$</li>
+      <li>描述法：$A=\{x\mid x\text{ 是 }6\text{ 的正约数}\}$</li>
+    </ul>
+    <h3>子集与相等</h3>
+    <div class="formula-grid">
+      <div>$A\subset B$：$A$ 的元素全都属于 $B$</div>
+      <div>$A=B\iff A\subset B$ 且 $B\subset A$</div>
+      <div>空集 $\varnothing$（空集合）：没有元素，是任何集合的子集</div>
+      <div>$n$ 个元素的集合有 $2^n$ 个子集</div>
+    </div>
+    <p>每个元素都有“选”或“不选”两种可能，所以子集有 $2^n$ 个，其中包括 $\varnothing$ 和集合本身。去掉集合本身，就得到 $2^n-1$ 个<strong>真子集</strong>（真部分集合）。</p>
+    <div class="box good">
+      <p><strong>例：</strong>$A=\{1,\,2,\,3\}$ 的子集共 $2^3=8$ 个：$\varnothing,\ \{1\},\ \{2\},\ \{3\},\ \{1,2\},\ \{1,3\},\ \{2,3\},\ \{1,2,3\}$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>易错：</strong>$\in$ 连接“元素与集合”，$\subset$ 连接“集合与集合”。所以 $1\in\{1,2\}$ 和 $\{1\}\subset\{1,2\}$ 正确，而 $\{1\}\in\{1,2\}$ 错误。</p>
+    </div>
+  </section>
+
+  <section id="ops">
+    <h2>2 交集、并集、补集与德摩根定律</h2>
+    <p class="jp-sub" lang="ja">共通部分・和集合・補集合・ド・モルガンの法則</p>
+    <div class="tw"><table>
+      <thead><tr><th>名称</th><th>记号</th><th>定义</th></tr></thead>
+      <tbody>
+        <tr><td>交集 <span class="kana" lang="ja">共通部分</span></td><td>$A\cap B$</td><td>$\{x\mid x\in A\text{ かつ }x\in B\}$</td></tr>
+        <tr><td>并集 <span class="kana" lang="ja">和集合</span></td><td>$A\cup B$</td><td>$\{x\mid x\in A\text{ または }x\in B\}$</td></tr>
+        <tr><td>补集 <span class="kana" lang="ja">補集合</span></td><td>$\overline{A}$</td><td>$\{x\mid x\in U\text{ かつ }x\notin A\}$（$U$ 为全集 <span lang="ja">全体集合</span>）</td></tr>
+      </tbody>
+    </table></div>
+    <p>「または」包含“两者都满足”的情形，和日常语言里“二选一”的“或”不同。</p>
+    <h3>德摩根定律</h3>
+    $$\overline{A\cup B}=\overline{A}\cap\overline{B},\qquad \overline{A\cap B}=\overline{A}\cup\overline{B}$$
+    <p>口诀：<strong>补号拆开，交并互换</strong>。三个集合时同样成立，如 $\overline{A\cup B\cup C}=\overline{A}\cap\overline{B}\cap\overline{C}$。此外，$\overline{\overline{A}}=A$。</p>
+    <h3>元素个数</h3>
+    <div class="formula-grid">
+      <div>$n(A\cup B)=n(A)+n(B)-n(A\cap B)$</div>
+      <div>$n(\overline{A})=n(U)-n(A)$</div>
+      <div>$n(A\cap\overline{B})=n(A)-n(A\cap B)$</div>
+    </div>
+    <div class="explorer" id="venn">
+      <h3 style="margin-top:0">文氏图探索器</h3>
+      <p style="margin-top:0">选一个集合看阴影，再拖动滑块改变元素个数。对比 $\overline{A}\cap\overline{B}$ 与 $\overline{A\cup B}$ 的说明，可以直接看到德摩根定律。</p>
+      <div class="ex-head" id="venn-chips" role="group" aria-label="选择集合"></div>
+      <svg id="venn-svg" class="chart" viewBox="0 0 560 270" role="img" aria-label="两个集合 A、B 的文氏图，阴影表示所选集合，各区域标有元素个数">
+        <path id="r-out" class="vr" fill-rule="evenodd" d="M6 6H554V264H6Z M280 63.6A100 100 0 1 0 280 206.4A100 100 0 1 0 280 63.6Z"/>
+        <path id="r-a" class="vr" d="M280 63.6A100 100 0 1 0 280 206.4A100 100 0 0 1 280 63.6Z"/>
+        <path id="r-i" class="vr" d="M280 63.6A100 100 0 0 1 280 206.4A100 100 0 0 1 280 63.6Z"/>
+        <path id="r-b" class="vr" d="M280 63.6A100 100 0 1 1 280 206.4A100 100 0 0 0 280 63.6Z"/>
+        <rect x="6" y="6" width="548" height="258" class="vl"/>
+        <circle cx="210" cy="135" r="100" class="vl"/><circle cx="350" cy="135" r="100" class="vl"/>
+        <text x="20" y="30" class="vt">U</text>
+        <text x="140" y="46" class="vt">A</text><text x="420" y="46" class="vt">B</text>
+        <text id="t-a" x="185" y="142" class="vn" text-anchor="middle"></text>
+        <text id="t-i" x="280" y="142" class="vn" text-anchor="middle"></text>
+        <text id="t-b" x="375" y="142" class="vn" text-anchor="middle"></text>
+        <text id="t-o" x="528" y="250" class="vn" text-anchor="middle"></text>
+      </svg>
+      <div class="ctrl"><label for="s-u">$n(U)$</label><input id="s-u" type="range" min="10" max="60" step="1" value="50"><output id="o-u"></output></div>
+      <div class="ctrl"><label for="s-a">$n(A)$</label><input id="s-a" type="range" min="0" max="60" step="1" value="30"><output id="o-a"></output></div>
+      <div class="ctrl"><label for="s-b">$n(B)$</label><input id="s-b" type="range" min="0" max="60" step="1" value="25"><output id="o-b"></output></div>
+      <div class="ctrl"><label for="s-i">$n(A\cap B)$</label><input id="s-i" type="range" min="0" max="60" step="1" value="12"><output id="o-i"></output></div>
+      <div class="status" id="venn-read" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="prop">
+    <h2>3 命题与条件</h2>
+    <p class="jp-sub" lang="ja">命題・条件・真偽・反例・否定</p>
+    <p>能判定真假的陈述叫<strong>命题</strong>（命題）。含变量、取值后才能定真假的式子叫<strong>条件</strong>（条件），如 $p(x):x&gt;1$。</p>
+    <p>命题“$p\Rightarrow q$”中，$p$ 是<strong>假设</strong>（仮定），$q$ 是<strong>结论</strong>（結論）。设满足 $p,q$ 的元素集合分别为 $P,Q$（真理集合），则</p>
+    $$p\Rightarrow q\text{ 为真}\iff P\subset Q$$
+    <p>要说明命题为假，只需举一个满足 $p$ 却不满足 $q$ 的<strong>反例</strong>（反例）。</p>
+    <div class="box good">
+      <p><strong>例：</strong>对实数 $x$，“$x^2=1\Rightarrow x=1$”为假，反例是 $x=-1$。“$x=1\Rightarrow x^2=1$”为真，因为 $\{1\}\subset\{-1,\,1\}$。</p>
+    </div>
+    <h3>条件与语句的否定</h3>
+    <p>否定对应补集，所以德摩根定律可以直接搬过来：</p>
+    <div class="formula-grid">
+      <div>$\overline{p\text{ かつ }q}\iff\overline{p}\text{ または }\overline{q}$</div>
+      <div>$\overline{p\text{ または }q}\iff\overline{p}\text{ かつ }\overline{q}$</div>
+    </div>
+    <div class="tw"><table>
+      <thead><tr><th>原语句</th><th>否定</th></tr></thead>
+      <tbody>
+        <tr><td>$x&gt;1$</td><td>$x\le 1$（不是 $x&lt;1$）</td></tr>
+        <tr><td>$x=1$ 且 $y=2$</td><td>$x\ne 1$ 或 $y\ne 2$</td></tr>
+        <tr><td>所有 $x$ 都满足 $p$（すべての $x$ について）</td><td>存在 $x$ 满足 $\overline{p}$（ある $x$ について）</td></tr>
+        <tr><td>存在 $x$ 满足 $p$</td><td>所有 $x$ 都满足 $\overline{p}$</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="cond">
+    <h2>4 必要条件与充分条件</h2>
+    <p class="jp-sub" lang="ja">必要条件・十分条件・必要十分条件・同値</p>
+    <p>当 $p\Rightarrow q$ 为真时：</p>
+    <div class="formula-grid">
+      <div>$p$ 是 $q$ 的<strong>充分条件</strong>（十分条件）</div>
+      <div>$q$ 是 $p$ 的<strong>必要条件</strong>（必要条件）</div>
+    </div>
+    <p>当 $p\Rightarrow q$ 和 $q\Rightarrow p$ 都真时，写作 $p\iff q$，二者互为<strong>充要条件</strong>（必要十分条件），也称<strong>等价</strong>（同値）。</p>
+    <div class="box">
+      <p><strong>记忆法：</strong>箭头尾部充分，箭头头部必要。换成集合就是<strong>“小的充分，大的必要”</strong>：范围小的条件能推出范围大的条件。</p>
+    </div>
+    <div class="tw"><table>
+      <thead><tr><th>$p\Rightarrow q$</th><th>$q\Rightarrow p$</th><th>$p$ 是 $q$ 的…</th><th>日语</th></tr></thead>
+      <tbody>
+        <tr><td>真</td><td>真</td><td>充要条件</td><td lang="ja">必要十分条件である</td></tr>
+        <tr><td>假</td><td>真</td><td>必要但不充分</td><td lang="ja">必要条件であるが十分条件ではない</td></tr>
+        <tr><td>真</td><td>假</td><td>充分但不必要</td><td lang="ja">十分条件であるが必要条件ではない</td></tr>
+        <tr><td>假</td><td>假</td><td>既不充分也不必要</td><td lang="ja">必要条件でも十分条件でもない</td></tr>
+      </tbody>
+    </table></div>
+    <p>EJU 常以选择项形式考这四种关系。答题时分别判定两个方向，假的方向给出一个反例即可。</p>
+    <div class="explorer" id="line">
+      <h3 style="margin-top:0">数轴判定器</h3>
+      <p style="margin-top:0">固定 $q:-1\le x\le 3$，调节 $p:|x-c|\le r$ 的中心和半径，观察两个区间的包含关系如何决定结论。</p>
+      <div class="ex-head" id="line-chips" role="group" aria-label="预设"></div>
+      <svg id="line-svg" class="chart" viewBox="0 0 560 130" role="img" aria-label="数轴上条件 p 与条件 q 对应的两个闭区间"></svg>
+      <div class="ctrl"><label for="s-c">中心 $c$</label><input id="s-c" type="range" min="-3" max="5" step="0.5" value="1"><output id="o-c"></output></div>
+      <div class="ctrl"><label for="s-r">半径 $r$</label><input id="s-r" type="range" min="0.5" max="4" step="0.5" value="1"><output id="o-r"></output></div>
+      <div class="status" id="line-read" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="conv">
+    <h2>5 逆・裏・対偶</h2>
+    <p class="jp-sub" lang="ja">命題の逆・裏・対偶</p>
+    <div class="square">
+      <div class="cell"><small>原命题</small>$p\Rightarrow q$</div><div class="arr">逆 ⇄</div><div class="cell"><small>逆 <span lang="ja">（ぎゃく）</span></small>$q\Rightarrow p$</div>
+      <div class="arr">裏 ⇅</div><div class="arr muted">対偶 ⤡⤢</div><div class="arr">裏 ⇅</div>
+      <div class="cell"><small>裏 <span lang="ja">（うら）</span></small>$\overline{p}\Rightarrow\overline{q}$</div><div class="arr">逆 ⇄</div><div class="cell"><small>対偶 <span lang="ja">（たいぐう）</span></small>$\overline{q}\Rightarrow\overline{p}$</div>
+    </div>
+    <div class="box">
+      <p><strong>关键事实：</strong>命题与它的対偶<strong>真假一致</strong>；逆与裏互为対偶，所以二者也真假一致。但原命题与逆、原命题与裏的真假没有必然联系。</p>
+    </div>
+    <p>集合解释：$P\subset Q\iff\overline{Q}\subset\overline{P}$，所以 $p\Rightarrow q$ 和 $\overline{q}\Rightarrow\overline{p}$ 同真同假。</p>
+    <div class="box good">
+      <p><strong>例：</strong>对实数 $x$，原命题“$x=2\Rightarrow x^2=4$”为真。</p>
+      <ul>
+        <li>逆“$x^2=4\Rightarrow x=2$”：假（反例 $x=-2$）</li>
+        <li>裏“$x\ne 2\Rightarrow x^2\ne 4$”：假（反例 $x=-2$）</li>
+        <li>対偶“$x^2\ne 4\Rightarrow x\ne 2$”：真</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <p><strong>易混：</strong>中文教材把“裏”叫<strong>否命题</strong>，它和“命题的否定”不是一回事。$p\Rightarrow q$ 的裏是 $\overline{p}\Rightarrow\overline{q}$；$p\Rightarrow q$ 的否定是“$p$ 且 $\overline{q}$”（存在反例）。“対偶”即中文的<strong>逆否命题</strong>。</p>
+    </div>
+    <h3>用対偶证明</h3>
+    <p>直接证明困难时，可改证対偶。例如，对整数 $n$，证明“$n^2$ 是偶数 $\Rightarrow n$ 是偶数”。</p>
+    <p>対偶是“$n$ 是奇数 $\Rightarrow n^2$ 是奇数”。设 $n=2k+1$（$k$ 为整数），则 $n^2=2(2k^2+2k)+1$ 是奇数，対偶为真，因此原命题也为真。</p>
+  </section>
+
+  <section id="contra">
+    <h2>6 背理法</h2>
+    <p class="jp-sub" lang="ja">背理法 — 矛盾を導く証明</p>
+    <p><strong>背理法</strong>即中文的<strong>反证法</strong>：先假设结论不成立，再推出矛盾（矛盾），从而断定结论成立。</p>
+    <div class="box">
+      <p><strong>步骤：</strong>① 否定结论作为假设；② 据此推导；③ 得出与已知条件或已知事实的矛盾；④ 断定原结论成立。</p>
+    </div>
+    <h3>经典例：$\sqrt{2}$ 是无理数</h3>
+    <ol>
+      <li>假设 $\sqrt{2}$ 是有理数，则可写成 $\sqrt{2}=\dfrac{m}{n}$，其中 $m,n$ 是互质（互いに素）的自然数。</li>
+      <li>两边平方得 $m^2=2n^2$，所以 $m^2$ 是偶数，由上节结论，$m$ 也是偶数。</li>
+      <li>设 $m=2l$，代入得 $4l^2=2n^2$，即 $n^2=2l^2$，所以 $n$ 也是偶数。</li>
+      <li>$m,n$ 都有公约数 $2$，与互质矛盾。因此 $\sqrt{2}$ 是无理数。</li>
+    </ol>
+    <h3>常用结论</h3>
+    <p>设 $a,b$ 是有理数，则 $a+b\sqrt{2}=0\iff a=b=0$。证明：若 $b\ne 0$，则 $\sqrt{2}=-\dfrac{a}{b}$ 是有理数，矛盾，所以 $b=0$，进而 $a=0$。</p>
+    <div class="box warn">
+      <p><strong>区别：</strong>対偶证明只针对“$p\Rightarrow q$”，目标是推出 $\overline{p}$；背理法在 $p$ 和 $\overline{q}$ 同时成立的前提下推出<em>任意</em>矛盾，也适用于“$\sqrt{2}$ 是无理数”这类结论单独出现的命题。</p>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2>7 原创 EJU 风格例题</h2>
+    <p class="jp-sub">以下题目均为本讲义<strong>原创</strong>，仅模仿 EJU 的填空形式，并非真题。</p>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框字母对应一个数字（$0$–$9$），例如 $\B{AB}$ 是两位数。选择题则填选项的编号。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>例题 1　倍数的集合</b><span class="origin">原创</span></div>
+      <p>设全集 $U=\{x\mid x\text{ 是 }1\le x\le 100\text{ 的整数}\}$，$A$ 为 $U$ 中 $4$ 的倍数的集合，$B$ 为 $U$ 中 $6$ 的倍数的集合。</p>
+      <p>(1) $n(A)=\B{AB}$，$n(B)=\B{CD}$，$n(A\cap B)=\B{E}$。</p>
+      <p>(2) $n(A\cup B)=\B{FG}$，$n(\overline{A}\cap\overline{B})=\B{HI}$。</p>
+      <p>(3) $n(\overline{A}\cup\overline{B})=\B{JK}$，$n(A\cap\overline{B})=\B{LM}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>AB = 25</li><li>CD = 16</li><li>E = 8</li><li>FG = 33</li><li>HI = 67</li><li>JK = 92</li><li>LM = 17</li></ul>
+        <p>(1) $100\div 4=25$；$100\div 6=16.\cdots$，取 $16$。$A\cap B$ 是 $4$ 和 $6$ 的公倍数，即<strong>最小公倍数 $12$</strong>（不是 $24$）的倍数，共 $8$ 个。</p>
+        <p>(2) $n(A\cup B)=25+16-8=33$。由德摩根定律，$n(\overline{A}\cap\overline{B})=n(\overline{A\cup B})=100-33=67$。</p>
+        <p>(3) $n(\overline{A}\cup\overline{B})=n(\overline{A\cap B})=100-8=92$；$n(A\cap\overline{B})=25-8=17$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 2　含参数的区间</b><span class="origin">原创</span></div>
+      <p>对实数 $x$，设 $A=\{x\mid x^2-3x-10\le 0\}$，$B=\{x\mid |x-a|&lt;3\}$，其中 $a$ 为实数。</p>
+      <p>(1) $A=\{x\mid -\B{A}\le x\le\B{B}\}$。</p>
+      <p>(2) $a=3$ 时，$A\cap B=\{x\mid\B{C}&lt;x\le\B{D}\}$，$A\cup B=\{x\mid -\B{E}\le x&lt;\B{F}\}$。</p>
+      <p>(3) $B\subset A$ 的充要条件是 $\B{G}\le a\le\B{H}$。</p>
+      <p>(4) $A\cap B=\varnothing$ 的充要条件是 $a\le -\B{I}$ 或 $a\ge\B{J}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 5</li><li>C = 0</li><li>D = 5</li><li>E = 2</li><li>F = 6</li><li>G = 1</li><li>H = 2</li><li>I = 5</li><li>J = 8</li></ul>
+        <p>(1) $(x+2)(x-5)\le 0$，得 $-2\le x\le 5$。而 $B$ 是开区间 $a-3&lt;x&lt;a+3$。</p>
+        <p>(2) $a=3$ 时 $B:0&lt;x&lt;6$。在数轴上取公共部分和合并部分，得 $0&lt;x\le 5$ 和 $-2\le x&lt;6$。</p>
+        <p>(3) 需 $-2\le a-3$ 且 $a+3\le 5$，解得 $1\le a\le 2$。等号可取，因为 $B$ 不含端点。</p>
+        <p>(4) 需 $a+3\le -2$ 或 $a-3\ge 5$，解得 $a\le -5$ 或 $a\ge 8$。等号同样可取：$B$ 不含端点，不会碰到 $A$ 的端点。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 3　必要与充分的判定</b><span class="origin">原创</span></div>
+      <p>$x,y$ 为实数。从下面的 ⓪～③ 中选出适合的一项填入 $\B{A}$～$\B{D}$。</p>
+      <p>⓪ 充要条件　① 必要但不充分的条件　② 充分但不必要的条件　③ 既不充分也不必要的条件</p>
+      <p>(1) $x^2=y^2$ 是 $x=y$ 的 $\B{A}$。</p>
+      <p>(2) “$xy&gt;0$ 且 $x+y&gt;0$”是“$x&gt;0$ 且 $y&gt;0$”的 $\B{B}$。</p>
+      <p>(3) $x&gt;y$ 是 $x^2&gt;y^2$ 的 $\B{C}$。</p>
+      <p>(4) $x+y&gt;2$ 是“$x&gt;1$ 或 $y&gt;1$”的 $\B{D}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 1</li><li>B = 0</li><li>C = 3</li><li>D = 2</li></ul>
+        <p>(1) $x=y\Rightarrow x^2=y^2$ 真；反方向假（$x=1,\ y=-1$）。所以是必要不充分。</p>
+        <p>(2) $xy&gt;0$ 表明 $x,y$ 同号，再由 $x+y&gt;0$ 知二者都为正；反方向显然成立。所以是充要条件。</p>
+        <p>(3) $x=1,\ y=-2$ 满足 $x&gt;y$，但 $x^2&lt;y^2$；$x=-2,\ y=1$ 满足 $x^2&gt;y^2$，但 $x&lt;y$。两个方向都假。</p>
+        <p>(4) 看对偶：“$x\le 1$ 且 $y\le 1\Rightarrow x+y\le 2$”为真，所以 $x+y&gt;2\Rightarrow$“$x&gt;1$ 或 $y&gt;1$”为真。反方向假（$x=2,\ y=-5$）。所以是充分不必要。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 4　対偶与背理法</b><span class="origin">原创</span></div>
+      <p>(1) 证明：对自然数 $n$，“$n^2$ 是 $3$ 的倍数 $\Rightarrow n$ 是 $3$ 的倍数”。考虑其対偶。设 $k$ 为整数：</p>
+      <p>$n=3k+1$ 时，$n^2=3(\B{A}k^2+\B{B}k)+\B{C}$；</p>
+      <p>$n=3k+2$ 时，$n^2=3(\B{D}k^2+\B{E}k+\B{F})+\B{G}$。</p>
+      <p>两种情况下 $n^2$ 都不是 $3$ 的倍数，所以対偶为真，原命题为真。</p>
+      <p>(2) 证明 $\sqrt{3}$ 是无理数。假设 $\sqrt{3}=\dfrac{m}{n}$（$m,n$ 为互质的自然数），则 $m^2=\B{H}\,n^2$，由 (1) 知 $m$ 是 $3$ 的倍数。设 $m=3l$，得 $n^2=\B{I}\,l^2$，所以 $n$ 也是 $3$ 的倍数，与互质矛盾。</p>
+      <p>(3) (2) 使用的证明方法是 $\B{J}$（⓪ 数学归纳法　① 背理法　② 穷举法）。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 3</li><li>B = 2</li><li>C = 1</li><li>D = 3</li><li>E = 4</li><li>F = 1</li><li>G = 1</li><li>H = 3</li><li>I = 3</li><li>J = 1</li></ul>
+        <p>(1) $(3k+1)^2=9k^2+6k+1=3(3k^2+2k)+1$；$(3k+2)^2=9k^2+12k+4=3(3k^2+4k+1)+1$。</p>
+        <p>(2) 平方得 $m^2=3n^2$。代入 $m=3l$：$9l^2=3n^2$，即 $n^2=3l^2$。</p>
+        <p>(3) 先否定结论再推出矛盾，这正是背理法。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>8 练习题</h2>
+    <div class="bar">
+      <p class="jp-sub" style="margin:0">点击按钮查看答案与简要解析。除注明外，$x,y,a,b$ 均为实数。</p>
+      <button class="toggle-ans" id="toggle-all" type="button" style="margin:0">显示全部答案</button>
+    </div>
+
+    <article class="q"><div class="q-head"><b>练习 1</b>集合运算</div>
+      <p>$U=\{1,2,\dots,10\}$，$A=\{1,3,5,7,9\}$，$B=\{3,6,9\}$。求 $A\cap B$、$A\cup B$、$\overline{A}\cap B$、$\overline{A\cup B}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$A\cap B=\{3,\,9\}$；$A\cup B=\{1,\,3,\,5,\,6,\,7,\,9\}$；$\overline{A}\cap B=\{6\}$（$B$ 中不属于 $A$ 的元素）；$\overline{A\cup B}=\{2,\,4,\,8,\,10\}$。</p></div></article>
+
+    <article class="q"><div class="q-head"><b>练习 2</b>子集个数</div>
+      <p>集合 $\{1,2,3,4,5\}$ 的子集有多少个？真子集呢？含 $1$ 且不含 $2$ 的子集呢？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>子集 $2^5=\mathbf{32}$ 个；真子集 $32-1=\mathbf{31}$ 个；$1,2$ 已确定，其余 $3$ 个元素各有两种选择，共 $2^3=\mathbf{8}$ 个。</p></div></article>
+
+    <article class="q"><div class="q-head"><b>练习 3</b>元素个数</div>
+      <p>$n(U)=50$，$n(A)=30$，$n(B)=25$，$n(A\cap B)=12$。求 $n(A\cup B)$、$n(\overline{A}\cap\overline{B})$、$n(A\cap\overline{B})$、$n(\overline{A}\cup\overline{B})$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$n(A\cup B)=30+25-12=\mathbf{43}$；$n(\overline{A}\cap\overline{B})=50-43=\mathbf{7}$；$n(A\cap\overline{B})=30-12=\mathbf{18}$；$n(\overline{A}\cup\overline{B})=50-12=\mathbf{38}$。</p></div></article>
+
+    <article class="q"><div class="q-head"><b>练习 4</b>区间与补集</div>
+      <p>全集为实数全体，$A=\{x\mid -1&lt;x\le 4\}$，$B=\{x\mid x\ge 2\}$。求 $\overline{A}\cup\overline{B}$ 和 $\overline{A}\cap B$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$A\cap B=\{x\mid 2\le x\le 4\}$，由德摩根定律，$\overline{A}\cup\overline{B}=\overline{A\cap B}=\{x\mid x&lt;2\text{ 或 }x&gt;4\}$。$\overline{A}$ 为 $x\le -1$ 或 $x&gt;4$，与 $B$ 的公共部分是 $\{x\mid x&gt;4\}$。</p></div></article>
+
+    <article class="q"><div class="q-head"><b>练习 5</b>由交集求参数</div>
+      <p>$A=\{1,\,4,\,a^2\}$，$B=\{a-1,\,a+2,\,6\}$，且 $A\cap B=\{4\}$。求 $a$ 和 $A\cup B$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$4\in B$，所以 $a-1=4$ 或 $a+2=4$，即 $a=5$ 或 $a=2$。<strong>必须代回检验：</strong>$a=2$ 时 $A=\{1,4\}$，$B=\{1,4,6\}$，$A\cap B=\{1,4\}$，不合题意。$a=5$ 时 $A=\{1,4,25\}$，$B=\{4,7,6\}$，符合。故 $a=5$，$A\cup B=\{1,\,4,\,6,\,7,\,25\}$。</p></div></article>
+
+    <article class="q"><div class="q-head"><b>练习 6</b>真假与反例</div>
+      <p>判断真假，假的举反例：(1) $x^2=4\Rightarrow x=2$；(2) $x&gt;2\Rightarrow x^2&gt;4$；(3) $xy=0\Rightarrow x=0$；(4) 整数 $n$ 是 $4$ 的倍数 $\Rightarrow n$ 是偶数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>(1) 假，反例 $x=-2$。(2) 真。(3) 假，反例 $x=1,\ y=0$。(4) 真，$n=4k=2\cdot 2k$。</p></div></article>
+
+    <article class="q"><div class="q-head"><b>练习 7</b>否定</div>
+      <p>写出否定：(1) $x&gt;0$ 且 $y\le 1$；(2) 所有实数 $x$ 都满足 $x^2&gt;0$；(3) $x=1$ 或 $y=2$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>(1) $x\le 0$ 或 $y&gt;1$。(2) 存在实数 $x$ 满足 $x^2\le 0$（这个否定为真，例如 $x=0$，所以原命题为假）。(3) $x\ne 1$ 且 $y\ne 2$。</p></div></article>
+
+    <article class="q"><div class="q-head"><b>练习 8</b>必要与充分</div>
+      <p>从 ⓪ 充要　① 必要不充分　② 充分不必要　③ 都不是 中选择，“前者是后者的…”：</p>
+      <p>(1) $x=2$；$x^2=4$　(2) $x^2-3x+2=0$；$x=1$　(3) $x^2+y^2=0$；$x=y=0$<br>(4) $|x|&lt;2$；$x&lt;3$　(5) 三角形是等边三角形；三角形是等腰三角形　(6) $a+b$ 和 $ab$ 都是整数；$a,b$ 都是整数</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>(1) ②，反方向反例 $x=-2$。(2) ①，$x=2$ 时前者成立而后者不成立。(3) ⓪。(4) ②，$-2&lt;x&lt;2$ 含于 $x&lt;3$；反例 $x=-5$。(5) ②。(6) ①，反例 $a=\dfrac{1+\sqrt5}{2},\ b=\dfrac{1-\sqrt5}{2}$：$a+b=1$，$ab=-1$，但 $a,b$ 不是整数。</p></div></article>
+
+    <article class="q"><div class="q-head"><b>练习 9</b>含参数的条件</div>
+      <p>$p:|x-1|\le 2$。(1) 求使 $p$ 是 $|x-a|\le 4$ 的充分条件的 $a$ 的范围。(2) 求使 $p$ 是 $|x-a|\le 1$ 的必要条件的 $a$ 的范围。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$p$ 对应 $[-1,\,3]$。(1) 需 $[-1,3]\subset[a-4,a+4]$：$a-4\le -1$ 且 $3\le a+4$，得 $-1\le a\le 3$。(2) 需 $[a-1,a+1]\subset[-1,3]$：$-1\le a-1$ 且 $a+1\le 3$，得 $0\le a\le 2$。</p></div></article>
+
+    <article class="q"><div class="q-head"><b>练习 10</b>逆・裏・対偶</div>
+      <p>写出“$x&gt;1\Rightarrow x^2&gt;1$”的逆、裏、対偶，并判断原命题及它们的真假。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>原命题：真。逆 $x^2&gt;1\Rightarrow x&gt;1$：假（$x=-2$）。裏 $x\le 1\Rightarrow x^2\le 1$：假（$x=-2$）。対偶 $x^2\le 1\Rightarrow x\le 1$：真。</p></div></article>
+
+    <article class="q"><div class="q-head"><b>练习 11</b>用対偶定参数</div>
+      <p>要使命题“$x+y&gt;5\Rightarrow x&gt;a$ 或 $y&gt;3$”为真，求常数 $a$ 的最大值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>対偶为“$x\le a$ 且 $y\le 3\Rightarrow x+y\le 5$”。$x+y$ 的最大值是 $a+3$，需 $a+3\le 5$，所以最大值为 $a=2$。</p></div></article>
+
+    <article class="q"><div class="q-head"><b>练习 12</b>有理数与无理数</div>
+      <p>$a,b$ 是有理数。(1) 若 $(a-1)+(b+2)\sqrt{2}=0$，求 $a,b$。(2) 若 $(2+\sqrt{2})a+(1-\sqrt{2})b=4$，求 $a,b$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>用“$p+q\sqrt{2}=0$（$p,q$ 有理）$\Rightarrow p=q=0$”。(1) $a=1$，$b=-2$。(2) 整理得 $(2a+b-4)+(a-b)\sqrt{2}=0$，所以 $a=b$ 且 $3a=4$，得 $a=b=\dfrac{4}{3}$。</p></div></article>
+  </section>
+
+  <section id="terms">
+    <h2>9 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody id="term-body"></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页依据 JASSO 2026 年度起适用的数学シラバス中「集合と命題」的范围组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。所有例题和练习均为原创，答案已用 Python（sympy）计算或核对。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  function $(id) { return document.getElementById(id); }
+  var MATH_OPTS = {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '$', right: '$', display: false }
+    ],
+    macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+    throwOnError: false
+  };
+  function setMath(el, html) {
+    el.innerHTML = html;
+    if (window.renderMathInElement) window.renderMathInElement(el, MATH_OPTS);
+  }
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['集合', [
+      ['集合', 'しゅうごう', '集合'], ['要素', 'ようそ', '元素'], ['属する', 'ぞくする', '属于'],
+      ['部分集合', 'ぶぶんしゅうごう', '子集'], ['真部分集合', 'しんぶぶんしゅうごう', '真子集'],
+      ['空集合', 'くうしゅうごう', '空集'], ['全体集合', 'ぜんたいしゅうごう', '全集'],
+      ['共通部分', 'きょうつうぶぶん', '交集'], ['和集合', 'わしゅうごう', '并集'],
+      ['補集合', 'ほしゅうごう', '补集'], ['ド・モルガンの法則', 'ド・モルガンのほうそく', '德摩根定律'],
+      ['ベン図', 'ベンず', '文氏图'], ['要素の個数', 'ようそのこすう', '元素个数']
+    ]],
+    ['命题与条件', [
+      ['命題', 'めいだい', '命题'], ['条件', 'じょうけん', '条件'], ['真', 'しん', '真'], ['偽', 'ぎ', '假'],
+      ['仮定', 'かてい', '假设（命题的前件）'], ['結論', 'けつろん', '结论'], ['反例', 'はんれい', '反例'],
+      ['否定', 'ひてい', '否定'], ['かつ', 'かつ', '且'], ['または', 'または', '或（含两者都满足）'],
+      ['すべての', 'すべての', '所有的'], ['ある', 'ある', '存在某个'], ['真理集合', 'しんりしゅうごう', '真值集合']
+    ]],
+    ['必要与充分', [
+      ['必要条件', 'ひつようじょうけん', '必要条件'], ['十分条件', 'じゅうぶんじょうけん', '充分条件'],
+      ['必要十分条件', 'ひつようじゅうぶんじょうけん', '充要条件'], ['同値', 'どうち', '等价']
+    ]],
+    ['逆・裏・対偶与证明', [
+      ['逆', 'ぎゃく', '逆命题'], ['裏', 'うら', '否命题'], ['対偶', 'たいぐう', '逆否命题'],
+      ['背理法', 'はいりほう', '反证法'], ['矛盾', 'むじゅん', '矛盾'], ['証明', 'しょうめい', '证明'],
+      ['有理数', 'ゆうりすう', '有理数'], ['無理数', 'むりすう', '无理数'], ['自然数', 'しぜんすう', '自然数'],
+      ['倍数', 'ばいすう', '倍数'], ['互いに素', 'たがいにそ', '互质']
+    ]]
+  ];
+  var termBody = $('term-body');
+  var total = 0;
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3"></td>';
+    gr.firstChild.textContent = g[0];
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja"></td><td class="kana" lang="ja"></td><td></td>';
+      t.forEach(function (s, i) { tr.children[i].textContent = s; });
+      termBody.appendChild(tr);
+      total++;
+    });
+  });
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase();
+    var shown = 0, group = null, groupHit = false;
+    function closeGroup() { if (group) group.hidden = !groupHit; }
+    Array.prototype.forEach.call(termBody.children, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHit = false; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { shown++; groupHit = true; }
+    });
+    closeGroup();
+    $('term-count').textContent = '显示 ' + shown + ' / ' + total + ' 个术语';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 答案开关 ---------- */
+  function setAns(btn, open) {
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.textContent = open ? '隐藏答案' : '显示答案';
+    btn.nextElementSibling.hidden = !open;
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.id !== 'toggle-all' && e.target.classList && e.target.classList.contains('toggle-ans')) {
+      setAns(e.target, e.target.getAttribute('aria-expanded') !== 'true');
+    }
+  });
+  var allBtn = $('toggle-all');
+  allBtn.addEventListener('click', function () {
+    var open = allBtn.textContent.indexOf('显示') === 0;
+    document.querySelectorAll('#practice article .toggle-ans').forEach(function (b) { setAns(b, open); });
+    allBtn.textContent = open ? '隐藏全部答案' : '显示全部答案';
+  });
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('on', on);
+          var ol = a.parentNode.parentNode;
+          if (on && ol.scrollWidth > ol.clientWidth) ol.scrollLeft = a.offsetLeft - ol.offsetLeft - 20;
+        });
+      });
+    }, { rootMargin: '-25% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 文氏图 ---------- */
+  /* 区域顺序：仅 A、A∩B、仅 B、外部 */
+  var SETS = [
+    { tex: 'A\\cap B', r: [0, 1, 0, 0], calc: function (n) { return { f: 'n(A\\cap B)', v: n.i }; } },
+    { tex: 'A\\cup B', r: [1, 1, 1, 0], calc: function (n) { return { f: n.a + '+' + n.b + '-' + n.i, v: n.a + n.b - n.i }; } },
+    { tex: '\\overline{A}', r: [0, 0, 1, 1], calc: function (n) { return { f: n.u + '-' + n.a, v: n.u - n.a }; } },
+    { tex: '\\overline{B}', r: [1, 0, 0, 1], calc: function (n) { return { f: n.u + '-' + n.b, v: n.u - n.b }; } },
+    { tex: '\\overline{A}\\cap\\overline{B}', same: '\\overline{A\\cup B}', r: [0, 0, 0, 1], calc: function (n) { return { f: n.u + '-(' + n.a + '+' + n.b + '-' + n.i + ')', v: n.u - n.a - n.b + n.i }; } },
+    { tex: '\\overline{A}\\cup\\overline{B}', same: '\\overline{A\\cap B}', r: [1, 0, 1, 1], calc: function (n) { return { f: n.u + '-' + n.i, v: n.u - n.i }; } },
+    { tex: 'A\\cap\\overline{B}', r: [1, 0, 0, 0], calc: function (n) { return { f: n.a + '-' + n.i, v: n.a - n.i }; } },
+    { tex: '\\overline{A}\\cap B', r: [0, 0, 1, 0], calc: function (n) { return { f: n.b + '-' + n.i, v: n.b - n.i }; } }
+  ];
+  var curSet = SETS[4];
+  var N = { u: 50, a: 30, b: 25, i: 12 };
+  var REG = ['r-a', 'r-i', 'r-b', 'r-out'];
+  function clampVenn(changed) {
+    N.a = Math.min(N.a, N.u); N.b = Math.min(N.b, N.u);
+    if (changed === 'i') {
+      /* 拖动交集时，由交集带动 A、B 让步 */
+      N.i = Math.min(N.i, N.u);
+      if (N.i > N.a) N.a = N.i;
+      if (N.i > N.b) N.b = N.i;
+      if (N.a + N.b - N.i > N.u) N.i = N.a + N.b - N.u;
+    } else {
+      N.i = Math.min(N.i, N.a, N.b);
+      N.i = Math.max(N.i, N.a + N.b - N.u);
+    }
+  }
+  function updateVenn() {
+    ['u', 'a', 'b', 'i'].forEach(function (k) {
+      $('s-' + k).value = N[k];
+      $('o-' + k).textContent = N[k];
+    });
+    curSet.r.forEach(function (on, i) { $(REG[i]).setAttribute('class', on ? 'vr on' : 'vr'); });
+    $('t-a').textContent = N.a - N.i;
+    $('t-i').textContent = N.i;
+    $('t-b').textContent = N.b - N.i;
+    $('t-o').textContent = N.u - N.a - N.b + N.i;
+    Array.prototype.forEach.call($('venn-chips').children, function (b, i) {
+      b.setAttribute('aria-pressed', SETS[i] === curSet ? 'true' : 'false');
+    });
+    var c = curSet.calc(N);
+    var eq = '$n(' + curSet.tex + ')=' + (c.f.charAt(0) === 'n' ? '' : c.f + '=') + c.v + '$';
+    var note = curSet.same ? '　德摩根定律：$' + curSet.tex + '=' + curSet.same + '$，阴影相同。' : '';
+    setMath($('venn-read'), eq + note);
+  }
+  SETS.forEach(function (s) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.textContent = '$' + s.tex + '$';
+    b.addEventListener('click', function () { curSet = s; updateVenn(); });
+    $('venn-chips').appendChild(b);
+  });
+  ['u', 'a', 'b', 'i'].forEach(function (k) {
+    $('s-' + k).addEventListener('input', function (e) {
+      N[k] = parseInt(e.target.value, 10);
+      clampVenn(k);
+      updateVenn();
+    });
+  });
+
+  /* ---------- 数轴判定器 ---------- */
+  var L = { c: 1, r: 1 };
+  var LQ = [-1, 3];
+  function fmt(v) { return String(v).replace('-', '−'); }
+  var PRESETS = [
+    ['充分不必要', 1, 1], ['充要', 1, 2], ['必要不充分', 1, 3], ['都不是', 3, 2]
+  ];
+  function updateLine() {
+    var lo = L.c - L.r, hi = L.c + L.r;
+    var X = function (v) { return 24 + (v + 7) * (512 / 16); };
+    var out = '';
+    for (var t = -7; t <= 9; t++) {
+      out += '<line class="axis" x1="' + X(t) + '" x2="' + X(t) + '" y1="98" y2="' + (t % 2 ? 102 : 105) + '"/>';
+      if (t % 2 !== 0) out += '<text class="ltick" text-anchor="middle" x="' + X(t) + '" y="122">' + fmt(t) + '</text>';
+    }
+    out += '<line class="axis" x1="16" x2="544" y1="98" y2="98"/>';
+    function seg(a, b, y, cls, name) {
+      return '<line class="' + cls + '" x1="' + X(a) + '" x2="' + X(b) + '" y1="' + y + '" y2="' + y + '"/>' +
+        '<circle class="' + cls + 'd" cx="' + X(a) + '" cy="' + y + '" r="5"/><circle class="' + cls + 'd" cx="' + X(b) + '" cy="' + y + '" r="5"/>' +
+        '<text class="vname" x="' + (X(a) + X(b)) / 2 + '" y="' + (y - 10) + '" text-anchor="middle">' + name + '</text>';
+    }
+    out += seg(lo, hi, 36, 'lp', 'P') + seg(LQ[0], LQ[1], 74, 'lq', 'Q');
+    $('line-svg').innerHTML = out;
+    $('s-c').value = L.c; $('s-r').value = L.r;
+    $('o-c').textContent = fmt(L.c); $('o-r').textContent = fmt(L.r);
+    var pq = lo >= LQ[0] && hi <= LQ[1];
+    var qp = LQ[0] >= lo && LQ[1] <= hi;
+    var verdict = pq && qp ? '充要条件' : qp ? '必要但不充分的条件' : pq ? '充分但不必要的条件' : '既不充分也不必要的条件';
+    var ce1 = lo < LQ[0] ? lo : hi, ce2 = LQ[0] < lo ? LQ[0] : LQ[1];
+    var d1 = pq ? '$P\\subset Q$，$p\\Rightarrow q$ 真' : '$p\\Rightarrow q$ 假，反例 $x=' + ce1 + '$';
+    var d2 = qp ? '$Q\\subset P$，$q\\Rightarrow p$ 真' : '$q\\Rightarrow p$ 假，反例 $x=' + ce2 + '$';
+    setMath($('line-read'), '$P:' + lo + '\\le x\\le ' + hi + '$。' + d1 + '；' + d2 + '。<br><strong>$p$ 是 $q$ 的' + verdict + '。</strong>');
+    Array.prototype.forEach.call($('line-chips').children, function (b, i) {
+      b.setAttribute('aria-pressed', PRESETS[i][1] === L.c && PRESETS[i][2] === L.r ? 'true' : 'false');
+    });
+  }
+  PRESETS.forEach(function (p) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.textContent = p[0];
+    b.addEventListener('click', function () { L.c = p[1]; L.r = p[2]; updateLine(); });
+    $('line-chips').appendChild(b);
+  });
+  $('s-c').addEventListener('input', function (e) { L.c = parseFloat(e.target.value); updateLine(); });
+  $('s-r').addEventListener('input', function (e) { L.r = parseFloat(e.target.value); updateLine(); });
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, MATH_OPTS);
+  }
+  updateVenn();
+  updateLine();
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

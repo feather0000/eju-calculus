@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 05 排列组合与概率</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：计数原则、排列组合、概率基本性质、独立与反复试验、条件概率、期望值，含原创例题、练习题、交互演示和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 104px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 34px; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+.back { margin: 0 0 14px; font-size: 15px; }
+.back a { color: #c5d3ef; }
+.legend i.sw { width: 12px; height: 12px; border: 0; border-radius: 3px; }
+.legend i.ring { background: var(--ink); border-radius: 50%; box-shadow: 0 0 0 2px var(--surface); }
+svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer-events: none; }
+#b-svg .tick, #b-svg .lbl { font-size: 15px; }
+#b-sim { margin-top: 2px; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <p class="back"><a href="../../">← 目录</a></p>
+      <p class="eyebrow">EJU 数学コース2 · 05 場合の数と確率</p>
+      <h1>排列组合与概率</h1>
+      <p class="lead">从“怎么数”讲到“平均能得多少”：计数原理、排列组合、概率的基本性质、独立与反复试验、条件概率和期望值。日语术语随文标注，文末有完整对照表。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $${}_n\mathrm{C}_r=\frac{n!}{r!\,(n-r)!}$$
+      $$P_A(B)=\frac{P(A\cap B)}{P(A)}$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#counting">1 计数原则</a></li>
+        <li><a href="#perm">2 排列</a></li>
+        <li><a href="#comb">3 组合</a></li>
+        <li><a href="#prob">4 概率基本性质</a></li>
+        <li><a href="#indep">5 独立与反复试验</a></li>
+        <li><a href="#cond">6 条件概率</a></li>
+        <li><a href="#expect">7 期望值</a></li>
+        <li><a href="#examples">8 原创例题</a></li>
+        <li><a href="#practice">9 练习题</a></li>
+        <li><a href="#terms">10 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box warn" style="margin-top:28px">
+    <p><strong>符号提醒：</strong>日本教材把排列数、组合数写成 ${}_n\mathrm{P}_r$、${}_n\mathrm{C}_r$（中文教材常写 $A_n^r$、$C_n^r$），本讲义统一用日本写法。条件概率也常写成 $P_A(B)$，与 $P(B\mid A)$ 同义。</p>
+  </div>
+
+  <section id="counting">
+    <h2>1 计数的基本原则</h2>
+    <p class="jp-sub" lang="ja">数え上げの原則 — 集合の要素の個数、和の法則・積の法則</p>
+
+    <h3>集合的元素个数</h3>
+    <p>用 $n(A)$ 表示有限集合 $A$ 的元素个数（<span lang="ja">要素の個数</span>）。$\overline{A}$ 是 $A$ 在全集 $U$ 中的补集（<span lang="ja">補集合</span>）。</p>
+    $$n(A\cup B)=n(A)+n(B)-n(A\cap B),\qquad n(\overline{A})=n(U)-n(A)$$
+    $$n(A\cup B\cup C)=n(A)+n(B)+n(C)-n(A\cap B)-n(B\cap C)-n(C\cap A)+n(A\cap B\cap C)$$
+    <div class="box good">
+      <p><strong>例：</strong>$1$ 到 $100$ 中，$2$ 或 $3$ 的倍数有 $50+33-16=67$ 个（$16$ 是 $6$ 的倍数的个数）。再加上“或 $5$ 的倍数”，则有 $50+33+20-16-10-6+3=74$ 个。</p>
+    </div>
+
+    <h3>和的法则与积的法则</h3>
+    <ul>
+      <li><strong>和的法则</strong>（<span lang="ja">和の法則</span>）：$A$、$B$ 不会同时发生，$A$ 有 $m$ 种、$B$ 有 $n$ 种，则“$A$ 或 $B$”有 $m+n$ 种。关键词是<strong>分类</strong>。</li>
+      <li><strong>积的法则</strong>（<span lang="ja">積の法則</span>）：$A$ 有 $m$ 种，对每一种 $A$，$B$ 都有 $n$ 种，则“$A$ 然后 $B$”有 $mn$ 种。关键词是<strong>分步</strong>。</li>
+    </ul>
+    <p>积的法则的典型应用是正约数（<span lang="ja">正の約数</span>）的个数：若 $N=p^a q^b r^c$（$p,q,r$ 为不同素数），则正约数有 $(a+1)(b+1)(c+1)$ 个。例如 $72=2^3\cdot 3^2$，有 $4\times 3=12$ 个。</p>
+  </section>
+
+  <section id="perm">
+    <h2>2 排列</h2>
+    <p class="jp-sub" lang="ja">順列 — 円順列・重複順列・同じものを含む順列</p>
+    <p>从 $n$ 个不同元素中取 $r$ 个<strong>按顺序排成一列</strong>（<span lang="ja">順列</span>）的方法数为</p>
+    $${}_n\mathrm{P}_r=n(n-1)\cdots(n-r+1)=\frac{n!}{(n-r)!},\qquad 0!=1.$$
+    <div class="tw"><table>
+      <thead><tr><th>类型</th><th>公式</th><th>例子</th></tr></thead>
+      <tbody>
+        <tr><td>排列 <span class="kana" lang="ja">順列</span></td><td>${}_n\mathrm{P}_r$</td><td>$5$ 人选 $3$ 人排队：${}_5\mathrm{P}_3=60$</td></tr>
+        <tr><td>圆排列 <span class="kana" lang="ja">円順列</span></td><td>$(n-1)!$</td><td>$5$ 人围圆桌：$4!=24$</td></tr>
+        <tr><td>重复排列 <span class="kana" lang="ja">重複順列</span></td><td>$n^r$</td><td>$3$ 种符号填 $4$ 个位置：$3^4=81$</td></tr>
+        <tr><td>含相同元素 <span class="kana" lang="ja">同じものを含む順列</span></td><td>$\dfrac{n!}{p!\,q!\,r!}$</td><td>A,A,A,B,B,C 排列：$\dfrac{6!}{3!\,2!\,1!}=60$</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box">
+      <p><strong>常用技巧：</strong>“相邻”——把相邻的元素捆成一个再排，最后乘内部排列数。“不相邻”——先排其他元素，再把它们插入空隙。“首位不能是 $0$”——先定有限制的位置。</p>
+    </div>
+  </section>
+
+  <section id="comb">
+    <h2>3 组合</h2>
+    <p class="jp-sub" lang="ja">組合せ — 組分け・最短経路</p>
+    <p>从 $n$ 个不同元素中取 $r$ 个<strong>不计顺序</strong>（<span lang="ja">組合せ</span>）的方法数为</p>
+    $${}_n\mathrm{C}_r=\frac{{}_n\mathrm{P}_r}{r!}=\frac{n!}{r!\,(n-r)!}.$$
+    <div class="formula-grid">
+      <div>$${}_n\mathrm{C}_r={}_n\mathrm{C}_{n-r}$$</div>
+      <div>$${}_n\mathrm{C}_r={}_{n-1}\mathrm{C}_{r-1}+{}_{n-1}\mathrm{C}_{r}$$</div>
+    </div>
+    <h3>三种常见题型</h3>
+    <ul>
+      <li><strong>分组</strong>（<span lang="ja">組分け</span>）：组与组无区别且人数相同时，要除以组数的阶乘。$9$ 人平分成 $3$ 组：$\dfrac{{}_9\mathrm{C}_3\cdot{}_6\mathrm{C}_3\cdot{}_3\mathrm{C}_3}{3!}=280$ 种。</li>
+      <li><strong>最短路径</strong>（<span lang="ja">最短経路</span>）：向右 $a$ 步、向上 $b$ 步的走法数为 ${}_{a+b}\mathrm{C}_a$。向右 $4$、向上 $3$：${}_7\mathrm{C}_4=35$ 种。</li>
+      <li><strong>重复组合</strong>（<span lang="ja">重複組合せ</span>）：$x+y+z=6$ 的非负整数解，相当于把 $6$ 个○和 $2$ 根隔板排成一列：${}_8\mathrm{C}_2=28$ 组。</li>
+    </ul>
+    <div class="box warn">
+      <p><strong>易错：</strong>“选出后要不要排”决定用 $\mathrm{P}$ 还是 $\mathrm{C}$。“至少一个”的题目不要写成“先选一个再任选其余”，那样会重复计数；应使用“全部 − 一个也没有”。</p>
+    </div>
+  </section>
+
+  <section id="prob">
+    <h2>4 概率的基本性质</h2>
+    <p class="jp-sub" lang="ja">確率の基本性質 — 排反事象・和事象・余事象</p>
+    <p>若试验（<span lang="ja">試行</span>）的所有结果<strong>等可能</strong>（<span lang="ja">同様に確からしい</span>），事件（<span lang="ja">事象</span>）$A$ 的概率为</p>
+    $$P(A)=\frac{n(A)}{n(U)},\qquad 0\le P(A)\le 1,\quad P(\varnothing)=0,\quad P(U)=1.$$
+    <div class="formula-grid">
+      <div>和事件：$$P(A\cup B)=P(A)+P(B)-P(A\cap B)$$</div>
+      <div>互斥（<span lang="ja">排反</span>）时：$$P(A\cup B)=P(A)+P(B)$$</div>
+      <div>对立事件（<span lang="ja">余事象</span>）：$$P(\overline{A})=1-P(A)$$</div>
+    </div>
+    <div class="box good">
+      <p><strong>例：</strong>掷两颗骰子，和为 $7$ 的概率是 $\dfrac{6}{36}=\dfrac16$；至少一颗是 $6$ 的概率是 $1-\left(\dfrac56\right)^2=\dfrac{11}{36}$。从 $1$ 到 $20$ 的卡片中抽一张，是 $2$ 或 $3$ 的倍数的概率是 $\dfrac{10+6-3}{20}=\dfrac{13}{20}$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>易错：</strong>算概率时，即使是同色的球、相同的骰子，也要当作<strong>互相可区分</strong>来数，否则各结果不等可能。例如两枚硬币的结果是（正正、正反、反正、反反）四种，而不是“两正、一正一反、两反”三种。</p>
+    </div>
+  </section>
+
+  <section id="indep">
+    <h2>5 独立试验与反复试验</h2>
+    <p class="jp-sub" lang="ja">独立試行・反復試行</p>
+    <p>两次试验的结果互不影响时称为<strong>独立试验</strong>（<span lang="ja">独立な試行</span>），此时</p>
+    $$P(A\cap B)=P(A)\,P(B).$$
+    <p>例如掷一颗骰子得偶数且掷一枚硬币得正面：$\dfrac12\times\dfrac12=\dfrac14$。</p>
+    <p>把同一试验独立重复 $n$ 次（<span lang="ja">反復試行</span>），每次事件 $A$ 发生的概率为 $p$，则 $A$ <strong>恰好</strong>发生 $k$ 次的概率为</p>
+    $${}_n\mathrm{C}_k\,p^k(1-p)^{n-k}\qquad(k=0,1,\dots,n).$$
+    <p>${}_n\mathrm{C}_k$ 的含义是“$n$ 次中哪 $k$ 次发生”。例如掷骰子 $5$ 次，恰好出现 $2$ 次 $1$ 点的概率是 ${}_5\mathrm{C}_2\left(\dfrac16\right)^2\left(\dfrac56\right)^3=\dfrac{625}{3888}$。</p>
+
+    <div class="explorer" id="binom">
+      <h3 style="margin-top:0">反复试验探索器</h3>
+      <div class="ex-head" id="presets"></div>
+      <div class="ctrl"><label for="r-n">次数 n</label><input id="r-n" type="range" min="1" max="20" step="1"><output id="o-n"></output></div>
+      <div class="ctrl"><label for="r-p">概率 p</label><input id="r-p" type="range" min="0.01" max="0.99" step="0.01"><output id="o-p"></output></div>
+      <div class="ctrl"><label for="r-k">发生 k 次</label><input id="r-k" type="range" min="0" max="20" step="1"><output id="o-k"></output></div>
+      <figure class="plot" style="margin:12px 0 0">
+        <svg class="chart" id="b-svg" viewBox="0 0 640 300" role="img" aria-label="事件恰好发生 k 次的概率柱状图"></svg>
+        <figcaption>每根柱表示恰好发生 k 次的概率。移动鼠标到柱上或点按柱子可选中该 k。</figcaption>
+      </figure>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--c1)"></i>理论概率</span>
+        <span><i class="sw" style="background:var(--c2)"></i>选中的 k</span>
+        <span id="lg-sim" hidden><i class="sw ring"></i>模拟频率</span>
+      </div>
+      <button class="chip" id="b-sim" type="button">模拟 500 轮</button>
+      <div class="read">
+        <div class="wide"><small>代入公式</small><span id="b-expr"></span></div>
+        <div><small>恰好发生 k 次的概率</small><span id="b-pk"></span></div>
+        <div><small>期望发生次数 np</small><span id="b-e"></span></div>
+        <div><small>模拟的平均次数</small><span id="b-mean">尚未模拟</span></div>
+      </div>
+      <p class="status" id="b-status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section id="cond">
+    <h2>6 条件概率</h2>
+    <p class="jp-sub" lang="ja">条件付き確率 — 乗法定理</p>
+    <p>已知 $A$ 发生时 $B$ 发生的概率，记作 $P_A(B)$（<span lang="ja">条件付き確率</span>），相当于把全集缩小到 $A$：</p>
+    $$P_A(B)=\frac{P(A\cap B)}{P(A)}=\frac{n(A\cap B)}{n(A)}.$$
+    <p>去分母得到<strong>乘法定理</strong>（<span lang="ja">乗法定理</span>）：$P(A\cap B)=P(A)\,P_A(B)$。</p>
+    <div class="box good">
+      <p><strong>例：</strong>掷两颗骰子，已知第一颗为偶数（$18$ 种），和为 $8$ 的只有 $(2,6),(4,4),(6,2)$，所以条件概率是 $\dfrac{3}{18}=\dfrac16$。</p>
+    </div>
+    <h3>“由结果推原因”</h3>
+    <p>结果 $B$ 可能来自互斥的原因 $A_1,A_2$ 时，先分情况求 $P(B)$，再代入定义：</p>
+    $$P(B)=P(A_1)P_{A_1}(B)+P(A_2)P_{A_2}(B),\qquad P_B(A_1)=\frac{P(A_1)P_{A_1}(B)}{P(B)}.$$
+    <p>例题 4 就是这种结构。</p>
+    <div class="box warn">
+      <p><strong>易错：</strong>$P_A(B)$ 与 $P_B(A)$ 一般不相等，要看清“已知”的是哪件事。日语题目常用「$A$ であったとき、$B$ である条件付き確率」，“とき”前面的是条件。</p>
+    </div>
+  </section>
+
+  <section id="expect">
+    <h2>7 期望值</h2>
+    <p class="jp-sub" lang="ja">期待値</p>
+    <p>某个量取值 $x_1,\dots,x_n$，对应概率为 $p_1,\dots,p_n$（$p_1+\dots+p_n=1$），则期望值（<span lang="ja">期待値</span>）为</p>
+    $$E=x_1p_1+x_2p_2+\cdots+x_np_n=\sum_{k=1}^{n}x_kp_k.$$
+    <div class="tw"><table>
+      <thead><tr><th>奖金（円）</th><th>$600$</th><th>$150$</th><th>$0$</th></tr></thead>
+      <tbody><tr><td>骰子点数</td><td>$6$</td><td>$2,\,4$</td><td>$1,\,3,\,5$</td></tr>
+      <tr><td>概率</td><td>$\dfrac16$</td><td>$\dfrac13$</td><td>$\dfrac12$</td></tr></tbody>
+    </table></div>
+    <p>期望奖金：$600\cdot\dfrac16+150\cdot\dfrac13+0\cdot\dfrac12=150$ 円。类似地，掷一颗骰子点数的期望是 $\dfrac72$，掷两枚硬币正面数的期望是 $1$。</p>
+    <div class="box">
+      <p><strong>解题步骤：</strong>① 列出所有可能的取值；② 求每个值的概率；③ 用“概率之和为 $1$”检查；④ 代入公式。期望值不一定是实际能取到的值（如 $\dfrac72$）。上面的探索器也显示：反复试验中发生次数的期望是 $np$，这与项目 13「確率分布」相衔接。</p>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2>8 原创 EJU 风格例题</h2>
+    <p class="jp-sub">以下题目均为本讲义<strong>原创</strong>，仅模仿 EJU 的填空形式，并非真题。</p>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框字母对应一个数字（$0$–$9$），例如 $\B{AB}$ 是两位数；分数要约到最简。</p>
+    </div>
+
+    <article class="q" id="E1">
+      <div class="q-head"><b>例题 1　数字排列</b><span class="origin">原创</span></div>
+      <p>从 $0,1,2,3,4,5$ 这 $6$ 个数字中取 $4$ 个不同的数字，排成四位整数。</p>
+      <p>(1) 这样的四位数共有 $\B{ABC}$ 个。</p>
+      <p>(2) 其中偶数有 $\B{DEF}$ 个。</p>
+      <p>(3) 其中 $5$ 的倍数有 $\B{GHI}$ 个。</p>
+      <p>(4) 数字之和为 $3$ 的倍数的取法（$4$ 个数字的集合）有 $\B{J}$ 种，因此 $3$ 的倍数共有 $\B{KL}$ 个。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>ABC = 300</li><li>DEF = 156</li><li>GHI = 108</li><li>J = 5</li><li>KL = 96</li></ul>
+        <p>(1) 千位不能为 $0$，有 $5$ 种；其余三位从剩下 $5$ 个数字中排：$5\times{}_5\mathrm{P}_3=5\times 60=300$。</p>
+        <p>(2) 个位为 $0$：${}_5\mathrm{P}_3=60$。个位为 $2$ 或 $4$：个位 $2$ 种，千位 $4$ 种（不含 $0$ 和个位数字），中间 ${}_4\mathrm{P}_2=12$，共 $2\times4\times12=96$。合计 $156$。</p>
+        <p>(3) 个位为 $0$：$60$。个位为 $5$：$4\times 12=48$。合计 $108$。</p>
+        <p>(4) $6$ 个数字之和为 $15$，所以只要去掉的两个数字之和是 $3$ 的倍数。这样的两数有 $\{0,3\},\{1,2\},\{1,5\},\{2,4\},\{4,5\}$，共 $5$ 种。去掉 $\{0,3\}$ 时余下 $\{1,2,4,5\}$ 不含 $0$，可排 $4!=24$ 个；其余 $4$ 种都含 $0$，各有 $3\times 3!=18$ 个。合计 $24+4\times18=96$。</p>
+      </div>
+    </article>
+
+    <article class="q" id="E2">
+      <div class="q-head"><b>例题 2　取球与条件概率</b><span class="origin">原创</span></div>
+      <p>袋中有红球 $4$ 个、白球 $3$ 个、蓝球 $2$ 个，同时取出 $3$ 个。</p>
+      <p>(1) $3$ 个同色的概率为 $\dfrac{\B{A}}{\B{BC}}$。</p>
+      <p>(2) $3$ 个颜色各不相同的概率为 $\dfrac{\B{D}}{\B{E}}$。</p>
+      <p>(3) 至少含 $1$ 个白球的概率为 $\dfrac{\B{FG}}{\B{HI}}$。</p>
+      <p>(4) 已知至少含 $1$ 个白球时，恰有 $2$ 个红球的条件概率为 $\dfrac{\B{J}}{\B{KL}}$。</p>
+      <p>(5) 取出红球个数的期望值为 $\dfrac{\B{M}}{\B{N}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A/BC = 5/84</li><li>D/E = 2/7</li><li>FG/HI = 16/21</li><li>J/KL = 9/32</li><li>M/N = 4/3</li></ul>
+        <p>全部取法为 ${}_9\mathrm{C}_3=84$ 种。</p>
+        <p>(1) 全红 ${}_4\mathrm{C}_3=4$，全白 $1$，蓝球不够：$\dfrac{5}{84}$。</p>
+        <p>(2) $4\times3\times2=24$，$\dfrac{24}{84}=\dfrac27$。</p>
+        <p>(3) 无白球：${}_6\mathrm{C}_3=20$，$1-\dfrac{20}{84}=\dfrac{16}{21}$。</p>
+        <p>(4) 至少 $1$ 个白球有 $64$ 种。此时恰有 $2$ 红只能是“$2$ 红 $1$ 白”：${}_4\mathrm{C}_2\times3=18$ 种。$\dfrac{18}{64}=\dfrac{9}{32}$。</p>
+        <p>(5) 红球为 $0,1,2,3$ 个的取法分别为 $10,40,30,4$ 种，期望值为 $\dfrac{0\cdot10+1\cdot40+2\cdot30+3\cdot4}{84}=\dfrac{112}{84}=\dfrac43$。</p>
+      </div>
+    </article>
+
+    <article class="q" id="E3">
+      <div class="q-head"><b>例题 3　数轴上的点</b><span class="origin">原创</span></div>
+      <p>点 $P$ 从数轴原点出发。掷一颗骰子，出现 $3$ 的倍数时 $P$ 向正方向移动 $3$，否则向负方向移动 $1$。共掷 $5$ 次，设最后 $P$ 的坐标为 $x$。</p>
+      <p>(1) $x=3$ 等价于 $3$ 的倍数恰好出现 $\B{A}$ 次，其概率为 $\dfrac{\B{BC}}{\B{DEF}}$。</p>
+      <p>(2) $x\ge 7$ 的概率为 $\dfrac{\B{GH}}{\B{IJ}}$。</p>
+      <p>(3) 已知 $x=3$ 时，掷完第 $2$ 次时 $P$ 位于坐标 $2$ 的条件概率为 $\dfrac{\B{K}}{\B{L}}$。</p>
+      <p>(4) $x$ 的期望值为 $\dfrac{\B{M}}{\B{N}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>BC/DEF = 80/243</li><li>GH/IJ = 17/81</li><li>K/L = 3/5</li><li>M/N = 5/3</li></ul>
+        <p>设 $3$ 的倍数出现 $k$ 次，则 $x=3k-(5-k)=4k-5$，每次的概率为 $\dfrac13$。</p>
+        <p>(1) $4k-5=3$，$k=2$。概率 ${}_5\mathrm{C}_2\left(\dfrac13\right)^2\left(\dfrac23\right)^3=\dfrac{80}{243}$。</p>
+        <p>(2) $k\ge 3$：$\dfrac{40+10+1}{243}=\dfrac{51}{243}=\dfrac{17}{81}$。</p>
+        <p>(3) 第 $2$ 次时位于 $2$，即前 $2$ 次中 $k=1$，概率 $\dfrac49$；此后 $3$ 次中还要出现恰好 $1$ 次，概率 $\dfrac49$。同时发生的概率为 $\dfrac{16}{81}$，所以 $\dfrac{16}{81}\div\dfrac{80}{243}=\dfrac35$。</p>
+        <p>(4) 每次移动的期望为 $3\cdot\dfrac13-1\cdot\dfrac23=\dfrac13$，$5$ 次合计 $\dfrac53$。也可由 $\sum_k(4k-5)\,{}_5\mathrm{C}_k\left(\dfrac13\right)^k\left(\dfrac23\right)^{5-k}$ 直接求得同样的值。</p>
+      </div>
+    </article>
+
+    <article class="q" id="E4">
+      <div class="q-head"><b>例题 4　两个箱子</b><span class="origin">原创</span></div>
+      <p>箱 $A$ 中有红球 $3$ 个、白球 $2$ 个，箱 $B$ 中有红球 $1$ 个、白球 $4$ 个。掷一颗骰子，出现 $1,2$ 时选箱 $A$，否则选箱 $B$，再从所选的箱中取出 $1$ 个球。</p>
+      <p>(1) 取出红球的概率为 $\dfrac{\B{A}}{\B{B}}$。</p>
+      <p>(2) 已知取出红球时，所选为箱 $A$ 的条件概率为 $\dfrac{\B{C}}{\B{D}}$。</p>
+      <p>(3) 把取出的球放回同一箱，再从同一箱取 $1$ 个球。已知第 $1$ 次为红球时，第 $2$ 次也是红球的条件概率为 $\dfrac{\B{EF}}{\B{GH}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A/B = 1/3</li><li>C/D = 3/5</li><li>EF/GH = 11/25</li></ul>
+        <p>(1) $\dfrac13\cdot\dfrac35+\dfrac23\cdot\dfrac15=\dfrac{3+2}{15}=\dfrac13$。</p>
+        <p>(2) $\dfrac13\cdot\dfrac35\div\dfrac13=\dfrac35$。</p>
+        <p>(3) 两次都是红球：$\dfrac13\cdot\dfrac{9}{25}+\dfrac23\cdot\dfrac{1}{25}=\dfrac{11}{75}$。除以 $\dfrac13$ 得 $\dfrac{11}{25}$。注意两次不独立：第 $1$ 次的红球提高了“选的是箱 $A$”的可能性，所以结果大于 $\dfrac13$。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <div class="bar">
+      <h2>9 练习题</h2>
+      <button class="chip" id="toggle-all" type="button">显示全部答案</button>
+    </div>
+    <p class="jp-sub">全部原创。先自己算，再点开核对。</p>
+    <div class="q" id="Q1"><div class="q-head"><b>1</b><span>集合的元素个数</span><span class="origin">原创</span></div>
+      <p>$1$ 到 $200$ 的整数中，$3$ 或 $5$ 的倍数有多少个？两者的倍数都不是的有多少个？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$93$ 个；$107$ 个。</strong>$66+40-13=93$，$200-93=107$。</p></div></div>
+    <div class="q" id="Q2"><div class="q-head"><b>2</b><span>约数</span><span class="origin">原创</span></div>
+      <p>求 $360$ 的正约数的个数及其总和。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$24$ 个；总和 $1170$。</strong>$360=2^3\cdot3^2\cdot5$，个数 $4\cdot3\cdot2=24$，总和 $(1+2+4+8)(1+3+9)(1+5)=15\cdot13\cdot6=1170$。</p></div></div>
+    <div class="q" id="Q3"><div class="q-head"><b>3</b><span>圆排列</span><span class="origin">原创</span></div>
+      <p>$6$ 人围圆桌而坐。坐法共有多少种？其中 $A$、$B$ 相邻的有多少种？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$120$ 种；$48$ 种。</strong>$5!=120$；把 $A,B$ 捆成一个，$5$ 个对象圆排列 $4!$，内部 $2$ 种：$24\times2=48$。</p></div></div>
+    <div class="q" id="Q4"><div class="q-head"><b>4</b><span>含相同元素的排列</span><span class="origin">原创</span></div>
+      <p>把 TOKYOTO 的 $7$ 个字母排成一列，共有多少种？其中两个 T 相邻的有多少种？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$420$ 种；$120$ 种。</strong>T 有 $2$ 个、O 有 $3$ 个：$\dfrac{7!}{2!\,3!}=420$。把 TT 看作一个：$\dfrac{6!}{3!}=120$。</p></div></div>
+    <div class="q" id="Q5"><div class="q-head"><b>5</b><span>组合</span><span class="origin">原创</span></div>
+      <p>从男生 $5$ 人、女生 $4$ 人中选 $3$ 人。至少有 $1$ 名女生的选法有多少种？男女都有的选法呢？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$74$ 种；$70$ 种。</strong>$84-{}_5\mathrm{C}_3=84-10=74$；再减去全女 ${}_4\mathrm{C}_3=4$，得 $70$。</p></div></div>
+    <div class="q" id="Q6"><div class="q-head"><b>6</b><span>最短路径</span><span class="origin">原创</span></div>
+      <p>在方格路上从 $(0,0)$ 走到 $(5,4)$，每步向右或向上 $1$ 格。共有多少种走法？不经过点 $(2,1)$ 的有多少种？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$126$ 种；$66$ 种。</strong>${}_9\mathrm{C}_4=126$；经过 $(2,1)$：${}_3\mathrm{C}_1\cdot{}_6\mathrm{C}_3=3\cdot20=60$；$126-60=66$。</p></div></div>
+    <div class="q" id="Q7"><div class="q-head"><b>7</b><span>分组</span><span class="origin">原创</span></div>
+      <p>$6$ 人分成每组 $2$ 人的 $3$ 组（组没有名字），有多少种分法？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$15$ 种。</strong>$\dfrac{{}_6\mathrm{C}_2\cdot{}_4\mathrm{C}_2\cdot{}_2\mathrm{C}_2}{3!}=\dfrac{90}{6}=15$。</p></div></div>
+    <div class="q" id="Q8"><div class="q-head"><b>8</b><span>整数解的个数</span><span class="origin">原创</span></div>
+      <p>$x+y+z=10$ 的正整数解有多少组？非负整数解有多少组？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$36$ 组；$66$ 组。</strong>正整数解：$9$ 个空隙选 $2$ 个放隔板，${}_9\mathrm{C}_2=36$。非负整数解：${}_{12}\mathrm{C}_2=66$。</p></div></div>
+    <div class="q" id="Q9"><div class="q-head"><b>9</b><span>对立事件</span><span class="origin">原创</span></div>
+      <p>掷 $3$ 颗骰子。求至少出现一个 $6$ 的概率，以及三个点数之积为偶数的概率。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$\dfrac{91}{216}$；$\dfrac78$。</strong>$1-\left(\dfrac56\right)^3=\dfrac{91}{216}$；积为奇数即全为奇数，$1-\left(\dfrac12\right)^3=\dfrac78$。</p></div></div>
+    <div class="q" id="Q10"><div class="q-head"><b>10</b><span>最大值的概率</span><span class="origin">原创</span></div>
+      <p>掷 $3$ 颗骰子，求点数最大值恰好为 $4$ 的概率。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$\dfrac{37}{216}$。</strong>“全部 $\le4$”减去“全部 $\le3$”：$\dfrac{4^3-3^3}{6^3}=\dfrac{37}{216}$。</p></div></div>
+    <div class="q" id="Q11"><div class="q-head"><b>11</b><span>反复试验</span><span class="origin">原创</span></div>
+      <p>甲每局获胜的概率为 $\dfrac23$（无平局），先胜 $3$ 局者赢得比赛。求甲赢得比赛的概率，以及比赛恰好进行到第 $5$ 局的概率。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$\dfrac{64}{81}$；$\dfrac{8}{27}$。</strong>甲在第 $3,4,5$ 局胜出：$\left(\dfrac23\right)^3\left(1+3\cdot\dfrac13+6\cdot\dfrac19\right)=\dfrac{8}{27}\cdot\dfrac83=\dfrac{64}{81}$。到第 $5$ 局即前 $4$ 局 $2$ 胜 $2$ 负：${}_4\mathrm{C}_2\left(\dfrac23\right)^2\left(\dfrac13\right)^2=\dfrac{8}{27}$。</p></div></div>
+    <div class="q" id="Q12"><div class="q-head"><b>12</b><span>条件概率</span><span class="origin">原创</span></div>
+      <p>掷两颗骰子，已知点数之和为 $8$，求至少有一颗是 $3$ 的条件概率。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$\dfrac25$。</strong>和为 $8$ 有 $(2,6),(3,5),(4,4),(5,3),(6,2)$ 共 $5$ 种，含 $3$ 的有 $2$ 种。</p></div></div>
+    <div class="q" id="Q13"><div class="q-head"><b>13</b><span>抽签</span><span class="origin">原创</span></div>
+      <p>$10$ 支签中有 $3$ 支中奖，$A$、$B$ 依次各抽 $1$ 支（不放回）。求 $B$ 中奖的概率；已知 $B$ 中奖时，$A$ 也中奖的条件概率。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$\dfrac{3}{10}$；$\dfrac29$。</strong>$P(B)=\dfrac{3}{10}\cdot\dfrac29+\dfrac{7}{10}\cdot\dfrac39=\dfrac{3}{10}$，与抽签顺序无关。$P_B(A)=\dfrac{6/90}{27/90}=\dfrac29$。</p></div></div>
+    <div class="q" id="Q14"><div class="q-head"><b>14</b><span>期望值</span><span class="origin">原创</span></div>
+      <p>掷两颗骰子，设较大的点数（相同时取该点数）为 $X$，求 $X$ 的期望值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$\dfrac{161}{36}$。</strong>$P(X=k)=\dfrac{2k-1}{36}$，$\sum_{k=1}^{6}k(2k-1)=161$。</p></div></div>
+    <div class="q" id="Q15"><div class="q-head"><b>15</b><span>奖券</span><span class="origin">原创</span></div>
+      <p>$100$ 张奖券中，$1000$ 円的有 $2$ 张、$200$ 円的有 $8$ 张、$50$ 円的有 $40$ 张，其余没有奖金。抽 $1$ 张，求奖金的期望值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$56$ 円。</strong>$\dfrac{1000\cdot2+200\cdot8+50\cdot40}{100}=\dfrac{5600}{100}=56$。</p></div></div>
+    <div class="q" id="Q16"><div class="q-head"><b>16</b><span>投掷次数的期望</span><span class="origin">原创</span></div>
+      <p>反复掷硬币，出现正面就停止，但最多掷 $3$ 次。求投掷次数的期望值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$\dfrac74$ 次。</strong>$P(1)=\dfrac12,\ P(2)=\dfrac14,\ P(3)=\dfrac14$（第 $3$ 次无论正反都停止），$1\cdot\dfrac12+2\cdot\dfrac14+3\cdot\dfrac14=\dfrac74$。</p></div></div>
+  </section>
+
+  <section id="terms">
+    <h2>10 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页按 2026 年度起适用的 EJU 数学シラバス项目 05 组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。所有例题和练习题均为原创。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['计数', [
+      ['場合の数', 'ばあいのかず', '情况数、方法数'], ['数え上げ', 'かぞえあげ', '计数、枚举'], ['集合', 'しゅうごう', '集合'],
+      ['要素', 'ようそ', '元素'], ['補集合', 'ほしゅうごう', '补集'], ['和集合', 'わしゅうごう', '并集'], ['共通部分', 'きょうつうぶぶん', '交集'],
+      ['和の法則', 'わのほうそく', '加法原理'], ['積の法則', 'せきのほうそく', '乘法原理'], ['正の約数', 'せいのやくすう', '正约数'], ['倍数', 'ばいすう', '倍数']
+    ]],
+    ['排列与组合', [
+      ['順列', 'じゅんれつ', '排列'], ['階乗', 'かいじょう', '阶乘'], ['円順列', 'えんじゅんれつ', '圆排列'], ['重複順列', 'ちょうふくじゅんれつ', '重复排列'],
+      ['同じものを含む順列', 'おなじものをふくむじゅんれつ', '含相同元素的排列'], ['組合せ', 'くみあわせ', '组合'], ['重複組合せ', 'ちょうふくくみあわせ', '重复组合'],
+      ['組分け', 'くみわけ', '分组'], ['最短経路', 'さいたんけいろ', '最短路径'], ['隣り合う', 'となりあう', '相邻'], ['少なくとも', 'すくなくとも', '至少']
+    ]],
+    ['概率', [
+      ['確率', 'かくりつ', '概率'], ['試行', 'しこう', '试验'], ['事象', 'じしょう', '事件'], ['全事象', 'ぜんじしょう', '必然事件（全体）'],
+      ['空事象', 'くうじしょう', '不可能事件'], ['根元事象', 'こんげんじしょう', '基本事件'], ['同様に確からしい', 'どうようにたしからしい', '等可能'],
+      ['積事象', 'せきじしょう', '积事件（同时发生）'], ['和事象', 'わじしょう', '和事件（至少一个发生）'], ['排反', 'はいはん', '互斥'], ['余事象', 'よじしょう', '对立事件'],
+      ['独立', 'どくりつ', '独立'], ['反復試行', 'はんぷくしこう', '反复试验'], ['条件付き確率', 'じょうけんつきかくりつ', '条件概率'],
+      ['乗法定理', 'じょうほうていり', '乘法定理'], ['期待値', 'きたいち', '期望值']
+    ]],
+    ['题目常用语', [
+      ['さいころ', 'さいころ', '骰子'], ['硬貨', 'こうか', '硬币'], ['くじ', 'くじ', '签、彩票'], ['袋', 'ふくろ', '袋子'],
+      ['取り出す', 'とりだす', '取出'], ['もとに戻す', 'もとにもどす', '放回'], ['同時に', 'どうじに', '同时'], ['目', 'め', '（骰子的）点数']
+    ]]
+  ];
+
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja"><strong>' + t[0] + '</strong></td><td class="kana" lang="ja">' + t[1] + '</td><td>' + t[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = document.getElementById('term-count');
+  function filterTerms() {
+    var q = document.getElementById('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  document.getElementById('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 答案按钮 ---------- */
+  function setAns(btn, open) {
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '隐藏答案' : '显示答案';
+    btn.nextElementSibling.hidden = !open;
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.classList && e.target.classList.contains('toggle-ans')) {
+      setAns(e.target, e.target.getAttribute('aria-expanded') !== 'true');
+    }
+  });
+  var allBtn = document.getElementById('toggle-all');
+  allBtn.addEventListener('click', function () {
+    var btns = document.querySelectorAll('#practice .toggle-ans');
+    var open = allBtn.textContent.indexOf('显示') === 0;
+    btns.forEach(function (b) { setAns(b, open); });
+    allBtn.textContent = open ? '隐藏全部答案' : '显示全部答案';
+  });
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = document.getElementById('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('on', on);
+          if (on && a.parentNode.parentNode.scrollWidth > a.parentNode.parentNode.clientWidth) {
+            var ol = a.parentNode.parentNode;
+            ol.scrollLeft = a.offsetLeft - ol.offsetLeft - 20;
+          }
+        });
+      });
+    }, { rootMargin: '-25% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 反复试验探索器 ---------- */
+  function $(id) { return document.getElementById(id); }
+  var NS = 'http://www.w3.org/2000/svg';
+  var S = { n: 5, p: 1 / 6, pLabel: '1/6', k: 2, sim: null };
+  var PRESETS = [
+    { t: '骰子 5 次出 2 次 1 点', n: 5, p: 1 / 6, pLabel: '1/6', k: 2 },
+    { t: '例题 3：5 次中 2 次', n: 5, p: 1 / 3, pLabel: '1/3', k: 2 },
+    { t: '硬币 10 次 5 次正面', n: 10, p: 1 / 2, pLabel: '1/2', k: 5 }
+  ];
+  function comb(n, r) { var c = 1; for (var i = 1; i <= r; i++) c = c * (n - r + i) / i; return Math.round(c); }
+  function pmf(k) { return comb(S.n, k) * Math.pow(S.p, k) * Math.pow(1 - S.p, S.n - k); }
+  function el(tag, attrs, parent, text) {
+    var e = document.createElementNS(NS, tag);
+    for (var a in attrs) e.setAttribute(a, attrs[a]);
+    if (text !== undefined) e.textContent = text;
+    parent.appendChild(e);
+    return e;
+  }
+  function draw() {
+    var svg = $('b-svg');
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var L = 46, R = 628, T = 14, B = 262, i, top = 0;
+    for (i = 0; i <= S.n; i++) {
+      top = Math.max(top, pmf(i));
+      if (S.sim) top = Math.max(top, S.sim[i]);
+    }
+    var step = top > .5 ? .2 : top > .25 ? .1 : top > .1 ? .05 : .02;
+    var yMax = Math.ceil(top / step - 1e-9) * step;
+    function y(v) { return B - (B - T) * v / yMax; }
+    for (var v = 0; v <= yMax + 1e-9; v += step) {
+      el('line', { x1: L, x2: R, y1: y(v), y2: y(v), 'class': v < 1e-9 ? 'axis' : 'grid' }, svg);
+      el('text', { x: L - 8, y: y(v) + 4, 'text-anchor': 'end', 'class': 'tick' }, svg, v.toFixed(2));
+    }
+    var band = (R - L) / (S.n + 1), w = Math.max(6, Math.min(band - 2, 44));
+    var every = S.n > 14 ? 2 : 1;
+    for (i = 0; i <= S.n; i++) (function (k) {
+      var cx = L + band * (k + .5), h = B - y(pmf(k)), r = Math.min(4, h, w / 2), x = cx - w / 2;
+      el('path', {
+        d: 'M' + x + ' ' + B + 'V' + (B - h + r) + 'Q' + x + ' ' + (B - h) + ' ' + (x + r) + ' ' + (B - h) +
+           'H' + (x + w - r) + 'Q' + (x + w) + ' ' + (B - h) + ' ' + (x + w) + ' ' + (B - h + r) + 'V' + B + 'Z',
+        fill: k === S.k ? 'var(--c2)' : 'var(--c1)'
+      }, svg);
+      if (k % every === 0 || k === S.k) el('text', { x: cx, y: B + 18, 'text-anchor': 'middle', 'class': k === S.k ? 'lbl' : 'tick' }, svg, k);
+      if (k === S.k) el('text', { x: cx, y: Math.max(T + 12, y(pmf(k)) - 8), 'text-anchor': 'middle', 'class': 'lbl' }, svg, pmf(k).toFixed(3));
+      if (S.sim) el('circle', { cx: cx, cy: y(S.sim[k]), r: 5, 'class': 'simdot' }, svg);
+      var hit = el('rect', { x: cx - band / 2, y: T, width: band, height: B - T + 24, fill: 'transparent', style: 'cursor:pointer' }, svg);
+      el('title', {}, hit, 'k = ' + k + '：理论概率 ' + pmf(k).toFixed(4) + (S.sim ? '，模拟频率 ' + S.sim[k].toFixed(4) : ''));
+      function pick() { if (S.k !== k) { S.k = k; update(); } }
+      hit.addEventListener('pointerenter', pick);
+      hit.addEventListener('click', pick);
+    })(i);
+    el('text', { x: (L + R) / 2, y: 296, 'text-anchor': 'middle', 'class': 'tick' }, svg, '发生次数 k');
+  }
+  function update() {
+    if (S.k > S.n) S.k = S.n;
+    $('r-n').value = S.n; $('r-p').value = S.p; $('r-k').max = S.n; $('r-k').value = S.k;
+    $('o-n').textContent = S.n; $('o-p').textContent = S.pLabel || S.p.toFixed(2); $('o-k').textContent = S.k;
+    var ps = S.pLabel || S.p.toFixed(2), qs = S.pLabel ? '(1 − ' + ps + ')' : (1 - S.p).toFixed(2);
+    if (S.pLabel) ps = '(' + ps + ')';
+    $('b-expr').innerHTML = '<sub>' + S.n + '</sub>C<sub>' + S.k + '</sub> × ' + ps + '<sup>' + S.k + '</sup> × ' + qs + '<sup>' + (S.n - S.k) + '</sup> = ' + comb(S.n, S.k) + ' × ' + ps + '<sup>' + S.k + '</sup> × ' + qs + '<sup>' + (S.n - S.k) + '</sup>';
+    $('b-pk').textContent = pmf(S.k).toFixed(4);
+    $('b-e').textContent = (S.n * S.p).toFixed(2);
+    $('lg-sim').hidden = !S.sim;
+    if (S.sim) {
+      var m = 0;
+      S.sim.forEach(function (f, i) { m += f * i; });
+      $('b-mean').textContent = m.toFixed(2);
+      $('b-status').textContent = '模拟 500 轮：k = ' + S.k + ' 的频率为 ' + S.sim[S.k].toFixed(3) + '，理论概率为 ' + pmf(S.k).toFixed(3) + '。轮数越多，频率通常越接近概率。';
+    } else {
+      $('b-mean').textContent = '尚未模拟';
+      $('b-status').textContent = '共 ' + S.n + ' 次试验，每次发生的概率为 ' + (S.pLabel || S.p.toFixed(2)) + '：平均发生 ' + (S.n * S.p).toFixed(2) + ' 次。';
+    }
+    Array.prototype.forEach.call($('presets').children, function (b, i) {
+      var x = PRESETS[i];
+      b.setAttribute('aria-pressed', x.n === S.n && x.p === S.p && x.k === S.k);
+    });
+    draw();
+  }
+  PRESETS.forEach(function (x) {
+    var b = document.createElement('button');
+    b.className = 'chip'; b.type = 'button'; b.textContent = x.t;
+    b.addEventListener('click', function () { S.n = x.n; S.p = x.p; S.pLabel = x.pLabel; S.k = x.k; S.sim = null; update(); });
+    $('presets').appendChild(b);
+  });
+  $('r-n').addEventListener('input', function () { S.n = +this.value; S.sim = null; update(); });
+  $('r-p').addEventListener('input', function () { S.p = +this.value; S.pLabel = null; S.sim = null; update(); });
+  $('r-k').addEventListener('input', function () { S.k = +this.value; update(); });
+  $('b-sim').addEventListener('click', function () {
+    var c = [], i, j, hits;
+    for (i = 0; i <= S.n; i++) c.push(0);
+    for (i = 0; i < 500; i++) {
+      hits = 0;
+      for (j = 0; j < S.n; j++) if (Math.random() < S.p) hits++;
+      c[hits]++;
+    }
+    S.sim = c.map(function (x) { return x / 500; });
+    update();
+  });
+  update();
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['status', 'read'],
+      throwOnError: false
+    });
+  }
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

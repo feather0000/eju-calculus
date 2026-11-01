@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 03 二次函数</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：二次函数的图像、最大最小、函数的确定、二次方程、判别式与二次不等式，含原创例题、练习题、交互探索器和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#ex-svg { touch-action: pan-y; cursor: ew-resize; user-select: none; -webkit-user-select: none; background: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+.back-link { margin: 0 0 14px; font-size: 15px; }
+.back-link a { color: #c5d3ef; }
+.fig-tri { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0 14px; }
+.fig-tri figure { margin: 0; }
+#qx-svg { background: var(--surface); }
+@media (max-width: 900px) {
+  html { scroll-padding-top: 104px; }
+  nav.toc { top: 34px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <p class="back-link"><a href="../../">← 目录</a></p>
+      <p class="eyebrow">EJU 数学コース2 · 出题项目 03 · 2次関数</p>
+      <h1>二次函数</h1>
+      <p class="lead">配方是总钥匙：配方得到顶点，顶点决定最值；再用判别式把图像、方程、不等式连起来。每个知识点都配例子，最后用原创的 EJU 风格填空题和练习题检验。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$y=a(x-p)^2+q$$
+      $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#graph">1 图像</a></li>
+        <li><a href="#maxmin">2 最大与最小</a></li>
+        <li><a href="#determine">3 函数的确定</a></li>
+        <li><a href="#equation">4 二次方程的解</a></li>
+        <li><a href="#discriminant">5 图像与方程</a></li>
+        <li><a href="#inequality">6 图像与不等式</a></li>
+        <li><a href="#examples">7 原创例题</a></li>
+        <li><a href="#practice">8 练习题</a></li>
+        <li><a href="#terms">9 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <section id="graph">
+    <h2>1 二次函数的图像</h2>
+    <p class="jp-sub" lang="ja">2次関数のグラフ — 放物線・軸・頂点・平行移動</p>
+
+    <h3>顶点式与配方</h3>
+    <p>二次函数 $y=ax^2+bx+c\ (a\ne0)$ 的图像是<strong>抛物线</strong>（<span lang="ja">放物線</span>）。配方（<span lang="ja">平方完成</span>）后可直接读出<strong>顶点</strong>（<span lang="ja">頂点</span>）和<strong>对称轴</strong>（<span lang="ja">軸</span>）：</p>
+    $$y=ax^2+bx+c=a\Bigl(x+\frac{b}{2a}\Bigr)^2-\frac{b^2-4ac}{4a}.$$
+    <div class="formula-grid">
+      <div>顶点：$\Bigl(-\dfrac{b}{2a},\ -\dfrac{b^2-4ac}{4a}\Bigr)$</div>
+      <div>对称轴：$x=-\dfrac{b}{2a}$</div>
+      <div>$a&gt;0$：开口向上（<span lang="ja">下に凸</span>）</div>
+      <div>$a&lt;0$：开口向下（<span lang="ja">上に凸</span>）</div>
+      <div>$|a|$ 越大，开口越窄</div>
+      <div>$y$ 轴截距：$c$（$x=0$ 时的值）</div>
+    </div>
+    <div class="box good">
+      <p><strong>配方示例：</strong>$y=2x^2-8x+5=2(x^2-4x)+5=2\{(x-2)^2-4\}+5=2(x-2)^2-3$。顶点 $(2,-3)$，对称轴 $x=2$。提取 $a$ 后括号内多加的 $4$ 要减回去，外面还要乘上 $a$，这是最常见的失分点。</p>
+    </div>
+
+    <h3>平移与对称</h3>
+    <p>把图像沿 $x$ 轴方向平移 $p$、沿 $y$ 轴方向平移 $q$（<span lang="ja">平行移動</span>）：把 $x$ 换成 $x-p$，$y$ 换成 $y-q$。对称移动（<span lang="ja">対称移動</span>）也是替换变量：</p>
+    <div class="tw"><table>
+      <thead><tr><th>变换</th><th>替换</th><th>$y=f(x)$ 变为</th></tr></thead>
+      <tbody>
+        <tr><td>平移 $(p,q)$</td><td>$x\to x-p,\ y\to y-q$</td><td>$y=f(x-p)+q$</td></tr>
+        <tr><td>关于 $x$ 轴对称</td><td>$y\to -y$</td><td>$y=-f(x)$</td></tr>
+        <tr><td>关于 $y$ 轴对称</td><td>$x\to -x$</td><td>$y=f(-x)$</td></tr>
+        <tr><td>关于原点对称</td><td>$x\to -x,\ y\to -y$</td><td>$y=-f(-x)$</td></tr>
+      </tbody>
+    </table></div>
+    <p>例：$y=x^2-2x+3$ 沿 $x$ 方向平移 $2$、沿 $y$ 方向平移 $-1$，得 $y=(x-2)^2-2(x-2)+3-1=x^2-6x+10$。也可以只移动顶点：$(1,2)\to(3,1)$，$a$ 不变，得 $y=(x-3)^2+1$，展开结果相同。</p>
+  </section>
+
+  <section id="maxmin">
+    <h2>2 最大与最小</h2>
+    <p class="jp-sub" lang="ja">最大値・最小値 — 定義域と軸の位置関係</p>
+    <p>全体实数上：$a&gt;0$ 时在顶点取最小值、无最大值；$a&lt;0$ 时在顶点取最大值、无最小值。若限定<strong>定义域</strong>（<span lang="ja">定義域</span>）$\alpha\le x\le\beta$，最值只可能出现在<strong>顶点（在定义域内时）和两个端点</strong>。</p>
+    <p>例：$y=x^2-4x+1=(x-2)^2-3$，$0\le x\le 3$。顶点在区间内，最小值 $-3$（$x=2$）；比较端点 $y(0)=1$，$y(3)=-2$，最大值 $1$（$x=0$）。</p>
+
+    <h3>含参数：看对称轴与区间的位置</h3>
+    <p>设 $a&gt;0$，定义域固定、对称轴 $x=p$ 随参数移动。<strong>最小值</strong>分三种情况：</p>
+    <div class="fig-tri">
+      <figure class="plot"><svg class="chart" id="f-left" role="img" aria-label="对称轴在区间左侧，最小值在左端点"></svg><figcaption>轴在区间左侧 $p&lt;\alpha$：最小值 $f(\alpha)$</figcaption></figure>
+      <figure class="plot"><svg class="chart" id="f-mid" role="img" aria-label="对称轴在区间内，最小值在顶点"></svg><figcaption>轴在区间内 $\alpha\le p\le\beta$：最小值 $f(p)$</figcaption></figure>
+      <figure class="plot"><svg class="chart" id="f-right" role="img" aria-label="对称轴在区间右侧，最小值在右端点"></svg><figcaption>轴在区间右侧 $p&gt;\beta$：最小值 $f(\beta)$</figcaption></figure>
+    </div>
+    <p><strong>最大值</strong>则出现在离对称轴较远的端点，所以按对称轴在区间中点 $\dfrac{\alpha+\beta}{2}$ 的左右分两种情况。</p>
+
+    <h3>两种常见变形</h3>
+    <ul>
+      <li><strong>有条件的二元式：</strong>$x+y=2,\ x\ge0,\ y\ge0$ 时求 $x^2+y^2$。代入 $y=2-x$，<strong>并由 $y\ge0$ 得 $0\le x\le2$</strong>，则 $x^2+y^2=2(x-1)^2+2$，最小值 $2$（$x=1$），最大值 $4$（$x=0,2$）。</li>
+      <li><strong>换元：</strong>$y=(x^2-2x)^2+2(x^2-2x)-1$。令 $t=x^2-2x=(x-1)^2-1$，<strong>注意 $t\ge-1$</strong>，则 $y=(t+1)^2-2$，最小值 $-2$（$t=-1$，即 $x=1$）。</li>
+    </ul>
+    <div class="box warn"><p><strong>易错：</strong>消元或换元后，新变量的取值范围必须一起写出来，否则最值可能算错。</p></div>
+  </section>
+
+  <section id="determine">
+    <h2>3 二次函数的确定</h2>
+    <p class="jp-sub" lang="ja">2次関数の決定 — 条件に合わせて式を置く</p>
+    <p>根据已知条件选对形式，计算量会小很多：</p>
+    <div class="tw"><table>
+      <thead><tr><th>已知条件</th><th>设为</th><th>例子</th><th>结果</th></tr></thead>
+      <tbody>
+        <tr><td>顶点 $(p,q)$ 或对称轴</td><td>$y=a(x-p)^2+q$</td><td>顶点 $(1,2)$，过 $(3,10)$</td><td>$y=2(x-1)^2+2$</td></tr>
+        <tr><td>与 $x$ 轴交于 $\alpha,\beta$</td><td>$y=a(x-\alpha)(x-\beta)$</td><td>交于 $-1,3$，过 $(0,-3)$</td><td>$y=(x+1)(x-3)$</td></tr>
+        <tr><td>任意三点</td><td>$y=ax^2+bx+c$</td><td>过 $(0,2),(1,1),(3,5)$</td><td>$y=x^2-2x+2$</td></tr>
+      </tbody>
+    </table></div>
+    <p>三点型的解法：把三点代入得联立方程（<span lang="ja">連立方程式</span>），先用相减消去 $c$，再解 $a,b$。</p>
+  </section>
+
+  <section id="equation">
+    <h2>4 二次方程的解</h2>
+    <p class="jp-sub" lang="ja">2次方程式の解 — 因数分解・解の公式</p>
+    <p>能因数分解（<span lang="ja">因数分解</span>）就先分解：$2x^2-5x-3=(2x+1)(x-3)=0$，解为 $x=-\dfrac12,\ 3$。否则用求根公式（<span lang="ja">解の公式</span>）：</p>
+    $$ax^2+bx+c=0\ (a\ne0)\quad\Longrightarrow\quad x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.$$
+    <p>一次项系数为偶数 $b=2b'$ 时，用简化公式可避免约分：</p>
+    $$ax^2+2b'x+c=0\quad\Longrightarrow\quad x=\frac{-b'\pm\sqrt{b'^2-ac}}{a}.$$
+    <p>例：$3x^2-4x-2=0$，这里 $b'=-2$，所以 $x=\dfrac{2\pm\sqrt{4+6}}{3}=\dfrac{2\pm\sqrt{10}}{3}$。</p>
+    <div class="box warn"><p><strong>易错：</strong>$x^2$ 的系数含参数时（如 $kx^2+4x+k-3=0$），要先讨论系数是否为 $0$。题目若说“二次方程”，就隐含 $k\ne0$。</p></div>
+  </section>
+
+  <section id="discriminant">
+    <h2>5 图像与二次方程</h2>
+    <p class="jp-sub" lang="ja">グラフと2次方程式 — 判別式・共有点</p>
+    <p>$y=ax^2+bx+c$ 与 $x$ 轴的<strong>公共点</strong>（<span lang="ja">共有点</span>）的 $x$ 坐标，就是方程 $ax^2+bx+c=0$ 的实数解。<strong>判别式</strong>（<span lang="ja">判別式</span>）$D=b^2-4ac$ 决定其个数；$b=2b'$ 时可用 $\dfrac D4=b'^2-ac$。</p>
+    <div class="fig-tri">
+      <figure class="plot"><svg class="chart" id="f-d1" role="img" aria-label="抛物线与 x 轴有两个交点"></svg><figcaption>$D&gt;0$：两个不同实数解，图像与 $x$ 轴相交于两点</figcaption></figure>
+      <figure class="plot"><svg class="chart" id="f-d2" role="img" aria-label="抛物线与 x 轴相切"></svg><figcaption>$D=0$：重根（<span lang="ja">重解</span>），图像与 $x$ 轴相切（<span lang="ja">接する</span>）</figcaption></figure>
+      <figure class="plot"><svg class="chart" id="f-d3" role="img" aria-label="抛物线与 x 轴没有公共点"></svg><figcaption>$D&lt;0$：无实数解，图像与 $x$ 轴无公共点</figcaption></figure>
+    </div>
+
+    <h3>截得的线段长</h3>
+    <p>$D&gt;0$ 时，图像在 $x$ 轴上截得的线段长为</p>
+    $$|\alpha-\beta|=\frac{\sqrt{D}}{|a|}.$$
+    <p>例：$y=x^2-4x+1$，$D=12$，线段长 $\sqrt{12}=2\sqrt3$。</p>
+
+    <h3>抛物线与直线</h3>
+    <p>联立后消去 $y$，得到关于 $x$ 的二次方程，用同样的判别式判断：$D&gt;0$ 相交于两点，$D=0$ 相切，$D&lt;0$ 无公共点。例：$y=x^2+1$ 与 $y=x+k$ 相切时，$x^2-x+1-k=0$ 的 $D=4k-3=0$，所以 $k=\dfrac34$，切点为 $\Bigl(\dfrac12,\dfrac54\Bigr)$。</p>
+
+    <h3>解的分布（<span lang="ja">解の配置</span>）</h3>
+    <p>设 $a&gt;0$，$f(x)=ax^2+bx+c$，对称轴 $x=p$。判断根相对某个数 $m$ 的位置时，看三件事：<strong>判别式、对称轴、端点函数值</strong>。</p>
+    <div class="tw"><table>
+      <thead><tr><th>要求</th><th>条件</th></tr></thead>
+      <tbody>
+        <tr><td>两根都大于 $m$（含重根）</td><td>$D\ge0,\ p&gt;m,\ f(m)&gt;0$</td></tr>
+        <tr><td>两根都小于 $m$（含重根）</td><td>$D\ge0,\ p&lt;m,\ f(m)&gt;0$</td></tr>
+        <tr><td>一根小于 $m$，一根大于 $m$</td><td>只需 $f(m)&lt;0$（此时自动 $D&gt;0$）</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="inequality">
+    <h2>6 图像与二次不等式</h2>
+    <p class="jp-sub" lang="ja">グラフと2次不等式 — 解の範囲・すべての実数</p>
+    <p>解 $ax^2+bx+c&gt;0$，就是找图像在 $x$ 轴<strong>上方</strong>的 $x$ 范围。先把 $a$ 化为正（两边乘 $-1$ 时不等号反向），再查表（$\alpha&lt;\beta$ 为两根）：</p>
+    <div class="tw"><table>
+      <thead><tr><th>$a&gt;0$</th><th>$D&gt;0$</th><th>$D=0$（重根 $\alpha$）</th><th>$D&lt;0$</th></tr></thead>
+      <tbody>
+        <tr><td>$ax^2+bx+c&gt;0$</td><td>$x&lt;\alpha,\ \beta&lt;x$</td><td>$\alpha$ 以外的所有实数</td><td>所有实数</td></tr>
+        <tr><td>$ax^2+bx+c\ge0$</td><td>$x\le\alpha,\ \beta\le x$</td><td>所有实数</td><td>所有实数</td></tr>
+        <tr><td>$ax^2+bx+c&lt;0$</td><td>$\alpha&lt;x&lt;\beta$</td><td>无解</td><td>无解</td></tr>
+        <tr><td>$ax^2+bx+c\le0$</td><td>$\alpha\le x\le\beta$</td><td>$x=\alpha$</td><td>无解</td></tr>
+      </tbody>
+    </table></div>
+    <p>例：$x^2-2x-3&lt;0$，即 $(x+1)(x-3)&lt;0$，解为 $-1&lt;x&lt;3$。</p>
+    <div class="box good">
+      <p><strong>恒成立：</strong>所有实数 $x$ 都满足 $ax^2+bx+c&gt;0$ $\iff$ $a&gt;0$ 且 $D&lt;0$（$a\ne0$ 时）。若系数 $a$ 含参数，还要单独检查 $a=0$ 的情况。</p>
+    </div>
+
+    <div class="explorer" id="explorer">
+      <h3 style="margin:0 0 10px">二次函数探索器</h3>
+      <div class="ex-head" role="group" aria-label="预设">
+        <button class="chip" type="button" data-p="1,-2,-3">$D&gt;0$</button>
+        <button class="chip" type="button" data-p="1,-2,1">$D=0$</button>
+        <button class="chip" type="button" data-p="1,-2,3">$D&lt;0$</button>
+        <button class="chip" type="button" data-p="-1,2,3">开口向下</button>
+      </div>
+      <svg id="qx-svg" class="chart" role="img" aria-label="二次函数图像，随滑块变化，标出顶点、与 x 轴的交点、不等式解的范围和区间最值"></svg>
+      <div class="ctrl"><label for="qx-a">$a$</label><input id="qx-a" type="range" min="-3" max="3" step="0.1" value="1"><output id="qx-a-out" for="qx-a"></output></div>
+      <div class="ctrl"><label for="qx-b">$b$</label><input id="qx-b" type="range" min="-6" max="6" step="0.1" value="-2"><output id="qx-b-out" for="qx-b"></output></div>
+      <div class="ctrl"><label for="qx-c">$c$</label><input id="qx-c" type="range" min="-6" max="6" step="0.1" value="-3"><output id="qx-c-out" for="qx-c"></output></div>
+      <div class="ex-head" id="qx-ineq" role="group" aria-label="显示不等式的解" style="margin-top:10px">
+        <button class="chip" type="button" data-i="">不显示不等式</button>
+        <button class="chip" type="button" data-i="gt" aria-pressed="true">$y&gt;0$ 的范围</button>
+        <button class="chip" type="button" data-i="lt">$y&lt;0$ 的范围</button>
+      </div>
+      <div class="toggles"><label><input type="checkbox" id="qx-range">显示定义域 $\alpha\le x\le\beta$ 上的最值</label></div>
+      <div id="qx-range-row" hidden>
+        <div class="ctrl"><label for="qx-l">左端 $\alpha$</label><input id="qx-l" type="range" min="-7" max="7" step="0.1" value="-1"><output id="qx-l-out" for="qx-l"></output></div>
+        <div class="ctrl"><label for="qx-r">右端 $\beta$</label><input id="qx-r" type="range" min="-7" max="7" step="0.1" value="2"><output id="qx-r-out" for="qx-r"></output></div>
+      </div>
+      <div class="read">
+        <div class="wide"><small>函数与顶点式</small><span id="q-fn"></span></div>
+        <div><small>顶点</small><span id="q-v"></span></div>
+        <div><small>对称轴</small><span id="q-axis"></span></div>
+        <div><small>判别式</small><span id="q-d"></span></div>
+        <div class="wide"><small>方程 $y=0$ 的实数解</small><span id="q-roots"></span></div>
+        <div class="wide" id="q-ineq-box"><small id="q-ineq-title"></small><span id="q-ineq"></span></div>
+        <div class="wide" id="q-mm-box" hidden><small>定义域上的最值</small><span id="q-mm"></span></div>
+      </div>
+      <div class="status" id="qx-status" aria-live="polite"></div>
+    </div>
+    <p style="font-size:14.5px;color:var(--ink-3)">$a$ 不能为 $0$，滑到 $0$ 时会自动跳到相邻值。图中坐标范围为 $-8\le x\le 8$、$-10\le y\le 10$，读数四舍五入到两位小数。</p>
+  </section>
+
+  <section id="examples">
+    <h2>7 原创 EJU 风格例题</h2>
+    <p class="jp-sub">以下题目均为本讲义<strong>原创</strong>，仅模仿 EJU 的填空形式，并非真题。</p>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个字母对应一个数字（$0$–$9$），例如 $\B{BC}$ 是两位数；负号等符号已印在题目中。分数要约到最简，根号内的数要尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>例题 1　图像与最值</b><span class="origin">原创</span></div>
+      <p>二次函数 $f(x)=-2x^2+8x-3$。</p>
+      <p>(1) $f(x)=-2(x-\B{A})^2+\B{B}$。</p>
+      <p>(2) 在 $-1\le x\le 3$ 上，$f(x)$ 的最大值为 $\B{C}$，最小值为 $-\B{DE}$。</p>
+      <p>(3) 把 $y=f(x)$ 的图像沿 $x$ 轴方向平移 $-3$、沿 $y$ 轴方向平移 $1$，所得图像的方程为 $y=-2x^2-\B{F}\,x+\B{G}$。</p>
+      <p>(4) 方程 $f(x)=0$ 的解为 $x=\dfrac{\B{H}\pm\sqrt{\B{IJ}}}{\B{K}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 5</li><li>C = 5</li><li>DE = 13</li><li>F = 4</li><li>G = 4</li><li>H = 4</li><li>IJ = 10</li><li>K = 2</li></ul>
+        <p>(1) $f(x)=-2(x^2-4x)-3=-2\{(x-2)^2-4\}-3=-2(x-2)^2+5$。</p>
+        <p>(2) 顶点 $x=2$ 在区间内，最大值 $5$。端点中 $x=-1$ 离对称轴更远，$f(-1)=-13$（另一端 $f(3)=3$），最小值 $-13$。</p>
+        <p>(3) 顶点 $(2,5)\to(-1,6)$，$a$ 不变：$y=-2(x+1)^2+6=-2x^2-4x+4$。</p>
+        <p>(4) $2x^2-8x+3=0$，用简化公式（$b'=-4$）：$x=\dfrac{4\pm\sqrt{16-6}}{2}=\dfrac{4\pm\sqrt{10}}{2}$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 2　含参数的最小值</b><span class="origin">原创</span></div>
+      <p>设 $a$ 为实数，$f(x)=x^2-2ax+a+2$，记 $0\le x\le2$ 上 $f(x)$ 的最小值为 $m(a)$。</p>
+      <p>(1) $m(a)$ 的表达式为：</p>
+      <ul>
+        <li>$a&lt;0$ 时，$m(a)=a+\B{A}$；</li>
+        <li>$0\le a\le\B{B}$ 时，$m(a)=-a^2+a+\B{C}$；</li>
+        <li>$a&gt;\B{B}$ 时，$m(a)=-\B{D}\,a+\B{E}$。</li>
+      </ul>
+      <p>(2) $m(a)$ 在 $a=\dfrac{\B{F}}{\B{G}}$ 时取最大值 $\dfrac{\B{H}}{\B{I}}$。</p>
+      <p>(3) “$0\le x\le2$ 上恒有 $f(x)\ge0$”成立的 $a$ 的范围是 $-\B{J}\le a\le\B{K}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 2</li><li>C = 2</li><li>D = 3</li><li>E = 6</li><li>F = 1</li><li>G = 2</li><li>H = 9</li><li>I = 4</li><li>J = 2</li><li>K = 2</li></ul>
+        <p>(1) $f(x)=(x-a)^2-a^2+a+2$，对称轴 $x=a$。$a&lt;0$ 时最小值为 $f(0)=a+2$；$0\le a\le2$ 时为顶点值 $-a^2+a+2$；$a&gt;2$ 时为 $f(2)=4-4a+a+2=-3a+6$。</p>
+        <p>(2) $a&lt;0$ 时 $m(a)$ 递增且 $m(a)&lt;2$，$a&gt;2$ 时递减且 $m(a)&lt;0$。中间段 $m(a)=-\Bigl(a-\dfrac12\Bigr)^2+\dfrac94$，所以最大值为 $\dfrac94$（$a=\dfrac12$）。</p>
+        <p>(3) 条件等价于 $m(a)\ge0$。$a&lt;0$：$a\ge-2$，得 $-2\le a&lt;0$；$0\le a\le2$：$(a+1)(a-2)\le0$，整段成立；$a&gt;2$：$a\le2$，无解。合并得 $-2\le a\le2$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 3　判别式与解的分布</b><span class="origin">原创</span></div>
+      <p>设 $k$ 为实数，$f(x)=x^2-2kx+k+6$。</p>
+      <p>(1) $y=f(x)$ 的图像与 $x$ 轴相切时，$k=-\B{A}$ 或 $k=\B{B}$。其中 $k=\B{B}$ 时切点的 $x$ 坐标为 $\B{C}$。</p>
+      <p>(2) $f(x)=0$ 有两个不同的正实数解的条件是 $k&gt;\B{D}$。</p>
+      <p>(3) $f(x)=0$ 的两个不同实数解中，一个小于 $1$、一个大于 $1$ 的条件是 $k&gt;\B{E}$。</p>
+      <p>(4) $f(x)=0$ 的两个不同实数解都大于 $1$ 的条件是 $\B{F}&lt;k&lt;\B{G}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 3</li><li>C = 3</li><li>D = 3</li><li>E = 7</li><li>F = 3</li><li>G = 7</li></ul>
+        <p>(1) $\dfrac D4=k^2-k-6=(k+2)(k-3)=0$，得 $k=-2,\ 3$。对称轴为 $x=k$，所以 $k=3$ 时切点的 $x$ 坐标为 $3$。</p>
+        <p>(2) 需 $D&gt;0$（$k&lt;-2$ 或 $k&gt;3$）、对称轴 $k&gt;0$、$f(0)=k+6&gt;0$。三者同时成立：$k&gt;3$。</p>
+        <p>(3) 只需 $f(1)=7-k&lt;0$，即 $k&gt;7$。</p>
+        <p>(4) 需 $D&gt;0$、对称轴 $k&gt;1$、$f(1)=7-k&gt;0$。三者同时成立：$3&lt;k&lt;7$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 4　函数的确定与不等式</b><span class="origin">原创</span></div>
+      <p>抛物线 $C$ 过点 $(-1,0)$、$(3,0)$、$(0,-6)$。</p>
+      <p>(1) $C$ 的方程为 $y=\B{A}\,x^2-\B{B}\,x-\B{C}$。</p>
+      <p>(2) $C$ 不在直线 $\ell:y=2x+2$ 上方的 $x$ 范围，即不等式 $\B{A}\,x^2-\B{B}\,x-\B{C}\le2x+2$ 的解为 $-\B{D}\le x\le\B{E}$。</p>
+      <p>(3) $C$ 与 $\ell$ 的交点中，$x$ 坐标较大的点为 $(\B{E},\ \B{FG})$，两交点间的距离为 $\B{H}\sqrt{\B{I}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 4</li><li>C = 6</li><li>D = 1</li><li>E = 4</li><li>FG = 10</li><li>H = 5</li><li>I = 5</li></ul>
+        <p>(1) 设 $y=a(x+1)(x-3)$，代入 $(0,-6)$：$-3a=-6$，$a=2$，所以 $y=2x^2-4x-6$。</p>
+        <p>(2) 整理得 $2x^2-6x-8\le0$，即 $(x+1)(x-4)\le0$，解为 $-1\le x\le4$。</p>
+        <p>(3) 交点为 $(-1,0)$ 和 $(4,10)$，距离 $\sqrt{5^2+10^2}=\sqrt{125}=5\sqrt5$。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>8 练习题</h2>
+    <div class="bar">
+      <p class="jp-sub" style="margin:0">先自己算，再点按钮核对。题目为本讲义原创。</p>
+      <button class="chip" id="toggle-all" type="button">显示全部答案</button>
+    </div>
+
+    <div class="q"><div class="q-head"><b>1</b>配方</div>
+      <p>把 $y=3x^2-12x+7$ 化为顶点式，并写出顶点坐标。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$y=3(x^2-4x)+7=3\{(x-2)^2-4\}+7=\boldsymbol{3(x-2)^2-5}$，顶点 $\boldsymbol{(2,-5)}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>2</b>平移与对称</div>
+      <p>对 $y=x^2-4x+1$：(1) 沿 $x$ 方向平移 $3$、沿 $y$ 方向平移 $-2$；(2) 关于 $x$ 轴对称；(3) 关于原点对称。分别求所得图像的方程。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>(1) $y=(x-3)^2-4(x-3)+1-2=\boldsymbol{x^2-10x+20}$。(2) $-y=x^2-4x+1$，即 $\boldsymbol{y=-x^2+4x-1}$。(3) $-y=x^2+4x+1$，即 $\boldsymbol{y=-x^2-4x-1}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>3</b>区间最值</div>
+      <p>求 $y=x^2-6x+5\ (1\le x\le4)$ 的最大值和最小值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$y=(x-3)^2-4$，顶点在区间内，最小值 $\mathbf{-4}$（$x=3$）。端点 $x=1$ 离对称轴更远，最大值 $\mathbf 0$（$x=1$）。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>4</b>应用</div>
+      <p>用长 $20\,\text{m}$ 的栅栏靠一面长墙围成矩形（墙的一边不用栅栏）。设垂直于墙的边长为 $x\,\text{m}$，求矩形面积的最大值及此时的 $x$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$S=x(20-2x)=-2(x-5)^2+50\ (0&lt;x&lt;10)$，所以 $x=\mathbf 5$ 时最大面积为 $\mathbf{50}\,\text{m}^2$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>5</b>函数的确定</div>
+      <p>求顶点为 $(1,-3)$ 且过点 $(3,5)$ 的二次函数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>设 $y=a(x-1)^2-3$，代入得 $4a-3=5$，$a=2$。所以 $\boldsymbol{y=2x^2-4x-1}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>6</b>函数的确定</div>
+      <p>求图像过 $(-1,6)$、$(1,2)$、$(2,3)$ 的二次函数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$a-b+c=6$，$a+b+c=2$，$4a+2b+c=3$。前两式相减得 $b=-2$，于是 $a+c=4$，$4a+c=7$，得 $a=1,\ c=3$。所以 $\boldsymbol{y=x^2-2x+3}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>7</b>求根公式</div>
+      <p>解方程 $2x^2-3x-1=0$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$x=\dfrac{3\pm\sqrt{9+8}}{4}=\boldsymbol{\dfrac{3\pm\sqrt{17}}{4}}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>8</b>判别式</div>
+      <p>求使二次方程 $kx^2+4x+k-3=0$ 有两个不同实数解的 $k$ 的范围。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\dfrac D4=4-k(k-3)=-(k+1)(k-4)&gt;0$，得 $-1&lt;k&lt;4$。又因为是二次方程，$k\ne0$，所以 $\boldsymbol{-1&lt;k&lt;0}$ 或 $\boldsymbol{0&lt;k&lt;4}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>9</b>截得的线段长</div>
+      <p>求 $y=x^2-2x-2$ 的图像在 $x$ 轴上截得的线段长。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>解为 $x=1\pm\sqrt3$，线段长 $\boldsymbol{2\sqrt3}$。也可用 $\dfrac{\sqrt D}{|a|}=\sqrt{12}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>10</b>抛物线与直线</div>
+      <p>$y=x^2+3$ 与 $y=2x+k$ 相切时，求 $k$ 和切点坐标。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$x^2-2x+3-k=0$，$\dfrac D4=1-(3-k)=k-2=0$，所以 $k=\mathbf 2$。此时 $(x-1)^2=0$，切点为 $\boldsymbol{(1,4)}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>11</b>二次不等式</div>
+      <p>解不等式：(1) $-x^2+x+6&gt;0$；(2) $x^2-4x+4\le0$；(3) $x^2+x+1&gt;0$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>(1) 乘 $-1$：$(x+2)(x-3)&lt;0$，$\boldsymbol{-2&lt;x&lt;3}$。(2) $(x-2)^2\le0$，只有 $\boldsymbol{x=2}$。(3) $D=-3&lt;0$ 且开口向上，解为<strong>所有实数</strong>。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>12</b>恒成立</div>
+      <p>对所有实数 $x$，$x^2+2kx+k+2&gt;0$ 都成立，求 $k$ 的范围。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\dfrac D4=k^2-k-2=(k+1)(k-2)&lt;0$，所以 $\boldsymbol{-1&lt;k&lt;2}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>13</b>联立不等式</div>
+      <p>解联立不等式 $x^2-x-6&lt;0$，$x^2-5x+4\ge0$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>第一式：$-2&lt;x&lt;3$。第二式：$x\le1$ 或 $x\ge4$。取公共部分：$\boldsymbol{-2&lt;x\le1}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>14</b>整数解</div>
+      <p>不等式 $(x-2)(x-a)&lt;0$ 恰有 $2$ 个整数解，求实数 $a$ 的范围。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$a&gt;2$ 时解为 $2&lt;x&lt;a$，整数解须为 $3,4$，所以 $\boldsymbol{4&lt;a\le5}$。$a&lt;2$ 时解为 $a&lt;x&lt;2$，整数解须为 $1,0$，所以 $\boldsymbol{-1\le a&lt;0}$。$a=2$ 时无解。</p></div></div>
+  </section>
+
+  <section id="terms">
+    <h2>9 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页按 JASSO 2026 年度起适用的数学シラバス中“2次関数”的子项组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。所有例题和练习题均为原创。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  function $(id) { return document.getElementById(id); }
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['函数与图像', [
+      ['2次関数', 'にじかんすう', '二次函数'], ['グラフ', 'グラフ', '图像'], ['放物線', 'ほうぶつせん', '抛物线'],
+      ['頂点', 'ちょうてん', '顶点'], ['軸', 'じく', '对称轴'], ['平方完成', 'へいほうかんせい', '配方'],
+      ['上に凸', 'うえにとつ', '开口向下'], ['下に凸', 'したにとつ', '开口向上'], ['平行移動', 'へいこういどう', '平移'],
+      ['対称移動', 'たいしょういどう', '对称变换'], ['原点', 'げんてん', '原点'], ['係数', 'けいすう', '系数'],
+      ['定数', 'ていすう', '常数'], ['座標', 'ざひょう', '坐标']
+    ]],
+    ['最大与最小', [
+      ['最大値', 'さいだいち', '最大值'], ['最小値', 'さいしょうち', '最小值'], ['定義域', 'ていぎいき', '定义域'],
+      ['値域', 'ちいき', '值域'], ['場合分け', 'ばあいわけ', '分类讨论'], ['置き換え', 'おきかえ', '换元']
+    ]],
+    ['方程式与判别式', [
+      ['2次方程式', 'にじほうていしき', '二次方程'], ['解', 'かい', '解'], ['実数解', 'じっすうかい', '实数解'],
+      ['重解', 'じゅうかい', '重根'], ['解の公式', 'かいのこうしき', '求根公式'], ['因数分解', 'いんすうぶんかい', '因式分解'],
+      ['判別式', 'はんべつしき', '判别式'], ['共有点', 'きょうゆうてん', '公共点'], ['接する', 'せっする', '相切'],
+      ['接点', 'せってん', '切点'], ['交わる', 'まじわる', '相交'], ['解の配置', 'かいのはいち', '根的分布'],
+      ['連立方程式', 'れんりつほうていしき', '方程组']
+    ]],
+    ['不等式', [
+      ['2次不等式', 'にじふとうしき', '二次不等式'], ['連立不等式', 'れんりつふとうしき', '不等式组'], ['すべての実数', 'すべてのじっすう', '所有实数'],
+      ['常に成り立つ', 'つねになりたつ', '恒成立'], ['範囲', 'はんい', '范围'], ['整数解', 'せいすうかい', '整数解']
+    ]]
+  ];
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja"><strong>' + t[0] + '</strong></td><td class="kana" lang="ja">' + t[1] + '</td><td>' + t[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = $('term-count');
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 答案按钮 ---------- */
+  function setAns(btn, open) {
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '隐藏答案' : '显示答案';
+    btn.nextElementSibling.hidden = !open;
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.classList && e.target.classList.contains('toggle-ans')) {
+      setAns(e.target, e.target.getAttribute('aria-expanded') !== 'true');
+    }
+  });
+  var allBtn = $('toggle-all');
+  allBtn.addEventListener('click', function () {
+    var btns = document.querySelectorAll('#practice .toggle-ans');
+    var open = allBtn.textContent.indexOf('显示') === 0;
+    btns.forEach(function (b) { setAns(b, open); });
+    allBtn.textContent = open ? '隐藏全部答案' : '显示全部答案';
+  });
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('on', on);
+          if (on && a.parentNode.parentNode.scrollWidth > a.parentNode.parentNode.clientWidth) {
+            var ol = a.parentNode.parentNode;
+            ol.scrollLeft = a.offsetLeft - ol.offsetLeft - 20;
+          }
+        });
+      });
+    }, { rootMargin: '-25% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 绘图工具 ---------- */
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(svg, name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text !== undefined) e.textContent = text;
+    svg.appendChild(e);
+    return e;
+  }
+  function frame(svg, w, h, win) {
+    var sx = function (x) { return (x - win[0]) / (win[1] - win[0]) * w; };
+    var sy = function (y) { return h - (y - win[2]) / (win[3] - win[2]) * h; };
+    return { x: sx, y: sy };
+  }
+  function drawAxes(svg, w, h, f, win, step) {
+    var i;
+    if (step) {
+      for (i = Math.ceil(win[0] / step) * step; i <= win[1]; i += step) {
+        el(svg, 'line', { 'class': 'grid', x1: f.x(i), x2: f.x(i), y1: 0, y2: h });
+        if (i !== 0) el(svg, 'text', { 'class': 'tick', x: f.x(i), y: f.y(0) + 15, 'text-anchor': 'middle' }, i);
+      }
+      for (i = Math.ceil(win[2] / step) * step; i <= win[3]; i += step) {
+        el(svg, 'line', { 'class': 'grid', x1: 0, x2: w, y1: f.y(i), y2: f.y(i) });
+        if (i !== 0) el(svg, 'text', { 'class': 'tick', x: f.x(0) - 6, y: f.y(i) + 4, 'text-anchor': 'end' }, i);
+      }
+    }
+    el(svg, 'line', { 'class': 'axis', x1: 0, x2: w, y1: f.y(0), y2: f.y(0) });
+    el(svg, 'line', { 'class': 'axis', x1: f.x(0), x2: f.x(0), y1: 0, y2: h });
+    el(svg, 'text', { 'class': 'lbl', x: w - 12, y: f.y(0) - 7 }, 'x');
+    el(svg, 'text', { 'class': 'lbl', x: f.x(0) + 7, y: 14 }, 'y');
+  }
+  function curve(svg, f, fn, win, cls) {
+    var pts = [], n = 320, i, x, y;
+    for (i = 0; i <= n; i++) {
+      x = win[0] + (win[1] - win[0]) * i / n;
+      y = Math.max(win[2] - 30, Math.min(win[3] + 30, fn(x)));
+      pts.push(f.x(x).toFixed(1) + ',' + f.y(y).toFixed(1));
+    }
+    el(svg, 'polyline', { 'class': cls, points: pts.join(' ') });
+  }
+
+  /* ---------- 静态示意图 ---------- */
+  function para(id, p, q, mark) {
+    var svg = $(id), w = 240, h = 170, win = [-3, 5, -2, 6];
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    var f = frame(svg, w, h, win), fn = function (x) { return (x - p) * (x - p) + q; };
+    drawAxes(svg, w, h, f, win, 0);
+    curve(svg, f, fn, win, 's1');
+    if (mark) {
+      el(svg, 'line', { 'class': 'sm', x1: f.x(p), x2: f.x(p), y1: 0, y2: h });
+      el(svg, 'line', { 'class': 's2', x1: f.x(0), x2: f.x(2), y1: f.y(0), y2: f.y(0) });
+      el(svg, 'line', { 'class': 'sm', x1: f.x(2), x2: f.x(2), y1: f.y(0), y2: f.y(fn(2)) });
+      el(svg, 'line', { 'class': 'sm', x1: f.x(0), x2: f.x(0), y1: f.y(0), y2: f.y(fn(0)) });
+      var m = Math.max(0, Math.min(2, p));
+      el(svg, 'circle', { 'class': 'dot2', cx: f.x(m), cy: f.y(fn(m)), r: 5 });
+    } else {
+      var d = -q;
+      if (d >= 0) {
+        var s = Math.sqrt(d);
+        (d === 0 ? [p] : [p - s, p + s]).forEach(function (x) {
+          el(svg, 'circle', { 'class': 'dot2', cx: f.x(x), cy: f.y(0), r: 5 });
+        });
+      }
+    }
+  }
+  para('f-left', -1.2, 0.5, true);
+  para('f-mid', 1, 0.5, true);
+  para('f-right', 3.2, 0.5, true);
+  para('f-d1', 1, -2, false);
+  para('f-d2', 1, 0, false);
+  para('f-d3', 1, 1.5, false);
+
+  /* ---------- 探索器 ---------- */
+  var S = { a: 1, b: -2, c: -3, ineq: 'gt', range: false, l: -1, r: 2 };
+  var WIN = [-8, 8, -10, 10];
+  var svgQ = $('qx-svg');
+  function fx(x) { return S.a * x * x + S.b * x + S.c; }
+  /* 去掉浮点误差，最多两位小数 */
+  function num(v) {
+    var r = Math.round(v * 100) / 100;
+    if (r === 0) r = 0;
+    return String(r);
+  }
+  function exact(v) { return Math.abs(v * 100 - Math.round(v * 100)) < 1e-9; }
+  function term(v, tail, first) {
+    if (Math.abs(v) < 1e-9) return '';
+    var abs = Math.abs(v), s = v < 0 ? '-' : (first ? '' : '+');
+    return s + ((abs === 1 && tail) ? '' : num(abs)) + tail;
+  }
+  function tex(id, s) {
+    var e = $(id);
+    if (window.katex) window.katex.render(s, e, { throwOnError: false });
+    else e.textContent = s;
+  }
+  /* 用整数运算判别式，避免 0.1 步长的浮点误差；D 的 100 倍 */
+  function disc100() {
+    var A = Math.round(S.a * 10), B = Math.round(S.b * 10), C = Math.round(S.c * 10);
+    return B * B - 4 * A * C;
+  }
+  function roots() {
+    var d = disc100();
+    if (d < 0) return [];
+    var v = -S.b / (2 * S.a);
+    if (d === 0) return [v];
+    var s = Math.sqrt(d / 100) / (2 * Math.abs(S.a));
+    return [v - s, v + s];
+  }
+  function ineqSolution(kind) {
+    var rs = roots(), up = S.a > 0, outside = (kind === 'gt') === up;
+    if (rs.length === 2) {
+      var a = num(rs[0]), b = num(rs[1]);
+      return outside ? 'x<' + a + ',\\ ' + b + '<x' : a + '<x<' + b;
+    }
+    if (rs.length === 1) return outside ? 'x\\ne ' + num(rs[0]) : '\\text{无解}';
+    return outside ? '\\text{所有实数}' : '\\text{无解}';
+  }
+  function holds(x) { return S.ineq === 'gt' ? fx(x) > 0 : fx(x) < 0; }
+
+  function draw() {
+    var w = svgQ.clientWidth || 640, h = Math.round(Math.max(250, Math.min(470, w * 0.62)));
+    svgQ.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    svgQ.style.height = h + 'px';
+    while (svgQ.firstChild) svgQ.removeChild(svgQ.firstChild);
+    var f = frame(svgQ, w, h, WIN);
+    drawAxes(svgQ, w, h, f, WIN, 2);
+    var i, x, n = 320;
+    if (S.ineq) {
+      var run = [], flush = function () {
+        if (run.length > 1) {
+          var a = run[0], b = run[run.length - 1], poly = run.map(function (t) {
+            return f.x(t).toFixed(1) + ',' + f.y(Math.max(WIN[2] - 5, Math.min(WIN[3] + 5, fx(t)))).toFixed(1);
+          });
+          poly.unshift(f.x(a).toFixed(1) + ',' + f.y(0).toFixed(1));
+          poly.push(f.x(b).toFixed(1) + ',' + f.y(0).toFixed(1));
+          el(svgQ, 'polygon', { 'class': 'fillc', points: poly.join(' ') });
+          el(svgQ, 'line', { 'class': 's2', x1: f.x(a), x2: f.x(b), y1: f.y(0), y2: f.y(0) });
+        }
+        run = [];
+      };
+      for (i = 0; i <= n; i++) {
+        x = WIN[0] + (WIN[1] - WIN[0]) * i / n;
+        if (holds(x)) run.push(x); else flush();
+      }
+      flush();
+    }
+    var vx = -S.b / (2 * S.a), vy = fx(vx);
+    el(svgQ, 'line', { 'class': 'sm', x1: f.x(vx), x2: f.x(vx), y1: 0, y2: h });
+    curve(svgQ, f, fx, WIN, 's1');
+    roots().forEach(function (r) { el(svgQ, 'circle', { 'class': 'dot2', cx: f.x(r), cy: f.y(0), r: 5 }); });
+    if (Math.abs(vy) <= 10 && Math.abs(vx) <= 8) {
+      el(svgQ, 'circle', { 'class': 'dot', cx: f.x(vx), cy: f.y(vy), r: 5 });
+      el(svgQ, 'text', { 'class': 'lbl', x: f.x(vx) + 9, y: f.y(vy) + (S.a > 0 ? 17 : -9) }, '顶点');
+    }
+    if (S.range) {
+      [S.l, S.r].forEach(function (t) { el(svgQ, 'line', { 'class': 's3', x1: f.x(t), x2: f.x(t), y1: 0, y2: h }); });
+      var mm = extremes();
+      mm.maxAt.forEach(function (t) { mark(f, t, mm.max, '最大'); });
+      mm.minAt.forEach(function (t) { mark(f, t, mm.min, '最小'); });
+    }
+  }
+  function mark(f, x, y, label) {
+    if (Math.abs(y) > 10) return;
+    el(svgQ, 'circle', { 'class': 'dot3', cx: f.x(x), cy: f.y(y), r: 5 });
+    el(svgQ, 'text', { 'class': 'lbl', x: f.x(x) + 8, y: f.y(y) - 8 }, label);
+  }
+  function extremes() {
+    var c = [S.l, S.r], vx = -S.b / (2 * S.a);
+    if (vx > S.l && vx < S.r) c.push(vx);
+    var ys = c.map(fx), max = Math.max.apply(null, ys), min = Math.min.apply(null, ys), tol = 1e-9;
+    function at(v) { return c.filter(function (t, i) { return Math.abs(ys[i] - v) < tol; }); }
+    return { max: max, min: min, maxAt: at(max), minAt: at(min) };
+  }
+  function atList(a) { return a.map(num).filter(function (v, i, arr) { return arr.indexOf(v) === i; }).join(',\\ '); }
+
+  function update() {
+    ['a', 'b', 'c', 'l', 'r'].forEach(function (k) {
+      $('qx-' + k).value = S[k];
+      $('qx-' + k + '-out').textContent = num(S[k]);
+    });
+    draw();
+    var vx = -S.b / (2 * S.a), vy = fx(vx), d = disc100(), rs = roots();
+    var q = Math.abs(vy) < 1e-9 ? '' : (vy > 0 ? '+' : '-') + num(Math.abs(vy));
+    var inner = Math.abs(vx) < 1e-9 ? 'x^2' : '(x' + (vx > 0 ? '-' : '+') + num(Math.abs(vx)) + ')^2';
+    tex('q-fn', 'y=' + term(S.a, 'x^2', true) + term(S.b, 'x', false) + term(S.c, '', false) + '\\ =\\ ' + (S.a === 1 ? '' : S.a === -1 ? '-' : num(S.a)) + inner + q);
+    tex('q-v', '(' + num(vx) + ',\\ ' + num(vy) + ')');
+    tex('q-axis', 'x=' + num(vx));
+    tex('q-d', 'D=b^2-4ac=' + num(d / 100));
+    tex('q-roots', rs.length === 2 ? 'x' + (exact(rs[0]) && exact(rs[1]) ? '=' : '\\approx ') + num(rs[0]) + ',\\ ' + num(rs[1]) : rs.length === 1 ? 'x=' + num(rs[0]) + '\\ (\\text{重根})' : '\\text{无实数解}');
+    $('q-ineq-box').hidden = !S.ineq;
+    if (S.ineq) {
+      $('q-ineq-title').textContent = S.ineq === 'gt' ? '不等式 y > 0 的解（图中阴影）' : '不等式 y < 0 的解（图中阴影）';
+      tex('q-ineq', ineqSolution(S.ineq));
+    }
+    $('q-mm-box').hidden = !S.range;
+    if (S.range) {
+      var mm = extremes();
+      tex('q-mm', '\\text{最大值 }' + num(mm.max) + '\\ (x=' + atList(mm.maxAt) + '),\\quad \\text{最小值 }' + num(mm.min) + '\\ (x=' + atList(mm.minAt) + ')');
+    }
+    $('qx-status').textContent = (S.a > 0 ? '开口向上' : '开口向下') + '；' +
+      (d > 0 ? 'D > 0，图像与 x 轴相交于两点。' : d === 0 ? 'D = 0，图像与 x 轴相切。' : 'D < 0，图像与 x 轴没有公共点。');
+  }
+
+  ['b', 'c'].forEach(function (k) {
+    $('qx-' + k).addEventListener('input', function () { S[k] = +this.value; update(); });
+  });
+  $('qx-a').addEventListener('input', function () {
+    var v = +this.value;
+    if (v === 0) v = S.a > 0 ? -0.1 : 0.1;
+    S.a = v;
+    update();
+  });
+  $('qx-l').addEventListener('input', function () { S.l = +this.value; if (S.l > S.r) S.r = S.l; update(); });
+  $('qx-r').addEventListener('input', function () { S.r = +this.value; if (S.r < S.l) S.l = S.r; update(); });
+  $('qx-range').addEventListener('change', function () {
+    S.range = this.checked;
+    $('qx-range-row').hidden = !S.range;
+    update();
+  });
+  document.querySelectorAll('#explorer [data-p]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var p = b.getAttribute('data-p').split(',').map(Number);
+      S.a = p[0]; S.b = p[1]; S.c = p[2];
+      update();
+    });
+  });
+  var ineqBtns = document.querySelectorAll('#qx-ineq .chip');
+  ineqBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      S.ineq = b.getAttribute('data-i');
+      ineqBtns.forEach(function (o) { o.setAttribute('aria-pressed', o === b); });
+      update();
+    });
+  });
+  if ('ResizeObserver' in window) {
+    var last = svgQ.clientWidth;
+    new ResizeObserver(function () {
+      if (svgQ.clientWidth !== last) { last = svgQ.clientWidth; draw(); }
+    }).observe(svgQ);
+  }
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['status'],
+      throwOnError: false
+    });
+    update();
+  }
+  update();
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

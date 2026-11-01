@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 09 图形与方程</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：点的坐标、直线、圆、轨迹与不等式区域，含原创例题、练习题、圆与直线探索器和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#ex-svg { touch-action: pan-y; cursor: ew-resize; user-select: none; -webkit-user-select: none; background: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+.back { display: inline-block; color: #c5d3ef; text-decoration: none; font-size: 15px; margin-bottom: 18px; }
+.back:hover { text-decoration: underline; }
+svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <a class="back" href="../../">← 目录</a>
+      <p class="eyebrow">EJU 数学コース2 · 出题项目 09 · 図形と方程式</p>
+      <h1>图形与方程</h1>
+      <p class="lead">把图形翻译成式子，再用计算回答几何问题：从点的坐标、直线和圆，到轨迹与不等式区域。每个知识点都配小例子，再用原创的 EJU 风格填空题和练习题检验。日语术语随文标注，文末有完整对照表。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$d=\frac{|ax_1+by_1+c|}{\sqrt{a^2+b^2}}$$
+      $$(x-a)^2+(y-b)^2=r^2$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#point">1 点的坐标</a></li>
+        <li><a href="#line">2 直线的方程</a></li>
+        <li><a href="#distance">3 点到直线距离</a></li>
+        <li><a href="#circle">4 圆的方程</a></li>
+        <li><a href="#circle-line">5 圆与直线</a></li>
+        <li><a href="#locus">6 轨迹</a></li>
+        <li><a href="#region">7 不等式区域</a></li>
+        <li><a href="#examples">8 原创例题</a></li>
+        <li><a href="#practice">9 练习题</a></li>
+        <li><a href="#terms">10 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <section id="point">
+    <h2>1 点的坐标</h2>
+    <p class="jp-sub" lang="ja">点の座標 — 内分・外分</p>
+
+    <h3>两点间的距离</h3>
+    <p>$\mathrm{A}(x_1,y_1)$、$\mathrm{B}(x_2,y_2)$ 之间的距离（<span lang="ja">2点間の距離</span>）为</p>
+    $$\mathrm{AB}=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}.$$
+
+    <h3>内分点与外分点</h3>
+    <p>把线段 $\mathrm{AB}$ 按 $m:n$ <strong>内分</strong>（<span lang="ja">内分</span>）和<strong>外分</strong>（<span lang="ja">外分</span>，$m\ne n$）的点分别为</p>
+    <div class="formula-grid">
+      <div>内分点：$\left(\dfrac{nx_1+mx_2}{m+n},\ \dfrac{ny_1+my_2}{m+n}\right)$</div>
+      <div>外分点：$\left(\dfrac{-nx_1+mx_2}{m-n},\ \dfrac{-ny_1+my_2}{m-n}\right)$</div>
+      <div>中点：$\left(\dfrac{x_1+x_2}{2},\ \dfrac{y_1+y_2}{2}\right)$</div>
+      <div>重心：$\left(\dfrac{x_1+x_2+x_3}{3},\ \dfrac{y_1+y_2+y_3}{3}\right)$</div>
+    </div>
+    <div class="box warn">
+      <p><strong>易错点：</strong>$m$ 乘的是 B 的坐标，$n$ 乘的是 A 的坐标，交叉相乘。外分公式等于把内分公式里的 $n$ 换成 $-n$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>例：</strong>$\mathrm{A}(1,2)$、$\mathrm{B}(7,5)$。按 $2:1$ 内分的点是 $\left(\dfrac{1+14}{3},\dfrac{2+10}{3}\right)=(5,4)$；按 $2:1$ 外分的点是 $\left(\dfrac{-1+14}{1},\dfrac{-2+10}{1}\right)=(13,8)$。</p>
+    </div>
+  </section>
+
+  <section id="line">
+    <h2>2 直线的方程</h2>
+    <p class="jp-sub" lang="ja">直線の方程式 — 傾き・平行・垂直</p>
+    <div class="tw"><table>
+      <thead><tr><th>已知条件</th><th>方程</th></tr></thead>
+      <tbody>
+        <tr><td>斜率 $m$、$y$ 截距 $k$</td><td>$y=mx+k$</td></tr>
+        <tr><td>过 $(x_1,y_1)$、斜率 $m$</td><td>$y-y_1=m(x-x_1)$</td></tr>
+        <tr><td>过两点（$x_1\ne x_2$）</td><td>$y-y_1=\dfrac{y_2-y_1}{x_2-x_1}(x-x_1)$</td></tr>
+        <tr><td>过两点（$x_1=x_2$）</td><td>$x=x_1$（斜率不存在）</td></tr>
+        <tr><td>一般形式</td><td>$ax+by+c=0$（$a,b$ 不同时为 $0$）</td></tr>
+      </tbody>
+    </table></div>
+    <p>例如过 $(1,2)$ 和 $(3,8)$ 的直线，斜率 $\dfrac{8-2}{3-1}=3$，方程为 $y=3x-1$。</p>
+
+    <h3>平行与垂直</h3>
+    <div class="tw"><table>
+      <thead><tr><th>关系</th><th>$y=m_1x+k_1$ 与 $y=m_2x+k_2$</th><th>$a_1x+b_1y+c_1=0$ 与 $a_2x+b_2y+c_2=0$</th></tr></thead>
+      <tbody>
+        <tr><td>平行（<span lang="ja">平行</span>）</td><td>$m_1=m_2$</td><td>$a_1b_2-a_2b_1=0$</td></tr>
+        <tr><td>垂直（<span lang="ja">垂直</span>）</td><td>$m_1m_2=-1$</td><td>$a_1a_2+b_1b_2=0$</td></tr>
+      </tbody>
+    </table></div>
+    <p>过点 $(x_1,y_1)$ 且与 $ax+by+c=0$ 平行、垂直的直线可以直接写成：</p>
+    <div class="formula-grid">
+      <div>平行：$a(x-x_1)+b(y-y_1)=0$</div>
+      <div>垂直：$b(x-x_1)-a(y-y_1)=0$</div>
+    </div>
+
+    <h3>对称点</h3>
+    <p>求 A 关于直线 $\ell$ 的对称点 B，列两个条件：① $\mathrm{AB}\perp\ell$；② $\mathrm{AB}$ 的中点在 $\ell$ 上。</p>
+
+    <h3>过定点的直线系</h3>
+    <p>若 $k$ 取任意实数，直线 $(x+y-3)+k(x-2y)=0$ 总经过 $x+y-3=0$ 与 $x-2y=0$ 的交点 $(2,1)$。EJU 常用这种写法求“与 $k$ 无关的定点”：把式子按 $k$ 整理，令 $k$ 的系数和常数部分都为 $0$。</p>
+  </section>
+
+  <section id="distance">
+    <h2>3 点到直线的距离</h2>
+    <p class="jp-sub" lang="ja">点と直線の距離</p>
+    <p>点 $(x_1,y_1)$ 到直线 $ax+by+c=0$ 的距离：</p>
+    $$d=\frac{|ax_1+by_1+c|}{\sqrt{a^2+b^2}}.$$
+    <p>使用前必须把直线化成 <strong>$ax+by+c=0$</strong> 的形式。例如 $(1,2)$ 到 $3x+4y-1=0$ 的距离为 $\dfrac{|3+8-1|}{\sqrt{9+16}}=2$。</p>
+    <div class="box good">
+      <p><strong>三角形面积：</strong>以 $\mathrm{O}(0,0)$、$\mathrm{A}(x_1,y_1)$、$\mathrm{B}(x_2,y_2)$ 为顶点的三角形面积为 $S=\dfrac12|x_1y_2-x_2y_1|$。例如 $\mathrm{A}(4,1)$、$\mathrm{B}(2,3)$ 时，$S=\dfrac12|12-2|=5$。顶点不在原点时，先整体平移，或用 $S=\dfrac12\times\text{底}\times\text{点到直线距离}$。</p>
+    </div>
+  </section>
+
+  <section id="circle">
+    <h2>4 圆的方程</h2>
+    <p class="jp-sub" lang="ja">円の方程式 — 中心・半径</p>
+    <div class="formula-grid">
+      <div>标准形式：$(x-a)^2+(y-b)^2=r^2$，圆心 $(a,b)$，半径 $r$</div>
+      <div>一般形式：$x^2+y^2+lx+my+n=0$</div>
+    </div>
+    <p>一般形式要通过配方（<span lang="ja">平方完成</span>）读出圆心和半径。例如</p>
+    $$x^2+y^2-6x+4y-3=0\iff(x-3)^2+(y+2)^2=16,$$
+    <p>圆心 $(3,-2)$，半径 $4$。配方后右边必须为正才表示圆：为 $0$ 时只表示一点，为负时不表示任何图形。</p>
+    <h3>怎样选形式</h3>
+    <ul>
+      <li>已知圆心或半径的信息（如与坐标轴相切）：用标准形式。</li>
+      <li>已知圆上三点：用一般形式，代入后解 $l,m,n$ 的联立方程。</li>
+      <li>圆与 $x$ 轴相切时 $r=|b|$，与 $y$ 轴相切时 $r=|a|$。</li>
+    </ul>
+  </section>
+
+  <section id="circle-line">
+    <h2>5 圆与直线的关系</h2>
+    <p class="jp-sub" lang="ja">円と直線の関係 — 接線・共有点</p>
+    <p>判断共有点（<span lang="ja">共有点</span>）的个数有两种方法：比较圆心到直线的距离 $d$ 与半径 $r$，或者联立后看判别式（<span lang="ja">判別式</span>）$D$。</p>
+    <div class="tw"><table>
+      <thead><tr><th>位置关系</th><th>距离</th><th>判别式</th><th>共有点</th></tr></thead>
+      <tbody>
+        <tr><td>相交（<span lang="ja">異なる2点で交わる</span>）</td><td>$d&lt;r$</td><td>$D&gt;0$</td><td>$2$ 个</td></tr>
+        <tr><td>相切（<span lang="ja">接する</span>）</td><td>$d=r$</td><td>$D=0$</td><td>$1$ 个</td></tr>
+        <tr><td>相离（<span lang="ja">共有点をもたない</span>）</td><td>$d&gt;r$</td><td>$D&lt;0$</td><td>$0$ 个</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>弦长与切线</h3>
+    <div class="formula-grid">
+      <div>弦长：$\ell=2\sqrt{r^2-d^2}$</div>
+      <div>圆 $x^2+y^2=r^2$ 上点 $(x_1,y_1)$ 处的切线：$x_1x+y_1y=r^2$</div>
+      <div>圆 $(x-a)^2+(y-b)^2=r^2$ 上点 $(x_1,y_1)$ 处的切线：$(x_1-a)(x-a)+(y_1-b)(y-b)=r^2$</div>
+    </div>
+    <div class="box good">
+      <p><strong>例：</strong>直线 $y=x+1$ 与圆 $x^2+y^2=5$。联立得 $2x^2+2x-4=0$，$x=1,-2$，交点 $(1,2)$、$(-2,-1)$，弦长 $3\sqrt2$。用距离验算：$d=\dfrac{1}{\sqrt2}$，$2\sqrt{5-\dfrac12}=3\sqrt2$，结果一致。求弦长时距离法通常更快。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>从圆外一点作切线：</strong>切点公式只能用于圆上的点。圆外的点要设切线 $y-y_1=m(x-x_1)$，用 $d=r$ 解 $m$，并单独检查竖直线 $x=x_1$ 是否也是切线。</p>
+    </div>
+
+    <h3>探索器：拖动滑块观察 $d$ 与 $r$</h3>
+    <div class="explorer">
+      <figure style="margin:0">
+        <svg class="chart" id="demo-svg" viewBox="0 0 504 432" role="img" aria-label="圆与直线的位置关系演示"></svg>
+        <figcaption>圆心固定在 $(1,1)$。虚线是圆心到直线的垂线，长度就是 $d$。</figcaption>
+      </figure>
+      <div class="ctrl"><label for="s-r">半径 r</label><input id="s-r" type="range" min="1" max="4" step="0.1" value="3"><output id="o-r"></output></div>
+      <div class="ctrl"><label for="s-m">斜率 m</label><input id="s-m" type="range" min="-2" max="2" step="0.1" value="0.5"><output id="o-m"></output></div>
+      <div class="ctrl"><label for="s-k">截距 k</label><input id="s-k" type="range" min="-12" max="12" step="0.1" value="1"><output id="o-k"></output></div>
+      <div class="ex-head" style="margin:10px 0 0"><button class="chip" id="b-tan" type="button">调到相切</button></div>
+      <div class="read">
+        <div><small>距离 d</small><span id="r-d"></span></div>
+        <div><small>弦长 2√(r² − d²)</small><span id="r-l"></span></div>
+        <div class="wide"><small>交点</small><span id="r-p"></span></div>
+      </div>
+      <div class="status" id="r-s" aria-live="polite"></div>
+    </div>
+
+    <h3>两圆的位置关系</h3>
+    <p>设圆心距为 $D$，两圆半径为 $r_1,r_2$（$r_1\ge r_2$）：</p>
+    <div class="tw"><table>
+      <thead><tr><th>相离</th><th>外切</th><th>相交</th><th>内切</th><th>内含</th></tr></thead>
+      <tbody><tr><td>$D&gt;r_1+r_2$</td><td>$D=r_1+r_2$</td><td>$r_1-r_2&lt;D&lt;r_1+r_2$</td><td>$D=r_1-r_2$</td><td>$D&lt;r_1-r_2$</td></tr></tbody>
+    </table></div>
+    <p>两圆相交时，两个方程相减得到公共弦所在的直线。例如 $x^2+y^2=4$ 与 $x^2+y^2-2x-2y-2=0$ 相减，整理得 $x+y=1$。</p>
+  </section>
+
+  <section id="locus">
+    <h2>6 轨迹与方程</h2>
+    <p class="jp-sub" lang="ja">軌跡と方程式</p>
+    <p>满足某条件的点的全体叫作<strong>轨迹</strong>（<span lang="ja">軌跡</span>）。标准步骤：</p>
+    <ol>
+      <li>设动点为 $\mathrm{P}(x,y)$。</li>
+      <li>把条件写成 $x,y$ 的等式，化简后判断图形。</li>
+      <li>检查是否有需要排除的点，或 $x,y$ 的取值范围。</li>
+    </ol>
+    <div class="tw"><table>
+      <thead><tr><th>类型</th><th>方法</th><th>例子</th></tr></thead>
+      <tbody>
+        <tr><td>距离条件</td><td>两边平方后化简</td><td>到 $(1,0)$、$(3,2)$ 距离相等的点：$x+y=3$（垂直平分线）</td></tr>
+        <tr><td>距离比（$m\ne n$）</td><td>$n\,\mathrm{PA}=m\,\mathrm{PB}$ 两边平方</td><td>结果是圆，叫阿波罗尼斯圆（<span lang="ja">アポロニウスの円</span>）</td></tr>
+        <tr><td>联动点</td><td>用 $x,y$ 表示已知曲线上的点，再代入</td><td>中点、重心、内分点的轨迹</td></tr>
+        <tr><td>含参数</td><td>消去参数（<span lang="ja">媒介変数</span>）</td><td>顶点随 $t$ 变化的抛物线</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box warn">
+      <p><strong>注意范围：</strong>消去参数时，参数的范围会转化为 $x,y$ 的范围。例如 $x=t$ 且 $t\ge0$，轨迹就只是曲线上 $x\ge0$ 的部分。</p>
+    </div>
+  </section>
+
+  <section id="region">
+    <h2>7 不等式表示的区域</h2>
+    <p class="jp-sub" lang="ja">不等式の表す領域</p>
+    <div class="tw"><table>
+      <thead><tr><th>不等式</th><th>区域</th></tr></thead>
+      <tbody>
+        <tr><td>$y&gt;mx+k$</td><td>直线的上方</td></tr>
+        <tr><td>$y&lt;mx+k$</td><td>直线的下方</td></tr>
+        <tr><td>$(x-a)^2+(y-b)^2&lt;r^2$</td><td>圆的内部</td></tr>
+        <tr><td>$(x-a)^2+(y-b)^2&gt;r^2$</td><td>圆的外部</td></tr>
+      </tbody>
+    </table></div>
+    <p>$\le,\ge$ 包含边界（<span lang="ja">境界線を含む</span>），$&lt;,&gt;$ 不包含。联立不等式取各区域的公共部分；形如 $AB&gt;0$ 的不等式要分成“$A&gt;0$ 且 $B&gt;0$”或“$A&lt;0$ 且 $B&lt;0$”两种情况。</p>
+
+    <h3>区域内的最大值与最小值</h3>
+    <p>求 $3x+4y$ 的最大值时，令 $3x+4y=k$，把它看作斜率固定的直线。让直线平移并保持与区域有公共点，$y$ 截距 $\dfrac k4$ 最大时 $k$ 也最大。</p>
+    <figure class="plot">
+      <svg class="chart" viewBox="0 0 400 290" role="img" aria-label="不等式区域与目标直线">
+        <line class="grid" x1="100" y1="20" x2="100" y2="250"/><line class="grid" x1="150" y1="20" x2="150" y2="250"/><line class="grid" x1="200" y1="20" x2="200" y2="250"/><line class="grid" x1="250" y1="20" x2="250" y2="250"/><line class="grid" x1="300" y1="20" x2="300" y2="250"/><line class="grid" x1="350" y1="20" x2="350" y2="250"/>
+        <line class="grid" x1="50" y1="200" x2="380" y2="200"/><line class="grid" x1="50" y1="150" x2="380" y2="150"/><line class="grid" x1="50" y1="100" x2="380" y2="100"/><line class="grid" x1="50" y1="50" x2="380" y2="50"/>
+        <polygon class="region" points="50,250 250,250 150,150 50,100"/>
+        <line class="axis" x1="20" y1="250" x2="385" y2="250"/><line class="axis" x1="50" y1="280" x2="50" y2="15"/>
+        <line class="sm" x1="50" y1="100" x2="350" y2="250"/><line class="sm" x1="50" y1="50" x2="250" y2="250"/>
+        <line class="s2" x1="50" y1="75" x2="283.3" y2="250"/>
+        <circle class="dot2" cx="150" cy="150" r="5.5"/>
+        <text class="lbl" x="158" y="143">(2, 2)</text><text class="tick" x="245" y="268">4</text><text class="tick" x="345" y="268">6</text><text class="tick" x="36" y="105">3</text><text class="tick" x="36" y="55">4</text><text class="tick" x="36" y="268">O</text>
+        <text class="lbl" x="290" y="228">x+2y=6</text><text class="lbl" x="205" y="190">x+y=4</text><text class="lbl" x="120" y="75" style="fill:var(--c2)">3x+4y=14</text>
+      </svg>
+      <figcaption>区域：$x\ge0,\ y\ge0,\ x+2y\le6,\ x+y\le4$，顶点 $(0,0),(4,0),(2,2),(0,3)$。</figcaption>
+    </figure>
+    <p>比较目标直线与边界的斜率：$-\dfrac34$ 介于 $x+2y=6$ 的斜率 $-\dfrac12$ 和 $x+y=4$ 的斜率 $-1$ 之间，所以直线在顶点 $(2,2)$ 处截距最大，最大值为 $3\cdot2+4\cdot2=14$。</p>
+    <div class="box good">
+      <p><strong>$x^2+y^2$ 型：</strong>把它看作到原点距离的平方。最大值一般在离原点最远的顶点取得；圆形区域或 $(x-a)^2+(y-b)^2$ 型则看相切或圆心连线。</p>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2>8 原创 EJU 风格例题</h2>
+    <p class="jp-sub">以下题目均为本讲义<strong>原创</strong>，仅模仿 EJU 的填空形式，并非真题。</p>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框字母对应一个数字（$0$–$9$），例如 $\B{AB}$ 是两位数；分数要约到最简，根号内的数要尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>例题 1　分点、直线与面积</b><span class="origin">原创</span></div>
+      <p>已知 $\mathrm{A}(-1,3)$、$\mathrm{B}(5,-3)$、$\mathrm{C}(4,5)$。</p>
+      <p>(1) 线段 $\mathrm{AB}$ 按 $2:1$ 内分的点为 $(\B{A},\ -\B{B})$，按 $2:1$ 外分的点为 $(\B{CD},\ -\B{E})$。</p>
+      <p>(2) 直线 $\mathrm{AB}$ 的方程为 $y=-x+\B{F}$。</p>
+      <p>(3) 点 C 到直线 $\mathrm{AB}$ 的距离为 $\dfrac{\B{G}\sqrt{\B{H}}}{\B{I}}$，$\triangle\mathrm{ABC}$ 的面积为 $\B{JK}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 3</li><li>B = 1</li><li>CD = 11</li><li>E = 9</li><li>F = 2</li><li>G = 7</li><li>H = 2</li><li>I = 2</li><li>JK = 21</li></ul>
+        <p>(1) 内分点：$\left(\dfrac{-1+10}{3},\dfrac{3-6}{3}\right)=(3,-1)$。外分点：$\left(\dfrac{1+10}{1},\dfrac{-3-6}{1}\right)=(11,-9)$。</p>
+        <p>(2) 斜率 $\dfrac{-3-3}{5-(-1)}=-1$，所以 $y-3=-(x+1)$，即 $y=-x+2$。</p>
+        <p>(3) 直线化为 $x+y-2=0$，$d=\dfrac{|4+5-2|}{\sqrt2}=\dfrac{7\sqrt2}{2}$。又 $\mathrm{AB}=\sqrt{36+36}=6\sqrt2$，所以 $S=\dfrac12\cdot6\sqrt2\cdot\dfrac{7\sqrt2}{2}=21$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 2　弦长与切线</b><span class="origin">原创</span></div>
+      <p>圆 $C:x^2+y^2-4x+2y-20=0$。</p>
+      <p>(1) $C$ 的圆心为 $(\B{A},\ -\B{B})$，半径为 $\B{C}$。</p>
+      <p>(2) 圆心到直线 $3x+4y-12=0$ 的距离为 $\B{D}$，$C$ 截这条直线所得的弦长为 $\B{E}\sqrt{\B{FG}}$。</p>
+      <p>(3) $C$ 上点 $(5,3)$ 处的切线方程为 $\B{H}\,x+\B{I}\,y=\B{JK}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 1</li><li>C = 5</li><li>D = 2</li><li>E = 2</li><li>FG = 21</li><li>H = 3</li><li>I = 4</li><li>JK = 27</li></ul>
+        <p>(1) 配方得 $(x-2)^2+(y+1)^2=25$。</p>
+        <p>(2) $d=\dfrac{|6-4-12|}{5}=2$，弦长 $2\sqrt{25-4}=2\sqrt{21}$。</p>
+        <p>(3) 切线公式：$(5-2)(x-2)+(3+1)(y+1)=25$，整理得 $3x+4y=27$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 3　两种轨迹</b><span class="origin">原创</span></div>
+      <p>(1) 点 $\mathrm{P}$ 满足 $\mathrm{OP}:\mathrm{AP}=2:1$，其中 $\mathrm{O}(0,0)$、$\mathrm{A}(6,0)$。P 的轨迹是圆 $(x-\B{A})^2+y^2=\B{BC}$。</p>
+      <p>(2) 点 $\mathrm{Q}$ 在圆 $x^2+y^2=4$ 上运动。线段 $\mathrm{AQ}$ 的中点 $\mathrm{M}$ 的轨迹是圆 $(x-\B{D})^2+y^2=\B{E}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 8</li><li>BC = 16</li><li>D = 3</li><li>E = 1</li></ul>
+        <p>(1) 设 $\mathrm{P}(x,y)$。由 $\mathrm{OP}=2\mathrm{AP}$ 得 $x^2+y^2=4\{(x-6)^2+y^2\}$，整理得 $x^2+y^2-16x+48=0$，即 $(x-8)^2+y^2=16$。</p>
+        <p>(2) 设 $\mathrm{M}(x,y)$、$\mathrm{Q}(s,t)$。由 $x=\dfrac{s+6}{2},\ y=\dfrac t2$ 得 $s=2x-6,\ t=2y$。代入 $s^2+t^2=4$，得 $(2x-6)^2+(2y)^2=4$，即 $(x-3)^2+y^2=1$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 4　区域与最大值</b><span class="origin">原创</span></div>
+      <p>实数 $x,y$ 满足 $x\ge0,\ y\ge0,\ x+2y\le8,\ 3x+y\le9$。</p>
+      <p>(1) 直线 $x+2y=8$ 与 $3x+y=9$ 的交点为 $(\B{A},\ \B{B})$。</p>
+      <p>(2) $x+y$ 的最大值为 $\B{C}$。</p>
+      <p>(3) $x^2+y^2$ 的最大值为 $\B{DE}$，此时 $(x,y)=(\B{F},\ \B{G})$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 3</li><li>C = 5</li><li>DE = 16</li><li>F = 0</li><li>G = 4</li></ul>
+        <p>(1) 联立解得 $(2,3)$。区域是以 $(0,0),(3,0),(2,3),(0,4)$ 为顶点的四边形。</p>
+        <p>(2) 令 $x+y=k$。直线斜率 $-1$ 介于边界斜率 $-\dfrac12$ 和 $-3$ 之间，所以在 $(2,3)$ 处 $k$ 最大，$k=5$。</p>
+        <p>(3) $x^2+y^2$ 是到原点距离的平方。四边形是凸的，最远点在顶点取得：三个非原点顶点的值依次为 $9,13,16$，所以最大值 $16$ 在 $(0,4)$ 取得。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>9 练习题</h2>
+    <div class="bar">
+      <p class="jp-sub" style="margin:0">先自己算，再点按钮核对。题目为本讲义原创。</p>
+      <button class="chip" id="toggle-all" type="button">显示全部答案</button>
+    </div>
+
+    <div class="q"><div class="q-head"><b>1</b>内分・外分</div>
+      <p>$\mathrm{A}(2,-1)$、$\mathrm{B}(8,8)$。求线段 $\mathrm{AB}$ 按 $1:2$ 内分和外分的点。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>内分：$\left(\dfrac{4+8}{3},\dfrac{-2+8}{3}\right)=(4,2)$。外分：$\left(\dfrac{-4+8}{1-2},\dfrac{2+8}{1-2}\right)=(-4,-10)$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>2</b>平行・垂直</div>
+      <p>求过点 $(2,3)$ 且与直线 $2x-y+1=0$ 平行、垂直的直线方程。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>平行：$2(x-2)-(y-3)=0$，即 $2x-y-1=0$。垂直：$(x-2)+2(y-3)=0$，即 $x+2y-8=0$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>3</b>距离</div>
+      <p>求点 $(3,-2)$ 到直线 $4x-3y+2=0$ 的距离。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\dfrac{|12+6+2|}{\sqrt{16+9}}=\dfrac{20}{5}=4$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>4</b>对称点</div>
+      <p>求点 $\mathrm{A}(5,0)$ 关于直线 $y=2x$ 的对称点。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>设对称点为 $(a,b)$。垂直：$\dfrac{b}{a-5}\cdot2=-1$；中点在直线上：$\dfrac b2=2\cdot\dfrac{a+5}{2}$。解得 $(a,b)=(-3,4)$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>5</b>圆的方程</div>
+      <p>求过 $(0,0)$、$(6,0)$、$(0,8)$ 三点的圆的方程，并求圆心和半径。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>设 $x^2+y^2+lx+my+n=0$，代入得 $n=0,\ l=-6,\ m=-8$。方程为 $x^2+y^2-6x-8y=0$，即 $(x-3)^2+(y-4)^2=25$，圆心 $(3,4)$，半径 $5$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>6</b>切线</div>
+      <p>求圆 $x^2+y^2=5$ 上点 $(1,2)$ 处的切线方程。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>由 $x_1x+y_1y=r^2$ 得 $x+2y=5$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>7</b>圆外切线</div>
+      <p>求从点 $(3,1)$ 向圆 $x^2+y^2=5$ 所作切线的方程。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>设 $y-1=m(x-3)$，即 $mx-y+1-3m=0$。由 $\dfrac{|1-3m|}{\sqrt{m^2+1}}=\sqrt5$ 得 $2m^2-3m-2=0$，$m=2,-\dfrac12$。切线为 $y=2x-5$ 和 $y=-\dfrac12x+\dfrac52$。竖直线 $x=3$ 到原点距离为 $3\ne\sqrt5$，不是切线。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>8</b>共有点</div>
+      <p>直线 $y=x+k$ 与圆 $x^2+y^2=2$ 有共有点，求 $k$ 的取值范围。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\dfrac{|k|}{\sqrt2}\le\sqrt2$，即 $|k|\le2$，所以 $-2\le k\le2$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>9</b>两圆</div>
+      <p>圆 $x^2+y^2=4$ 与圆 $(x-3)^2+(y-4)^2=r^2\ (r&gt;0)$ 相切，求 $r$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>圆心距 $5$。外切：$2+r=5$，$r=3$。内切：$|r-2|=5$，$r=7$。所以 $r=3$ 或 $7$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>10</b>轨迹</div>
+      <p>$\mathrm{A}(-1,0)$、$\mathrm{B}(3,0)$，点 P 满足 $\mathrm{PA}^2+\mathrm{PB}^2=20$，求 P 的轨迹。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$(x+1)^2+y^2+(x-3)^2+y^2=20$，整理得 $(x-1)^2+y^2=6$。轨迹是圆心 $(1,0)$、半径 $\sqrt6$ 的圆。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>11</b>参数</div>
+      <p>当 $t\ge0$ 变化时，求抛物线 $y=x^2-2tx+2t+1$ 的顶点的轨迹。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>配方得顶点 $(t,\ -t^2+2t+1)$。消去 $t$：$y=-x^2+2x+1$，且 $x=t\ge0$。轨迹是这条抛物线上 $x\ge0$ 的部分。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>12</b>区域面积</div>
+      <p>求不等式组 $x^2+y^2\le4,\ y\ge x$ 表示的区域的面积。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>直线 $y=x$ 过圆心，把圆平分，区域是半圆：$\dfrac12\cdot\pi\cdot2^2=2\pi$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>13</b>区域最值</div>
+      <p>$x^2+y^2\le5$ 时，求 $x+2y$ 的最大值及此时的 $(x,y)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>令 $x+2y=k$。直线与圆有共有点的条件是 $\dfrac{|k|}{\sqrt5}\le\sqrt5$，所以 $k$ 的最大值为 $5$。此时直线与圆相切，切点 $(1,2)$。</p></div></div>
+  </section>
+
+  <section id="terms">
+    <h2>10 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页按 JASSO 2026 年度起适用的数学シラバス中「図形と方程式」的子项组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。所有例题和练习题均为原创。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['点与直线', [
+      ['座標', 'ざひょう', '坐标'], ['座標平面', 'ざひょうへいめん', '坐标平面'], ['原点', 'げんてん', '原点'],
+      ['2点間の距離', 'にてんかんのきょり', '两点间的距离'], ['線分', 'せんぶん', '线段'], ['内分', 'ないぶん', '内分'],
+      ['外分', 'がいぶん', '外分'], ['中点', 'ちゅうてん', '中点'], ['重心', 'じゅうしん', '重心'],
+      ['直線', 'ちょくせん', '直线'], ['傾き', 'かたむき', '斜率'], ['切片', 'せっぺん', '截距'],
+      ['平行', 'へいこう', '平行'], ['垂直', 'すいちょく', '垂直'], ['垂直二等分線', 'すいちょくにとうぶんせん', '垂直平分线'],
+      ['対称', 'たいしょう', '对称'], ['交点', 'こうてん', '交点'], ['点と直線の距離', 'てんとちょくせんのきょり', '点到直线的距离']
+    ]],
+    ['圆', [
+      ['円', 'えん', '圆'], ['中心', 'ちゅうしん', '圆心'], ['半径', 'はんけい', '半径'],
+      ['平方完成', 'へいほうかんせい', '配方'], ['接線', 'せっせん', '切线'], ['接点', 'せってん', '切点'],
+      ['接する', 'せっする', '相切'], ['共有点', 'きょうゆうてん', '公共点'], ['判別式', 'はんべつしき', '判别式'],
+      ['弦', 'げん', '弦'], ['外接', 'がいせつ', '外切'], ['内接', 'ないせつ', '内切']
+    ]],
+    ['轨迹与区域', [
+      ['軌跡', 'きせき', '轨迹'], ['アポロニウスの円', 'アポロニウスのえん', '阿波罗尼斯圆'], ['媒介変数', 'ばいかいへんすう', '参数'],
+      ['不等式', 'ふとうしき', '不等式'], ['領域', 'りょういき', '区域'], ['境界線', 'きょうかいせん', '边界线'],
+      ['連立不等式', 'れんりつふとうしき', '不等式组'], ['最大値', 'さいだいち', '最大值'], ['最小値', 'さいしょうち', '最小值']
+    ]]
+  ];
+
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja"><strong>' + t[0] + '</strong></td><td class="kana" lang="ja">' + t[1] + '</td><td>' + t[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = document.getElementById('term-count');
+  function filterTerms() {
+    var q = document.getElementById('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  document.getElementById('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 答案按钮 ---------- */
+  function setAns(btn, open) {
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '隐藏答案' : '显示答案';
+    btn.nextElementSibling.hidden = !open;
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.classList && e.target.classList.contains('toggle-ans')) {
+      setAns(e.target, e.target.getAttribute('aria-expanded') !== 'true');
+    }
+  });
+  var allBtn = document.getElementById('toggle-all');
+  allBtn.addEventListener('click', function () {
+    var btns = document.querySelectorAll('#practice .toggle-ans');
+    var open = allBtn.textContent.indexOf('显示') === 0;
+    btns.forEach(function (b) { setAns(b, open); });
+    allBtn.textContent = open ? '隐藏全部答案' : '显示全部答案';
+  });
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = document.getElementById('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('on', on);
+          if (on && a.parentNode.parentNode.scrollWidth > a.parentNode.parentNode.clientWidth) {
+            var ol = a.parentNode.parentNode;
+            ol.scrollLeft = a.offsetLeft - ol.offsetLeft - 20;
+          }
+        });
+      });
+    }, { rootMargin: '-25% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 圆与直线探索器 ---------- */
+  var CX = 1, CY = 1, EPS = 0.0005;
+  var svg = document.getElementById('demo-svg');
+  var sr = document.getElementById('s-r'), sm = document.getElementById('s-m'), sk = document.getElementById('s-k');
+  var state = { r: +sr.value, m: +sm.value, k: +sk.value };
+  function px(x) { return 216 + 36 * x; }
+  function py(y) { return 252 - 36 * y; }
+  function fmt(v, n) { var s = v.toFixed(n); return +s === 0 ? (0).toFixed(n) : s.replace('-', '−'); }
+  function draw() {
+    var r = state.r, m = state.m, k = state.k, h = '', i;
+    for (i = -6; i <= 8; i++) h += '<line class="grid" x1="' + px(i) + '" y1="0" x2="' + px(i) + '" y2="432"/>';
+    for (i = -5; i <= 7; i++) h += '<line class="grid" x1="0" y1="' + py(i) + '" x2="504" y2="' + py(i) + '"/>';
+    h += '<line class="axis" x1="0" y1="' + py(0) + '" x2="504" y2="' + py(0) + '"/><line class="axis" x1="' + px(0) + '" y1="0" x2="' + px(0) + '" y2="432"/>';
+    var s = (m * CX - CY + k) / (m * m + 1), fx = CX - m * s, fy = CY + s;
+    var d = Math.abs(m * CX - CY + k) / Math.sqrt(m * m + 1);
+    h += '<circle class="disc" cx="' + px(CX) + '" cy="' + py(CY) + '" r="' + 36 * r + '"/>';
+    h += '<line class="s2" x1="' + px(-6) + '" y1="' + py(-6 * m + k) + '" x2="' + px(8) + '" y2="' + py(8 * m + k) + '"/>';
+    h += '<line class="sm" x1="' + px(CX) + '" y1="' + py(CY) + '" x2="' + px(fx) + '" y2="' + py(fy) + '"/>';
+    h += '<circle class="dot" cx="' + px(CX) + '" cy="' + py(CY) + '" r="5"/>';
+    var pts = [], status;
+    if (Math.abs(d - r) < EPS) {
+      pts = [[fx, fy]];
+      status = '相切：d = r，共有点 1 个（接する）';
+    } else if (d < r) {
+      var a = Math.sqrt(r * r - d * d) / Math.sqrt(1 + m * m);
+      pts = [[fx - a, fy - a * m], [fx + a, fy + a * m]];
+      status = '相交：d < r，共有点 2 个（異なる2点で交わる）';
+    } else {
+      status = '相离：d > r，共有点 0 个（共有点をもたない）';
+    }
+    pts.forEach(function (p) { h += '<circle class="dot2" cx="' + px(p[0]) + '" cy="' + py(p[1]) + '" r="6"/>'; });
+    svg.innerHTML = h;
+    document.getElementById('o-r').textContent = fmt(r, 1);
+    document.getElementById('o-m').textContent = fmt(m, 1);
+    document.getElementById('o-k').textContent = fmt(k, 2);
+    document.getElementById('r-d').textContent = fmt(d, 3);
+    document.getElementById('r-l').textContent = pts.length === 2 ? fmt(2 * Math.sqrt(r * r - d * d), 3) : (pts.length === 1 ? '0（相切）' : '—');
+    document.getElementById('r-p').textContent = pts.length ? pts.map(function (p) { return '(' + fmt(p[0], 2) + ', ' + fmt(p[1], 2) + ')'; }).join('、') : '无';
+    document.getElementById('r-s').textContent = status;
+  }
+  [[sr, 'r'], [sm, 'm'], [sk, 'k']].forEach(function (c) {
+    c[0].addEventListener('input', function () { state[c[1]] = +c[0].value; draw(); });
+  });
+  document.getElementById('b-tan').addEventListener('click', function () {
+    var w = state.r * Math.sqrt(1 + state.m * state.m), base = CY - state.m * CX;
+    /* 选离当前直线较近的那条切线 */
+    state.k = state.k >= base ? base + w : base - w;
+    sk.value = state.k;
+    draw();
+  });
+  draw();
+
+  /* ---------- 公式渲染 ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      document.getElementById('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['status', 'read'],
+      throwOnError: false
+    });
+  }
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

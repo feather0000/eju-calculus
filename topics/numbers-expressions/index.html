@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 01 数与式</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：整式运算、展开、因式分解、实数与根式、绝对值、一次不等式，含原创例题、练习题、解集数轴演示和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#ex-svg { touch-action: pan-y; cursor: ew-resize; user-select: none; -webkit-user-select: none; background: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+
+.backlink { margin: 0; padding: 8px 24px; background: var(--surface-2); font-size: 15px; }
+#ex-svg { touch-action: pan-y; max-width: 640px; margin: auto; }
+#ex-svg .tick { font-size: 16px; }
+#ex-svg .lbl { font-size: 18px; font-weight: 600; }
+svg .sol { stroke: var(--c1); stroke-width: 6; stroke-linecap: butt; }
+svg .arrow { fill: var(--c1); }
+svg .pt-closed { fill: var(--c1); stroke: var(--surface); stroke-width: 1.5; }
+svg .pt-open { fill: var(--surface); stroke: var(--c1); stroke-width: 2.5; }
+svg .probe-yes { stroke: var(--good); stroke-width: 2; }
+svg .probe-no { stroke: var(--c2); stroke-width: 2; }
+svg .probe-yes.fillp { fill: var(--good); }
+svg .probe-no.fillp { fill: var(--c2); }
+.read .yes { color: var(--good); font-weight: 600; }
+.read .no { color: var(--c2); font-weight: 600; }
+.read small { margin-bottom: 2px; }
+/* 共享导航 nav.js 固定在顶部，目录条要让出它的高度 */
+@media (max-width: 900px) {
+  nav.toc { top: 34px; }
+  html { scroll-padding-top: 96px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<p class="backlink"><a href="../../">← 目录</a></p>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <p class="eyebrow">EJU 数学コース2 · 出题项目 01 · 数と式</p>
+      <h1>数与式</h1>
+      <p class="lead">整式的四则运算、展开与因式分解，实数与根式，绝对值，一次不等式。这些是后面所有专题的计算基础：每个知识点配例子，最后用原创的 EJU 风格填空题和练习题检验。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$a^3+b^3=(a+b)(a^2-ab+b^2)$$
+      $$\sqrt{a^2}=|a|$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#poly">1 整式运算</a></li>
+        <li><a href="#expand">2 展开</a></li>
+        <li><a href="#factor">3 因式分解</a></li>
+        <li><a href="#real">4 实数与根式</a></li>
+        <li><a href="#abs">5 绝对值</a></li>
+        <li><a href="#ineq">6 一次不等式</a></li>
+        <li><a href="#examples">7 原创例题</a></li>
+        <li><a href="#practice">8 练习题</a></li>
+        <li><a href="#terms">9 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <section id="poly">
+    <h2>1 整式的加减乘除</h2>
+    <p class="jp-sub" lang="ja">式の計算 — 整式の加法・減法・乗法・除法</p>
+
+    <h3>基本用语</h3>
+    <p>只含乘法的式子（如 $-3x^2y$）叫<strong>单项式</strong>（<span lang="ja">単項式</span>），单项式的和叫<strong>多项式</strong>（<span lang="ja">多項式</span>），两者合称<strong>整式</strong>（<span lang="ja">整式</span>）。数字部分是<strong>系数</strong>（<span lang="ja">係数</span>），文字相乘的个数是<strong>次数</strong>（<span lang="ja">次数</span>），不含文字的项是<strong>常数项</strong>（<span lang="ja">定数項</span>）。</p>
+    <div class="box">
+      <p><strong>注意“着眼于某个文字”：</strong>$3ax^2+2x-a$ 关于 $x$ 是 2 次式，$x^2$ 的系数是 $3a$，常数项是 $-a$；关于 $a$ 则是 1 次式。日语题目常写「<span lang="ja">$x$ について</span>」（关于 $x$）。按次数从高到低排列叫<span lang="ja">降べきの順</span>。</p>
+    </div>
+
+    <h3>加减与指数法则</h3>
+    <p>加减就是合并<strong>同类项</strong>（<span lang="ja">同類項</span>）。例如 $A=2x^2-3x+1,\ B=x^2+x-4$ 时，$A-2B=-5x+9$。去括号时注意减号要作用到每一项。</p>
+    <p>对正整数 $m,n$，指数法则（<span lang="ja">指数法則</span>）如下：</p>
+    <div class="formula-grid">
+      <div>$a^m\cdot a^n=a^{m+n}$</div>
+      <div>$(a^m)^n=a^{mn}$</div>
+      <div>$(ab)^n=a^nb^n$</div>
+    </div>
+    <p>例：$(2x^2y)^3=8x^6y^3$，$(-3a^2b)(2ab^3)=-6a^3b^4$。</p>
+
+    <h3>乘法</h3>
+    <p>用分配律逐项相乘，再合并同类项：</p>
+    $$(2x-1)(x^2+3x-2)=2x^3+6x^2-4x-x^2-3x+2=2x^3+5x^2-7x+2.$$
+
+    <h3>除法</h3>
+    <p>整式 $A$ 除以整式 $B$，得商（<span lang="ja">商</span>）$Q$ 和余式（<span lang="ja">余り</span>）$R$：</p>
+    $$A=BQ+R,\qquad (R\text{ 的次数})&lt;(B\text{ 的次数})\ \text{或}\ R=0.$$
+    <p>每一步只看最高次项。计算 $(2x^3-3x^2+4x-5)\div(x-2)$：</p>
+    <div class="tw"><table>
+      <thead><tr><th>步骤</th><th>商的项</th><th>减去</th><th>剩余</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>$2x^2$</td><td>$2x^3-4x^2$</td><td>$x^2+4x-5$</td></tr>
+        <tr><td>2</td><td>$x$</td><td>$x^2-2x$</td><td>$6x-5$</td></tr>
+        <tr><td>3</td><td>$6$</td><td>$6x-12$</td><td>$7$</td></tr>
+      </tbody>
+    </table></div>
+    <p>所以商为 $2x^2+x+6$，余式为 $7$，即 $2x^3-3x^2+4x-5=(x-2)(2x^2+x+6)+7$。</p>
+  </section>
+
+  <section id="expand">
+    <h2>2 展开</h2>
+    <p class="jp-sub" lang="ja">展開 — 乗法公式</p>
+    <h3>乘法公式</h3>
+    <div class="formula-grid">
+      <div>$(a\pm b)^2=a^2\pm2ab+b^2$</div>
+      <div>$(a+b)(a-b)=a^2-b^2$</div>
+      <div>$(x+a)(x+b)=x^2+(a+b)x+ab$</div>
+      <div>$(ax+b)(cx+d)=acx^2+(ad+bc)x+bd$</div>
+      <div>$(a+b+c)^2=a^2+b^2+c^2+2ab+2bc+2ca$</div>
+      <div>$(a\pm b)^3=a^3\pm3a^2b+3ab^2\pm b^3$</div>
+      <div>$(a+b)(a^2-ab+b^2)=a^3+b^3$</div>
+      <div>$(a-b)(a^2+ab+b^2)=a^3-b^3$</div>
+    </div>
+    <p>例：$(2x+3)^3=8x^3+36x^2+54x+27$，$(x-2)(x^2+2x+4)=x^3-8$。</p>
+
+    <h3>展开的技巧</h3>
+    <ul>
+      <li><strong>视为一个整体：</strong>$(x+y+1)(x+y-1)=(x+y)^2-1$。</li>
+      <li><strong>连续用平方差：</strong>$(x-1)(x+1)(x^2+1)(x^4+1)=(x^2-1)(x^2+1)(x^4+1)=(x^4-1)(x^4+1)=x^8-1$。</li>
+      <li><strong>调整组合顺序：</strong>计算 $(x+1)(x+2)(x+3)(x+4)$ 时，让常数和相同的两组配对，$(x+1)(x+4)=x^2+5x+4$，$(x+2)(x+3)=x^2+5x+6$，再令 $t=x^2+5x$，结果为 $x^4+10x^3+35x^2+50x+24$。</li>
+    </ul>
+    <div class="box good">
+      <p><strong>只求某一项的系数时不必全部展开。</strong>只挑出相乘后能得到目标次数的组合，又快又不易错（见练习 2）。</p>
+    </div>
+  </section>
+
+  <section id="factor">
+    <h2>3 因式分解</h2>
+    <p class="jp-sub" lang="ja">因数分解 — 共通因数・公式・たすきがけ</p>
+    <p>因式分解是展开的逆过程。除乘法公式的逆用外，还要记住下面这条：</p>
+    $$a^3+b^3+c^3-3abc=(a+b+c)(a^2+b^2+c^2-ab-bc-ca).$$
+    <h3>解题顺序</h3>
+    <div class="tw"><table>
+      <thead><tr><th>方法</th><th>例子</th></tr></thead>
+      <tbody>
+        <tr><td>① 提公因式（<span lang="ja">共通因数</span>）</td><td>$x^2y-xy^2=xy(x-y)$</td></tr>
+        <tr><td>② 用公式</td><td>$8x^3-27=(2x-3)(4x^2+6x+9)$</td></tr>
+        <tr><td>③ 十字相乘（<span lang="ja">たすきがけ</span>）</td><td>$6x^2+x-2=(2x-1)(3x+2)$</td></tr>
+        <tr><td>④ 换元（<span lang="ja">置き換え</span>）</td><td>$x^4-5x^2+4=(x^2-1)(x^2-4)=(x-1)(x+1)(x-2)(x+2)$</td></tr>
+        <tr><td>⑤ 按次数最低的文字整理</td><td>$x^2+xy-2x-y+1=(x-1)y+(x-1)^2=(x-1)(x+y-1)$</td></tr>
+        <tr><td>⑥ 添项凑平方差</td><td>$x^4+x^2+1=(x^2+1)^2-x^2=(x^2+x+1)(x^2-x+1)$</td></tr>
+        <tr><td>⑦ 三元三次公式</td><td>$x^3+y^3+1-3xy=(x+y+1)(x^2+y^2+1-xy-y-x)$</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>十字相乘的写法</h3>
+    <p>分解 $6x^2+x-2$：把 $6$ 拆成 $2\times3$，把 $-2$ 拆成 $(-1)\times2$，交叉相乘后的和要等于一次项系数 $1$：</p>
+    <div class="tw"><table class="sign">
+      <thead><tr><th>$x^2$ 系数</th><th>常数</th><th>交叉积</th></tr></thead>
+      <tbody>
+        <tr><td>$2$</td><td>$-1$</td><td>$(-1)\times3=-3$</td></tr>
+        <tr><td>$3$</td><td>$2$</td><td>$2\times2=4$</td></tr>
+        <tr><td>$6$</td><td>$-2$</td><td>$-3+4=1$ ✓</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box warn">
+      <p><strong>易错：</strong>分解要进行到底。$x^4-5x^2+4=(x^2-1)(x^2-4)$ 还没有结束，$x^2-1$ 与 $x^2-4$ 都还能继续分解。</p>
+    </div>
+  </section>
+
+  <section id="real">
+    <h2>4 实数与根式</h2>
+    <p class="jp-sub" lang="ja">実数 — 平方根・根号を含む式の計算</p>
+
+    <h3>实数的分类</h3>
+    <div class="tw"><table>
+      <thead><tr><th>分类</th><th>说明</th><th>例子</th></tr></thead>
+      <tbody>
+        <tr><td>整数（<span lang="ja">整数</span>）</td><td>有理数的一种</td><td>$-2,\ 0,\ 5$</td></tr>
+        <tr><td>有限小数（<span lang="ja">有限小数</span>）</td><td>有理数</td><td>$0.25=\dfrac14$</td></tr>
+        <tr><td>循环小数（<span lang="ja">循環小数</span>）</td><td>有理数</td><td>$0.\dot{1}\dot{2}=\dfrac{12}{99}=\dfrac{4}{33}$</td></tr>
+        <tr><td>无理数（<span lang="ja">無理数</span>）</td><td>无限不循环小数，不能写成分数</td><td>$\sqrt2,\ \pi$</td></tr>
+      </tbody>
+    </table></div>
+    <p>循环小数化分数：设 $x=0.\dot{1}\dot{2}$，则 $100x=12.\dot{1}\dot{2}$，相减得 $99x=12$。日本教材用数字上方的点表示循环节的起止。</p>
+
+    <h3>平方根</h3>
+    <p>$a&gt;0$ 时，$a$ 的<strong>平方根</strong>（<span lang="ja">平方根</span>）有 $\pm\sqrt a$ 两个；根号 $\sqrt{\ }$ 称为<span lang="ja">根号</span>，$\sqrt a$ 只表示非负的那一个。</p>
+    <div class="box warn">
+      <p><strong>最常见的陷阱：</strong>$\sqrt{a^2}=|a|$，而不是 $a$。例如 $\sqrt{(-3)^2}=3$；又如 $x&lt;2$ 时 $\sqrt{(x-2)^2}=2-x$。</p>
+    </div>
+    <p>对 $a&gt;0,\ b&gt;0,\ k&gt;0$：</p>
+    <div class="formula-grid">
+      <div>$\sqrt a\sqrt b=\sqrt{ab}$</div>
+      <div>$\dfrac{\sqrt a}{\sqrt b}=\sqrt{\dfrac ab}$</div>
+      <div>$\sqrt{k^2a}=k\sqrt a$</div>
+    </div>
+    <p>例：$\sqrt{12}+\sqrt{27}-\sqrt{48}=2\sqrt3+3\sqrt3-4\sqrt3=\sqrt3$；$(\sqrt3+\sqrt2)^2=5+2\sqrt6$。</p>
+
+    <h3>分母有理化</h3>
+    <p><span lang="ja">分母の有理化</span>：分子分母同乘共轭式，利用平方差消去根号。</p>
+    $$\frac{1}{\sqrt3-\sqrt2}=\frac{\sqrt3+\sqrt2}{(\sqrt3-\sqrt2)(\sqrt3+\sqrt2)}=\sqrt3+\sqrt2.$$
+
+    <h3>二重根号</h3>
+    <p><span lang="ja">二重根号</span>的化简：找 $a&gt;b&gt;0$，使 $a+b=p,\ ab=q$，则</p>
+    $$\sqrt{p+2\sqrt q}=\sqrt a+\sqrt b,\qquad \sqrt{p-2\sqrt q}=\sqrt a-\sqrt b.$$
+    <p>减号时一定把大的写在前面，保证结果为正。根号内必须先凑成 $2\sqrt{\ }$ 的形式：</p>
+    <ul>
+      <li>$\sqrt{5+2\sqrt6}=\sqrt3+\sqrt2$（$3+2=5,\ 3\times2=6$）。</li>
+      <li>$\sqrt{4-\sqrt{15}}=\sqrt{\dfrac{8-2\sqrt{15}}{2}}=\dfrac{\sqrt5-\sqrt3}{\sqrt2}=\dfrac{\sqrt{10}-\sqrt6}{2}$。</li>
+    </ul>
+
+    <h3>对称式与整数、小数部分</h3>
+    <p>$x,y$ 互换后不变的式子是<strong>对称式</strong>（<span lang="ja">対称式</span>），都能用 $x+y$ 和 $xy$ 表示：</p>
+    <div class="formula-grid">
+      <div>$x^2+y^2=(x+y)^2-2xy$</div>
+      <div>$x^3+y^3=(x+y)^3-3xy(x+y)$</div>
+    </div>
+    <p>整数部分是不超过该数的最大整数，<strong>小数部分 = 原数 − 整数部分</strong>。例如 $2&lt;\sqrt7&lt;3$，所以 $\sqrt7$ 的整数部分为 $2$，小数部分为 $\sqrt7-2$。</p>
+  </section>
+
+  <section id="abs">
+    <h2>5 绝对值</h2>
+    <p class="jp-sub" lang="ja">絶対値 — 数直線・場合分け</p>
+    <p>$|a|$ 是数轴（<span lang="ja">数直線</span>）上点 $a$ 到原点的距离（<span lang="ja">距離</span>），$|a-b|$ 是点 $a$ 与点 $b$ 的距离。定义为</p>
+    $$|a|=\begin{cases}a &amp; (a\ge0)\\ -a &amp; (a&lt;0)\end{cases}$$
+    <div class="formula-grid">
+      <div>$|a|\ge0$</div>
+      <div>$|-a|=|a|$</div>
+      <div>$|a|^2=a^2$</div>
+      <div>$|ab|=|a||b|$</div>
+      <div>$\left|\dfrac ab\right|=\dfrac{|a|}{|b|}\ (b\ne0)$</div>
+    </div>
+    <h3>含绝对值的方程</h3>
+    <p>$c&gt;0$ 时，$|X|=c\iff X=\pm c$。例：$|2x-1|=5$ 得 $2x-1=\pm5$，即 $x=3,\ -2$。</p>
+    <p>右边含未知数时要<strong>分情况讨论</strong>（<span lang="ja">場合分け</span>），并检查解是否落在所设范围内。解 $|x-1|=2x$：</p>
+    <ul>
+      <li>$x\ge1$ 时，$x-1=2x$，得 $x=-1$，不满足 $x\ge1$，舍去。</li>
+      <li>$x&lt;1$ 时，$1-x=2x$，得 $x=\dfrac13$，满足 $x&lt;1$。</li>
+    </ul>
+    <p>所以 $x=\dfrac13$。</p>
+  </section>
+
+  <section id="ineq">
+    <h2>6 一次不等式</h2>
+    <p class="jp-sub" lang="ja">1次不等式 — 連立不等式・絶対値を含む不等式</p>
+
+    <h3>不等式的性质</h3>
+    <div class="formula-grid">
+      <div>$A&lt;B\Rightarrow A+C&lt;B+C$</div>
+      <div>$A&lt;B,\ C&gt;0\Rightarrow AC&lt;BC$</div>
+      <div>$A&lt;B,\ C&lt;0\Rightarrow AC&gt;BC$</div>
+    </div>
+    <div class="box warn">
+      <p><strong>核心：</strong>两边乘或除以<strong>负数</strong>时，不等号方向反转。系数含字母时，必须分正、负、零讨论（见练习 15）。</p>
+    </div>
+
+    <h3>解法</h3>
+    <p>移项（<span lang="ja">移項</span>）、合并，整理成 $ax&lt;b$ 的形式，再除以 $a$。</p>
+    <ul>
+      <li>$-2x+3&lt;7$：$-2x&lt;4$，所以 $x&gt;-2$。</li>
+      <li>$\dfrac x2-\dfrac{x-1}{3}\ge1$：两边乘 $6$，得 $3x-2(x-1)\ge6$，所以 $x\ge4$。</li>
+    </ul>
+
+    <h3>联立不等式</h3>
+    <p><span lang="ja">連立不等式</span>分别求解，再在数轴上取公共部分。</p>
+    <ul>
+      <li>$\begin{cases}2x-1&lt;5\\3x+2\ge-4\end{cases}$：得 $x&lt;3$ 且 $x\ge-2$，即 $-2\le x&lt;3$。</li>
+      <li>连写形式 $3\le2x+1&lt;7$：各部分同时减 $1$ 再除以 $2$，得 $1\le x&lt;3$。</li>
+    </ul>
+
+    <h3>含绝对值的不等式</h3>
+    <p>对 $c&gt;0$：</p>
+    <div class="formula-grid">
+      <div>$|X|&lt;c\iff -c&lt;X&lt;c$</div>
+      <div>$|X|&gt;c\iff X&lt;-c\ \text{或}\ X&gt;c$</div>
+    </div>
+    <p>例：$|x-2|&lt;3$ 表示到点 $2$ 的距离小于 $3$，即 $-1&lt;x&lt;5$；$|x-2|\ge3$ 则为 $x\le-1$ 或 $x\ge5$。</p>
+    <p>有多个绝对值时，以各绝对值内为 $0$ 的点分段。解 $|x|+|x-2|&lt;4$，分点为 $0$ 和 $2$：</p>
+    <div class="tw"><table>
+      <thead><tr><th>范围</th><th>去绝对值</th><th>该范围内的解</th></tr></thead>
+      <tbody>
+        <tr><td>$x&lt;0$</td><td>$-x-(x-2)&lt;4$，即 $x&gt;-1$</td><td>$-1&lt;x&lt;0$</td></tr>
+        <tr><td>$0\le x&lt;2$</td><td>$x-(x-2)=2&lt;4$，恒成立</td><td>$0\le x&lt;2$</td></tr>
+        <tr><td>$x\ge2$</td><td>$x+(x-2)&lt;4$，即 $x&lt;3$</td><td>$2\le x&lt;3$</td></tr>
+      </tbody>
+    </table></div>
+    <p>三段取并集，得 $-1&lt;x&lt;3$。</p>
+
+    <div class="box">
+      <p><strong>读懂日语范围表达：</strong><span lang="ja">以上</span> 是 $\ge$，<span lang="ja">以下</span> 是 $\le$（都<strong>包含</strong>该数）；<span lang="ja">より大きい</span> 是 $&gt;$，<span lang="ja">未満</span> 是 $&lt;$（都<strong>不含</strong>该数）。</p>
+    </div>
+
+    <h3>解集数轴演示</h3>
+    <div class="explorer" id="lab">
+      <div class="ex-head" id="lab-modes">
+        <button type="button" class="chip" data-mode="abs">绝对值不等式</button>
+        <button type="button" class="chip" data-mode="lin">一次不等式</button>
+      </div>
+      <div class="ex-head" id="lab-ops" aria-label="选择不等号">
+        <button type="button" class="chip" data-op="&lt;" aria-label="小于">&lt;</button>
+        <button type="button" class="chip" data-op="&lt;=" aria-label="小于等于">≤</button>
+        <button type="button" class="chip" data-op="&gt;" aria-label="大于">&gt;</button>
+        <button type="button" class="chip" data-op="&gt;=" aria-label="大于等于">≥</button>
+      </div>
+      <div id="lab-abs">
+        <div class="ctrl"><label for="in-a">中心 a</label><input id="in-a" type="range" min="-5" max="5" step="0.5" value="2"><output id="out-a"></output></div>
+        <div class="ctrl"><label for="in-b">右边 b</label><input id="in-b" type="range" min="-2" max="5" step="0.5" value="3"><output id="out-b"></output></div>
+      </div>
+      <div id="lab-lin" hidden>
+        <div class="ctrl"><label for="in-p">系数 p</label><input id="in-p" type="range" min="-4" max="4" step="1" value="-2"><output id="out-p"></output></div>
+        <div class="ctrl"><label for="in-q">常数 q</label><input id="in-q" type="range" min="-6" max="6" step="1" value="3"><output id="out-q"></output></div>
+        <div class="ctrl"><label for="in-r">右边 r</label><input id="in-r" type="range" min="-6" max="6" step="1" value="-1"><output id="out-r"></output></div>
+      </div>
+      <figure class="plot" style="margin:12px 0">
+        <svg class="chart" id="ex-svg" viewBox="0 0 520 112" role="img" aria-label="不等式解集的数轴图"></svg>
+        <figcaption>蓝色为解集；实心圆含端点，空心圆不含端点。拖动数轴或下方滑块移动试验点，绿色表示满足不等式，红色表示不满足。</figcaption>
+      </figure>
+      <div class="ctrl"><label for="in-x">试验点 x</label><input id="in-x" type="range" min="-13" max="13" step="0.5" value="0"><output id="out-x"></output></div>
+      <div class="read">
+        <div><small>不等式</small><span id="read-eq"></span></div>
+        <div><small>解集</small><span id="read-sol"></span></div>
+        <div class="wide"><small>代入试验点</small><span id="read-test"></span></div>
+      </div>
+      <div class="status" id="lab-note" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2>7 原创 EJU 风格例题</h2>
+    <p class="jp-sub">以下题目均为本讲义<strong>原创</strong>，仅模仿 EJU 的填空形式，并非真题。</p>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框字母对应一个数字（$0$–$9$），例如 $\B{AB}$ 是两位数；分数要约到最简，根号内的数要尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>例题 1　换元与因式分解</b><span class="origin">原创</span></div>
+      <p>(1) 设 $P=(x^2+3x)(x^2+3x-2)-8$。令 $t=x^2+3x$，则 $P=(t-\B{A})(t+\B{B})$，因此</p>
+      $$P=(x-\B{C})(x+\B{D})(x+\B{E})(x+\B{F}).$$
+      <p>其中 $\B{D}&lt;\B{E}&lt;\B{F}$。</p>
+      <p>(2) 设 $Q=2x^2+5xy+2y^2-5x-y-3$，则</p>
+      $$Q=(\B{G}x+y+\B{H})(x+\B{I}y-\B{J}).$$
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys" data-ex="1"><li>A = 4</li><li>B = 2</li><li>C = 1</li><li>D = 1</li><li>E = 2</li><li>F = 4</li><li>G = 2</li><li>H = 1</li><li>I = 2</li><li>J = 3</li></ul>
+        <p>(1) $P=t(t-2)-8=t^2-2t-8=(t-4)(t+2)$。代回：$x^2+3x-4=(x-1)(x+4)$，$x^2+3x+2=(x+1)(x+2)$，所以 $P=(x-1)(x+1)(x+2)(x+4)$。</p>
+        <p>(2) 二次部分 $2x^2+5xy+2y^2=(2x+y)(x+2y)$。设 $Q=(2x+y+m)(x+2y+n)$，比较系数：$x$ 的系数 $2n+m=-5$，$y$ 的系数 $n+2m=-1$，常数 $mn=-3$。前两式解得 $m=1,\ n=-3$，且满足 $mn=-3$。所以 $Q=(2x+y+1)(x+2y-3)$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 2　根式与对称式</b><span class="origin">原创</span></div>
+      <p>设 $x=\dfrac{1}{\sqrt5-2},\ y=\dfrac{1}{\sqrt5+2}$。</p>
+      <p>(1) $x=\sqrt{\B{A}}+\B{B}$，$y=\sqrt{\B{A}}-\B{B}$。</p>
+      <p>(2) $x+y=\B{C}\sqrt{\B{D}}$，$xy=\B{E}$，$x^2+y^2=\B{FG}$，$x^3+y^3=\B{HI}\sqrt{\B{J}}$。</p>
+      <p>(3) $x$ 的整数部分为 $\B{K}$。设 $x$ 的小数部分为 $b$，则 $b^2+4b=\B{L}$。</p>
+      <p>(4) $\sqrt{9+4\sqrt5}=\sqrt{\B{M}}+\B{N}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys" data-ex="2"><li>A = 5</li><li>B = 2</li><li>C = 2</li><li>D = 5</li><li>E = 1</li><li>F = 1</li><li>G = 8</li><li>H = 3</li><li>I = 4</li><li>J = 5</li><li>K = 4</li><li>L = 1</li><li>M = 5</li><li>N = 2</li></ul>
+        <p>(1) $(\sqrt5-2)(\sqrt5+2)=1$，所以 $x=\sqrt5+2,\ y=\sqrt5-2$。</p>
+        <p>(2) $x+y=2\sqrt5$，$xy=1$，$x^2+y^2=(2\sqrt5)^2-2=18$，$x^3+y^3=(x+y)(x^2-xy+y^2)=2\sqrt5\cdot17=34\sqrt5$。</p>
+        <p>(3) $2&lt;\sqrt5&lt;3$，所以 $4&lt;x&lt;5$，整数部分为 $4$，$b=x-4=\sqrt5-2$。于是 $b+2=\sqrt5$，$b^2+4b=(b+2)^2-4=5-4=1$。</p>
+        <p>(4) $4\sqrt5=2\sqrt{20}$，由 $5+4=9,\ 5\times4=20$ 得 $\sqrt{9+2\sqrt{20}}=\sqrt5+\sqrt4=\sqrt5+2$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 3　绝对值</b><span class="origin">原创</span></div>
+      <p>(1) 不等式 $|2x-3|&lt;5$ 的解为 $-\B{A}&lt;x&lt;\B{B}$。</p>
+      <p>(2) 方程 $|x-1|+|x+2|=5$ 的解为 $x=-\B{C},\ \B{D}$。</p>
+      <p>(3) 不等式 $|x-2|&lt;2x+1$ 的解为 $x&gt;\dfrac{\B{E}}{\B{F}}$。</p>
+      <p>(4) 满足 $|x-1|+|x+2|\le7$ 的整数 $x$ 共有 $\B{G}$ 个。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys" data-ex="3"><li>A = 1</li><li>B = 4</li><li>C = 3</li><li>D = 2</li><li>E = 1</li><li>F = 3</li><li>G = 8</li></ul>
+        <p>(1) $-5&lt;2x-3&lt;5$，所以 $-2&lt;2x&lt;8$，即 $-1&lt;x&lt;4$。</p>
+        <p>(2) 分点为 $-2$ 和 $1$。$x&lt;-2$ 时 $-2x-1=5$，得 $x=-3$（符合）；$-2\le x&lt;1$ 时左边恒为 $3\ne5$，无解；$x\ge1$ 时 $2x+1=5$，得 $x=2$（符合）。</p>
+        <p>(3) $x\ge2$ 时 $x-2&lt;2x+1$，得 $x&gt;-3$，所以 $x\ge2$ 全部成立。$x&lt;2$ 时 $2-x&lt;2x+1$，得 $x&gt;\dfrac13$，所以 $\dfrac13&lt;x&lt;2$。合并得 $x&gt;\dfrac13$。</p>
+        <p>(4) 同 (2) 分段：$x&lt;-2$ 时 $-2x-1\le7$，得 $x\ge-4$；中段左边恒为 $3\le7$；$x\ge1$ 时 $2x+1\le7$，得 $x\le3$。解为 $-4\le x\le3$，整数共 $8$ 个。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 4　含参数的联立不等式</b><span class="origin">原创</span></div>
+      <p>设 $a$ 为实数常数，考虑联立不等式</p>
+      $$\frac{2x-1}{3}\le\frac{x+3}{2}\quad\cdots\text{①},\qquad 3x-2&gt;x+2a\quad\cdots\text{②}.$$
+      <p>(1) ① 的解为 $x\le\B{AB}$，② 的解为 $x&gt;a+\B{C}$。</p>
+      <p>(2) $a=5$ 时，满足联立不等式的整数 $x$ 共有 $\B{D}$ 个。</p>
+      <p>(3) 满足联立不等式的整数 $x$ 恰有 $3$ 个时，$a$ 的取值范围是 $\B{E}\le a&lt;\B{F}$。</p>
+      <p>(4) 联立不等式无解时，$a$ 的取值范围是 $a\ge\B{GH}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys" data-ex="4"><li>A = 1</li><li>B = 1</li><li>C = 1</li><li>D = 5</li><li>E = 7</li><li>F = 8</li><li>G = 1</li><li>H = 0</li></ul>
+        <p>(1) ① 两边乘 $6$：$4x-2\le3x+9$，得 $x\le11$。② 化为 $2x&gt;2a+2$，得 $x&gt;a+1$。</p>
+        <p>(2) $6&lt;x\le11$，整数为 $7,8,9,10,11$，共 $5$ 个。</p>
+        <p>(3) 三个整数必为 $9,10,11$，所以 $8$ 要被排除、$9$ 要被包含：$8\le a+1&lt;9$，即 $7\le a&lt;8$。注意 $a+1=8$ 时 $x&gt;8$ 仍不含 $8$，所以左端可以取等号；$a+1=9$ 时 $9$ 被排除，右端不能取等号。</p>
+        <p>(4) 无解即 $a+1\ge11$，所以 $a\ge10$。$a+1=11$ 时 $x&gt;11$ 与 $x\le11$ 没有公共部分，可以取等号。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>8 练习题</h2>
+    <div class="bar">
+      <p class="jp-sub" style="margin:0">先自己算，再点按钮核对。题目为本讲义原创。</p>
+      <button class="chip" id="toggle-all" type="button">显示全部答案</button>
+    </div>
+
+    <div class="q"><div class="q-head"><b>1</b>展开</div>
+      <p>展开 $(x-2y+3)(x+2y-3)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$=\{x-(2y-3)\}\{x+(2y-3)\}=x^2-(2y-3)^2=x^2-4y^2+12y-9$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>2</b>系数</div>
+      <p>求 $(x^2-2x+3)(2x^2+x-4)$ 展开式中 $x^2$ 与 $x$ 的系数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$x^2$：$1\cdot(-4)+(-2)\cdot1+3\cdot2=\mathbf 0$。$x$：$(-2)\cdot(-4)+3\cdot1=\mathbf{11}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>3</b>除法</div>
+      <p>求 $x^3+2x^2-5x+4$ 除以 $x^2-x+1$ 的商和余式。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>商 $x+3$，余式 $-3x+1$。验算：$(x^2-x+1)(x+3)=x^3+2x^2-2x+3$，加上 $-3x+1$ 即得原式。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>4</b>因式分解</div>
+      <p>分解 $3x^2-10x+8$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>十字相乘：$3\times1$ 与 $(-4)\times(-2)$，交叉和 $-6-4=-10$。结果为 $(3x-4)(x-2)$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>5</b>因式分解</div>
+      <p>在有理数系数范围内分解 $x^4+4$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>添项：$(x^2+2)^2-4x^2=(x^2+2x+2)(x^2-2x+2)$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>6</b>因式分解</div>
+      <p>分解 $x^2+xy-2y^2+x+5y-2$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>按 $x$ 整理：$x^2+(y+1)x-(2y^2-5y+2)=x^2+(y+1)x-(2y-1)(y-2)$。两数 $2y-1$ 与 $-(y-2)$ 的和为 $y+1$，所以结果为 $(x+2y-1)(x-y+2)$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>7</b>因式分解</div>
+      <p>分解 $8x^3-27$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$(2x)^3-3^3=(2x-3)(4x^2+6x+9)$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>8</b>有理化</div>
+      <p>将 $\dfrac{1}{1+\sqrt2+\sqrt3}$ 的分母有理化。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>分子分母同乘 $(1+\sqrt2)-\sqrt3$，分母 $=(1+\sqrt2)^2-3=2\sqrt2$。所以原式 $=\dfrac{1+\sqrt2-\sqrt3}{2\sqrt2}=\dfrac{2+\sqrt2-\sqrt6}{4}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>9</b>二重根号</div>
+      <p>化简 $\sqrt{7-4\sqrt3}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$4\sqrt3=2\sqrt{12}$，$4+3=7,\ 4\times3=12$。原式 $=\sqrt4-\sqrt3=2-\sqrt3$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>10</b>根式与绝对值</div>
+      <p>$-3&lt;x&lt;2$ 时，化简 $\sqrt{x^2-4x+4}+\sqrt{x^2+6x+9}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>原式 $=|x-2|+|x+3|=(2-x)+(x+3)=\mathbf 5$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>11</b>循环小数</div>
+      <p>把 $0.\dot{2}\dot{7}$ 化为最简分数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$100x-x=27$，所以 $x=\dfrac{27}{99}=\dfrac{3}{11}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>12</b>绝对值不等式</div>
+      <p>解 $|3x+1|\le5$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$-5\le3x+1\le5$，所以 $-6\le3x\le4$，即 $-2\le x\le\dfrac43$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>13</b>绝对值不等式</div>
+      <p>解 $|x+1|+|x-3|&lt;6$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$x&lt;-1$ 时 $-2x+2&lt;6$，得 $-2&lt;x&lt;-1$；$-1\le x&lt;3$ 时左边恒为 $4&lt;6$；$x\ge3$ 时 $2x-2&lt;6$，得 $3\le x&lt;4$。合并得 $-2&lt;x&lt;4$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>14</b>应用题</div>
+      <p>每个 $120$ 日元的苹果和每个 $80$ 日元的橘子共买 $15$ 个，总价不超过 $1500$ 日元。苹果最多能买几个？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>设苹果 $n$ 个：$120n+80(15-n)\le1500$，得 $40n\le300$，$n\le7.5$。$n$ 是整数，所以最多 $\mathbf 7$ 个（此时总价 $1480$ 日元）。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>15</b>含字母的不等式</div>
+      <p>设 $a$ 为实数常数，解关于 $x$ 的不等式 $ax+1&gt;x+a^2$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>整理得 $(a-1)x&gt;(a-1)(a+1)$。$a&gt;1$ 时 $x&gt;a+1$；$a&lt;1$ 时除以负数，不等号反向，$x&lt;a+1$；$a=1$ 时变为 $0&gt;0$，<strong>无解</strong>。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>16</b>分数系数</div>
+      <p>求满足 $\dfrac{x+2}{3}-\dfrac{x-1}{2}&gt;-1$ 的最大整数 $x$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>两边乘 $6$：$2x+4-3x+3&gt;-6$，得 $-x&gt;-13$，即 $x&lt;13$。最大整数为 $\mathbf{12}$。</p></div></div>
+  </section>
+
+  <section id="terms">
+    <h2>9 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页依据 JASSO 2026 年度起适用的数学シラバス中「数と式」的范围组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。所有例题和练习题均为原创，答案已用 SymPy 验算。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  function $(id) { return document.getElementById(id); }
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['整式的运算', [
+      ['整式', 'せいしき', '整式'], ['単項式', 'たんこうしき', '单项式'], ['多項式', 'たこうしき', '多项式'],
+      ['係数', 'けいすう', '系数'], ['次数', 'じすう', '次数'], ['定数項', 'ていすうこう', '常数项'],
+      ['同類項', 'どうるいこう', '同类项'], ['降べきの順', 'こうべきのじゅん', '降幂排列'], ['昇べきの順', 'しょうべきのじゅん', '升幂排列'],
+      ['指数法則', 'しすうほうそく', '指数法则'], ['商', 'しょう', '商'], ['余り', 'あまり', '余式、余数']
+    ]],
+    ['展开与因式分解', [
+      ['展開', 'てんかい', '展开'], ['乗法公式', 'じょうほうこうしき', '乘法公式'], ['因数分解', 'いんすうぶんかい', '因式分解'],
+      ['共通因数', 'きょうつういんすう', '公因式'], ['たすきがけ', 'たすきがけ', '十字相乘法'], ['置き換え', 'おきかえ', '换元'],
+      ['対称式', 'たいしょうしき', '对称式']
+    ]],
+    ['实数', [
+      ['実数', 'じっすう', '实数'], ['有理数', 'ゆうりすう', '有理数'], ['無理数', 'むりすう', '无理数'],
+      ['自然数', 'しぜんすう', '自然数'], ['整数', 'せいすう', '整数'], ['有限小数', 'ゆうげんしょうすう', '有限小数'],
+      ['循環小数', 'じゅんかんしょうすう', '循环小数'], ['平方根', 'へいほうこん', '平方根'], ['根号', 'こんごう', '根号'],
+      ['分母の有理化', 'ぶんぼのゆうりか', '分母有理化'], ['二重根号', 'にじゅうこんごう', '二重根号'],
+      ['整数部分', 'せいすうぶぶん', '整数部分'], ['小数部分', 'しょうすうぶぶん', '小数部分']
+    ]],
+    ['绝对值', [
+      ['絶対値', 'ぜったいち', '绝对值'], ['数直線', 'すうちょくせん', '数轴'], ['距離', 'きょり', '距离'],
+      ['場合分け', 'ばあいわけ', '分情况讨论']
+    ]],
+    ['不等式', [
+      ['不等式', 'ふとうしき', '不等式'], ['1次不等式', 'いちじふとうしき', '一次不等式'], ['連立不等式', 'れんりつふとうしき', '联立不等式（不等式组）'],
+      ['不等号', 'ふとうごう', '不等号'], ['移項', 'いこう', '移项'], ['解', 'かい', '解'], ['定数', 'ていすう', '常数'],
+      ['以上', 'いじょう', '大于等于（≥）'], ['以下', 'いか', '小于等于（≤）'], ['より大きい', 'よりおおきい', '大于（>）'],
+      ['未満', 'みまん', '小于（<）']
+    ]]
+  ];
+
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      var cells = [t[0], t[1], t[2]].map(function (s) { return s.replace(/</g, '&lt;').replace(/>/g, '&gt;'); });
+      tr.innerHTML = '<td lang="ja"><strong>' + cells[0] + '</strong></td><td class="kana" lang="ja">' + cells[1] + '</td><td>' + cells[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = $('term-count');
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 答案按钮 ---------- */
+  function setAns(btn, open) {
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '隐藏答案' : '显示答案';
+    btn.nextElementSibling.hidden = !open;
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.classList && e.target.classList.contains('toggle-ans')) {
+      setAns(e.target, e.target.getAttribute('aria-expanded') !== 'true');
+    }
+  });
+  var allBtn = $('toggle-all');
+  allBtn.addEventListener('click', function () {
+    var btns = document.querySelectorAll('#practice .toggle-ans');
+    var open = allBtn.textContent.indexOf('显示') === 0;
+    btns.forEach(function (b) { setAns(b, open); });
+    allBtn.textContent = open ? '隐藏全部答案' : '显示全部答案';
+  });
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  if ('IntersectionObserver' in window) {
+    var tocLinks = {};
+    document.querySelectorAll('nav.toc a').forEach(function (a) { tocLinks[a.getAttribute('href').slice(1)] = a; });
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        Object.keys(tocLinks).forEach(function (k) { tocLinks[k].classList.toggle('on', k === e.target.id); });
+        tocLinks[e.target.id].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 解集数轴演示 ---------- */
+  var S = { mode: 'abs', op: '<', a: 2, b: 3, p: -2, q: 3, r: -1, x: 0 };
+  var INF = Infinity, X_MAX = 13, W = 520, PAD = 18, AXIS_Y = 42;
+  var OP_TEX = { '<': '<', '<=': '\\le', '>': '>', '>=': '\\ge' };
+  var FLIP = { '<': '>', '<=': '>=', '>': '<', '>=': '<=' };
+  var svg = $('ex-svg');
+
+  function holds(v, op, r) { return op === '<' ? v < r : op === '<=' ? v <= r : op === '>' ? v > r : v >= r; }
+  function lhs(x) { return S.mode === 'abs' ? Math.abs(x - S.a) : S.p * x + S.q; }
+  function rhs() { return S.mode === 'abs' ? S.b : S.r; }
+
+  /* 解集：[下端, 上端, 含下端, 含上端] 的列表 */
+  function solve() {
+    var op = S.op, c = op.length > 1, lessThan = op === '<' || op === '<=';
+    var ALL = [[-INF, INF, false, false]];
+    if (S.mode === 'abs') {
+      var a = S.a, b = S.b;
+      if (b < 0) return lessThan ? [] : ALL;
+      if (b === 0) {
+        if (op === '<') return [];
+        if (op === '<=') return [[a, a, true, true]];
+        if (op === '>') return [[-INF, a, false, false], [a, INF, false, false]];
+        return ALL;
+      }
+      return lessThan ? [[a - b, a + b, c, c]] : [[-INF, a - b, false, c], [a + b, INF, c, false]];
+    }
+    if (S.p === 0) return holds(S.q, op, S.r) ? ALL : [];
+    var k = (S.r - S.q) / S.p, eff = S.p < 0 ? FLIP[op] : op;
+    return eff === '<' || eff === '<=' ? [[-INF, k, false, c]] : [[k, INF, c, false]];
+  }
+
+  function rat(x) {
+    for (var d = 1; d <= 4; d++) {
+      if (Math.abs(x * d - Math.round(x * d)) < 1e-9) return [Math.round(x * d), d];
+    }
+    return [x, 1];
+  }
+  function numTex(x) {
+    var f = rat(x);
+    if (f[1] === 1) return String(f[0]);
+    return (f[0] < 0 ? '-' : '') + '\\frac{' + Math.abs(f[0]) + '}{' + f[1] + '}';
+  }
+  function numTxt(x) {
+    var f = rat(x), s = f[1] === 1 ? String(Math.abs(f[0])) : Math.abs(f[0]) + '/' + f[1];
+    return (f[0] < 0 ? '−' : '') + s;
+  }
+  function signed(n) { return n === 0 ? '' : (n > 0 ? '+' : '-') + numTex(Math.abs(n)); }
+  function lhsTex() {
+    if (S.mode === 'abs') return '|x' + signed(-S.a) + '|';
+    var co = S.p === 1 ? '' : S.p === -1 ? '-' : String(S.p);
+    return co + 'x' + signed(S.q);
+  }
+  function eqTex() { return lhsTex() + OP_TEX[S.op] + numTex(rhs()); }
+
+  function solTex(sol) {
+    if (!sol.length) return '\\text{无解}';
+    var one = sol[0];
+    if (sol.length === 1 && one[0] === -INF && one[1] === INF) return '\\text{全体实数}';
+    if (sol.length === 2 && one[1] === sol[1][0]) return 'x\\ne ' + numTex(one[1]);
+    return sol.map(function (s) {
+      if (s[0] === s[1]) return 'x=' + numTex(s[0]);
+      if (s[0] === -INF) return 'x' + (s[3] ? '\\le ' : '<') + numTex(s[1]);
+      if (s[1] === INF) return 'x' + (s[2] ? '\\ge ' : '>') + numTex(s[0]);
+      return numTex(s[0]) + (s[2] ? '\\le ' : '<') + 'x' + (s[3] ? '\\le ' : '<') + numTex(s[1]);
+    }).join('\\ \\text{或}\\ ');
+  }
+
+  function noteText() {
+    var lessThan = S.op === '<' || S.op === '<=';
+    if (S.mode === 'abs') {
+      if (S.b < 0) return '绝对值恒 $\\ge 0$，一定大于负数，所以' + (lessThan ? '无解。' : '任何实数都满足。');
+      if (S.b === 0) return '$' + lhsTex() + '$ 的最小值是 $0$，只在 $x=' + numTex(S.a) + '$ 时取到。边界情况要特别留意等号。';
+      return '几何意义：点 $x$ 到点 $' + numTex(S.a) + '$ 的距离' + (lessThan ? '小于' : '大于') + (S.op.length > 1 ? '或等于' : '') + ' $' + numTex(S.b) + '$。';
+    }
+    if (S.p === 0) return '$x$ 的系数为 $0$，式子变成 $' + S.q + OP_TEX[S.op] + S.r + '$，这是' + (holds(S.q, S.op, S.r) ? '真命题，任何实数都满足。' : '假命题，所以无解。');
+    var step = '移项得 $' + (S.p === 1 ? '' : S.p === -1 ? '-' : S.p) + 'x' + OP_TEX[S.op] + (S.r - S.q) + '$，';
+    return S.p < 0 ? step + '两边除以负数 $' + S.p + '$，<strong>不等号方向反转</strong>。' : step + '两边除以正数 $' + S.p + '$，不等号方向不变。';
+  }
+
+  function tex(s) { return window.katex ? window.katex.renderToString(s, { throwOnError: false }) : s; }
+  function rich(el, s) {
+    el.innerHTML = s.split('$').map(function (part, i) { return i % 2 ? tex(part) : part; }).join('');
+  }
+  function sx(x) { return PAD + (x + X_MAX) / (2 * X_MAX) * (W - 2 * PAD); }
+  function ix(px) { return (px - PAD) / (W - 2 * PAD) * (2 * X_MAX) - X_MAX; }
+
+  function draw(sol, sat) {
+    var h = '', i, Y = AXIS_Y;
+    h += '<line class="axis" x1="' + PAD + '" y1="' + Y + '" x2="' + (W - PAD) + '" y2="' + Y + '"/>';
+    for (i = -X_MAX; i <= X_MAX; i++) {
+      var big = i % 5 === 0;
+      h += '<line class="axis" x1="' + sx(i) + '" x2="' + sx(i) + '" y1="' + (Y - (big ? 6 : 3)) + '" y2="' + (Y + (big ? 6 : 3)) + '"/>';
+      if (big) h += '<text class="tick" text-anchor="middle" x="' + sx(i) + '" y="' + (Y + 26) + '">' + (i < 0 ? '−' + (-i) : i) + '</text>';
+    }
+    sol.forEach(function (s, n) {
+      var x1 = s[0] === -INF ? PAD : sx(s[0]), x2 = s[1] === INF ? W - PAD : sx(s[1]);
+      h += '<line class="sol" x1="' + x1 + '" x2="' + x2 + '" y1="' + Y + '" y2="' + Y + '"/>';
+      if (s[0] === -INF) h += '<path class="arrow" d="M' + (PAD - 8) + ' ' + Y + 'l10 -6v12z"/>';
+      if (s[1] === INF) h += '<path class="arrow" d="M' + (W - PAD + 8) + ' ' + Y + 'l-10 -6v12z"/>';
+      [[s[0], s[2], 'end', -6], [s[1], s[3], 'start', 6]].forEach(function (e) {
+        if (!isFinite(e[0])) return;
+        h += '<circle class="' + (e[1] ? 'pt-closed' : 'pt-open') + '" cx="' + sx(e[0]) + '" cy="' + Y + '" r="5.5"/>';
+        if (s[0] === s[1]) { if (e[2] === 'end') h += '<text class="lbl" text-anchor="middle" x="' + sx(e[0]) + '" y="' + (Y - 14) + '">' + numTxt(e[0]) + '</text>'; return; }
+        var skip = n === 1 && sol[0][1] === s[0] && e[2] === 'end';
+        if (!skip) h += '<text class="lbl" text-anchor="' + (sol.length === 2 && sol[0][1] === sol[1][0] ? 'middle' : e[2]) + '" x="' + (sx(e[0]) + (sol.length === 2 && sol[0][1] === sol[1][0] ? 0 : e[3])) + '" y="' + (Y - 14) + '">' + numTxt(e[0]) + '</text>';
+      });
+    });
+    var mx = sx(S.x), cls = sat ? 'probe-yes' : 'probe-no';
+    h += '<line class="' + cls + '" x1="' + mx + '" x2="' + mx + '" y1="' + (Y + 62) + '" y2="' + (Y + 42) + '"/>';
+    h += '<path class="' + cls + ' fillp" d="M' + mx + ' ' + (Y + 34) + 'l-6 10h12z"/>';
+    svg.innerHTML = h;
+  }
+
+  function update() {
+    var sol = solve(), L = lhs(S.x), R = rhs(), sat = holds(L, S.op, R);
+    ['a', 'b', 'p', 'q', 'r', 'x'].forEach(function (k) { $('out-' + k).textContent = numTxt(S[k]); });
+    document.querySelectorAll('#lab-modes .chip').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.mode === S.mode); });
+    document.querySelectorAll('#lab-ops .chip').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.op === S.op); });
+    $('lab-abs').hidden = S.mode !== 'abs';
+    $('lab-lin').hidden = S.mode !== 'lin';
+    draw(sol, sat);
+    rich($('read-eq'), '$' + eqTex() + '$');
+    rich($('read-sol'), '$' + solTex(sol) + '$');
+    rich($('read-test'), '$x=' + numTex(S.x) + '$ 时，左边 $=' + numTex(L) + '$，右边 $=' + numTex(R) + '$，' + (sat ? '<span class="yes">满足不等式</span>' : '<span class="no">不满足不等式</span>'));
+    rich($('lab-note'), noteText());
+  }
+
+  document.querySelectorAll('#lab-modes .chip').forEach(function (b) {
+    b.addEventListener('click', function () { S.mode = b.dataset.mode; update(); });
+  });
+  document.querySelectorAll('#lab-ops .chip').forEach(function (b) {
+    b.addEventListener('click', function () { S.op = b.dataset.op; update(); });
+  });
+  ['a', 'b', 'p', 'q', 'r', 'x'].forEach(function (k) {
+    $('in-' + k).addEventListener('input', function (e) { S[k] = parseFloat(e.target.value); update(); });
+  });
+  function fromPointer(e) {
+    var r = svg.getBoundingClientRect();
+    var v = Math.round(ix((e.clientX - r.left) * (W / r.width)) * 2) / 2;
+    S.x = Math.max(-X_MAX, Math.min(X_MAX, v));
+    $('in-x').value = S.x;
+    update();
+  }
+  var dragging = false;
+  svg.addEventListener('pointerdown', function (e) {
+    dragging = true;
+    if (svg.setPointerCapture) svg.setPointerCapture(e.pointerId);
+    fromPointer(e);
+  });
+  svg.addEventListener('pointermove', function (e) { if (dragging) fromPointer(e); });
+  ['pointerup', 'pointercancel'].forEach(function (n) {
+    svg.addEventListener(n, function () { dragging = false; });
+  });
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['status', 'read'],
+      throwOnError: false
+    });
+    update();
+  }
+  update();
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

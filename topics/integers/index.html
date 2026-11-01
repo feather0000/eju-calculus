@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 06 整数的性质</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：倍数判定、素因数分解、最大公约数与最小公倍数、整数除法、欧几里得算法、一次不定方程、n 进制，含原创例题、练习题、交互演示和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#ex-svg { touch-action: pan-y; cursor: ew-resize; user-select: none; -webkit-user-select: none; background: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+.back { display: inline-block; color: #c5d3ef; text-decoration: none; font-size: 15px; margin-bottom: 18px; }
+.back:hover { text-decoration: underline; }
+.hero-in { position: relative; }
+html { scroll-padding-top: 100px; }
+.steps { font-variant-numeric: tabular-nums; }
+.steps tr.off { opacity: .28; }
+.digits { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 2px; }
+.digits span { display: inline-block; min-width: 58px; text-align: center; background: var(--surface-2); border-radius: 6px; padding: 4px 8px; font-size: 13px; color: var(--ink-3); line-height: 1.4; }
+.digits b { display: block; font-size: 22px; color: var(--ink); font-variant-numeric: tabular-nums; }
+#eu-svg rect { stroke: var(--surface); stroke-width: 1; }
+@media (max-width: 900px) {
+  nav.toc { top: 34px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <a class="back" href="../../">← 目录</a>
+      <p class="eyebrow">EJU 数学コース2 · 出题项目 06 · 整数の性質</p>
+      <h1>整数的性质</h1>
+      <p class="lead">从倍数判定、素因数分解，到互除法、一次不定方程和 n 进制：每个知识点都配小例子，再用原创的 EJU 风格填空题和练习题检验。日语术语随文标注，文末有完整对照表。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$a=bq+r\quad(0\le r&lt;b)$$
+      $$\gcd(a,b)=\gcd(b,r)$$
+      $$ab=GL$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#multiple">1 倍数判定</a></li>
+        <li><a href="#prime">2 素因数分解</a></li>
+        <li><a href="#gcd">3 公约数公倍数</a></li>
+        <li><a href="#division">4 整数除法</a></li>
+        <li><a href="#euclid">5 互除法</a></li>
+        <li><a href="#diophantine">6 不定方程</a></li>
+        <li><a href="#base">7 n 进制</a></li>
+        <li><a href="#examples">8 原创例题</a></li>
+        <li><a href="#practice">9 练习题</a></li>
+        <li><a href="#terms">10 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box" style="margin-top:28px">
+    <p><strong>范围说明：</strong>本页对应 JASSO 2026 年度起适用的数学シラバス中的项目 06「整数の性質」：倍数の判定法、素数と素因数分解、最大公約数・最小公倍数、整数の割り算；ユークリッドの互除法；1次不定方程式；記数法（n進法）。</p>
+  </div>
+
+  <section id="multiple">
+    <h2>1 倍数判定法</h2>
+    <p class="jp-sub" lang="ja">倍数の判定法</p>
+    <p>若 $a=bk$（$k$ 为整数），则称 $a$ 是 $b$ 的<strong>倍数</strong>（<span lang="ja">倍数</span>），$b$ 是 $a$ 的<strong>约数</strong>（<span lang="ja">約数</span>）。下表不必做除法，看数字就能判断：</p>
+    <div class="tw"><table>
+      <thead><tr><th>倍数</th><th>判定条件</th></tr></thead>
+      <tbody>
+        <tr><td>$2$</td><td>个位是偶数</td></tr>
+        <tr><td>$5$</td><td>个位是 $0$ 或 $5$</td></tr>
+        <tr><td>$4$</td><td>末两位组成的数是 $4$ 的倍数</td></tr>
+        <tr><td>$8$</td><td>末三位组成的数是 $8$ 的倍数</td></tr>
+        <tr><td>$3$</td><td>各位数字之和（<span lang="ja">各位の和</span>）是 $3$ 的倍数</td></tr>
+        <tr><td>$9$</td><td>各位数字之和是 $9$ 的倍数</td></tr>
+        <tr><td>$6$</td><td>同时是 $2$ 和 $3$ 的倍数</td></tr>
+        <tr><td>$11$（参考）</td><td>从个位起奇数位之和与偶数位之和的差是 $11$ 的倍数（含 $0$）</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>为什么成立？</strong>以三位数为例，</p>
+    $$100a+10b+c=9(11a+b)+(a+b+c),$$
+    <p>前一部分必是 $9$ 的倍数（也是 $3$ 的倍数），所以整除性只取决于 $a+b+c$。而 $100$ 是 $4$ 的倍数、$1000$ 是 $8$ 的倍数，所以只看末两位、末三位。</p>
+    <div class="box good">
+      <p><strong>例：</strong>$7128$ 的数字和为 $18$，是 $9$ 的倍数；末三位 $128=8\times 16$，是 $8$ 的倍数。$8$ 与 $9$ 没有公共素因数，所以 $7128$ 是 $72$ 的倍数。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>易错：</strong>判定「$72$ 的倍数」要拆成互素的 $8$ 和 $9$。拆成 $6$ 和 $12$ 不行，因为同时是 $6$、$12$ 的倍数只能保证是 $12$ 的倍数。</p>
+    </div>
+  </section>
+
+  <section id="prime">
+    <h2>2 素数与素因数分解</h2>
+    <p class="jp-sub" lang="ja">素数と素因数分解</p>
+    <p><strong>素数</strong>（<span lang="ja">素数</span>）是大于 $1$、正约数只有 $1$ 和自身的自然数；大于 $1$ 的非素数叫<strong>合成数</strong>（<span lang="ja">合成数</span>）。$1$ 既不是素数也不是合数；$2$ 是唯一的偶素数。</p>
+    <p>判断 $n$ 是否为素数，只需用不超过 $\sqrt n$ 的素数试除。例如 $\sqrt{221}&lt;15$，试到 $13$ 时得 $221=13\times 17$。</p>
+    <p>每个大于 $1$ 的自然数都能唯一地写成素数之积（不计顺序）。设 $N=p^a q^b r^c$（$p,q,r$ 为不同素数），则：</p>
+    <div class="formula-grid">
+      <div>正约数的个数：$(a+1)(b+1)(c+1)$</div>
+      <div>正约数的总和：$(1+p+\dots+p^a)(1+q+\dots+q^b)(1+r+\dots+r^c)$</div>
+    </div>
+    <div class="box good">
+      <p><strong>例：</strong>$360=2^3\cdot 3^2\cdot 5$，正约数共 $4\cdot 3\cdot 2=24$ 个，总和为 $15\cdot 13\cdot 6=1170$。</p>
+    </div>
+    <h3>常见用法</h3>
+    <ul>
+      <li><strong>平方数</strong>（<span lang="ja">平方数</span>）：所有素因数的指数都是偶数。立方数：指数都是 $3$ 的倍数。例如要使 $84n$ 成为平方数，把 $84=2^2\cdot 3\cdot 7$ 中指数为奇数的补齐。</li>
+      <li><strong>阶乘中素因数的个数</strong>：$n!$ 中素因数 $p$ 的指数为 $\left\lfloor\dfrac{n}{p}\right\rfloor+\left\lfloor\dfrac{n}{p^2}\right\rfloor+\left\lfloor\dfrac{n}{p^3}\right\rfloor+\cdots$。</li>
+      <li><strong>末尾 $0$ 的个数</strong>：等于因数 $10=2\cdot 5$ 的个数，而 $5$ 比 $2$ 少，所以数 $5$ 的指数。</li>
+    </ul>
+  </section>
+
+  <section id="gcd">
+    <h2>3 最大公约数与最小公倍数</h2>
+    <p class="jp-sub" lang="ja">最大公約数（G）・最小公倍数（L）・互いに素</p>
+    <p>素因数分解后，$G$ 取各素因数的<strong>较小</strong>指数，$L$ 取<strong>较大</strong>指数：</p>
+    $$84=2^2\cdot 3\cdot 7,\quad 126=2\cdot 3^2\cdot 7\ \Longrightarrow\ G=2\cdot 3\cdot 7=42,\quad L=2^2\cdot 3^2\cdot 7=252.$$
+    <p>最大公约数为 $1$ 时，称两数<strong>互素</strong>（<span lang="ja">互いに素</span>）。</p>
+    <div class="box">
+      <p><strong>核心公式：</strong>设正整数 $a,b$ 的最大公约数为 $G$、最小公倍数为 $L$，则可写成</p>
+      $$a=Ga',\quad b=Gb',\qquad L=Ga'b',\qquad ab=GL.$$
+      <p>其中 $a',b'$ 互素。</p>
+    </div>
+    <p>题目给出 $G$ 和 $L$ 求 $a,b$ 时，先求 $a'b'=L/G$，再枚举<strong>互素</strong>的分解。</p>
+    <p>互素有一条常用性质：若 $a,b$ 互素且 $ak$ 是 $b$ 的倍数，则 $k$ 是 $b$ 的倍数。解不定方程时就靠这一条。</p>
+  </section>
+
+  <section id="division">
+    <h2>4 整数的除法</h2>
+    <p class="jp-sub" lang="ja">整数の割り算 — 商と余り</p>
+    <div class="box">
+      <p><strong>除法定理：</strong>对整数 $a$ 和正整数 $b$，存在唯一一对整数 $q,r$ 满足</p>
+      $$a=bq+r,\qquad 0\le r&lt;b.$$
+      <p>$q$ 叫<strong>商</strong>（<span lang="ja">商</span>），$r$ 叫<strong>余数</strong>（<span lang="ja">余り</span>）。</p>
+    </div>
+    <p>注意余数不能是负数：$-17=5\times(-4)+3$，所以 $-17$ 除以 $5$ 商 $-4$ 余 $3$。</p>
+    <h3>余数的运算</h3>
+    <p>设 $a,b$ 除以 $m$ 的余数分别为 $r,s$，则下列各式除以 $m$ 的余数相同：</p>
+    <div class="formula-grid">
+      <div>$a+b$ 与 $r+s$</div>
+      <div>$a-b$ 与 $r-s$</div>
+      <div>$ab$ 与 $rs$</div>
+      <div>$a^k$ 与 $r^k$</div>
+    </div>
+    <p>因此求 $3^{2026}$ 这类大数的余数时，只需找余数的循环节。</p>
+    <h3>按余数分类</h3>
+    <p>整数可按除以 $m$ 的余数分成 $m$ 类，证明题常用：</p>
+    <ul>
+      <li>除以 $2$：$2k,\ 2k+1$（偶数<span lang="ja">偶数</span>、奇数<span lang="ja">奇数</span>）；</li>
+      <li>除以 $3$：$3k,\ 3k\pm 1$，由此 $n^2$ 除以 $3$ 的余数只能是 $0$ 或 $1$；</li>
+      <li>奇数的平方：$(2k+1)^2=4k(k+1)+1$，$k(k+1)$ 是偶数，所以它除以 $8$ 余 $1$。</li>
+    </ul>
+    <p><strong>连续整数之积</strong>（<span lang="ja">連続する整数の積</span>）：连续 $2$ 个整数之积是 $2$ 的倍数，连续 $3$ 个整数之积是 $6$ 的倍数。遇到 $n^3-n=(n-1)n(n+1)$ 要立刻想到这一点。</p>
+  </section>
+
+  <section id="euclid">
+    <h2>5 欧几里得互除法</h2>
+    <p class="jp-sub" lang="ja">ユークリッドの互除法</p>
+    <div class="box">
+      <p><strong>原理：</strong>若 $a=bq+r$，则 $\gcd(a,b)=\gcd(b,r)$。</p>
+    </div>
+    <p>因为 $a,b$ 的公约数都能整除 $r=a-bq$，$b,r$ 的公约数都能整除 $a=bq+r$，两组公约数完全相同。反复用余数替换，数越来越小，余数为 $0$ 前的最后一个除数就是最大公约数。</p>
+    $$\begin{aligned}252&amp;=105\times 2+42\\105&amp;=42\times 2+21\\42&amp;=21\times 2+0\end{aligned}\qquad\Longrightarrow\ \gcd(252,105)=21.$$
+    <p><strong>倒推</strong>可以把 $21$ 表示成 $252$ 和 $105$ 的组合，这正是下一节解不定方程的工具：</p>
+    $$21=105-42\times 2=105-(252-105\times 2)\times 2=105\times 5+252\times(-2).$$
+
+    <div class="explorer" id="eu">
+      <h3 style="margin-top:0">交互演示：用正方形铺满长方形</h3>
+      <p style="font-size:15px;color:var(--ink-2)">互除法的几何意义：在长 $a$、宽 $b$ 的长方形里不断切下尽量多的最大正方形，每一步的商就是切下的个数，最后的正方形边长就是最大公约数。同一颜色表示同一步。</p>
+      <div class="ctrl"><label for="eu-a">$a$</label><input id="eu-a" type="range" min="1" max="400" value="252"><output id="eu-a-o"></output></div>
+      <div class="ctrl"><label for="eu-b">$b$</label><input id="eu-b" type="range" min="1" max="400" value="105"><output id="eu-b-o"></output></div>
+      <div class="ctrl"><label for="eu-s">显示步数</label><input id="eu-s" type="range" min="1" max="3" value="3"><output id="eu-s-o"></output></div>
+      <svg id="eu-svg" class="chart" role="img" aria-label="互除法的正方形铺砌图"></svg>
+      <div class="tw"><table class="steps"><thead><tr><th>步</th><th>被除数 = 除数 × 商 + 余数</th></tr></thead><tbody id="eu-rows"></tbody></table></div>
+      <div class="status" id="eu-status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="diophantine">
+    <h2>6 一次不定方程</h2>
+    <p class="jp-sub" lang="ja">1次不定方程式 $ax+by=c$ の整数解</p>
+    <div class="box">
+      <p><strong>有解条件：</strong>$ax+by=c$ 有整数解 $\iff$ $c$ 是 $\gcd(a,b)$ 的倍数。特别地，$a,b$ 互素时 $ax+by=1$ 一定有整数解。</p>
+    </div>
+    <p>例如 $6x+9y=4$ 无整数解：左边总是 $3$ 的倍数，右边不是。</p>
+    <h3>解法三步</h3>
+    <ol>
+      <li><strong>找一组特解</strong>（<span lang="ja">特殊解</span>）：系数小时直接试，系数大时用互除法倒推。</li>
+      <li><strong>相减</strong>：把原方程与特解的等式相减，得 $a(x-x_0)=-b(y-y_0)$。</li>
+      <li><strong>用互素性</strong>：$a,b$ 互素时 $x-x_0$ 是 $b$ 的倍数，于是得到<strong>一般解</strong>（<span lang="ja">一般解</span>）：</li>
+    </ol>
+    $$x=x_0+bk,\qquad y=y_0-ak.$$
+    <p>其中 $k$ 为任意整数。</p>
+    <div class="box good">
+      <p><strong>例：</strong>解 $43x+19y=1$。互除法：$43=19\times 2+5$，$19=5\times 3+4$，$5=4\times 1+1$。倒推：</p>
+      $$1=5-4=5-(19-5\times 3)=5\times 4-19=(43-19\times 2)\times 4-19=43\times 4+19\times(-9).$$
+      <p>特解 $(x_0,y_0)=(4,-9)$，一般解为 $x=4+19k,\ y=-9-43k$。</p>
+    </div>
+    <p>常数不为 $1$ 时可以把特解乘上常数，也可以直接找更小的特解：$43x+19y=5$ 有特解 $(1,-2)$，所以 $x=1+19k,\ y=-2-43k$。</p>
+    <div class="box warn">
+      <p><strong>限定正整数解时：</strong>把一般解代入 $x&gt;0,\ y&gt;0$，解出 $k$ 的范围再数个数。系数小的也可以直接抓「某个未知数必是某数的倍数」来枚举。</p>
+    </div>
+  </section>
+
+  <section id="base">
+    <h2>7 记数法（n 进制）</h2>
+    <p class="jp-sub" lang="ja">記数法 — n進法</p>
+    <p><strong>$n$ 进制</strong>（<span lang="ja">n進法</span>）只用数字 $0,1,\dots,n-1$，各位的权是 $n$ 的幂。写法上在右下角标注底数，如 $2301_{(4)}$。</p>
+    <h3>$n$ 进制 → 十进制：按权展开</h3>
+    $$2301_{(4)}=2\cdot 4^3+3\cdot 4^2+0\cdot 4+1=177.$$
+    <p>小数部分权为 $n^{-1},n^{-2},\dots$：$0.101_{(2)}=\dfrac12+\dfrac18=\dfrac58$。</p>
+    <h3>十进制 → $n$ 进制</h3>
+    <ul>
+      <li><strong>整数部分：</strong>反复除以 $n$，把余数<strong>由下往上</strong>读。例：$100\div 3$ 依次余 $1,0,2,0,1$，所以 $100=10201_{(3)}$。</li>
+      <li><strong>小数部分：</strong>反复乘以 $n$，把整数部分<strong>由上往下</strong>读。例：$0.625\times 2=1.25$，$0.25\times 2=0.5$，$0.5\times 2=1$，所以 $0.625=0.101_{(2)}$。</li>
+    </ul>
+    <h3>位数与数字的范围</h3>
+    <p>$N$ 在 $n$ 进制下是 $k$ 位数 $\iff n^{k-1}\le N&lt;n^k$。用字母表示各位数字时别忘了范围：$n$ 进制的各位数字满足 $0\le a\le n-1$，且最高位不为 $0$。</p>
+
+    <div class="explorer">
+      <h3 style="margin-top:0">交互演示：进制转换</h3>
+      <div class="ctrl"><label for="bs-n">十进制数</label><input id="bs-n" type="range" min="1" max="2100" value="177"><output id="bs-n-o"></output></div>
+      <div class="ctrl"><label for="bs-b">底数</label><input id="bs-b" type="range" min="2" max="9" value="4"><output id="bs-b-o"></output></div>
+      <div class="digits" id="bs-digits"></div>
+      <div class="status" id="bs-status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2>8 原创 EJU 风格例题</h2>
+    <p class="jp-sub">以下题目均为本讲义<strong>原创</strong>，仅模仿 EJU 的填空形式，并非真题。</p>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框字母对应一个数字（$0$–$9$），例如 $\B{AB}$ 是两位数；分数要约到最简。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>例题 1　互除法与不定方程</b><span class="origin">原创</span></div>
+      <p>(1) $1147$ 与 $899$ 的最大公约数为 $\B{AB}$，最小公倍数为 $\B{CDEFG}$。</p>
+      <p>(2) 方程 $37x+29y=1$ 的整数解中，$x$ 为最小正整数的解是 $x=\B{HI}$，$y=-\B{JK}$。</p>
+      <p>(3) 方程 $1147x+899y=31000$ 的正整数解只有一组：$x=\B{L}$，$y=\B{MN}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 3</li><li>B = 1</li><li>C = 3</li><li>D = 3</li><li>E = 2</li><li>F = 6</li><li>G = 3</li><li>H = 1</li><li>I = 1</li><li>J = 1</li><li>K = 4</li><li>L = 9</li><li>M = 2</li><li>N = 3</li></ul>
+        <p>(1) 互除法：$1147=899+248$，$899=248\times 3+155$，$248=155+93$，$155=93+62$，$93=62+31$，$62=31\times 2$，所以 $G=31$。又 $1147=31\times 37$，$899=31\times 29$，所以 $L=31\times 37\times 29=33263$。</p>
+        <p>(2) $37\times 11=407$，$29\times 14=406$，所以 $37\times 11+29\times(-14)=1$。一般解为 $x=11+29k$，$x$ 的最小正整数值是 $11$，此时 $y=-14$。</p>
+        <p>(3) 两边除以 $31$ 得 $37x+29y=1000$。对 $x=1,2,\dots$ 检验 $1000-37x$ 是否为 $29$ 的倍数，首次成立于 $x=9$：$1000-333=667=29\times 23$。一般解为 $x=9+29k,\ y=23-37k$，$k=0$ 时为正整数解；$k\ge 1$ 时 $y&lt;0$，$k\le -1$ 时 $x&lt;0$，故只有 $(x,y)=(9,23)$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 2　素因数分解与约数</b><span class="origin">原创</span></div>
+      <p>(1) $720=2^{\B{A}}\cdot 3^{\B{B}}\cdot 5$。</p>
+      <p>(2) $720$ 的正约数共有 $\B{CD}$ 个，它们的总和为 $\B{EFGH}$。</p>
+      <p>(3) 使 $720m$ 为平方数的最小正整数 $m$ 是 $\B{I}$，此时 $\sqrt{720m}=\B{JK}$。</p>
+      <p>(4) 使 $720n$ 为立方数的最小正整数 $n$ 是 $\B{LMN}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 4</li><li>B = 2</li><li>C = 3</li><li>D = 0</li><li>E = 2</li><li>F = 4</li><li>G = 1</li><li>H = 8</li><li>I = 5</li><li>J = 6</li><li>K = 0</li><li>L = 3</li><li>M = 0</li><li>N = 0</li></ul>
+        <p>(1) $720=16\times 45=2^4\cdot 3^2\cdot 5$。</p>
+        <p>(2) 个数 $(4+1)(2+1)(1+1)=30$；总和 $(1+2+4+8+16)(1+3+9)(1+5)=31\cdot 13\cdot 6=2418$。</p>
+        <p>(3) 只有 $5$ 的指数是奇数，所以 $m=5$，$720\times 5=3600=60^2$。</p>
+        <p>(4) 指数要补成 $3$ 的倍数：$2^4\to 2^6$ 需 $2^2$，$3^2\to 3^3$ 需 $3$，$5\to 5^3$ 需 $5^2$。$n=4\cdot 3\cdot 25=300$，$720\times 300=216000=60^3$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 3　n 进制</b><span class="origin">原创</span></div>
+      <p>(1) $110101_{(2)}$ 用十进制表示为 $\B{AB}$，用三进制表示为 $\B{CDEF}_{(3)}$。</p>
+      <p>(2) $0.101_{(2)}$ 用十进制分数表示为 $\dfrac{\B{G}}{\B{H}}$。</p>
+      <p>(3) 正整数 $N$ 用七进制表示是三位数 $abc_{(7)}$，用五进制表示是三位数 $cba_{(5)}$。比较两种表示，得</p>
+      $$\B{IJ}\,a+b=\B{KL}\,c.$$
+      <p>由此 $b=\B{M}$，$c=\B{N}\,a$。满足条件的 $N$ 中，最小的是 $\B{PQ}$，最大的是 $\B{RST}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 5</li><li>B = 3</li><li>C = 1</li><li>D = 2</li><li>E = 2</li><li>F = 2</li><li>G = 5</li><li>H = 8</li><li>I = 2</li><li>J = 4</li><li>K = 1</li><li>L = 2</li><li>M = 0</li><li>N = 2</li><li>P = 5</li><li>Q = 1</li><li>R = 1</li><li>S = 0</li><li>T = 2</li></ul>
+        <p>(1) $32+16+4+1=53$。$53=1\cdot 27+2\cdot 9+2\cdot 3+2$，所以 $53=1222_{(3)}$。</p>
+        <p>(2) $\dfrac12+\dfrac18=\dfrac58$。</p>
+        <p>(3) $49a+7b+c=25c+5b+a$，整理得 $48a+2b=24c$，即 $24a+b=12c$。于是 $b$ 是 $12$ 的倍数；$a,b,c$ 同时是五进制数字，$0\le b\le 4$，所以 $b=0$，$c=2a$。最高位 $a,c$ 不为 $0$ 且不超过 $4$，所以 $(a,c)=(1,2),(2,4)$。对应 $N=102_{(7)}=201_{(5)}=51$ 和 $N=204_{(7)}=402_{(5)}=102$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 4　余数</b><span class="origin">原创</span></div>
+      <p>(1) 整数 $n,m$ 除以 $7$ 分别余 $3,5$。此时 $n+m$ 除以 $7$ 余 $\B{A}$，$nm$ 除以 $7$ 余 $\B{B}$，$n^2+m^2$ 除以 $7$ 余 $\B{C}$。</p>
+      <p>(2) $2^{100}$ 除以 $7$ 余 $\B{D}$。</p>
+      <p>(3) 对所有正整数 $n$，$n^3+5n$ 都能被 $\B{E}$ 整除，且 $\B{E}$ 是具有此性质的最大整数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 1</li><li>B = 1</li><li>C = 6</li><li>D = 2</li><li>E = 6</li></ul>
+        <p>(1) $3+5=8$ 余 $1$；$3\times 5=15$ 余 $1$；$9+25=34$ 余 $6$。</p>
+        <p>(2) $2^3=8$ 除以 $7$ 余 $1$，而 $100=3\times 33+1$，所以 $2^{100}=(2^3)^{33}\cdot 2$ 的余数为 $1\cdot 2=2$。</p>
+        <p>(3) $n^3+5n=(n-1)n(n+1)+6n$。连续 $3$ 个整数之积是 $6$ 的倍数，所以整体是 $6$ 的倍数。又 $n=1$ 时值恰为 $6$，所以 $6$ 是最大的。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>9 练习题</h2>
+    <p class="jp-sub">共 16 题，均为<strong>原创</strong>。先自己做，再点按钮看答案和解析。</p>
+
+    <div class="q" data-p="1"><div class="q-head"><b>1</b>倍数判定</div>
+      <p>四位数 $8a35$（$a$ 是一位数字）是 $9$ 的倍数时，$a$ 是多少？是 $11$ 的倍数时呢？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$9$ 的倍数：$a=2$；$11$ 的倍数：$a=6$</b></p><p>数字和 $16+a$ 为 $9$ 的倍数，得 $a=2$。奇偶位差 $(5+a)-(3+8)=a-6$ 为 $11$ 的倍数，得 $a=6$。</p></div></div>
+
+    <div class="q" data-p="2"><div class="q-head"><b>2</b>倍数判定</div>
+      <p>五位数 $3a72b$ 是 $72$ 的倍数。求所有的数字组 $(a,b)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$(a,b)=(6,0),(7,8)$</b></p><p>$8$ 的倍数：末三位 $72b$ 中 $b=0$ 或 $8$。$9$ 的倍数：数字和 $12+a+b$。$b=0$ 时 $a=6$；$b=8$ 时 $a=7$。即 $36720$、$37728$。</p></div></div>
+
+    <div class="q" data-p="3"><div class="q-head"><b>3</b>约数</div>
+      <p>求 $360$ 的正约数的个数与总和。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$24$ 个，总和 $1170$</b></p><p>$360=2^3\cdot 3^2\cdot 5$。个数 $4\cdot 3\cdot 2=24$；总和 $15\cdot 13\cdot 6=1170$。</p></div></div>
+
+    <div class="q" data-p="4"><div class="q-head"><b>4</b>约数</div>
+      <p>$180$ 的正约数中，奇数有几个？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$6$ 个</b></p><p>$180=2^2\cdot 3^2\cdot 5$。奇约数不含 $2$，是 $3^2\cdot 5$ 的约数，共 $3\cdot 2=6$ 个。</p></div></div>
+
+    <div class="q" data-p="5"><div class="q-head"><b>5</b>平方数</div>
+      <p>求使 $\sqrt{84n}$ 为整数的最小正整数 $n$，以及此时 $\sqrt{84n}$ 的值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$n=21$，$\sqrt{84n}=42$</b></p><p>$84=2^2\cdot 3\cdot 7$，补上 $3\cdot 7=21$，$84\times 21=1764=42^2$。</p></div></div>
+
+    <div class="q" data-p="6"><div class="q-head"><b>6</b>阶乘</div>
+      <p>$30!$ 的末尾连续有几个 $0$？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$7$ 个</b></p><p>数 $5$ 的指数：$\left\lfloor\dfrac{30}{5}\right\rfloor+\left\lfloor\dfrac{30}{25}\right\rfloor=6+1=7$，而 $2$ 的指数更大。</p></div></div>
+
+    <div class="q" data-p="7"><div class="q-head"><b>7</b>G 与 L</div>
+      <p>正整数 $a&lt;b$ 的最大公约数为 $12$，最小公倍数为 $180$。求所有的 $(a,b)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$(a,b)=(12,180),(36,60)$</b></p><p>$a=12a'$，$b=12b'$，$a'b'=180\div 12=15$，$a',b'$ 互素且 $a'&lt;b'$：$(1,15),(3,5)$。</p></div></div>
+
+    <div class="q" data-p="8"><div class="q-head"><b>8</b>互除法</div>
+      <p>用互除法求 $2023$ 与 $1547$ 的最大公约数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$119$</b></p><p>$2023=1547+476$，$1547=476\times 3+119$，$476=119\times 4$。</p></div></div>
+
+    <div class="q" data-p="9"><div class="q-head"><b>9</b>不定方程</div>
+      <p>求 $17x+23y=1$ 的一般解，以及 $x$ 为最小正整数时的解。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$x=-4+23k,\ y=3-17k$；最小正 $x$：$(x,y)=(19,-14)$</b></p><p>$23=17+6$，$17=6\times 2+5$，$6=5+1$。倒推 $1=6-5=6\times 3-17=23\times 3+17\times(-4)$。取 $k=1$ 得 $(19,-14)$。</p></div></div>
+
+    <div class="q" data-p="10"><div class="q-head"><b>10</b>不定方程</div>
+      <p>$3x+5y=100$ 的正整数解有几组？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$6$ 组</b></p><p>特解 $(30,2)$，一般解 $x=30-5k,\ y=2+3k$。由 $x&gt;0,\ y&gt;0$ 得 $k=0,1,\dots,5$，共 $6$ 组：$(30,2),(25,5),(20,8),(15,11),(10,14),(5,17)$。</p></div></div>
+
+    <div class="q" data-p="11"><div class="q-head"><b>11</b>应用</div>
+      <p>买每个 $120$ 日元的苹果和每个 $70$ 日元的橘子，各至少一个，共付 $1000$ 日元。各买了几个？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">苹果 $6$ 个，橘子 $4$ 个</b></p><p>$12a+7b=100$。$a=6$ 时 $7b=28$，$b=4$。一般解 $a=6+7k,\ b=4-12k$，满足 $a,b\ge 1$ 的只有 $k=0$。</p></div></div>
+
+    <div class="q" data-p="12"><div class="q-head"><b>12</b>余数</div>
+      <p>$100$ 以下的正整数中，除以 $5$ 余 $3$、除以 $7$ 余 $4$ 的有哪些？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$18,\ 53,\ 88$（共 $3$ 个）</b></p><p>设 $n=5x+3=7y+4$，得 $5x-7y=1$，特解 $(x,y)=(3,2)$，所以 $n=18$。其余每隔 $5\times 7=35$ 出现一次。</p></div></div>
+
+    <div class="q" data-p="13"><div class="q-head"><b>13</b>余数</div>
+      <p>$3^{2026}$ 的个位数字是多少？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$9$</b></p><p>个位按 $3,9,7,1$ 循环，周期 $4$。$2026=4\times 506+2$，对应第 $2$ 个，即 $9$。</p></div></div>
+
+    <div class="q" data-p="14"><div class="q-head"><b>14</b>n 进制</div>
+      <p>把十进制数 $2026$ 化为八进制。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$3752_{(8)}$</b></p><p>$2026\div 8=253$ 余 $2$，$253\div 8=31$ 余 $5$，$31\div 8=3$ 余 $7$，由下往上读得 $3752$。</p></div></div>
+
+    <div class="q" data-p="15"><div class="q-head"><b>15</b>n 进制</div>
+      <p>计算 $101101_{(2)}\times 101_{(2)}$，结果用二进制表示。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$11100001_{(2)}$</b></p><p>化为十进制：$45\times 5=225=128+64+32+1$。</p></div></div>
+
+    <div class="q" data-p="16"><div class="q-head"><b>16</b>n 进制</div>
+      <p>把 $0.32_{(5)}$ 化为十进制小数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><b class="a">$0.68$</b></p><p>$\dfrac35+\dfrac{2}{25}=\dfrac{17}{25}=0.68$。</p></div></div>
+  </section>
+
+  <section id="terms">
+    <h2>10 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页按 JASSO 数学シラバス项目 06 组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。所有例题和练习题均为原创，答案已用 Python（SymPy）计算核对。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = [].slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + e.target.id;
+          a.classList.toggle('on', on);
+          if (on && a.parentNode.parentNode.scrollWidth > a.parentNode.parentNode.clientWidth) {
+            a.parentNode.parentNode.scrollLeft = a.offsetLeft - 40;
+          }
+        });
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 答案开关 ---------- */
+  document.querySelectorAll('.toggle-ans').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var ans = b.nextElementSibling, show = ans.hidden;
+      ans.hidden = !show;
+      b.setAttribute('aria-expanded', String(show));
+      b.textContent = show ? '隐藏答案' : '显示答案';
+    });
+  });
+
+  /* ---------- 互除法演示 ---------- */
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  var COLORS = ['var(--c1)', 'var(--c2)', 'var(--c3)', 'var(--c4)'];
+  var euA = $('eu-a'), euB = $('eu-b'), euS = $('eu-s'), euSvg = $('eu-svg');
+  function euSteps(a, b) {
+    var out = [];
+    while (b > 0) { out.push({ a: a, b: b, q: Math.floor(a / b), r: a % b }); var t = a % b; a = b; b = t; }
+    return out;
+  }
+  function euUpdate(keepStep) {
+    var a = +euA.value, b = +euB.value;
+    var big = Math.max(a, b), small = Math.min(a, b);
+    var steps = euSteps(big, small);
+    euS.max = steps.length;
+    if (!keepStep) euS.value = steps.length;
+    var shown = +euS.value;
+    var gcd = steps[steps.length - 1].b;
+    $('eu-a-o').textContent = a;
+    $('eu-b-o').textContent = b;
+    $('eu-s-o').textContent = shown + '/' + steps.length;
+
+    var scale = 640 / big, H = Math.max(small * scale, 3);
+    euSvg.setAttribute('viewBox', '0 0 640 ' + H);
+    euSvg.setAttribute('aria-label', '长 ' + big + '、宽 ' + small + ' 的长方形被切成正方形，最小正方形边长为 ' + gcd);
+    euSvg.textContent = '';
+    var bg = document.createElementNS(SVGNS, 'rect');
+    bg.setAttribute('width', 640); bg.setAttribute('height', H);
+    bg.setAttribute('fill', 'var(--surface-2)');
+    euSvg.appendChild(bg);
+    var x = 0, y = 0, w = big, h = small;
+    steps.slice(0, shown).forEach(function (st, i) {
+      for (var k = 0; k < st.q; k++) {
+        var r = document.createElementNS(SVGNS, 'rect');
+        r.setAttribute('x', x * scale); r.setAttribute('y', y * scale);
+        r.setAttribute('width', st.b * scale); r.setAttribute('height', st.b * scale);
+        r.setAttribute('fill', COLORS[i % 4]);
+        r.setAttribute('fill-opacity', '.72');
+        euSvg.appendChild(r);
+        if (w >= h) { x += st.b; w -= st.b; } else { y += st.b; h -= st.b; }
+      }
+    });
+
+    var rows = $('eu-rows');
+    rows.textContent = '';
+    steps.forEach(function (st, i) {
+      var tr = document.createElement('tr');
+      if (i >= shown) tr.className = 'off';
+      var c1 = document.createElement('td'), c2 = document.createElement('td');
+      c1.textContent = i + 1;
+      c2.textContent = st.a + ' = ' + st.b + ' × ' + st.q + ' + ' + st.r;
+      tr.appendChild(c1); tr.appendChild(c2); rows.appendChild(tr);
+    });
+
+    var msg = 'gcd(' + a + ', ' + b + ') = ' + gcd + '，lcm = ' + (a * b / gcd) + '。';
+    msg += gcd === 1 ? '两数互素。' : '约去 ' + gcd + ' 后得 ' + (a / gcd) + ' 与 ' + (b / gcd) + '，它们互素。';
+    if (a < b) msg += '（已按较大数在前计算。）';
+    $('eu-status').textContent = msg;
+  }
+  euA.addEventListener('input', function () { euUpdate(false); });
+  euB.addEventListener('input', function () { euUpdate(false); });
+  euS.addEventListener('input', function () { euUpdate(true); });
+  euUpdate(false);
+
+  /* ---------- 进制转换演示 ---------- */
+  function bsUpdate() {
+    var n = +$('bs-n').value, b = +$('bs-b').value;
+    $('bs-n-o').textContent = n;
+    $('bs-b-o').textContent = b;
+    var box = $('bs-digits'), s = n.toString(b);
+    box.textContent = '';
+    var terms = [];
+    s.split('').forEach(function (d, i) {
+      var p = s.length - 1 - i, weight = Math.pow(b, p);
+      var cell = document.createElement('span'), big = document.createElement('b');
+      big.textContent = d;
+      cell.appendChild(big);
+      cell.appendChild(document.createTextNode(b + '^' + p + ' = ' + weight));
+      box.appendChild(cell);
+      terms.push(d + '×' + weight);
+    });
+    $('bs-status').textContent = n + ' = ' + s + '（' + b + ' 进制）= ' + terms.join(' + ');
+  }
+  $('bs-n').addEventListener('input', bsUpdate);
+  $('bs-b').addEventListener('input', bsUpdate);
+  bsUpdate();
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['整数', 'せいすう', '整数'],
+    ['自然数', 'しぜんすう', '自然数'],
+    ['偶数', 'ぐうすう', '偶数'],
+    ['奇数', 'きすう', '奇数'],
+    ['倍数', 'ばいすう', '倍数'],
+    ['約数', 'やくすう', '约数'],
+    ['倍数の判定法', 'ばいすうのはんていほう', '倍数判定法'],
+    ['各位の和', 'かくいのわ', '各位数字之和'],
+    ['素数', 'そすう', '素数（质数）'],
+    ['合成数', 'ごうせいすう', '合数'],
+    ['素因数', 'そいんすう', '素因数'],
+    ['素因数分解', 'そいんすうぶんかい', '素因数分解'],
+    ['指数', 'しすう', '指数'],
+    ['平方数', 'へいほうすう', '平方数'],
+    ['階乗', 'かいじょう', '阶乘'],
+    ['公約数', 'こうやくすう', '公约数'],
+    ['最大公約数', 'さいだいこうやくすう', '最大公约数'],
+    ['公倍数', 'こうばいすう', '公倍数'],
+    ['最小公倍数', 'さいしょうこうばいすう', '最小公倍数'],
+    ['互いに素', 'たがいにそ', '互素（互质）'],
+    ['割り算', 'わりざん', '除法'],
+    ['割り切れる', 'わりきれる', '整除'],
+    ['商', 'しょう', '商'],
+    ['余り', 'あまり', '余数'],
+    ['連続する整数', 'れんぞくするせいすう', '连续整数'],
+    ['ユークリッドの互除法', 'ユークリッドのごじょほう', '欧几里得算法（辗转相除法）'],
+    ['1次不定方程式', 'いちじふていほうていしき', '一次不定方程'],
+    ['整数解', 'せいすうかい', '整数解'],
+    ['特殊解', 'とくしゅかい', '特解'],
+    ['一般解', 'いっぱんかい', '通解（一般解）'],
+    ['記数法', 'きすうほう', '记数法'],
+    ['n進法', 'エヌしんほう', 'n 进制'],
+    ['2進法', 'にしんほう', '二进制'],
+    ['10進法', 'じっしんほう', '十进制'],
+    ['位取り', 'くらいどり', '数位、定位'],
+    ['桁', 'けた', '位数（数位）'],
+    ['小数', 'しょうすう', '小数'],
+    ['既約分数', 'きやくぶんすう', '最简分数']
+  ];
+  var tbody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (t) {
+    var tr = document.createElement('tr');
+    t.forEach(function (v, i) {
+      var td = document.createElement('td');
+      td.textContent = v;
+      if (i < 2) td.lang = 'ja';
+      if (i === 1) td.className = 'kana';
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase(), n = 0;
+    [].forEach.call(tbody.rows, function (tr) {
+      var on = !q || tr.textContent.toLowerCase().indexOf(q) >= 0;
+      tr.hidden = !on;
+      if (on) n++;
+    });
+    $('term-count').textContent = '共 ' + n + ' 条';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- KaTeX ---------- */
+  window.addEventListener('load', function () {
+    if (!window.renderMathInElement) { $('cdn-note').hidden = false; return; }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['status'],
+      throwOnError: false
+    });
+  });
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

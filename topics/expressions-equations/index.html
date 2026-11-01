@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 08 各种式（式与证明・高次方程式）</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：多项式除法、分数式、二项定理、恒等式、等式与不等式证明、复数与二次方程、解与系数的关系、余数定理与因式定理、高次方程，含原创例题、练习题、交互演示和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#ex-svg { touch-action: pan-y; cursor: ew-resize; user-select: none; -webkit-user-select: none; background: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+.back { display: inline-block; color: #c5d3ef; text-decoration: none; font-size: 15px; margin-bottom: 18px; }
+.back:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <a class="back" href="../../">← 目录</a>
+      <p class="eyebrow">EJU 数学コース2 · 出题项目 08 · いろいろな式</p>
+      <h1>各种式（式与证明・高次方程式）</h1>
+      <p class="lead">从多项式除法、二项定理、恒等式，到不等式证明、复数和高次方程：每个知识点都配小例子，再用原创的 EJU 风格填空题和练习题检验。日语术语随文标注，文末有完整对照表。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$P(x)=(x-a)Q(x)+P(a)$$
+      $$\frac{a+b}{2}\ge\sqrt{ab}$$
+      $$\alpha+\beta=-\frac ba,\quad \alpha\beta=\frac ca$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#division">1 多项式除法</a></li>
+        <li><a href="#fraction">2 分数式</a></li>
+        <li><a href="#binomial">3 二项定理</a></li>
+        <li><a href="#identity">4 恒等式</a></li>
+        <li><a href="#proof">5 等式与不等式证明</a></li>
+        <li><a href="#complex">6 复数与二次方程</a></li>
+        <li><a href="#vieta">7 解与系数的关系</a></li>
+        <li><a href="#remainder">8 余数与因式定理</a></li>
+        <li><a href="#higher">9 高次方程</a></li>
+        <li><a href="#examples">10 原创例题</a></li>
+        <li><a href="#practice">11 练习题</a></li>
+        <li><a href="#terms">12 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box warn" style="margin-top:28px">
+    <p><strong>符号提醒：</strong>日本教材把组合数写成 ${}_{n}\mathrm{C}_{r}$（中文教材常写 $C_n^r$），不等号常写成 $\geqq,\ \leqq$，含义与 $\ge,\ \le$ 相同。本讲义的组合数按日本写法。</p>
+  </div>
+
+  <section id="division">
+    <h2>1 多项式的除法</h2>
+    <p class="jp-sub" lang="ja">多項式の除法 — 商と余り</p>
+    <p>多项式 $A$ 除以多项式 $B$（<span lang="ja">商</span> $Q$、<span lang="ja">余り</span> $R$）时，下面的等式对所有 $x$ 成立：</p>
+    $$A=BQ+R\qquad(R\text{ 的次数}&lt;B\text{ 的次数，或 }R=0)$$
+    <p>做法和整数竖式一样：<strong>按降幂排列，每一步消去最高次项</strong>。缺项要留空位（或补 $0$），否则容易错位。</p>
+    <h3>例：$(2x^3+x^2-5x+3)\div(x^2+x-1)$</h3>
+    $$\begin{aligned}
+    2x^3+x^2-5x+3-2x(x^2+x-1)&amp;=-x^2-3x+3\\
+    -x^2-3x+3-(-1)(x^2+x-1)&amp;=-2x+2
+    \end{aligned}$$
+    <p>所以商为 $2x-1$，余式为 $-2x+2$，即</p>
+    $$2x^3+x^2-5x+3=(x^2+x-1)(2x-1)-2x+2$$
+    <div class="box good">
+      <p><strong>考点提示：</strong>除以二次式时，余式最多一次，可直接设为 $ax+b$；除以三次式时，可设为 $ax^2+bx+c$。这一点在第 8 节会反复用到。</p>
+    </div>
+  </section>
+
+  <section id="fraction">
+    <h2>2 分数式</h2>
+    <p class="jp-sub" lang="ja">分数式 — 約分・通分</p>
+    <p>分母含文字的式子叫分数式，运算规则与分数相同，<strong>先因式分解</strong>几乎总是第一步。</p>
+    <div class="tw"><table>
+      <thead><tr><th>操作</th><th>例子</th></tr></thead>
+      <tbody>
+        <tr><td>约分</td><td>$\dfrac{x^2-4}{x^2+x-6}=\dfrac{(x+2)(x-2)}{(x+3)(x-2)}=\dfrac{x+2}{x+3}$</td></tr>
+        <tr><td>通分</td><td>$\dfrac{1}{x-1}-\dfrac{1}{x+1}=\dfrac{(x+1)-(x-1)}{(x-1)(x+1)}=\dfrac{2}{x^2-1}$</td></tr>
+        <tr><td>繁分式</td><td>$\dfrac{1}{1-\dfrac1x}=\dfrac{x}{x-1}$（分子分母同乘 $x$）</td></tr>
+        <tr><td>裂项</td><td>$\dfrac{1}{x(x+1)}=\dfrac1x-\dfrac1{x+1}$</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box warn">
+      <p><strong>注意：</strong>分母不能为 $0$。约分会让式子“看起来”在更多点有定义，例如上面的约分结果在 $x=2$ 处有值，但原式在 $x=2$ 处没有定义。</p>
+    </div>
+  </section>
+
+  <section id="binomial">
+    <h2>3 二项定理</h2>
+    <p class="jp-sub" lang="ja">二項定理 — 一般項と係数</p>
+    $$(a+b)^n=\sum_{r=0}^{n}{}_{n}\mathrm{C}_{r}\,a^{n-r}b^{r}$$
+    <p>其中 ${}_{n}\mathrm{C}_{r}\,a^{n-r}b^{r}$ 叫<strong>一般项</strong>（<span lang="ja">一般項</span>）。求某一项的系数时，<strong>写出一般项，再让 $x$ 的指数等于目标</strong>。</p>
+    <div class="formula-grid">
+      <div>$(2x+1)^5$ 的 $x^3$ 项：一般项 ${}_{5}\mathrm{C}_{r}(2x)^{5-r}$，令 $5-r=3$，$r=2$，系数 $10\cdot 2^3=80$。</div>
+      <div>$\Bigl(x^2-\dfrac1x\Bigr)^6$ 的常数项：$x$ 的指数 $12-3r=0$，$r=4$，值为 ${}_{6}\mathrm{C}_{4}(-1)^4=15$。</div>
+    </div>
+    <h3>系数的性质</h3>
+    <p>在 $(1+x)^n=\sum {}_{n}\mathrm{C}_{r}x^r$ 中代入特殊值：</p>
+    <div class="formula-grid">
+      <div>$x=1$：${}_{n}\mathrm{C}_{0}+{}_{n}\mathrm{C}_{1}+\cdots+{}_{n}\mathrm{C}_{n}=2^n$</div>
+      <div>$x=-1$：$\displaystyle\sum_{r=0}^{n}(-1)^r{}_{n}\mathrm{C}_{r}=0$</div>
+    </div>
+    <h3>三项的展开（多项定理）</h3>
+    <p>$(a+b+c)^n$ 中 $a^pb^qc^r\ (p+q+r=n)$ 的系数为</p>
+    $$\frac{n!}{p!\,q!\,r!}$$
+    <p>例如 $(x+y+z)^6$ 中 $x^3y^2z$ 的系数为 $\dfrac{6!}{3!\,2!\,1!}=60$。</p>
+  </section>
+
+  <section id="identity">
+    <h2>4 恒等式</h2>
+    <p class="jp-sub" lang="ja">恒等式 — 係数比較法・数値代入法</p>
+    <p>对文字取任何（使两边有意义的）值都成立的等式叫恒等式。求待定系数有两种方法：</p>
+    <div class="tw"><table>
+      <thead><tr><th>方法</th><th>做法</th><th>要点</th></tr></thead>
+      <tbody>
+        <tr><td lang="ja">係数比較法</td><td>展开后比较同次项系数</td><td>必要且充分，不用再验证</td></tr>
+        <tr><td lang="ja">数値代入法</td><td>代入方便的 $x$ 值列方程</td><td>只是必要条件，<strong>答案要验证</strong></td></tr>
+      </tbody>
+    </table></div>
+    <h3>例：$2x^2-x+3=a(x-1)(x-2)+b(x-1)+c$</h3>
+    <p>代入 $x=1$：$c=4$；代入 $x=2$：$9=b+4$，$b=5$；比较 $x^2$ 系数：$a=2$。</p>
+    <p>验证：代入 $x=0$，左边 $3$，右边 $2\cdot2+5\cdot(-1)+4=3$，一致。（二次多项式在三个不同的点相等，就恒等。）</p>
+    <h3>“对任意 $k$ 成立”也是恒等式</h3>
+    <p>把式子按 $k$ 整理，让 $k$ 的系数和常数部分都为 $0$。例如直线 $(2k+1)x+(k-1)y-3k=0$ 可改写为</p>
+    $$k(2x+y-3)+(x-y)=0$$
+    <p>由 $2x+y-3=0,\ x-y=0$ 得 $x=y=1$，所以不论 $k$ 取何值，这条直线都过定点 $(1,1)$。</p>
+  </section>
+
+  <section id="proof">
+    <h2>5 等式与不等式的证明</h2>
+    <p class="jp-sub" lang="ja">等式・不等式の証明 — 相加平均と相乗平均</p>
+    <h3>等式的证明</h3>
+    <ul>
+      <li><strong>直接变形：</strong>把一边化成另一边，或证明“左边 − 右边 $=0$”。</li>
+      <li><strong>条件等式：</strong>由条件消去一个文字。例如 $a+b+c=0$ 时，由 $a^3+b^3+c^3-3abc=(a+b+c)(a^2+b^2+c^2-ab-bc-ca)$ 得 $a^3+b^3+c^3=3abc$。</li>
+      <li><strong>比例式：</strong>设 $\dfrac ab=\dfrac cd=k$，则 $a=bk,\ c=dk$，代入即可。</li>
+    </ul>
+    <h3>不等式的证明</h3>
+    <p>基本思路是证明“左边 − 右边 $\ge 0$”，常把它配成平方和：</p>
+    <div class="formula-grid">
+      <div>$a^2+b^2\ge 2ab$，等号在 $a=b$ 时成立</div>
+      <div>$a^2+b^2+c^2\ge ab+bc+ca$，因为差 $=\dfrac12\{(a-b)^2+(b-c)^2+(c-a)^2\}$</div>
+      <div>$(a^2+b^2)(x^2+y^2)\ge(ax+by)^2$，因为差 $=(ay-bx)^2$</div>
+      <div>$|a|+|b|\ge|a+b|$，两边非负，平方后比较</div>
+    </div>
+    <p>含根号或绝对值时，确认两边非负，再比较平方：$A\ge0,\ B\ge0$ 时，$A\ge B\iff A^2\ge B^2$。</p>
+    <h3>相加平均与相乘平均（<span lang="ja">相加平均と相乗平均</span>）</h3>
+    <p>$a&gt;0,\ b&gt;0$ 时，</p>
+    $$\frac{a+b}{2}\ge\sqrt{ab}\qquad\text{即}\qquad a+b\ge 2\sqrt{ab}\quad(\text{等号当且仅当 }a=b)$$
+    <p>证明：$a+b-2\sqrt{ab}=(\sqrt a-\sqrt b)^2\ge0$。</p>
+    <p>典型用法：<strong>积为定值时，和有最小值</strong>。例如 $x&gt;0$ 时，$x+\dfrac9x\ge2\sqrt{9}=6$，等号在 $x=3$ 时成立。</p>
+    <div class="box warn">
+      <p><strong>三个检查：</strong>① 两数都为正；② 不等式右边是定值；③ 等号确实取得到。连续用两次相加相乘时，两个等号条件必须能同时成立（见例题 4）。</p>
+    </div>
+  </section>
+
+  <section id="complex">
+    <h2>6 复数与二次方程</h2>
+    <p class="jp-sub" lang="ja">複素数と2次方程式 — 虚数単位・判別式</p>
+    <p>规定 $i^2=-1$（<span lang="ja">虚数単位</span>）。形如 $a+bi$（$a,b$ 为实数）的数叫复数；$b\ne0$ 时叫虚数。</p>
+    <div class="tw"><table>
+      <thead><tr><th>项目</th><th>规则与例子</th></tr></thead>
+      <tbody>
+        <tr><td>相等</td><td>$a+bi=c+di\iff a=c$ 且 $b=d$（$a,b,c,d$ 为实数）</td></tr>
+        <tr><td>乘法</td><td>当作多项式展开，$i^2$ 换成 $-1$：$(3+2i)(1-i)=5-i$</td></tr>
+        <tr><td>共轭</td><td>$a+bi$ 的共轭复数（<span lang="ja">共役な複素数</span>）是 $a-bi$，两者之积 $=a^2+b^2$</td></tr>
+        <tr><td>除法</td><td>分子分母同乘分母的共轭：$\dfrac{3+i}{1+i}=\dfrac{(3+i)(1-i)}{2}=2-i$</td></tr>
+        <tr><td>负数的平方根</td><td>$a&gt;0$ 时 $\sqrt{-a}=\sqrt a\,i$</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box warn">
+      <p><strong>陷阱：</strong>$\sqrt{-2}\sqrt{-3}=\sqrt2i\cdot\sqrt3i=-\sqrt6$，不等于 $\sqrt{(-2)(-3)}=\sqrt6$。必须先化成含 $i$ 的形式再计算。</p>
+    </div>
+    <h3>二次方程与判别式</h3>
+    <p>$ax^2+bx+c=0$（$a,b,c$ 为实数）的解为 $x=\dfrac{-b\pm\sqrt{D}}{2a}$，其中 $D=b^2-4ac$（<span lang="ja">判別式</span>）。</p>
+    <div class="tw"><table>
+      <thead><tr><th>$D$ 的符号</th><th>解的情况</th></tr></thead>
+      <tbody>
+        <tr><td>$D&gt;0$</td><td>两个不同的实数解</td></tr>
+        <tr><td>$D=0$</td><td>重解（<span lang="ja">重解</span>）</td></tr>
+        <tr><td>$D&lt;0$</td><td>两个互相共轭的虚数解</td></tr>
+      </tbody>
+    </table></div>
+    <p>例如 $x^2-2x+5=0$：$\dfrac D4=1-5=-4&lt;0$，解为 $x=1\pm2i$。</p>
+  </section>
+
+  <section id="vieta">
+    <h2>7 解与系数的关系</h2>
+    <p class="jp-sub" lang="ja">解と係数の関係</p>
+    <p>$ax^2+bx+c=0$ 的两个解为 $\alpha,\beta$ 时（虚数解也成立）：</p>
+    $$\alpha+\beta=-\frac ba,\qquad \alpha\beta=\frac ca,\qquad ax^2+bx+c=a(x-\alpha)(x-\beta)$$
+    <h3>对称式都能用和与积表示</h3>
+    <div class="formula-grid">
+      <div>$\alpha^2+\beta^2=(\alpha+\beta)^2-2\alpha\beta$</div>
+      <div>$\alpha^3+\beta^3=(\alpha+\beta)^3-3\alpha\beta(\alpha+\beta)$</div>
+      <div>$\dfrac1\alpha+\dfrac1\beta=\dfrac{\alpha+\beta}{\alpha\beta}$</div>
+      <div>$(\alpha-\beta)^2=(\alpha+\beta)^2-4\alpha\beta$</div>
+    </div>
+    <p>例：$x^2-3x+5=0$ 的解 $\alpha,\beta$ 满足 $\alpha+\beta=3,\ \alpha\beta=5$，于是 $\alpha^2+\beta^2=9-10=-1$，$\alpha^3+\beta^3=27-45=-18$，$\dfrac1\alpha+\dfrac1\beta=\dfrac35$。</p>
+    <h3>由两解作方程</h3>
+    <p>以 $p,q$ 为解的二次方程（之一）是 $x^2-(p+q)x+pq=0$。</p>
+    <h3>实数解的符号</h3>
+    <div class="tw"><table>
+      <thead><tr><th>情况</th><th>条件</th></tr></thead>
+      <tbody>
+        <tr><td>两解都为正</td><td>$D\ge0,\ \alpha+\beta&gt;0,\ \alpha\beta&gt;0$</td></tr>
+        <tr><td>两解都为负</td><td>$D\ge0,\ \alpha+\beta&lt;0,\ \alpha\beta&gt;0$</td></tr>
+        <tr><td>一正一负</td><td>$\alpha\beta&lt;0$（此时 $D&gt;0$ 自动成立）</td></tr>
+      </tbody>
+    </table></div>
+    <h3>三次方程的情形</h3>
+    <p>$ax^3+bx^2+cx+d=0$ 的三个解 $\alpha,\beta,\gamma$ 满足</p>
+    $$\alpha+\beta+\gamma=-\frac ba,\quad \alpha\beta+\beta\gamma+\gamma\alpha=\frac ca,\quad \alpha\beta\gamma=-\frac da$$
+    <p>例：$x^3-2x^2+3x-4=0$ 中，和为 $2$，两两积之和为 $3$，积为 $4$，所以 $\alpha^2+\beta^2+\gamma^2=2^2-2\cdot3=-2$。</p>
+  </section>
+
+  <section id="remainder">
+    <h2>8 余数定理与因式定理</h2>
+    <p class="jp-sub" lang="ja">剰余の定理・因数定理</p>
+    <div class="box">
+      <p><strong>余数定理：</strong>多项式 $P(x)$ 除以 $x-a$ 的余数等于 $P(a)$；除以 $ax+b$ 的余数等于 $P\Bigl(-\dfrac ba\Bigr)$。</p>
+      <p><strong>因式定理：</strong>$P(a)=0\iff P(x)$ 有因式 $x-a$。</p>
+    </div>
+    <p>证明只需一行：由 $P(x)=(x-a)Q(x)+R$ 代入 $x=a$，得 $R=P(a)$。</p>
+    <p>例：$P(x)=x^3-2x^2+3$ 除以 $x-2$ 的余数为 $P(2)=3$，除以 $2x+1$ 的余数为 $P\Bigl(-\dfrac12\Bigr)=\dfrac{19}{8}$。</p>
+    <h3>除以二次式的余式</h3>
+    <p>设余式为 $ax+b$，再用余数定理列方程。</p>
+    <p>例：$P(x)$ 除以 $x-1$ 余 $3$，除以 $x+2$ 余 $-3$。设 $P(x)=(x-1)(x+2)Q(x)+ax+b$，则 $a+b=3,\ -2a+b=-3$，解得 $a=2,\ b=1$，余式为 $2x+1$。</p>
+    <h3>组立除法（<span lang="ja">組立除法</span>）</h3>
+    <p>除以 $x-a$ 时可以只写系数：把上一格的结果乘 $a$，加到下一列。以 $(x^3-4x^2+x+6)\div(x-2)$ 为例：</p>
+    <div class="tw"><table class="sign">
+      <tbody>
+        <tr><td>系数</td><td>$1$</td><td>$-4$</td><td>$1$</td><td>$6$</td></tr>
+        <tr><td>上一格 $\times2$</td><td></td><td>$2$</td><td>$-4$</td><td>$-6$</td></tr>
+        <tr><td>相加</td><td>$1$</td><td>$-2$</td><td>$-3$</td><td>$0$（余数）</td></tr>
+      </tbody>
+    </table></div>
+    <p>所以商为 $x^2-2x-3$，余数为 $0$，于是 $x^3-4x^2+x+6=(x-2)(x-3)(x+1)$。</p>
+  </section>
+
+  <section id="higher">
+    <h2>9 高次方程</h2>
+    <p class="jp-sub" lang="ja">高次方程式 — 因数分解・虚数解</p>
+    <p>高次方程的核心是<strong>因式分解，降到二次</strong>。复数范围内，$n$ 次方程恰有 $n$ 个解（重解按重数计）。</p>
+    <div class="tw"><table>
+      <thead><tr><th>方法</th><th>适用情形</th><th>例子</th></tr></thead>
+      <tbody>
+        <tr><td>因式定理</td><td>有理数解的候选是 $\pm\dfrac{\text{常数项的因数}}{\text{首项系数的因数}}$</td><td>$x^3-4x^2+x+6$ 试 $x=2$</td></tr>
+        <tr><td>公式分解</td><td>立方差、立方和</td><td>$x^3-8=(x-2)(x^2+2x+4)$，解为 $2,\ -1\pm\sqrt3i$</td></tr>
+        <tr><td>换元</td><td>同一个式子重复出现、双二次</td><td>$x^4-5x^2-36$，令 $t=x^2$</td></tr>
+        <tr><td>倒数方程</td><td>系数左右对称，除以 $x^2$ 后令 $t=x+\dfrac1x$</td><td>见下</td></tr>
+      </tbody>
+    </table></div>
+    <p>例：$x^4+x^3-4x^2+x+1=0$。$x=0$ 不是解，两边除以 $x^2$ 得 $\Bigl(x^2+\dfrac1{x^2}\Bigr)+\Bigl(x+\dfrac1x\Bigr)-4=0$。令 $t=x+\dfrac1x$，则 $x^2+\dfrac1{x^2}=t^2-2$，所以 $t^2+t-6=0$，$t=2,-3$。由 $t=2$ 得 $x=1$（重解），由 $t=-3$ 得 $x^2+3x+1=0$，$x=\dfrac{-3\pm\sqrt5}{2}$。</p>
+    <h3>实系数方程的虚数解成对出现</h3>
+    <p>若实系数方程有虚数解 $p+qi$，则共轭复数 $p-qi$ 也是解。此时 $\{x-(p+qi)\}\{x-(p-qi)\}=x^2-2px+p^2+q^2$ 是实系数因式。</p>
+    <h3>$1$ 的立方根 $\omega$</h3>
+    <p>$x^3=1$ 的虚数解之一记为 $\omega$（<span lang="ja">オメガ</span>）。由 $x^3-1=(x-1)(x^2+x+1)$ 得</p>
+    $$\omega^3=1,\qquad \omega^2+\omega+1=0$$
+    <p>高次幂可以按指数除以 $3$ 的余数降次：$\omega^{3k+1}=\omega$，$\omega^{3k+2}=\omega^2$。</p>
+
+    <div class="explorer" id="cubic-explorer">
+      <h3 style="margin:0 0 10px">三次方程探索器</h3>
+      <p style="margin-top:0">调节 $P(x)=x^3+ax^2+bx+c$ 的系数，观察虚数解如何成对出现。移动 $t$ 时，组立除法的余数恰好是曲线在 $x=t$ 处的高度；当它为 $0$ 时，$x-t$ 就是因式。</p>
+      <div class="ex-head" id="cx-presets" role="group" aria-label="预设多项式"></div>
+      <div class="ctrl"><label for="cx-a">$a$</label><input id="cx-a" type="range" min="-6" max="6" step="1"><output id="cx-a-v" for="cx-a"></output></div>
+      <div class="ctrl"><label for="cx-b">$b$</label><input id="cx-b" type="range" min="-12" max="12" step="1"><output id="cx-b-v" for="cx-b"></output></div>
+      <div class="ctrl"><label for="cx-c">$c$</label><input id="cx-c" type="range" min="-12" max="12" step="1"><output id="cx-c-v" for="cx-c"></output></div>
+      <div class="ctrl"><label for="cx-t">$t$（除以 $x-t$）</label><input id="cx-t" type="range" min="-5" max="5" step="0.5"><output id="cx-t-v" for="cx-t"></output></div>
+      <div class="fig-pair">
+        <figure class="plot"><svg class="chart" id="cx-graph" viewBox="0 0 420 300" role="img" aria-label="曲线 y 等于 P(x) 的图像"></svg><figcaption>$y=P(x)$：蓝点是实数解，红点是 $(t,\,P(t))$。</figcaption></figure>
+        <figure class="plot"><svg class="chart" id="cx-plane" viewBox="0 0 420 300" role="img" aria-label="三个解在复数平面上的位置"></svg><figcaption>三个解的位置：横轴为实部，纵轴为虚部。</figcaption></figure>
+      </div>
+      <div class="read" id="cx-read"></div>
+      <div class="status" id="cx-status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2>10 原创 EJU 风格例题</h2>
+    <p class="jp-sub">以下题目均为本讲义<strong>原创</strong>，仅模仿 EJU 的填空形式，并非真题。</p>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框字母对应一个数字（$0$–$9$），例如 $\B{AB}$ 是两位数；分数要约到最简，根号内的数要尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>例题 1　余数定理与三次方程</b><span class="origin">原创</span></div>
+      <p>多项式 $P(x)=x^3+ax^2+bx+10$ 能被 $x+1$ 整除，除以 $x-2$ 的余数为 $18$。</p>
+      <p>(1) $a=-\B{A}$，$b=\B{B}$。</p>
+      <p>(2) $P(x)=(x+1)(x^2-\B{C}x+\B{DE})$，因此方程 $P(x)=0$ 的解为 $x=-1,\ \B{F}\pm\sqrt{\B{G}}\,i$。</p>
+      <p>(3) $P(x)$ 除以 $(x+1)(x-2)$ 的余式为 $\B{H}x+\B{I}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 3</li><li>B = 6</li><li>C = 4</li><li>D = 1</li><li>E = 0</li><li>F = 2</li><li>G = 6</li><li>H = 6</li><li>I = 6</li></ul>
+        <p>(1) $P(-1)=-1+a-b+10=0$，$P(2)=8+4a+2b+10=18$，即 $a-b=-9,\ 2a+b=0$，解得 $a=-3,\ b=6$。</p>
+        <p>(2) 组立除法得 $P(x)=(x+1)(x^2-4x+10)$。$x^2-4x+10=0$ 的解为 $x=2\pm\sqrt{4-10}=2\pm\sqrt6\,i$。</p>
+        <p>(3) 设余式为 $px+q$，由 $P(-1)=0,\ P(2)=18$ 得 $-p+q=0,\ 2p+q=18$，所以 $p=q=6$，余式为 $6x+6$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 2　解与系数的关系</b><span class="origin">原创</span></div>
+      <p>二次方程 $x^2-2x+4=0$ 的两个解为 $\alpha,\beta$。</p>
+      <p>(1) $\alpha^2+\beta^2=-\B{A}$，$\alpha^3+\beta^3=-\B{BC}$。</p>
+      <p>(2) 两个解的具体值为 $\B{D}\pm\sqrt{\B{E}}\,i$。</p>
+      <p>(3) 以 $\alpha^2,\beta^2$ 为解的二次方程为 $x^2+\B{F}x+\B{GH}=0$。</p>
+      <p>(4) $\alpha^3=-\B{I}$，因此 $\alpha^{10}+\beta^{10}=-\B{JKLM}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 4</li><li>B = 1</li><li>C = 6</li><li>D = 1</li><li>E = 3</li><li>F = 4</li><li>G = 1</li><li>H = 6</li><li>I = 8</li><li>J = 1</li><li>K = 0</li><li>L = 2</li><li>M = 4</li></ul>
+        <p>(1) $\alpha+\beta=2,\ \alpha\beta=4$。$\alpha^2+\beta^2=4-8=-4$，$\alpha^3+\beta^3=8-3\cdot4\cdot2=-16$。</p>
+        <p>(2) $x=1\pm\sqrt{1-4}=1\pm\sqrt3\,i$。</p>
+        <p>(3) 两解之和 $\alpha^2+\beta^2=-4$，之积 $(\alpha\beta)^2=16$，所以方程为 $x^2+4x+16=0$。</p>
+        <p>(4) $x^3+8=(x+2)(x^2-2x+4)$，所以 $\alpha^3=-8$，同理 $\beta^3=-8$。$\alpha^{10}=(\alpha^3)^3\alpha=-512\alpha$，所以 $\alpha^{10}+\beta^{10}=-512(\alpha+\beta)=-1024$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 3　二项定理・分数式・恒等式</b><span class="origin">原创</span></div>
+      <p>(1) $\Bigl(2x-\dfrac1x\Bigr)^6$ 的展开式中，$x^2$ 的系数为 $\B{ABC}$，常数项为 $-\B{DEF}$。</p>
+      <p>(2) 等式 $\dfrac{5x+1}{(x-1)(x+2)}=\dfrac{\B{G}}{x-1}+\dfrac{\B{H}}{x+2}$ 是关于 $x$ 的恒等式。</p>
+      <p>(3) 等式 $x^3=(x-1)^3+\B{I}(x-1)^2+\B{J}(x-1)+\B{K}$ 是关于 $x$ 的恒等式。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 4</li><li>C = 0</li><li>D = 1</li><li>E = 6</li><li>F = 0</li><li>G = 2</li><li>H = 3</li><li>I = 3</li><li>J = 3</li><li>K = 1</li></ul>
+        <p>(1) 一般项为 ${}_{6}\mathrm{C}_{r}(2x)^{6-r}\Bigl(-\dfrac1x\Bigr)^r={}_{6}\mathrm{C}_{r}\,2^{6-r}(-1)^r x^{6-2r}$。$r=2$ 时为 $15\cdot16=240$；$r=3$ 时为 $20\cdot8\cdot(-1)=-160$。</p>
+        <p>(2) 去分母：$5x+1=G(x+2)+H(x-1)$。代入 $x=1$ 得 $6=3G$，代入 $x=-2$ 得 $-9=-3H$，所以 $G=2,\ H=3$。两边都是一次式，比较系数 $G+H=5,\ 2G-H=1$，确认成立。</p>
+        <p>(3) 令 $u=x-1$，则 $x^3=(u+1)^3=u^3+3u^2+3u+1$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 4　相加平均与相乘平均</b><span class="origin">原创</span></div>
+      <p>(1) $x&gt;1$ 时，$x+\dfrac{9}{x-1}$ 的最小值为 $\B{A}$，此时 $x=\B{B}$。</p>
+      <p>(2) $x&gt;0,\ y&gt;0$ 时，</p>
+      $$\Bigl(x+\frac4y\Bigr)\Bigl(y+\frac9x\Bigr)=xy+\frac{36}{xy}+\B{CD}$$
+      <p>它的最小值为 $\B{EF}$，此时 $xy=\B{G}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 7</li><li>B = 4</li><li>C = 1</li><li>D = 3</li><li>E = 2</li><li>F = 5</li><li>G = 6</li></ul>
+        <p>(1) 凑出 $x-1&gt;0$：$(x-1)+\dfrac9{x-1}+1\ge2\sqrt9+1=7$。等号在 $x-1=3$，即 $x=4$ 时成立。</p>
+        <p>(2) 展开得 $xy+9+4+\dfrac{36}{xy}$，常数部分为 $13$。又 $xy+\dfrac{36}{xy}\ge12$，等号在 $xy=6$ 时成立，所以最小值为 $25$。</p>
+        <p><strong>常见错误：</strong>直接写 $x+\dfrac4y\ge2\sqrt{\dfrac{4x}{y}}$，$y+\dfrac9x\ge2\sqrt{\dfrac{9y}{x}}$，相乘得“$\ge24$”。这个不等式本身没错，但第一个等号要求 $xy=4$，第二个要求 $xy=9$，不能同时成立，所以 $24$ 取不到。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 5　含参数的三次方程</b><span class="origin">原创</span></div>
+      <p>$k$ 为实数，考虑关于 $x$ 的方程 $x^3+(k-1)x^2+(4-k)x-4=0$。</p>
+      <p>(1) 不论 $k$ 取何值，左边都可以分解为 $(x-\B{A})(x^2+kx+\B{B})$。</p>
+      <p>(2) 方程有虚数解的条件是 $-\B{C}&lt;k&lt;\B{D}$。</p>
+      <p>(3) 方程有三个不同实数解的条件是：$k&lt;-\B{E}$ 且 $k\ne-\B{F}$，或 $k&gt;\B{G}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 1</li><li>B = 4</li><li>C = 4</li><li>D = 4</li><li>E = 4</li><li>F = 5</li><li>G = 4</li></ul>
+        <p>(1) 代入 $x=1$：$1+k-1+4-k-4=0$，与 $k$ 无关，所以有因式 $x-1$。除法得 $x^2+kx+4$。</p>
+        <p>(2) $x^2+kx+4=0$ 的判别式 $D=k^2-16&lt;0$，即 $-4&lt;k&lt;4$。</p>
+        <p>(3) 需要 $D&gt;0$（$k&lt;-4$ 或 $k&gt;4$），并且 $x=1$ 不是二次因式的解：$1+k+4\ne0$，即 $k\ne-5$。</p>
+        <p><strong>补充：</strong>$k=-5$ 时解为 $x=1$（重解）和 $4$；$k=\pm4$ 时二次因式有重解。这三种情况都只有两个不同的实数解。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>11 练习题</h2>
+    <div class="bar">
+      <p class="jp-sub" style="margin:0">先自己算，再点按钮核对。题目为本讲义原创。</p>
+      <button class="chip" id="toggle-all" type="button">显示全部答案</button>
+    </div>
+
+    <div class="q"><div class="q-head"><b>1</b>多项式除法</div>
+      <p>求 $2x^3-3x^2+4x-5$ 除以 $x^2-x+2$ 的商和余式。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>商 $2x-1$，余式 $-x-3$。检验：$(x^2-x+2)(2x-1)=2x^3-3x^2+5x-2$，加上余式后与原式一致。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>2</b>分数式</div>
+      <p>化简 $\dfrac{x^2-1}{x^2+3x+2}\div\dfrac{x-1}{x+3}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\dfrac{(x+1)(x-1)}{(x+1)(x+2)}\cdot\dfrac{x+3}{x-1}=\dfrac{x+3}{x+2}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>3</b>分数式</div>
+      <p>计算 $\dfrac{1}{x(x+1)}+\dfrac{1}{(x+1)(x+2)}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>裂项：$\dfrac1x-\dfrac1{x+1}+\dfrac1{x+1}-\dfrac1{x+2}=\dfrac1x-\dfrac1{x+2}=\dfrac{2}{x(x+2)}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>4</b>二项定理</div>
+      <p>求 $(x-2)^7$ 展开式中 $x^4$ 的系数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>一般项 ${}_{7}\mathrm{C}_{r}x^{7-r}(-2)^r$，$r=3$：$35\cdot(-8)=-280$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>5</b>多项定理</div>
+      <p>求 $(x+2y+z)^5$ 展开式中 $x^2y^2z$ 的系数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\dfrac{5!}{2!\,2!\,1!}\cdot2^2=30\cdot4=120$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>6</b>二项系数</div>
+      <p>求 $\displaystyle\sum_{r=0}^{8}{}_{8}\mathrm{C}_{r}\,2^r$ 的值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>就是 $(1+2)^8$ 的展开，值为 $3^8=6561$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>7</b>恒等式</div>
+      <p>$x^2+2x+3=a(x-1)^2+b(x-1)+c$ 是恒等式，求 $a,b,c$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>右边展开：$ax^2+(b-2a)x+(a-b+c)$。比较系数得 $a=1$，$b=4$，$c=6$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>8</b>比例式</div>
+      <p>$\dfrac x2=\dfrac y3=\dfrac z4\ne0$ 时，求 $\dfrac{xy+yz+zx}{x^2+y^2+z^2}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>设比值为 $k$，则 $x=2k,\ y=3k,\ z=4k$。原式 $=\dfrac{(6+12+8)k^2}{(4+9+16)k^2}=\dfrac{26}{29}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>9</b>不等式证明</div>
+      <p>$a&gt;0,\ b&gt;0$ 时，证明 $(a+b)\Bigl(\dfrac1a+\dfrac1b\Bigr)\ge4$，并指出等号成立的条件。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>左边 $-4=\dfrac ab+\dfrac ba-2=\dfrac{(a-b)^2}{ab}\ge0$，等号当且仅当 $a=b$ 时成立。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>10</b>相加相乘</div>
+      <p>$x&gt;0$ 时，求 $\dfrac{x^2+3x+4}{x}$ 的最小值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>原式 $=x+\dfrac4x+3\ge2\sqrt4+3=7$，等号在 $x=2$ 时成立，最小值为 $7$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>11</b>相加相乘</div>
+      <p>$a&gt;0,\ b&gt;0,\ 2a+3b=12$ 时，求 $ab$ 的最大值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$12=2a+3b\ge2\sqrt{6ab}$，所以 $ab\le6$。等号在 $2a=3b=6$，即 $a=3,\ b=2$ 时成立，最大值为 $6$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>12</b>复数</div>
+      <p>把 $\dfrac{1+2i}{3-i}$ 化成 $a+bi$ 的形式。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>分子分母同乘 $3+i$：$\dfrac{(1+2i)(3+i)}{10}=\dfrac{1+7i}{10}$，即 $\dfrac1{10}+\dfrac7{10}i$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>13</b>复数相等</div>
+      <p>实数 $x,y$ 满足 $(x+yi)(2-i)=5+5i$，求 $x,y$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>左边 $=(2x+y)+(2y-x)i$，所以 $2x+y=5,\ 2y-x=5$，解得 $x=1,\ y=3$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>14</b>判别式与解的符号</div>
+      <p>关于 $x$ 的方程 $x^2-2(k-1)x+k+5=0$。求下列情况下实数 $k$ 的范围：(1) 有虚数解；(2) 两解都是正的实数（可为重解）；(3) 一正一负。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\dfrac D4=(k-1)^2-(k+5)=(k-4)(k+1)$。(1) $-1&lt;k&lt;4$。(2) $D\ge0$，和 $2(k-1)&gt;0$，积 $k+5&gt;0$，得 $k\ge 4$。(3) 积 $k+5&lt;0$，得 $k&lt;-5$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>15</b>解与系数</div>
+      <p>$2x^2-4x+5=0$ 的两解为 $\alpha,\beta$。求 (1) $(\alpha-1)(\beta-1)$；(2) $\dfrac\alpha\beta+\dfrac\beta\alpha$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\alpha+\beta=2,\ \alpha\beta=\dfrac52$。(1) $\dfrac52-2+1=\dfrac32$。(2) $\dfrac{(\alpha+\beta)^2-2\alpha\beta}{\alpha\beta}=\dfrac{4-5}{5/2}=-\dfrac25$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>16</b>余式</div>
+      <p>$P(x)$ 除以 $(x-1)^2$ 余 $3x-1$，且能被 $x+1$ 整除。求 $P(x)$ 除以 $(x-1)^2(x+1)$ 的余式。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>余式至多二次，且除以 $(x-1)^2$ 的余式也是 $3x-1$，可设为 $p(x-1)^2+3x-1$。由 $P(-1)=0$：$4p-4=0$，$p=1$。余式为 $x^2+x$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>17</b>高次方程</div>
+      <p>解方程 $x^4-5x^2-36=0$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$(x^2-9)(x^2+4)=0$，所以 $x=\pm 3,\ \pm 2i$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>18</b>$1$ 的立方根</div>
+      <p>$\omega$ 为 $x^3=1$ 的一个虚数解，求 $\omega^{20}+\omega^{10}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\omega^{20}=\omega^2,\ \omega^{10}=\omega$，再由 $\omega^2+\omega+1=0$，值为 $-1$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>19</b>虚数解</div>
+      <p>实系数方程 $x^3+ax^2+bx-15=0$ 有一个解 $1+2i$。求 $a,b$ 和其余的解。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>另有共轭解 $1-2i$，它们对应因式 $x^2-2x+5$。由常数项，第三个因式为 $x-3$。展开 $(x^2-2x+5)(x-3)=x^3-5x^2+11x-15$，所以 $a=-5,\ b=11$，其余的解为 $1-2i$ 和 $x=3$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>20</b>换元</div>
+      <p>解方程 $(x^2+x)^2-8(x^2+x)+12=0$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>令 $t=x^2+x$：$(t-2)(t-6)=0$。$x^2+x-2=0$ 给出 $x=1,\ -2$；$x^2+x-6=0$ 给出 $x=2,\ -3$。</p></div></div>
+  </section>
+
+  <section id="terms">
+    <h2>12 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页依据 JASSO 2026 年度起适用的数学シラバス中「いろいろな式」的项目组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。所有例题和练习题均为原创。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['式的运算', [
+      ['多項式', 'たこうしき', '多项式'], ['整式', 'せいしき', '整式'], ['除法', 'じょほう', '除法'],
+      ['商', 'しょう', '商'], ['余り', 'あまり', '余数、余式'], ['割り切れる', 'わりきれる', '整除'],
+      ['組立除法', 'くみたてじょほう', '综合除法'], ['分数式', 'ぶんすうしき', '分式'], ['約分', 'やくぶん', '约分'],
+      ['通分', 'つうぶん', '通分'], ['分母', 'ぶんぼ', '分母'], ['分子', 'ぶんし', '分子']
+    ]],
+    ['二项定理与恒等式', [
+      ['二項定理', 'にこうていり', '二项式定理'], ['二項係数', 'にこうけいすう', '二项式系数'], ['一般項', 'いっぱんこう', '一般项、通项'],
+      ['パスカルの三角形', 'パスカルのさんかくけい', '杨辉三角'], ['展開式', 'てんかいしき', '展开式'], ['定数項', 'ていすうこう', '常数项'],
+      ['恒等式', 'こうとうしき', '恒等式'], ['係数比較法', 'けいすうひかくほう', '系数比较法'], ['数値代入法', 'すうちだいにゅうほう', '数值代入法']
+    ]],
+    ['证明', [
+      ['証明', 'しょうめい', '证明'], ['不等式', 'ふとうしき', '不等式'], ['条件式', 'じょうけんしき', '条件式'],
+      ['比例式', 'ひれいしき', '比例式'], ['相加平均', 'そうかへいきん', '算术平均'], ['相乗平均', 'そうじょうへいきん', '几何平均'],
+      ['絶対値', 'ぜったいち', '绝对值'], ['等号', 'とうごう', '等号']
+    ]],
+    ['复数与方程', [
+      ['複素数', 'ふくそすう', '复数'], ['虚数', 'きょすう', '虚数'], ['虚数単位', 'きょすうたんい', '虚数单位'],
+      ['実部', 'じつぶ', '实部'], ['虚部', 'きょぶ', '虚部'], ['共役な複素数', 'きょうやくなふくそすう', '共轭复数'],
+      ['判別式', 'はんべつしき', '判别式'], ['重解', 'じゅうかい', '重根'], ['実数解', 'じっすうかい', '实数解'],
+      ['虚数解', 'きょすうかい', '虚数解'], ['解と係数の関係', 'かいとけいすうのかんけい', '根与系数的关系（韦达定理）']
+    ]],
+    ['余数定理与高次方程', [
+      ['剰余の定理', 'じょうよのていり', '余数定理'], ['因数定理', 'いんすうていり', '因式定理'], ['因数', 'いんすう', '因式'],
+      ['因数分解', 'いんすうぶんかい', '因式分解'], ['高次方程式', 'こうじほうていしき', '高次方程'], ['3次方程式', 'さんじほうていしき', '三次方程'],
+      ['立方根', 'りっぽうこん', '立方根'], ['置き換え', 'おきかえ', '换元']
+    ]]
+  ];
+
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja"><strong>' + t[0] + '</strong></td><td class="kana" lang="ja">' + t[1] + '</td><td>' + t[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = $('term-count');
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 答案按钮 ---------- */
+  function setAns(btn, open) {
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '隐藏答案' : '显示答案';
+    btn.nextElementSibling.hidden = !open;
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.classList && e.target.classList.contains('toggle-ans')) {
+      setAns(e.target, e.target.getAttribute('aria-expanded') !== 'true');
+    }
+  });
+  var allBtn = $('toggle-all');
+  allBtn.addEventListener('click', function () {
+    var btns = document.querySelectorAll('#practice .toggle-ans');
+    var open = allBtn.textContent.indexOf('显示') === 0;
+    btns.forEach(function (b) { setAns(b, open); });
+    allBtn.textContent = open ? '隐藏全部答案' : '显示全部答案';
+  });
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('on', on);
+          if (on && a.parentNode.parentNode.scrollWidth > a.parentNode.parentNode.clientWidth) {
+            var ol = a.parentNode.parentNode;
+            ol.scrollLeft = a.offsetLeft - ol.offsetLeft - 20;
+          }
+        });
+      });
+    }, { rootMargin: '-25% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 三次方程探索器 ---------- */
+  var S = { a: -4, b: 1, c: 6, t: 2 };
+  var PRESETS = [
+    { label: '三个实数解', a: -4, b: 1, c: 6, t: 2 },
+    { label: '例题 1（有虚数解）', a: -3, b: 6, c: 10, t: -1 },
+    { label: 'x³ − 1（含 ω）', a: 0, b: 0, c: -1, t: 1 },
+    { label: '有重解', a: 0, b: -3, c: 2, t: 1 }
+  ];
+
+  function num(v) {
+    var r = Math.round(v * 100) / 100;
+    if (r === 0) r = 0;
+    return String(r).replace('-', '−');
+  }
+  function polyText(cs) {
+    var names = ['x³', 'x²', 'x', ''], off = 4 - cs.length, out = '';
+    cs.forEach(function (co, i) {
+      if (co === 0) return;
+      var nm = names[i + off], abs = Math.abs(co);
+      var body = (abs === 1 && nm ? '' : num(abs)) + nm;
+      out += out ? (co < 0 ? ' − ' : ' + ') + body : (co < 0 ? '−' : '') + body;
+    });
+    return out || '0';
+  }
+  function cMul(p, q) { return [p[0] * q[0] - p[1] * q[1], p[0] * q[1] + p[1] * q[0]]; }
+  function cDiv(p, q) {
+    var d = q[0] * q[0] + q[1] * q[1];
+    return [(p[0] * q[0] + p[1] * q[1]) / d, (p[1] * q[0] - p[0] * q[1]) / d];
+  }
+  /* 判别式用来决定解的类型；系数都是整数，所以判断是精确的 */
+  function discriminant(a, b, c) {
+    return a * a * b * b - 4 * b * b * b - 4 * a * a * a * c - 27 * c * c + 18 * a * b * c;
+  }
+  function solveCubic(a, b, c) {
+    var z = [[1, 0], [0.4, 0.9], [-0.65, 0.72]];
+    for (var it = 0; it < 800; it++) {
+      for (var i = 0; i < 3; i++) {
+        var w = z[i];
+        var v = cMul(cMul(w, w), w);
+        var w2 = cMul(w, w);
+        var val = [v[0] + a * w2[0] + b * w[0] + c, v[1] + a * w2[1] + b * w[1]];
+        var den = [1, 0];
+        for (var j = 0; j < 3; j++) if (j !== i) den = cMul(den, [w[0] - z[j][0], w[1] - z[j][1]]);
+        if (den[0] === 0 && den[1] === 0) continue;
+        var d = cDiv(val, den);
+        z[i] = [w[0] - d[0], w[1] - d[1]];
+      }
+    }
+    var delta = discriminant(a, b, c);
+    if (delta >= 0) {
+      z.forEach(function (r) { r[1] = 0; });
+    } else {
+      z.sort(function (p, q) { return Math.abs(p[1]) - Math.abs(q[1]); });
+      z[0][1] = 0;
+      z[2] = [z[1][0], -z[1][1]];
+    }
+    z.sort(function (p, q) { return p[0] - q[0] || p[1] - q[1]; });
+    return { roots: z, delta: delta };
+  }
+  function P(x) { return ((x + S.a) * x + S.b) * x + S.c; }
+  function el(svg, name, attrs, text) {
+    var n = document.createElementNS('http://www.w3.org/2000/svg', name);
+    Object.keys(attrs).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+    if (text !== undefined) n.textContent = text;
+    svg.appendChild(n);
+    return n;
+  }
+  function axes(svg, m, xr, yr, stepX, stepY, xName, yName) {
+    var W = 420, H = 300;
+    var sx = function (x) { return m + (x + xr) / (2 * xr) * (W - 2 * m); };
+    var sy = function (y) { return H - m - (y + yr) / (2 * yr) * (H - 2 * m); };
+    var v;
+    for (v = -Math.floor(xr / stepX) * stepX; v <= xr; v += stepX) {
+      el(svg, 'line', { 'class': 'grid', x1: sx(v), x2: sx(v), y1: sy(-yr), y2: sy(yr) });
+      if (v !== 0) el(svg, 'text', { 'class': 'tick', x: sx(v), y: sy(0) + 16, 'text-anchor': 'middle' }, num(v));
+    }
+    for (v = -Math.floor(yr / stepY) * stepY; v <= yr; v += stepY) {
+      el(svg, 'line', { 'class': 'grid', x1: sx(-xr), x2: sx(xr), y1: sy(v), y2: sy(v) });
+      if (v !== 0) el(svg, 'text', { 'class': 'tick', x: sx(0) - 6, y: sy(v) + 4, 'text-anchor': 'end' }, num(v));
+    }
+    el(svg, 'line', { 'class': 'axis', x1: sx(-xr), x2: sx(xr), y1: sy(0), y2: sy(0) });
+    el(svg, 'line', { 'class': 'axis', x1: sx(0), x2: sx(0), y1: sy(-yr), y2: sy(yr) });
+    el(svg, 'text', { 'class': 'lbl', x: sx(xr) - 2, y: sy(0) - 7, 'text-anchor': 'end' }, xName);
+    el(svg, 'text', { 'class': 'lbl', x: sx(0) + 7, y: sy(yr) + 13 }, yName);
+    return { sx: sx, sy: sy };
+  }
+  function niceStep(r) { return r <= 6 ? 1 : r <= 12 ? 2 : 5; }
+  function drawGraph(res) {
+    var svg = $('cx-graph');
+    svg.textContent = '';
+    var realMax = 5;
+    res.roots.forEach(function (r) { if (r[1] === 0) realMax = Math.max(realMax, Math.ceil(Math.abs(r[0]) * 1.1)); });
+    var yr = 24;
+    var map = axes(svg, 14, realMax, yr, niceStep(realMax), 8, 'x', 'y');
+    var d = '', on = false;
+    for (var i = 0; i <= 500; i++) {
+      var x = -realMax + 2 * realMax * i / 500, y = P(x);
+      if (Math.abs(y) > yr) { on = false; continue; }
+      d += (on ? 'L' : 'M') + map.sx(x).toFixed(1) + ' ' + map.sy(y).toFixed(1);
+      on = true;
+    }
+    el(svg, 'path', { 'class': 's1', d: d });
+    res.roots.forEach(function (r) {
+      if (r[1] === 0) el(svg, 'circle', { 'class': 'dot', cx: map.sx(r[0]), cy: map.sy(0), r: 5 });
+    });
+    var pt = P(S.t);
+    if (Math.abs(pt) <= yr) {
+      el(svg, 'line', { 'class': 'sm', x1: map.sx(S.t), x2: map.sx(S.t), y1: map.sy(0), y2: map.sy(pt) });
+      el(svg, 'circle', { 'class': 'dot2', cx: map.sx(S.t), cy: map.sy(pt), r: 6 });
+    }
+  }
+  function drawPlane(res) {
+    var svg = $('cx-plane');
+    svg.textContent = '';
+    var R = 3;
+    res.roots.forEach(function (r) { R = Math.max(R, Math.ceil(Math.max(Math.abs(r[0]), Math.abs(r[1])) * 1.15)); });
+    var map = axes(svg, 14, R, R * 0.7, niceStep(R), niceStep(R), '实部', '虚部');
+    res.roots.forEach(function (r) {
+      var isReal = r[1] === 0;
+      el(svg, 'circle', { 'class': isReal ? 'dot' : 'dot3', cx: map.sx(r[0]), cy: map.sy(r[1]), r: 6 });
+    });
+    var imag = res.roots.filter(function (r) { return r[1] !== 0; });
+    if (imag.length === 2) {
+      el(svg, 'line', { 'class': 'sm', x1: map.sx(imag[0][0]), x2: map.sx(imag[1][0]), y1: map.sy(imag[0][1]), y2: map.sy(imag[1][1]) });
+    }
+  }
+  function rootText(r) {
+    if (r[1] === 0) return num(r[0]);
+    return num(r[0]) + (r[1] < 0 ? ' − ' : ' + ') + num(Math.abs(r[1])) + 'i';
+  }
+  function cell(label, value, wide) {
+    var d = document.createElement('div');
+    if (wide) d.className = 'wide';
+    var s = document.createElement('small');
+    s.textContent = label;
+    d.appendChild(s);
+    d.appendChild(document.createTextNode(value));
+    return d;
+  }
+  function update() {
+    ['a', 'b', 'c', 't'].forEach(function (k) {
+      $('cx-' + k).value = S[k];
+      $('cx-' + k + '-v').textContent = num(S[k]);
+    });
+    var q1 = S.a + S.t, q0 = S.b + S.t * q1, rem = S.c + S.t * q0;
+    var res = solveCubic(S.a, S.b, S.c);
+    drawGraph(res);
+    drawPlane(res);
+    var z = res.roots;
+    var sum = z[0][0] + z[1][0] + z[2][0];
+    var read = $('cx-read');
+    read.textContent = '';
+    read.appendChild(cell('当前多项式', 'P(x) = ' + polyText([1, S.a, S.b, S.c]), true));
+    read.appendChild(cell('除以 x − t 的商', polyText([1, q1, q0])));
+    read.appendChild(cell('余数 = P(' + num(S.t) + ')', num(rem)));
+    read.appendChild(cell('三个解', z.map(rootText).join('，'), true));
+    read.appendChild(cell('解之和（= −a）', num(sum) + ' = ' + num(-S.a)));
+    read.appendChild(cell('解之积（= −c）', num(-S.c)));
+    var kind = res.delta > 0 ? '三个不同的实数解' : res.delta === 0 ? '实数解，其中有重解' : '一个实数解和一对共轭虚数解';
+    $('cx-status').textContent = '解的情况：' + kind + '。' + (rem === 0
+      ? '余数为 0，所以 x − ' + num(S.t) + ' 是 P(x) 的因式（x = ' + num(S.t) + ' 是解）。'
+      : '余数不为 0，所以 x = ' + num(S.t) + ' 不是解。');
+    Array.prototype.forEach.call($('cx-presets').children, function (b, i) {
+      var p = PRESETS[i];
+      b.setAttribute('aria-pressed', p.a === S.a && p.b === S.b && p.c === S.c);
+    });
+  }
+  PRESETS.forEach(function (p) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.textContent = p.label;
+    b.addEventListener('click', function () { S.a = p.a; S.b = p.b; S.c = p.c; S.t = p.t; update(); });
+    $('cx-presets').appendChild(b);
+  });
+  ['a', 'b', 'c', 't'].forEach(function (k) {
+    $('cx-' + k).addEventListener('input', function (e) { S[k] = parseFloat(e.target.value); update(); });
+  });
+  update();
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) { $('cdn-note').hidden = false; return; }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['status', 'read'],
+      throwOnError: false
+    });
+  }
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

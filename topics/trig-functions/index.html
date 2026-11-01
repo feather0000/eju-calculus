@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 11 三角函数</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：一般角与弧度法、三角函数的性质与图像、加法定理、倍角半角、三角函数的合成，含原创例题、练习题、交互演示和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+.back { display: inline-block; color: #c5d3ef; text-decoration: none; font-size: 15px; margin-bottom: 18px; }
+.back:hover { text-decoration: underline; }
+@media (max-width: 900px) {
+  nav.toc { top: 34px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <a class="back" href="../../">← 目录</a>
+      <p class="eyebrow">EJU 数学コース2 · 出题项目 11 · 三角関数</p>
+      <h1>三角函数</h1>
+      <p class="lead">从弧度制和单位圆出发，讲到图像、加法定理、倍角半角与三角函数的合成：每个知识点都配小例子，再用原创的 EJU 风格填空题和练习题检验。日语术语随文标注，文末有完整对照表。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$$
+      $$a\sin\theta+b\cos\theta=r\sin(\theta+\alpha)$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#angle">1 一般角与弧度</a></li>
+        <li><a href="#basic">2 基本性质</a></li>
+        <li><a href="#graph">3 图像</a></li>
+        <li><a href="#addition">4 加法定理</a></li>
+        <li><a href="#double">5 倍角与半角</a></li>
+        <li><a href="#compose">6 三角函数的合成</a></li>
+        <li><a href="#examples">7 原创例题</a></li>
+        <li><a href="#practice">8 练习题</a></li>
+        <li><a href="#terms">9 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box warn" style="margin-top:28px">
+    <p><strong>考试提醒：</strong>本项目依据 JASSO 2026 年度起适用的数学シラバス，包含「一般角と弧度法、三角関数の基本性質、グラフ；加法定理、2倍角・半角など加法定理の応用、三角関数の合成」。锐角和钝角的三角比属于项目 4（<a href="../trig-ratios/">图形与计量</a>）；这里把角推广到任意实数。EJU 题目中 $\theta$ 的范围几乎总是明确给出（如 $0\le\theta&lt;2\pi$），解题时一定要先看范围。</p>
+  </div>
+
+  <section id="angle">
+    <h2>1 一般角与弧度法</h2>
+    <p class="jp-sub" lang="ja">一般角と弧度法</p>
+
+    <h3>一般角</h3>
+    <p>固定射线 $OX$ 为<strong>始边</strong>（<span lang="ja">始線</span>），让射线 $OP$（<span lang="ja">動径</span>）绕 $O$ 旋转：逆时针旋转的角为正，顺时针旋转的角为负，转几圈都可以。这样得到的角称为<strong>一般角</strong>（<span lang="ja">一般角</span>）。</p>
+    <p>与角 $\alpha$ 终边相同的所有角可以写成</p>
+    $$\theta=\alpha+2n\pi\quad(n\text{ 为整数}).$$
+    <p>例如 $-\dfrac{\pi}{3}$ 与 $\dfrac{5\pi}{3}$ 相差 $2\pi$，$OP$ 的位置相同，所以它们的三角函数值也相同。</p>
+
+    <h3>弧度法</h3>
+    <p>半径为 $r$ 的圆上，弧长等于 $r$ 的弧所对的圆心角定义为 $1$ <strong>弧度</strong>（<span lang="ja">ラジアン</span>）。半圆弧长为 $\pi r$，所以</p>
+    $$180^\circ=\pi\ \text{（弧度）},\qquad 1^\circ=\frac{\pi}{180},\qquad 1\ \text{弧度}=\frac{180^\circ}{\pi}.$$
+    <p>例如 $210^\circ=210\times\dfrac{\pi}{180}=\dfrac{7\pi}{6}$，$\dfrac{3\pi}{4}=\dfrac34\times 180^\circ=135^\circ$。弧度通常省略单位不写。</p>
+
+    <h3>扇形的弧长与面积</h3>
+    <p>半径 $r$、圆心角 $\theta$（<strong>必须用弧度</strong>）的扇形（<span lang="ja">扇形</span>）：</p>
+    <div class="formula-grid">
+      <div>弧长 $l=r\theta$</div>
+      <div>面积 $S=\dfrac12r^2\theta=\dfrac12rl$</div>
+    </div>
+    <p>例如 $r=4,\ \theta=\dfrac{3\pi}{4}$ 时，$l=3\pi$，$S=\dfrac12\cdot 16\cdot\dfrac{3\pi}{4}=6\pi$。</p>
+  </section>
+
+  <section id="basic">
+    <h2>2 三角函数的基本性质</h2>
+    <p class="jp-sub" lang="ja">三角関数の定義・相互関係・性質</p>
+
+    <h3>单位圆上的定义</h3>
+    <p>在半径为 $1$ 的<strong>单位圆</strong>（<span lang="ja">単位円</span>）上，设角 $\theta$ 的终边与圆的交点为 $P(x,y)$，定义</p>
+    $$\sin\theta=y,\qquad \cos\theta=x,\qquad \tan\theta=\frac{y}{x}\quad(x\ne0).$$
+    <p>所以 $-1\le\sin\theta\le1$，$-1\le\cos\theta\le1$，而 $\tan\theta$ 可取任意实数；$\theta=\dfrac{\pi}{2}+n\pi$ 时 $\tan\theta$ 没有定义。半径为 $r$ 时，把 $P(x,y)$ 的坐标除以 $r$ 即可。</p>
+
+    <div class="tw"><table class="sign">
+      <thead><tr><th>象限（<span lang="ja">象限</span>）</th><th>第 1</th><th>第 2</th><th>第 3</th><th>第 4</th></tr></thead>
+      <tbody>
+        <tr><td>$\sin\theta$</td><td>$+$</td><td>$+$</td><td>$-$</td><td>$-$</td></tr>
+        <tr><td>$\cos\theta$</td><td>$+$</td><td>$-$</td><td>$-$</td><td>$+$</td></tr>
+        <tr><td>$\tan\theta$</td><td>$+$</td><td>$-$</td><td>$+$</td><td>$-$</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>常用角的值</h3>
+    <div class="tw"><table class="sign">
+      <thead><tr><th>$\theta$</th><th>$0$</th><th>$\dfrac{\pi}{6}$</th><th>$\dfrac{\pi}{4}$</th><th>$\dfrac{\pi}{3}$</th><th>$\dfrac{\pi}{2}$</th><th>$\dfrac{2\pi}{3}$</th><th>$\dfrac{3\pi}{4}$</th><th>$\dfrac{5\pi}{6}$</th><th>$\pi$</th></tr></thead>
+      <tbody>
+        <tr><td>$\sin\theta$</td><td>$0$</td><td>$\dfrac12$</td><td>$\dfrac{\sqrt2}{2}$</td><td>$\dfrac{\sqrt3}{2}$</td><td>$1$</td><td>$\dfrac{\sqrt3}{2}$</td><td>$\dfrac{\sqrt2}{2}$</td><td>$\dfrac12$</td><td>$0$</td></tr>
+        <tr><td>$\cos\theta$</td><td>$1$</td><td>$\dfrac{\sqrt3}{2}$</td><td>$\dfrac{\sqrt2}{2}$</td><td>$\dfrac12$</td><td>$0$</td><td>$-\dfrac12$</td><td>$-\dfrac{\sqrt2}{2}$</td><td>$-\dfrac{\sqrt3}{2}$</td><td>$-1$</td></tr>
+        <tr><td>$\tan\theta$</td><td>$0$</td><td>$\dfrac{\sqrt3}{3}$</td><td>$1$</td><td>$\sqrt3$</td><td>无</td><td>$-\sqrt3$</td><td>$-1$</td><td>$-\dfrac{\sqrt3}{3}$</td><td>$0$</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>相互关系</h3>
+    <div class="formula-grid">
+      <div>$\tan\theta=\dfrac{\sin\theta}{\cos\theta}$</div>
+      <div>$\sin^2\theta+\cos^2\theta=1$</div>
+      <div>$1+\tan^2\theta=\dfrac{1}{\cos^2\theta}$</div>
+    </div>
+    <p>例如 $\theta$ 在第 3 象限且 $\sin\theta=-\dfrac35$：$\cos^2\theta=1-\dfrac{9}{25}=\dfrac{16}{25}$，第 3 象限 $\cos\theta&lt;0$，所以 $\cos\theta=-\dfrac45$，$\tan\theta=\dfrac34$。</p>
+
+    <h3>诱导公式</h3>
+    <div class="tw"><table class="sign">
+      <thead><tr><th>角</th><th>$\sin$</th><th>$\cos$</th><th>$\tan$</th></tr></thead>
+      <tbody>
+        <tr><td>$\theta+2n\pi$</td><td>$\sin\theta$</td><td>$\cos\theta$</td><td>$\tan\theta$</td></tr>
+        <tr><td>$-\theta$</td><td>$-\sin\theta$</td><td>$\cos\theta$</td><td>$-\tan\theta$</td></tr>
+        <tr><td>$\pi-\theta$</td><td>$\sin\theta$</td><td>$-\cos\theta$</td><td>$-\tan\theta$</td></tr>
+        <tr><td>$\pi+\theta$</td><td>$-\sin\theta$</td><td>$-\cos\theta$</td><td>$\tan\theta$</td></tr>
+        <tr><td>$\dfrac{\pi}{2}-\theta$</td><td>$\cos\theta$</td><td>$\sin\theta$</td><td>$\dfrac{1}{\tan\theta}$</td></tr>
+        <tr><td>$\dfrac{\pi}{2}+\theta$</td><td>$\cos\theta$</td><td>$-\sin\theta$</td><td>$-\dfrac{1}{\tan\theta}$</td></tr>
+      </tbody>
+    </table></div>
+    <p>不必硬背：在单位圆上画出 $\theta$ 与新角的终边，看对称关系即可。例如 $\cos\dfrac{13\pi}{6}=\cos\Bigl(\dfrac{\pi}{6}+2\pi\Bigr)=\dfrac{\sqrt3}{2}$，$\sin\Bigl(-\dfrac{\pi}{4}\Bigr)=-\dfrac{\sqrt2}{2}$，$\tan\dfrac{7\pi}{6}=\tan\dfrac{\pi}{6}=\dfrac{\sqrt3}{3}$。</p>
+
+    <div class="explorer" id="circ">
+      <h3 style="margin-top:0">动手看：单位圆如何生成波形</h3>
+      <div class="ex-head" id="circ-fns" role="group" aria-label="选择函数"></div>
+      <svg class="chart" id="circ-svg" viewBox="0 0 720 300" role="img" aria-label="单位圆与三角函数图像的对应"></svg>
+      <div class="ctrl">
+        <label for="circ-t">角 θ</label>
+        <input id="circ-t" type="range" min="0" max="360" step="5" value="30">
+        <output id="circ-t-o" for="circ-t"></output>
+      </div>
+      <div class="marks" id="circ-marks"></div>
+      <div class="read" id="circ-read"></div>
+    </div>
+  </section>
+
+  <section id="graph">
+    <h2>3 三角函数的图像</h2>
+    <p class="jp-sub" lang="ja">三角関数のグラフ — 周期・振幅・平行移動</p>
+    <figure class="plot"><svg class="chart" viewBox="0 0 640 200" role="img" aria-label="正弦与余弦的图像"><line class="grid" x1="34.0" y1="10" x2="34.0" y2="190"/><line class="grid" x1="132.7" y1="10" x2="132.7" y2="190"/><line class="grid" x1="231.3" y1="10" x2="231.3" y2="190"/><line class="grid" x1="330.0" y1="10" x2="330.0" y2="190"/><line class="grid" x1="428.7" y1="10" x2="428.7" y2="190"/><line class="grid" x1="527.3" y1="10" x2="527.3" y2="190"/><line class="grid" x1="626.0" y1="10" x2="626.0" y2="190"/><line class="grid" x1="34" y1="30.8" x2="626" y2="30.8"/><text class="tick" x="28" y="34.8" text-anchor="end">1</text><line class="grid" x1="34" y1="169.2" x2="626" y2="169.2"/><text class="tick" x="28" y="173.2" text-anchor="end">−1</text><line class="axis" x1="34" y1="100.0" x2="626" y2="100.0"/><line class="axis" x1="231.3" y1="10" x2="231.3" y2="190"/><text class="tick" x="34.0" y="116.0" text-anchor="middle">−π</text><text class="tick" x="132.7" y="116.0" text-anchor="middle">−π/2</text><text class="tick" x="330.0" y="116.0" text-anchor="middle">π/2</text><text class="tick" x="428.7" y="116.0" text-anchor="middle">π</text><text class="tick" x="527.3" y="116.0" text-anchor="middle">3π/2</text><text class="tick" x="626.0" y="116.0" text-anchor="middle">2π</text><path class="s1" d="M34.0 100.0L34.7 100.8L35.5 101.6L36.2 102.4L37.0 103.3L37.7 104.1L38.4 104.9L39.2 105.7L39.9 106.5L40.7 107.3L41.4 108.1L42.1 108.9L42.9 109.8L43.6 110.6L44.4 111.4L45.1 112.2L45.8 113.0L46.6 113.8L47.3 114.6L48.1 115.4L48.8 116.2L49.5 117.0L50.3 117.7L51.0 118.5L51.8 119.3L52.5 120.1L53.2 120.9L54.0 121.7L54.7 122.4L55.5 123.2L56.2 124.0L56.9 124.7L57.7 125.5L58.4 126.2L59.2 127.0L59.9 127.7L60.6 128.5L61.4 129.2L62.1 130.0L62.9 130.7L63.6 131.4L64.3 132.2L65.1 132.9L65.8 133.6L66.6 134.3L67.3 135.0L68.0 135.7L68.8 136.4L69.5 137.1L70.3 137.8L71.0 138.5L71.7 139.1L72.5 139.8L73.2 140.5L74.0 141.1L74.7 141.8L75.4 142.4L76.2 143.1L76.9 143.7L77.7 144.3L78.4 145.0L79.1 145.6L79.9 146.2L80.6 146.8L81.4 147.4L82.1 148.0L82.8 148.6L83.6 149.1L84.3 149.7L85.1 150.3L85.8 150.8L86.5 151.4L87.3 151.9L88.0 152.5L88.8 153.0L89.5 153.5L90.2 154.0L91.0 154.5L91.7 155.0L92.5 155.5L93.2 156.0L93.9 156.5L94.7 157.0L95.4 157.4L96.2 157.9L96.9 158.3L97.6 158.7L98.4 159.2L99.1 159.6L99.9 160.0L100.6 160.4L101.3 160.8L102.1 161.2L102.8 161.6L103.6 161.9L104.3 162.3L105.0 162.6L105.8 163.0L106.5 163.3L107.3 163.6L108.0 164.0L108.7 164.3L109.5 164.6L110.2 164.9L111.0 165.1L111.7 165.4L112.4 165.7L113.2 165.9L113.9 166.2L114.7 166.4L115.4 166.6L116.1 166.8L116.9 167.1L117.6 167.3L118.4 167.4L119.1 167.6L119.8 167.8L120.6 168.0L121.3 168.1L122.1 168.2L122.8 168.4L123.5 168.5L124.3 168.6L125.0 168.7L125.8 168.8L126.5 168.9L127.2 169.0L128.0 169.0L128.7 169.1L129.5 169.1L130.2 169.2L130.9 169.2L131.7 169.2L132.4 169.2L133.2 169.2L133.9 169.2L134.6 169.2L135.4 169.2L136.1 169.1L136.9 169.1L137.6 169.0L138.3 168.9L139.1 168.9L139.8 168.8L140.6 168.7L141.3 168.6L142.0 168.5L142.8 168.3L143.5 168.2L144.3 168.1L145.0 167.9L145.7 167.7L146.5 167.6L147.2 167.4L148.0 167.2L148.7 167.0L149.4 166.8L150.2 166.6L150.9 166.3L151.7 166.1L152.4 165.8L153.1 165.6L153.9 165.3L154.6 165.0L155.4 164.8L156.1 164.5L156.8 164.2L157.6 163.9L158.3 163.5L159.1 163.2L159.8 162.9L160.5 162.5L161.3 162.2L162.0 161.8L162.8 161.4L163.5 161.1L164.2 160.7L165.0 160.3L165.7 159.9L166.5 159.5L167.2 159.0L167.9 158.6L168.7 158.2L169.4 157.7L170.2 157.3L170.9 156.8L171.6 156.3L172.4 155.8L173.1 155.4L173.9 154.9L174.6 154.4L175.3 153.9L176.1 153.3L176.8 152.8L177.6 152.3L178.3 151.8L179.0 151.2L179.8 150.7L180.5 150.1L181.3 149.5L182.0 149.0L182.7 148.4L183.5 147.8L184.2 147.2L185.0 146.6L185.7 146.0L186.4 145.4L187.2 144.8L187.9 144.1L188.7 143.5L189.4 142.9L190.1 142.2L190.9 141.6L191.6 140.9L192.4 140.3L193.1 139.6L193.8 138.9L194.6 138.2L195.3 137.6L196.1 136.9L196.8 136.2L197.5 135.5L198.3 134.8L199.0 134.1L199.8 133.4L200.5 132.6L201.2 131.9L202.0 131.2L202.7 130.5L203.5 129.7L204.2 129.0L204.9 128.2L205.7 127.5L206.4 126.7L207.2 126.0L207.9 125.2L208.6 124.5L209.4 123.7L210.1 122.9L210.9 122.2L211.6 121.4L212.3 120.6L213.1 119.8L213.8 119.1L214.6 118.3L215.3 117.5L216.0 116.7L216.8 115.9L217.5 115.1L218.3 114.3L219.0 113.5L219.7 112.7L220.5 111.9L221.2 111.1L222.0 110.3L222.7 109.5L223.4 108.7L224.2 107.9L224.9 107.1L225.7 106.2L226.4 105.4L227.1 104.6L227.9 103.8L228.6 103.0L229.4 102.2L230.1 101.4L230.8 100.5L231.6 99.7L232.3 98.9L233.1 98.1L233.8 97.3L234.5 96.5L235.3 95.7L236.0 94.8L236.8 94.0L237.5 93.2L238.2 92.4L239.0 91.6L239.7 90.8L240.5 90.0L241.2 89.2L241.9 88.4L242.7 87.6L243.4 86.8L244.2 86.0L244.9 85.2L245.6 84.4L246.4 83.6L247.1 82.8L247.9 82.0L248.6 81.2L249.3 80.4L250.1 79.6L250.8 78.9L251.6 78.1L252.3 77.3L253.0 76.5L253.8 75.8L254.5 75.0L255.3 74.3L256.0 73.5L256.7 72.8L257.5 72.0L258.2 71.3L259.0 70.5L259.7 69.8L260.4 69.1L261.2 68.3L261.9 67.6L262.7 66.9L263.4 66.2L264.1 65.5L264.9 64.8L265.6 64.1L266.4 63.4L267.1 62.7L267.8 62.0L268.6 61.3L269.3 60.6L270.1 60.0L270.8 59.3L271.5 58.7L272.3 58.0L273.0 57.4L273.8 56.7L274.5 56.1L275.2 55.5L276.0 54.8L276.7 54.2L277.5 53.6L278.2 53.0L278.9 52.4L279.7 51.8L280.4 51.2L281.2 50.7L281.9 50.1L282.6 49.5L283.4 49.0L284.1 48.4L284.9 47.9L285.6 47.4L286.3 46.8L287.1 46.3L287.8 45.8L288.6 45.3L289.3 44.8L290.0 44.3L290.8 43.8L291.5 43.4L292.3 42.9L293.0 42.4L293.7 42.0L294.5 41.5L295.2 41.1L296.0 40.7L296.7 40.3L297.4 39.9L298.2 39.5L298.9 39.1L299.7 38.7L300.4 38.3L301.1 37.9L301.9 37.6L302.6 37.2L303.4 36.9L304.1 36.6L304.8 36.2L305.6 35.9L306.3 35.6L307.1 35.3L307.8 35.0L308.5 34.8L309.3 34.5L310.0 34.2L310.8 34.0L311.5 33.8L312.2 33.5L313.0 33.3L313.7 33.1L314.5 32.9L315.2 32.7L315.9 32.5L316.7 32.3L317.4 32.2L318.2 32.0L318.9 31.8L319.6 31.7L320.4 31.6L321.1 31.5L321.9 31.3L322.6 31.2L323.3 31.2L324.1 31.1L324.8 31.0L325.6 30.9L326.3 30.9L327.0 30.8L327.8 30.8L328.5 30.8L329.3 30.8L330.0 30.8L330.7 30.8L331.5 30.8L332.2 30.8L333.0 30.8L333.7 30.9L334.4 30.9L335.2 31.0L335.9 31.1L336.7 31.2L337.4 31.2L338.1 31.3L338.9 31.5L339.6 31.6L340.4 31.7L341.1 31.8L341.8 32.0L342.6 32.2L343.3 32.3L344.1 32.5L344.8 32.7L345.5 32.9L346.3 33.1L347.0 33.3L347.8 33.5L348.5 33.8L349.2 34.0L350.0 34.2L350.7 34.5L351.5 34.8L352.2 35.0L352.9 35.3L353.7 35.6L354.4 35.9L355.2 36.2L355.9 36.6L356.6 36.9L357.4 37.2L358.1 37.6L358.9 37.9L359.6 38.3L360.3 38.7L361.1 39.1L361.8 39.5L362.6 39.9L363.3 40.3L364.0 40.7L364.8 41.1L365.5 41.5L366.3 42.0L367.0 42.4L367.7 42.9L368.5 43.4L369.2 43.8L370.0 44.3L370.7 44.8L371.4 45.3L372.2 45.8L372.9 46.3L373.7 46.8L374.4 47.4L375.1 47.9L375.9 48.4L376.6 49.0L377.4 49.5L378.1 50.1L378.8 50.7L379.6 51.2L380.3 51.8L381.1 52.4L381.8 53.0L382.5 53.6L383.3 54.2L384.0 54.8L384.8 55.5L385.5 56.1L386.2 56.7L387.0 57.4L387.7 58.0L388.5 58.7L389.2 59.3L389.9 60.0L390.7 60.6L391.4 61.3L392.2 62.0L392.9 62.7L393.6 63.4L394.4 64.1L395.1 64.8L395.9 65.5L396.6 66.2L397.3 66.9L398.1 67.6L398.8 68.3L399.6 69.1L400.3 69.8L401.0 70.5L401.8 71.3L402.5 72.0L403.3 72.8L404.0 73.5L404.7 74.3L405.5 75.0L406.2 75.8L407.0 76.5L407.7 77.3L408.4 78.1L409.2 78.9L409.9 79.6L410.7 80.4L411.4 81.2L412.1 82.0L412.9 82.8L413.6 83.6L414.4 84.4L415.1 85.2L415.8 86.0L416.6 86.8L417.3 87.6L418.1 88.4L418.8 89.2L419.5 90.0L420.3 90.8L421.0 91.6L421.8 92.4L422.5 93.2L423.2 94.0L424.0 94.8L424.7 95.7L425.5 96.5L426.2 97.3L426.9 98.1L427.7 98.9L428.4 99.7L429.2 100.5L429.9 101.4L430.6 102.2L431.4 103.0L432.1 103.8L432.9 104.6L433.6 105.4L434.3 106.2L435.1 107.1L435.8 107.9L436.6 108.7L437.3 109.5L438.0 110.3L438.8 111.1L439.5 111.9L440.3 112.7L441.0 113.5L441.7 114.3L442.5 115.1L443.2 115.9L444.0 116.7L444.7 117.5L445.4 118.3L446.2 119.1L446.9 119.8L447.7 120.6L448.4 121.4L449.1 122.2L449.9 122.9L450.6 123.7L451.4 124.5L452.1 125.2L452.8 126.0L453.6 126.7L454.3 127.5L455.1 128.2L455.8 129.0L456.5 129.7L457.3 130.5L458.0 131.2L458.8 131.9L459.5 132.6L460.2 133.4L461.0 134.1L461.7 134.8L462.5 135.5L463.2 136.2L463.9 136.9L464.7 137.6L465.4 138.2L466.2 138.9L466.9 139.6L467.6 140.3L468.4 140.9L469.1 141.6L469.9 142.2L470.6 142.9L471.3 143.5L472.1 144.1L472.8 144.8L473.6 145.4L474.3 146.0L475.0 146.6L475.8 147.2L476.5 147.8L477.3 148.4L478.0 149.0L478.7 149.5L479.5 150.1L480.2 150.7L481.0 151.2L481.7 151.8L482.4 152.3L483.2 152.8L483.9 153.3L484.7 153.9L485.4 154.4L486.1 154.9L486.9 155.4L487.6 155.8L488.4 156.3L489.1 156.8L489.8 157.3L490.6 157.7L491.3 158.2L492.1 158.6L492.8 159.0L493.5 159.5L494.3 159.9L495.0 160.3L495.8 160.7L496.5 161.1L497.2 161.4L498.0 161.8L498.7 162.2L499.5 162.5L500.2 162.9L500.9 163.2L501.7 163.5L502.4 163.9L503.2 164.2L503.9 164.5L504.6 164.8L505.4 165.0L506.1 165.3L506.9 165.6L507.6 165.8L508.3 166.1L509.1 166.3L509.8 166.6L510.6 166.8L511.3 167.0L512.0 167.2L512.8 167.4L513.5 167.6L514.3 167.7L515.0 167.9L515.7 168.1L516.5 168.2L517.2 168.3L518.0 168.5L518.7 168.6L519.4 168.7L520.2 168.8L520.9 168.9L521.7 168.9L522.4 169.0L523.1 169.1L523.9 169.1L524.6 169.2L525.4 169.2L526.1 169.2L526.8 169.2L527.6 169.2L528.3 169.2L529.1 169.2L529.8 169.2L530.5 169.1L531.3 169.1L532.0 169.0L532.8 169.0L533.5 168.9L534.2 168.8L535.0 168.7L535.7 168.6L536.5 168.5L537.2 168.4L537.9 168.2L538.7 168.1L539.4 168.0L540.2 167.8L540.9 167.6L541.6 167.4L542.4 167.3L543.1 167.1L543.9 166.8L544.6 166.6L545.3 166.4L546.1 166.2L546.8 165.9L547.6 165.7L548.3 165.4L549.0 165.1L549.8 164.9L550.5 164.6L551.3 164.3L552.0 164.0L552.7 163.6L553.5 163.3L554.2 163.0L555.0 162.6L555.7 162.3L556.4 161.9L557.2 161.6L557.9 161.2L558.7 160.8L559.4 160.4L560.1 160.0L560.9 159.6L561.6 159.2L562.4 158.7L563.1 158.3L563.8 157.9L564.6 157.4L565.3 157.0L566.1 156.5L566.8 156.0L567.5 155.5L568.3 155.0L569.0 154.5L569.8 154.0L570.5 153.5L571.2 153.0L572.0 152.5L572.7 151.9L573.5 151.4L574.2 150.8L574.9 150.3L575.7 149.7L576.4 149.1L577.2 148.6L577.9 148.0L578.6 147.4L579.4 146.8L580.1 146.2L580.9 145.6L581.6 145.0L582.3 144.3L583.1 143.7L583.8 143.1L584.6 142.4L585.3 141.8L586.0 141.1L586.8 140.5L587.5 139.8L588.3 139.1L589.0 138.5L589.7 137.8L590.5 137.1L591.2 136.4L592.0 135.7L592.7 135.0L593.4 134.3L594.2 133.6L594.9 132.9L595.7 132.2L596.4 131.4L597.1 130.7L597.9 130.0L598.6 129.2L599.4 128.5L600.1 127.7L600.8 127.0L601.6 126.2L602.3 125.5L603.1 124.7L603.8 124.0L604.5 123.2L605.3 122.4L606.0 121.7L606.8 120.9L607.5 120.1L608.2 119.3L609.0 118.5L609.7 117.7L610.5 117.0L611.2 116.2L611.9 115.4L612.7 114.6L613.4 113.8L614.2 113.0L614.9 112.2L615.6 111.4L616.4 110.6L617.1 109.8L617.9 108.9L618.6 108.1L619.3 107.3L620.1 106.5L620.8 105.7L621.6 104.9L622.3 104.1L623.0 103.3L623.8 102.4L624.5 101.6L625.3 100.8L626.0 100.0"/><path class="s3" d="M34.0 169.2L34.7 169.2L35.5 169.2L36.2 169.2L37.0 169.2L37.7 169.1L38.4 169.1L39.2 169.0L39.9 168.9L40.7 168.8L41.4 168.8L42.1 168.7L42.9 168.5L43.6 168.4L44.4 168.3L45.1 168.2L45.8 168.0L46.6 167.8L47.3 167.7L48.1 167.5L48.8 167.3L49.5 167.1L50.3 166.9L51.0 166.7L51.8 166.5L52.5 166.2L53.2 166.0L54.0 165.8L54.7 165.5L55.5 165.2L56.2 165.0L56.9 164.7L57.7 164.4L58.4 164.1L59.2 163.8L59.9 163.4L60.6 163.1L61.4 162.8L62.1 162.4L62.9 162.1L63.6 161.7L64.3 161.3L65.1 160.9L65.8 160.5L66.6 160.1L67.3 159.7L68.0 159.3L68.8 158.9L69.5 158.5L70.3 158.0L71.0 157.6L71.7 157.1L72.5 156.6L73.2 156.2L74.0 155.7L74.7 155.2L75.4 154.7L76.2 154.2L76.9 153.7L77.7 153.2L78.4 152.6L79.1 152.1L79.9 151.6L80.6 151.0L81.4 150.5L82.1 149.9L82.8 149.3L83.6 148.8L84.3 148.2L85.1 147.6L85.8 147.0L86.5 146.4L87.3 145.8L88.0 145.2L88.8 144.5L89.5 143.9L90.2 143.3L91.0 142.6L91.7 142.0L92.5 141.3L93.2 140.7L93.9 140.0L94.7 139.4L95.4 138.7L96.2 138.0L96.9 137.3L97.6 136.6L98.4 135.9L99.1 135.2L99.9 134.5L100.6 133.8L101.3 133.1L102.1 132.4L102.8 131.7L103.6 130.9L104.3 130.2L105.0 129.5L105.8 128.7L106.5 128.0L107.3 127.2L108.0 126.5L108.7 125.7L109.5 125.0L110.2 124.2L111.0 123.5L111.7 122.7L112.4 121.9L113.2 121.1L113.9 120.4L114.7 119.6L115.4 118.8L116.1 118.0L116.9 117.2L117.6 116.4L118.4 115.6L119.1 114.8L119.8 114.0L120.6 113.2L121.3 112.4L122.1 111.6L122.8 110.8L123.5 110.0L124.3 109.2L125.0 108.4L125.8 107.6L126.5 106.8L127.2 106.0L128.0 105.2L128.7 104.3L129.5 103.5L130.2 102.7L130.9 101.9L131.7 101.1L132.4 100.3L133.2 99.5L133.9 98.6L134.6 97.8L135.4 97.0L136.1 96.2L136.9 95.4L137.6 94.6L138.3 93.8L139.1 92.9L139.8 92.1L140.6 91.3L141.3 90.5L142.0 89.7L142.8 88.9L143.5 88.1L144.3 87.3L145.0 86.5L145.7 85.7L146.5 84.9L147.2 84.1L148.0 83.3L148.7 82.5L149.4 81.7L150.2 80.9L150.9 80.2L151.7 79.4L152.4 78.6L153.1 77.8L153.9 77.1L154.6 76.3L155.4 75.5L156.1 74.8L156.8 74.0L157.6 73.3L158.3 72.5L159.1 71.8L159.8 71.0L160.5 70.3L161.3 69.5L162.0 68.8L162.8 68.1L163.5 67.4L164.2 66.6L165.0 65.9L165.7 65.2L166.5 64.5L167.2 63.8L167.9 63.1L168.7 62.4L169.4 61.8L170.2 61.1L170.9 60.4L171.6 59.7L172.4 59.1L173.1 58.4L173.9 57.8L174.6 57.1L175.3 56.5L176.1 55.9L176.8 55.2L177.6 54.6L178.3 54.0L179.0 53.4L179.8 52.8L180.5 52.2L181.3 51.6L182.0 51.0L182.7 50.5L183.5 49.9L184.2 49.3L185.0 48.8L185.7 48.2L186.4 47.7L187.2 47.2L187.9 46.7L188.7 46.1L189.4 45.6L190.1 45.1L190.9 44.6L191.6 44.2L192.4 43.7L193.1 43.2L193.8 42.7L194.6 42.3L195.3 41.8L196.1 41.4L196.8 41.0L197.5 40.5L198.3 40.1L199.0 39.7L199.8 39.3L200.5 38.9L201.2 38.6L202.0 38.2L202.7 37.8L203.5 37.5L204.2 37.1L204.9 36.8L205.7 36.5L206.4 36.1L207.2 35.8L207.9 35.5L208.6 35.2L209.4 35.0L210.1 34.7L210.9 34.4L211.6 34.2L212.3 33.9L213.1 33.7L213.8 33.4L214.6 33.2L215.3 33.0L216.0 32.8L216.8 32.6L217.5 32.4L218.3 32.3L219.0 32.1L219.7 31.9L220.5 31.8L221.2 31.7L222.0 31.5L222.7 31.4L223.4 31.3L224.2 31.2L224.9 31.1L225.7 31.1L226.4 31.0L227.1 30.9L227.9 30.9L228.6 30.8L229.4 30.8L230.1 30.8L230.8 30.8L231.6 30.8L232.3 30.8L233.1 30.8L233.8 30.8L234.5 30.9L235.3 30.9L236.0 31.0L236.8 31.0L237.5 31.1L238.2 31.2L239.0 31.3L239.7 31.4L240.5 31.5L241.2 31.6L241.9 31.8L242.7 31.9L243.4 32.0L244.2 32.2L244.9 32.4L245.6 32.6L246.4 32.7L247.1 32.9L247.9 33.2L248.6 33.4L249.3 33.6L250.1 33.8L250.8 34.1L251.6 34.3L252.3 34.6L253.0 34.9L253.8 35.1L254.5 35.4L255.3 35.7L256.0 36.0L256.7 36.4L257.5 36.7L258.2 37.0L259.0 37.4L259.7 37.7L260.4 38.1L261.2 38.4L261.9 38.8L262.7 39.2L263.4 39.6L264.1 40.0L264.9 40.4L265.6 40.8L266.4 41.3L267.1 41.7L267.8 42.1L268.6 42.6L269.3 43.0L270.1 43.5L270.8 44.0L271.5 44.5L272.3 45.0L273.0 45.5L273.8 46.0L274.5 46.5L275.2 47.0L276.0 47.5L276.7 48.1L277.5 48.6L278.2 49.2L278.9 49.7L279.7 50.3L280.4 50.9L281.2 51.4L281.9 52.0L282.6 52.6L283.4 53.2L284.1 53.8L284.9 54.4L285.6 55.0L286.3 55.7L287.1 56.3L287.8 56.9L288.6 57.6L289.3 58.2L290.0 58.9L290.8 59.5L291.5 60.2L292.3 60.9L293.0 61.5L293.7 62.2L294.5 62.9L295.2 63.6L296.0 64.3L296.7 65.0L297.4 65.7L298.2 66.4L298.9 67.1L299.7 67.8L300.4 68.6L301.1 69.3L301.9 70.0L302.6 70.8L303.4 71.5L304.1 72.3L304.8 73.0L305.6 73.8L306.3 74.5L307.1 75.3L307.8 76.0L308.5 76.8L309.3 77.6L310.0 78.3L310.8 79.1L311.5 79.9L312.2 80.7L313.0 81.5L313.7 82.3L314.5 83.0L315.2 83.8L315.9 84.6L316.7 85.4L317.4 86.2L318.2 87.0L318.9 87.8L319.6 88.6L320.4 89.4L321.1 90.2L321.9 91.1L322.6 91.9L323.3 92.7L324.1 93.5L324.8 94.3L325.6 95.1L326.3 95.9L327.0 96.7L327.8 97.6L328.5 98.4L329.3 99.2L330.0 100.0L330.7 100.8L331.5 101.6L332.2 102.4L333.0 103.3L333.7 104.1L334.4 104.9L335.2 105.7L335.9 106.5L336.7 107.3L337.4 108.1L338.1 108.9L338.9 109.8L339.6 110.6L340.4 111.4L341.1 112.2L341.8 113.0L342.6 113.8L343.3 114.6L344.1 115.4L344.8 116.2L345.5 117.0L346.3 117.7L347.0 118.5L347.8 119.3L348.5 120.1L349.2 120.9L350.0 121.7L350.7 122.4L351.5 123.2L352.2 124.0L352.9 124.7L353.7 125.5L354.4 126.2L355.2 127.0L355.9 127.7L356.6 128.5L357.4 129.2L358.1 130.0L358.9 130.7L359.6 131.4L360.3 132.2L361.1 132.9L361.8 133.6L362.6 134.3L363.3 135.0L364.0 135.7L364.8 136.4L365.5 137.1L366.3 137.8L367.0 138.5L367.7 139.1L368.5 139.8L369.2 140.5L370.0 141.1L370.7 141.8L371.4 142.4L372.2 143.1L372.9 143.7L373.7 144.3L374.4 145.0L375.1 145.6L375.9 146.2L376.6 146.8L377.4 147.4L378.1 148.0L378.8 148.6L379.6 149.1L380.3 149.7L381.1 150.3L381.8 150.8L382.5 151.4L383.3 151.9L384.0 152.5L384.8 153.0L385.5 153.5L386.2 154.0L387.0 154.5L387.7 155.0L388.5 155.5L389.2 156.0L389.9 156.5L390.7 157.0L391.4 157.4L392.2 157.9L392.9 158.3L393.6 158.7L394.4 159.2L395.1 159.6L395.9 160.0L396.6 160.4L397.3 160.8L398.1 161.2L398.8 161.6L399.6 161.9L400.3 162.3L401.0 162.6L401.8 163.0L402.5 163.3L403.3 163.6L404.0 164.0L404.7 164.3L405.5 164.6L406.2 164.9L407.0 165.1L407.7 165.4L408.4 165.7L409.2 165.9L409.9 166.2L410.7 166.4L411.4 166.6L412.1 166.8L412.9 167.1L413.6 167.3L414.4 167.4L415.1 167.6L415.8 167.8L416.6 168.0L417.3 168.1L418.1 168.2L418.8 168.4L419.5 168.5L420.3 168.6L421.0 168.7L421.8 168.8L422.5 168.9L423.2 169.0L424.0 169.0L424.7 169.1L425.5 169.1L426.2 169.2L426.9 169.2L427.7 169.2L428.4 169.2L429.2 169.2L429.9 169.2L430.6 169.2L431.4 169.2L432.1 169.1L432.9 169.1L433.6 169.0L434.3 168.9L435.1 168.9L435.8 168.8L436.6 168.7L437.3 168.6L438.0 168.5L438.8 168.3L439.5 168.2L440.3 168.1L441.0 167.9L441.7 167.7L442.5 167.6L443.2 167.4L444.0 167.2L444.7 167.0L445.4 166.8L446.2 166.6L446.9 166.3L447.7 166.1L448.4 165.8L449.1 165.6L449.9 165.3L450.6 165.0L451.4 164.8L452.1 164.5L452.8 164.2L453.6 163.9L454.3 163.5L455.1 163.2L455.8 162.9L456.5 162.5L457.3 162.2L458.0 161.8L458.8 161.4L459.5 161.1L460.2 160.7L461.0 160.3L461.7 159.9L462.5 159.5L463.2 159.0L463.9 158.6L464.7 158.2L465.4 157.7L466.2 157.3L466.9 156.8L467.6 156.3L468.4 155.8L469.1 155.4L469.9 154.9L470.6 154.4L471.3 153.9L472.1 153.3L472.8 152.8L473.6 152.3L474.3 151.8L475.0 151.2L475.8 150.7L476.5 150.1L477.3 149.5L478.0 149.0L478.7 148.4L479.5 147.8L480.2 147.2L481.0 146.6L481.7 146.0L482.4 145.4L483.2 144.8L483.9 144.1L484.7 143.5L485.4 142.9L486.1 142.2L486.9 141.6L487.6 140.9L488.4 140.3L489.1 139.6L489.8 138.9L490.6 138.2L491.3 137.6L492.1 136.9L492.8 136.2L493.5 135.5L494.3 134.8L495.0 134.1L495.8 133.4L496.5 132.6L497.2 131.9L498.0 131.2L498.7 130.5L499.5 129.7L500.2 129.0L500.9 128.2L501.7 127.5L502.4 126.7L503.2 126.0L503.9 125.2L504.6 124.5L505.4 123.7L506.1 122.9L506.9 122.2L507.6 121.4L508.3 120.6L509.1 119.8L509.8 119.1L510.6 118.3L511.3 117.5L512.0 116.7L512.8 115.9L513.5 115.1L514.3 114.3L515.0 113.5L515.7 112.7L516.5 111.9L517.2 111.1L518.0 110.3L518.7 109.5L519.4 108.7L520.2 107.9L520.9 107.1L521.7 106.2L522.4 105.4L523.1 104.6L523.9 103.8L524.6 103.0L525.4 102.2L526.1 101.4L526.8 100.5L527.6 99.7L528.3 98.9L529.1 98.1L529.8 97.3L530.5 96.5L531.3 95.7L532.0 94.8L532.8 94.0L533.5 93.2L534.2 92.4L535.0 91.6L535.7 90.8L536.5 90.0L537.2 89.2L537.9 88.4L538.7 87.6L539.4 86.8L540.2 86.0L540.9 85.2L541.6 84.4L542.4 83.6L543.1 82.8L543.9 82.0L544.6 81.2L545.3 80.4L546.1 79.6L546.8 78.9L547.6 78.1L548.3 77.3L549.0 76.5L549.8 75.8L550.5 75.0L551.3 74.3L552.0 73.5L552.7 72.8L553.5 72.0L554.2 71.3L555.0 70.5L555.7 69.8L556.4 69.1L557.2 68.3L557.9 67.6L558.7 66.9L559.4 66.2L560.1 65.5L560.9 64.8L561.6 64.1L562.4 63.4L563.1 62.7L563.8 62.0L564.6 61.3L565.3 60.6L566.1 60.0L566.8 59.3L567.5 58.7L568.3 58.0L569.0 57.4L569.8 56.7L570.5 56.1L571.2 55.5L572.0 54.8L572.7 54.2L573.5 53.6L574.2 53.0L574.9 52.4L575.7 51.8L576.4 51.2L577.2 50.7L577.9 50.1L578.6 49.5L579.4 49.0L580.1 48.4L580.9 47.9L581.6 47.4L582.3 46.8L583.1 46.3L583.8 45.8L584.6 45.3L585.3 44.8L586.0 44.3L586.8 43.8L587.5 43.4L588.3 42.9L589.0 42.4L589.7 42.0L590.5 41.5L591.2 41.1L592.0 40.7L592.7 40.3L593.4 39.9L594.2 39.5L594.9 39.1L595.7 38.7L596.4 38.3L597.1 37.9L597.9 37.6L598.6 37.2L599.4 36.9L600.1 36.6L600.8 36.2L601.6 35.9L602.3 35.6L603.1 35.3L603.8 35.0L604.5 34.8L605.3 34.5L606.0 34.2L606.8 34.0L607.5 33.8L608.2 33.5L609.0 33.3L609.7 33.1L610.5 32.9L611.2 32.7L611.9 32.5L612.7 32.3L613.4 32.2L614.2 32.0L614.9 31.8L615.6 31.7L616.4 31.6L617.1 31.5L617.9 31.3L618.6 31.2L619.3 31.2L620.1 31.1L620.8 31.0L621.6 30.9L622.3 30.9L623.0 30.8L623.8 30.8L624.5 30.8L625.3 30.8L626.0 30.8"/></svg>
+      <figcaption>$y=\sin\theta$（实线）与 $y=\cos\theta$（虚线）。$\cos$ 的图像是 $\sin$ 的图像向左平移 $\dfrac{\pi}{2}$，因为 $\cos\theta=\sin\Bigl(\theta+\dfrac{\pi}{2}\Bigr)$。</figcaption>
+    </figure>
+    <figure class="plot"><svg class="chart" viewBox="0 0 640 240" role="img" aria-label="正切的图像"><line class="grid" x1="52.5" y1="10" x2="52.5" y2="230"/><line class="grid" x1="145.0" y1="10" x2="145.0" y2="230"/><line class="grid" x1="237.5" y1="10" x2="237.5" y2="230"/><line class="grid" x1="330.0" y1="10" x2="330.0" y2="230"/><line class="grid" x1="422.5" y1="10" x2="422.5" y2="230"/><line class="grid" x1="515.0" y1="10" x2="515.0" y2="230"/><line class="grid" x1="607.5" y1="10" x2="607.5" y2="230"/><line class="grid" x1="34" y1="224.8" x2="626" y2="224.8"/><text class="tick" x="28" y="228.8" text-anchor="end">−4</text><line class="grid" x1="34" y1="172.4" x2="626" y2="172.4"/><text class="tick" x="28" y="176.4" text-anchor="end">−2</text><line class="grid" x1="34" y1="67.6" x2="626" y2="67.6"/><text class="tick" x="28" y="71.6" text-anchor="end">2</text><line class="grid" x1="34" y1="15.2" x2="626" y2="15.2"/><text class="tick" x="28" y="19.2" text-anchor="end">4</text><line class="axis" x1="34" y1="120.0" x2="626" y2="120.0"/><line class="axis" x1="330.0" y1="10" x2="330.0" y2="230"/><text class="tick" x="52.5" y="136.0" text-anchor="middle">−3π/2</text><text class="tick" x="145.0" y="136.0" text-anchor="middle">−π</text><text class="tick" x="237.5" y="136.0" text-anchor="middle">−π/2</text><text class="tick" x="422.5" y="136.0" text-anchor="middle">π/2</text><text class="tick" x="515.0" y="136.0" text-anchor="middle">π</text><text class="tick" x="607.5" y="136.0" text-anchor="middle">3π/2</text><path class="s1" d="M34.0 39.4L34.7 35.8L35.5 31.9L36.2 27.7L37.0 23.1L37.7 18.0M67.3 222.0L68.0 216.9L68.8 212.3L69.5 208.1L70.3 204.2L71.0 200.6L71.7 197.3L72.5 194.2L73.2 191.3L74.0 188.7L74.7 186.1L75.4 183.8L76.2 181.6L76.9 179.5L77.7 177.5L78.4 175.7L79.1 173.9L79.9 172.2L80.6 170.6L81.4 169.1L82.1 167.6L82.8 166.3L83.6 164.9L84.3 163.7L85.1 162.4L85.8 161.3L86.5 160.1L87.3 159.1L88.0 158.0L88.8 157.0L89.5 156.0L90.2 155.1L91.0 154.2L91.7 153.3L92.5 152.5L93.2 151.7L93.9 150.9L94.7 150.1L95.4 149.3L96.2 148.6L96.9 147.9L97.6 147.2L98.4 146.5L99.1 145.9L99.9 145.2L100.6 144.6L101.3 144.0L102.1 143.4L102.8 142.8L103.6 142.2L104.3 141.7L105.0 141.1L105.8 140.6L106.5 140.1L107.3 139.5L108.0 139.0L108.7 138.5L109.5 138.0L110.2 137.6L111.0 137.1L111.7 136.6L112.4 136.2L113.2 135.7L113.9 135.3L114.7 134.8L115.4 134.4L116.1 134.0L116.9 133.6L117.6 133.1L118.4 132.7L119.1 132.3L119.8 131.9L120.6 131.5L121.3 131.1L122.1 130.8L122.8 130.4L123.5 130.0L124.3 129.6L125.0 129.2L125.8 128.9L126.5 128.5L127.2 128.1L128.0 127.8L128.7 127.4L129.5 127.1L130.2 126.7L130.9 126.4L131.7 126.0L132.4 125.7L133.2 125.3L133.9 125.0L134.6 124.7L135.4 124.3L136.1 124.0L136.9 123.6L137.6 123.3L138.3 123.0L139.1 122.6L139.8 122.3L140.6 122.0L141.3 121.6L142.0 121.3L142.8 121.0L143.5 120.7L144.3 120.3L145.0 120.0L145.7 119.7L146.5 119.3L147.2 119.0L148.0 118.7L148.7 118.4L149.4 118.0L150.2 117.7L150.9 117.4L151.7 117.0L152.4 116.7L153.1 116.4L153.9 116.0L154.6 115.7L155.4 115.3L156.1 115.0L156.8 114.7L157.6 114.3L158.3 114.0L159.1 113.6L159.8 113.3L160.5 112.9L161.3 112.6L162.0 112.2L162.8 111.9L163.5 111.5L164.2 111.1L165.0 110.8L165.7 110.4L166.5 110.0L167.2 109.6L167.9 109.2L168.7 108.9L169.4 108.5L170.2 108.1L170.9 107.7L171.6 107.3L172.4 106.9L173.1 106.4L173.9 106.0L174.6 105.6L175.3 105.2L176.1 104.7L176.8 104.3L177.6 103.8L178.3 103.4L179.0 102.9L179.8 102.4L180.5 102.0L181.3 101.5L182.0 101.0L182.7 100.5L183.5 99.9L184.2 99.4L185.0 98.9L185.7 98.3L186.4 97.8L187.2 97.2L187.9 96.6L188.7 96.0L189.4 95.4L190.1 94.8L190.9 94.1L191.6 93.5L192.4 92.8L193.1 92.1L193.8 91.4L194.6 90.7L195.3 89.9L196.1 89.1L196.8 88.3L197.5 87.5L198.3 86.7L199.0 85.8L199.8 84.9L200.5 84.0L201.2 83.0L202.0 82.0L202.7 80.9L203.5 79.9L204.2 78.7L204.9 77.6L205.7 76.3L206.4 75.1L207.2 73.7L207.9 72.4L208.6 70.9L209.4 69.4L210.1 67.8L210.9 66.1L211.6 64.3L212.3 62.5L213.1 60.5L213.8 58.4L214.6 56.2L215.3 53.9L216.0 51.3L216.8 48.7L217.5 45.8L218.3 42.7L219.0 39.4L219.7 35.8L220.5 31.9L221.2 27.7L222.0 23.1L222.7 18.0M252.3 222.0L253.0 216.9L253.8 212.3L254.5 208.1L255.3 204.2L256.0 200.6L256.7 197.3L257.5 194.2L258.2 191.3L259.0 188.7L259.7 186.1L260.4 183.8L261.2 181.6L261.9 179.5L262.7 177.5L263.4 175.7L264.1 173.9L264.9 172.2L265.6 170.6L266.4 169.1L267.1 167.6L267.8 166.3L268.6 164.9L269.3 163.7L270.1 162.4L270.8 161.3L271.5 160.1L272.3 159.1L273.0 158.0L273.8 157.0L274.5 156.0L275.2 155.1L276.0 154.2L276.7 153.3L277.5 152.5L278.2 151.7L278.9 150.9L279.7 150.1L280.4 149.3L281.2 148.6L281.9 147.9L282.6 147.2L283.4 146.5L284.1 145.9L284.9 145.2L285.6 144.6L286.3 144.0L287.1 143.4L287.8 142.8L288.6 142.2L289.3 141.7L290.0 141.1L290.8 140.6L291.5 140.1L292.3 139.5L293.0 139.0L293.7 138.5L294.5 138.0L295.2 137.6L296.0 137.1L296.7 136.6L297.4 136.2L298.2 135.7L298.9 135.3L299.7 134.8L300.4 134.4L301.1 134.0L301.9 133.6L302.6 133.1L303.4 132.7L304.1 132.3L304.8 131.9L305.6 131.5L306.3 131.1L307.1 130.8L307.8 130.4L308.5 130.0L309.3 129.6L310.0 129.2L310.8 128.9L311.5 128.5L312.2 128.1L313.0 127.8L313.7 127.4L314.5 127.1L315.2 126.7L315.9 126.4L316.7 126.0L317.4 125.7L318.2 125.3L318.9 125.0L319.6 124.7L320.4 124.3L321.1 124.0L321.9 123.6L322.6 123.3L323.3 123.0L324.1 122.6L324.8 122.3L325.6 122.0L326.3 121.6L327.0 121.3L327.8 121.0L328.5 120.7L329.3 120.3L330.0 120.0L330.7 119.7L331.5 119.3L332.2 119.0L333.0 118.7L333.7 118.4L334.4 118.0L335.2 117.7L335.9 117.4L336.7 117.0L337.4 116.7L338.1 116.4L338.9 116.0L339.6 115.7L340.4 115.3L341.1 115.0L341.8 114.7L342.6 114.3L343.3 114.0L344.1 113.6L344.8 113.3L345.5 112.9L346.3 112.6L347.0 112.2L347.8 111.9L348.5 111.5L349.2 111.1L350.0 110.8L350.7 110.4L351.5 110.0L352.2 109.6L352.9 109.2L353.7 108.9L354.4 108.5L355.2 108.1L355.9 107.7L356.6 107.3L357.4 106.9L358.1 106.4L358.9 106.0L359.6 105.6L360.3 105.2L361.1 104.7L361.8 104.3L362.6 103.8L363.3 103.4L364.0 102.9L364.8 102.4L365.5 102.0L366.3 101.5L367.0 101.0L367.7 100.5L368.5 99.9L369.2 99.4L370.0 98.9L370.7 98.3L371.4 97.8L372.2 97.2L372.9 96.6L373.7 96.0L374.4 95.4L375.1 94.8L375.9 94.1L376.6 93.5L377.4 92.8L378.1 92.1L378.8 91.4L379.6 90.7L380.3 89.9L381.1 89.1L381.8 88.3L382.5 87.5L383.3 86.7L384.0 85.8L384.8 84.9L385.5 84.0L386.2 83.0L387.0 82.0L387.7 80.9L388.5 79.9L389.2 78.7L389.9 77.6L390.7 76.3L391.4 75.1L392.2 73.7L392.9 72.4L393.6 70.9L394.4 69.4L395.1 67.8L395.9 66.1L396.6 64.3L397.3 62.5L398.1 60.5L398.8 58.4L399.6 56.2L400.3 53.9L401.0 51.3L401.8 48.7L402.5 45.8L403.3 42.7L404.0 39.4L404.7 35.8L405.5 31.9L406.2 27.7L407.0 23.1L407.7 18.0M437.3 222.0L438.0 216.9L438.8 212.3L439.5 208.1L440.3 204.2L441.0 200.6L441.7 197.3L442.5 194.2L443.2 191.3L444.0 188.7L444.7 186.1L445.4 183.8L446.2 181.6L446.9 179.5L447.7 177.5L448.4 175.7L449.1 173.9L449.9 172.2L450.6 170.6L451.4 169.1L452.1 167.6L452.8 166.3L453.6 164.9L454.3 163.7L455.1 162.4L455.8 161.3L456.5 160.1L457.3 159.1L458.0 158.0L458.8 157.0L459.5 156.0L460.2 155.1L461.0 154.2L461.7 153.3L462.5 152.5L463.2 151.7L463.9 150.9L464.7 150.1L465.4 149.3L466.2 148.6L466.9 147.9L467.6 147.2L468.4 146.5L469.1 145.9L469.9 145.2L470.6 144.6L471.3 144.0L472.1 143.4L472.8 142.8L473.6 142.2L474.3 141.7L475.0 141.1L475.8 140.6L476.5 140.1L477.3 139.5L478.0 139.0L478.7 138.5L479.5 138.0L480.2 137.6L481.0 137.1L481.7 136.6L482.4 136.2L483.2 135.7L483.9 135.3L484.7 134.8L485.4 134.4L486.1 134.0L486.9 133.6L487.6 133.1L488.4 132.7L489.1 132.3L489.8 131.9L490.6 131.5L491.3 131.1L492.1 130.8L492.8 130.4L493.5 130.0L494.3 129.6L495.0 129.2L495.8 128.9L496.5 128.5L497.2 128.1L498.0 127.8L498.7 127.4L499.5 127.1L500.2 126.7L500.9 126.4L501.7 126.0L502.4 125.7L503.2 125.3L503.9 125.0L504.6 124.7L505.4 124.3L506.1 124.0L506.9 123.6L507.6 123.3L508.3 123.0L509.1 122.6L509.8 122.3L510.6 122.0L511.3 121.6L512.0 121.3L512.8 121.0L513.5 120.7L514.3 120.3L515.0 120.0L515.7 119.7L516.5 119.3L517.2 119.0L518.0 118.7L518.7 118.4L519.4 118.0L520.2 117.7L520.9 117.4L521.7 117.0L522.4 116.7L523.1 116.4L523.9 116.0L524.6 115.7L525.4 115.3L526.1 115.0L526.8 114.7L527.6 114.3L528.3 114.0L529.1 113.6L529.8 113.3L530.5 112.9L531.3 112.6L532.0 112.2L532.8 111.9L533.5 111.5L534.2 111.1L535.0 110.8L535.7 110.4L536.5 110.0L537.2 109.6L537.9 109.2L538.7 108.9L539.4 108.5L540.2 108.1L540.9 107.7L541.6 107.3L542.4 106.9L543.1 106.4L543.9 106.0L544.6 105.6L545.3 105.2L546.1 104.7L546.8 104.3L547.6 103.8L548.3 103.4L549.0 102.9L549.8 102.4L550.5 102.0L551.3 101.5L552.0 101.0L552.7 100.5L553.5 99.9L554.2 99.4L555.0 98.9L555.7 98.3L556.4 97.8L557.2 97.2L557.9 96.6L558.7 96.0L559.4 95.4L560.1 94.8L560.9 94.1L561.6 93.5L562.4 92.8L563.1 92.1L563.8 91.4L564.6 90.7L565.3 89.9L566.1 89.1L566.8 88.3L567.5 87.5L568.3 86.7L569.0 85.8L569.8 84.9L570.5 84.0L571.2 83.0L572.0 82.0L572.7 80.9L573.5 79.9L574.2 78.7L574.9 77.6L575.7 76.3L576.4 75.1L577.2 73.7L577.9 72.4L578.6 70.9L579.4 69.4L580.1 67.8L580.9 66.1L581.6 64.3L582.3 62.5L583.1 60.5L583.8 58.4L584.6 56.2L585.3 53.9L586.0 51.3L586.8 48.7L587.5 45.8L588.3 42.7L589.0 39.4L589.7 35.8L590.5 31.9L591.2 27.7L592.0 23.1L592.7 18.0M622.3 222.0L623.0 216.9L623.8 212.3L624.5 208.1L625.3 204.2L626.0 200.6"/><line class="sm" x1="52.5" y1="10" x2="52.5" y2="230"/><line class="sm" x1="237.5" y1="10" x2="237.5" y2="230"/><line class="sm" x1="422.5" y1="10" x2="422.5" y2="230"/><line class="sm" x1="607.5" y1="10" x2="607.5" y2="230"/></svg>
+      <figcaption>$y=\tan\theta$。虚线为渐近线（<span lang="ja">漸近線</span>）$\theta=\dfrac{\pi}{2}+n\pi$。</figcaption>
+    </figure>
+    <div class="tw"><table>
+      <thead><tr><th>函数</th><th>值域</th><th>周期</th><th>对称性</th></tr></thead>
+      <tbody>
+        <tr><td>$y=\sin\theta$</td><td>$-1\le y\le1$</td><td>$2\pi$</td><td>关于原点对称（奇函数 <span lang="ja">奇関数</span>）</td></tr>
+        <tr><td>$y=\cos\theta$</td><td>$-1\le y\le1$</td><td>$2\pi$</td><td>关于 $y$ 轴对称（偶函数 <span lang="ja">偶関数</span>）</td></tr>
+        <tr><td>$y=\tan\theta$</td><td>全体实数</td><td>$\pi$</td><td>关于原点对称（奇函数）</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>一般形式</h3>
+    <p>对 $y=a\sin(b\theta+c)+d$（$a,b\ne0$），先把 $b$ 提出来写成 $y=a\sin b\Bigl(\theta+\dfrac{c}{b}\Bigr)+d$：</p>
+    <ul>
+      <li><strong>振幅</strong>（<span lang="ja">振幅</span>）为 $|a|$，值域为 $d-|a|\le y\le d+|a|$；</li>
+      <li><strong>周期</strong>（<span lang="ja">周期</span>）为 $\dfrac{2\pi}{|b|}$（$\tan$ 型为 $\dfrac{\pi}{|b|}$）；</li>
+      <li>向 $\theta$ 轴方向平移 $-\dfrac{c}{b}$，向 $y$ 轴方向平移 $d$。</li>
+    </ul>
+    <div class="box warn">
+      <p><strong>常见失分：</strong>$y=2\sin\Bigl(2\theta-\dfrac{\pi}{3}\Bigr)=2\sin 2\Bigl(\theta-\dfrac{\pi}{6}\Bigr)$ 是把 $y=2\sin2\theta$ 向右平移 $\dfrac{\pi}{6}$，<strong>不是</strong> $\dfrac{\pi}{3}$；它的周期是 $\pi$。</p>
+    </div>
+
+    <div class="explorer" id="wave">
+      <h3 style="margin-top:0">动手调：$y=a\sin(b\theta+c)+d$</h3>
+      <svg class="chart" id="wave-svg" viewBox="0 0 720 320" role="img" aria-label="可调参数的正弦曲线"></svg>
+      <div class="ctrl"><label for="w-a">振幅 a</label><input id="w-a" type="range" min="-3" max="3" step="0.5" value="2"><output id="w-a-o" for="w-a"></output></div>
+      <div class="ctrl"><label for="w-b">系数 b</label><input id="w-b" type="range" min="0.5" max="4" step="0.5" value="2"><output id="w-b-o" for="w-b"></output></div>
+      <div class="ctrl"><label for="w-c">相位 c</label><input id="w-c" type="range" min="-12" max="12" step="1" value="-4"><output id="w-c-o" for="w-c"></output></div>
+      <div class="ctrl"><label for="w-d">上下 d</label><input id="w-d" type="range" min="-2" max="2" step="0.5" value="0"><output id="w-d-o" for="w-d"></output></div>
+      <div class="status" id="wave-status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="addition">
+    <h2>4 加法定理</h2>
+    <p class="jp-sub" lang="ja">加法定理</p>
+    <div class="formula-grid">
+      <div>$\sin(\alpha\pm\beta)=\sin\alpha\cos\beta\pm\cos\alpha\sin\beta$</div>
+      <div>$\cos(\alpha\pm\beta)=\cos\alpha\cos\beta\mp\sin\alpha\sin\beta$</div>
+      <div>$\tan(\alpha\pm\beta)=\dfrac{\tan\alpha\pm\tan\beta}{1\mp\tan\alpha\tan\beta}$</div>
+    </div>
+    <p><strong>来源：</strong>在单位圆上取 $P(\cos\alpha,\sin\alpha)$、$Q(\cos\beta,\sin\beta)$，用两点距离公式和余弦定理分别计算 $PQ^2$，比较可得 $\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta$；把 $\beta$ 换成 $-\beta$，再用 $\sin\theta=\cos\Bigl(\dfrac{\pi}{2}-\theta\Bigr)$，就得到其余公式。</p>
+    <p><strong>求值：</strong>把角拆成常用角的和或差。</p>
+    $$\sin75^\circ=\sin(45^\circ+30^\circ)=\frac{\sqrt2}{2}\cdot\frac{\sqrt3}{2}+\frac{\sqrt2}{2}\cdot\frac12=\frac{\sqrt6+\sqrt2}{4},$$
+    $$\tan105^\circ=\tan(60^\circ+45^\circ)=\frac{\sqrt3+1}{1-\sqrt3}=-2-\sqrt3.$$
+    <h3>应用：两条直线的夹角</h3>
+    <p>直线 $y=m_1x+n_1$、$y=m_2x+n_2$ 与 $x$ 轴正方向所成的角为 $\theta_1,\theta_2$，则 $m_i=\tan\theta_i$。当两直线不垂直（$1+m_1m_2\ne0$）时，它们所成的锐角 $\theta$（<span lang="ja">なす角</span>）满足</p>
+    $$\tan\theta=\left|\frac{m_2-m_1}{1+m_1m_2}\right|.$$
+    <p>例如 $y=2x$ 与 $y=-3x$：$\tan\theta=\left|\dfrac{-3-2}{1+2\cdot(-3)}\right|=1$，所以 $\theta=\dfrac{\pi}{4}$。</p>
+    <div class="box warn">
+      <p><strong>常见失分：</strong>$\sin(\alpha+\beta)\ne\sin\alpha+\sin\beta$；$\cos$ 公式中的符号与角的符号相反；求另一个三角函数值时，要依据象限决定正负号。</p>
+    </div>
+  </section>
+
+  <section id="double">
+    <h2>5 加法定理的应用：倍角与半角</h2>
+    <p class="jp-sub" lang="ja">2倍角の公式・半角の公式</p>
+    <h3>2 倍角公式</h3>
+    <p>在加法定理中令 $\beta=\alpha$：</p>
+    <div class="formula-grid">
+      <div>$\sin2\alpha=2\sin\alpha\cos\alpha$</div>
+      <div>$\cos2\alpha=\cos^2\alpha-\sin^2\alpha$</div>
+      <div>$\cos2\alpha=1-2\sin^2\alpha$</div>
+      <div>$\cos2\alpha=2\cos^2\alpha-1$</div>
+      <div>$\tan2\alpha=\dfrac{2\tan\alpha}{1-\tan^2\alpha}$</div>
+    </div>
+    <h3>半角公式（降次公式）</h3>
+    <p>把 $\cos2\alpha$ 的后两种形式解出 $\sin^2$、$\cos^2$，再用 $\dfrac{\alpha}{2}$ 替换 $\alpha$：</p>
+    <div class="formula-grid">
+      <div>$\sin^2\dfrac{\alpha}{2}=\dfrac{1-\cos\alpha}{2}$</div>
+      <div>$\cos^2\dfrac{\alpha}{2}=\dfrac{1+\cos\alpha}{2}$</div>
+      <div>$\tan^2\dfrac{\alpha}{2}=\dfrac{1-\cos\alpha}{1+\cos\alpha}$</div>
+    </div>
+    <p>例如 $\dfrac{\pi}{8}$ 是锐角，所以 $\cos\dfrac{\pi}{8}=\sqrt{\dfrac{1+\cos\frac{\pi}{4}}{2}}=\dfrac{\sqrt{2+\sqrt2}}{2}$。开方时要根据 $\dfrac{\alpha}{2}$ 所在象限确定符号。</p>
+    <div class="box good">
+      <p><strong>解题套路一：统一成同一个角。</strong>解 $\sin2\theta=\cos\theta\ (0\le\theta&lt;2\pi)$：$2\sin\theta\cos\theta-\cos\theta=0$，即 $\cos\theta(2\sin\theta-1)=0$。由 $\cos\theta=0$ 得 $\theta=\dfrac{\pi}{2},\dfrac{3\pi}{2}$；由 $\sin\theta=\dfrac12$ 得 $\theta=\dfrac{\pi}{6},\dfrac{5\pi}{6}$。注意不能两边同除以 $\cos\theta$，否则丢解。</p>
+    </div>
+    <div class="box good">
+      <p><strong>解题套路二：换元 $t=\sin\theta+\cos\theta$。</strong>平方得 $t^2=1+\sin2\theta$，即 $\sin2\theta=t^2-1$。由合成可知 $-\sqrt2\le t\le\sqrt2$，于是含 $\sin2\theta$ 和 $\sin\theta+\cos\theta$ 的式子化为 $t$ 的二次函数。例题 3 就是这种类型。</p>
+    </div>
+    <p><strong>补充（不是必背重点）：</strong>3 倍角公式 $\sin3\alpha=3\sin\alpha-4\sin^3\alpha$，$\cos3\alpha=4\cos^3\alpha-3\cos\alpha$；积化和差如 $\sin\alpha\cos\beta=\dfrac12\{\sin(\alpha+\beta)+\sin(\alpha-\beta)\}$；和差化积如 $\sin\alpha+\sin\beta=2\sin\dfrac{\alpha+\beta}{2}\cos\dfrac{\alpha-\beta}{2}$。它们都可以由加法定理当场推出。</p>
+  </section>
+
+  <section id="compose">
+    <h2>6 三角函数的合成</h2>
+    <p class="jp-sub" lang="ja">三角関数の合成</p>
+    <p>把点 $(a,b)$ 画在平面上，$r=\sqrt{a^2+b^2}$ 是它到原点的距离，$\alpha$ 是它的方向角，于是 $a=r\cos\alpha,\ b=r\sin\alpha$。代入加法定理：</p>
+    $$a\sin\theta+b\cos\theta=r\sin(\theta+\alpha),\qquad r=\sqrt{a^2+b^2},\quad \cos\alpha=\frac{a}{r},\quad \sin\alpha=\frac{b}{r}.$$
+    <p>所以 $a\sin\theta+b\cos\theta$ 的最大值为 $r$，最小值为 $-r$（$\theta$ 可取全体实数时）。</p>
+    <div class="tw"><table>
+      <thead><tr><th>式子</th><th>点 $(a,b)$</th><th>合成结果</th></tr></thead>
+      <tbody>
+        <tr><td>$\sin\theta+\sqrt3\cos\theta$</td><td>$(1,\sqrt3)$</td><td>$2\sin\Bigl(\theta+\dfrac{\pi}{3}\Bigr)$</td></tr>
+        <tr><td>$\sin\theta-\cos\theta$</td><td>$(1,-1)$</td><td>$\sqrt2\sin\Bigl(\theta-\dfrac{\pi}{4}\Bigr)$</td></tr>
+        <tr><td>$3\sin\theta+4\cos\theta$</td><td>$(3,4)$</td><td>$5\sin(\theta+\alpha)$，其中 $\cos\alpha=\dfrac35,\ \sin\alpha=\dfrac45$</td></tr>
+      </tbody>
+    </table></div>
+    <p>也可以合成为余弦形式：$\sqrt3\sin\theta+\cos\theta=2\cos\Bigl(\theta-\dfrac{\pi}{3}\Bigr)$。EJU 的空格会指定形式，按题目写。</p>
+    <div class="box good">
+      <p><strong>解方程：</strong>解 $\sqrt3\sin\theta-\cos\theta=1\ (0\le\theta&lt;2\pi)$。合成得 $2\sin\Bigl(\theta-\dfrac{\pi}{6}\Bigr)=1$。因为 $-\dfrac{\pi}{6}\le\theta-\dfrac{\pi}{6}&lt;\dfrac{11\pi}{6}$，所以 $\theta-\dfrac{\pi}{6}=\dfrac{\pi}{6},\dfrac{5\pi}{6}$，得 $\theta=\dfrac{\pi}{3},\pi$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见失分：</strong>$\theta$ 范围受限时，最值不一定是 $\pm r$，必须先求 $\theta+\alpha$ 的范围再看图；另外 $\alpha$ 要同时满足 $\cos\alpha,\sin\alpha$ 的符号，不能只看 $\tan\alpha$。</p>
+    </div>
+
+    <div class="explorer" id="comp">
+      <h3 style="margin-top:0">动手合成：$a\sin\theta+b\cos\theta$</h3>
+      <div class="ex-head" id="comp-presets" role="group" aria-label="常用组合"></div>
+      <svg class="chart" id="comp-svg" viewBox="0 0 720 300" role="img" aria-label="向量图与两个波形叠加的结果"></svg>
+      <div class="legend" id="comp-legend"><span><i style="border-color:var(--c1)"></i>a sin θ</span><span><i style="border-color:var(--c4)"></i>b cos θ</span><span><i style="border-color:var(--c2)"></i>两者之和</span></div>
+      <div class="ctrl"><label for="c-a">a</label><input id="c-a" type="range" min="-4" max="4" step="0.01" value="1"><output id="c-a-o" for="c-a"></output></div>
+      <div class="ctrl"><label for="c-b">b</label><input id="c-b" type="range" min="-4" max="4" step="0.01" value="1.73"><output id="c-b-o" for="c-b"></output></div>
+      <div class="status" id="comp-status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2>7 原创例题</h2>
+    <p class="jp-sub" lang="ja">EJU 形式の例題（オリジナル）</p>
+    <p>以下题目都是本讲义原创，不是真题。形式仿照 EJU：每个字母代表一个数字（0–9），连写的字母如 $\B{AB}$ 表示两位数。分数化为最简，根号内的数尽量小。</p>
+
+    <article class="q">
+      <div class="q-head"><b>例题 1　倍角与合成求最值</b><span class="origin">原创</span></div>
+      <p>对 $0\le\theta\le\dfrac{\pi}{2}$，设 $y=\sin^2\theta+2\sqrt3\sin\theta\cos\theta+3\cos^2\theta$。</p>
+      <p>(1) 用 $2\theta$ 表示：$y=\B{A}+\cos2\theta+\sqrt{\B{B}}\sin2\theta$。</p>
+      <p>(2) 合成：$y=\B{C}+\B{D}\sin\Bigl(2\theta+\dfrac{\pi}{\B{E}}\Bigr)$。</p>
+      <p>(3) $y$ 的最大值为 $\B{F}$，此时 $\theta=\dfrac{\pi}{\B{G}}$；最小值为 $\B{H}$，此时 $\theta=\dfrac{\pi}{\B{I}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 3</li><li>C = 2</li><li>D = 2</li><li>E = 6</li><li>F = 4</li><li>G = 6</li><li>H = 1</li><li>I = 2</li></ul>
+        <p>(1) 用 $\sin^2\theta=\dfrac{1-\cos2\theta}{2}$，$\cos^2\theta=\dfrac{1+\cos2\theta}{2}$，$2\sin\theta\cos\theta=\sin2\theta$：</p>
+        $$y=\frac{1-\cos2\theta}{2}+\sqrt3\sin2\theta+\frac{3(1+\cos2\theta)}{2}=2+\cos2\theta+\sqrt3\sin2\theta.$$
+        <p>(2) 点 $(\sqrt3,1)$ 到原点距离为 $2$，方向角为 $\dfrac{\pi}{6}$，所以 $\sqrt3\sin2\theta+\cos2\theta=2\sin\Bigl(2\theta+\dfrac{\pi}{6}\Bigr)$，$y=2+2\sin\Bigl(2\theta+\dfrac{\pi}{6}\Bigr)$。</p>
+        <p>(3) 令 $u=2\theta+\dfrac{\pi}{6}$，则 $\dfrac{\pi}{6}\le u\le\dfrac{7\pi}{6}$。$u=\dfrac{\pi}{2}$，即 $\theta=\dfrac{\pi}{6}$ 时 $\sin u=1$，$y$ 最大为 $4$；$u=\dfrac{7\pi}{6}$，即 $\theta=\dfrac{\pi}{2}$ 时 $\sin u=-\dfrac12$，$y$ 最小为 $1$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 2　加法定理与半角</b><span class="origin">原创</span></div>
+      <p>设 $\dfrac{\pi}{2}&lt;\alpha&lt;\pi$，$\dfrac{3\pi}{2}&lt;\beta&lt;2\pi$，且 $\sin\alpha=\dfrac35$，$\cos\beta=\dfrac{5}{13}$。则</p>
+      <p>(1) $\sin(\alpha+\beta)=\dfrac{\B{AB}}{\B{CD}}$，$\cos(\alpha-\beta)=-\dfrac{\B{EF}}{65}$。</p>
+      <p>(2) $\tan2\alpha=-\dfrac{\B{GH}}{\B{I}}$。</p>
+      <p>(3) $\sin\dfrac{\alpha}{2}=\dfrac{\B{J}\sqrt{\B{KL}}}{\B{MN}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 6</li><li>B = 3</li><li>C = 6</li><li>D = 5</li><li>E = 5</li><li>F = 6</li><li>G = 2</li><li>H = 4</li><li>I = 7</li><li>J = 3</li><li>K = 1</li><li>L = 0</li><li>M = 1</li><li>N = 0</li></ul>
+        <p>先定符号：$\alpha$ 在第 2 象限，$\cos\alpha=-\dfrac45$；$\beta$ 在第 4 象限，$\sin\beta=-\dfrac{12}{13}$。</p>
+        <p>(1) $\sin(\alpha+\beta)=\dfrac35\cdot\dfrac{5}{13}+\Bigl(-\dfrac45\Bigr)\Bigl(-\dfrac{12}{13}\Bigr)=\dfrac{15+48}{65}=\dfrac{63}{65}$。</p>
+        <p>$\cos(\alpha-\beta)=\Bigl(-\dfrac45\Bigr)\cdot\dfrac{5}{13}+\dfrac35\Bigl(-\dfrac{12}{13}\Bigr)=\dfrac{-20-36}{65}=-\dfrac{56}{65}$。</p>
+        <p>(2) $\tan\alpha=-\dfrac34$，所以 $\tan2\alpha=\dfrac{2\cdot(-\frac34)}{1-\frac{9}{16}}=-\dfrac32\cdot\dfrac{16}{7}=-\dfrac{24}{7}$。</p>
+        <p>(3) $\sin^2\dfrac{\alpha}{2}=\dfrac{1-\cos\alpha}{2}=\dfrac{9}{10}$。由 $\dfrac{\pi}{4}&lt;\dfrac{\alpha}{2}&lt;\dfrac{\pi}{2}$ 知 $\sin\dfrac{\alpha}{2}&gt;0$，所以 $\sin\dfrac{\alpha}{2}=\dfrac{3}{\sqrt{10}}=\dfrac{3\sqrt{10}}{10}$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 3　换元与解的个数</b><span class="origin">原创</span></div>
+      <p>设 $0\le\theta&lt;2\pi$，$f(\theta)=\sin2\theta+2(\sin\theta+\cos\theta)$，令 $t=\sin\theta+\cos\theta$。</p>
+      <p>(1) $t$ 的取值范围是 $-\sqrt{\B{A}}\le t\le\sqrt{\B{B}}$，并且 $\sin2\theta=t^2-\B{C}$。</p>
+      <p>(2) $f(\theta)=(t+\B{D})^2-\B{E}$。因此 $f(\theta)$ 的最大值为 $\B{F}+\B{G}\sqrt{\B{H}}$，此时 $\theta=\dfrac{\pi}{\B{I}}$；最小值为 $-\B{J}$，此时 $\theta=\pi,\ \dfrac{\B{K}\pi}{\B{L}}$。</p>
+      <p>(3) 关于 $\theta$ 的方程 $f(\theta)=k$ 恰有 $3$ 个不同的解时，$k=\B{M}-\B{N}\sqrt{\B{O}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 2</li><li>C = 1</li><li>D = 1</li><li>E = 2</li><li>F = 1</li><li>G = 2</li><li>H = 2</li><li>I = 4</li><li>J = 2</li><li>K = 3</li><li>L = 2</li><li>M = 1</li><li>N = 2</li><li>O = 2</li></ul>
+        <p>(1) $t=\sqrt2\sin\Bigl(\theta+\dfrac{\pi}{4}\Bigr)$，所以 $-\sqrt2\le t\le\sqrt2$。又 $t^2=1+\sin2\theta$，所以 $\sin2\theta=t^2-1$。</p>
+        <p>(2) $f=t^2-1+2t=(t+1)^2-2$。对称轴 $t=-1$ 在范围内，所以 $t=\sqrt2$ 时最大，值为 $(\sqrt2+1)^2-2=1+2\sqrt2$，此时 $\theta+\dfrac{\pi}{4}=\dfrac{\pi}{2}$，$\theta=\dfrac{\pi}{4}$。$t=-1$ 时最小，值为 $-2$，此时 $\sin\Bigl(\theta+\dfrac{\pi}{4}\Bigr)=-\dfrac{\sqrt2}{2}$，$\theta+\dfrac{\pi}{4}=\dfrac{5\pi}{4},\dfrac{7\pi}{4}$，即 $\theta=\pi,\dfrac{3\pi}{2}$。</p>
+        <p>(3) 每个 $t$ 对应的 $\theta$ 个数：$-\sqrt2&lt;t&lt;\sqrt2$ 时 $2$ 个，$t=\pm\sqrt2$ 时 $1$ 个。要得到 $3$ 个解，需要 $t$ 取两个值，其中一个是 $\pm\sqrt2$，另一个在开区间内。方程 $(t+1)^2-2=k$ 的两根之和为 $-2$：</p>
+        <ul>
+          <li>若一根为 $t=-\sqrt2$，另一根为 $-2+\sqrt2$，在范围内，符合。此时 $k=(1-\sqrt2)^2-2=1-2\sqrt2$。</li>
+          <li>若一根为 $t=\sqrt2$，另一根为 $-2-\sqrt2$，超出范围，只有 $1$ 个解，不符合。</li>
+        </ul>
+        <p>所以 $k=1-2\sqrt2$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 4　图像与不等式</b><span class="origin">原创</span></div>
+      <p>(1) 函数 $y=3\sin\Bigl(3\theta-\dfrac{\pi}{2}\Bigr)+1$ 的振幅为 $\B{A}$，周期为 $\dfrac{\B{B}\pi}{\B{C}}$。它的图像是把 $y=3\sin3\theta$ 的图像向 $\theta$ 轴正方向平移 $\dfrac{\pi}{\B{D}}$，再向 $y$ 轴正方向平移 $\B{E}$ 得到的。$y$ 的值域为 $-\B{F}\le y\le\B{G}$，$y$ 取最大值的最小正数 $\theta$ 为 $\dfrac{\pi}{\B{H}}$。</p>
+      <p>(2) 对 $0\le\theta&lt;2\pi$，不等式 $\cos2\theta+3\sin\theta-2&gt;0$ 可化为 $(\B{I}\sin\theta-1)(\sin\theta-1)&lt;0$。其解为 $\dfrac{\pi}{\B{J}}&lt;\theta&lt;\dfrac{\B{K}\pi}{\B{L}}$，且 $\theta\ne\dfrac{\pi}{\B{M}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 3</li><li>B = 2</li><li>C = 3</li><li>D = 6</li><li>E = 1</li><li>F = 2</li><li>G = 4</li><li>H = 3</li><li>I = 2</li><li>J = 6</li><li>K = 5</li><li>L = 6</li><li>M = 2</li></ul>
+        <p>(1) 振幅 $3$，周期 $\dfrac{2\pi}{3}$。$3\theta-\dfrac{\pi}{2}=3\Bigl(\theta-\dfrac{\pi}{6}\Bigr)$，所以向右平移 $\dfrac{\pi}{6}$，再向上平移 $1$。值域为 $1-3\le y\le1+3$，即 $-2\le y\le4$。由 $3\theta-\dfrac{\pi}{2}=\dfrac{\pi}{2}$ 得最小正数解 $\theta=\dfrac{\pi}{3}$。</p>
+        <p>(2) 用 $\cos2\theta=1-2\sin^2\theta$，整理得 $-2\sin^2\theta+3\sin\theta-1&gt;0$，即 $2\sin^2\theta-3\sin\theta+1&lt;0$，$(2\sin\theta-1)(\sin\theta-1)&lt;0$。所以 $\dfrac12&lt;\sin\theta&lt;1$，解为 $\dfrac{\pi}{6}&lt;\theta&lt;\dfrac{5\pi}{6}$ 且 $\theta\ne\dfrac{\pi}{2}$（$\theta=\dfrac{\pi}{2}$ 时 $\sin\theta=1$，不等式两边相等）。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>8 练习题</h2>
+    <p class="jp-sub" lang="ja">練習問題</p>
+    <p>全部原创。先自己算，再点按钮对答案。</p>
+    <article class="q">
+      <div class="q-head"><b>练习 1　度与弧度、扇形</b><span class="origin">原创</span></div>
+      <p>(1) 把 $135^\circ$ 化为弧度。(2) 把 $\dfrac{7\pi}{6}$ 化为度。(3) 半径 $6$、圆心角 $\dfrac{2\pi}{3}$ 的扇形，求弧长与面积。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>(1) $\dfrac{3\pi}{4}$；(2) $210^\circ$；(3) 弧长 $l=6\cdot\dfrac{2\pi}{3}=4\pi$，面积 $S=\dfrac12\cdot 36\cdot\dfrac{2\pi}{3}=12\pi$。</p></div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 2　对称式</b><span class="origin">原创</span></div>
+      <p>设 $0&lt;\theta&lt;\pi$，$\sin\theta+\cos\theta=\dfrac12$。求 $\sin\theta\cos\theta$，$\sin^3\theta+\cos^3\theta$，$\sin\theta-\cos\theta$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>平方得 $1+2\sin\theta\cos\theta=\dfrac14$，所以 $\sin\theta\cos\theta=-\dfrac38$。</p><p>$\sin^3\theta+\cos^3\theta=(\sin\theta+\cos\theta)(1-\sin\theta\cos\theta)=\dfrac12\cdot\dfrac{11}{8}=\dfrac{11}{16}$。</p><p>因为 $\sin\theta&gt;0$ 且积为负，所以 $\cos\theta&lt;0$，$\sin\theta-\cos\theta&gt;0$。又 $(\sin\theta-\cos\theta)^2=1+\dfrac34=\dfrac74$，所以 $\sin\theta-\cos\theta=\dfrac{\sqrt7}{2}$。</p></div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 3　求值</b><span class="origin">原创</span></div>
+      <p>求值：$\sin\dfrac{7\pi}{6}$，$\cos\Bigl(-\dfrac{3\pi}{4}\Bigr)$，$\tan\dfrac{5\pi}{3}$，$\sin\dfrac{17\pi}{4}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>依次为 $-\dfrac12$，$-\dfrac{\sqrt2}{2}$，$-\sqrt3$，$\dfrac{\sqrt2}{2}$。最后一个用 $\dfrac{17\pi}{4}=\dfrac{\pi}{4}+4\pi$。</p></div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 4　周期与零点</b><span class="origin">原创</span></div>
+      <p>对 $y=2\cos\Bigl(\dfrac{\theta}{2}-\dfrac{\pi}{6}\Bigr)$，求周期、取最大值的最小正数 $\theta$、使 $y=0$ 的最小正数 $\theta$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>周期 $\dfrac{2\pi}{1/2}=4\pi$。由 $\dfrac{\theta}{2}-\dfrac{\pi}{6}=0$ 得最大值点 $\theta=\dfrac{\pi}{3}$（最大值 $2$）。由 $\dfrac{\theta}{2}-\dfrac{\pi}{6}=\dfrac{\pi}{2}$ 得 $\theta=\dfrac{4\pi}{3}$。</p></div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 5　加法定理求值</b><span class="origin">原创</span></div>
+      <p>求 $\cos75^\circ$，$\tan15^\circ$，$\sin105^\circ$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\cos75^\circ=\cos(45^\circ+30^\circ)=\dfrac{\sqrt6-\sqrt2}{4}$。</p><p>$\tan15^\circ=\tan(45^\circ-30^\circ)=\dfrac{1-\frac{\sqrt3}{3}}{1+\frac{\sqrt3}{3}}=2-\sqrt3$。</p><p>$\sin105^\circ=\sin(60^\circ+45^\circ)=\dfrac{\sqrt6+\sqrt2}{4}$。</p></div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 6　由正切求角</b><span class="origin">原创</span></div>
+      <p>$\alpha,\beta$ 都是锐角，$\tan\alpha=2$，$\tan\beta=3$。求 $\tan(\alpha+\beta)$ 和 $\alpha+\beta$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\tan(\alpha+\beta)=\dfrac{2+3}{1-6}=-1$。由 $0&lt;\alpha+\beta&lt;\pi$ 得 $\alpha+\beta=\dfrac{3\pi}{4}$。</p></div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 7　半角</b><span class="origin">原创</span></div>
+      <p>求 $\sin\dfrac{\pi}{8}$ 和 $\cos^2\dfrac{\pi}{12}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\sin^2\dfrac{\pi}{8}=\dfrac{1-\cos\frac{\pi}{4}}{2}=\dfrac{2-\sqrt2}{4}$，$\dfrac{\pi}{8}$ 为锐角，所以 $\sin\dfrac{\pi}{8}=\dfrac{\sqrt{2-\sqrt2}}{2}$。</p><p>$\cos^2\dfrac{\pi}{12}=\dfrac{1+\cos\frac{\pi}{6}}{2}=\dfrac{2+\sqrt3}{4}$。</p></div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 8　2 倍角</b><span class="origin">原创</span></div>
+      <p>$\dfrac{\pi}{2}&lt;\alpha&lt;\pi$，$\sin\alpha=\dfrac13$。求 $\sin2\alpha$，$\cos2\alpha$，$\tan2\alpha$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\cos\alpha=-\dfrac{2\sqrt2}{3}$。$\sin2\alpha=2\cdot\dfrac13\cdot\Bigl(-\dfrac{2\sqrt2}{3}\Bigr)=-\dfrac{4\sqrt2}{9}$。$\cos2\alpha=1-2\cdot\dfrac19=\dfrac79$。$\tan2\alpha=\dfrac{\sin2\alpha}{\cos2\alpha}=-\dfrac{4\sqrt2}{7}$。</p></div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 9　范围受限的合成</b><span class="origin">原创</span></div>
+      <p>求 $y=\sin\theta-\sqrt3\cos\theta\ \Bigl(0\le\theta\le\dfrac{\pi}{2}\Bigr)$ 的最大值和最小值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$y=2\sin\Bigl(\theta-\dfrac{\pi}{3}\Bigr)$，且 $-\dfrac{\pi}{3}\le\theta-\dfrac{\pi}{3}\le\dfrac{\pi}{6}$，这一段上正弦递增。$\theta=\dfrac{\pi}{2}$ 时最大值 $1$；$\theta=0$ 时最小值 $-\sqrt3$。注意最大值不是 $2$。</p></div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 10　合成解方程</b><span class="origin">原创</span></div>
+      <p>解方程 $\sin\theta+\sqrt3\cos\theta=1\ (0\le\theta&lt;2\pi)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$2\sin\Bigl(\theta+\dfrac{\pi}{3}\Bigr)=1$，且 $\dfrac{\pi}{3}\le\theta+\dfrac{\pi}{3}&lt;\dfrac{7\pi}{3}$，所以 $\theta+\dfrac{\pi}{3}=\dfrac{5\pi}{6},\dfrac{13\pi}{6}$，得 $\theta=\dfrac{\pi}{2},\ \dfrac{11\pi}{6}$。</p></div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 11　化为二次方程</b><span class="origin">原创</span></div>
+      <p>解方程 $\cos2\theta-3\cos\theta+2=0\ (0\le\theta&lt;2\pi)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$2\cos^2\theta-3\cos\theta+1=0$，即 $(2\cos\theta-1)(\cos\theta-1)=0$。$\cos\theta=1$ 得 $\theta=0$；$\cos\theta=\dfrac12$ 得 $\theta=\dfrac{\pi}{3},\ \dfrac{5\pi}{3}$。</p></div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 12　化为二次函数</b><span class="origin">原创</span></div>
+      <p>求 $y=\cos2\theta+2\sin\theta\ (0\le\theta&lt;2\pi)$ 的最大值、最小值及对应的 $\theta$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>令 $s=\sin\theta\ (-1\le s\le1)$，$y=1-2s^2+2s=-2\Bigl(s-\dfrac12\Bigr)^2+\dfrac32$。$s=\dfrac12$，即 $\theta=\dfrac{\pi}{6},\dfrac{5\pi}{6}$ 时最大值 $\dfrac32$；$s=-1$，即 $\theta=\dfrac{3\pi}{2}$ 时最小值 $-3$。</p></div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>练习 13　两直线的夹角</b><span class="origin">原创</span></div>
+      <p>求直线 $y=x$ 与 $y=(2+\sqrt3)x$ 所成的锐角。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\tan\theta=\left|\dfrac{(2+\sqrt3)-1}{1+(2+\sqrt3)}\right|=\dfrac{1+\sqrt3}{3+\sqrt3}=\dfrac{\sqrt3}{3}$，所以 $\theta=\dfrac{\pi}{6}$。</p></div>
+    </article>
+  </section>
+
+  <section id="terms">
+    <h2>9 日语术语对照</h2>
+    <p class="jp-sub" lang="ja">用語対照表</p>
+    <div class="bar">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-n" style="font-size:14px;color:var(--ink-3)"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody>
+        <tr class="group"><td colspan="3">角与弧度</td></tr>
+        <tr><td lang="ja">一般角</td><td class="kana" lang="ja">いっぱんかく</td><td>一般角（任意角）</td></tr>
+        <tr><td lang="ja">始線</td><td class="kana" lang="ja">しせん</td><td>始边</td></tr>
+        <tr><td lang="ja">動径</td><td class="kana" lang="ja">どうけい</td><td>动径（终边所在的旋转射线）</td></tr>
+        <tr><td lang="ja">度数法</td><td class="kana" lang="ja">どすうほう</td><td>角度制</td></tr>
+        <tr><td lang="ja">弧度法</td><td class="kana" lang="ja">こどほう</td><td>弧度制</td></tr>
+        <tr><td lang="ja">ラジアン</td><td class="kana" lang="ja">ラジアン</td><td>弧度（radian）</td></tr>
+        <tr><td lang="ja">扇形</td><td class="kana" lang="ja">おうぎがた</td><td>扇形</td></tr>
+        <tr><td lang="ja">弧</td><td class="kana" lang="ja">こ</td><td>弧</td></tr>
+        <tr><td lang="ja">中心角</td><td class="kana" lang="ja">ちゅうしんかく</td><td>圆心角</td></tr>
+        <tr class="group"><td colspan="3">定义与性质</td></tr>
+        <tr><td lang="ja">三角関数</td><td class="kana" lang="ja">さんかくかんすう</td><td>三角函数</td></tr>
+        <tr><td lang="ja">単位円</td><td class="kana" lang="ja">たんいえん</td><td>单位圆</td></tr>
+        <tr><td lang="ja">正弦</td><td class="kana" lang="ja">せいげん</td><td>正弦</td></tr>
+        <tr><td lang="ja">余弦</td><td class="kana" lang="ja">よげん</td><td>余弦</td></tr>
+        <tr><td lang="ja">正接</td><td class="kana" lang="ja">せいせつ</td><td>正切</td></tr>
+        <tr><td lang="ja">象限</td><td class="kana" lang="ja">しょうげん</td><td>象限</td></tr>
+        <tr><td lang="ja">偶関数</td><td class="kana" lang="ja">ぐうかんすう</td><td>偶函数</td></tr>
+        <tr><td lang="ja">奇関数</td><td class="kana" lang="ja">きかんすう</td><td>奇函数</td></tr>
+        <tr class="group"><td colspan="3">图像</td></tr>
+        <tr><td lang="ja">グラフ</td><td class="kana" lang="ja">グラフ</td><td>图像</td></tr>
+        <tr><td lang="ja">周期</td><td class="kana" lang="ja">しゅうき</td><td>周期</td></tr>
+        <tr><td lang="ja">周期関数</td><td class="kana" lang="ja">しゅうきかんすう</td><td>周期函数</td></tr>
+        <tr><td lang="ja">振幅</td><td class="kana" lang="ja">しんぷく</td><td>振幅</td></tr>
+        <tr><td lang="ja">漸近線</td><td class="kana" lang="ja">ぜんきんせん</td><td>渐近线</td></tr>
+        <tr><td lang="ja">平行移動</td><td class="kana" lang="ja">へいこういどう</td><td>平移</td></tr>
+        <tr><td lang="ja">定義域</td><td class="kana" lang="ja">ていぎいき</td><td>定义域</td></tr>
+        <tr><td lang="ja">値域</td><td class="kana" lang="ja">ちいき</td><td>值域</td></tr>
+        <tr><td lang="ja">最大値</td><td class="kana" lang="ja">さいだいち</td><td>最大值</td></tr>
+        <tr><td lang="ja">最小値</td><td class="kana" lang="ja">さいしょうち</td><td>最小值</td></tr>
+        <tr class="group"><td colspan="3">公式与应用</td></tr>
+        <tr><td lang="ja">加法定理</td><td class="kana" lang="ja">かほうていり</td><td>加法定理（和角公式）</td></tr>
+        <tr><td lang="ja">2倍角の公式</td><td class="kana" lang="ja">にばいかくのこうしき</td><td>二倍角公式</td></tr>
+        <tr><td lang="ja">半角の公式</td><td class="kana" lang="ja">はんかくのこうしき</td><td>半角公式</td></tr>
+        <tr><td lang="ja">3倍角の公式</td><td class="kana" lang="ja">さんばいかくのこうしき</td><td>三倍角公式</td></tr>
+        <tr><td lang="ja">積和の公式</td><td class="kana" lang="ja">せきわのこうしき</td><td>积化和差公式</td></tr>
+        <tr><td lang="ja">和積の公式</td><td class="kana" lang="ja">わせきのこうしき</td><td>和差化积公式</td></tr>
+        <tr><td lang="ja">三角関数の合成</td><td class="kana" lang="ja">さんかくかんすうのごうせい</td><td>三角函数的合成</td></tr>
+        <tr><td lang="ja">なす角</td><td class="kana" lang="ja">なすかく</td><td>（两直线）所成的角</td></tr>
+        <tr><td lang="ja">傾き</td><td class="kana" lang="ja">かたむき</td><td>斜率</td></tr>
+        <tr><td lang="ja">置き換え</td><td class="kana" lang="ja">おきかえ</td><td>换元</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>例题与练习的答案和本页公式都已用 Python（sympy）计算或数值验证。题目为原创，仅供学习，不代表 EJU 实际出题。考试范围以 JASSO 公布的シラバス为准。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = [].slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + e.target.id;
+          a.classList.toggle('on', on);
+          if (on && a.parentNode.parentNode.scrollWidth > a.parentNode.parentNode.clientWidth) {
+            a.parentNode.parentNode.scrollLeft = a.offsetLeft - 40;
+          }
+        });
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 答案开关 ---------- */
+  document.querySelectorAll('.toggle-ans').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var ans = b.nextElementSibling, show = ans.hidden;
+      ans.hidden = !show;
+      b.setAttribute('aria-expanded', String(show));
+      b.textContent = show ? '隐藏答案' : '显示答案';
+    });
+  });
+
+  /* ---------- 术语搜索 ---------- */
+  var termRows = [].slice.call(document.querySelectorAll('#term-table tbody tr'));
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase(), n = 0;
+    termRows.forEach(function (r) {
+      if (r.classList.contains('group')) { r.hidden = !!q; return; }
+      var hit = r.textContent.toLowerCase().indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) n++;
+    });
+    $('term-n').textContent = '共 ' + n + ' 条';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 绘图工具 ---------- */
+  var TAU = Math.PI * 2;
+  function line(x1, y1, x2, y2, cls, style) {
+    return '<line x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '" class="' + cls + '"' + (style ? ' style="' + style + '"' : '') + '/>';
+  }
+  function text(x, y, s, cls, anchor) {
+    return '<text x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" class="' + (cls || 'tick') + '" text-anchor="' + (anchor || 'middle') + '">' + s + '</text>';
+  }
+  function dot(x, y, cls) { return '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="5.5" class="' + (cls || 'dot') + '"/>'; }
+  function curve(f, t0, t1, X, Y, cls, style, limit) {
+    var d = '', pen = false;
+    for (var i = 0; i <= 360; i++) {
+      var t = t0 + (t1 - t0) * i / 360, v = f(t);
+      if (!isFinite(v) || (limit && Math.abs(v) > limit)) { pen = false; continue; }
+      d += (pen ? 'L' : 'M') + X(t).toFixed(1) + ' ' + Y(v).toFixed(1);
+      pen = true;
+    }
+    return '<path d="' + d + '" class="' + cls + '"' + (style ? ' style="' + style + '"' : '') + '/>';
+  }
+  function gcd(p, q) { p = Math.abs(p); q = Math.abs(q); while (q) { var t = p % q; p = q; q = t; } return p || 1; }
+  /* n/d·π 的文字表示 */
+  function piFrac(n, d) {
+    if (n === 0) return '0';
+    var g = gcd(n, d), p = n / g, q = d / g;
+    if (q < 0) { p = -p; q = -q; }
+    return (p < 0 ? '−' : '') + (Math.abs(p) === 1 ? '' : Math.abs(p)) + 'π' + (q === 1 ? '' : '/' + q);
+  }
+  function fx(v, n) { return (Math.abs(v) < 5e-5 ? 0 : v).toFixed(n === undefined ? 4 : n).replace('-', '−'); }
+  function sn(v) { return String(v).replace('-', '−'); }
+  function piAxis(X, y0, top, bottom) {
+    var s = '';
+    [[1, 2], [1, 1], [3, 2], [2, 1]].forEach(function (f) {
+      var x = X(f[0] / f[1] * Math.PI);
+      s += line(x, top, x, bottom, 'grid');
+      s += text(x, y0 + 16, piFrac(f[0], f[1]));
+    });
+    return s;
+  }
+
+  /* ---------- 单位圆演示 ---------- */
+  (function () {
+    var svg = $('circ-svg'), input = $('circ-t'), S = { fn: 'sin' };
+    var CX = 130, CY = 150, R = 95, X0 = 280, X1 = 700, U = 95;
+    var FN = { sin: Math.sin, cos: Math.cos, tan: Math.tan };
+    var COL = { sin: 'var(--c2)', cos: 'var(--c4)', tan: 'var(--c3)' };
+    function X(t) { return X0 + (X1 - X0) * t / TAU; }
+    function Y(v) { return CY - U * v; }
+    function draw() {
+      var deg = +input.value, t = deg * Math.PI / 180, c = Math.cos(t), s = Math.sin(t);
+      var undef = deg % 180 === 90, v = undef ? NaN : (deg % 180 === 0 && S.fn === 'tan' ? 0 : FN[S.fn](t));
+      var px = CX + R * c, py = CY - R * s, h = '';
+      /* 圆 */
+      h += line(CX - R - 18, CY, CX + R + 18, CY, 'axis') + line(CX, CY - R - 18, CX, CY + R + 18, 'axis');
+      h += '<circle cx="' + CX + '" cy="' + CY + '" r="' + R + '" fill="none" class="axis"/>';
+      var large = deg > 180 ? 1 : 0;
+      if (deg > 0 && deg < 360) h += '<path d="M' + (CX + 24) + ' ' + CY + 'A24 24 0 ' + large + ' 0 ' + (CX + 24 * c).toFixed(1) + ' ' + (CY - 24 * s).toFixed(1) + '" class="s1"/>';
+      h += line(CX, CY, px, py, 's1');
+      h += line(CX, CY, px, CY, '', 'stroke:var(--c4);stroke-width:3.5');
+      h += line(px, CY, px, py, '', 'stroke:var(--c2);stroke-width:3.5');
+      if (S.fn === 'tan' && !undef) {
+        var clip = Math.max(-1.45, Math.min(1.45, Math.tan(t)));
+        var xt = CX + R, yt = CY - R * clip;
+        h += line(xt, CY - R - 40, xt, CY + R + 40, 'sm');
+        if (Math.abs(Math.tan(t)) <= 1.45) { h += line(CX, CY, xt, yt, 'sm'); h += line(xt, CY, xt, yt, '', 'stroke:var(--c3);stroke-width:3.5'); h += dot(xt, yt, 'dot3'); }
+      }
+      h += dot(px, py, 'dot2') + text(px + (c >= 0 ? 12 : -12), py - 8, 'P', 'lbl', c >= 0 ? 'start' : 'end');
+      /* 波形 */
+      h += line(X0 - 6, CY, X1 + 6, CY, 'axis') + line(X0, 22, X0, 278, 'axis');
+      h += piAxis(X, CY, 22, 278);
+      [1, -1].forEach(function (m) { h += line(X0, Y(m), X1, Y(m), 'grid') + text(X0 - 8, Y(m) + 4, sn(m), 'tick', 'end'); });
+      h += curve(FN[S.fn], 0, TAU, X, Y, '', 'fill:none;stroke-width:2.2;stroke:' + COL[S.fn], S.fn === 'tan' ? 1.35 : 0);
+      h += text(X1, 18, 'y = ' + S.fn + ' θ', 'lbl', 'end');
+      if (!isNaN(v) && Math.abs(v) <= 1.35) {
+        var wx = X(t), wy = Y(v);
+        if (S.fn === 'sin') h += line(px, py, wx, wy, 'sm');
+        h += line(wx, CY, wx, wy, '', 'stroke-width:2.5;stroke:' + COL[S.fn]);
+        h += dot(wx, wy, 'dot2');
+      }
+      svg.innerHTML = h;
+      var rad = piFrac(deg, 180);
+      $('circ-t-o').textContent = deg + '°';
+      $('circ-read').innerHTML = '<div><small>弧度</small>θ = ' + rad + '</div><div><small>sin θ（红）</small>' + fx(s) + '</div><div><small>cos θ（绿）</small>' + fx(c) + '</div><div><small>tan θ</small>' + (undef ? '无定义' : fx(deg % 180 === 0 ? 0 : Math.tan(t))) + '</div>';
+      [].forEach.call($('circ-fns').children, function (b) { b.setAttribute('aria-pressed', String(b.dataset.key === S.fn)); });
+    }
+    ['sin', 'cos', 'tan'].forEach(function (k) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.dataset.key = k; b.textContent = 'y = ' + k + ' θ';
+      b.addEventListener('click', function () { S.fn = k; draw(); });
+      $('circ-fns').appendChild(b);
+    });
+    var marks = $('circ-marks');
+    marks.textContent = '跳到：';
+    [30, 45, 60, 90, 120, 135, 150, 180, 210, 270, 330].forEach(function (d) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = piFrac(d, 180);
+      b.addEventListener('click', function () { input.value = d; draw(); });
+      marks.appendChild(b);
+    });
+    input.addEventListener('input', draw);
+    draw();
+  })();
+
+  /* ---------- 图像变换 ---------- */
+  (function () {
+    var svg = $('wave-svg'), X0 = 44, X1 = 706, CY = 160, U = 28;
+    function X(t) { return X0 + (X1 - X0) * t / TAU; }
+    function Y(v) { return CY - U * v; }
+    function draw() {
+      var a = +$('w-a').value, b = +$('w-b').value, k = +$('w-c').value, d = +$('w-d').value;
+      var c = k * Math.PI / 12, h = '';
+      h += line(X0 - 6, CY, X1 + 6, CY, 'axis') + line(X0, 14, X0, 306, 'axis');
+      h += piAxis(X, CY, 14, 306);
+      for (var m = -5; m <= 5; m++) if (m) h += line(X0, Y(m), X1, Y(m), 'grid') + text(X0 - 8, Y(m) + 4, sn(m), 'tick', 'end');
+      h += curve(Math.sin, 0, TAU, X, Y, 'sm');
+      h += curve(function (t) { return a === 0 ? d : a * Math.sin(b * t + c) + d; }, 0, TAU, X, Y, 's2');
+      svg.innerHTML = h;
+      $('w-a-o').textContent = sn(a); $('w-b-o').textContent = sn(b);
+      $('w-c-o').textContent = piFrac(k, 12); $('w-d-o').textContent = sn(d);
+      var m2 = Math.round(b * 2); /* b = m2/2 */
+      /* 平移 = −c/b = −(k/12)π / (m2/2) = −k/(6·m2) π */
+      var shift = piFrac(-k, 6 * m2);
+      var amp = Math.abs(a);
+      $('wave-status').textContent = a === 0
+        ? 'a = 0 时图像是直线 y = ' + sn(d) + '，不再是波形。'
+        : '振幅 ' + amp + '；周期 ' + piFrac(4, m2) + '；向 θ 轴方向平移 ' + shift + '，向 y 轴方向平移 ' + sn(d) + '；值域 ' + sn(d - amp) + ' ≤ y ≤ ' + sn(d + amp) + (a < 0 ? '；a < 0，图像上下翻转。' : '。') + ' 虚线为 y = sin θ。';
+    }
+    ['w-a', 'w-b', 'w-c', 'w-d'].forEach(function (id) { $(id).addEventListener('input', draw); });
+    draw();
+  })();
+
+  /* ---------- 合成演示 ---------- */
+  (function () {
+    var svg = $('comp-svg'), S = { a: 1, b: Math.sqrt(3) };
+    var CX = 120, CY = 150, K = 18, X0 = 268, X1 = 706, U = 22;
+    function X(t) { return X0 + (X1 - X0) * t / TAU; }
+    function Y(v) { return CY - U * v; }
+    function draw() {
+      var a = S.a, b = S.b, r = Math.sqrt(a * a + b * b), al = Math.atan2(b, a), h = '';
+      h += line(CX - 112, CY, CX + 112, CY, 'axis') + line(CX, CY - 112, CX, CY + 112, 'axis');
+      h += '<circle cx="' + CX + '" cy="' + CY + '" r="' + (r * K).toFixed(1) + '" class="disc"/>';
+      var px = CX + a * K, py = CY - b * K;
+      h += line(CX, CY, CX + a * K, CY, '', 'stroke:var(--c1);stroke-width:3');
+      h += line(px, CY, px, py, '', 'stroke:var(--c4);stroke-width:3');
+      h += line(CX, CY, px, py, '', 'stroke:var(--c2);stroke-width:3');
+      h += dot(px, py, 'dot2');
+      h += text(px + (a >= 0 ? 10 : -10), py + (b >= 0 ? -8 : 18), '(a, b)', 'lbl', a >= 0 ? 'start' : 'end');
+      h += line(X0 - 6, CY, X1 + 6, CY, 'axis') + line(X0, 14, X0, 286, 'axis');
+      h += piAxis(X, CY, 14, 286);
+      for (var m = -6; m <= 6; m += 2) if (m) h += line(X0, Y(m), X1, Y(m), 'grid') + text(X0 - 8, Y(m) + 4, sn(m), 'tick', 'end');
+      h += curve(function (t) { return a * Math.sin(t); }, 0, TAU, X, Y, '', 'fill:none;stroke-width:1.6;stroke-dasharray:6 4;stroke:var(--c1)');
+      h += curve(function (t) { return b * Math.cos(t); }, 0, TAU, X, Y, '', 'fill:none;stroke-width:1.6;stroke-dasharray:6 4;stroke:var(--c4)');
+      h += curve(function (t) { return a * Math.sin(t) + b * Math.cos(t); }, 0, TAU, X, Y, 's2');
+      svg.innerHTML = h;
+      $('c-a-o').textContent = fx(a, 2); $('c-b-o').textContent = fx(b, 2);
+      $('comp-status').textContent = r < 1e-9
+        ? 'a = b = 0 时恒为 0，无法合成。'
+        : 'r = √(a² + b²) = ' + fx(r, 3) + '，α ≈ ' + fx(al * 180 / Math.PI, 2) + '°（' + fx(al, 3) + ' 弧度）。结果：y = ' + fx(r, 3) + ' sin(θ ' + (al < 0 ? '− ' : '+ ') + fx(Math.abs(al), 3) + ')，最大值 ' + fx(r, 3) + '，最小值 ' + fx(-r, 3) + '。';
+    }
+    function setFrom() { S.a = +$('c-a').value; S.b = +$('c-b').value; draw(); }
+    $('c-a').addEventListener('input', setFrom);
+    $('c-b').addEventListener('input', setFrom);
+    [['1, √3', 1, Math.sqrt(3)], ['√3, 1', Math.sqrt(3), 1], ['1, −1', 1, -1], ['−1, √3', -1, Math.sqrt(3)], ['3, 4', 3, 4]].forEach(function (p) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = 'a, b = ' + p[0];
+      b.addEventListener('click', function () { S.a = p[1]; S.b = p[2]; $('c-a').value = p[1]; $('c-b').value = p[2]; draw(); });
+      $('comp-presets').appendChild(b);
+    });
+    draw();
+  })();
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['status', 'read'],
+      throwOnError: false
+    });
+  }
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

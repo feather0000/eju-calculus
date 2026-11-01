@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 04 图形与计量（三角比）</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：三角比、正弦定理、余弦定理、面积与空间图形，含原创例题、练习题、交互演示和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 104px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.back { margin: 0 0 14px; font-size: 15px; }
+.back a { color: #c5d3ef; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 36px; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+#uc-svg, #tri-svg { background: var(--surface); max-width: 560px; margin: auto; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 36px; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <p class="back"><a href="../../">← 目录</a></p>
+      <p class="eyebrow">EJU 数学コース2 · 出题项目 04 · <span lang="ja">図形と計量</span></p>
+      <h1>图形与计量（三角比）</h1>
+      <p class="lead">从直角三角形的三角比出发，扩展到 $0^\circ\sim180^\circ$，再用正弦定理、余弦定理解决面积与空间图形的计算。日语术语随文标注，文末有完整对照表。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}=2R$$
+      $$a^2=b^2+c^2-2bc\cos A$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#ratio">1 三角比</a></li>
+        <li><a href="#obtuse">2 扩展到钝角</a></li>
+        <li><a href="#relation">3 相互关系</a></li>
+        <li><a href="#sine">4 正弦定理</a></li>
+        <li><a href="#cosine">5 余弦定理</a></li>
+        <li><a href="#area">6 面积</a></li>
+        <li><a href="#solid">7 空间图形</a></li>
+        <li><a href="#examples">8 原创例题</a></li>
+        <li><a href="#practice">9 练习题</a></li>
+        <li><a href="#terms">10 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box warn" style="margin-top:28px">
+    <p><strong>符号约定：</strong>本页沿用日本教材的写法：$\triangle ABC$ 中，$a,b,c$ 分别是顶点 $A,B,C$ 的对边，$R$ 是外接圆半径，$r$ 是内切圆半径，$S$ 是面积。若无特别说明，角 $\theta$ 的范围是 $0^\circ\le\theta\le180^\circ$。</p>
+  </div>
+
+  <section id="ratio">
+    <h2>1 正弦・余弦・正接</h2>
+    <p class="jp-sub" lang="ja">正弦・余弦・正接 — 直角三角形と三角比</p>
+    <p>在 $\angle C=90^\circ$ 的直角三角形中，对锐角 $A=\theta$，定义<strong>正弦</strong>（<span lang="ja">正弦</span>，sine）、<strong>余弦</strong>（<span lang="ja">余弦</span>，cosine）、<strong>正接</strong>（<span lang="ja">正接</span>，tangent，中文通常叫“正切”）：</p>
+    <figure class="plot">
+      <svg class="chart" style="max-width:420px;margin:auto" viewBox="0 0 420 200" role="img" aria-label="直角三角形 ABC，角 C 为直角，角 A 为 θ，斜边 c，对边 a，邻边 b">
+        <polygon class="fillc" points="60,165 340,165 340,40"/>
+        <polyline class="s1" points="60,165 340,165 340,40 60,165"/>
+        <polyline class="sm" style="stroke-dasharray:none" points="322,165 322,147 340,147"/>
+        <text class="lbl" x="42" y="182">A</text><text class="lbl" x="346" y="182">C</text><text class="lbl" x="346" y="36">B</text>
+        <text class="lbl" x="100" y="158">θ</text>
+        <text class="lbl" x="170" y="88">斜边 c</text><text class="lbl" x="350" y="108">对边 a</text><text class="lbl" x="178" y="186">邻边 b</text>
+      </svg>
+    </figure>
+    $$\sin\theta=\frac{a}{c},\qquad \cos\theta=\frac{b}{c},\qquad \tan\theta=\frac{a}{b}.$$
+    <p>直接由定义得到三个常用变形：$a=c\sin\theta$，$b=c\cos\theta$，$a=b\tan\theta$。测量题（仰角、俯角）几乎都靠它们。</p>
+    <div class="tw"><table class="sign">
+      <thead><tr><th>$\theta$</th><th>$30^\circ$</th><th>$45^\circ$</th><th>$60^\circ$</th></tr></thead>
+      <tbody>
+        <tr><td>$\sin\theta$</td><td>$\dfrac12$</td><td>$\dfrac{\sqrt2}{2}$</td><td>$\dfrac{\sqrt3}{2}$</td></tr>
+        <tr><td>$\cos\theta$</td><td>$\dfrac{\sqrt3}{2}$</td><td>$\dfrac{\sqrt2}{2}$</td><td>$\dfrac12$</td></tr>
+        <tr><td>$\tan\theta$</td><td>$\dfrac{\sqrt3}{3}$</td><td>$1$</td><td>$\sqrt3$</td></tr>
+      </tbody>
+    </table></div>
+    <p>这张表来自两块三角板：边长比 $1:1:\sqrt2$（$45^\circ$）和 $1:\sqrt3:2$（$30^\circ,60^\circ$）。</p>
+  </section>
+
+  <section id="obtuse">
+    <h2>2 扩展到 $0^\circ\sim180^\circ$</h2>
+    <p class="jp-sub" lang="ja">鈍角の三角比 — 単位円による定義</p>
+    <p>钝角无法放进直角三角形，因此改用<strong>单位圆</strong>（<span lang="ja">単位円</span>）的上半部分定义。设圆上点 $P(x,y)$ 满足 $OP$ 与 $x$ 轴正方向的夹角为 $\theta$，则</p>
+    $$\sin\theta=y,\qquad \cos\theta=x,\qquad \tan\theta=\frac{y}{x}.$$
+    <p>$\tan\theta$ 也等于直线 $OP$ 的斜率，几何上是该直线与切线 $x=1$ 交点的纵坐标。$\tan90^\circ$ 不存在。</p>
+
+    <div class="explorer" id="uc">
+      <div class="ex-head" id="uc-chips"></div>
+      <svg class="chart" id="uc-svg" viewBox="0 0 440 340" role="img" aria-label="单位圆上的三角比演示，读数见下方"></svg>
+      <div class="legend">
+        <span><i style="border-color:var(--c2)"></i>$\sin\theta$（高度）</span>
+        <span><i style="border-color:var(--c1)"></i>$\cos\theta$（横坐标）</span>
+        <span><i style="border-color:var(--c3)"></i>$\tan\theta$（切线上的高度）</span>
+      </div>
+      <div class="ctrl"><label for="uc-t">角 θ</label><input id="uc-t" type="range" min="0" max="180" step="1" value="120"><output id="uc-t-o" for="uc-t"></output></div>
+      <div class="read" aria-live="polite">
+        <div><small>sin θ</small><span id="uc-s"></span></div>
+        <div><small>cos θ</small><span id="uc-c"></span></div>
+        <div><small>tan θ</small><span id="uc-n"></span></div>
+      </div>
+      <p class="status" id="uc-note"></p>
+    </div>
+
+    <h3>符号与特殊值</h3>
+    <div class="tw"><table class="sign">
+      <thead><tr><th>$\theta$</th><th>$0^\circ$</th><th>$30^\circ$</th><th>$45^\circ$</th><th>$60^\circ$</th><th>$90^\circ$</th><th>$120^\circ$</th><th>$135^\circ$</th><th>$150^\circ$</th><th>$180^\circ$</th></tr></thead>
+      <tbody>
+        <tr><td>$\sin\theta$</td><td>$0$</td><td>$\frac12$</td><td>$\frac{\sqrt2}2$</td><td>$\frac{\sqrt3}2$</td><td>$1$</td><td>$\frac{\sqrt3}2$</td><td>$\frac{\sqrt2}2$</td><td>$\frac12$</td><td>$0$</td></tr>
+        <tr><td>$\cos\theta$</td><td>$1$</td><td>$\frac{\sqrt3}2$</td><td>$\frac{\sqrt2}2$</td><td>$\frac12$</td><td>$0$</td><td>$-\frac12$</td><td>$-\frac{\sqrt2}2$</td><td>$-\frac{\sqrt3}2$</td><td>$-1$</td></tr>
+        <tr><td>$\tan\theta$</td><td>$0$</td><td>$\frac{\sqrt3}3$</td><td>$1$</td><td>$\sqrt3$</td><td>不存在</td><td>$-\sqrt3$</td><td>$-1$</td><td>$-\frac{\sqrt3}3$</td><td>$0$</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box">
+      <p><strong>取值范围：</strong>$0\le\sin\theta\le1$，$-1\le\cos\theta\le1$，$\tan\theta$ 可取全体实数（$\theta\ne90^\circ$）。钝角时 $\sin\theta&gt;0$，$\cos\theta&lt;0$，$\tan\theta&lt;0$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>易错点：</strong>$\cos\theta$ 的值唯一决定 $\theta$，$\tan\theta$ 也是（$\theta\ne90^\circ$）；但 $\sin\theta=k\ (0&lt;k&lt;1)$ 对应 $\theta$ 和 $180^\circ-\theta$ <strong>两个</strong>角。例如 $\sin\theta=\dfrac12$ 时 $\theta=30^\circ$ 或 $150^\circ$。</p>
+    </div>
+  </section>
+
+  <section id="relation">
+    <h2>3 三角比的相互关系</h2>
+    <p class="jp-sub" lang="ja">三角比の相互関係</p>
+    <div class="formula-grid">
+      <div>$$\tan\theta=\frac{\sin\theta}{\cos\theta}$$</div>
+      <div>$$\sin^2\theta+\cos^2\theta=1$$</div>
+      <div>$$1+\tan^2\theta=\frac{1}{\cos^2\theta}$$</div>
+    </div>
+    <p><strong>已知一个求其余：</strong>例如 $\cos\theta=-\dfrac13$ 时，$0^\circ\le\theta\le180^\circ$ 保证 $\sin\theta\ge0$，所以 $\sin\theta=\sqrt{1-\dfrac19}=\dfrac{2\sqrt2}{3}$，$\tan\theta=\dfrac{\sin\theta}{\cos\theta}=-2\sqrt2$。</p>
+    <h3>互补、互余公式</h3>
+    <div class="formula-grid">
+      <div>$$\sin(90^\circ-\theta)=\cos\theta$$</div>
+      <div>$$\cos(90^\circ-\theta)=\sin\theta$$</div>
+      <div>$$\tan(90^\circ-\theta)=\frac{1}{\tan\theta}$$</div>
+      <div>$$\sin(180^\circ-\theta)=\sin\theta$$</div>
+      <div>$$\cos(180^\circ-\theta)=-\cos\theta$$</div>
+      <div>$$\tan(180^\circ-\theta)=-\tan\theta$$</div>
+    </div>
+    <p>在 $\triangle ABC$ 中 $A+B+C=180^\circ$，所以有 $\sin(B+C)=\sin A$，$\cos(B+C)=-\cos A$，这在证明题和求值题里经常出现。</p>
+    <h3>对称式：已知 $\sin\theta+\cos\theta$</h3>
+    <p>两边平方，用 $\sin^2\theta+\cos^2\theta=1$ 得 $\sin\theta\cos\theta=\dfrac{(\sin\theta+\cos\theta)^2-1}{2}$。接着 $\sin^3\theta+\cos^3\theta$、$\tan\theta+\dfrac1{\tan\theta}=\dfrac1{\sin\theta\cos\theta}$ 都能算出。见例题 1。</p>
+    <h3>方程、不等式与最值</h3>
+    <ul>
+      <li>$\sin\theta,\cos\theta$ 混合的二次式：用 $\sin^2\theta=1-\cos^2\theta$ 统一成一种三角比，令 $t=\cos\theta$ 转化为二次函数或二次方程。</li>
+      <li><strong>务必写出 $t$ 的范围</strong>：$\cos\theta$ 对应 $-1\le t\le1$，$\sin\theta$ 对应 $0\le t\le1$。</li>
+      <li>不等式：在单位圆上看。例如 $\cos\theta&lt;\dfrac12$ 的解是 $60^\circ&lt;\theta\le180^\circ$。</li>
+    </ul>
+  </section>
+
+  <section id="sine">
+    <h2>4 正弦定理</h2>
+    <p class="jp-sub" lang="ja">正弦定理</p>
+    $$\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}=2R$$
+    <p>常用变形：$a=2R\sin A$，$\sin A=\dfrac{a}{2R}$，以及 $a:b:c=\sin A:\sin B:\sin C$。</p>
+    <p><strong>什么时候用：</strong>条件里出现“对边与对角的一对”或外接圆半径 $R$。例如 $a=3,\ A=30^\circ$ 时，$2R=\dfrac{3}{\sin30^\circ}=6$，故 $R=3$；若 $B=45^\circ$，则 $b=6\sin45^\circ=3\sqrt2$。</p>
+    <div class="box warn">
+      <p><strong>两解陷阱：</strong>已知两边和其中一边的对角（如 $a,b,A$）时，用 $\sin B=\dfrac{b\sin A}{a}$ 可能得到 $B$ 和 $180^\circ-B$ 两个候选。要用 $A+B&lt;180^\circ$ 或“大边对大角”判断是否都成立（见练习 8）。</p>
+    </div>
+  </section>
+
+  <section id="cosine">
+    <h2>5 余弦定理</h2>
+    <p class="jp-sub" lang="ja">余弦定理</p>
+    <div class="formula-grid">
+      <div>$$a^2=b^2+c^2-2bc\cos A$$</div>
+      <div>$$\cos A=\frac{b^2+c^2-a^2}{2bc}$$</div>
+    </div>
+    <p>另两式轮换 $a,b,c$ 即得。<strong>什么时候用：</strong>已知两边及夹角求第三边（例：$b=4,c=5,A=60^\circ$ 时 $a^2=16+25-20=21$，$a=\sqrt{21}$），或已知三边求角。</p>
+    <h3>判断角的类型</h3>
+    <p>$\cos A$ 的符号由 $b^2+c^2-a^2$ 决定：</p>
+    <div class="tw"><table class="sign">
+      <thead><tr><th>$A$</th><th>锐角（<span lang="ja">鋭角</span>）</th><th>直角（<span lang="ja">直角</span>）</th><th>钝角（<span lang="ja">鈍角</span>）</th></tr></thead>
+      <tbody><tr><td>条件</td><td>$a^2&lt;b^2+c^2$</td><td>$a^2=b^2+c^2$</td><td>$a^2&gt;b^2+c^2$</td></tr></tbody>
+    </table></div>
+    <p>只需检查最大边对应的角：边长 $4,5,6$ 中，最大边 $6$ 所对角的余弦为 $\dfrac{16+25-36}{40}=\dfrac18&gt;0$，所以是锐角三角形。</p>
+    <div class="box good">
+      <p><strong>选哪个定理？</strong>边与角统一：含 $\sin$ 的边角关系式用 $\sin A=\dfrac{a}{2R}$ 化为边，含 $\cos$ 的用余弦定理化为边，再因式分解判断三角形形状（见练习 15）。另有第一余弦定理 $a=b\cos C+c\cos B$，投影一看便知。</p>
+    </div>
+
+    <div class="explorer" id="tri">
+      <svg class="chart" id="tri-svg" viewBox="0 0 480 300" role="img" aria-label="由两边和夹角确定的三角形及其外接圆，读数见下方"></svg>
+      <div class="ctrl"><label for="tri-b">边 b = CA</label><input id="tri-b" type="range" min="1" max="10" step="0.5" value="5"><output id="tri-b-o" for="tri-b"></output></div>
+      <div class="ctrl"><label for="tri-c">边 c = AB</label><input id="tri-c" type="range" min="1" max="10" step="0.5" value="3"><output id="tri-c-o" for="tri-c"></output></div>
+      <div class="ctrl"><label for="tri-a">角 A</label><input id="tri-a" type="range" min="10" max="170" step="1" value="120"><output id="tri-a-o" for="tri-a"></output></div>
+      <div class="read" aria-live="polite">
+        <div><small>a（余弦定理）</small><span id="tri-ra"></span></div>
+        <div><small>B，C</small><span id="tri-rb"></span></div>
+        <div><small>面积 S = ½ bc sin A</small><span id="tri-rs"></span></div>
+        <div><small>外接圆半径 R = a / (2 sin A)</small><span id="tri-rr"></span></div>
+        <div><small>内切圆半径 r = 2S / (a+b+c)</small><span id="tri-ri"></span></div>
+        <div><small>类型（看最大角）</small><span id="tri-rt"></span></div>
+      </div>
+      <p class="status" style="margin-bottom:0">试一试：$b=5,\ c=3,\ A=120^\circ$ 就是例题 2；固定 $b,c$，把 $A$ 拖到 $90^\circ$，看面积何时最大。</p>
+    </div>
+  </section>
+
+  <section id="area">
+    <h2>6 面积（図形の計量）</h2>
+    <p class="jp-sub" lang="ja">三角形の面積・内接円・四角形</p>
+    <div class="tw"><table>
+      <thead><tr><th>已知</th><th>公式</th></tr></thead>
+      <tbody>
+        <tr><td>两边及夹角</td><td>$S=\dfrac12bc\sin A$（例：$b=4,c=5,A=30^\circ$ 时 $S=5$）</td></tr>
+        <tr><td>三边（海伦公式，<span lang="ja">ヘロンの公式</span>）</td><td>$S=\sqrt{s(s-a)(s-b)(s-c)}$，$s=\dfrac{a+b+c}{2}$（例：$5,6,7$ 时 $S=6\sqrt6$）</td></tr>
+        <tr><td>内切圆半径</td><td>$S=\dfrac12r(a+b+c)$</td></tr>
+        <tr><td>外接圆半径</td><td>$S=\dfrac{abc}{4R}$</td></tr>
+        <tr><td>四边形，对角线 $p,q$，夹角 $\theta$</td><td>$S=\dfrac12pq\sin\theta$（例：$p=6,q=8,\theta=30^\circ$ 时 $S=12$）</td></tr>
+      </tbody>
+    </table></div>
+    <h3>三个常见套路</h3>
+    <ul>
+      <li><strong>角平分线的长</strong>：$AD$ 平分 $\angle A$ 时，用面积分割 $\triangle ABC=\triangle ABD+\triangle ACD$ 列方程，解出 $AD$。</li>
+      <li><strong>圆内接四边形</strong>（<span lang="ja">円に内接する四角形</span>）：对角互补，$\cos D=-\cos B$，$\sin D=\sin B$。对同一条对角线 $AC$ 列两次余弦定理，消去 $AC^2$ 求 $\cos B$。</li>
+      <li><strong>平行四边形</strong>：面积 $=ab\sin\theta$；邻角互补，两条对角线分别用 $\cos\theta$ 和 $-\cos\theta$。</li>
+    </ul>
+  </section>
+
+  <section id="solid">
+    <h2>7 空间图形的应用</h2>
+    <p class="jp-sub" lang="ja">空間図形への応用 — 切り口の三角形を取り出す</p>
+    <p>核心只有一句话：<strong>把空间问题拆成若干平面三角形</strong>，在每个三角形里用勾股定理、正弦定理、余弦定理。</p>
+    <h3>常用方法</h3>
+    <ul>
+      <li><strong>测量（<span lang="ja">測量</span>）</strong>：塔 $PH$ 垂直于地面时，$\triangle PAH$ 是直角三角形，$PH=AH\tan(\text{仰角})$；$AH$ 则在地面上的 $\triangle ABH$ 里用正弦或余弦定理求。</li>
+      <li><strong>侧棱相等</strong>：若 $OA=OB=OC$，$O$ 到平面 $ABC$ 的垂足 $H$ 满足 $HA=HB=HC$（三个直角三角形全等），即 $H$ 是 $\triangle ABC$ 的<strong>外心</strong>（<span lang="ja">外心</span>），$HA=R$，高 $OH=\sqrt{OA^2-R^2}$。</li>
+      <li><strong>二面角的余弦</strong>：取公共棱的中点等，作两条都垂直于棱的线段，它们的夹角即为所求。</li>
+      <li><strong>等积法</strong>（求点到平面的距离）：同一个四面体换底面，$V=\dfrac13S_1h_1=\dfrac13S_2h_2$。</li>
+    </ul>
+    <div class="box">
+      <p><strong>值得记住：</strong>棱长为 $a$ 的正四面体（<span lang="ja">正四面体</span>）：高 $\dfrac{\sqrt6}{3}a$，体积 $\dfrac{\sqrt2}{12}a^3$，相邻两面所成角的余弦 $\dfrac13$。考试中仍建议能当场推导（见练习 14）。</p>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2>8 原创 EJU 风格例题</h2>
+    <p class="jp-sub">以下题目均为本页原创，并非 EJU 真题。</p>
+    <div class="box">
+      <p><strong>填空格式：</strong>与 EJU 一样，每个字母 $\B{A},\B{B},\dots$ 代表一个数字（0～9）；$\B{BC}$ 表示两位数。分数化为最简，根号内的数尽量小。为便于阅读，本页把负号直接印在题面上。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>例题 1　相互关系与对称式</b><span class="origin">原创</span></div>
+      <p>设 $0^\circ&lt;\theta&lt;180^\circ$，且 $\sin\theta+\cos\theta=\dfrac13$。</p>
+      <p>(1) $\sin\theta\cos\theta=-\dfrac{\B{A}}{\B{B}}$，因此 $\theta$ 是钝角。</p>
+      <p>(2) $\sin\theta-\cos\theta=\dfrac{\sqrt{\B{CD}}}{\B{E}}$。</p>
+      <p>(3) $\sin^3\theta+\cos^3\theta=\dfrac{\B{FG}}{\B{HI}}$，$\tan\theta+\dfrac{1}{\tan\theta}=-\dfrac{\B{J}}{\B{K}}$。</p>
+      <p>(4) $\cos\theta=\dfrac{\B{L}-\sqrt{\B{MN}}}{\B{O}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 4</li><li>B = 9</li><li>CD = 17</li><li>E = 3</li><li>FG = 13</li><li>HI = 27</li><li>J = 9</li><li>K = 4</li><li>L = 1</li><li>MN = 17</li><li>O = 6</li></ul>
+        <p>(1) 平方：$1+2\sin\theta\cos\theta=\dfrac19$，所以 $\sin\theta\cos\theta=-\dfrac49$。因 $\sin\theta&gt;0$，得 $\cos\theta&lt;0$，$\theta$ 为钝角。</p>
+        <p>(2) $(\sin\theta-\cos\theta)^2=1+\dfrac89=\dfrac{17}{9}$。又 $\sin\theta&gt;0&gt;\cos\theta$，所以差为正，等于 $\dfrac{\sqrt{17}}{3}$。</p>
+        <p>(3) $\sin^3\theta+\cos^3\theta=(\sin\theta+\cos\theta)(1-\sin\theta\cos\theta)=\dfrac13\cdot\dfrac{13}{9}=\dfrac{13}{27}$；$\tan\theta+\dfrac{1}{\tan\theta}=\dfrac{1}{\sin\theta\cos\theta}=-\dfrac94$。</p>
+        <p>(4) 用和减差：$\cos\theta=\dfrac12\Bigl(\dfrac13-\dfrac{\sqrt{17}}{3}\Bigr)=\dfrac{1-\sqrt{17}}{6}$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 2　三角形的计量</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中，$AB=3$，$CA=5$，$\angle A=120^\circ$。</p>
+      <p>(1) 边 $BC$ 的长为 $\B{A}$，$\cos B=\dfrac{\B{BC}}{\B{DE}}$。</p>
+      <p>(2) 面积 $S=\dfrac{\B{FG}\sqrt{\B{H}}}{\B{I}}$，外接圆半径 $R=\dfrac{\B{J}\sqrt{\B{K}}}{\B{L}}$，内切圆半径 $r=\dfrac{\sqrt{\B{M}}}{\B{N}}$。</p>
+      <p>(3) 设 $\angle A$ 的平分线与边 $BC$ 交于 $D$，则 $AD=\dfrac{\B{OP}}{\B{Q}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 7</li><li>BC = 11</li><li>DE = 14</li><li>FG = 15</li><li>H = 3</li><li>I = 4</li><li>J = 7</li><li>K = 3</li><li>L = 3</li><li>M = 3</li><li>N = 2</li><li>OP = 15</li><li>Q = 8</li></ul>
+        <p>(1) 余弦定理：$BC^2=9+25-2\cdot3\cdot5\cos120^\circ=49$，$BC=7$。$\cos B=\dfrac{9+49-25}{2\cdot3\cdot7}=\dfrac{33}{42}=\dfrac{11}{14}$。</p>
+        <p>(2) $S=\dfrac12\cdot3\cdot5\cdot\sin120^\circ=\dfrac{15\sqrt3}{4}$。正弦定理：$2R=\dfrac{7}{\sin120^\circ}=\dfrac{14}{\sqrt3}$，$R=\dfrac{7\sqrt3}{3}$。由 $S=\dfrac12r(3+5+7)$ 得 $r=\dfrac{\sqrt3}{2}$。</p>
+        <p>(3) 面积分割，$\angle BAD=\angle CAD=60^\circ$：$\dfrac12\cdot3\cdot AD\sin60^\circ+\dfrac12\cdot5\cdot AD\sin60^\circ=\dfrac{15\sqrt3}{4}$，即 $2\sqrt3\,AD=\dfrac{15\sqrt3}{4}$，$AD=\dfrac{15}{8}$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 3　圆内接四边形</b><span class="origin">原创</span></div>
+      <p>四边形 $ABCD$ 内接于圆，$AB=5$，$BC=8$，$CD=3$，$DA=5$。</p>
+      <p>(1) $\cos\angle ABC=\dfrac{\B{A}}{\B{B}}$，$AC=\B{C}$。</p>
+      <p>(2) 四边形 $ABCD$ 的面积为 $\dfrac{\B{DE}\sqrt{\B{F}}}{\B{G}}$，外接圆半径为 $\dfrac{\B{H}\sqrt{\B{I}}}{\B{J}}$。</p>
+      <p>(3) $\cos\angle BAD=-\dfrac{\B{KL}}{\B{MN}}$，$BD=\dfrac{\B{OP}}{\B{Q}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 1</li><li>B = 2</li><li>C = 7</li><li>DE = 55</li><li>F = 3</li><li>G = 4</li><li>H = 7</li><li>I = 3</li><li>J = 3</li><li>KL = 23</li><li>MN = 98</li><li>OP = 55</li><li>Q = 7</li></ul>
+        <p>(1) 设 $x=\cos\angle ABC$，则 $\cos\angle CDA=-x$。对 $AC$ 列两次余弦定理：$25+64-80x=9+25+30x$，得 $x=\dfrac12$，$AC^2=89-40=49$，$AC=7$。</p>
+        <p>(2) $\angle ABC=60^\circ$，$\angle CDA=120^\circ$，面积 $=\dfrac12\cdot5\cdot8\cdot\dfrac{\sqrt3}{2}+\dfrac12\cdot3\cdot5\cdot\dfrac{\sqrt3}{2}=\dfrac{55\sqrt3}{4}$。$2R=\dfrac{7}{\sin60^\circ}$，$R=\dfrac{7\sqrt3}{3}$。</p>
+        <p>(3) 设 $y=\cos\angle BAD$，则 $\cos\angle BCD=-y$。对 $BD$ 列两次：$25+25-50y=64+9+48y$，得 $y=-\dfrac{23}{98}$，$BD^2=50+\dfrac{575}{49}=\dfrac{3025}{49}$，$BD=\dfrac{55}{7}$。验算（托勒密定理）：$AC\cdot BD=55=5\cdot3+8\cdot5$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 4　四面体的体积与距离</b><span class="origin">原创</span></div>
+      <p>四面体 $OABC$ 中，$AB=5$，$AC=8$，$\angle BAC=60^\circ$，$OA=OB=OC=7$。设 $H$ 为 $O$ 到平面 $ABC$ 的垂足。</p>
+      <p>(1) 边 $BC$ 的长为 $\B{A}$，$\triangle ABC$ 的面积为 $\B{BC}\sqrt{\B{D}}$。</p>
+      <p>(2) $OH=\dfrac{\B{E}\sqrt{\B{F}}}{\B{G}}$，四面体的体积为 $\dfrac{\B{HI}\sqrt{\B{J}}}{\B{K}}$。</p>
+      <p>(3) $\triangle OAC$ 的面积为 $\B{L}\sqrt{\B{MN}}$，点 $B$ 到平面 $OAC$ 的距离为 $\dfrac{\B{OP}\sqrt{\B{QR}}}{\B{ST}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 7</li><li>BC = 10</li><li>D = 3</li><li>E = 7</li><li>F = 6</li><li>G = 3</li><li>HI = 70</li><li>J = 2</li><li>K = 3</li><li>L = 4</li><li>MN = 33</li><li>OP = 35</li><li>QR = 66</li><li>ST = 66</li></ul>
+        <p>(1) $BC^2=25+64-40=49$，$BC=7$。面积 $=\dfrac12\cdot5\cdot8\cdot\dfrac{\sqrt3}{2}=10\sqrt3$。</p>
+        <p>(2) 侧棱相等，$H$ 是 $\triangle ABC$ 的外心，$HA=R=\dfrac{7}{2\sin60^\circ}=\dfrac{7}{\sqrt3}$。$OH^2=49-\dfrac{49}{3}=\dfrac{98}{3}$，$OH=\dfrac{7\sqrt6}{3}$。体积 $V=\dfrac13\cdot10\sqrt3\cdot\dfrac{7\sqrt6}{3}=\dfrac{70\sqrt2}{3}$。</p>
+        <p>(3) $\triangle OAC$ 是腰长 $7$、底 $8$ 的等腰三角形，高 $=\sqrt{49-16}=\sqrt{33}$，面积 $=4\sqrt{33}$。等积法：$\dfrac13\cdot4\sqrt{33}\cdot d=\dfrac{70\sqrt2}{3}$，$d=\dfrac{35\sqrt2}{2\sqrt{33}}=\dfrac{35\sqrt{66}}{66}$。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>9 练习题</h2>
+    <div class="bar" style="margin:10px 0">
+      <p class="jp-sub" style="margin:0">共 15 题，均为原创。点击按钮查看答案和解析。</p>
+      <button class="chip" id="toggle-all" type="button">显示全部答案</button>
+    </div>
+
+    <article class="q" data-p="1"><div class="q-head"><b>练习 1</b><span>特殊角</span><span class="origin">原创</span></div>
+      <p>求 $\sin150^\circ$，$\cos135^\circ$，$\tan120^\circ$ 的值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>$\dfrac{1}{2}$，$-\dfrac{\sqrt{2}}{2}$，$-\sqrt{3}$</p><p>用 $180^\circ-\theta$ 公式：$\sin150^\circ=\sin30^\circ$，$\cos135^\circ=-\cos45^\circ$，$\tan120^\circ=-\tan60^\circ$。</p></div>
+    </article>
+    <article class="q" data-p="2"><div class="q-head"><b>练习 2</b><span>已知 sin</span><span class="origin">原创</span></div>
+      <p>$\theta$ 为钝角，$\sin\theta=\dfrac23$。求 $\cos\theta$ 和 $\tan\theta$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>$\cos\theta=-\dfrac{\sqrt{5}}{3}$，$\tan\theta=-\dfrac{2\sqrt{5}}{5}$</p><p>$\cos^2\theta=1-\dfrac49=\dfrac59$，钝角时 $\cos\theta&lt;0$；$\tan\theta=\dfrac23\div\Bigl(-\dfrac{\sqrt5}{3}\Bigr)=-\dfrac{2}{\sqrt5}$，再有理化。</p></div>
+    </article>
+    <article class="q" data-p="3"><div class="q-head"><b>练习 3</b><span>已知 tan</span><span class="origin">原创</span></div>
+      <p>$0^\circ\le\theta\le180^\circ$，$\tan\theta=-2$。求 $\cos\theta$ 和 $\sin\theta$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>$\cos\theta=-\dfrac{\sqrt{5}}{5}$，$\sin\theta=\dfrac{2\sqrt{5}}{5}$</p><p>$\dfrac{1}{\cos^2\theta}=1+4=5$；$\tan\theta&lt;0$ 说明 $\theta$ 是钝角，$\cos\theta&lt;0$。再由 $\sin\theta=\tan\theta\cos\theta$ 求 $\sin\theta$。</p></div>
+    </article>
+    <article class="q" data-p="4"><div class="q-head"><b>练习 4</b><span>互余、互补</span><span class="origin">原创</span></div>
+      <p>不查表，求 $\sin^225^\circ+\sin^265^\circ+\tan35^\circ\tan55^\circ+\cos100^\circ+\cos80^\circ$ 的值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>$2$</p><p>$\sin65^\circ=\cos25^\circ$，前两项和为 $1$；$\tan55^\circ=\dfrac{1}{\tan35^\circ}$，第三项为 $1$；$\cos100^\circ=-\cos80^\circ$，后两项和为 $0$。</p></div>
+    </article>
+    <article class="q" data-p="5"><div class="q-head"><b>练习 5</b><span>三角方程</span><span class="origin">原创</span></div>
+      <p>$0^\circ\le\theta\le180^\circ$，解方程 $2\sin^2\theta+3\cos\theta-3=0$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>$\theta=0^\circ,\ 60^\circ$</p><p>代入 $\sin^2\theta=1-\cos^2\theta$，得 $2\cos^2\theta-3\cos\theta+1=0$，即 $(2\cos\theta-1)(\cos\theta-1)=0$，$\cos\theta=\dfrac12$ 或 $1$。</p></div>
+    </article>
+    <article class="q" data-p="6"><div class="q-head"><b>练习 6</b><span>最值</span><span class="origin">原创</span></div>
+      <p>$0^\circ\le\theta\le180^\circ$，求 $y=\sin^2\theta+\cos\theta$ 的最大值、最小值及对应的 $\theta$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>最大值 $\dfrac{5}{4}$（$\theta=60^\circ$），最小值 $-1$（$\theta=180^\circ$）</p><p>令 $t=\cos\theta\ (-1\le t\le1)$，$y=-t^2+t+1=-\Bigl(t-\dfrac12\Bigr)^2+\dfrac54$。$t=\dfrac12$ 时最大，$t=-1$ 时最小。</p></div>
+    </article>
+    <article class="q" data-p="7"><div class="q-head"><b>练习 7</b><span>正弦定理</span><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中，$a=4$，$A=45^\circ$，$B=60^\circ$。求 $b$ 和外接圆半径 $R$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>$b=2\sqrt{6}$，$R=2\sqrt{2}$</p><p>$2R=\dfrac{4}{\sin45^\circ}=4\sqrt2$，$b=2R\sin60^\circ=4\sqrt2\cdot\dfrac{\sqrt3}{2}=2\sqrt6$。</p></div>
+    </article>
+    <article class="q" data-p="8"><div class="q-head"><b>练习 8</b><span>两解情形</span><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中，$a=\sqrt2$，$b=\sqrt3$，$A=45^\circ$。求 $B$ 和 $c$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>$B=60^\circ$ 时 $c=\dfrac{\sqrt{6}+\sqrt{2}}{2}$；$B=120^\circ$ 时 $c=\dfrac{\sqrt{6}-\sqrt{2}}{2}$</p><p>$\sin B=\dfrac{b\sin A}{a}=\dfrac{\sqrt3}{2}$，两个角都满足 $A+B&lt;180^\circ$，所以都成立。再由余弦定理 $2=3+c^2-\sqrt6\,c$，解得两个 $c$；其中较大的 $c$ 对应 $C=75^\circ$，即 $B=60^\circ$。</p></div>
+    </article>
+    <article class="q" data-p="9"><div class="q-head"><b>练习 9</b><span>比例</span><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中，$\sin A:\sin B:\sin C=3:5:7$。求最大角的大小。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>$120^\circ$</p><p>由正弦定理 $a:b:c=3:5:7$，可设 $a=3k,b=5k,c=7k$。最大角为 $C$，$\cos C=\dfrac{9+25-49}{2\cdot3\cdot5}=-\dfrac12$。</p></div>
+    </article>
+    <article class="q" data-p="10"><div class="q-head"><b>练习 10</b><span>三边求面积</span><span class="origin">原创</span></div>
+      <p>三边长为 $13,14,15$ 的三角形，求面积 $S$、内切圆半径 $r$、外接圆半径 $R$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>$S=84$，$r=4$，$R=\dfrac{65}{8}$</p><p>$s=21$，$S=\sqrt{21\cdot8\cdot7\cdot6}=84$；$r=\dfrac{S}{s}=4$；$R=\dfrac{abc}{4S}=\dfrac{2730}{336}=\dfrac{65}{8}$。</p></div>
+    </article>
+    <article class="q" data-p="11"><div class="q-head"><b>练习 11</b><span>平行四边形</span><span class="origin">原创</span></div>
+      <p>平行四边形 $ABCD$ 中，$AB=4$，$AD=6$，$\angle BAD=60^\circ$。求面积和对角线 $BD$、$AC$ 的长。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>面积 $12\sqrt{3}$，$BD=2\sqrt{7}$，$AC=2\sqrt{19}$</p><p>面积 $=4\cdot6\sin60^\circ$。$BD^2=16+36-48\cos60^\circ=28$。$\angle ABC=120^\circ$，$AC^2=16+36-48\cos120^\circ=76$。</p></div>
+    </article>
+    <article class="q" data-p="12"><div class="q-head"><b>练习 12</b><span>测量</span><span class="origin">原创</span></div>
+      <p>塔 $PH$ 垂直立于水平地面，$H$ 为塔底。地面上两点 $A,B$ 相距 $30\text{ m}$，$\angle HAB=75^\circ$，$\angle HBA=45^\circ$，从 $A$ 看塔顶 $P$ 的仰角为 $60^\circ$。求 $AH$ 和塔高 $PH$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>$AH=10\sqrt{6}\text{ m}$，$PH=30\sqrt{2}\text{ m}$</p><p>$\angle AHB=60^\circ$，正弦定理：$AH=\dfrac{30\sin45^\circ}{\sin60^\circ}=10\sqrt6$。$PH=AH\tan60^\circ=10\sqrt6\cdot\sqrt3=30\sqrt2$。</p></div>
+    </article>
+    <article class="q" data-p="13"><div class="q-head"><b>练习 13</b><span>正方体的截面</span><span class="origin">原创</span></div>
+      <p>棱长为 $2$ 的正方体 $ABCD\text{-}EFGH$（$AE,BF,CG,DH$ 为侧棱），$M$ 是棱 $BF$ 的中点。求 $\triangle DEM$ 的三边长、$\cos\angle EMD$ 和面积。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>$DE=2\sqrt{2}$，$EM=\sqrt{5}$，$DM=3$，$\cos\angle EMD=\dfrac{\sqrt{5}}{5}$，面积 $3$</p><p>$EM^2=EF^2+FM^2=5$；$DM^2=DB^2+BM^2=8+1=9$。$\cos\angle EMD=\dfrac{5+9-8}{2\cdot\sqrt5\cdot3}=\dfrac{1}{\sqrt5}$，故 $\sin\angle EMD=\dfrac{2}{\sqrt5}$，面积 $=\dfrac12\cdot\sqrt5\cdot3\cdot\dfrac{2}{\sqrt5}=3$。</p></div>
+    </article>
+    <article class="q" data-p="14"><div class="q-head"><b>练习 14</b><span>正四面体</span><span class="origin">原创</span></div>
+      <p>棱长为 $6$ 的正四面体 $ABCD$，$M$ 是棱 $BC$ 的中点。求 $AM$、$\cos\angle AMD$、从 $D$ 到平面 $ABC$ 的高和体积。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>$AM=3\sqrt{3}$，$\cos\angle AMD=\dfrac{1}{3}$，高 $2\sqrt{6}$，体积 $18\sqrt{2}$</p><p>$AM=DM=3\sqrt3$（等边三角形的高）。$\cos\angle AMD=\dfrac{27+27-36}{2\cdot27}=\dfrac13$。垂足是 $\triangle ABC$ 的外心，$R=2\sqrt3$，高 $=\sqrt{36-12}=2\sqrt6$。底面积 $9\sqrt3$，$V=\dfrac13\cdot9\sqrt3\cdot2\sqrt6=18\sqrt2$。</p></div>
+    </article>
+    <article class="q" data-p="15"><div class="q-head"><b>练习 15</b><span>判断形状</span><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 满足 $a\cos A=b\cos B$。这个三角形是什么形状？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：</strong>$a=b$ 的等腰三角形，或 $C=90^\circ$ 的直角三角形</p><p>代入余弦定理并去分母：$a^2(b^2+c^2-a^2)=b^2(c^2+a^2-b^2)$，整理得 $(a^2-b^2)(a^2+b^2-c^2)=0$。注意不能直接约去 $a^2-b^2$，否则会漏解。</p></div>
+    </article>
+  </section>
+
+  <section id="terms">
+    <h2>10 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页按 JASSO 数学シラバス（2026 年度起适用）的出题项目 04「図形と計量」组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。所有例题和练习题均为原创。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  function $(id) { return document.getElementById(id); }
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['三角比', [
+      ['三角比', 'さんかくひ', '三角比'], ['正弦', 'せいげん', '正弦（sin）'], ['余弦', 'よげん', '余弦（cos）'],
+      ['正接', 'せいせつ', '正切（tan）'], ['相互関係', 'そうごかんけい', '相互关系'], ['単位円', 'たんいえん', '单位圆'],
+      ['半径', 'はんけい', '半径'], ['鋭角', 'えいかく', '锐角'], ['直角', 'ちょっかく', '直角'],
+      ['鈍角', 'どんかく', '钝角'], ['傾き', 'かたむき', '斜率'], ['有理化', 'ゆうりか', '（分母）有理化']
+    ]],
+    ['三角形与定理', [
+      ['正弦定理', 'せいげんていり', '正弦定理'], ['余弦定理', 'よげんていり', '余弦定理'], ['三平方の定理', 'さんへいほうのていり', '勾股定理'],
+      ['外接円', 'がいせつえん', '外接圆'], ['内接円', 'ないせつえん', '内切圆'], ['外心', 'がいしん', '外心'],
+      ['内心', 'ないしん', '内心'], ['二等辺三角形', 'にとうへんさんかくけい', '等腰三角形'], ['正三角形', 'せいさんかくけい', '等边三角形'],
+      ['直角三角形', 'ちょっかくさんかくけい', '直角三角形'], ['対辺', 'たいへん', '对边'], ['斜辺', 'しゃへん', '斜边'],
+      ['二等分線', 'にとうぶんせん', '平分线（角の二等分線：角平分线）'], ['対角線', 'たいかくせん', '对角线']
+    ]],
+    ['面积与四边形', [
+      ['面積', 'めんせき', '面积'], ['ヘロンの公式', 'ヘロンのこうしき', '海伦公式'], ['平行四辺形', 'へいこうしへんけい', '平行四边形'],
+      ['円に内接する四角形', 'えんにないせつするしかくけい', '圆内接四边形'], ['計量', 'けいりょう', '计量']
+    ]],
+    ['空间图形', [
+      ['空間図形', 'くうかんずけい', '空间图形'], ['四面体', 'しめんたい', '四面体'], ['正四面体', 'せいしめんたい', '正四面体'],
+      ['立方体', 'りっぽうたい', '正方体'], ['体積', 'たいせき', '体积'], ['底面', 'ていめん', '底面'],
+      ['垂線', 'すいせん', '垂线'], ['切り口', 'きりくち', '截面'], ['測量', 'そくりょう', '测量'],
+      ['仰角', 'ぎょうかく', '仰角'], ['俯角', 'ふかく', '俯角']
+    ]]
+  ];
+
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja"><strong>' + t[0] + '</strong></td><td class="kana" lang="ja">' + t[1] + '</td><td>' + t[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = $('term-count');
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 答案按钮 ---------- */
+  function setAns(btn, open) {
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '隐藏答案' : '显示答案';
+    btn.nextElementSibling.hidden = !open;
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.classList && e.target.classList.contains('toggle-ans')) {
+      setAns(e.target, e.target.getAttribute('aria-expanded') !== 'true');
+    }
+  });
+  var allBtn = $('toggle-all');
+  allBtn.addEventListener('click', function () {
+    var btns = document.querySelectorAll('#practice .toggle-ans');
+    var open = allBtn.textContent.indexOf('显示') === 0;
+    btns.forEach(function (b) { setAns(b, open); });
+    allBtn.textContent = open ? '隐藏全部答案' : '显示全部答案';
+  });
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t);
+    store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        tocLinks.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + e.target.id;
+          a.classList.toggle('on', on);
+          if (on && window.innerWidth <= 900 && a.parentNode.parentNode.scrollTo) {
+            a.parentNode.parentNode.scrollTo({ left: a.offsetLeft - 40 });
+          }
+        });
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ---------- 单位圆演示 ---------- */
+  var EXACT = {
+    0: ['0', '1', '0'], 30: ['1/2', '√3/2', '√3/3'], 45: ['√2/2', '√2/2', '1'], 60: ['√3/2', '1/2', '√3'],
+    90: ['1', '0', '不存在'], 120: ['√3/2', '−1/2', '−√3'], 135: ['√2/2', '−√2/2', '−1'],
+    150: ['1/2', '−√3/2', '−√3/3'], 180: ['0', '−1', '0']
+  };
+  function fmt(x, d) { return x.toFixed(d === undefined ? 3 : d).replace('-', '−'); }
+  var UC = { ox: 180, oy: 210, u: 125 };
+  function ux(x) { return UC.ox + UC.u * x; }
+  function uy(y) { return UC.oy - UC.u * y; }
+  function seg(cls, x1, y1, x2, y2) {
+    return '<line class="' + cls + '" x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '"/>';
+  }
+  function txt(cls, x, y, s) { return '<text class="' + cls + '" x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '">' + s + '</text>'; }
+  var ucT = $('uc-t');
+  Object.keys(EXACT).map(Number).sort(function (a, b) { return a - b; }).forEach(function (k) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.textContent = k + '°';
+    b.dataset.deg = k;
+    b.addEventListener('click', function () { ucT.value = k; drawUC(); });
+    $('uc-chips').appendChild(b);
+  });
+  function drawUC() {
+    var deg = +ucT.value, t = deg * Math.PI / 180;
+    var s = deg === 180 || deg === 0 ? 0 : Math.sin(t), c = deg === 90 ? 0 : Math.cos(t);
+    var px = ux(c), py = uy(s), h = '';
+    h += seg('axis', 20, UC.oy, 430, UC.oy) + seg('axis', UC.ox, 10, UC.ox, 335);
+    h += '<circle cx="' + UC.ox + '" cy="' + UC.oy + '" r="' + UC.u + '" class="sm"/>';
+    h += '<path class="s4" style="stroke-dasharray:none;stroke:var(--ink-2)" d="M' + ux(1) + ' ' + UC.oy + 'A' + UC.u + ' ' + UC.u + ' 0 0 0 ' + ux(-1) + ' ' + UC.oy + '"/>';
+    h += seg('sm', ux(1), 10, ux(1), 335);
+    h += txt('tick', ux(1) + 4, UC.oy + 16, '1') + txt('tick', ux(-1) - 16, UC.oy + 16, '−1') + txt('tick', UC.ox - 16, UC.oy + 16, 'O') + txt('tick', 412, UC.oy - 6, 'x') + txt('tick', UC.ox + 6, 22, 'y');
+    if (deg !== 90) {
+      var n = s / c, ty = uy(n);
+      h += seg('sm', px, py, ux(1), ty);
+      h += seg('s3', ux(1), UC.oy, ux(1), ty);
+      if (ty > 14 && ty < 330) h += '<circle class="dot3" cx="' + ux(1) + '" cy="' + ty.toFixed(1) + '" r="4.5"/>' + txt('lbl', ux(1) + 8, ty + 4, 'T');
+    }
+    h += '<line x1="' + UC.ox + '" y1="' + UC.oy + '" x2="' + px.toFixed(1) + '" y2="' + py.toFixed(1) + '" class="s4" style="stroke-dasharray:none"/>';
+    h += seg('s1', UC.ox, UC.oy, px, UC.oy) + seg('s2', px, UC.oy, px, py);
+    var a = Math.max(deg, .001) * Math.PI / 180, r = 26;
+    h += '<path class="sm" style="stroke-dasharray:none" d="M' + (UC.ox + r) + ' ' + UC.oy + 'A' + r + ' ' + r + ' 0 ' + (deg > 180 ? 1 : 0) + ' 0 ' + (UC.ox + r * Math.cos(a)).toFixed(1) + ' ' + (UC.oy - r * Math.sin(a)).toFixed(1) + '"/>';
+    h += '<circle class="dot2" cx="' + px.toFixed(1) + '" cy="' + py.toFixed(1) + '" r="5.5"/>' + txt('lbl', px + (c < 0 ? -18 : 8), py - 8, 'P');
+    $('uc-svg').innerHTML = h;
+    var ex = EXACT[deg];
+    $('uc-t-o').textContent = deg + '°';
+    $('uc-s').textContent = ex ? ex[0] : fmt(s);
+    $('uc-c').textContent = ex ? ex[1] : fmt(c);
+    $('uc-n').textContent = ex ? ex[2] : fmt(s / c);
+    $('uc-note').textContent = deg === 90 ? 'θ = 90°：直线 OP 与切线 x = 1 平行，没有交点，所以 tan 90° 不存在。'
+      : deg > 90 ? '钝角：P 在第二象限，cos θ < 0，tan θ < 0；延长 PO 与切线 x = 1 相交于负半轴一侧。sin θ 与 sin(' + (180 - deg) + '°) 相同。'
+      : deg === 0 || deg === 180 ? 'P 在 x 轴上，高度为 0，所以 sin θ = 0，tan θ = 0。'
+      : '锐角：sin θ、cos θ、tan θ 都为正。sin θ 与 sin(' + (180 - deg) + '°) 相同。';
+    document.querySelectorAll('#uc-chips .chip').forEach(function (b) { b.setAttribute('aria-pressed', +b.dataset.deg === deg); });
+  }
+  ucT.addEventListener('input', drawUC);
+  drawUC();
+
+  /* ---------- 三角形演示 ---------- */
+  function drawTri() {
+    var b = +$('tri-b').value, c = +$('tri-c').value, deg = +$('tri-a').value, t = deg * Math.PI / 180;
+    var A = [0, 0], B = [c, 0], C = [b * Math.cos(t), b * Math.sin(t)];
+    var a = Math.sqrt(b * b + c * c - 2 * b * c * Math.cos(t));
+    var S = b * c * Math.sin(t) / 2, R = a / (2 * Math.sin(t)), r = 2 * S / (a + b + c);
+    var angB = Math.acos(Math.max(-1, Math.min(1, (a * a + c * c - b * b) / (2 * a * c)))) * 180 / Math.PI;
+    var angC = 180 - deg - angB;
+    var xs = [A[0], B[0], C[0]], ys = [A[1], B[1], C[1]];
+    var x0 = Math.min.apply(0, xs), x1 = Math.max.apply(0, xs), y0 = Math.min.apply(0, ys), y1 = Math.max.apply(0, ys);
+    var W = 480, H = 300, pad = 42, k = Math.min((W - 2 * pad) / (x1 - x0), (H - 2 * pad) / (y1 - y0));
+    function X(x) { return W / 2 + k * (x - (x0 + x1) / 2); }
+    function Y(y) { return H / 2 - k * (y - (y0 + y1) / 2); }
+    var cx = c / 2, cy = (b - c * Math.cos(t)) / (2 * Math.sin(t));
+    var gx = (A[0] + B[0] + C[0]) / 3, gy = (A[1] + B[1] + C[1]) / 3;
+    function lab(P, s) {
+      var dx = X(P[0]) - X(gx), dy = Y(P[1]) - Y(gy), l = Math.hypot(dx, dy) || 1;
+      return txt('lbl', X(P[0]) + dx / l * 16 - 5, Y(P[1]) + dy / l * 16 + 5, s);
+    }
+    function mid(P, Q, s) {
+      var mx = (P[0] + Q[0]) / 2, my = (P[1] + Q[1]) / 2, dx = X(mx) - X(gx), dy = Y(my) - Y(gy), l = Math.hypot(dx, dy) || 1;
+      return txt('tick', X(mx) + dx / l * 14 - 4, Y(my) + dy / l * 14 + 4, s);
+    }
+    var h = '<circle class="sm" cx="' + X(cx).toFixed(1) + '" cy="' + Y(cy).toFixed(1) + '" r="' + (R * k).toFixed(1) + '"/>';
+    var pts = [A, B, C].map(function (P) { return X(P[0]).toFixed(1) + ',' + Y(P[1]).toFixed(1); }).join(' ');
+    h += '<polygon class="fillc" points="' + pts + '"/><polygon class="s1" points="' + pts + '"/>';
+    h += lab(A, 'A') + lab(B, 'B') + lab(C, 'C') + mid(A, B, 'c') + mid(A, C, 'b') + mid(B, C, 'a');
+    $('tri-svg').innerHTML = h;
+    var big = Math.max(deg, angB, angC);
+    $('tri-b-o').textContent = b;
+    $('tri-c-o').textContent = c;
+    $('tri-a-o').textContent = deg + '°';
+    $('tri-ra').textContent = fmt(a);
+    $('tri-rb').textContent = fmt(angB, 1) + '°，' + fmt(angC, 1) + '°';
+    $('tri-rs').textContent = fmt(S);
+    $('tri-rr').textContent = fmt(R);
+    $('tri-ri').textContent = fmt(r);
+    $('tri-rt').textContent = Math.abs(big - 90) < 0.05 ? '直角三角形' : big > 90 ? '钝角三角形' : '锐角三角形';
+  }
+  ['tri-b', 'tri-c', 'tri-a'].forEach(function (id) { $(id).addEventListener('input', drawTri); });
+  drawTri();
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['read'],
+      throwOnError: false
+    });
+  }
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>
