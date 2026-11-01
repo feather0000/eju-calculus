@@ -258,11 +258,63 @@ html { scroll-padding-top: 100px; }
     <p class="jp-sub" lang="ja">指数の拡張 — 累乗根・有理数の指数・実数の指数</p>
     <p>指数最初只表示“乘几次”。为了让指数律继续成立，人们把它一步步扩张（<span lang="ja">拡張</span>）：正整数 → $0$ 和负整数 → 有理数 → 实数。</p>
 
+    <p><strong>为什么成立：</strong>扩张不是随意规定的，原则只有一条：<strong>让 $a^m a^n=a^{m+n}$ 继续成立</strong>。指数的含义因此逐步推广：正整数指数表示“连乘”，$0$ 和负整数指数由“相除”得到，有理数指数由“开方”得到，无理数指数由“逼近”得到。每一步都不改变原来的运算规则，所以下面所有公式都能用同一条指数律推出来。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用扩张后的指数计算</b><span class="origin">原创</span></div>
+      <p>计算 $4^{-\frac32}\times 8^{\frac23}\times 5^0$。</p>
+      <div class="ans">
+        <ol>
+          <li>先处理最简单的：$5^0=1$。</li>
+          <li>统一成底 $2$：$4=2^2$，$8=2^3$。</li>
+          <li>用 $(a^r)^s=a^{rs}$：$4^{-\frac32}=2^{2\cdot(-\frac32)}=2^{-3}$，$8^{\frac23}=2^{3\cdot\frac23}=2^2$。</li>
+          <li>指数相加：$2^{-3}\times2^2\times1=2^{-1}=\dfrac12$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\dfrac12$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $a^{-n}$ 当成负数。其实 $a&gt;0$ 时 $a^{-n}$ 总是正数，如 $2^{-3}=\dfrac18&gt;0$。</li>
+        <li>不统一底就硬算，如把 $4^{-\frac32}$ 和 $8^{\frac23}$ 分别估算成小数，既慢又不精确。</li>
+        <li>把 $5^0$ 算成 $0$ 或 $5$；任何非零数的 $0$ 次方都是 $1$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>计算题先扫一眼底数：$4,8,16,32$ 想到 $2$，$9,27,81$ 想到 $3$，$25,125$ 想到 $5$。考试不能用计算器，“化同底”几乎总是最短的路线。</p>
+      <p><strong>日语术语：</strong><span lang="ja">累乗</span>（<span class="kana" lang="ja">るいじょう</span>）：乘方、幂；<span lang="ja">指数</span>（<span class="kana" lang="ja">しすう</span>）：指数；<span lang="ja">拡張</span>（<span class="kana" lang="ja">かくちょう</span>）：扩张。</p>
+    </div>
     <h3>1.1 零指数与负指数</h3>
     <p>设 $a\ne 0$，$n$ 为正整数：</p>
     $$a^0=1,\qquad a^{-n}=\frac{1}{a^n}$$
     <p>例如 $2^{-3}=\dfrac18$。</p>
 
+    <p><strong>为什么成立：</strong>要使 $a^m a^n=a^{m+n}$ 在 $n=0$ 时成立，需要 $a^m\cdot a^0=a^m$，两边除以 $a^m$（$a\ne0$）得 $a^0=1$。再取 $m=-n$：$a^{-n}\cdot a^{n}=a^{0}=1$，所以 $a^{-n}$ 只能是 $\dfrac{1}{a^n}$。条件 $a\ne0$ 正是因为这里要除以 $a^n$；$0^{-1}$ 相当于 $\dfrac10$，没有意义。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　负指数的分式</b><span class="origin">原创</span></div>
+      <p>计算：(1) $\dfrac{3^{-2}+3^0}{3^{-1}}$；(2) $\left(2^{-1}+4^{-1}\right)^{-1}$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 分子：$3^{-2}+3^0=\dfrac19+1=\dfrac{10}{9}$。</li>
+          <li>(1) 分母：$3^{-1}=\dfrac13$，除以 $\dfrac13$ 就是乘 $3$，所以结果为 $\dfrac{10}{9}\times3=\dfrac{10}{3}$。</li>
+          <li>(2) 先算括号内：$2^{-1}+4^{-1}=\dfrac12+\dfrac14=\dfrac34$。</li>
+          <li>(2) 再取倒数：$\left(\dfrac34\right)^{-1}=\dfrac43$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\dfrac{10}{3}$；(2) $\dfrac43$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>$(a+b)^{-1}\ne a^{-1}+b^{-1}$。指数律只对“积”分配，对“和”不分配。上题 (2) 若误算为 $2+4=6$ 就错了。</li>
+        <li>$\left(\dfrac{a}{b}\right)^{-1}$ 是 $\dfrac{b}{a}$（取倒数），不是 $-\dfrac{a}{b}$（取相反数）。</li>
+        <li>$-2^{-2}$ 与 $(-2)^{-2}$ 不同：前者为 $-\dfrac14$，后者为 $\dfrac14$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>分式中混有负指数时，分子分母同乘一个合适的幂，能一次去掉所有负指数。上题 (1) 同乘 $3^2$，得 $\dfrac{1+9}{3}=\dfrac{10}{3}$，这也是一种快速验算。</p>
+      <p><strong>日语术语：</strong><span lang="ja">負の指数</span>（<span class="kana" lang="ja">ふのしすう</span>）：负指数；<span lang="ja">0乗</span>（<span class="kana" lang="ja">ゼロじょう</span>）：零次方；<span lang="ja">逆数</span>（<span class="kana" lang="ja">ぎゃくすう</span>）：倒数。</p>
+    </div>
     <h3>1.2 $n$ 次方根（累乗根）</h3>
     <p>$n$ 次方等于 $a$ 的数叫 $a$ 的 $n$ 次方根（<span lang="ja">$n$ 乗根</span>）。实数范围内：</p>
     <ul>
@@ -277,6 +329,33 @@ html { scroll-padding-top: 100px; }
       <div>$$\sqrt[m]{\sqrt[n]{a}}=\sqrt[mn]{a}$$</div>
     </div>
 
+    <p><strong>为什么成立：</strong>实数范围内方程 $x^n=a$ 的解，就是曲线 $y=x^n$ 与水平线 $y=a$ 的交点。$n$ 为奇数时 $y=x^n$ 单调递增，值域为全体实数，所以恰有一个交点；$n$ 为偶数时曲线关于 $y$ 轴对称且 $y\ge0$，所以 $a&gt;0$ 时有两个交点，$a=0$ 时只有 $x=0$，$a&lt;0$ 时没有实数解。根式公式的证法相同：例如 $\left(\sqrt[n]{a}\sqrt[n]{b}\right)^n=ab$，而 $\sqrt[n]{a}\sqrt[n]{b}&gt;0$，正的 $n$ 次方根只有一个，所以它就是 $\sqrt[n]{ab}$。同理，$\left(\sqrt[m]{\sqrt[n]{a}}\right)^{mn}=a$，得到 $\sqrt[m]{\sqrt[n]{a}}=\sqrt[mn]{a}$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　根式运算与实数根</b><span class="origin">原创</span></div>
+      <p>(1) 化简 $\sqrt[3]{24}\cdot\sqrt[3]{9}$、$\sqrt[4]{48}\div\sqrt[4]{3}$、$\sqrt[3]{\sqrt{64}}$。(2) 求实数解：$x^4=81$；$x^3=-27$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 同次根号可以合并：$\sqrt[3]{24}\cdot\sqrt[3]{9}=\sqrt[3]{216}=\sqrt[3]{6^3}=6$。</li>
+          <li>(1) $\sqrt[4]{48}\div\sqrt[4]{3}=\sqrt[4]{\dfrac{48}{3}}=\sqrt[4]{16}=2$。</li>
+          <li>(1) 根号套根号，次数相乘：$\sqrt[3]{\sqrt{64}}=\sqrt[6]{64}=\sqrt[6]{2^6}=2$。</li>
+          <li>(2) $4$ 是偶数且 $81&gt;0$，有正负两个实数解：$x=\pm\sqrt[4]{81}=\pm3$。</li>
+          <li>(2) $3$ 是奇数，只有一个实数解：$x=\sqrt[3]{-27}=-3$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $6$，$2$，$2$；(2) $x=\pm3$；$x=-3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $\sqrt[4]{16}$ 写成 $\pm2$。根号记号 $\sqrt[n]{a}$（$n$ 为偶数）只表示正的那个值。而“$16$ 的 $4$ 次方根”是 $\pm2$ 两个数，要分清两种说法。</li>
+        <li>解 $x^4=81$ 时漏掉 $x=-3$。</li>
+        <li>不同次的根号直接相乘，如把 $\sqrt{2}\cdot\sqrt[3]{2}$ 写成 $\sqrt[6]{4}$。正确做法是化成指数：$2^{\frac12+\frac13}=2^{\frac56}=\sqrt[6]{32}$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>看题干的措辞：<span lang="ja">$a$ の $n$ 乗根</span> 问的是所有解；$\sqrt[n]{a}$ 是一个确定的数。遇到次数不同的根号，一律先改写成分数指数。</p>
+      <p><strong>日语术语：</strong><span lang="ja">累乗根</span>（<span class="kana" lang="ja">るいじょうこん</span>）：方根；<span lang="ja">平方根</span>（<span class="kana" lang="ja">へいほうこん</span>）：平方根；<span lang="ja">立方根</span>（<span class="kana" lang="ja">りっぽうこん</span>）：立方根；<span lang="ja">実数解</span>（<span class="kana" lang="ja">じっすうかい</span>）：实数解。</p>
+    </div>
     <h3>1.3 有理数指数与指数律</h3>
     <p>设 $a&gt;0$，$m$ 为整数，$n$ 为正整数：</p>
     $$a^{\frac{m}{n}}=\sqrt[n]{a^m}$$
@@ -294,6 +373,34 @@ html { scroll-padding-top: 100px; }
     <div class="box good">
       <p><strong>对称式常用结论：</strong>令 $t=a^x+a^{-x}$，由 $a^x\cdot a^{-x}=1$ 得</p>
       $$a^{2x}+a^{-2x}=t^2-2,\qquad a^{3x}+a^{-3x}=t^3-3t.$$
+    </div>
+    <p><strong>为什么成立：</strong>若要 $(a^r)^s=a^{rs}$ 对有理数也成立，则 $\left(a^{\frac{m}{n}}\right)^n=a^m$，说明 $a^{\frac{m}{n}}$ 是 $a^m$ 的 $n$ 次方根；取正的那个，就得到 $a^{\frac{m}{n}}=\sqrt[n]{a^m}$。要求 $a&gt;0$ 是为了让定义不产生矛盾：若允许 $(-8)^{\frac13}=-2$，由 $\dfrac13=\dfrac26$ 又应有 $(-8)^{\frac26}=\sqrt[6]{(-8)^2}=\sqrt[6]{64}=2$，同一个指数得出两个值。上面的对称式结论只是展开：$(a^x+a^{-x})^2=a^{2x}+2+a^{-2x}$，$(a^x+a^{-x})^3=a^{3x}+3a^x+3a^{-x}+a^{-3x}=a^{3x}+a^{-3x}+3t$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　根式化指数与整体代入</b><span class="origin">原创</span></div>
+      <p>(1) 设 $a&gt;0$，化简 $\sqrt{a\sqrt[3]{a^2}}\div a^{\frac13}$。(2) 设 $a&gt;0$，$a^{2x}=3$，求 $\dfrac{a^{3x}+a^{-3x}}{a^x+a^{-x}}$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 从里到外写成指数：$\sqrt[3]{a^2}=a^{\frac23}$，所以 $a\sqrt[3]{a^2}=a^{1+\frac23}=a^{\frac53}$。</li>
+          <li>(1) 再开平方：$\sqrt{a^{\frac53}}=a^{\frac56}$。</li>
+          <li>(1) 除以 $a^{\frac13}$：$a^{\frac56-\frac13}=a^{\frac12}=\sqrt a$。</li>
+          <li>(2) 把分子看成立方和：$p^3+q^3=(p+q)(p^2-pq+q^2)$，其中 $p=a^x$，$q=a^{-x}$，且 $pq=1$。</li>
+          <li>(2) 分母 $p+q&gt;0$，可以约去：原式 $=a^{2x}-1+a^{-2x}$。</li>
+          <li>(2) 代入 $a^{2x}=3$，$a^{-2x}=\dfrac13$：$3-1+\dfrac13=\dfrac73$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\sqrt a$；(2) $\dfrac73$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>$a^r+a^s\ne a^{r+s}$。指数相加对应的是“乘”，不是“加”。</li>
+        <li>$(a^r)^s$ 与 $a^{r^s}$ 混淆：$(2^3)^2=2^6$，而 $2^{3^2}=2^9$。</li>
+        <li>对称式代入时漏掉中间项：$(a^x+a^{-x})^2$ 展开后的常数项是 $2$，因为 $a^x\cdot a^{-x}=1$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>见到 $a^{2x}$ 已知而求 $a^{3x}$ 之类的题，不必解出 $a$ 或 $x$，用因式分解或平方、立方公式<strong>整体代入</strong>。填空题的形式通常也在暗示这条路。</p>
+      <p><strong>日语术语：</strong><span lang="ja">指数法則</span>（<span class="kana" lang="ja">しすうほうそく</span>）：指数律；<span lang="ja">有理数</span>（<span class="kana" lang="ja">ゆうりすう</span>）：有理数；<span lang="ja">無理数</span>（<span class="kana" lang="ja">むりすう</span>）：无理数；<span lang="ja">因数分解</span>（<span class="kana" lang="ja">いんすうぶんかい</span>）：因式分解。</p>
     </div>
   </section>
 
@@ -316,9 +423,61 @@ html { scroll-padding-top: 100px; }
       <figcaption>$y=2^x$ 与 $y=\left(\frac12\right)^x=2^{-x}$ 关于 $y$ 轴对称，都过 $(0,1)$，都以 $x$ 轴为渐近线。</figcaption>
     </figure>
 
+    <p><strong>为什么成立：</strong>设 $a&gt;1$，$r&gt;0$，则 $a^r&gt;1$。当 $x_1&lt;x_2$ 时，$a^{x_2}-a^{x_1}=a^{x_1}\left(a^{x_2-x_1}-1\right)&gt;0$，所以函数递增。$0&lt;a&lt;1$ 时，$\dfrac1a&gt;1$，而 $a^x=\left(\dfrac1a\right)^{-x}$，自变量变号，所以函数递减，图像与 $y=\left(\dfrac1a\right)^x$ 关于 $y$ 轴对称。$a^0=1$ 说明所有曲线都过 $(0,1)$；$a&gt;1$ 时 $x\to-\infty$ 则 $a^x\to0$ 但始终为正，因此 $x$ 轴是渐近线，值域是 $y&gt;0$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　利用单调性比较大小</b><span class="origin">原创</span></div>
+      <p>(1) 将 $\sqrt2,\ \sqrt[3]{4},\ \sqrt[5]{8},\ \sqrt[7]{16}$ 按从小到大排列。(2) 比较 $0.5^{0.3}$ 与 $0.5^{0.4}$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 全部化成底 $2$：$2^{\frac12},\ 2^{\frac23},\ 2^{\frac35},\ 2^{\frac47}$。</li>
+          <li>(1) 底 $2&gt;1$，函数递增，只需比较指数。通分（分母 $210$）：$\dfrac12=\dfrac{105}{210}$，$\dfrac47=\dfrac{120}{210}$，$\dfrac35=\dfrac{126}{210}$，$\dfrac23=\dfrac{140}{210}$。</li>
+          <li>(1) 所以 $2^{\frac12}&lt;2^{\frac47}&lt;2^{\frac35}&lt;2^{\frac23}$。</li>
+          <li>(2) 底 $0.5&lt;1$，函数递减。因为 $0.3&lt;0.4$，所以 $0.5^{0.3}&gt;0.5^{0.4}$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\sqrt2&lt;\sqrt[7]{16}&lt;\sqrt[5]{8}&lt;\sqrt[3]{4}$；(2) $0.5^{0.3}&gt;0.5^{0.4}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>看到指数大就断定值大，忽略了底小于 $1$ 的情形。</li>
+        <li>认为 $y=a^x$ 的值可以等于 $0$。曲线只是无限接近 $x$ 轴，永远不与它相交。</li>
+        <li>把 $y=2^x$ 与 $y=x^2$ 混淆：前者变量在指数上，后者变量在底上，图像和性质完全不同。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>比较大小分两类：能化同底就比较指数；能化同指数（如取公倍数次方）就比较底，练习 4 用的就是后一种。先判断底与 $1$ 的大小，再写不等号。</p>
+      <p><strong>日语术语：</strong><span lang="ja">指数関数</span>（<span class="kana" lang="ja">しすうかんすう</span>）：指数函数；<span lang="ja">底</span>（<span class="kana" lang="ja">てい</span>）：底；<span lang="ja">単調増加</span>（<span class="kana" lang="ja">たんちょうぞうか</span>）：单调递增；<span lang="ja">単調減少</span>（<span class="kana" lang="ja">たんちょうげんしょう</span>）：单调递减；<span lang="ja">漸近線</span>（<span class="kana" lang="ja">ぜんきんせん</span>）：渐近线。</p>
+    </div>
     <h3>2.1 图像变换</h3>
     <p>$y=a^{x-p}+q$ 是把 $y=a^x$ 向右平移 $p$、向上平移 $q$（<span lang="ja">平行移動</span>），渐近线变为 $y=q$。例如 $y=2^{x-1}+3$ 的渐近线是 $y=3$，图像过点 $(1,4)$。</p>
 
+    <p><strong>为什么成立：</strong>设 $(X,Y)$ 在 $y=a^x$ 上，把它向右移 $p$、向上移 $q$ 得到点 $(x,y)=(X+p,Y+q)$。反解 $X=x-p$，$Y=y-q$，代入 $Y=a^X$ 得 $y-q=a^{x-p}$，这就是为什么“向右移”在式子里是减 $p$。对称变换同理：关于 $y$ 轴对称，把 $x$ 换成 $-x$，得 $y=a^{-x}$；关于 $x$ 轴对称，把 $y$ 换成 $-y$，得 $y=-a^x$。此外，系数可以并入指数：$4\cdot2^x=2^{x+2}$，所以对指数函数来说，“乘常数”等于“左右平移”。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　平移、渐近线与截距</b><span class="origin">原创</span></div>
+      <p>对函数 $y=8\cdot2^x-3$：(1) 它由 $y=2^x$ 怎样平移得到？(2) 求渐近线。(3) 求与 $y$ 轴、$x$ 轴的交点。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 把系数并入指数：$8\cdot2^x=2^3\cdot2^x=2^{x+3}$，所以 $y=2^{x+3}-3$。与 $y=a^{x-p}+q$ 对照，$p=-3$，$q=-3$，即向左平移 $3$、向下平移 $3$。</li>
+          <li>(2) $y=2^x$ 的渐近线 $y=0$ 向下平移 $3$，得 $y=-3$（左右平移不改变水平线）。</li>
+          <li>(3) 令 $x=0$：$y=8\cdot1-3=5$，交点为 $(0,5)$。</li>
+          <li>(3) 令 $y=0$：$2^{x+3}=3$，所以 $x+3=\log_2 3$，$x=\log_2 3-3$，交点为 $(\log_2 3-3,\ 0)$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) 向左平移 $3$、向下平移 $3$；(2) $y=-3$；(3) $(0,5)$，$(\log_2 3-3,\ 0)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>$y=2^{x+3}$ 是向<strong>左</strong>平移 $3$，不是向右。</li>
+        <li>认为平移后渐近线仍是 $x$ 轴。上下平移 $q$，渐近线随之变为 $y=q$。</li>
+        <li>把 $8\cdot2^x$ 算成 $16^x$。系数不能并入底，只能写成 $2^{x+3}$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>求值域也靠渐近线：$y=2^{x+3}-3$ 的值域是 $y&gt;-3$。画草图时先画渐近线，再标一个容易算的点（如 $x=-3$ 时 $y=-2$），方向和位置基本就确定了。</p>
+      <p><strong>日语术语：</strong><span lang="ja">平行移動</span>（<span class="kana" lang="ja">へいこういどう</span>）：平移；<span lang="ja">対称移動</span>（<span class="kana" lang="ja">たいしょういどう</span>）：对称变换；<span lang="ja">交点</span>（<span class="kana" lang="ja">こうてん</span>）：交点；<span lang="ja">$y$ 切片</span>（<span class="kana" lang="ja">ワイせっぺん</span>）：$y$ 截距。</p>
+    </div>
     <h3>2.2 方程与不等式</h3>
     <p>第一步都是<strong>化成同底</strong>，然后比较指数：</p>
     <ul>
@@ -327,6 +486,34 @@ html { scroll-padding-top: 100px; }
     </ul>
     <div class="box warn">
       <p><strong>换元必写范围：</strong>令 $t=a^x$ 时一定有 $t&gt;0$；若 $x$ 有范围，$t$ 的范围也要跟着变。很多题正是靠这一点舍去负根，或确定最大、最小值。</p>
+    </div>
+    <p><strong>为什么成立：</strong>指数函数是单调的，所以 $a^{x_1}=a^{x_2}\iff x_1=x_2$：同一个函数值只对应一个 $x$，这就是可以“去掉底、比较指数”的依据。不等式的方向取决于单调性：递增时大小关系保持，递减时大小关系颠倒。换元后的范围也来自函数性质：$t=a^x$ 的值域是 $t&gt;0$，所以 $t\le0$ 的根都要舍去。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　指数方程与底小于 1 的不等式</b><span class="origin">原创</span></div>
+      <p>(1) 解方程 $9^x-8\cdot3^x-9=0$。(2) 解不等式 $\left(\dfrac12\right)^{2x-1}\le\left(\dfrac12\right)^{x+2}$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $9^x=(3^x)^2$，令 $t=3^x$，并写明 $t&gt;0$。方程化为 $t^2-8t-9=0$。</li>
+          <li>(1) 因式分解：$(t-9)(t+1)=0$，$t=9$ 或 $t=-1$。</li>
+          <li>(1) 由 $t&gt;0$ 舍去 $t=-1$。$3^x=9=3^2$，所以 $x=2$。</li>
+          <li>(1) 代回检验：$81-72-9=0$，成立。</li>
+          <li>(2) 两边已是同底，底 $\dfrac12&lt;1$，函数递减，去底时不等号反向：$2x-1\ge x+2$。</li>
+          <li>(2) 移项得 $x\ge3$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $x=2$；(2) $x\ge3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>换元后没写 $t&gt;0$，把 $3^x=-1$ 当作有解，或为它强行找一个 $x$。</li>
+        <li>底小于 $1$ 时忘记反向。注意 $\left(\dfrac12\right)^x$ 与 $2^{-x}$ 相同，化成底 $2$ 再解可以用来检查方向。</li>
+        <li>把 $3^{x+1}$ 换成 $t+1$。正确的是 $3^{x+1}=3\cdot3^x=3t$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>看到 $4^x$ 与 $2^x$、$9^x$ 与 $3^x$ 同时出现，几乎一定要换元。答案若要填 $x$ 的值，换元后别停在 $t$ 的值上，记得换回去。</p>
+      <p><strong>日语术语：</strong><span lang="ja">指数方程式</span>（<span class="kana" lang="ja">しすうほうていしき</span>）：指数方程；<span lang="ja">指数不等式</span>（<span class="kana" lang="ja">しすうふとうしき</span>）：指数不等式；<span lang="ja">置き換え</span>（<span class="kana" lang="ja">おきかえ</span>）：换元；<span lang="ja">不等号の向き</span>（<span class="kana" lang="ja">ふとうごうのむき</span>）：不等号的方向。</p>
     </div>
   </section>
 
@@ -337,6 +524,33 @@ html { scroll-padding-top: 100px; }
     $$a^p=M\iff p=\log_a M$$
     <p>$a$ 叫底（<span lang="ja">底</span>），$M$ 叫真数（<span lang="ja">真数</span>）。一句话：<strong>$\log_a M$ 就是“$a$ 的几次方等于 $M$”</strong>。例如 $\log_2 8=3$，$\log_3\dfrac19=-2$，$\log_{10}0.01=-2$，$\log_9 27=\dfrac32$。</p>
 
+    <p><strong>为什么成立：</strong>对数是为了回答“指数是多少”而引入的。$a&gt;0,\ a\ne1$ 时，$y=a^x$ 单调且值域为 $y&gt;0$，所以每个 $M&gt;0$ 都恰好对应一个指数 $p$，$\log_a M$ 才有唯一的值。三个条件各有原因：$M&gt;0$ 是因为 $a^p$ 总是正数；$a\ne1$ 是因为 $1^p$ 恒为 $1$，无法确定 $p$；$a&gt;0$ 是因为指数函数只对正底定义。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由定义求未知量</b><span class="origin">原创</span></div>
+      <p>求值：(1) $\log_{\sqrt2}8$；(2) 满足 $\log_x 27=\dfrac32$ 的 $x$；(3) 满足 $\log_{\frac13}M=-2$ 的 $M$。(4) 求使 $\log_{x-1}(5-x)$ 有意义的 $x$ 的范围。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 设其值为 $p$，则 $(\sqrt2)^p=8$，即 $2^{\frac{p}{2}}=2^3$，所以 $\dfrac{p}{2}=3$，$p=6$。</li>
+          <li>(2) 改写为指数式：$x^{\frac32}=27$。两边取 $\dfrac23$ 次方：$x=27^{\frac23}=(3^3)^{\frac23}=9$，满足 $x&gt;0,\ x\ne1$。</li>
+          <li>(3) 改写为指数式：$M=\left(\dfrac13\right)^{-2}=3^2=9$。</li>
+          <li>(4) 底的条件：$x-1&gt;0$ 且 $x-1\ne1$，即 $x&gt;1$ 且 $x\ne2$。</li>
+          <li>(4) 真数条件：$5-x&gt;0$，即 $x&lt;5$。合并得 $1&lt;x&lt;5$ 且 $x\ne2$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $6$；(2) $x=9$；(3) $M=9$；(4) $1&lt;x&lt;2$ 或 $2&lt;x&lt;5$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>以为对数值必须为正。$\log_a M$ 可以是负数或 $0$（如 $\log_3\dfrac19=-2$），必须为正的是<strong>真数</strong>。</li>
+        <li>底含未知数时，只写 $x-1&gt;0$，漏掉 $x-1\ne1$。</li>
+        <li>把 $a^p=M$ 改写成 $\log_M a=p$，弄反了底和真数。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>对数式不好处理时，先改写成指数式（<span lang="ja">指数の形に直す</span>）。题目出现含 $x$ 的底或真数，第一行就写条件；答案常要排除个别值，这一步很容易失分。</p>
+      <p><strong>日语术语：</strong><span lang="ja">対数</span>（<span class="kana" lang="ja">たいすう</span>）：对数；<span lang="ja">真数</span>（<span class="kana" lang="ja">しんすう</span>）：真数；<span lang="ja">真数条件</span>（<span class="kana" lang="ja">しんすうじょうけん</span>）：真数大于 0 的条件；<span lang="ja">底の条件</span>（<span class="kana" lang="ja">ていのじょうけん</span>）：底的条件。</p>
+    </div>
     <h3>3.1 基本性质</h3>
     <p>设 $a,c$ 是不等于 $1$ 的正数，$M,N,b&gt;0$，$r$ 为实数：</p>
     <div class="formula-grid">
@@ -352,6 +566,33 @@ html { scroll-padding-top: 100px; }
       <p><strong>易错：</strong>$\log_a(M+N)\ne\log_a M+\log_a N$；$(\log_a M)^2\ne\log_a M^2=2\log_a M$（后者要求 $M&gt;0$）。</p>
     </div>
 
+    <p><strong>为什么成立：</strong>每条性质都是指数律的“翻译”。令 $p=\log_a M$，$q=\log_a N$，即 $a^p=M$，$a^q=N$。于是 $MN=a^{p+q}$，由定义 $\log_a MN=p+q$，这就是积的公式；$\dfrac{M}{N}=a^{p-q}$ 给出商的公式；$M^r=a^{pr}$ 给出 $\log_a M^r=r\log_a M$。$a^{\log_a M}=M$ 只是把定义代回去：$\log_a M$ 正是“$a$ 要取的指数”。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　对数运算与用字母表示</b><span class="origin">原创</span></div>
+      <p>(1) 计算 $\log_{10}25+2\log_{10}2$。(2) 计算 $\log_3 18-2\log_3\sqrt2$。(3) 计算 $4^{\log_2 3}$。(4) 设 $\log_{10}2=a$，$\log_{10}3=b$，用 $a,b$ 表示 $\log_{10}45$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 系数移到真数的指数上：$2\log_{10}2=\log_{10}4$。合并：$\log_{10}(25\times4)=\log_{10}100=2$。</li>
+          <li>(2) $2\log_3\sqrt2=\log_3(\sqrt2)^2=\log_3 2$。所以原式 $=\log_3\dfrac{18}{2}=\log_3 9=2$。</li>
+          <li>(3) 化成 $a^{\log_a M}$ 的形式：$4^{\log_2 3}=(2^2)^{\log_2 3}=\left(2^{\log_2 3}\right)^2=3^2=9$。</li>
+          <li>(4) 分解：$45=9\times5=3^2\times\dfrac{10}{2}$。</li>
+          <li>(4) 所以 $\log_{10}45=2\log_{10}3+\log_{10}10-\log_{10}2=2b+1-a$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $2$；(2) $2$；(3) $9$；(4) $2b+1-a$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>$\dfrac{\log_a M}{\log_a N}$ 与 $\log_a\dfrac{M}{N}$ 混淆。商的公式说的是真数相除，对数相除要用换底公式。</li>
+        <li>$\log_a M^2=2\log_a M$ 只在 $M&gt;0$ 时直接成立；若 $M$ 可能为负，应写 $\log_a M^2=2\log_a|M|$。</li>
+        <li>认为 $\log_{10}5$ 无法用 $\log_{10}2$ 表示。其实 $5=\dfrac{10}{2}$，这是最常用的一步。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>计算时把系数“收进”真数，合并后常得到整数；表示题则相反，把真数“拆开”成已知的质因数。含 $5$ 时就用 $\log_{10}5=1-\log_{10}2$。</p>
+      <p><strong>日语术语：</strong><span lang="ja">真数</span>（<span class="kana" lang="ja">しんすう</span>）：真数；<span lang="ja">素因数分解</span>（<span class="kana" lang="ja">そいんすうぶんかい</span>）：质因数分解；<span lang="ja">積</span>（<span class="kana" lang="ja">せき</span>）：积；<span lang="ja">商</span>（<span class="kana" lang="ja">しょう</span>）：商。</p>
+    </div>
     <h3>3.2 换底公式（底の変換公式）</h3>
     <p>底不相同时，先换成同一个底（$b&gt;0$，$c&gt;0,\ c\ne1$）：</p>
     $$\log_a b=\frac{\log_c b}{\log_c a}$$
@@ -361,6 +602,34 @@ html { scroll-padding-top: 100px; }
       <div>$$\log_{a^k}b^m=\frac{m}{k}\log_a b$$</div>
     </div>
     <p>例如 $\log_4 8=\dfrac{\log_2 8}{\log_2 4}=\dfrac32$，$\log_8 32=\dfrac53$。</p>
+    <p><strong>为什么成立：</strong>令 $p=\log_a b$，即 $a^p=b$。两边取以 $c$ 为底的对数：$p\log_c a=\log_c b$。因为 $a\ne1$，$\log_c a\ne0$，可以相除，得 $p=\dfrac{\log_c b}{\log_c a}$。在公式中取 $c=b$（要求 $b\ne1$），得 $\log_a b=\dfrac{1}{\log_b a}$，这就是第一个推论。第二个推论：$\log_{a^k}b^m=\dfrac{\log_c b^m}{\log_c a^k}=\dfrac{m\log_c b}{k\log_c a}=\dfrac{m}{k}\log_a b$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　连乘、和的积与字母表示</b><span class="origin">原创</span></div>
+      <p>(1) 计算 $\log_2 3\cdot\log_3 5\cdot\log_5 8$。(2) 计算 $(\log_2 9+\log_4 3)(\log_3 2+\log_9 2)$。(3) 设 $\log_2 3=a$，用 $a$ 表示 $\log_{12}18$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 全部换成常用对数相约：$\dfrac{\log_{10}3}{\log_{10}2}\cdot\dfrac{\log_{10}5}{\log_{10}3}\cdot\dfrac{\log_{10}8}{\log_{10}5}=\dfrac{\log_{10}8}{\log_{10}2}=\log_2 8=3$。</li>
+          <li>(2) 第一个括号换成底 $2$：记 $L=\log_2 3$，则 $\log_2 9=2L$，$\log_4 3=\dfrac12L$，和为 $\dfrac52L$。</li>
+          <li>(2) 第二个括号：$\log_3 2=\dfrac1L$，$\log_9 2=\dfrac12\cdot\dfrac1L$，和为 $\dfrac{3}{2L}$。</li>
+          <li>(2) 相乘，$L$ 约去：$\dfrac52L\cdot\dfrac{3}{2L}=\dfrac{15}{4}$。</li>
+          <li>(3) 换成底 $2$：$\log_{12}18=\dfrac{\log_2 18}{\log_2 12}$。</li>
+          <li>(3) 分解：$\log_2 18=\log_2(2\cdot3^2)=1+2a$，$\log_2 12=\log_2(2^2\cdot3)=2+a$，所以结果为 $\dfrac{1+2a}{2+a}$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $3$；(2) $\dfrac{15}{4}$；(3) $\dfrac{1+2a}{2+a}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>$\log_{a^k}b^m$ 写成 $\dfrac{k}{m}\log_a b$，把比值颠倒。记法：<strong>真数的指数在上，底的指数在下</strong>，如 $\log_8 32=\log_{2^3}2^5=\dfrac53$。</li>
+        <li>把 $\log_a b\cdot\log_b c$ 算成 $\log_a b+\log_b c$，或错写成 $\log_a(bc)$；正确结果是 $\log_a c$。</li>
+        <li>换底时分子分母放反：所求对数的<strong>真数在分子</strong>，底在分母。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>一题中出现多个不同的底时，不要逐项求值，应立刻换成同一个最小的底（如 $4,8,16$ 换成 $2$），并把共同的对数记为一个字母，算式会短很多。</p>
+      <p><strong>日语术语：</strong><span lang="ja">底の変換公式</span>（<span class="kana" lang="ja">ていのへんかんこうしき</span>）：换底公式；<span lang="ja">常用対数</span>（<span class="kana" lang="ja">じょうようたいすう</span>）：常用对数；<span lang="ja">逆数</span>（<span class="kana" lang="ja">ぎゃくすう</span>）：倒数。</p>
+    </div>
   </section>
 
   <section id="logfn">
@@ -382,6 +651,33 @@ html { scroll-padding-top: 100px; }
       <figcaption>$y=\log_2 x$ 与 $y=\log_{\frac12}x=-\log_2 x$ 关于 $x$ 轴对称，都过 $(1,0)$，都以 $y$ 轴为渐近线。</figcaption>
     </figure>
 
+    <p><strong>为什么成立：</strong>由定义，$y=\log_a x\iff x=a^y$，也就是把 $y=a^x$ 中的 $x,y$ 互换，所以两者互为反函数。点 $(p,q)$ 与 $(q,p)$ 的中点 $\left(\dfrac{p+q}{2},\dfrac{p+q}{2}\right)$ 在 $y=x$ 上，连线斜率为 $-1$，与 $y=x$ 垂直，因此两点关于 $y=x$ 对称。性质也随之互换：指数函数的值域 $y&gt;0$ 变成对数函数的定义域 $x&gt;0$；定义域“全体实数”变成值域；渐近线 $y=0$ 变成 $x=0$；单调方向不变。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　求反函数与复合真数的值域</b><span class="origin">原创</span></div>
+      <p>(1) 求 $y=2^{x-1}+3$ 的反函数及其定义域。(2) 求 $y=\log_3(x^2-4x+13)$ 的定义域和最小值。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 原函数的值域是 $y&gt;3$，这就是反函数的定义域。</li>
+          <li>(1) 用 $y$ 表示 $x$：$y-3=2^{x-1}$，取对数得 $x-1=\log_2(y-3)$，$x=\log_2(y-3)+1$。</li>
+          <li>(1) 交换 $x,y$：$y=\log_2(x-3)+1$（$x&gt;3$）。检验：原函数过 $(5,19)$，而 $\log_2(19-3)+1=5$，反函数过 $(19,5)$。</li>
+          <li>(2) 配方：$x^2-4x+13=(x-2)^2+9\ge9&gt;0$，真数恒正，定义域为全体实数。</li>
+          <li>(2) 底 $3&gt;1$，真数最小时函数值最小。真数最小值是 $9$（$x=2$），所以 $y$ 的最小值为 $\log_3 9=2$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $y=\log_2(x-3)+1\ (x&gt;3)$；(2) 定义域为全体实数，最小值 $2$（$x=2$）。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>求反函数时漏写定义域。定义域要从原函数的值域得到，不能只看最后的式子。</li>
+        <li>把 $\log_2 x$ 与 $\log_{\frac12}x$ 的对称关系记成“关于 $y$ 轴对称”。正确的是关于 $x$ 轴对称，因为 $\log_{\frac12}x=-\log_2 x$。</li>
+        <li>复合函数直接把二次式的顶点当答案，忘记再取一次对数；或底小于 $1$ 时仍认为真数最小对应函数值最小。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>对数函数的最值分两层思考：先求真数的范围，再按底的大小判断单调方向。底小于 $1$ 时，真数最小对应函数值<strong>最大</strong>。</p>
+      <p><strong>日语术语：</strong><span lang="ja">対数関数</span>（<span class="kana" lang="ja">たいすうかんすう</span>）：对数函数；<span lang="ja">逆関数</span>（<span class="kana" lang="ja">ぎゃくかんすう</span>）：反函数；<span lang="ja">定義域</span>（<span class="kana" lang="ja">ていぎいき</span>）：定义域；<span lang="ja">値域</span>（<span class="kana" lang="ja">ちいき</span>）：值域。</p>
+    </div>
     <div class="explorer" id="explorer">
       <h3 style="margin-top:0">互动：拖动看指数与对数的镜像关系</h3>
       <div class="ex-head" id="ex-presets" role="group" aria-label="选择底数"></div>
@@ -408,6 +704,34 @@ html { scroll-padding-top: 100px; }
       <div class="status" id="ex-status" aria-live="polite"></div>
     </div>
 
+    <p><strong>怎样使用这个演示：</strong>先固定 $a=2$，拖动点 P，确认 Q 的坐标总是 P 的坐标互换；再把 $a$ 调到小于 $1$，观察两条曲线一起变成递减；最后点 $a=1$，看定义为什么要排除它。</p>
+    <p><strong>为什么成立：</strong>P 在 $y=a^x$ 上，即 $y_P=a^{x_P}$。由对数的定义，$x_P=\log_a y_P$，这正说明 $(y_P,x_P)$ 在 $y=\log_a x$ 上。所以每拖动一次，屏幕上显示的都是同一个等式的指数形式和对数形式。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　对称点的计算</b><span class="origin">原创</span></div>
+      <p>曲线 $y=a^x$（$a&gt;0,\ a\ne1$）过点 $\mathrm{P}(2,9)$。(1) 求 $a$。(2) 求 P 关于 $y=x$ 的对称点 Q，并验证它在 $y=\log_a x$ 上。(3) 求线段 PQ 的长度、中点和斜率。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 代入：$a^2=9$。由 $a&gt;0$ 得 $a=3$，负根 $a=-3$ 舍去。</li>
+          <li>(2) 坐标互换：$\mathrm{Q}(9,2)$。验证：$\log_3 9=2$，在曲线上。</li>
+          <li>(3) 长度：$\mathrm{PQ}=\sqrt{(9-2)^2+(2-9)^2}=\sqrt{98}=7\sqrt2$。</li>
+          <li>(3) 中点：$\left(\dfrac{2+9}{2},\dfrac{9+2}{2}\right)=\left(\dfrac{11}{2},\dfrac{11}{2}\right)$，确实在 $y=x$ 上。</li>
+          <li>(3) 斜率：$\dfrac{2-9}{9-2}=-1$，与 $y=x$ 垂直。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $a=3$；(2) $\mathrm{Q}(9,2)$；(3) $7\sqrt2$，$\left(\dfrac{11}{2},\dfrac{11}{2}\right)$，$-1$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>由 $a^2=9$ 写出 $a=\pm3$，忘记底必须为正。</li>
+        <li>以为 $y=a^x$ 与 $y=\log_a x$ 的交点一定在 $y=x$ 上。当底很小时并非如此：$a=\dfrac1{16}$ 时，$\left(\dfrac12,\dfrac14\right)$ 和 $\left(\dfrac14,\dfrac12\right)$ 都同时在两条曲线上，却不在 $y=x$ 上。（本演示的滑块最小为 $0.2$，看不到这种情形。）</li>
+        <li>把“关于 $y=x$ 对称”与“关于 $y=-x$ 对称”弄混。前者是 $(p,q)\to(q,p)$，后者是 $(p,q)\to(-q,-p)$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目给出指数曲线上的点、要求对数曲线上的点时，直接交换坐标，不必重新代入计算。需要作图判断交点个数时，$a&gt;1$ 与 $0&lt;a&lt;1$ 要分别考虑。</p>
+      <p><strong>日语术语：</strong><span lang="ja">直線</span>（<span class="kana" lang="ja">ちょくせん</span>）：直线；<span lang="ja">対称</span>（<span class="kana" lang="ja">たいしょう</span>）：对称；<span lang="ja">中点</span>（<span class="kana" lang="ja">ちゅうてん</span>）：中点；<span lang="ja">傾き</span>（<span class="kana" lang="ja">かたむき</span>）：斜率。</p>
+    </div>
     <h3>4.1 对数方程与不等式</h3>
     <p>固定流程：<strong>① 写真数条件（和底的条件）→ ② 化成同底 → ③ 去掉 $\log$ 解题 → ④ 用条件筛选</strong>。</p>
     <ul>
@@ -419,8 +743,68 @@ html { scroll-padding-top: 100px; }
       <p><strong>易错：</strong>$0&lt;x&lt;9$ 中的“$0&lt;x$”来自真数条件，漏写就错。合并对数后真数条件会放宽，所以<strong>必须在合并之前</strong>写好条件，否则容易留下增根。</p>
     </div>
 
+    <p><strong>为什么成立：</strong>对数函数单调，所以 $\log_a X=\log_a Y\iff X=Y$（$X,Y&gt;0$），这就是可以去掉 $\log$ 的依据。不等式的方向同样由单调性决定。至于为什么要先写条件：$\log_2(x-2)+\log_2(x+5)$ 要求两个真数<strong>都</strong>为正，而合并后的 $\log_2(x-2)(x+5)$ 只要求<strong>乘积</strong>为正，$x=-6$ 就满足后者而不满足前者。变形扩大了取值范围，增根就是这样产生的。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　不同底的对数方程与不等式</b><span class="origin">原创</span></div>
+      <p>(1) 解方程 $\log_2(x+2)=\log_4(x+8)$。(2) 解不等式 $\log_{\frac13}(x-1)&gt;\log_{\frac19}(x+5)$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 真数条件：$x+2&gt;0$ 且 $x+8&gt;0$，即 $x&gt;-2$。</li>
+          <li>(1) 化同底：$\log_4(x+8)=\dfrac12\log_2(x+8)$。两边乘 $2$：$2\log_2(x+2)=\log_2(x+8)$，即 $\log_2(x+2)^2=\log_2(x+8)$。</li>
+          <li>(1) 去掉 $\log$：$(x+2)^2=x+8$，整理得 $x^2+3x-4=0$，$(x+4)(x-1)=0$。</li>
+          <li>(1) $x=-4$ 不满足 $x&gt;-2$，舍去，所以 $x=1$。检验：$\log_2 3=\log_4 9$，成立。</li>
+          <li>(2) 真数条件：$x-1&gt;0$ 且 $x+5&gt;0$，即 $x&gt;1$。</li>
+          <li>(2) 化同底：$\log_{\frac19}(x+5)=\dfrac12\log_{\frac13}(x+5)$。两边乘 $2$（正数，方向不变）：$\log_{\frac13}(x-1)^2&gt;\log_{\frac13}(x+5)$。</li>
+          <li>(2) 底 $\dfrac13&lt;1$，去掉 $\log$ 时反向：$(x-1)^2&lt;x+5$，即 $x^2-3x-4&lt;0$，$(x+1)(x-4)&lt;0$，$-1&lt;x&lt;4$。</li>
+          <li>(2) 与 $x&gt;1$ 合并：$1&lt;x&lt;4$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $x=1$；(2) $1&lt;x&lt;4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>先合并后写条件，留下增根（上题 $x=-4$）。</li>
+        <li>把 $\log_4(x+8)$ 直接当成 $\log_2(x+8)$ 计算，没有处理不同的底。</li>
+        <li>不等式只解了“去掉 $\log$”之后的部分，忘记与真数条件取交集；或底小于 $1$ 时漏掉反向。</li>
+        <li>底是字母 $a$ 时没有分类。必须分 $a&gt;1$ 和 $0&lt;a&lt;1$ 两种情况讨论。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>填空题的格式也能帮你检查：若题目只留一个答案位，而你解出两个根，多半有一个要由真数条件舍去。答题前把解代回原式看真数是否为正，只需几秒。</p>
+      <p><strong>日语术语：</strong><span lang="ja">対数方程式</span>（<span class="kana" lang="ja">たいすうほうていしき</span>）：对数方程；<span lang="ja">対数不等式</span>（<span class="kana" lang="ja">たいすうふとうしき</span>）：对数不等式；<span lang="ja">真数条件</span>（<span class="kana" lang="ja">しんすうじょうけん</span>）：真数大于 0 的条件。</p>
+    </div>
     <h3>4.2 大小比较</h3>
     <p>化成同底后比较真数。例如比较 $\log_2 3$ 与 $\log_4 8$：$\log_4 8=\dfrac32=\log_2 2^{\frac32}=\log_2\sqrt8$。因为 $\sqrt8&lt;3$ 且底 $2&gt;1$，所以 $\log_4 8&lt;\log_2 3$。</p>
+    <p><strong>为什么成立：</strong>底相同且大于 $1$ 时，对数随真数增大而增大，所以比较对数就是比较真数。根号不同时，取公倍数次方：$0&lt;X&lt;Y\iff X^n&lt;Y^n$（$n$ 为正整数）。若底不能统一，就找一个<strong>中间值</strong> $c$，分别证明 $A&lt;c$、$c&lt;B$，从而 $A&lt;B$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　同底比较与中间值</b><span class="origin">原创</span></div>
+      <p>(1) 将 $\log_2 3,\ \log_4 5,\ \log_8 15$ 按从小到大排列。(2) 比较 $\log_2 3$ 与 $\log_3 5$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 全部换成底 $2$：$\log_4 5=\dfrac12\log_2 5=\log_2\sqrt5$，$\log_8 15=\dfrac13\log_2 15=\log_2\sqrt[3]{15}$。</li>
+          <li>(1) 比较真数 $3,\ \sqrt5,\ \sqrt[3]{15}$，都取 $6$ 次方：$3^6=729$，$(\sqrt5)^6=125$，$(\sqrt[3]{15})^6=225$。</li>
+          <li>(1) 所以 $\sqrt5&lt;\sqrt[3]{15}&lt;3$。底 $2&gt;1$，顺序不变。</li>
+          <li>(2) 两个底不同且无法化简，取中间值 $\dfrac32$。</li>
+          <li>(2) $\dfrac32=\log_2 2^{\frac32}=\log_2\sqrt8$，而 $\sqrt8&lt;\sqrt9=3$，所以 $\log_2 3&gt;\dfrac32$。</li>
+          <li>(2) $\dfrac32=\log_3 3^{\frac32}=\log_3\sqrt{27}$，而 $\sqrt{27}&gt;\sqrt{25}=5$，所以 $\log_3 5&lt;\dfrac32$。</li>
+          <li>(2) 因此 $\log_3 5&lt;\dfrac32&lt;\log_2 3$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\log_4 5&lt;\log_8 15&lt;\log_2 3$；(2) $\log_3 5&lt;\log_2 3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只看真数大小，认为 $\log_8 15&gt;\log_2 3$。底不同时真数大小不能直接比较。</li>
+        <li>底小于 $1$ 时仍按“真数大，对数大”判断。</li>
+        <li>比较根式时用估算代替严格计算，遇到接近的数容易出错；取公倍数次方更可靠。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>中间值怎么选？先粗略估计两个对数：$2^1&lt;3&lt;2^2$，$3^1&lt;5&lt;3^2$，都在 $1$ 与 $2$ 之间，于是试 $\dfrac32$。$0,\ 1,\ \dfrac12,\ \dfrac32$ 是最常用的中间值。</p>
+      <p><strong>日语术语：</strong><span lang="ja">大小比較</span>（<span class="kana" lang="ja">だいしょうひかく</span>）：大小比较；<span lang="ja">底をそろえる</span>（<span class="kana" lang="ja">ていをそろえる</span>）：化成同底。</p>
+    </div>
   </section>
 
   <section id="common">
@@ -432,20 +816,127 @@ html { scroll-padding-top: 100px; }
       <tbody><tr><td>$\log_{10}k$</td><td>0.3010</td><td>0.4771</td><td>0.6021</td><td>0.6990</td><td>0.7782</td><td>0.8451</td><td>0.9031</td><td>0.9542</td></tr></tbody>
     </table></div>
 
+    <p><strong>为什么成立：</strong>我们用十进制，而任何正数都能写成 $N=b\times10^m$（$1\le b&lt;10$，$m$ 为整数），于是 $\log_{10}N=m+\log_{10}b$，其中 $0\le\log_{10}b&lt;1$。可见<strong>整数部分 $m$ 决定数的大小范围（位数），小数部分决定有效数字</strong>，后面三节都由此而来。$\log_{10}5$ 能由 $\log_{10}2$ 推出，是因为 $2\times5=10$；$\log_{10}7$ 不能由 $2,3$ 推出，通常要由题目给出。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由已知值推算</b><span class="origin">原创</span></div>
+      <p>已知 $\log_{10}2=0.3010$，$\log_{10}3=0.4771$。求 $\log_{10}72$、$\log_{10}0.06$、$\log_{10}\sqrt{15}$ 和 $\log_2 3$ 的近似值。</p>
+      <div class="ans">
+        <ol>
+          <li>$72=2^3\cdot3^2$：$\log_{10}72=3\times0.3010+2\times0.4771=0.9030+0.9542=1.8572$。</li>
+          <li>$0.06=\dfrac{2\cdot3}{10^2}$：$\log_{10}0.06=0.3010+0.4771-2=-1.2219$。</li>
+          <li>$15=\dfrac{3\cdot10}{2}$：$\log_{10}15=0.4771+1-0.3010=1.1761$，所以 $\log_{10}\sqrt{15}=\dfrac12\times1.1761=0.58805$。</li>
+          <li>换底：$\log_2 3=\dfrac{\log_{10}3}{\log_{10}2}=\dfrac{0.4771}{0.3010}\approx1.585$。</li>
+        </ol>
+        <p><strong>答案：</strong>$1.8572$；$-1.2219$；$0.58805$；约 $1.585$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $\log_{10}0.06$ 当成正数。真数小于 $1$ 时常用对数为负。</li>
+        <li>把 $\log_{10}5$ 算成 $\dfrac{\log_{10}10}{\log_{10}2}$。应为差：$\log_{10}5=\log_{10}10-\log_{10}2$。</li>
+        <li>对“$0.3010+0.4771=0.7781$，而表中 $\log_{10}6=0.7782$”感到困惑。真值约 $0.77815$，表中是四舍五入，两者的差只是近似误差。考试中用题目给定的值计算。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>先把真数分解成 $2,3,5,10$ 的积，再代入数值。题目给出哪些近似值就只用哪些，不必背对数表。</p>
+      <p><strong>日语术语：</strong><span lang="ja">常用対数</span>（<span class="kana" lang="ja">じょうようたいすう</span>）：常用对数；<span lang="ja">近似値</span>（<span class="kana" lang="ja">きんじち</span>）：近似值；<span lang="ja">四捨五入</span>（<span class="kana" lang="ja">ししゃごにゅう</span>）：四舍五入；<span lang="ja">整数部分</span>（<span class="kana" lang="ja">せいすうぶぶん</span>）：整数部分；<span lang="ja">小数部分</span>（<span class="kana" lang="ja">しょうすうぶぶん</span>）：小数部分。</p>
+    </div>
     <h3>5.1 求位数（桁数）</h3>
     <p>$N$ 的整数部分是 $n$ 位数时：</p>
     $$10^{n-1}\le N&lt;10^n\iff n-1\le\log_{10}N&lt;n$$
     <p>例：$\log_{10}2^{100}=100\times0.3010=30.10$，所以 $30\le\log_{10}2^{100}&lt;31$，$2^{100}$ 是 <strong>$31$ 位数</strong>。</p>
 
+    <p><strong>为什么成立：</strong>$n$ 位数中最小的是 $10^{n-1}$（$1$ 后面 $n-1$ 个 $0$），最大的也小于 $10^n$，所以 $10^{n-1}\le N&lt;10^n$。$y=\log_{10}x$ 递增，取对数后方向不变。左边带等号：$\log_{10}N$ 恰为整数 $n-1$ 时，$N=10^{n-1}$ 仍是 $n$ 位数。结论可以简记为：<strong>位数 = $\log_{10}N$ 的整数部分 + $1$</strong>（$N\ge1$）。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　求位数及其逆问题</b><span class="origin">原创</span></div>
+      <p>已知 $\log_{10}2=0.3010$，$\log_{10}3=0.4771$。(1) $12^{30}$ 是几位数？(2) 使 $2^n$ 为 $10$ 位数的正整数 $n$ 有哪些？</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $\log_{10}12=2\log_{10}2+\log_{10}3=0.6020+0.4771=1.0791$。</li>
+          <li>(1) $\log_{10}12^{30}=30\times1.0791=32.373$，即 $32\le\log_{10}12^{30}&lt;33$，所以是 $33$ 位数。</li>
+          <li>(2) $10$ 位数的条件：$10^9\le2^n&lt;10^{10}$。取常用对数：$9\le0.3010\,n&lt;10$。</li>
+          <li>(2) 除以 $0.3010$：$29.9\cdots\le n&lt;33.2\cdots$，所以 $n=30,31,32,33$。</li>
+          <li>(2) 验算：$2^{30}=1073741824$，$2^{33}=8589934592$，都是 $10$ 位；$2^{29}=536870912$ 只有 $9$ 位。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $33$ 位；(2) $n=30,31,32,33$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把位数直接写成 $\log_{10}N$ 的整数部分，忘记加 $1$。$2^{100}$ 的对数是 $30.10$，是 $31$ 位而不是 $30$ 位。</li>
+        <li>四舍五入：把 $32.373$ 或 $30.9$ 的整数部分取错。无论小数部分多大，都只取整数部分。</li>
+        <li>不等式写成 $10^n\le N&lt;10^{n+1}$，却仍把 $n$ 当位数；此时位数应为 $n+1$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>先写 $\log_{10}N=$ 整数 $+$ 小数，再回答位数。日语题干常写 <span lang="ja">$2^{100}$ は何桁の数か</span>（$2^{100}$ 是几位数）。逆问题要注意端点是否取得到。</p>
+      <p><strong>日语术语：</strong><span lang="ja">桁数</span>（<span class="kana" lang="ja">けたすう</span>）：位数；<span lang="ja">何桁</span>（<span class="kana" lang="ja">なんけた</span>）：几位；<span lang="ja">以上</span>（<span class="kana" lang="ja">いじょう</span>）：大于等于；<span lang="ja">未満</span>（<span class="kana" lang="ja">みまん</span>）：小于。</p>
+    </div>
     <h3>5.2 求小数首个非零数字的位置</h3>
     <p>$0&lt;N&lt;1$，且小数第 $n$ 位首次出现非零数字时：</p>
     $$10^{-n}\le N&lt;10^{-n+1}\iff -n\le\log_{10}N&lt;-n+1$$
     <p>例：$\log_{10}0.2^{10}=10(0.3010-1)=-6.990$，所以 $-7\le\log_{10}0.2^{10}&lt;-6$，首个非零数字在<strong>小数第 $7$ 位</strong>。注意 $-6.990$ 向下取整是 $-7$，不是 $-6$。</p>
 
+    <p><strong>为什么成立：</strong>小数第 $n$ 位首次出现非零数字，说明 $N$ 不小于 $0.0\cdots01$（$1$ 在第 $n$ 位，即 $10^{-n}$），又小于 $0.0\cdots1$（$1$ 在第 $n-1$ 位，即 $10^{-n+1}$）。例如 $0.0034$ 首个非零数字在第 $3$ 位，确实有 $10^{-3}\le0.0034&lt;10^{-2}$。结论：<strong>$n$ 等于 $-\log_{10}N$ 向上取整</strong>；也可以把 $\log_{10}N$ 写成 $-n+q$（$0\le q&lt;1$）后直接读出 $n$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　小数首个非零数字的位置</b><span class="origin">原创</span></div>
+      <p>已知 $\log_{10}2=0.3010$，$\log_{10}3=0.4771$。$\left(\dfrac23\right)^{50}$ 写成小数时，首个非零数字出现在小数第几位？</p>
+      <div class="ans">
+        <ol>
+          <li>$\log_{10}\dfrac23=0.3010-0.4771=-0.1761$。</li>
+          <li>$\log_{10}\left(\dfrac23\right)^{50}=50\times(-0.1761)=-8.805$。</li>
+          <li>夹在相邻整数之间：$-9\le-8.805&lt;-8$，即 $10^{-9}\le\left(\dfrac23\right)^{50}&lt;10^{-8}$。</li>
+          <li>对照公式，$n=9$。（精确计算约为 $1.57\times10^{-9}$，一致。）</li>
+        </ol>
+        <p><strong>答案：</strong>小数第 $9$ 位。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $-8.805$ 的整数部分当成 $-8$，答成第 $8$ 位。小数部分必须非负，所以应写成 $-9+0.195$。</li>
+        <li>位数公式照搬到小数上，算成第 $9+1=10$ 位。小数的情形没有“加 $1$”。</li>
+        <li>把 $\log_{10}0.8$ 等算成正数，导致不等号方向错误。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>用小例子校准：$0.01=10^{-2}$，对数是 $-2$，首个非零数字在第 $2$ 位。考场上不确定公式时，这样验证一下最快。</p>
+      <p><strong>日语术语：</strong><span lang="ja">小数第n位</span>（<span class="kana" lang="ja">しょうすうだいエヌい</span>）：小数第 n 位；<span lang="ja">はじめて</span>（<span class="kana" lang="ja">はじめて</span>）：首次（<span lang="ja">はじめて 0 でない数字が現れる</span>：首次出现非零数字）。</p>
+    </div>
     <h3>5.3 求最高位数字</h3>
     <p>把 $\log_{10}N$ 写成“整数 + 小数部分 $q$”（$0\le q&lt;1$），若 $\log_{10}k\le q&lt;\log_{10}(k+1)$，则最高位数字（<span lang="ja">最高位の数字</span>）是 $k$。</p>
     <p>例：$\log_{10}5^{20}=20\times0.6990=13.98$，$5^{20}$ 是 $14$ 位数。由 $\log_{10}9=0.9542\le0.98&lt;1$，最高位数字是 $9$。</p>
 
+    <p><strong>为什么成立：</strong>设 $\log_{10}N=m+q$（$m$ 为整数，$0\le q&lt;1$），则 $N=10^q\times10^m$，其中 $1\le10^q&lt;10$。最高位数字就是 $10^q$ 的整数部分 $k$，即 $k\le10^q&lt;k+1$。取对数，就得到 $\log_{10}k\le q&lt;\log_{10}(k+1)$。小数部分同样适用，只是此时 $m$ 为负，读出的 $k$ 是首个非零数字。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　最高位与个位</b><span class="origin">原创</span></div>
+      <p>已知 $\log_{10}3=0.4771$，$\log_{10}2=0.3010$，$\log_{10}7=0.8451$。求 $3^{50}$ 的位数、最高位数字和个位数字。</p>
+      <div class="ans">
+        <ol>
+          <li>$\log_{10}3^{50}=50\times0.4771=23.855$，整数部分 $23$，所以是 $24$ 位数。</li>
+          <li>小数部分 $q=0.855$。需要 $\log_{10}7=0.8451$ 和 $\log_{10}8=3\times0.3010=0.9030$。</li>
+          <li>因为 $0.8451\le0.855&lt;0.9030$，所以最高位数字是 $7$。</li>
+          <li>个位数字另用周期性：$3,9,27,81,243,\cdots$ 的个位按 $3,9,7,1$ 循环，周期为 $4$。</li>
+          <li>$50=4\times12+2$，对应循环的第 $2$ 个，个位数字是 $9$。</li>
+          <li>验算：$3^{50}=717897987691852588770249$，$24$ 位，首位 $7$，末位 $9$。</li>
+        </ol>
+        <p><strong>答案：</strong>$24$ 位；最高位数字 $7$；个位数字 $9$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $k$ 取成 $10^q$ 四舍五入后的值。$k$ 是向下取整，$10^q\approx7.16$ 时取 $7$；即使是 $7.9$ 也取 $7$。</li>
+        <li>用整数部分而不是小数部分去查表。</li>
+        <li>想用对数求个位数字。对数只反映大小和前几位，不能给出个位；个位要用幂的周期性。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目常把“位数、最高位、个位”放在同一题。若题目给了 $\log_{10}7$ 的值，往往意味着 $q$ 落在 $7$ 附近；若没给，也可以由 $2,3$ 算出 $4,5,6,8,9$ 的对数作比较。</p>
+      <p><strong>日语术语：</strong><span lang="ja">最高位の数字</span>（<span class="kana" lang="ja">さいこういのすうじ</span>）：最高位数字；<span lang="ja">一の位</span>（<span class="kana" lang="ja">いちのくらい</span>）：个位；<span lang="ja">周期</span>（<span class="kana" lang="ja">しゅうき</span>）：周期。</p>
+    </div>
     <div class="explorer">
       <h3 style="margin-top:0">互动：位数计算器</h3>
       <div class="ctrl">
@@ -461,8 +952,64 @@ html { scroll-padding-top: 100px; }
       <div class="status" id="dg-status" aria-live="polite"></div>
     </div>
 
+    <p><strong>怎样使用这个演示：</strong>先用下面的步骤手算，再把滑块调到相同的 $a,n$ 核对。计算器用精确整数给出结果，可以用来发现自己的手算错误；$a=10$ 时试试看位数比指数多几。</p>
+    <p><strong>为什么成立：</strong>计算器的第一行是 $\log_{10}a^n=n\log_{10}a$，这正是把乘方变成乘法。$a^n$ 再大，其对数也只是一个不大的数，这就是对数能处理大数的原因。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　手算后用计算器核对</b><span class="origin">原创</span></div>
+      <p>已知 $\log_{10}2=0.3010$，$\log_{10}3=0.4771$。(1) 求 $15^{40}$ 的位数和最高位数字。(2) $10^5$ 是几位数？</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $\log_{10}15=\log_{10}3+\log_{10}5=0.4771+0.6990=1.1761$。</li>
+          <li>(1) $\log_{10}15^{40}=40\times1.1761=47.044$，整数部分 $47$，所以是 $48$ 位数。</li>
+          <li>(1) 小数部分 $0.044$，满足 $0\le0.044&lt;0.3010$，即落在 $\log_{10}1$ 与 $\log_{10}2$ 之间，最高位数字是 $1$。</li>
+          <li>(1) 把滑块调到 $a=15,\ n=40$，显示 $48$ 位、最高位 $1$，一致。</li>
+          <li>(2) $\log_{10}10^5=5$，恰为整数。因为 $5\le5&lt;6$（左边取等号），所以是 $6$ 位数，即 $100000$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $48$ 位，最高位 $1$；(2) $6$ 位。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>对数恰为整数时答错位数，$\log_{10}N=5$ 也是 $6$ 位。</li>
+        <li>认为近似值总能算准。指数 $n$ 很大时，$\log_{10}2$ 的微小误差也被放大 $n$ 倍，若小数部分恰好靠近边界，结论就可能不可靠。</li>
+        <li>把计算器当作算法本身。考试时不能使用计算器，手算步骤必须熟练。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>平时用此工具做反向练习：随手选 $a,n$，先写出位数和最高位的预测，再看结果。这比只看答案更能暴露步骤上的错误。</p>
+      <p><strong>日语术语：</strong><span lang="ja">計算</span>（<span class="kana" lang="ja">けいさん</span>）：计算；<span lang="ja">確かめる</span>（<span class="kana" lang="ja">たしかめる</span>）：验算、确认。</p>
+    </div>
     <h3>5.4 应用：反复变化的量</h3>
     <p>“每次变为原来的 $r$ 倍，几次后超过（或低于）某值”这类题，两边取常用对数即可。若 $\log_{10}r&lt;0$，两边同除以它时不等号要反向。</p>
+    <p><strong>为什么成立：</strong>每次变为 $r$ 倍，$n$ 次后就是初值的 $r^n$ 倍。对 $r^n&gt;c$（$c&gt;0$）两边取常用对数，$y=\log_{10}x$ 递增，方向不变，得 $n\log_{10}r&gt;\log_{10}c$。接下来要除以 $\log_{10}r$：$r&gt;1$ 时它为正，方向不变；$0&lt;r&lt;1$ 时它为负，方向反转。所以“取对数”本身不反向，反向发生在除以负数那一步。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　增长与衰减</b><span class="origin">原创</span></div>
+      <p>已知 $\log_{10}2=0.3010$，$\log_{10}3=0.4771$。(1) 某量每年增加 $8\%$，至少多少年后超过原来的 $2$ 倍？(2) 某量每次减少 $10\%$，至少多少次后低于原来的一半？</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 每年变为 $1.08$ 倍，设 $n$ 年后超过 $2$ 倍：$1.08^n&gt;2$。</li>
+          <li>(1) 计算 $\log_{10}1.08=\log_{10}\dfrac{108}{100}=2\log_{10}2+3\log_{10}3-2=0.6020+1.4313-2=0.0333$。</li>
+          <li>(1) 取对数：$0.0333\,n&gt;0.3010$，$n&gt;9.03\cdots$，所以至少 $10$ 年。（验算：$1.08^9\approx1.999$，$1.08^{10}\approx2.159$。）</li>
+          <li>(2) 每次变为 $0.9$ 倍，设 $n$ 次后低于一半：$0.9^n&lt;\dfrac12$。</li>
+          <li>(2) 计算 $\log_{10}0.9=2\log_{10}3-1=0.9542-1=-0.0458$，且 $\log_{10}\dfrac12=-0.3010$。</li>
+          <li>(2) 取对数：$-0.0458\,n&lt;-0.3010$。除以负数，方向反转：$n&gt;6.57\cdots$，所以至少 $7$ 次。（验算：$0.9^6\approx0.531$，$0.9^7\approx0.478$。）</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $10$ 年；(2) $7$ 次。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把“增加 $8\%$”写成 $0.08^n$；应为 $(1+0.08)^n$。“减少 $10\%$”应为 $0.9^n$，不是 $0.1^n$。</li>
+        <li>除以负的 $\log_{10}0.9$ 时忘记反向，得到 $n&lt;6.57\cdots$。</li>
+        <li>把 $n&gt;9.03\cdots$ 四舍五入成 $9$。题目问“至少”，应取满足不等式的最小整数，即 $10$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>把百分率翻译成倍数是第一步。日语常见说法：<span lang="ja">8%増加する</span>（增加 $8\%$）、<span lang="ja">はじめて2倍を超える</span>（首次超过 $2$ 倍）。结果要取整数时，把边界附近的两个整数代回确认最稳妥。</p>
+      <p><strong>日语术语：</strong><span lang="ja">倍</span>（<span class="kana" lang="ja">ばい</span>）：倍；<span lang="ja">増加</span>（<span class="kana" lang="ja">ぞうか</span>）：增加；<span lang="ja">減少</span>（<span class="kana" lang="ja">げんしょう</span>）：减少；<span lang="ja">超える</span>（<span class="kana" lang="ja">こえる</span>）：超过；<span lang="ja">少なくとも</span>（<span class="kana" lang="ja">すくなくとも</span>）：至少。</p>
+    </div>
   </section>
 
   <section id="examples">
@@ -483,6 +1030,7 @@ html { scroll-padding-top: 100px; }
         <ul class="keys"><li>A = 2</li><li>B = 8</li><li>C = 8</li><li>DE = 10</li><li>F = 2</li><li>G = 6</li><li>H = 3</li><li>IJ = 10</li></ul>
         <p>(1) $2^x$ 单调递增，所以 $2^{-1}\le t\le2^3$。</p>
         <p>(2) $4^x=t^2$，$2^{x+3}=8t$，故 $y=t^2-8t+10$。</p>
+        <p><strong>补充说明：</strong>解题顺序是“换元 → 写范围 → 配方 → 比较”。最大值不必把两端都算出：抛物线开口向上，离对称轴越远函数值越大。$\left|\dfrac12-4\right|=\dfrac72&lt;|8-4|=4$，所以 $t=8$ 一端更大。</p>
         <p>(3) $y=(t-4)^2-6$。$t=4$（即 $x=2$）在范围内，最小值为 $-6$。两端比较：$t=\dfrac12$ 时 $y=\dfrac{25}{4}$，$t=8$ 时 $y=10$，所以最大值为 $10$，此时 $x=3$。</p>
       </div>
     </article>
@@ -497,6 +1045,7 @@ html { scroll-padding-top: 100px; }
         <ul class="keys"><li>A = 2</li><li>B = 3</li><li>CD = 18</li><li>E = 3</li><li>F = 3</li><li>G = 5</li><li>H = 3</li><li>IJ = 27</li></ul>
         <p>(1) 由 $x-2&gt;0$ 且 $x+5&gt;0$ 得 $x&gt;2$。$(x-2)(x+5)=2^3$，即 $x^2+3x-18=0$，$(x+6)(x-3)=0$。$x=-6$ 不满足条件，舍去，故 $x=3$。</p>
         <p>(2) 真数条件为 $x&gt;3$。$-3=\log_{\frac12}8$，底小于 $1$，不等号反向：$(x-1)(x-3)\le8$，即 $(x+1)(x-5)\le0$，$-1\le x\le5$。与条件合并得 $3&lt;x\le5$。</p>
+        <p><strong>补充说明：</strong>(1) 代回检验：$\log_2 1+\log_2 8=0+3=3$。(2) $-3=\log_{\frac12}8$ 是因为 $\left(\dfrac12\right)^{-3}=2^3=8$。(3) 两个解都为正，都满足真数条件；代回检验：$x=3$ 时 $1-4+3=0$，$x=27$ 时 $9-12+3=0$。</p>
         <p>(3) 令 $t=\log_3 x$（$x&gt;0$），$\log_3 x^4=4t$，$t^2-4t+3=0$，$t=1,3$，所以 $x=3,27$。</p>
       </div>
     </article>
@@ -512,6 +1061,7 @@ html { scroll-padding-top: 100px; }
         <ul class="keys"><li>AB = 24</li><li>C = 2</li><li>D = 6</li><li>EF = 16</li><li>G = 2</li><li>HI = 18</li></ul>
         <p>(1) $\log_{10}6=0.7781$，$\log_{10}6^{30}=23.343$，所以是 $24$ 位数。由 $0.3010\le0.343&lt;0.4771$ 知最高位是 $2$。$6$ 的任意正整数次幂个位都是 $6$。</p>
         <p>(2) $\log_{10}\left(\dfrac16\right)^{20}=-15.562=-16+0.438$，所以在小数第 $16$ 位。由 $0.3010\le0.438&lt;0.4771$ 知这个数字是 $2$。</p>
+        <p><strong>补充说明：</strong>(1) 因为 $23.343=23+0.343$，$6^{30}=10^{0.343}\times10^{23}$，而 $2\le10^{0.343}&lt;3$。(2) 小数部分必须非负，所以把 $-15.562$ 写成 $-16+0.438$，得 $\left(\dfrac16\right)^{20}=10^{0.438}\times10^{-16}$。(3) $\log_{10}\dfrac32=\log_{10}3-\log_{10}2$，$1000$ 的对数是 $3$；$n$ 要取满足不等式的最小整数。</p>
         <p>(3) $\log_{10}\dfrac32=0.1761$，由 $0.1761\,n&gt;3$ 得 $n&gt;17.03\cdots$，所以 $n=18$。</p>
       </div>
     </article>
@@ -527,9 +1077,43 @@ html { scroll-padding-top: 100px; }
         <ul class="keys"><li>A = 2</li><li>B = 0</li><li>C = 6</li><li>D = 8</li><li>E = 1</li><li>F = 3</li><li>G = 3</li><li>H = 5</li><li>I = 2</li></ul>
         <p>(1) $2^x&gt;0,\ 2^{-x}&gt;0$，由算术—几何平均不等式 $t\ge2\sqrt{2^x\cdot2^{-x}}=2$，等号当 $2^x=2^{-x}$ 即 $x=0$ 时成立。</p>
         <p>(2) $4^x+4^{-x}=t^2-2$，所以 $y=t^2-2-6t+10=t^2-6t+8$。</p>
+        <p><strong>补充说明：</strong>(2) 由 $(2^x+2^{-x})^2=4^x+2+4^{-x}$ 移项得 $4^x+4^{-x}=t^2-2$。(3) 顶点 $t=3$ 必须落在 $t\ge2$ 内才可取到，这正是 (1) 的作用；否则最小值要改在端点 $t=2$ 取。</p>
         <p>(3) $y=(t-3)^2-1$，$t=3\ge2$ 可取到，最小值为 $-1$。令 $s=2^x$，由 $s+\dfrac1s=3$ 得 $s^2-3s+1=0$，$s=\dfrac{3\pm\sqrt5}{2}$，两根都为正，均符合。</p>
       </div>
     </article>
+    <p>EJU 大题常按“换元 → 求范围 → 求最值或解”分步设问，前一问的结果就是后一问的工具。做题时不要跳过前面的小问，它们通常已经给出了解题路线。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　对数函数之积的最值</b><span class="origin">原创</span></div>
+      <p>考虑函数 $y=\log_2\dfrac{x}{2}\cdot\log_2\dfrac{8}{x}\quad(1\le x\le16)$。令 $t=\log_2 x$。</p>
+      <p>(1) $t$ 的取值范围是 $\B{A}\le t\le\B{B}$。</p>
+      <p>(2) 用 $t$ 表示，$y=-t^2+\B{C}\,t-\B{D}$。</p>
+      <p>(3) $y$ 在 $x=\B{E}$ 时取最大值 $\B{F}$，在 $x=\B{G}$ 和 $x=\B{HI}$ 时取最小值 $-\B{J}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 0</li><li>B = 4</li><li>C = 4</li><li>D = 3</li><li>E = 4</li><li>F = 1</li><li>G = 1</li><li>HI = 16</li><li>J = 3</li></ul>
+        <ol>
+          <li>(1) 底 $2&gt;1$，$\log_2 x$ 递增：$\log_2 1\le t\le\log_2 16$，即 $0\le t\le4$。</li>
+          <li>(2) 拆开真数：$\log_2\dfrac{x}{2}=t-1$，$\log_2\dfrac{8}{x}=3-t$。</li>
+          <li>(2) 相乘：$y=(t-1)(3-t)=-t^2+4t-3$。</li>
+          <li>(3) 配方：$y=-(t-2)^2+1$。$t=2$ 在范围内，最大值为 $1$；此时 $\log_2 x=2$，$x=4$。</li>
+          <li>(3) 开口向下，最小值在端点取：$t=0$ 时 $y=-3$，$t=4$ 时 $y=-3$，两端相等（它们到对称轴 $t=2$ 的距离都是 $2$）。</li>
+          <li>(3) 换回 $x$：$t=0$ 对应 $x=1$，$t=4$ 对应 $x=16$。</li>
+        </ol>
+        <p><strong>答案：</strong>最大值 $1$（$x=4$）；最小值 $-3$（$x=1,\ 16$）。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>换元后没有把 $x$ 的范围换成 $t$ 的范围，直接在 $x$ 的范围上找顶点。</li>
+        <li>把 $\log_2\dfrac{x}{2}$ 写成 $\dfrac{t}{2}$；真数的除法对应对数的减法，应为 $t-1$。</li>
+        <li>答案停在 $t$ 的值上，而题目要填的是 $x$；或把两个端点都取到最小值的情况漏掉一个。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目中 $\B{A}$、$\B{AB}$ 的格子数是有用的提示：$\B{HI}$ 表示两位数，若你算出一位数，应先回头检查。分数约到最简，根号内的数尽量小，再填写。</p>
+      <p><strong>日语术语：</strong><span lang="ja">最大値</span>（<span class="kana" lang="ja">さいだいち</span>）：最大值；<span lang="ja">最小値</span>（<span class="kana" lang="ja">さいしょうち</span>）：最小值；<span lang="ja">平方完成</span>（<span class="kana" lang="ja">へいほうかんせい</span>）：配方；<span lang="ja">とりうる値の範囲</span>（<span class="kana" lang="ja">とりうるあたいのはんい</span>）：可取值的范围。</p>
+    </div>
   </section>
 
   <section id="practice">
@@ -538,6 +1122,7 @@ html { scroll-padding-top: 100px; }
       <p class="jp-sub" style="margin:0">全部<strong>原创</strong>。常用对数题使用 $\log_{10}2=0.3010$，$\log_{10}3=0.4771$。</p>
       <button class="chip" id="toggle-all" type="button">显示全部答案</button>
     </div>
+    <p><strong>题型索引：</strong>练习 1–4 指数运算与大小比较（第 1 节）；练习 5–6、16 指数函数、不等式与图像（第 2 节及第 4 节）；练习 7–9 对数运算与换底（第 3 节）；练习 10–12 对数方程、不等式与最值（第 4 节）；练习 13–15 常用对数（第 5 节）。做错的题，先回到对应小节的“常见错误”对照原因，再重做。</p>
     <article class="q">
       <div class="q-head"><b>练习 1</b><span>指数运算</span><span class="origin">原创</span></div>
       <p>计算 $27^{\frac23}\times 9^{-\frac12}\div 3^{-2}$。</p>
@@ -682,6 +1267,35 @@ html { scroll-padding-top: 100px; }
         <p>$\log_2(2x-4)=\log_2 2(x-2)=\log_2(x-2)+1$，定义域 $x&gt;2$。</p>
       </div>
     </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　方程组与整体处理</b><span class="origin">原创</span></div>
+      <p>(1) 解方程组 $\begin{cases}x+y=6\\ \log_2 x+\log_2 y=3\end{cases}$。</p>
+      <p>(2) 设实数 $x,y$ 满足 $2^x=3^y=12$，求 $\dfrac2x+\dfrac1y$ 的值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ol>
+          <li>(1) 真数条件：$x&gt;0,\ y&gt;0$。</li>
+          <li>(1) 第二式合并：$\log_2 xy=3$，所以 $xy=8$。</li>
+          <li>(1) $x,y$ 是 $t^2-6t+8=0$ 的两根，$(t-2)(t-4)=0$，所以 $(x,y)=(2,4)$ 或 $(4,2)$，都满足条件。</li>
+          <li>(2) 由定义：$x=\log_2 12$，$y=\log_3 12$。</li>
+          <li>(2) 用倒数关系：$\dfrac1x=\log_{12}2$，$\dfrac1y=\log_{12}3$。</li>
+          <li>(2) 所以 $\dfrac2x+\dfrac1y=2\log_{12}2+\log_{12}3=\log_{12}(4\times3)=\log_{12}12=1$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $(x,y)=(2,4),\ (4,2)$；(2) $1$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>$x+y$ 与 $xy$ 已知时只写一组解。除非题目限定大小关系，否则两组都要写。</li>
+        <li>把 $\log_2 x+\log_2 y$ 写成 $\log_2(x+y)$。</li>
+        <li>把 $\dfrac1{\log_2 12}$ 算成 $\log_2\dfrac1{12}$。正确的倒数关系是交换底与真数：$\log_{12}2$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>先独立写完再看答案，用时按每题 $3$ 分钟左右练习（这只是练习节奏的建议，并非官方标准）。等式中出现 $2^x=3^y=k$ 时，一律取对数并用倒数关系，不要试图求出 $x,y$ 的近似值。</p>
+      <p><strong>日语术语：</strong><span lang="ja">連立方程式</span>（<span class="kana" lang="ja">れんりつほうていしき</span>）：方程组；<span lang="ja">解</span>（<span class="kana" lang="ja">かい</span>）：解；<span lang="ja">解と係数の関係</span>（<span class="kana" lang="ja">かいとけいすうのかんけい</span>）：根与系数的关系。</p>
+    </div>
   </section>
 
   <section id="terms">
@@ -694,6 +1308,35 @@ html { scroll-padding-top: 100px; }
       <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
       <tbody></tbody>
     </table></div>
+    <p>EJU 可以选择用日语或英语作答，若选日语，题目中的术语都会以日语出现。对中文使用者而言，<span lang="ja">真数</span>、<span lang="ja">底</span> 等汉字词和中文相近，容易掌握；更需要留意的是 <span lang="ja">以上・以下・未満</span> 这类决定端点是否取等的说法，以及 <span lang="ja">桁</span>、<span lang="ja">満たす</span> 等中文里不常见的用字。可在表中搜索中文、日文或假名。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　读日语题面</b><span class="origin">原创</span></div>
+      <p><span lang="ja">(1) 不等式 $\log_2(x-1)&lt;3$ を満たす整数 $x$ の個数を求めよ。</span><br><span lang="ja">(2) $\log_{10}3=0.4771$，$\log_{10}4=0.6021$ とする。$3^{20}$ は何桁の数か。また，最高位の数字を求めよ。</span></p>
+      <div class="ans">
+        <ol>
+          <li>(1) 题意：求满足不等式 $\log_2(x-1)&lt;3$ 的整数 $x$ 的<strong>个数</strong>（<span lang="ja">個数</span>）。</li>
+          <li>(1) 真数条件：$x-1&gt;0$，即 $x&gt;1$。</li>
+          <li>(1) $3=\log_2 8$，底 $2&gt;1$，方向不变：$x-1&lt;8$，$x&lt;9$。</li>
+          <li>(1) 所以 $1&lt;x&lt;9$，整数为 $2,3,\cdots,8$，共 $7$ 个。</li>
+          <li>(2) 题意：$3^{20}$ 是几位数（<span lang="ja">何桁</span>）？并求最高位数字（<span lang="ja">最高位の数字</span>）。</li>
+          <li>(2) $\log_{10}3^{20}=20\times0.4771=9.542$，整数部分 $9$，所以是 $10$ 位数。</li>
+          <li>(2) 小数部分 $0.542$，满足 $0.4771\le0.542&lt;0.6021$，即 $\log_{10}3\le q&lt;\log_{10}4$，最高位数字是 $3$。（验算：$3^{20}=3486784401$。）</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $7$ 个；(2) $10$ 位，最高位数字 $3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 <span lang="ja">以下</span> 和 <span lang="ja">未満</span> 混淆：<span lang="ja">3以下</span> 含 $3$（$x\le3$），<span lang="ja">3未満</span> 不含 $3$（$x&lt;3$）。</li>
+        <li>把 <span lang="ja">個数</span> 当成“求解”，答成 $x$ 的范围。题目要的是数量。</li>
+        <li>把 <span lang="ja">底</span> 读成 <span lang="ja">そこ</span>。数学中读 <span lang="ja">てい</span>；<span lang="ja">真数</span> 读 <span lang="ja">しんすう</span>。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题尾的动词决定答案形式：<span lang="ja">求めよ</span>（求出）、<span lang="ja">何桁の数か</span>（几位数）、<span lang="ja">個数を求めよ</span>（求个数）。先看清要回答什么，再动笔。</p>
+      <p><strong>日语术语：</strong><span lang="ja">満たす</span>（<span class="kana" lang="ja">みたす</span>）：满足；<span lang="ja">個数</span>（<span class="kana" lang="ja">こすう</span>）：个数；<span lang="ja">求めよ</span>（<span class="kana" lang="ja">もとめよ</span>）：求（题目用语）；<span lang="ja">以下</span>（<span class="kana" lang="ja">いか</span>）：小于等于。</p>
+    </div>
   </section>
 
   <footer>
@@ -733,6 +1376,14 @@ html { scroll-padding-top: 100px; }
       ['指数方程式', 'しすうほうていしき', '指数方程'], ['指数不等式', 'しすうふとうしき', '指数不等式'], ['対数方程式', 'たいすうほうていしき', '对数方程'],
       ['対数不等式', 'たいすうふとうしき', '对数不等式'], ['置き換え', 'おきかえ', '换元'], ['大小比較', 'だいしょうひかく', '大小比较'],
       ['不等号の向き', 'ふとうごうのむき', '不等号的方向'], ['相加平均・相乗平均', 'そうかへいきん・そうじょうへいきん', '算术平均与几何平均']
+    ]],
+    ['题目常用语', [
+      ['満たす', 'みたす', '满足'], ['個数', 'こすう', '个数'], ['求めよ', 'もとめよ', '求（题目用语）'],
+      ['何桁', 'なんけた', '几位'], ['以上', 'いじょう', '大于等于'], ['以下', 'いか', '小于等于'],
+      ['未満', 'みまん', '小于'], ['超える', 'こえる', '超过'], ['少なくとも', 'すくなくとも', '至少'],
+      ['整数部分', 'せいすうぶぶん', '整数部分'], ['小数部分', 'しょうすうぶぶん', '小数部分'], ['近似値', 'きんじち', '近似值'],
+      ['四捨五入', 'ししゃごにゅう', '四舍五入'], ['負の指数', 'ふのしすう', '负指数'], ['底の条件', 'ていのじょうけん', '底的条件'],
+      ['底をそろえる', 'ていをそろえる', '化成同底'], ['平方完成', 'へいほうかんせい', '配方'], ['連立方程式', 'れんりつほうていしき', '方程组']
     ]]
   ];
   var termBody = document.querySelector('#term-table tbody');

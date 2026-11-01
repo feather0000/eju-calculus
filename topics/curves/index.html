@@ -206,6 +206,7 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
 svg.fig { max-width: 520px; margin: auto; }
 svg rect.sm { fill: none; }
 svg circle.sm { fill: none; opacity: .55; }
+.box.tip { background: var(--surface-2); }
 </style>
 </head>
 <body>
@@ -271,6 +272,45 @@ svg circle.sm { fill: none; opacity: .55; }
         <li>过焦点的弦 $PQ$（$P,Q$ 的 $x$ 坐标为 $x_1,x_2$）：$PQ=PF+QF=x_1+x_2+2p$。这是用准线把距离换成 $x$ 坐标的结果。</li>
       </ul>
     </div>
+    <p><strong>为什么标准形长这样？</strong>由定义 $PF=PH$，而 $PF=\sqrt{(x-p)^2+y^2}$，$PH=|x+p|$。两边都非负，所以平方前后等价：</p>
+    $$x^2-2px+p^2+y^2=x^2+2px+p^2\quad\Longrightarrow\quad y^2=4px.$$
+    <p><strong>切线公式的推导：</strong>对 $y^2=4px$ 关于 $x$ 求导，$2yy'=4p$，所以 $y_1\ne0$ 时斜率为 $\dfrac{2p}{y_1}$。切线 $y-y_1=\dfrac{2p}{y_1}(x-x_1)$ 两边乘 $y_1$，再用 $y_1^2=4px_1$，就得到 $y_1y=2p(x+x_1)$。$y_1=0$ 时切线是 $x=0$，公式仍然成立。</p>
+    <p><strong>焦点弦公式的推导（$p&gt;0$）：</strong>$PF$ 等于 $P$ 到准线的距离 $x_1+p$，$QF$ 同理等于 $x_2+p$，相加即 $PQ=x_1+x_2+2p$。把 $y=m(x-p)$ 代入并用根与系数的关系（<span lang="ja">解と係数の関係</span><span class="kana">（かいとけいすうのかんけい）</span>），还可得 $x_1x_2=p^2$，于是</p>
+    $$\frac{1}{PF}+\frac{1}{QF}=\frac{x_1+x_2+2p}{(x_1+p)(x_2+p)}=\frac{x_1+x_2+2p}{p(x_1+x_2+2p)}=\frac1p.$$
+    <div class="box good">
+      <p><strong>补充例题 1-1（到焦点的距离与切线）：</strong>抛物线 $y^2=12x$ 上有一点 $P$，它的 $x$ 坐标为 $4$，且 $y&gt;0$。求 $PF$，以及 $P$ 处的切线和它与 $x$ 轴的交点。</p>
+      <ol>
+        <li>$4p=12$，所以 $p=3$，焦点 $F(3,0)$，准线（<span lang="ja">準線</span><span class="kana">（じゅんせん）</span>）$x=-3$。</li>
+        <li>不必算根号，用定义：$PF=PH=4-(-3)=7$。</li>
+        <li>由 $y^2=48$，$y&gt;0$，得 $P(4,4\sqrt3)$。</li>
+        <li>切线：$4\sqrt3\,y=2\cdot3(x+4)$，即 $y=\dfrac{\sqrt3}{2}(x+4)$。</li>
+        <li>令 $y=0$，得 $x=-4$。</li>
+      </ol>
+      <p>答：$PF=7$，切线 $y=\dfrac{\sqrt3}{2}(x+4)$，交点 $(-4,0)$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 1-2（焦点弦）：</strong>过抛物线 $y^2=4x$ 的焦点、斜率为 $2$ 的直线与它交于 $P,Q$。求 $PQ$ 和 $\dfrac{1}{PF}+\dfrac{1}{QF}$。</p>
+      <ol>
+        <li>$p=1$，焦点 $(1,0)$，直线为 $y=2x-2$。</li>
+        <li>代入：$(2x-2)^2=4x$，整理得 $x^2-3x+1=0$，所以 $x_1+x_2=3$，$x_1x_2=1$。</li>
+        <li>$PQ=x_1+x_2+2p=3+2=5$。</li>
+        <li>$(x_1+1)(x_2+1)=x_1x_2+x_1+x_2+1=5$，所以 $\dfrac{1}{PF}+\dfrac{1}{QF}=\dfrac{(x_1+1)+(x_2+1)}{5}=\dfrac55=1$，与 $\dfrac1p=1$ 一致。</li>
+      </ol>
+      <p>答：$PQ=5$，$\dfrac{1}{PF}+\dfrac{1}{QF}=1$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $y^2=8x$ 的 $p$ 当成 $8$。标准形是 $4p$，应先除以 $4$。</li>
+        <li>分不清开口方向：$y^2=4px$ 左右开口，$x^2=4py$ 上下开口。</li>
+        <li>$p&lt;0$ 时焦点和准线的符号写错。$y^2=-8x$ 的 $p=-2$，焦点 $(-2,0)$，准线 $x=2$。</li>
+        <li>切线写成 $y_1y=4p(x+x_1)$。系数是 $2p$，也就是把 $y^2\to y_1y$，$4px\to 2p(x+x_1)$。</li>
+        <li>把焦点弦公式用在不过焦点的弦上。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>看到“到焦点的距离”，先换成到准线的距离，通常不用开根号。填空题常连问焦点、准线、切线，第一步务必把 $p$ 算对。术语：<span lang="ja">放物線</span><span class="kana">（ほうぶつせん）</span>、<span lang="ja">焦点</span><span class="kana">（しょうてん）</span>、<span lang="ja">接線</span><span class="kana">（せっせん）</span>。</p>
+    </div>
   </section>
 
   <section id="ellipse">
@@ -296,6 +336,53 @@ svg circle.sm { fill: none; opacity: .55; }
     </div>
     <div class="box"><strong>切线</strong> 椭圆上点 $(x_1,y_1)$ 处的切线：$\dfrac{x_1x}{a^2}+\dfrac{y_1y}{b^2}=1$。</div>
     <div class="box warn"><strong>易错</strong> 椭圆是 $c^2=a^2-b^2$（$a$ 最大），下一节的双曲线是 $c^2=a^2+b^2$（$c$ 最大）。求焦点前先看分母哪个大。</div>
+    <p><strong>标准形的推导：</strong>设 $F(c,0),\ F'(-c,0)$，定义给出 $\sqrt{(x+c)^2+y^2}+\sqrt{(x-c)^2+y^2}=2a$。三角形两边之和大于第三边，所以 $2a&gt;2c$，即 $a&gt;c$。把一个根号移到右边再平方，整理得</p>
+    $$a^2-cx=a\sqrt{(x-c)^2+y^2}.$$
+    <p>再平方一次：$(a^2-c^2)x^2+a^2y^2=a^2(a^2-c^2)$。令 $b^2=a^2-c^2&gt;0$，两边除以 $a^2b^2$，就是标准形。</p>
+    <p><strong>顺带得到的结论：</strong>上面第一个式子说明 $PF=a-\dfrac{c}{a}x$。由 $PF+PF'=2a$ 又得 $PF'=a+\dfrac{c}{a}x$。到焦点的距离是 $x$ 的一次式，不必开根号。</p>
+    <p><strong>切线公式的推导：</strong>对标准形求导，$\dfrac{2x}{a^2}+\dfrac{2yy'}{b^2}=0$，所以 $y_1\ne0$ 时斜率为 $-\dfrac{b^2x_1}{a^2y_1}$。代入点斜式并整理，得 $\dfrac{x_1x}{a^2}+\dfrac{y_1y}{b^2}=\dfrac{x_1^2}{a^2}+\dfrac{y_1^2}{b^2}=1$。</p>
+    <div class="box good">
+      <p><strong>补充例题 2-1（由焦点和长轴求方程）：</strong>求焦点为 $(0,\pm3)$、长轴长为 $10$ 的椭圆的方程。</p>
+      <ol>
+        <li>焦点在 $y$ 轴上，所以是纵长椭圆，设 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1\ (b&gt;a&gt;0)$。</li>
+        <li>长轴长（<span lang="ja">長軸</span><span class="kana">（ちょうじく）</span>）$2b=10$，所以 $b=5$。</li>
+        <li>此时 $c^2=b^2-a^2$，即 $9=25-a^2$，所以 $a^2=16$。</li>
+      </ol>
+      <p>答：$\dfrac{x^2}{16}+\dfrac{y^2}{25}=1$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 2-2（焦点三角形）：</strong>椭圆 $\dfrac{x^2}{25}+\dfrac{y^2}{9}=1$ 的焦点为 $F,F'$，其上一点 $P$ 满足 $\angle FPF'=90^\circ$。求 $\triangle PFF'$ 的面积和 $|y|$。</p>
+      <ol>
+        <li>$a=5,\ b=3,\ c=4$，所以 $FF'=8$。设 $PF=u,\ PF'=v$。</li>
+        <li>定义给出 $u+v=10$，勾股定理给出 $u^2+v^2=64$。</li>
+        <li>$2uv=(u+v)^2-(u^2+v^2)=36$，所以 $uv=18$，面积 $=\dfrac12uv=9$。</li>
+        <li>又以 $FF'$ 为底，面积 $=\dfrac12\cdot8\cdot|y|$，所以 $|y|=\dfrac94$。</li>
+        <li>检验：$y^2=\dfrac{81}{16}\le9$，此时 $x^2=\dfrac{175}{16}$，这样的点确实存在。</li>
+      </ol>
+      <p>答：面积 $9$，$|y|=\dfrac94$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 2-3（切线）：</strong>求椭圆 $\dfrac{x^2}{4}+\dfrac{y^2}{3}=1$ 在点 $\left(1,\dfrac32\right)$ 处的切线。</p>
+      <ol>
+        <li>先确认点在曲线上：$\dfrac14+\dfrac{9/4}{3}=\dfrac14+\dfrac34=1$。</li>
+        <li>代入切线公式：$\dfrac{1\cdot x}{4}+\dfrac{\frac32y}{3}=1$，即 $\dfrac{x}{4}+\dfrac{y}{2}=1$。</li>
+        <li>两边乘 $4$，得 $x+2y=4$。</li>
+      </ol>
+      <p>答：$x+2y=4$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>不看分母大小，一律写 $c^2=a^2-b^2$。纵长椭圆应为 $c^2=b^2-a^2$，焦点在 $y$ 轴上。</li>
+        <li>把“长轴长”当成 $a$。长轴长是 $2a$（纵长时是 $2b$），半长轴才是 $a$。</li>
+        <li>方程右边不是 $1$ 就直接读分母。$9x^2+25y^2=225$ 要先除以 $225$。</li>
+        <li>切线公式用在曲线外的点上。公式只对曲线上的点成立，曲线外的点要设斜率。</li>
+        <li>算面积时忘了 $\pi ab$ 中的 $a,b$ 是半轴长。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>焦点三角形的题，优先把 $u+v$ 与 $u^2+v^2$ 组合成 $uv$，不要去解点的坐标。题目出现 <span lang="ja">楕円</span><span class="kana">（だえん）</span> 时先化成右边为 $1$ 的<span lang="ja">標準形</span><span class="kana">（ひょうじゅんけい）</span>，再比较分母。</p>
+    </div>
   </section>
 
   <section id="hyperbola">
@@ -318,6 +405,54 @@ svg circle.sm { fill: none; opacity: .55; }
       <li><strong>直角双曲线</strong>（<span lang="ja">直角双曲線</span>）：$a=b$ 时两条渐近线互相垂直，如 $x^2-y^2=4$。$xy=k\ (k\ne0)$ 也是直角双曲线。</li>
       <li><strong>切线</strong>：曲线 $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$ 上点 $(x_1,y_1)$ 处的切线为 $\dfrac{x_1x}{a^2}-\dfrac{y_1y}{b^2}=1$。</li>
     </ul>
+    <p><strong>标准形的推导：</strong>设 $|PF'-PF|=2a$。三角形两边之差小于第三边，所以 $2a&lt;2c$，即 $c&gt;a$。与椭圆相同的两次平方给出 $(c^2-a^2)x^2-a^2y^2=a^2(c^2-a^2)$。这次 $c^2-a^2&gt;0$，令 $b^2=c^2-a^2$，两边除以 $a^2b^2$，就得到 $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$。</p>
+    <p><strong>为什么有渐近线？</strong>在第一象限 $y=\dfrac{b}{a}\sqrt{x^2-a^2}$，它与直线 $y=\dfrac{b}{a}x$ 的差为</p>
+    $$\frac{b}{a}\left(x-\sqrt{x^2-a^2}\right)=\frac{b}{a}\cdot\frac{a^2}{x+\sqrt{x^2-a^2}}\ \longrightarrow\ 0\quad(x\to\infty).$$
+    <p>所以曲线越来越接近这条直线，但不会相交。分子有理化是这一步的关键。</p>
+    <p><strong>到焦点的距离：</strong>与椭圆同样整理，右支（$x\ge a$）上 $PF=\dfrac{c}{a}x-a$，$PF'=\dfrac{c}{a}x+a$，两者相差 $2a$，符合定义。</p>
+    <div class="box good">
+      <p><strong>补充例题 3-1（由渐近线和焦点求方程）：</strong>双曲线的焦点是 $(\pm\sqrt{13},0)$，渐近线是 $y=\pm\dfrac32x$。求它的方程。</p>
+      <ol>
+        <li>焦点在 $x$ 轴上，设 $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$。</li>
+        <li>渐近线（<span lang="ja">漸近線</span><span class="kana">（ぜんきんせん）</span>）给出 $\dfrac{b}{a}=\dfrac32$，可设 $a=2k,\ b=3k\ (k&gt;0)$。</li>
+        <li>$c^2=a^2+b^2=13k^2=13$，所以 $k=1$，$a=2,\ b=3$。</li>
+      </ol>
+      <p>答：$\dfrac{x^2}{4}-\dfrac{y^2}{9}=1$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 3-2（用定义求另一距离）：</strong>$F(5,0),\ F'(-5,0)$ 是双曲线 $\dfrac{x^2}{9}-\dfrac{y^2}{16}=1$ 的焦点，曲线上的点 $P$ 满足 $PF=7$。求 $PF'$ 和 $P$ 的坐标。</p>
+      <ol>
+        <li>$a=3$，定义给出 $|PF-PF'|=6$，所以 $PF'=13$ 或 $PF'=1$。</li>
+        <li>曲线上的点到焦点的距离最小值是 $c-a=2$，所以 $PF'=1$ 不可能，舍去，$PF'=13$。</li>
+        <li>$PF&lt;PF'$，所以 $P$ 在靠近 $F$ 的右支上，用 $PF=\dfrac53x-3=7$，得 $x=6$。</li>
+        <li>代入方程：$y^2=16\left(\dfrac{36}{9}-1\right)=48$，$y=\pm4\sqrt3$。</li>
+        <li>检验：$\sqrt{1+48}=7$，$\sqrt{121+48}=13$。</li>
+      </ol>
+      <p>答：$PF'=13$，$P(6,\pm4\sqrt3)$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 3-3（切线与渐近线）：</strong>双曲线 $\dfrac{x^2}{4}-y^2=1$ 在点 $(4,\sqrt3)$ 处的切线与两条渐近线交于 $A,B$。求线段 $AB$ 中点的 $x$ 坐标和 $\triangle OAB$ 的面积。</p>
+      <ol>
+        <li>切线：$\dfrac{4x}{4}-\sqrt3y=1$，即 $x-\sqrt3y=1$。</li>
+        <li>与 $y=\dfrac{x}{2}$ 联立：$x\left(1-\dfrac{\sqrt3}{2}\right)=1$，得 $x=\dfrac{2}{2-\sqrt3}=4+2\sqrt3$，所以 $A\left(4+2\sqrt3,\ 2+\sqrt3\right)$。</li>
+        <li>与 $y=-\dfrac{x}{2}$ 联立：$x\left(1+\dfrac{\sqrt3}{2}\right)=1$，得 $x=4-2\sqrt3$，所以 $B\left(4-2\sqrt3,\ -2+\sqrt3\right)$。</li>
+        <li>中点的 $x$ 坐标 $=4$，恰好是切点。</li>
+        <li>面积 $=\dfrac12|x_Ay_B-x_By_A|=\dfrac12\cdot\left|-\dfrac{x_Ax_B}{2}-\dfrac{x_Ax_B}{2}\right|=\dfrac12x_Ax_B=\dfrac12(16-12)=2$。这等于 $ab=2\cdot1$。</li>
+      </ol>
+      <p>答：中点的 $x$ 坐标 $4$，面积 $2$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>套用椭圆的 $c^2=a^2-b^2$。双曲线是 $c^2=a^2+b^2$，而且 $a,b$ 的大小没有限制。</li>
+        <li>把定义中的绝对值丢掉，只解一种情况，或者解出两种后不检验（例题 3-2 中的 $PF'=1$）。</li>
+        <li>$\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=-1$ 的渐近线写成 $y=\pm\dfrac{a}{b}x$。把右边换成 $0$ 就知道仍是 $y=\pm\dfrac{b}{a}x$。</li>
+        <li>焦点方向看错：右边为 $-1$ 时焦点在 $y$ 轴上，距离差是 $2b$。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>写渐近线时一律用“右边换成 $0$”，最快也最不易错。切线与两条渐近线交点的中点是切点、所围三角形面积恒为 $ab$，这两个结论可用来检验计算。术语：<span lang="ja">双曲線</span><span class="kana">（そうきょくせん）</span>、<span lang="ja">直角双曲線</span><span class="kana">（ちょっかくそうきょくせん）</span>。</p>
+    </div>
   </section>
 
   <section id="general">
@@ -337,6 +472,47 @@ svg circle.sm { fill: none; opacity: .55; }
     <p>例：$y^2-4y-4x+8=0$ 配方得 $(y-2)^2=4(x-1)$，是 $y^2=4x$ 向右平移 $1$、向上平移 $2$。顶点 $(1,2)$，焦点 $(2,2)$，准线 $x=0$。</p>
     <p class="kana">“通常”是因为可能退化：例如 $x^2-y^2=0$ 是两条直线，$x^2+2y^2=0$ 只是一个点。</p>
 
+    <p><strong>为什么是 $x-s$，而不是 $x+s$？</strong>点 $(X,Y)$ 在平移后的曲线上，等价于把它平移回去得到的点 $(X-s,\,Y-t)$ 在原曲线上，也就是 $f(X-s,\,Y-t)=0$。所以向右移动时式子里反而出现减号。</p>
+    <p><strong>为什么系数能判断类型？</strong>配方只改变一次项和常数项，$x^2,\ y^2$ 的系数 $A,C$ 不变。配方后方程成为 $A(x-s)^2+C(y-t)^2=K$：$A,C$ 同号是椭圆（相等时是圆），异号是双曲线；只有一个平方项时，留下的一次项给出抛物线。</p>
+    <div class="box good">
+      <p><strong>补充例题 4-1（双曲线的配方）：</strong>求 $9x^2-4y^2-18x-16y-43=0$ 的中心、顶点、焦点和渐近线。</p>
+      <ol>
+        <li>分组配方：$9(x^2-2x)-4(y^2+4y)=43$。</li>
+        <li>$9(x-1)^2-9-4(y+2)^2+16=43$，所以 $9(x-1)^2-4(y+2)^2=36$。</li>
+        <li>除以 $36$：$\dfrac{(x-1)^2}{4}-\dfrac{(y+2)^2}{9}=1$，即把 $\dfrac{x^2}{4}-\dfrac{y^2}{9}=1$ 按 $(1,-2)$ 平移。</li>
+        <li>原曲线的顶点 $(\pm2,0)$、焦点 $(\pm\sqrt{13},0)$、渐近线 $y=\pm\dfrac32x$ 都一起平移。</li>
+      </ol>
+      <p>答：中心 $(1,-2)$；顶点 $(3,-2),(-1,-2)$；焦点 $(1\pm\sqrt{13},-2)$；渐近线 $y+2=\pm\dfrac32(x-1)$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 4-2（抛物线的配方）：</strong>求 $x^2+4x-8y+12=0$ 的顶点、焦点和准线。</p>
+      <ol>
+        <li>只有 $x$ 的平方项，把 $x$ 配方，其余移到右边：$(x+2)^2=8y-8=8(y-1)$。</li>
+        <li>这是 $x^2=8y$（$p=2$，焦点 $(0,2)$，准线 $y=-2$）按 $(-2,1)$ 平移。</li>
+      </ol>
+      <p>答：顶点 $(-2,1)$，焦点 $(-2,3)$，准线 $y=-1$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 4-3（退化的情形）：</strong>方程 $x^2+4y^2-2x+8y+5=0$ 表示什么图形？</p>
+      <ol>
+        <li>配方：$(x-1)^2-1+4(y+1)^2-4+5=0$，即 $(x-1)^2+4(y+1)^2=0$。</li>
+        <li>两个非负的项之和为 $0$，所以 $x=1$ 且 $y=-1$。</li>
+      </ol>
+      <p>答：只是一个点 $(1,-1)$。虽然 $AC&gt;0$，但不是椭圆。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>配方时忘了括号外的系数：$9(x-1)^2$ 展开多出的是 $9$，不是 $1$。</li>
+        <li>平移方向弄反：$(x-1)^2$ 是向右移 $1$，$(y+2)^2$ 是向下移 $2$。</li>
+        <li>只平移了曲线，忘了焦点、准线、渐近线也要跟着动。</li>
+        <li>准线平移时只移一个方向：竖直的准线只受左右平移影响，水平的准线只受上下平移影响。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>题目常把结果写成带方框的 $\dfrac{(x-\boxed{\phantom{A}})^2}{\boxed{\phantom{A}}}+\cdots=1$，配方后别忘了把右边化成 $1$。先在标准位置求焦点等，再整体平移，比直接在平移后的方程上计算更可靠。术语：<span lang="ja">平行移動</span><span class="kana">（へいこういどう）</span>、<span lang="ja">中心</span><span class="kana">（ちゅうしん）</span>。</p>
+    </div>
+
     <h3>4.2 直线与二次曲线的共有点</h3>
     <p>把直线代入曲线得到关于 $x$（或 $y$）的方程。若是二次方程，用判别式 $D$（<span lang="ja">判別式</span>）判断：$D&gt;0$ 两个共有点，$D=0$ 相切（<span lang="ja">接する</span>），$D&lt;0$ 没有共有点。弦的中点和长度用根与系数的关系求。</p>
     <div class="formula-grid">
@@ -347,11 +523,94 @@ svg circle.sm { fill: none; opacity: .55; }
     </div>
     <div class="box warn"><strong>易错</strong> 代入后 $x^2$ 的系数可能为 $0$，此时不是二次方程，不能用判别式。与抛物线的轴平行的直线、与双曲线渐近线平行（且不是渐近线）的直线，都只有 <strong>1 个共有点但并不相切</strong>。</div>
 
+    <p><strong>椭圆切线条件的推导：</strong>把 $y=mx+n$ 代入 $b^2x^2+a^2y^2=a^2b^2$，得</p>
+    $$(b^2+a^2m^2)x^2+2a^2mn\,x+a^2(n^2-b^2)=0.$$
+    <p>计算判别式：$\dfrac{D}{4}=a^4m^2n^2-(b^2+a^2m^2)a^2(n^2-b^2)=a^2b^2(a^2m^2+b^2-n^2)$。$D=0$ 就是 $n^2=a^2m^2+b^2$。双曲线把 $b^2$ 换成 $-b^2$，同样得到 $n^2=a^2m^2-b^2$；其中 $n=0$ 对应的是渐近线本身，所以要排除。</p>
+    <p><strong>弦长公式的来历：</strong>直线上 $y_1-y_2=m(x_1-x_2)$，所以 $PQ=\sqrt{(x_1-x_2)^2+m^2(x_1-x_2)^2}=\sqrt{1+m^2}\,|x_1-x_2|$。对二次方程 $Ax^2+Bx+C=0$，又有 $|x_1-x_2|=\dfrac{\sqrt{D}}{|A|}$。弦的中点的 $x$ 坐标是 $\dfrac{x_1+x_2}{2}=-\dfrac{B}{2A}$，不必求出每个根。</p>
+    <div class="box good">
+      <p><strong>补充例题 4-4（弦与切线）：</strong>对椭圆 $\dfrac{x^2}{4}+y^2=1$：(1) 求直线 $y=x+1$ 被它截得的弦长和弦的中点；(2) 求斜率为 $1$ 的切线。</p>
+      <ol>
+        <li>(1) 代入并乘 $4$：$x^2+4(x+1)^2=4$，整理得 $5x^2+8x=0$，所以 $x=0,\ -\dfrac85$。</li>
+        <li>弦长 $=\sqrt{1+1^2}\cdot\dfrac85=\dfrac{8\sqrt2}{5}$。</li>
+        <li>中点的 $x$ 坐标 $-\dfrac45$，代入直线得 $y=\dfrac15$。</li>
+        <li>(2) $a^2=4,\ b^2=1,\ m=1$，由切线条件 $n^2=4\cdot1+1=5$，所以 $n=\pm\sqrt5$。</li>
+      </ol>
+      <p>答：(1) 弦长 $\dfrac{8\sqrt2}{5}$，中点 $\left(-\dfrac45,\dfrac15\right)$；(2) $y=x\pm\sqrt5$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 4-5（从曲线外一点引切线）：</strong>从点 $(0,2)$ 向椭圆 $\dfrac{x^2}{4}+y^2=1$ 引切线，求切线方程和切点。</p>
+      <ol>
+        <li>直线 $x=0$ 与椭圆交于两点，不是切线，所以可设 $y=mx+2$。</li>
+        <li>切线条件：$2^2=4m^2+1$，所以 $m^2=\dfrac34$，$m=\pm\dfrac{\sqrt3}{2}$。</li>
+        <li>$m=\dfrac{\sqrt3}{2}$ 时代入，得 $x^2+2\sqrt3x+3=0$，即 $(x+\sqrt3)^2=0$，切点 $x=-\sqrt3$，$y=\dfrac12$。</li>
+        <li>由对称性，另一切点是 $\left(\sqrt3,\dfrac12\right)$。</li>
+      </ol>
+      <p>答：$y=\dfrac{\sqrt3}{2}x+2$，切点 $\left(-\sqrt3,\dfrac12\right)$；$y=-\dfrac{\sqrt3}{2}x+2$，切点 $\left(\sqrt3,\dfrac12\right)$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 4-6（一个共有点但不相切）：</strong>求 $x^2-y^2=1$ 与 $y=x+1$ 的共有点，并判断是否相切。</p>
+      <ol>
+        <li>代入：$x^2-(x+1)^2=1$，平方项抵消，得 $-2x-1=1$，所以 $x=-1$，$y=0$。</li>
+        <li>这是一次方程，不存在“重根”。直线的斜率 $1$ 与渐近线 $y=x$ 相同，所以它只从一支穿过。</li>
+        <li>交点 $(-1,0)$ 处的切线是 $x=-1$，与这条直线不同。</li>
+      </ol>
+      <p>答：共有点只有 $(-1,0)$，但不相切。同理，$y=2$ 与 $y^2=4x$ 只交于 $(1,2)$，也不相切。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>没看 $x^2$ 的系数就用判别式。系数含参数时要分“为 $0$”和“不为 $0$”讨论。</li>
+        <li>把“只有一个共有点”等同于“相切”，这只在椭圆（和圆）上成立。</li>
+        <li>设 $y=mx+n$ 漏掉与 $y$ 轴平行的直线，应单独检查 $x=$ 常数。</li>
+        <li>弦长公式忘了乘 $\sqrt{1+m^2}$，把 $|x_1-x_2|$ 当成弦长。</li>
+        <li>用 $|x_1-x_2|=\sqrt{D}$，漏掉分母 $|A|$。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>问“有几个共有点（<span lang="ja">共有点</span><span class="kana">（きょうゆうてん）</span>）”时用判别式，问“弦的中点”时用根与系数的关系。切线条件 $n^2=a^2m^2+b^2$ 可以直接用，节省展开时间，但要会推导，以防记错符号。题干的 <span lang="ja">接する</span><span class="kana">（せっする）</span> 就是相切，<span lang="ja">異なる2点で交わる</span><span class="kana">（ことなるにてんでまじわる）</span> 就是交于不同两点，对应 $D&gt;0$。</p>
+    </div>
+
     <h3>4.3 离心率：把三种曲线统一起来</h3>
     <p>到焦点的距离与到准线的距离之比为定值 $e$（<strong>离心率</strong> <span lang="ja">離心率</span>）的点的轨迹是二次曲线：</p>
     $$\frac{PF}{PH}=e$$
     <p>$0&lt;e&lt;1$ 时是椭圆，$e=1$ 时是抛物线，$e&gt;1$ 时是双曲线。</p>
     <p>标准形的椭圆和双曲线（焦点在 $x$ 轴上）都有 $e=\dfrac{c}{a}$，准线为 $x=\pm\dfrac{a^2}{c}$。第 8 节可以连续改变 $e$，观察曲线如何变形。</p>
+    <p><strong>为什么 $e=\dfrac{c}{a}$，准线是 $x=\dfrac{a^2}{c}$？</strong>取焦点 $F(ae,0)$、准线 $x=\dfrac{a}{e}$，把 $PF=e\cdot PH$ 平方：</p>
+    $$(x-ae)^2+y^2=e^2\left(x-\frac{a}{e}\right)^2\quad\Longrightarrow\quad(1-e^2)x^2+y^2=a^2(1-e^2).$$
+    <p>$0&lt;e&lt;1$ 时除以 $a^2(1-e^2)$，得椭圆，$b^2=a^2(1-e^2)$；$e&gt;1$ 时 $1-e^2&lt;0$，得双曲线，$b^2=a^2(e^2-1)$。两种情形都有 $c=ae$。这也说明了前面的距离公式：椭圆上 $PF=e\cdot PH=e\left(\dfrac{a}{e}-x\right)=a-ex$。</p>
+    <p><strong>$e$ 怎样决定形状：</strong>椭圆有 $\dfrac{b}{a}=\sqrt{1-e^2}$，所以 $e$ 越接近 $0$ 越接近圆，越接近 $1$ 越扁。双曲线有 $\dfrac{b}{a}=\sqrt{e^2-1}$，所以 $e$ 越大，渐近线张开得越大。</p>
+    <div class="box good">
+      <p><strong>补充例题 4-7（由距离比求轨迹）：</strong>点 $P$ 到 $F(3,0)$ 的距离是到直线 $x=\dfrac13$ 的距离的 $3$ 倍。求 $P$ 的轨迹（<span lang="ja">軌跡</span><span class="kana">（きせき）</span>）。</p>
+      <ol>
+        <li>条件：$\sqrt{(x-3)^2+y^2}=3\left|x-\dfrac13\right|=|3x-1|$。</li>
+        <li>两边平方：$x^2-6x+9+y^2=9x^2-6x+1$。</li>
+        <li>整理得 $8x^2-y^2=8$，即 $x^2-\dfrac{y^2}{8}=1$。</li>
+        <li>检验：$a=1,\ c=\sqrt{1+8}=3$，$e=\dfrac{c}{a}=3$，准线 $x=\dfrac{a^2}{c}=\dfrac13$，都与题设相符。</li>
+      </ol>
+      <p>答：双曲线 $x^2-\dfrac{y^2}{8}=1$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 4-8（用离心率求距离）：</strong>椭圆 $\dfrac{x^2}{25}+\dfrac{y^2}{9}=1$ 上 $x$ 坐标为 $\dfrac52$ 的点为 $P$。求它到焦点 $F(4,0),\ F'(-4,0)$ 的距离。</p>
+      <ol>
+        <li>$a=5,\ c=4$，所以 $e=\dfrac45$。</li>
+        <li>$PF=a-ex=5-\dfrac45\cdot\dfrac52=3$。</li>
+        <li>$PF'=a+ex=5+2=7$，和为 $10=2a$。</li>
+        <li>检验：$y^2=9\left(1-\dfrac14\right)=\dfrac{27}{4}$，$PF^2=\left(\dfrac32\right)^2+\dfrac{27}{4}=9$。</li>
+      </ol>
+      <p>答：$PF=3$，$PF'=7$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>距离比的方向写反。$e$ 是“到焦点的距离 ÷ 到准线的距离”。</li>
+        <li>准线写成 $x=\pm\dfrac{c}{a^2}$ 或 $x=\pm\dfrac{a}{c}$。正确的是 $\pm\dfrac{a^2}{c}$。</li>
+        <li>纵长椭圆直接用 $\dfrac{c}{a}$。此时长半轴是 $b$，$e=\dfrac{c}{b}$。</li>
+        <li>误以为 $e=1$ 时也能用 $e=\dfrac{c}{a}$。抛物线没有 $a,c$，直接由定义得 $e=1$。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>题目给出“定点、定直线、距离比”时，不必先判断类型，列式平方即可，最后再用 $e$ 检验结果。术语：<span lang="ja">離心率</span><span class="kana">（りしんりつ）</span>、<span lang="ja">距離の比</span><span class="kana">（きょりのひ）</span>。</p>
+    </div>
   </section>
 
   <section id="param">
@@ -371,17 +630,107 @@ svg circle.sm { fill: none; opacity: .55; }
     <div class="box warn"><strong>易错：椭圆的 $\theta$ 不是 $OP$ 的方向角</strong>
       <p>$\theta$ 是半径 $a$ 的辅助圆上对应点的方向角。例如 $a=3,b=2,\theta=\dfrac{\pi}{4}$ 时，$P\left(\dfrac{3\sqrt2}{2},\sqrt2\right)$，$OP$ 的斜率是 $\dfrac23$，方向角不是 $\dfrac{\pi}{4}$。</p>
     </div>
+    <p><strong>这些表示从哪里来？</strong>椭圆方程可以写成 $\left(\dfrac{x}{a}\right)^2+\left(\dfrac{y}{b}\right)^2=1$，而满足 $X^2+Y^2=1$ 的点都能写成 $X=\cos\theta,\ Y=\sin\theta$，所以 $x=a\cos\theta,\ y=b\sin\theta$。这里的 $\theta$ 在半径 $a$ 的<strong>辅助圆</strong>（<span lang="ja">補助円</span><span class="kana">（ほじょえん）</span>）上有直观意义。抛物线 $y^2=4px$ 上每个 $y$ 恰好对应一个点，取 $t=\dfrac{y}{2p}$，就得到 $x=pt^2,\ y=2pt$。双曲线的表示中 $\cos\theta&gt;0$ 给出右支，$\cos\theta&lt;0$ 给出左支。</p>
+    <p><strong>为什么最值题喜欢用它？</strong>两个变量 $x,y$ 受一个方程约束，改用 $\theta$ 后只剩一个变量，再用三角函数的合成（<span lang="ja">三角関数の合成</span><span class="kana">（さんかくかんすうのごうせい）</span>）$A\cos\theta+B\sin\theta=\sqrt{A^2+B^2}\sin(\theta+\alpha)$ 就能求出最值。</p>
+    <div class="box good">
+      <p><strong>补充例题 5-1（椭圆上的最值）：</strong>点 $P$ 在椭圆 $\dfrac{x^2}{4}+y^2=1$ 上。求 $x+y$ 的最大值及此时的 $P$，再求 $P$ 到直线 $x+y=4$ 的距离的最小值。</p>
+      <ol>
+        <li>设 $P(2\cos\theta,\ \sin\theta)$。</li>
+        <li>$x+y=2\cos\theta+\sin\theta=\sqrt5\sin(\theta+\alpha)$，其中 $\sin\alpha=\dfrac{2}{\sqrt5},\ \cos\alpha=\dfrac{1}{\sqrt5}$。最大值为 $\sqrt5$，最小值为 $-\sqrt5$。</li>
+        <li>取到最大值时 $\cos\theta=\dfrac{2}{\sqrt5},\ \sin\theta=\dfrac{1}{\sqrt5}$，所以 $P\left(\dfrac{4}{\sqrt5},\dfrac{1}{\sqrt5}\right)$。</li>
+        <li>由于 $|x+y|\le\sqrt5&lt;4$，距离 $=\dfrac{|x+y-4|}{\sqrt2}=\dfrac{4-(x+y)}{\sqrt2}$。$x+y$ 最大时距离最小。</li>
+      </ol>
+      <p>答：最大值 $\sqrt5$，$P\left(\dfrac{4\sqrt5}{5},\dfrac{\sqrt5}{5}\right)$；距离的最小值 $\dfrac{4-\sqrt5}{\sqrt2}$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 5-2（平移后的椭圆）：</strong>曲线 $x=1+2\cos\theta,\ y=-2+3\sin\theta$ 是什么图形？求其焦点。</p>
+      <ol>
+        <li>$\cos\theta=\dfrac{x-1}{2},\ \sin\theta=\dfrac{y+2}{3}$，代入恒等式：$\dfrac{(x-1)^2}{4}+\dfrac{(y+2)^2}{9}=1$。</li>
+        <li>这是中心 $(1,-2)$ 的纵长椭圆，$c=\sqrt{9-4}=\sqrt5$。</li>
+        <li>焦点在过中心且平行于 $y$ 轴的直线上。</li>
+      </ol>
+      <p>答：椭圆，焦点 $(1,\ -2\pm\sqrt5)$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把椭圆的 $\theta$ 当成 $OP$ 的方向角（见上面的“易错”框）。</li>
+        <li>把 $a,b$ 写反：$\dfrac{x^2}{4}+y^2=1$ 应为 $x=2\cos\theta,\ y=\sin\theta$，不是 $x=\cos\theta,\ y=2\sin\theta$。</li>
+        <li>把平移中的 $t$（常数）与媒介变数 $t$ 混淆。</li>
+        <li>合成时 $\alpha$ 的 $\sin,\cos$ 写反，导致取到最值的点算错。可代回 $x+y$ 检验。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>题干中 $P$ 在椭圆上、要求一次式的最值时，先想到 $x=a\cos\theta,\ y=b\sin\theta$；也可以用切线条件，令 $x+y=k$ 与椭圆相切，两种方法可互相检验。<span lang="ja">媒介変数</span><span class="kana">（ばいかいへんすう）</span> 也常说成 <span lang="ja">パラメータ</span>。</p>
+    </div>
     <h3>消去媒介变数</h3>
     <p>解出 $t$ 再代入，或利用恒等式消去。<strong>消去后务必检查 $x,y$ 的取值范围</strong>，范围可能只是曲线的一部分：</p>
     <ul>
       <li>$x=\cos\theta,\ y=\cos2\theta$：由 $y=2x^2-1$ 知是抛物线，但只有 $-1\le x\le1$ 这一段。</li>
       <li>$x=\dfrac{1-t^2}{1+t^2},\ y=\dfrac{2t}{1+t^2}$：满足 $x^2+y^2=1$，但取不到点 $(-1,0)$，因为 $x=\dfrac{2}{1+t^2}-1&gt;-1$。</li>
     </ul>
+    <p><strong>为什么一定要检查范围？</strong>消去媒介变数只保留了“$x,y$ 满足的关系”，丢掉了“哪些 $x$ 真的能取到”。所以消去后得到的方程只是必要条件。正确的做法是：先求 $x$（或 $y$）的取值范围，再说明范围内的每个值都能取到。</p>
+    <div class="box good">
+      <p><strong>补充例题 5-3（结果是线段）：</strong>曲线 $x=\sin^2\theta,\ y=\cos2\theta$ 是什么图形？</p>
+      <ol>
+        <li>用倍角公式 $\cos2\theta=1-2\sin^2\theta$，得 $y=1-2x$。</li>
+        <li>$x=\sin^2\theta$ 的取值范围是 $0\le x\le1$，范围内的值都能取到。</li>
+        <li>$x=0$ 时 $y=1$，$x=1$ 时 $y=-1$。</li>
+      </ol>
+      <p>答：不是整条直线，而是以 $(0,1)$ 和 $(1,-1)$ 为端点的线段。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 5-4（范围有空缺）：</strong>$t\ne0$ 时，曲线 $x=t+\dfrac1t,\ y=t^2+\dfrac1{t^2}$ 用 $x,y$ 表示，并写出 $x$ 的范围。</p>
+      <ol>
+        <li>$x^2=t^2+2+\dfrac{1}{t^2}=y+2$，所以 $y=x^2-2$。</li>
+        <li>$t&gt;0$ 时由相加平均与相乘平均的关系（<span lang="ja">相加平均と相乗平均の関係</span><span class="kana">（そうかへいきんとそうじょうへいきんのかんけい）</span>），$x\ge2$；$t&lt;0$ 时同理 $x\le-2$。</li>
+        <li>反过来，$t^2-xt+1=0$ 有实数解的条件是 $x^2-4\ge0$，所以 $|x|\ge2$ 的值都能取到。</li>
+      </ol>
+      <p>答：$y=x^2-2$（$x\le-2$ 或 $x\ge2$），是抛物线去掉中间一段后的两部分。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>写完 $y=x^2-2$ 就结束，没写范围。这类题的得分点往往就在范围上。</li>
+        <li>只用 $t&gt;0$ 的结果，漏掉 $t&lt;0$ 的部分。</li>
+        <li>用 $x=\sin^2\theta$ 却把范围写成 $-1\le x\le1$。</li>
+        <li>由 $x^2+y^2=1$ 直接认定是整个圆，忽略取不到的点（如正文中的 $(-1,0)$）。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>消去后看选项：若选项里有“抛物线的一部分”，几乎一定要算范围。常用的消去工具有 $\cos^2\theta+\sin^2\theta=1$、倍角公式和 $\left(t+\dfrac1t\right)^2-\left(t-\dfrac1t\right)^2=4$。术语：<span lang="ja">消去する</span><span class="kana">（しょうきょする）</span>、<span lang="ja">値域</span><span class="kana">（ちいき）</span>。</p>
+    </div>
     <h3>摆线</h3>
     <p>半径 $a$ 的圆沿 $x$ 轴无滑动滚动时，圆周上一个定点描出的曲线叫做<strong>摆线</strong>（<span lang="ja">サイクロイド</span>）。以转过的角 $\theta$ 为媒介变数：</p>
     $$x=a(\theta-\sin\theta),\qquad y=a(1-\cos\theta).$$
     <p>圆心在 $(a\theta,a)$，定点相对圆心的位置是 $(-a\sin\theta,-a\cos\theta)$，两者相加就得到上式。周期 $2\pi a$，最高点 $y=2a$。</p>
     <div class="box"><strong>与微分的联系</strong> $\dfrac{dy}{dx}=\dfrac{dy/d\theta}{dx/d\theta}$。例如摆线 $\dfrac{dy}{dx}=\dfrac{\sin\theta}{1-\cos\theta}$。曲线长 $\displaystyle\int\sqrt{\left(\frac{dx}{d\theta}\right)^2+\left(\frac{dy}{d\theta}\right)^2}\,d\theta$，摆线一拱长为 $8a$。积分的详细内容见「微分与积分」专题。</div>
+    <p><strong>为什么圆心在 $(a\theta,a)$？</strong>无滑动意味着圆滚过的地面长度等于转过的弧长，即 $a\theta$，所以圆心向右走了 $a\theta$，高度始终是 $a$。定点从最低点出发，顺时针转过 $\theta$，所以相对圆心的位置是 $(-a\sin\theta,-a\cos\theta)$。</p>
+    <p><strong>斜率、长度和面积：</strong>$\dfrac{dx}{d\theta}=a(1-\cos\theta),\ \dfrac{dy}{d\theta}=a\sin\theta$。半角公式给出</p>
+    $$\frac{dy}{dx}=\frac{\sin\theta}{1-\cos\theta}=\frac{2\sin\frac{\theta}{2}\cos\frac{\theta}{2}}{2\sin^2\frac{\theta}{2}}=\frac{1}{\tan\frac{\theta}{2}}.$$
+    <p>又 $\left(\dfrac{dx}{d\theta}\right)^2+\left(\dfrac{dy}{d\theta}\right)^2=2a^2(1-\cos\theta)=4a^2\sin^2\dfrac{\theta}{2}$。在 $0\le\theta\le2\pi$ 上 $\sin\dfrac{\theta}{2}\ge0$，根号可以直接去掉，$\displaystyle\int_0^{2\pi}2a\sin\frac{\theta}{2}\,d\theta=8a$。一拱与 $x$ 轴围成的面积是 $\displaystyle\int_0^{2\pi}y\frac{dx}{d\theta}\,d\theta=a^2\int_0^{2\pi}(1-\cos\theta)^2\,d\theta=3\pi a^2$。</p>
+    <div class="box good">
+      <p><strong>补充例题 5-5（摆线的综合计算）：</strong>摆线 $x=3(\theta-\sin\theta),\ y=3(1-\cos\theta)$。求 $\theta=\dfrac{2\pi}{3}$ 的点的坐标和切线斜率、从 $\theta=0$ 到该点的曲线长，以及一拱围成的面积。</p>
+      <ol>
+        <li>坐标：$x=3\left(\dfrac{2\pi}{3}-\dfrac{\sqrt3}{2}\right)=2\pi-\dfrac{3\sqrt3}{2}$，$y=3\left(1+\dfrac12\right)=\dfrac92$。</li>
+        <li>斜率：$\dfrac{1}{\tan\frac{\pi}{3}}=\dfrac{1}{\sqrt3}=\dfrac{\sqrt3}{3}$。</li>
+        <li>曲线长（<span lang="ja">曲線の長さ</span><span class="kana">（きょくせんのながさ）</span>）：速度为 $6\sin\dfrac{\theta}{2}$，所以 $\displaystyle\int_0^{2\pi/3}6\sin\frac{\theta}{2}\,d\theta=\left[-12\cos\frac{\theta}{2}\right]_0^{2\pi/3}=-12\cdot\frac12+12=6$。</li>
+        <li>面积：$3\pi a^2=3\pi\cdot9=27\pi$。</li>
+      </ol>
+      <p>答：点 $\left(2\pi-\dfrac{3\sqrt3}{2},\dfrac92\right)$，斜率 $\dfrac{\sqrt3}{3}$，曲线长 $6$，面积 $27\pi$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>符号记错，写成 $x=a(\theta+\sin\theta)$。可用 $\theta=0$ 时点在原点、$\theta=\pi$ 时 $y=2a$ 来检验。</li>
+        <li>$\theta$ 超过 $2\pi$ 时直接去根号。$\sqrt{\sin^2\frac{\theta}{2}}=\left|\sin\frac{\theta}{2}\right|$，要注意符号。</li>
+        <li>面积积分写成 $\int y\,d\theta$，漏掉 $\dfrac{dx}{d\theta}$。</li>
+        <li>把 $\theta=0,\ 2\pi$ 处也代入 $\dfrac{dy}{dx}$。这两点分母为 $0$，是尖点。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>记住三个数：周期 $2\pi a$、一拱长 $8a$、面积 $3\pi a^2$，可以用来快速检验积分结果。<span lang="ja">サイクロイド</span> 的题多与微分积分连考，要熟练半角公式。</p>
+    </div>
   </section>
 
   <section id="polar">
@@ -406,6 +755,46 @@ svg circle.sm { fill: none; opacity: .55; }
     </div>
     <p>两点 $A(r_1,\theta_1),\ B(r_2,\theta_2)$ 与极 $O$ 组成三角形，直接用余弦定理和面积公式：</p>
     $$AB^2=r_1^2+r_2^2-2r_1r_2\cos(\theta_2-\theta_1),\qquad S=\frac12 r_1r_2\,|\sin(\theta_2-\theta_1)|.$$
+    <p><strong>公式为什么成立？</strong>$x=r\cos\theta,\ y=r\sin\theta$ 就是三角函数的定义。$r=\sqrt{x^2+y^2}$ 来自勾股定理。上面的距离公式是对 $\triangle OAB$ 用余弦定理（<span lang="ja">余弦定理</span><span class="kana">（よげんていり）</span>），夹角就是两个偏角之差。夹角超过 $\pi$ 时公式仍然成立，因为 $\cos$ 是偶函数且周期为 $2\pi$；面积公式中的绝对值正是为此而加。用直角坐标展开也能验证：$AB^2=(r_1\cos\theta_1-r_2\cos\theta_2)^2+(r_1\sin\theta_1-r_2\sin\theta_2)^2$，用加法定理化简后得到相同结果。</p>
+    <div class="box good">
+      <p><strong>补充例题 6-1（第三象限的点）：</strong>把直角坐标 $(-2,-2)$ 化为极坐标（$r&gt;0,\ 0\le\theta&lt;2\pi$）。</p>
+      <ol>
+        <li>$r=\sqrt{(-2)^2+(-2)^2}=2\sqrt2$。</li>
+        <li>$\cos\theta=\dfrac{-2}{2\sqrt2}=-\dfrac{\sqrt2}{2},\ \sin\theta=-\dfrac{\sqrt2}{2}$。</li>
+        <li>两者都为负，所以点在第三象限，$\theta=\dfrac{5\pi}{4}$。只看 $\tan\theta=1$ 会误得 $\dfrac{\pi}{4}$。</li>
+      </ol>
+      <p>答：$\left(2\sqrt2,\dfrac{5\pi}{4}\right)$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 6-2（距离与面积）：</strong>极坐标下 $A\left(2,\dfrac{\pi}{6}\right),\ B\left(4,\dfrac{5\pi}{6}\right)$。求 $AB$ 和 $\triangle OAB$ 的面积。</p>
+      <ol>
+        <li>夹角 $\dfrac{5\pi}{6}-\dfrac{\pi}{6}=\dfrac{2\pi}{3}$。</li>
+        <li>$AB^2=2^2+4^2-2\cdot2\cdot4\cos\dfrac{2\pi}{3}=20+8=28$，所以 $AB=2\sqrt7$。</li>
+        <li>$S=\dfrac12\cdot2\cdot4\cdot\sin\dfrac{2\pi}{3}=2\sqrt3$。</li>
+      </ol>
+      <p>答：$AB=2\sqrt7$，$S=2\sqrt3$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 6-3（$r$ 为负的点）：</strong>极坐标 $\left(-2,\dfrac{\pi}{3}\right)$ 表示哪一点？写出它的直角坐标和 $r&gt;0$ 的极坐标。</p>
+      <ol>
+        <li>$(r,\theta)$ 与 $(-r,\theta+\pi)$ 是同一点，所以它等于 $\left(2,\dfrac{\pi}{3}+\pi\right)=\left(2,\dfrac{4\pi}{3}\right)$。</li>
+        <li>直角坐标：$x=-2\cos\dfrac{\pi}{3}=-1,\ y=-2\sin\dfrac{\pi}{3}=-\sqrt3$。</li>
+      </ol>
+      <p>答：$(-1,-\sqrt3)$，即 $\left(2,\dfrac{4\pi}{3}\right)$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只由 $\tan\theta$ 定 $\theta$，不看象限。</li>
+        <li>点在 $y$ 轴上（$x=0$）时用 $\tan\theta=\dfrac{y}{x}$，分母为 $0$。应改用 $\cos\theta,\ \sin\theta$。</li>
+        <li>面积公式漏掉绝对值，得到负的面积。</li>
+        <li>把两个偏角相加，而不是相减。</li>
+        <li>忘记题目的范围限制，把 $-\dfrac{\pi}{4}$ 写成答案，而题目要求 $0\le\theta&lt;2\pi$。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>先看题目限定的 $r,\theta$ 范围，再作答。求两点距离时用余弦定理，通常比化成直角坐标快。术语：<span lang="ja">極座標</span><span class="kana">（きょくざひょう）</span>、<span lang="ja">直交座標</span><span class="kana">（ちょっこうざひょう）</span>、<span lang="ja">偏角</span><span class="kana">（へんかく）</span>。</p>
+    </div>
   </section>
 
   <section id="polareq">
@@ -424,14 +813,122 @@ svg circle.sm { fill: none; opacity: .55; }
         <tr><td>圆心 $(a,\alpha)$、半径 $a$ 的圆</td><td>$r=2a\cos(\theta-\alpha)$</td><td>过极的圆</td></tr>
       </tbody>
     </table></div>
+    <p><strong>直线的极方程为什么成立？</strong>$A(a,\alpha)$ 是极到直线的垂足。对直线上任一点 $P(r,\theta)$，$\triangle OAP$ 在 $A$ 处是直角，所以 $OP\cos\angle AOP=OA$，即 $r\cos(\theta-\alpha)=a$。</p>
+    <p><strong>圆的极方程为什么成立？</strong>一般地，圆心 $C(a,\alpha)$、半径 $R$ 的圆，由余弦定理得 $r^2-2ar\cos(\theta-\alpha)+a^2=R^2$。当 $R=a$（圆过极）时，常数项抵消，约去 $r$ 得 $r=2a\cos(\theta-\alpha)$。这也可以这样看：取过极的直径 $OB$（$OB=2a$），直径所对的圆周角是直角，所以 $OP=OB\cos(\theta-\alpha)$。</p>
+    <div class="box good">
+      <p><strong>补充例题 7-1（由垂足求直线）：</strong>求过 $A\left(4,\dfrac{\pi}{6}\right)$、垂直于 $OA$ 的直线的极方程和直角方程。</p>
+      <ol>
+        <li>由公式，极方程为 $r\cos\left(\theta-\dfrac{\pi}{6}\right)=4$。</li>
+        <li>用加法定理展开：$\dfrac{\sqrt3}{2}r\cos\theta+\dfrac12r\sin\theta=4$。</li>
+        <li>替换后乘 $2$：$\sqrt3x+y=8$。</li>
+        <li>检验：原点到它的距离 $\dfrac{8}{\sqrt{3+1}}=4=OA$。</li>
+      </ol>
+      <p>答：$r\cos\left(\theta-\dfrac{\pi}{6}\right)=4$，$\sqrt3x+y=8$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 7-2（过极的圆）：</strong>求圆心为 $\left(2,\dfrac{\pi}{3}\right)$、半径为 $2$ 的圆的极方程，并化为直角方程。</p>
+      <ol>
+        <li>圆心到极的距离等于半径，所以圆过极，$r=4\cos\left(\theta-\dfrac{\pi}{3}\right)$。</li>
+        <li>展开：$r=2\cos\theta+2\sqrt3\sin\theta$。</li>
+        <li>两边乘 $r$：$x^2+y^2=2x+2\sqrt3y$。</li>
+        <li>配方：$(x-1)^2+(y-\sqrt3)^2=4$。圆心 $(1,\sqrt3)$ 正是 $\left(2,\dfrac{\pi}{3}\right)$ 的直角坐标。</li>
+      </ol>
+      <p>答：$r=4\cos\left(\theta-\dfrac{\pi}{3}\right)$，$(x-1)^2+(y-\sqrt3)^2=4$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把圆 $r=2a\cos\theta$ 的半径当成 $2a$。半径是 $a$，$2a$ 是直径。</li>
+        <li>圆不过极时也写 $r=2a\cos(\theta-\alpha)$。这个公式要求圆心到极的距离等于半径。</li>
+        <li>$r\cos(\theta-\alpha)=a$ 中的 $(a,\alpha)$ 是垂足，不是直线上任意一点。</li>
+        <li>写 $y=(\tan\alpha)x$ 时忘了 $\alpha=\dfrac{\pi}{2}$ 的情形，此时直线是 $x=0$。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>题目给出几何条件时，先画图找直角三角形，往往可以直接写出极方程；再展开成直角方程检验圆心或距离。术语：<span lang="ja">垂線の足</span><span class="kana">（すいせんのあし）</span> 是垂足，<span lang="ja">半径</span><span class="kana">（はんけい）</span>、<span lang="ja">直径</span><span class="kana">（ちょっけい）</span> 与中文同形。</p>
+    </div>
     <h3>7.2 极方程与直角方程互化</h3>
     <p>核心替换：$r\cos\theta\to x,\ r\sin\theta\to y,\ r^2\to x^2+y^2$。缺少 $r$ 时，两边同乘 $r$ 再替换。</p>
     <p>例：$r=4\cos\theta$ 两边乘 $r$，得 $r^2=4r\cos\theta$，即 $x^2+y^2=4x$，所以 $(x-2)^2+y^2=4$。</p>
     <p>例：$r\cos\left(\theta-\dfrac{\pi}{3}\right)=2$ 用加法定理展开，$\dfrac12 r\cos\theta+\dfrac{\sqrt3}{2}r\sin\theta=2$，所以 $x+\sqrt3y=4$。</p>
+    <p><strong>为什么可以同乘 $r$？</strong>同乘 $r$ 只可能多出 $r=0$（极）这一个解。对 $r=4\cos\theta$ 来说，$\theta=\dfrac{\pi}{2}$ 时 $r=0$，极本来就在曲线上，所以方程是等价的。反过来，从直角方程化极方程，只需代入 $x=r\cos\theta,\ y=r\sin\theta$。</p>
+    <div class="box good">
+      <p><strong>补充例题 7-3（极方程化直角方程）：</strong>把 $r^2\sin2\theta=4$ 化为直角方程。</p>
+      <ol>
+        <li>用倍角公式：$r^2\cdot2\sin\theta\cos\theta=4$。</li>
+        <li>分配成 $2(r\cos\theta)(r\sin\theta)=4$，所以 $2xy=4$。</li>
+      </ol>
+      <p>答：$xy=2$，是直角双曲线。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 7-4（两个方向的互化）：</strong>(1) 把 $r=6\sin\theta$ 化为直角方程；(2) 把 $x^2-y^2=1$ 化为极方程。</p>
+      <ol>
+        <li>(1) 两边乘 $r$：$r^2=6r\sin\theta$，即 $x^2+y^2=6y$。配方得 $x^2+(y-3)^2=9$。</li>
+        <li>(2) 代入：$r^2\cos^2\theta-r^2\sin^2\theta=1$。用倍角公式得 $r^2\cos2\theta=1$。</li>
+      </ol>
+      <p>答：(1) $x^2+(y-3)^2=9$；(2) $r^2\cos2\theta=1$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $r=4\cos\theta$ 直接写成 $r=4x$，没有成对替换。要出现 $r\cos\theta$ 才能换成 $x$。</li>
+        <li>加法定理展开符号写错：$\cos(\theta-\alpha)=\cos\theta\cos\alpha+\sin\theta\sin\alpha$，中间是加号。</li>
+        <li>把 $\theta=\alpha$ 写成 $y=(\tan\alpha)x$ 后只画半条直线。允许 $r&lt;0$ 时它是整条直线。</li>
+        <li>两边乘 $r$ 之后忘了配方，没有回答图形的圆心和半径。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>看到 $\cos(\theta-\alpha)$ 先展开，看到 $\cos2\theta,\ \sin2\theta$ 先用倍角公式，然后凑出 $r\cos\theta,\ r\sin\theta,\ r^2$。题干 <span lang="ja">直交座標の方程式で表せ</span><span class="kana">（ちょっこうざひょうのほうていしきであらわせ）</span> 就是“化为直角方程”。</p>
+    </div>
     <h3>7.3 二次曲线的极方程</h3>
     <p>取焦点为极、准线为 $x=d\ (d&gt;0)$。由 $PF=e\cdot PH$，得 $r=e(d-r\cos\theta)$，整理后：</p>
     $$r=\frac{ed}{1+e\cos\theta}.$$
     <p>准线在左侧 $x=-d$ 时，分母变为 $1-e\cos\theta$。类型只由 $e$ 决定：$0&lt;e&lt;1$ 椭圆，$e=1$ 抛物线，$e&gt;1$ 双曲线。分母常数项不是 $1$ 时要先化成 $1$，例如 $r=\dfrac{3}{2-\cos\theta}=\dfrac{3/2}{1-\frac12\cos\theta}$，所以 $e=\dfrac12$。</p>
+    <p><strong>推导的细节：</strong>$P(r,\theta)$ 在焦点（极）右侧的准线 $x=d$ 左边时，$PH=d-x=d-r\cos\theta$，$PF=r$，所以 $r=e(d-r\cos\theta)$，移项得 $r(1+e\cos\theta)=ed$。准线在 $x=-d$ 时，$PH=x+d$，符号相反，分母变成 $1-e\cos\theta$。</p>
+    <p><strong>过焦点的弦：</strong>过极的直线上，两个交点的偏角相差 $\pi$，所以 $r_1=\dfrac{ed}{1+e\cos\theta}$，$r_2=\dfrac{ed}{1-e\cos\theta}$。相加分母变得简单：</p>
+    $$\frac{1}{r_1}+\frac{1}{r_2}=\frac{(1+e\cos\theta)+(1-e\cos\theta)}{ed}=\frac{2}{ed}.$$
+    <p>这个和与 $\theta$ 无关。第 1 节的 $\dfrac{1}{PF}+\dfrac{1}{QF}=\dfrac1p$ 是 $e=1,\ d=2p$ 时的特例。</p>
+    <div class="box good">
+      <p><strong>补充例题 7-5（双曲线）：</strong>$r=\dfrac{6}{1+2\cos\theta}$ 表示什么曲线？求离心率、准线和直角方程。</p>
+      <ol>
+        <li>分母常数项已是 $1$，所以 $e=2$，由 $ed=6$ 得 $d=3$，准线 $x=3$。$e&gt;1$，是双曲线。</li>
+        <li>去分母：$r+2r\cos\theta=6$，即 $r=6-2x$。</li>
+        <li>平方：$x^2+y^2=36-24x+4x^2$，整理得 $3x^2-24x-y^2+36=0$。</li>
+        <li>配方：$3(x-4)^2-y^2=12$，即 $\dfrac{(x-4)^2}{4}-\dfrac{y^2}{12}=1$。</li>
+        <li>检验：中心 $(4,0)$，$a=2,\ c=4$，焦点是 $(0,0)$ 和 $(8,0)$，极确实是焦点，$e=\dfrac{c}{a}=2$。</li>
+      </ol>
+      <p>答：双曲线，$e=2$，准线 $x=3$，$\dfrac{(x-4)^2}{4}-\dfrac{y^2}{12}=1$。其中 $r&gt;0$ 的部分是左支（如 $\theta=0$ 时 $x=2$），$r&lt;0$ 的部分是右支（如 $\theta=\pi$ 时 $r=-6$，$x=6$）。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 7-6（抛物线）：</strong>把 $r=\dfrac{4}{1-\cos\theta}$ 化为直角方程。</p>
+      <ol>
+        <li>$e=1$，所以是抛物线；$ed=4$，$d=4$，分母是减号，准线为 $x=-4$。</li>
+        <li>去分母：$r-r\cos\theta=4$，即 $r=x+4$。</li>
+        <li>平方：$x^2+y^2=x^2+8x+16$，所以 $y^2=8x+16$。</li>
+      </ol>
+      <p>答：$y^2=8(x+2)$。顶点 $(-2,0)$，焦点恰为极 $(0,0)$，准线 $x=-4$，三者一致。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 7-7（过焦点的弦）：</strong>对椭圆 $r=\dfrac{3}{2-\cos\theta}$，求 $\dfrac{1}{r_1}+\dfrac{1}{r_2}$，以及 $\theta=\dfrac{\pi}{2}$ 和 $\theta=0$ 方向上过焦点的弦长。</p>
+      <ol>
+        <li>$r=\dfrac{3/2}{1-\frac12\cos\theta}$，所以 $e=\dfrac12$，$ed=\dfrac32$，$\dfrac{1}{r_1}+\dfrac{1}{r_2}=\dfrac{2}{ed}=\dfrac43$。</li>
+        <li>$\theta=\dfrac{\pi}{2}$ 和 $\dfrac{3\pi}{2}$ 时 $r=\dfrac32$，弦长 $=3$。这与 $\dfrac{2b^2}{a}=\dfrac{2\cdot3}{2}=3$ 一致。</li>
+        <li>$\theta=0$ 时 $r=3$，$\theta=\pi$ 时 $r=1$，弦长 $=4=2a$，就是长轴。</li>
+      </ol>
+      <p>答：$\dfrac43$；弦长分别为 $3$ 和 $4$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>分母常数项不是 $1$ 时直接读 $e$。$r=\dfrac{3}{2-\cos\theta}$ 的 $e$ 是 $\dfrac12$，不是 $1$。</li>
+        <li>以为 $r&gt;0$ 的部分就是整条曲线。$r=6-2x$ 中 $r$ 可正可负，要把 $r&lt;0$ 的部分也算上，才是双曲线的两支。</li>
+        <li>把分子当成 $d$。分子是 $ed$，要除以 $e$ 才得到 $d$。</li>
+        <li>忘了极是焦点，不是中心。所以椭圆的中心一般不在原点。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>三步走：化分母常数项为 $1$，读 $e$ 定类型；去分母得到 $r=$（$x$ 的一次式）；平方后配方。求长轴时不必化方程，$a=\dfrac{r(0)+r(\pi)}{2}$ 对椭圆最快。术语：<span lang="ja">極方程式</span><span class="kana">（きょくほうていしき）</span>、<span lang="ja">2次曲線</span><span class="kana">（にじきょくせん）</span>。</p>
+    </div>
     <h3>7.4 常见的极曲线</h3>
     <div class="tw"><table>
       <thead><tr><th>名称</th><th>极方程</th><th>特点</th></tr></thead>
@@ -442,6 +939,42 @@ svg circle.sm { fill: none; opacity: .55; }
       </tbody>
     </table></div>
     <div class="box good"><strong>解题提示</strong> 求极曲线上 $x$ 或 $y$ 的最大值时，写成 $x=f(\theta)\cos\theta,\ y=f(\theta)\sin\theta$，把它当作以 $\theta$ 为媒介变数的曲线来处理。</div>
+    <p><strong>曲线的来历与性质：</strong></p>
+    <ul>
+      <li><strong>心形线</strong>：$\theta=0$ 时 $r=2a$ 最大，$\theta=\pi$ 时 $r=0$ 回到极。因 $\cos(-\theta)=\cos\theta$，所以曲线关于始线对称。</li>
+      <li><strong>阿基米德螺线</strong>：$\theta$ 每增加 $2\pi$，$r$ 增加 $2\pi a$，所以同一方向上相邻两圈的距离恒为 $2\pi a$。</li>
+      <li><strong>双纽线</strong>：$r^2=a^2\cos2\theta$ 要求 $\cos2\theta\ge0$，所以曲线只出现在 $-\dfrac{\pi}{4}\le\theta\le\dfrac{\pi}{4}$ 及其相反的方向上。代入 $r^2=x^2+y^2$，$r^2\cos2\theta=x^2-y^2$，可得 $(x^2+y^2)^2=a^2(x^2-y^2)$。</li>
+    </ul>
+    <div class="box good">
+      <p><strong>补充例题 7-8（心形线的 $x$ 范围）：</strong>心形线 $r=2(1+\cos\theta)$ 上点的 $x$ 坐标的最大值和最小值是多少？</p>
+      <ol>
+        <li>$x=r\cos\theta=2(1+\cos\theta)\cos\theta$。令 $c=\cos\theta$，$-1\le c\le1$，则 $x=2c^2+2c=2\left(c+\dfrac12\right)^2-\dfrac12$。</li>
+        <li>$c=-\dfrac12$（$\theta=\dfrac{2\pi}{3},\ \dfrac{4\pi}{3}$）时 $x$ 最小，为 $-\dfrac12$。</li>
+        <li>$c=1$（$\theta=0$）时 $x$ 最大，为 $4$。</li>
+      </ol>
+      <p>答：最大值 $4$，最小值 $-\dfrac12$。注意最小值不是 $\theta=\pi$ 时的 $x=0$，曲线在极的左边还有一部分。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 7-9（双纽线）：</strong>对 $r^2=4\cos2\theta$，写出直角方程，并求 $y$ 的最大值。</p>
+      <ol>
+        <li>两边乘 $r^2$：$(r^2)^2=4r^2\cos2\theta=4(r^2\cos^2\theta-r^2\sin^2\theta)$，所以 $(x^2+y^2)^2=4(x^2-y^2)$。</li>
+        <li>$y^2=r^2\sin^2\theta=4\cos2\theta\sin^2\theta$。令 $u=\sin^2\theta$，由 $\cos2\theta=1-2u\ge0$ 知 $0\le u\le\dfrac12$。</li>
+        <li>$y^2=4u(1-2u)=-8\left(u-\dfrac14\right)^2+\dfrac12$，$u=\dfrac14$（$\theta=\dfrac{\pi}{6}$ 等）时最大，$y^2=\dfrac12$。</li>
+      </ol>
+      <p>答：$(x^2+y^2)^2=4(x^2-y^2)$；$y$ 的最大值 $\dfrac{\sqrt2}{2}$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>以为 $r$ 最大的点就是 $x$ 或 $y$ 最大的点。心形线上 $y$ 的最大值在 $\theta=\dfrac{\pi}{3}$，并不在 $r$ 最大处。</li>
+        <li>求最值时不写 $c$ 或 $u$ 的范围，顶点可能不在范围内。</li>
+        <li>双纽线中把 $r^2$ 取到负值。$\cos2\theta&lt;0$ 的方向上没有点。</li>
+        <li>把 $x$ 的最小值直接取在 $\theta=\pi$。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>令 $c=\cos\theta$ 或 $u=\sin^2\theta$，常常能把问题化成二次函数的最值，不必求导。<span lang="ja">カージオイド</span> 就是心形线，读题时还要认识 <span lang="ja">最大値</span><span class="kana">（さいだいち）</span>、<span lang="ja">最小値</span><span class="kana">（さいしょうち）</span>。</p>
+    </div>
   </section>
 
   <section id="demo">
@@ -463,6 +996,34 @@ svg circle.sm { fill: none; opacity: .55; }
       <button class="chip" id="play" type="button">▶ 播放</button>
       <div class="read" id="ex-read"></div>
       <div class="status" id="ex-status" aria-live="polite"></div>
+    </div>
+    <p><strong>各模式的观察要点：</strong></p>
+    <ul>
+      <li><strong>离心率统一</strong>：画的是 $r=\dfrac{ed}{1+e\cos\theta}$。改变 $\theta$ 时读数 $PF\div PH$ 不变，这就是第 4.3 节的定义。把 $e$ 从小调到大，曲线由椭圆经抛物线变成双曲线。</li>
+      <li><strong>椭圆与辅助圆</strong>：比较 $\theta$ 与 $OP$ 的方向角，体会两者不同（第 5 节）。</li>
+      <li><strong>摆线</strong>：观察动圆转一周时圆心前进 $2\pi a$，定点在 $\theta=\pi$ 时最高。</li>
+      <li><strong>极方程的圆</strong>：$\theta$ 超过 $90^\circ$ 后 $r&lt;0$，点落在反方向，所以 $\theta$ 只需 $0^\circ$ 到 $180^\circ$ 就画完一圈。</li>
+    </ul>
+    <div class="box good">
+      <p><strong>补充例题 8-1（用演示验算）：</strong>在“离心率统一”模式取 $e=0.5,\ d=3,\ \theta=60^\circ$。先手算 $r,\ PH$ 和 $PF\div PH$，并求这条曲线的直角方程，再拖动滑块核对。</p>
+      <ol>
+        <li>$r=\dfrac{0.5\cdot3}{1+0.5\cos60^\circ}=\dfrac{1.5}{1.25}=1.2$，所以 $PF=1.2$。</li>
+        <li>$x=r\cos60^\circ=0.6$，所以 $PH=3-0.6=2.4$，$PF\div PH=0.5=e$。</li>
+        <li>$\theta=0$ 时 $r=1$，$\theta=\pi$ 时 $r=3$，所以长轴长 $2a=4$，$a=2$。$c=ae=1$，$b^2=a^2-c^2=3$。</li>
+        <li>焦点在极，右端点在 $x=1$，所以中心是 $(1-2,0)=(-1,0)$。</li>
+      </ol>
+      <p>答：$r=1.2,\ PH=2.4$，比值 $0.5$；曲线为 $\dfrac{(x+1)^2}{4}+\dfrac{y^2}{3}=1$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>以为极方程的圆中 $\theta$ 要走满 $360^\circ$。$r=2a\cos\theta$ 走到 $180^\circ$ 就已画完。</li>
+        <li>看到 $e$ 接近 $1$ 时画面里的曲线像抛物线，就断定 $e=1$。类型由 $e$ 的值决定，不由视窗内的形状决定。</li>
+        <li>离心率统一模式中 $e&gt;1$、$r&lt;0$ 时，把 $P$ 仍看成在 $\theta$ 方向上。此时它落在相反方向，属于另一支。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>考试时没有演示工具，但可以用它练习“先预测、再验证”：调参数前先说出曲线的类型和关键点。这样在考场上能快速画出草图，判断答案是否合理。</p>
     </div>
   </section>
 
@@ -556,6 +1117,52 @@ svg circle.sm { fill: none; opacity: .55; }
         <p>(4) $S=\dfrac12\cdot4\cdot2\cdot\sin\dfrac{\pi}{3}=2\sqrt3$。</p>
       </div>
     </article>
+
+    <article class="q" data-ex="补充例题 9-1">
+      <div class="q-head"><b>补充例题 9-1　从准线上一点引切线</b><span class="origin">原创</span></div>
+      <p>考虑抛物线 $C:\ y^2=4x$ 和准线上的点 $A(-1,2)$。</p>
+      <p>(1) 从 $A$ 向 $C$ 引的两条切线的斜率是 $-\B{A}\pm\sqrt{\B{B}}$。</p>
+      <p>(2) 这两个斜率的积是 $-\B{C}$，所以两条切线互相垂直。</p>
+      <p>(3) 两个切点 $P,Q$ 所在的直线是 $y=x-\B{D}$，它经过 $C$ 的焦点。</p>
+      <p>(4) $PQ=\B{E}$，$\triangle APQ$ 的面积是 $\B{F}\sqrt{\B{G}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 1</li><li>B = 2</li><li>C = 1</li><li>D = 1</li><li>E = 8</li><li>F = 8</li><li>G = 2</li></ul>
+        <p>(1) $p=1$。与 $y=mx+\dfrac1m$ 相切的条件是 $n=\dfrac{p}{m}$。代入 $A$：$2=-m+\dfrac1m$，两边乘 $m$，整理得 $m^2+2m-1=0$，所以 $m=-1\pm\sqrt2$。（直线 $x=-1$ 与 $C$ 没有共有点，$m$ 存在。）</p>
+        <p>(2) 由根与系数的关系，积为 $-1$。</p>
+        <p>(3) 切点是 $\left(\dfrac{1}{m^2},\dfrac{2}{m}\right)$。$m=-1+\sqrt2$ 时 $\dfrac1m=1+\sqrt2$，切点 $(3+2\sqrt2,\ 2+2\sqrt2)$；$m=-1-\sqrt2$ 时切点 $(3-2\sqrt2,\ 2-2\sqrt2)$。两点都满足 $y=x-1$，这条直线过焦点 $(1,0)$。</p>
+        <p>(4) 这是焦点弦，$PQ=x_1+x_2+2p=6+2=8$。$A$ 到直线 $x-y-1=0$ 的距离是 $\dfrac{|-1-2-1|}{\sqrt2}=2\sqrt2$，面积 $=\dfrac12\cdot8\cdot2\sqrt2=8\sqrt2$。</p>
+      </div>
+    </article>
+
+    <article class="q" data-ex="补充例题 9-2">
+      <div class="q-head"><b>补充例题 9-2　二次曲线的极方程</b><span class="origin">原创</span></div>
+      <p>以原点为极、$x$ 轴正方向为始线，考虑曲线 $C:\ r=\dfrac{6}{2+\cos\theta}$。</p>
+      <p>(1) $C$ 的离心率是 $\dfrac{\B{A}}{\B{B}}$，准线是 $x=\B{C}$。</p>
+      <p>(2) $\theta=0$ 时 $r=\B{D}$，$\theta=\pi$ 时 $r=\B{E}$。</p>
+      <p>(3) $C$ 的直角方程是 $\dfrac{(x+\B{F})^2}{\B{GH}}+\dfrac{y^2}{\B{IJ}}=1$。</p>
+      <p>(4) 过极且垂直于始线的弦长是 $\B{K}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 1</li><li>B = 2</li><li>C = 6</li><li>D = 2</li><li>E = 6</li><li>F = 2</li><li>GH = 16</li><li>IJ = 12</li><li>K = 6</li></ul>
+        <p>(1) 分子分母同除以 $2$：$r=\dfrac{3}{1+\frac12\cos\theta}$，所以 $e=\dfrac12$；$ed=3$，$d=6$，准线 $x=6$。</p>
+        <p>(2) $r(0)=\dfrac63=2$，$r(\pi)=\dfrac61=6$。</p>
+        <p>(3) 去分母：$2r+r\cos\theta=6$，即 $2r=6-x$。平方：$4(x^2+y^2)=36-12x+x^2$，整理得 $3x^2+12x+4y^2=36$。配方：$3(x+2)^2+4y^2=48$，除以 $48$ 即得 $\dfrac{(x+2)^2}{16}+\dfrac{y^2}{12}=1$。</p>
+        <p>(4) $\theta=\dfrac{\pi}{2},\ \dfrac{3\pi}{2}$ 时 $r=3$，弦长 $=6$。这与 $\dfrac{2b^2}{a}=\dfrac{24}{4}=6$ 一致。</p>
+      </div>
+    </article>
+
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>填空时只看第一个方框的位数：$\B{BC}$ 表示两位数，$\B{A}$ 只有一位。若算出的结果放不进方框，多半是计算错了。</li>
+        <li>分数没有约到最简，或根号内没有化到最简。方框一般按最简形式设置。</li>
+        <li>后面的小问不用前面的结论，从头计算，既费时又容易出错。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>小问一般是层层递进的，(1) 的结果常是 (2)(3) 的工具。答完后用另一种方式验算一项，例如用 $\dfrac{2b^2}{a}$ 检验弦长，或用定义检验距离。上面两题都是这样设计的，可以按这个节奏练习。</p>
+    </div>
   </section>
 
   <section id="practice">
@@ -649,6 +1256,48 @@ svg circle.sm { fill: none; opacity: .55; }
       <p>心形线 $r=1+\cos\theta$（$0\le\theta&lt;2\pi$）上点的 $y$ 坐标的最大值是多少？此时 $\theta$ 是多少？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
       <div class="ans" hidden><p>$y=(1+\cos\theta)\sin\theta$，$\dfrac{dy}{d\theta}=2\cos^2\theta+\cos\theta-1=(2\cos\theta-1)(\cos\theta+1)$。$\cos\theta=\dfrac12$ 时最大，所以 $\mathbf{\theta=\dfrac{\pi}{3}}$，$y=\mathbf{\dfrac{3\sqrt3}{4}}$。</p></div></div>
+
+    <p class="jp-sub">补充例题（综合 2 题）：与上面的 17 题分开，同样可点击查看完整步骤。</p>
+
+    <div class="q" data-p="补充 1"><div class="q-head"><b>补充例题 10-1</b>椭圆与直线的距离</div>
+      <p>$P$ 在椭圆 $\dfrac{x^2}{9}+\dfrac{y^2}{4}=1$ 上。求 $P$ 到直线 $2x+3y=12$ 的距离的最小值、最大值，以及取到最小值时的 $P$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ol>
+          <li>设 $P(3\cos\theta,\ 2\sin\theta)$，则 $2x+3y=6\cos\theta+6\sin\theta=6\sqrt2\sin\left(\theta+\dfrac{\pi}{4}\right)$。</li>
+          <li>所以 $-6\sqrt2\le2x+3y\le6\sqrt2$。而 $6\sqrt2&lt;12$，直线与椭圆没有共有点，距离 $=\dfrac{12-(2x+3y)}{\sqrt{13}}$。</li>
+          <li>$\theta=\dfrac{\pi}{4}$ 时 $2x+3y$ 最大，距离最小，$P\left(\dfrac{3\sqrt2}{2},\sqrt2\right)$。</li>
+          <li>$\theta=\dfrac{5\pi}{4}$ 时距离最大。</li>
+        </ol>
+        <p>答：最小值 $\mathbf{\dfrac{12-6\sqrt2}{\sqrt{13}}}$，此时 $\mathbf{P\left(\dfrac{3\sqrt2}{2},\sqrt2\right)}$；最大值 $\mathbf{\dfrac{12+6\sqrt2}{\sqrt{13}}}$。</p>
+      </div></div>
+
+    <div class="q" data-p="补充 2"><div class="q-head"><b>补充例题 10-2</b>两条极曲线的交点</div>
+      <p>求抛物线 $r=\dfrac{2}{1+\cos\theta}$ 与圆 $r=2\cos\theta$ 的交点的直角坐标。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ol>
+          <li>抛物线的 $r&gt;0$（$r\ge1$），所以交点不是极，且 $\cos\theta&gt;0$。</li>
+          <li>联立：$2\cos\theta(1+\cos\theta)=2$，令 $c=\cos\theta$，得 $c^2+c-1=0$，$c=\dfrac{-1\pm\sqrt5}{2}$。</li>
+          <li>由 $c&gt;0$（而且 $|c|\le1$），取 $c=\dfrac{\sqrt5-1}{2}$，$r=2c=\sqrt5-1$。</li>
+          <li>$x=rc=2c^2=2(1-c)=3-\sqrt5$。</li>
+          <li>抛物线的直角方程：由 $r+x=2$ 得 $y^2=4-4x$，所以 $y^2=4\sqrt5-8$。</li>
+          <li>检验圆 $x^2+y^2=2x$：$(14-6\sqrt5)+(4\sqrt5-8)=6-2\sqrt5=2(3-\sqrt5)$，成立。</li>
+        </ol>
+        <p>答：$\mathbf{\left(3-\sqrt5,\ \pm\sqrt{4\sqrt5-8}\right)}$。</p>
+      </div></div>
+
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>练习题对完答案就结束，没有检查范围（第 10、11 题）和舍根（补充例题 10-2 的 $c$）。</li>
+        <li>联立两个极方程时只解 $\theta$ 相同的情形。同一点可能有不同的 $(r,\theta)$ 表示，尤其要单独检查极。</li>
+        <li>距离公式中去绝对值前，不确认直线在曲线的哪一侧。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>先限时做，再对答案，错题回到相应小节重读“常见错误”。按“识别曲线 → 化标准形 → 用定义或公式”的顺序练习，形成习惯后速度会明显提高。</p>
+    </div>
   </section>
 
   <section id="terms">
@@ -661,6 +1310,50 @@ svg circle.sm { fill: none; opacity: .55; }
       <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
       <tbody></tbody>
     </table></div>
+
+    <h3>11.1 题干日语阅读</h3>
+    <p>题目中的日语常用固定句式，掌握下面几个就能读懂大多数题干：</p>
+    <div class="tw"><table>
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody>
+        <tr><td lang="ja">〜を求めよ</td><td class="kana" lang="ja">〜をもとめよ</td><td>求……</td></tr>
+        <tr><td lang="ja">焦点の座標</td><td class="kana" lang="ja">しょうてんのざひょう</td><td>焦点的坐标</td></tr>
+        <tr><td lang="ja">準線の方程式</td><td class="kana" lang="ja">じゅんせんのほうていしき</td><td>准线的方程</td></tr>
+        <tr><td lang="ja">点 P における接線</td><td class="kana" lang="ja">てん P におけるせっせん</td><td>点 P 处的切线</td></tr>
+        <tr><td lang="ja">〜の軌跡</td><td class="kana" lang="ja">〜のきせき</td><td>……的轨迹</td></tr>
+        <tr><td lang="ja">補助円</td><td class="kana" lang="ja">ほじょえん</td><td>辅助圆</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box good">
+      <p><strong>补充例题 11-1（读日语题干）：</strong><span lang="ja">楕円 $\dfrac{x^2}{4}+\dfrac{y^2}{3}=1$ の焦点の座標と離心率を求めよ。</span></p>
+      <ol>
+        <li>题意：求椭圆的焦点坐标和离心率。</li>
+        <li>分母 $4&gt;3$，是横长椭圆，$a=2$，$c=\sqrt{4-3}=1$。</li>
+        <li>$e=\dfrac{c}{a}=\dfrac12$。</li>
+      </ol>
+      <p>答：焦点 $(\pm1,0)$，离心率 $\dfrac12$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 11-2（读日语题干）：</strong><span lang="ja">放物線 $y^2=-8x$ の焦点の座標と準線の方程式を求めよ。</span></p>
+      <ol>
+        <li>题意：求抛物线的焦点坐标和准线方程。</li>
+        <li>$4p=-8$，所以 $p=-2$。</li>
+        <li>检验：曲线上的点 $x\le0$，到 $(-2,0)$ 的距离平方是 $(x+2)^2+y^2=(x+2)^2-8x=(x-2)^2$，等于到 $x=2$ 的距离的平方。</li>
+      </ol>
+      <p>答：焦点 $(-2,0)$，准线 $x=2$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 <span lang="ja">放物線</span> 写成中文的“抛物线”。日语用的是 <span lang="ja">放</span>，读作 ほうぶつせん。</li>
+        <li>把 <span lang="ja">楕円</span> 的汉字写成“椭円”。日语用的是 <span lang="ja">楕</span>。</li>
+        <li>把 <span lang="ja">直交座標</span> 理解成别的概念。它就是直角坐标，也说 <span lang="ja">直角座標</span>。</li>
+        <li>把 <span lang="ja">始線</span> 译成“始边”。它对应中文教材的“极轴”。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>EJU 数学试卷可选日语或英语，如果选日语，请优先熟悉题干中的固定说法。用上面的搜索框按中文或假名查词，并把常用词连同公式一起记，例如 <span lang="ja">離心率</span> 与 $e=\dfrac{c}{a}$。</p>
+    </div>
   </section>
 
   <footer>
@@ -677,6 +1370,7 @@ svg circle.sm { fill: none; opacity: .55; }
   /* ---------- 术语表 ---------- */
   var TERMS = [
     ['二次曲线', [
+      ['補助円', 'ほじょえん', '辅助圆'],
       ['2次曲線', 'にじきょくせん', '二次曲线'], ['放物線', 'ほうぶつせん', '抛物线'], ['楕円', 'だえん', '椭圆'],
       ['双曲線', 'そうきょくせん', '双曲线'], ['焦点', 'しょうてん', '焦点'], ['準線', 'じゅんせん', '准线'],
       ['頂点', 'ちょうてん', '顶点'], ['軸', 'じく', '轴'], ['中心', 'ちゅうしん', '中心'],

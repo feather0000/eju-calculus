@@ -185,6 +185,7 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
 svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer-events: none; }
 #b-svg .tick, #b-svg .lbl { font-size: 15px; }
 #b-sim { margin-top: 2px; }
+.box.tip { background: var(--surface-2); }
 </style>
 </head>
 <body>
@@ -243,12 +244,82 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
       <p><strong>例：</strong>$1$ 到 $100$ 中，$2$ 或 $3$ 的倍数有 $50+33-16=67$ 个（$16$ 是 $6$ 的倍数的个数）。再加上“或 $5$ 的倍数”，则有 $50+33+20-16-10-6+3=74$ 个。</p>
     </div>
 
+    <p><strong>为什么要减去交集？</strong>把 $A$ 和 $B$ 的元素分别数一遍时，同时属于两者的元素被数了两次，其余元素只数了一次。减去一次 $n(A\cap B)$，每个元素就恰好只算一次，这种“多退少补”的方法叫<span lang="ja">包除原理</span><span class="kana" lang="ja">（ほうじょげんり）</span>。画<span lang="ja">ベン図</span><span class="kana" lang="ja">（ベンず）</span>最容易看清。</p>
+    <p><strong>三个集合的公式：</strong>只看同时属于 $A,B,C$ 的元素：前三项把它数了 $3$ 次，减去两两交集又扣掉 $3$ 次，此时变成 $0$ 次，所以最后要把 $n(A\cap B\cap C)$ 加回来。只属于两个集合的元素：加 $2$ 次、减 $1$ 次，正好 $1$ 次。</p>
+    <p><strong>倍数的个数：</strong>$1$ 到 $N$ 中 $m$ 的倍数有 $\left\lfloor\dfrac{N}{m}\right\rfloor$ 个（$N\div m$ 的整数部分），因为它们是 $m,2m,\dots,km$，其中 $km\le N$。“既是 $a$ 的倍数又是 $b$ 的倍数”等于“$a,b$ 的<span lang="ja">最小公倍数</span><span class="kana" lang="ja">（さいしょうこうばいすう）</span>的倍数”，不一定是 $ab$ 的倍数。</p>
+    <div class="box good">
+      <p><strong>补充例题 1-1（两种倍数）：</strong>$1$ 到 $300$ 的整数中，求 $4$ 或 $6$ 的倍数的个数、两者的倍数都不是的个数，以及是 $4$ 的倍数但不是 $6$ 的倍数的个数。</p>
+      <ol>
+        <li>设 $A$ 为 $4$ 的倍数，$B$ 为 $6$ 的倍数：$n(A)=\left\lfloor\dfrac{300}{4}\right\rfloor=75$，$n(B)=\left\lfloor\dfrac{300}{6}\right\rfloor=50$。</li>
+        <li>$4$ 与 $6$ 的最小公倍数是 $12$（不是 $24$），所以 $n(A\cap B)=\left\lfloor\dfrac{300}{12}\right\rfloor=25$。</li>
+        <li>$n(A\cup B)=75+50-25=100$。</li>
+        <li>都不是：$n(\overline{A\cup B})=300-100=200$。</li>
+        <li>是 $4$ 的倍数但不是 $6$ 的倍数：$n(A)-n(A\cap B)=75-25=50$。</li>
+      </ol>
+      <p>答：$100$ 个；$200$ 个；$50$ 个。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 1-2（交集的范围）：</strong>某班 $40$ 人，学英语的 $28$ 人，学数学的 $23$ 人。(1) 若两门都不学的有 $5$ 人，两门都学的有几人？只学英语的有几人？(2) 若不知道都不学的人数，两门都学的人数可能的范围是什么？</p>
+      <ol>
+        <li>(1) 至少学一门的有 $40-5=35$ 人。由 $35=28+23-n(A\cap B)$，得 $n(A\cap B)=16$。</li>
+        <li>只学英语的是 $28-16=12$ 人。</li>
+        <li>(2) 上限：交集不会超过较小的集合，所以 $n(A\cap B)\le 23$。这时学数学的人全都学英语，可以取到。</li>
+        <li>下限：由 $n(A\cup B)=51-n(A\cap B)\le 40$，得 $n(A\cap B)\ge 11$。这时全班至少学一门，也可以取到。</li>
+      </ol>
+      <p>答：(1) $16$ 人，$12$ 人；(2) $11\le n(A\cap B)\le 23$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把“$a$ 和 $b$ 的公倍数”写成 $ab$ 的倍数。$4$ 和 $6$ 的公倍数是 $12$ 的倍数，不是 $24$ 的倍数。</li>
+        <li>用三个集合的公式时，忘了最后加回 $n(A\cap B\cap C)$。</li>
+        <li>把“只属于 $A$”的人数当成 $n(A)$。“只属于 $A$”是 $n(A)-n(A\cap B)$。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>题干的「<span lang="ja">または</span>」表示并集，「<span lang="ja">かつ</span>」表示交集，「<span lang="ja">〜でない</span><span class="kana" lang="ja">（でない）</span>」表示补集。“都不是”的问法直接用 $n(U)-n(A\cup B)$。计算后可用 $n(A)$、$n(B)$ 的上限粗查结果是否合理。</p>
+    </div>
     <h3>和的法则与积的法则</h3>
     <ul>
       <li><strong>和的法则</strong>（<span lang="ja">和の法則</span>）：$A$、$B$ 不会同时发生，$A$ 有 $m$ 种、$B$ 有 $n$ 种，则“$A$ 或 $B$”有 $m+n$ 种。关键词是<strong>分类</strong>。</li>
       <li><strong>积的法则</strong>（<span lang="ja">積の法則</span>）：$A$ 有 $m$ 种，对每一种 $A$，$B$ 都有 $n$ 种，则“$A$ 然后 $B$”有 $mn$ 种。关键词是<strong>分步</strong>。</li>
     </ul>
     <p>积的法则的典型应用是正约数（<span lang="ja">正の約数</span>）的个数：若 $N=p^a q^b r^c$（$p,q,r$ 为不同素数），则正约数有 $(a+1)(b+1)(c+1)$ 个。例如 $72=2^3\cdot 3^2$，有 $4\times 3=12$ 个。</p>
+    <p><strong>为什么分类用加、分步用乘？</strong>分类时每种方法只属于一类，所以直接相加不重不漏。分步时可以画<span lang="ja">樹形図</span><span class="kana" lang="ja">（じゅけいず）</span>：第一步的 $m$ 个分支各长出 $n$ 个分支，末端共 $m\times n$ 个。注意积的法则要求“无论第一步怎么选，第二步的选法个数都相同”，否则就要先分类。</p>
+    <p><strong>约数公式的来历：</strong>由<span lang="ja">素因数分解</span><span class="kana" lang="ja">（そいんすうぶんかい）</span>的唯一性，$N=p^aq^br^c$ 的正约数都可以唯一写成 $p^xq^yr^z$（$0\le x\le a$，$0\le y\le b$，$0\le z\le c$）。指数 $x$ 有 $a+1$ 种选法（别忘了 $x=0$），$y,z$ 同理，再用积的法则。把 $(1+p+\dots+p^a)(1+q+\dots+q^b)(1+r+\dots+r^c)$ 展开，每一项恰好是一个约数，所以这个乘积就是约数的总和。</p>
+    <div class="box good">
+      <p><strong>补充例题 1-3（和的法则）：</strong>掷大小两颗骰子，点数之和为 $4$ 的倍数的情况有多少种？</p>
+      <ol>
+        <li>两数之和的范围是 $2$ 到 $12$，其中 $4$ 的倍数只有 $4,8,12$，这三类不会同时发生，用和的法则。</li>
+        <li>和为 $4$：$(1,3),(2,2),(3,1)$，$3$ 种。</li>
+        <li>和为 $8$：$(2,6),(3,5),(4,4),(5,3),(6,2)$，$5$ 种。</li>
+        <li>和为 $12$：$(6,6)$，$1$ 种。</li>
+        <li>合计 $3+5+1=9$。</li>
+      </ol>
+      <p>答：$9$ 种。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 1-4（约数的个数与总和）：</strong>求 $180$ 的正约数的个数、总和，以及其中奇数和偶数的个数。</p>
+      <ol>
+        <li>素因数分解：$180=2^2\cdot 3^2\cdot 5$。</li>
+        <li>个数：$(2+1)(2+1)(1+1)=18$。</li>
+        <li>总和：$(1+2+4)(1+3+9)(1+5)=7\cdot 13\cdot 6=546$。</li>
+        <li>奇数约数不含因子 $2$，即 $2$ 的指数只能取 $0$：$1\cdot 3\cdot 2=6$ 个。</li>
+        <li>偶数约数：$18-6=12$ 个。</li>
+      </ol>
+      <p>答：$18$ 个；总和 $546$；奇数 $6$ 个，偶数 $12$ 个。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>约数个数写成 $a\cdot b\cdot c$，漏掉指数取 $0$ 的情况。正确的是 $(a+1)(b+1)(c+1)$。</li>
+        <li>第一步的选择会影响第二步的个数时，仍然直接相乘。例如“千位不能为 $0$”的问题要先定有限制的位置。</li>
+        <li>分类时类别之间有重叠，却用了和的法则。有重叠就要减去交集。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>看到 <span lang="ja">約数</span><span class="kana" lang="ja">（やくすう）</span> 先做素因数分解。“奇数约数”“$k$ 的倍数的约数”都可以看成限制指数的范围。枚举和为定值的骰子题时，按第一颗的点数顺序写，不容易漏。</p>
+    </div>
   </section>
 
   <section id="perm">
@@ -256,6 +327,7 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
     <p class="jp-sub" lang="ja">順列 — 円順列・重複順列・同じものを含む順列</p>
     <p>从 $n$ 个不同元素中取 $r$ 个<strong>按顺序排成一列</strong>（<span lang="ja">順列</span>）的方法数为</p>
     $${}_n\mathrm{P}_r=n(n-1)\cdots(n-r+1)=\frac{n!}{(n-r)!},\qquad 0!=1.$$
+    <p><strong>公式的推导：</strong>排成一列相当于依次填 $r$ 个位置。第 $1$ 位有 $n$ 种，第 $2$ 位剩 $n-1$ 种……第 $r$ 位剩 $n-r+1$ 种，用积的法则相乘。$n!$（<span lang="ja">階乗</span><span class="kana" lang="ja">（かいじょう）</span>）是把全部 $n$ 个元素排好，再除以后面 $n-r$ 个位置的排法 $(n-r)!$，就得到分数形式。规定 $0!=1$ 是为了让 $r=n$ 时 ${}_n\mathrm{P}_n=\dfrac{n!}{0!}=n!$ 也成立。</p>
     <div class="tw"><table>
       <thead><tr><th>类型</th><th>公式</th><th>例子</th></tr></thead>
       <tbody>
@@ -268,6 +340,58 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
     <div class="box">
       <p><strong>常用技巧：</strong>“相邻”——把相邻的元素捆成一个再排，最后乘内部排列数。“不相邻”——先排其他元素，再把它们插入空隙。“首位不能是 $0$”——先定有限制的位置。</p>
     </div>
+    <p><strong>圆排列为什么是 $(n-1)!$？</strong>围成圆时，所有人同时转一格算同一种坐法。$n$ 个人排成一列有 $n!$ 种，而每种圆形坐法对应 $n$ 种列（从 $n$ 个位置中的任一处剪开），所以是 $\dfrac{n!}{n}=(n-1)!$。也可以理解为“先固定一个人，其余 $n-1$ 人排列”。</p>
+    <p><strong>重复排列为什么是 $n^r$？</strong>每个位置都可以独立地选 $n$ 种之一，共 $r$ 个位置，相乘得 $n^r$。要分清底数和指数：“$5$ 个人分到 $2$ 个房间”是每个人选房间，所以是 $2^5$，不是 $5^2$。</p>
+    <p><strong>含相同元素的排列为什么要除？</strong>先把相同的元素暂时当作不同的（如 $A_1,A_2,A_3$），共有 $n!$ 种。去掉编号后，同一个字符串恰好对应 $p!\,q!\,r!$ 个带编号的排列，所以除以它。这和“从 $n$ 个位置中依次选位置”的 ${}_n\mathrm{C}_p\cdot{}_{n-p}\mathrm{C}_q$ 结果相同。</p>
+    <div class="box good">
+      <p><strong>补充例题 2-1（相邻与不相邻）：</strong>男生 $3$ 人、女生 $4$ 人排成一列（所有人互相区分）。求：(1) 男生全部相邻的排法数；(2) 男生互不相邻的排法数；(3) 两端都是女生的排法数。</p>
+      <ol>
+        <li>(1) 把 $3$ 名男生捆成一个，与 $4$ 名女生共 $5$ 个对象：$5!=120$。捆内部排列 $3!=6$。合计 $120\times 6=720$。</li>
+        <li>(2) 先排 $4$ 名女生：$4!=24$。她们之间和两端形成 $5$ 个空隙，$3$ 名男生放进不同的空隙：${}_5\mathrm{P}_3=60$。合计 $24\times 60=1440$。</li>
+        <li>(3) 先定有限制的两端，从 $4$ 名女生中选 $2$ 人按顺序排：${}_4\mathrm{P}_2=12$。其余 $5$ 人排中间：$5!=120$。合计 $12\times 120=1440$。</li>
+      </ol>
+      <p>答：(1) $720$ 种；(2) $1440$ 种；(3) $1440$ 种。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 2-2（交替的圆排列）：</strong>大人 $4$ 人、小孩 $4$ 人围圆桌而坐，要求大人和小孩交替（<span lang="ja">交互に</span><span class="kana" lang="ja">（こうごに）</span>）就座，有多少种坐法？</p>
+      <ol>
+        <li>先让大人就座，圆排列：$(4-1)!=6$ 种。</li>
+        <li>大人坐好后位置已经有了区别，$4$ 个空位互不相同。</li>
+        <li>所以小孩就是普通排列，不再是圆排列：$4!=24$ 种。</li>
+        <li>合计 $6\times 24=144$。</li>
+      </ol>
+      <p>答：$144$ 种。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 2-3（重复排列与补集）：</strong>$5$ 个人分进 $A$、$B$ 两个房间，每个房间至少 $1$ 人，有多少种分法？</p>
+      <ol>
+        <li>每个人有 $2$ 种选择，不考虑限制时共 $2^5=32$ 种。</li>
+        <li>不符合要求的是“全在 $A$”和“全在 $B$”，共 $2$ 种。</li>
+        <li>$32-2=30$。</li>
+      </ol>
+      <p>答：$30$ 种。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 2-4（含相同元素的排列）：</strong>把 KAWASAKI 的 $8$ 个字母排成一列，共有多少种？其中 $3$ 个 A 全部相邻的有多少种？</p>
+      <ol>
+        <li>字母统计：A 有 $3$ 个，K 有 $2$ 个，W、S、I 各 $1$ 个，合计 $8$ 个。</li>
+        <li>全部：$\dfrac{8!}{3!\,2!}=\dfrac{40320}{12}=3360$。</li>
+        <li>把 AAA 看成一个对象。这时对象是 AAA、K、K、W、S、I，共 $6$ 个，其中 K 有 $2$ 个：$\dfrac{6!}{2!}=360$。AAA 内部的字母相同，不用再乘。</li>
+      </ol>
+      <p>答：$3360$ 种；$360$ 种。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>“不相邻”用“全部 − 全部相邻”来算。$3$ 人以上时，“互不相邻”与“全部相邻”不是对立关系，还有“恰好两人相邻”的情况。</li>
+        <li>圆排列第二批人继续用 $(n-1)!$。第一批坐好后位置已经可以区分，第二批应该用 $n!$。</li>
+        <li>把 $n^r$ 的底数和指数弄反：谁在“做选择”，谁就是指数。</li>
+        <li>相同元素捆绑后又乘内部排列。相同的元素交换后不产生新的排列。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>题干关键词：「<span lang="ja">隣り合う</span><span class="kana" lang="ja">（となりあう）</span>」相邻，「<span lang="ja">隣り合わない</span><span class="kana" lang="ja">（となりあわない）</span>」不相邻，「<span lang="ja">並べる</span><span class="kana" lang="ja">（ならべる）</span>」排列，「<span lang="ja">区別する</span><span class="kana" lang="ja">（くべつする）</span>」区分。「<span lang="ja">円卓</span><span class="kana" lang="ja">（えんたく）</span>」的题默认旋转后相同的算一种。先确认答案框的位数，能帮助判断是否多乘或少除了阶乘。</p>
+    </div>
   </section>
 
   <section id="comb">
@@ -279,6 +403,31 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
       <div>$${}_n\mathrm{C}_r={}_n\mathrm{C}_{n-r}$$</div>
       <div>$${}_n\mathrm{C}_r={}_{n-1}\mathrm{C}_{r-1}+{}_{n-1}\mathrm{C}_{r}$$</div>
     </div>
+    <p><strong>公式的推导：</strong>同一件事数两遍。排列可以分两步完成：先不计顺序选出 $r$ 个（${}_n\mathrm{C}_r$ 种），再把这 $r$ 个排好（$r!$ 种），所以 ${}_n\mathrm{P}_r={}_n\mathrm{C}_r\cdot r!$。两边除以 $r!$ 就得到组合数公式。</p>
+    <p><strong>${}_n\mathrm{C}_r={}_n\mathrm{C}_{n-r}$：</strong>选出 $r$ 个，等于决定留下哪 $n-r$ 个，两种选法一一对应。计算时可以用它把 $r$ 变小，例如 ${}_{10}\mathrm{C}_8={}_{10}\mathrm{C}_2=45$。</p>
+    <p><strong>${}_n\mathrm{C}_r={}_{n-1}\mathrm{C}_{r-1}+{}_{n-1}\mathrm{C}_r$：</strong>盯住某个特定元素 $a$。选了 $a$，其余 $r-1$ 个从 $n-1$ 个中选；没选 $a$，$r$ 个全从 $n-1$ 个中选。两类互斥，相加即得。这就是<span lang="ja">パスカルの三角形</span><span class="kana" lang="ja">（パスカルのさんかくけい）</span>的规律，例如 ${}_7\mathrm{C}_3=35={}_6\mathrm{C}_2+{}_6\mathrm{C}_3=15+20$。</p>
+    <div class="box good">
+      <p><strong>补充例题 3-1（多边形中的组合）：</strong>以正八边形（<span lang="ja">正八角形</span><span class="kana" lang="ja">（せいはちかっけい）</span>）的顶点中的 $3$ 个为顶点作三角形。求：(1) 三角形的个数；(2) <span lang="ja">対角線</span><span class="kana" lang="ja">（たいかくせん）</span>的条数；(3) 与正八边形恰有 $2$ 条、恰有 $1$ 条、没有公共边的三角形各有多少个。</p>
+      <ol>
+        <li>(1) 任意 $3$ 个顶点都不共线：${}_8\mathrm{C}_3=56$。</li>
+        <li>(2) 任取两点得 ${}_8\mathrm{C}_2=28$ 条线段，减去 $8$ 条边：$20$ 条。</li>
+        <li>(3) 恰有 $2$ 条公共边：$3$ 个顶点连续，由中间的顶点决定，$8$ 个。</li>
+        <li>恰有 $1$ 条公共边：先选这条边（$8$ 种）；第三个顶点不能是这条边的两个端点，也不能与它们相邻，所以有 $8-2-2=4$ 种。合计 $8\times 4=32$ 个。</li>
+        <li>没有公共边：$56-8-32=16$ 个。</li>
+      </ol>
+      <p>答：(1) $56$ 个；(2) $20$ 条；(3) $8$ 个，$32$ 个，$16$ 个。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 ${}_n\mathrm{C}_r$ 的分母写成 $(n-r)!$，漏掉 $r!$。可用 ${}_n\mathrm{C}_1=n$ 快速检查。</li>
+        <li>题目实际要排序（如“选出后担任班长和副班长”）却只用了 $\mathrm{C}$。这时应为 ${}_n\mathrm{C}_2\cdot 2!={}_n\mathrm{P}_2$。</li>
+        <li>数多边形问题时，把“恰有 $1$ 条公共边”的第三点算成 $n-2$ 种，这样会把恰有 $2$ 条公共边的也算进去。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>日语中「<span lang="ja">選ぶ</span><span class="kana" lang="ja">（えらぶ）</span>」通常表示不计顺序，「<span lang="ja">並べる</span><span class="kana" lang="ja">（ならべる）</span>」表示要计顺序。同时取出（「<span lang="ja">同時に</span><span class="kana" lang="ja">（どうじに）</span>」）一般用组合；一个一个取出但只问结果时，用组合也一样可以。多边形题先想“$3$ 点决定一个三角形”。</p>
+    </div>
     <h3>三种常见题型</h3>
     <ul>
       <li><strong>分组</strong>（<span lang="ja">組分け</span>）：组与组无区别且人数相同时，要除以组数的阶乘。$9$ 人平分成 $3$ 组：$\dfrac{{}_9\mathrm{C}_3\cdot{}_6\mathrm{C}_3\cdot{}_3\mathrm{C}_3}{3!}=280$ 种。</li>
@@ -287,6 +436,49 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
     </ul>
     <div class="box warn">
       <p><strong>易错：</strong>“选出后要不要排”决定用 $\mathrm{P}$ 还是 $\mathrm{C}$。“至少一个”的题目不要写成“先选一个再任选其余”，那样会重复计数；应使用“全部 − 一个也没有”。</p>
+    </div>
+    <p><strong>分组为什么有时要除、有时不除？</strong>$9$ 人依次选 $3,3,3$ 人时，算式默认第 $1$ 组、第 $2$ 组、第 $3$ 组是有区别的。如果组没有名字，同一种分法被数了 $3!$ 次，因此要除以 $3!$。人数不同的组本身可以区分，不用除；人数相同的 $m$ 组才除以 $m!$。</p>
+    <p><strong>最短路径为什么是组合数？</strong>走法相当于 $a$ 个“右”和 $b$ 个“上”的一个排列，只要决定 $a+b$ 步中哪 $a$ 步向右，其余就确定了，所以是 ${}_{a+b}\mathrm{C}_a$。“经过点 $\mathrm{P}$”用积的法则：起点到 $\mathrm{P}$ 的走法数 $\times$ $\mathrm{P}$ 到终点的走法数。</p>
+    <p><strong>隔板法为什么成立？</strong>$6$ 个○排成一列，$2$ 根隔板把它们分成三段，三段的个数依次就是 $x,y,z$；反过来，每组解也对应唯一一种排列。排列共有 $8$ 个位置，决定隔板放在哪 $2$ 个位置：${}_8\mathrm{C}_2$。若要求 $x,y,z\ge 1$，隔板只能放在○之间的空隙中，且不能放在同一空隙。</p>
+    <div class="box good">
+      <p><strong>补充例题 3-2（分组）：</strong>$7$ 人分组。(1) 分进 $A$ 组 $3$ 人、$B$ 组 $2$ 人、$C$ 组 $2$ 人，有多少种？(2) 分成 $3$ 人、$2$ 人、$2$ 人的三组（组没有名字），有多少种？</p>
+      <ol>
+        <li>(1) 组有名字：${}_7\mathrm{C}_3\cdot{}_4\mathrm{C}_2\cdot{}_2\mathrm{C}_2=35\cdot 6\cdot 1=210$。</li>
+        <li>(2) 组没有名字时，$3$ 人组可由人数区分，但两个 $2$ 人组无法区分。</li>
+        <li>交换两个 $2$ 人组得到的是同一种分法，所以每种分法在 (1) 中被数了 $2!$ 次：$\dfrac{210}{2!}=105$。</li>
+      </ol>
+      <p>答：(1) $210$ 种；(2) $105$ 种。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 3-3（经过与不经过）：</strong>在方格路上从 $\mathrm{O}(0,0)$ 走到 $(6,4)$，每步向右或向上 $1$ 格。求经过 $\mathrm{P}(2,2)$ 但不经过 $\mathrm{Q}(4,3)$ 的走法数。</p>
+      <ol>
+        <li>经过 $\mathrm{P}$：$\mathrm{O}\to\mathrm{P}$ 是右 $2$ 上 $2$，${}_4\mathrm{C}_2=6$ 种；$\mathrm{P}\to$ 终点是右 $4$ 上 $2$，${}_6\mathrm{C}_2=15$ 种。合计 $6\times 15=90$ 种。</li>
+        <li>同时经过 $\mathrm{P},\mathrm{Q}$：$\mathrm{P}\to\mathrm{Q}$ 是右 $2$ 上 $1$，${}_3\mathrm{C}_1=3$ 种；$\mathrm{Q}\to$ 终点是右 $2$ 上 $1$，$3$ 种。合计 $6\times 3\times 3=54$ 种。</li>
+        <li>所求为 $90-54=36$。</li>
+      </ol>
+      <p>答：$36$ 种。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 3-4（重复组合）：</strong>苹果、梨、橘子三种水果共买 $8$ 个（同种水果没有区别）。(1) 可以有不买的种类，有多少种买法？(2) 每种至少买 $1$ 个，有多少种买法？</p>
+      <ol>
+        <li>设买的个数为 $x,y,z$，则 $x+y+z=8$。</li>
+        <li>(1) $x,y,z\ge 0$：$8$ 个○和 $2$ 根隔板，共 $10$ 个位置，${}_{10}\mathrm{C}_2=45$。</li>
+        <li>(2) 令 $x=x^\prime+1$，$y=y^\prime+1$，$z=z^\prime+1$，则 $x^\prime+y^\prime+z^\prime=5$，$x^\prime,y^\prime,z^\prime\ge 0$，所以是 ${}_7\mathrm{C}_2=21$。</li>
+        <li>也可以直接看：$8$ 个○之间有 $7$ 个空隙，选 $2$ 个放隔板，同样是 ${}_7\mathrm{C}_2=21$。</li>
+      </ol>
+      <p>答：(1) $45$ 种；(2) $21$ 种。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把有名字的组也除以组数的阶乘，或者把没有名字的同人数组忘了除。</li>
+        <li>人数不全相同时除错：$3,2,2$ 人的分组只除以 $2!$，不是 $3!$。</li>
+        <li>“不经过 $\mathrm{Q}$”直接从走法中划去路线，容易漏算。用“全部 − 经过”最稳。</li>
+        <li>把非负整数解和正整数解的公式混用。非负是 ${}_{n+k-1}\mathrm{C}_{k-1}$，正整数是 ${}_{n-1}\mathrm{C}_{k-1}$（$k$ 个未知数，和为 $n$）。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>看到「<span lang="ja">区別しない</span><span class="kana" lang="ja">（くべつしない）</span>」的组，先按有名字算，再除以重复次数。最短路径题常问“经过”“不经过”“两点都经过”，把路线分段再相乘最快。不定方程注意看清 <span lang="ja">正の整数</span><span class="kana" lang="ja">（せいのせいすう）</span>（正整数）还是 <span lang="ja">0 以上の整数</span><span class="kana" lang="ja">（ゼロいじょうのせいすう）</span>（非负整数）。</p>
     </div>
   </section>
 
@@ -306,6 +498,48 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
     <div class="box warn">
       <p><strong>易错：</strong>算概率时，即使是同色的球、相同的骰子，也要当作<strong>互相可区分</strong>来数，否则各结果不等可能。例如两枚硬币的结果是（正正、正反、反正、反反）四种，而不是“两正、一正一反、两反”三种。</p>
     </div>
+    <p><strong>公式为什么成立？</strong>等可能时，概率就是“符合条件的基本结果占全部结果的比例”。这些结果叫<span lang="ja">根元事象</span><span class="kana" lang="ja">（こんげんじしょう）</span>。所以集合的计数公式除以 $n(U)$ 就是概率公式：$n(A\cup B)=n(A)+n(B)-n(A\cap B)$ 两边同除以 $n(U)$，得到和事件公式；$n(\overline{A})=n(U)-n(A)$ 同除以 $n(U)$，得到对立事件公式。互斥即 $A\cap B=\varnothing$，交集的概率为 $0$，所以可以直接相加。</p>
+    <p><strong>什么时候用对立事件？</strong>题目出现“至少”（「<span lang="ja">少なくとも</span><span class="kana" lang="ja">（すくなくとも）</span>」）时，正面要分很多类，而反面（“一个也没有”）通常只有一种情况。积的条件也一样：“积为 $3$ 的倍数”的反面是“每个因数都不是 $3$ 的倍数”。</p>
+    <div class="box good">
+      <p><strong>补充例题 4-1（骰子与对立事件）：</strong>掷大小两颗骰子。求：(1) 点数之积为 $3$ 的倍数的概率；(2) 点数之和为 $7$ 或 $11$ 的概率。</p>
+      <ol>
+        <li>全部结果共 $6^2=36$ 种，等可能。</li>
+        <li>(1) 反面是“两颗都不是 $3$ 的倍数”。每颗只能是 $1,2,4,5$，共 $4^2=16$ 种。</li>
+        <li>所以概率为 $1-\dfrac{16}{36}=\dfrac{5}{9}$。</li>
+        <li>(2) 和为 $7$ 有 $6$ 种，和为 $11$ 有 $(5,6),(6,5)$ 共 $2$ 种。两者互斥，概率为 $\dfrac{6+2}{36}=\dfrac29$。</li>
+      </ol>
+      <p>答：(1) $\dfrac59$；(2) $\dfrac29$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 4-2（同色与异色）：</strong>袋中有红球 $5$ 个、白球 $3$ 个，同时取出 $2$ 个。求 $2$ 个同色的概率和异色的概率。</p>
+      <ol>
+        <li>把球全部当作可区分的，取法共 ${}_8\mathrm{C}_2=28$ 种，等可能。</li>
+        <li>同色分两种互斥的情况：全红 ${}_5\mathrm{C}_2=10$ 种，全白 ${}_3\mathrm{C}_2=3$ 种，合计 $13$ 种，概率为 $\dfrac{13}{28}$。</li>
+        <li>异色：$5\times 3=15$ 种，概率为 $\dfrac{15}{28}$。</li>
+        <li>检验：同色与异色互为对立事件，$\dfrac{13}{28}+\dfrac{15}{28}=1$。</li>
+      </ol>
+      <p>答：同色 $\dfrac{13}{28}$，异色 $\dfrac{15}{28}$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 4-3（和事件）：</strong>从写有 $1$ 到 $30$ 的 $30$ 张卡片中抽 $1$ 张，求数字是 $4$ 或 $6$ 的倍数的概率。</p>
+      <ol>
+        <li>$4$ 的倍数有 $\left\lfloor\dfrac{30}{4}\right\rfloor=7$ 张，$6$ 的倍数有 $5$ 张。</li>
+        <li>两个事件不互斥：同时发生即 $12$ 的倍数，有 $12,24$ 共 $2$ 张。</li>
+        <li>概率为 $\dfrac{7}{30}+\dfrac{5}{30}-\dfrac{2}{30}=\dfrac{10}{30}=\dfrac13$。</li>
+      </ol>
+      <p>答：$\dfrac13$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>没有确认互斥就直接把概率相加。可以先问：两件事能否同时发生？</li>
+        <li>“至少一个”写成 $1-P(\text{全部都是})$。对立面是“一个也没有”，不是“全部都是”。</li>
+        <li>分母和分子用不同的计数方式：分母用组合，分子却用排列。两者必须统一。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>「<span lang="ja">少なくとも</span><span class="kana" lang="ja">（すくなくとも）</span>」先想<span lang="ja">余事象</span><span class="kana" lang="ja">（よじしょう）</span>；「<span lang="ja">同時に</span><span class="kana" lang="ja">（どうじに）</span>」取球用 $\mathrm{C}$ 算分子分母。题中的「<span lang="ja">目</span><span class="kana" lang="ja">（め）</span>」是骰子的点数，「<span lang="ja">表</span><span class="kana" lang="ja">（おもて）</span>」「<span lang="ja">裏</span><span class="kana" lang="ja">（うら）</span>」是硬币的正反面。答案要约分到最简后才能填入答案框。</p>
+    </div>
   </section>
 
   <section id="indep">
@@ -318,6 +552,49 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
     $${}_n\mathrm{C}_k\,p^k(1-p)^{n-k}\qquad(k=0,1,\dots,n).$$
     <p>${}_n\mathrm{C}_k$ 的含义是“$n$ 次中哪 $k$ 次发生”。例如掷骰子 $5$ 次，恰好出现 $2$ 次 $1$ 点的概率是 ${}_5\mathrm{C}_2\left(\dfrac16\right)^2\left(\dfrac56\right)^3=\dfrac{625}{3888}$。</p>
 
+    <p><strong>积的公式为什么成立？</strong>第一次试验有 $a$ 种等可能结果，$A$ 占 $a_1$ 种；第二次有 $b$ 种，$B$ 占 $b_1$ 种。两次合起来共有 $ab$ 种等可能结果，其中 $A,B$ 都发生的有 $a_1b_1$ 种，因此概率为 $\dfrac{a_1b_1}{ab}=\dfrac{a_1}{a}\cdot\dfrac{b_1}{b}=P(A)P(B)$。</p>
+    <p><strong>反复试验的公式为什么成立？</strong>$A$ 恰好发生 $k$ 次的一种具体顺序（如“发生、不发生、发生……”），由于各次独立，概率是 $p^k(1-p)^{n-k}$。这样的顺序共有 ${}_n\mathrm{C}_k$ 种，彼此互斥，且概率都相同，所以相加就是相乘。</p>
+    <p><strong>独立与互斥不同：</strong>互斥是“不能同时发生”，独立是“一件发生与否不影响另一件的概率”。$P(A),P(B)$ 都大于 $0$ 时，互斥的事件一定不独立，因为 $P(A\cap B)=0\ne P(A)P(B)$。反过来，掷一颗骰子，$A$ 为偶数、$B$ 为 $3$ 的倍数时，$P(A\cap B)=\dfrac16=\dfrac12\cdot\dfrac13$，两者独立，却可以同时发生。</p>
+    <div class="box good">
+      <p><strong>补充例题 5-1（两人射击）：</strong>甲、乙各射击一次，互不影响。命中率分别为 $\dfrac23$、$\dfrac34$。求恰有 $1$ 人命中的概率和至少 $1$ 人命中的概率。</p>
+      <ol>
+        <li>恰有 $1$ 人命中，分“甲中乙不中”和“甲不中乙中”两种互斥情况。</li>
+        <li>甲中乙不中：$\dfrac23\cdot\dfrac14=\dfrac{2}{12}$。甲不中乙中：$\dfrac13\cdot\dfrac34=\dfrac{3}{12}$。</li>
+        <li>相加得 $\dfrac{5}{12}$。</li>
+        <li>至少 $1$ 人命中的反面是两人都不中：$1-\dfrac13\cdot\dfrac14=\dfrac{11}{12}$。</li>
+      </ol>
+      <p>答：$\dfrac{5}{12}$；$\dfrac{11}{12}$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 5-2（硬币）：</strong>掷硬币 $6$ 次。求正面恰好出现 $4$ 次的概率和至少出现 $2$ 次的概率。</p>
+      <ol>
+        <li>恰好 $4$ 次：${}_6\mathrm{C}_4\left(\dfrac12\right)^4\left(\dfrac12\right)^2=\dfrac{15}{64}$。</li>
+        <li>“至少 $2$ 次”的反面是“$0$ 次或 $1$ 次”，其概率为 $\dfrac{{}_6\mathrm{C}_0+{}_6\mathrm{C}_1}{64}=\dfrac{1+6}{64}=\dfrac{7}{64}$。</li>
+        <li>所求为 $1-\dfrac{7}{64}=\dfrac{57}{64}$。</li>
+      </ol>
+      <p>答：$\dfrac{15}{64}$；$\dfrac{57}{64}$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 5-3（最后一次已确定）：</strong>反复掷一颗骰子，求第 $3$ 次出现 $6$ 点恰好发生在第 $5$ 次投掷的概率。</p>
+      <ol>
+        <li>条件等于“前 $4$ 次中 $6$ 点恰好出现 $2$ 次”并且“第 $5$ 次出现 $6$ 点”，两部分独立。</li>
+        <li>前 $4$ 次：${}_4\mathrm{C}_2\left(\dfrac16\right)^2\left(\dfrac56\right)^2=\dfrac{150}{1296}$。</li>
+        <li>再乘第 $5$ 次的 $\dfrac16$：$\dfrac{150}{1296}\cdot\dfrac16=\dfrac{150}{7776}=\dfrac{25}{1296}$。</li>
+      </ol>
+      <p>答：$\dfrac{25}{1296}$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>漏掉系数 ${}_n\mathrm{C}_k$，只写 $p^k(1-p)^{n-k}$。那只是一种特定顺序的概率。</li>
+        <li>把最后一次已确定的题（比赛结束、第 $k$ 次出现）写成 ${}_n\mathrm{C}_k$。最后一次的结果固定，只有前 $n-1$ 次可以调换，应该用 ${}_{n-1}\mathrm{C}_{k-1}$。</li>
+        <li>把独立当成互斥，用加法算“同时发生”的概率。</li>
+        <li>不放回地取球时直接用反复试验公式。不放回时每次的概率会变化，各次不独立。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>题干的「<span lang="ja">ちょうど</span>」($k$ 回) 表示恰好，「<span lang="ja">多くとも</span><span class="kana" lang="ja">（おおくとも）</span>」表示至多。遇到「<span lang="ja">もとに戻す</span><span class="kana" lang="ja">（もとにもどす）</span>」（放回）才是反复试验。数轴移动、比赛胜负类题目，先设发生次数为 $k$，把结果写成 $k$ 的式子。</p>
+    </div>
     <div class="explorer" id="binom">
       <h3 style="margin-top:0">反复试验探索器</h3>
       <div class="ex-head" id="presets"></div>
@@ -342,6 +619,28 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
       </div>
       <p class="status" id="b-status" aria-live="polite"></p>
     </div>
+    <h3>读懂探索器：哪个次数最可能？</h3>
+    <p>相邻两项之比能说明柱状图的形状。设 $P_k={}_n\mathrm{C}_kp^k(1-p)^{n-k}$，约分后得 $\dfrac{P_{k+1}}{P_k}=\dfrac{n-k}{k+1}\cdot\dfrac{p}{1-p}$。随着 $k$ 增大，这个比值变小，所以柱子先升后降；比值大于 $1$ 的范围内继续上升。比值恰好等于 $1$ 时，相邻两根柱子一样高。可以在探索器中拖动 $n,p$ 观察。例如 $n=10$，$p=\dfrac12$ 时最高的柱子是 $k=5$，其概率为 ${}_{10}\mathrm{C}_5\left(\dfrac12\right)^{10}=\dfrac{63}{256}$，约 $0.246$，并没有想象中那么大。</p>
+    <div class="box good">
+      <p><strong>补充例题 5-4（最可能的次数）：</strong>掷骰子 $5$ 次（探索器的第一个预设），设 $1$ 点出现的次数为 $k$。比较 $k=0,1,2$ 的概率，并求 $k$ 的期望值。</p>
+      <ol>
+        <li>$P_0=\left(\dfrac56\right)^5=\dfrac{3125}{7776}$。</li>
+        <li>$P_1={}_5\mathrm{C}_1\cdot\dfrac16\left(\dfrac56\right)^4=5\cdot\dfrac{625}{7776}=\dfrac{3125}{7776}$，与 $P_0$ 相等。这也可由比值公式看出：$\dfrac{P_1}{P_0}=\dfrac51\cdot\dfrac{1/6}{5/6}=1$。</li>
+        <li>$P_2=\dfrac{625}{3888}=\dfrac{1250}{7776}$，比前两者小。</li>
+        <li>期望值：$np=5\cdot\dfrac16=\dfrac56$。</li>
+      </ol>
+      <p>答：$P_0=P_1=\dfrac{3125}{7776}$，大于 $P_2=\dfrac{625}{3888}$；期望值为 $\dfrac56$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把期望值 $np$ 当成“最可能发生的次数”。上例中 $np=\dfrac56$ 不是整数，根本取不到。</li>
+        <li>把模拟的频率当成理论概率。频率每次模拟都会变化，只是轮数越多通常越接近概率。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>比较 <span lang="ja">反復試行</span><span class="kana" lang="ja">（はんぷくしこう）</span> 中各次数的大小时，不要逐个算出分数，看相邻项之比 $\dfrac{P_{k+1}}{P_k}$ 与 $1$ 的大小即可，计算量小得多。</p>
+    </div>
   </section>
 
   <section id="cond">
@@ -353,12 +652,66 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
     <div class="box good">
       <p><strong>例：</strong>掷两颗骰子，已知第一颗为偶数（$18$ 种），和为 $8$ 的只有 $(2,6),(4,4),(6,2)$，所以条件概率是 $\dfrac{3}{18}=\dfrac16$。</p>
     </div>
+    <p><strong>为什么是这个定义？</strong>已知 $A$ 发生，$A$ 以外的结果就全部被排除了，$A$ 成了新的全集。在 $A$ 中再看 $B$ 占多少比例，符合条件的只有 $A\cap B$，所以比例是 $\dfrac{n(A\cap B)}{n(A)}$。分子分母同除以 $n(U)$，就得到 $\dfrac{P(A\cap B)}{P(A)}$。</p>
+    <p><strong>乘法定理的用法：</strong>按时间顺序“先 $A$ 后 $B$”时，$P_A(B)$ 往往可以直接从第二步的情境读出，例如不放回地取球。若 $P_A(B)=P(B)$，即 $A$ 发生不影响 $B$，乘法定理就退化为独立时的 $P(A\cap B)=P(A)P(B)$。</p>
+    <div class="box good">
+      <p><strong>补充例题 6-1（条件不可交换）：</strong>掷大小两颗骰子。设 $A$ 为“点数之和不小于 $10$”，$B$ 为“至少一颗是 $6$”。求 $P_A(B)$ 和 $P_B(A)$。</p>
+      <ol>
+        <li>$A$ 有 $(4,6),(5,5),(6,4),(5,6),(6,5),(6,6)$，共 $6$ 种。</li>
+        <li>$B$ 有 $36-5^2=11$ 种。</li>
+        <li>$A\cap B$ 就是 $A$ 中去掉 $(5,5)$，共 $5$ 种。</li>
+        <li>$P_A(B)=\dfrac{n(A\cap B)}{n(A)}=\dfrac56$，$P_B(A)=\dfrac{n(A\cap B)}{n(B)}=\dfrac{5}{11}$。</li>
+      </ol>
+      <p>答：$P_A(B)=\dfrac56$，$P_B(A)=\dfrac{5}{11}$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 6-2（不放回与乘法定理）：</strong>袋中有红球 $5$ 个、白球 $3$ 个，不放回地依次取 $2$ 个。求：(1) 两次都是红球的概率；(2) 第 $2$ 次是红球的概率；(3) 已知第 $2$ 次是红球时，第 $1$ 次也是红球的条件概率。</p>
+      <ol>
+        <li>(1) 由乘法定理：$\dfrac58\cdot\dfrac47=\dfrac{5}{14}$。</li>
+        <li>(2) 按第 $1$ 次的颜色分类：$\dfrac58\cdot\dfrac47+\dfrac38\cdot\dfrac57=\dfrac{20+15}{56}=\dfrac58$。它与第 $1$ 次是红球的概率相同（抽签公平性）。</li>
+        <li>(3) $\dfrac{5/14}{5/8}=\dfrac{8}{14}=\dfrac47$。</li>
+      </ol>
+      <p>答：(1) $\dfrac{5}{14}$；(2) $\dfrac58$；(3) $\dfrac47$。</p>
+    </div>
     <h3>“由结果推原因”</h3>
     <p>结果 $B$ 可能来自互斥的原因 $A_1,A_2$ 时，先分情况求 $P(B)$，再代入定义：</p>
     $$P(B)=P(A_1)P_{A_1}(B)+P(A_2)P_{A_2}(B),\qquad P_B(A_1)=\frac{P(A_1)P_{A_1}(B)}{P(B)}.$$
     <p>例题 4 就是这种结构。</p>
     <div class="box warn">
       <p><strong>易错：</strong>$P_A(B)$ 与 $P_B(A)$ 一般不相等，要看清“已知”的是哪件事。日语题目常用「$A$ であったとき、$B$ である条件付き確率」，“とき”前面的是条件。</p>
+    </div>
+    <p><strong>公式的来历：</strong>$A_1,A_2$ 互斥且必有其一发生时，$B$ 可以拆成互斥的 $A_1\cap B$ 和 $A_2\cap B$，分别用乘法定理就得到 $P(B)$ 的式子。求 $P_B(A_1)$ 时再代入条件概率的定义，分子就是其中“来自 $A_1$”的那一支。这是“按路径计算、再看某条路径占比”的做法，建议画树形图。这种问题在日语书里也叫<span lang="ja">原因の確率</span><span class="kana" lang="ja">（げんいんのかくりつ）</span>。</p>
+    <div class="box good">
+      <p><strong>补充例题 6-3（次品来自哪个工厂）：</strong>某产品有 $60\%$ 由工厂 $A$ 生产、$40\%$ 由工厂 $B$ 生产，<span lang="ja">不良品</span><span class="kana" lang="ja">（ふりょうひん）</span>（次品）率分别为 $2\%$ 和 $5\%$。任取一件是次品，求它的概率，以及已知是次品时它来自工厂 $A$ 的概率。</p>
+      <ol>
+        <li>来自 $A$ 且为次品：$\dfrac{6}{10}\cdot\dfrac{2}{100}=\dfrac{12}{1000}$。</li>
+        <li>来自 $B$ 且为次品：$\dfrac{4}{10}\cdot\dfrac{5}{100}=\dfrac{20}{1000}$。</li>
+        <li>次品的概率：$\dfrac{12+20}{1000}=\dfrac{32}{1000}=\dfrac{4}{125}$。</li>
+        <li>所求占比：$\dfrac{12}{32}=\dfrac38$。</li>
+      </ol>
+      <p>答：$\dfrac{4}{125}$；$\dfrac38$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 6-4（检查结果的可信度）：</strong>某病的患病率为 $1\%$。某检查对患者呈阳性的概率是 $90\%$，对非患者呈阳性的概率是 $10\%$。已知某人呈阳性，求他确实患病的条件概率。</p>
+      <ol>
+        <li>患病且阳性：$\dfrac{1}{100}\cdot\dfrac{90}{100}=\dfrac{90}{10000}$。</li>
+        <li>未患病且阳性：$\dfrac{99}{100}\cdot\dfrac{10}{100}=\dfrac{990}{10000}$。</li>
+        <li>阳性的概率合计为 $\dfrac{1080}{10000}$。</li>
+        <li>所求为 $\dfrac{90}{1080}=\dfrac{1}{12}$。非患者的人数远多于患者，所以阳性者中大部分其实没有患病。</li>
+      </ol>
+      <p>答：$\dfrac{1}{12}$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $P_A(B)$ 算成 $P(A\cap B)$，忘了除以条件的概率。</li>
+        <li>把“次品率 $2\%$”当成“次品中来自 $A$ 的比例”。前者是 $P_A(B)$，后者才是 $P_B(A)$。</li>
+        <li>求 $P(B)$ 时漏掉一条路径。所有原因都要加起来。</li>
+        <li>把题中所有百分数直接相加或平均，没有按各原因的比例加权。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>看到「〜であったとき」「〜が<span lang="ja">わかったとき</span>」，就是条件概率，分母放条件。题中数据为百分数时，可以设总数为 $1000$ 或 $10000$，用人数或件数计算，能减少分数约分的麻烦。</p>
     </div>
   </section>
 
@@ -375,6 +728,50 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
     <p>期望奖金：$600\cdot\dfrac16+150\cdot\dfrac13+0\cdot\dfrac12=150$ 円。类似地，掷一颗骰子点数的期望是 $\dfrac72$，掷两枚硬币正面数的期望是 $1$。</p>
     <div class="box">
       <p><strong>解题步骤：</strong>① 列出所有可能的取值；② 求每个值的概率；③ 用“概率之和为 $1$”检查；④ 代入公式。期望值不一定是实际能取到的值（如 $\dfrac72$）。上面的探索器也显示：反复试验中发生次数的期望是 $np$，这与项目 13「確率分布」相衔接。</p>
+    </div>
+    <p><strong>为什么是“值 × 概率”的和？</strong>设试验进行 $N$ 次（$N$ 很大），值 $x_k$ 大约出现 $Np_k$ 次。所有结果的平均值约为 $\dfrac{x_1Np_1+\dots+x_nNp_n}{N}=\sum x_kp_k$，所以期望值就是“长期平均”，也可理解为以概率为权重的加权平均。</p>
+    <p><strong>两个常用性质：</strong>① 把每个值变为 $ax+b$ 时，$\sum(ax_k+b)p_k=a\sum x_kp_k+b\sum p_k=aE+b$，因为概率之和为 $1$。② 和的期望等于期望的和，$E(X+Y)=E(X)+E(Y)$，这一点即使 $X,Y$ 不独立也成立。掷两颗骰子，点数和的期望就是 $\dfrac72+\dfrac72=7$，不必列 $11$ 个值。</p>
+    <div class="box good">
+      <p><strong>补充例题 7-1（取球数的期望）：</strong>袋中有红球 $3$ 个、白球 $2$ 个，同时取出 $2$ 个。求取出红球个数 $X$ 的期望值。</p>
+      <ol>
+        <li>全部取法：${}_5\mathrm{C}_2=10$ 种。</li>
+        <li>$X=0$：${}_2\mathrm{C}_2=1$ 种。$X=1$：$3\times 2=6$ 种。$X=2$：${}_3\mathrm{C}_2=3$ 种。</li>
+        <li>概率分别为 $\dfrac{1}{10},\dfrac{6}{10},\dfrac{3}{10}$，合计为 $1$，检查无误。</li>
+        <li>$E=0\cdot\dfrac{1}{10}+1\cdot\dfrac{6}{10}+2\cdot\dfrac{3}{10}=\dfrac{12}{10}=\dfrac65$。</li>
+        <li>验算：每个球被取到的概率都是 $\dfrac25$，$3$ 个红球合计 $3\cdot\dfrac25=\dfrac65$。</li>
+      </ol>
+      <p>答：$\dfrac65$ 个。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 7-2（游戏是否有利）：</strong><span lang="ja">参加費</span><span class="kana" lang="ja">（さんかひ）</span> $100$ 円。掷两颗骰子，点数之和为 $7$ 得 $300$ 円，点数相同得 $200$ 円，其他情况得 $0$ 円。这个游戏对参加者有利吗？</p>
+      <ol>
+        <li>和为 $7$ 有 $6$ 种，点数相同有 $6$ 种。点数相同时和是偶数，所以两者互斥。</li>
+        <li>其余有 $36-12=24$ 种，奖金为 $0$。</li>
+        <li>奖金的期望：$300\cdot\dfrac{6}{36}+200\cdot\dfrac{6}{36}=50+\dfrac{100}{3}=\dfrac{250}{3}$ 円，约 $83.3$ 円。</li>
+        <li>$\dfrac{250}{3}-100=-\dfrac{50}{3}$，平均每局亏损约 $16.7$ 円。</li>
+      </ol>
+      <p>答：奖金期望为 $\dfrac{250}{3}$ 円，小于参加费，对参加者<span lang="ja">不利</span><span class="kana" lang="ja">（ふり）</span>。</p>
+    </div>
+    <div class="box good">
+      <p><strong>补充例题 7-3（用性质简化）：</strong>掷一颗骰子，设点数为 $X$。若得分为 $2X+3$，求得分的期望值。</p>
+      <ol>
+        <li>$X$ 的期望：$\dfrac{1+2+3+4+5+6}{6}=\dfrac72$。</li>
+        <li>由 $E(aX+b)=aE(X)+b$：$2\cdot\dfrac72+3=10$。</li>
+        <li>直接验算：得分为 $5,7,9,11,13,15$，平均为 $\dfrac{60}{6}=10$。</li>
+      </ol>
+      <p>答：$10$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>漏掉值为 $0$ 的情况，导致概率之和不等于 $1$。值为 $0$ 对和没有贡献，但应该用它来检查。</li>
+        <li>以为期望值一定是能实际取到的值，或者是“最可能出现的值”。</li>
+        <li>把各值直接平均。只有各值等可能时才能这样做，一般要按概率加权。</li>
+        <li>把 $E(XY)$ 拆成 $E(X)E(Y)$。这一般只在独立时才成立，和的拆分则不需要独立。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>「<span lang="ja">期待値</span><span class="kana" lang="ja">（きたいち）</span>を求めよ」时，先写分布表。「<span lang="ja">賞金</span><span class="kana" lang="ja">（しょうきん）</span>」类的题要看清是否要减去参加费。求和的期望时，试试把总量拆成每个对象的贡献，常常能快速验算。</p>
     </div>
   </section>
 
@@ -399,6 +796,7 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
         <p>(2) 个位为 $0$：${}_5\mathrm{P}_3=60$。个位为 $2$ 或 $4$：个位 $2$ 种，千位 $4$ 种（不含 $0$ 和个位数字），中间 ${}_4\mathrm{P}_2=12$，共 $2\times4\times12=96$。合计 $156$。</p>
         <p>(3) 个位为 $0$：$60$。个位为 $5$：$4\times 12=48$。合计 $108$。</p>
         <p>(4) $6$ 个数字之和为 $15$，所以只要去掉的两个数字之和是 $3$ 的倍数。这样的两数有 $\{0,3\},\{1,2\},\{1,5\},\{2,4\},\{4,5\}$，共 $5$ 种。去掉 $\{0,3\}$ 时余下 $\{1,2,4,5\}$ 不含 $0$，可排 $4!=24$ 个；其余 $4$ 种都含 $0$，各有 $3\times 3!=18$ 个。合计 $24+4\times18=96$。</p>
+        <p><strong>详解要点：</strong>(1)(2)(3) 都是“先定有限制的位置”。(2) 必须把个位分成“是 $0$”和“不是 $0$”两类，因为个位用掉 $0$ 后，千位就有 $5$ 种选择；否则千位只有 $4$ 种。检验：奇数的个数为 $3\times 4\times 12=144$（个位 $1,3,5$），$156+144=300$，与 (1) 一致。(4) 用了“$3$ 的倍数的判定法”：各位数字之和是 $3$ 的倍数。</p>
       </div>
     </article>
 
@@ -419,6 +817,7 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
         <p>(3) 无白球：${}_6\mathrm{C}_3=20$，$1-\dfrac{20}{84}=\dfrac{16}{21}$。</p>
         <p>(4) 至少 $1$ 个白球有 $64$ 种。此时恰有 $2$ 红只能是“$2$ 红 $1$ 白”：${}_4\mathrm{C}_2\times3=18$ 种。$\dfrac{18}{64}=\dfrac{9}{32}$。</p>
         <p>(5) 红球为 $0,1,2,3$ 个的取法分别为 $10,40,30,4$ 种，期望值为 $\dfrac{0\cdot10+1\cdot40+2\cdot30+3\cdot4}{84}=\dfrac{112}{84}=\dfrac43$。</p>
+        <p><strong>详解要点：</strong>(1) 蓝球只有 $2$ 个，“全蓝”不可能，不要漏看。(4) 分母缩小到“至少 $1$ 个白球”的 $84-20=64$ 种。(5) 检查：$10+40+30+4=84$。验算：$9$ 个球中每个球被取到的概率都是 $\dfrac39=\dfrac13$，$4$ 个红球合计 $\dfrac43$，与答案相同。</p>
       </div>
     </article>
 
@@ -437,6 +836,7 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
         <p>(2) $k\ge 3$：$\dfrac{40+10+1}{243}=\dfrac{51}{243}=\dfrac{17}{81}$。</p>
         <p>(3) 第 $2$ 次时位于 $2$，即前 $2$ 次中 $k=1$，概率 $\dfrac49$；此后 $3$ 次中还要出现恰好 $1$ 次，概率 $\dfrac49$。同时发生的概率为 $\dfrac{16}{81}$，所以 $\dfrac{16}{81}\div\dfrac{80}{243}=\dfrac35$。</p>
         <p>(4) 每次移动的期望为 $3\cdot\dfrac13-1\cdot\dfrac23=\dfrac13$，$5$ 次合计 $\dfrac53$。也可由 $\sum_k(4k-5)\,{}_5\mathrm{C}_k\left(\dfrac13\right)^k\left(\dfrac23\right)^{5-k}$ 直接求得同样的值。</p>
+        <p><strong>详解要点：</strong>关键是把 $x$ 写成 $k$ 的式子。(3) 也可以用计数的方法：$x=3$ 时，$2$ 次“$3$ 的倍数”在 $5$ 次中的位置共 ${}_5\mathrm{C}_2=10$ 种，且等可能；前 $2$ 次恰有 $1$ 次的有 ${}_2\mathrm{C}_1\cdot{}_3\mathrm{C}_1=6$ 种，所以 $\dfrac{6}{10}=\dfrac35$，结果一致。(4) 也可由 $x=4k-5$ 和 $k$ 的期望 $\dfrac53$ 得到：$4\cdot\dfrac53-5=\dfrac53$。</p>
       </div>
     </article>
 
@@ -452,8 +852,37 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
         <p>(1) $\dfrac13\cdot\dfrac35+\dfrac23\cdot\dfrac15=\dfrac{3+2}{15}=\dfrac13$。</p>
         <p>(2) $\dfrac13\cdot\dfrac35\div\dfrac13=\dfrac35$。</p>
         <p>(3) 两次都是红球：$\dfrac13\cdot\dfrac{9}{25}+\dfrac23\cdot\dfrac{1}{25}=\dfrac{11}{75}$。除以 $\dfrac13$ 得 $\dfrac{11}{25}$。注意两次不独立：第 $1$ 次的红球提高了“选的是箱 $A$”的可能性，所以结果大于 $\dfrac13$。</p>
+        <p><strong>详解要点：</strong>(1) 是“两条路径相加”。(2) 是看箱 $A$ 这一支所占的比例：$\dfrac{3}{15}\div\dfrac{5}{15}=\dfrac35$。(3) 另一种算法：已知第 $1$ 次为红球后，箱 $A$、箱 $B$ 的概率更新为 $\dfrac35,\dfrac25$，于是 $\dfrac35\cdot\dfrac35+\dfrac25\cdot\dfrac15=\dfrac{11}{25}$，结果一致。</p>
       </div>
     </article>
+    <article class="q" id="E5">
+      <div class="q-head"><b>补充例题 8-1　抽卡片的综合题</b><span class="origin">原创</span></div>
+      <p>从写有 $1,2,3,4,5,6,7$ 的 $7$ 张卡片中同时抽出 $3$ 张。</p>
+      <p>(1) $3$ 个数之和为偶数的概率为 $\dfrac{\B{AB}}{\B{CD}}$。</p>
+      <p>(2) $3$ 个数中最大值为 $5$ 的概率为 $\dfrac{\B{E}}{\B{FG}}$。</p>
+      <p>(3) 已知 $3$ 个数之和为偶数时，其中含有 $7$ 的条件概率为 $\dfrac{\B{H}}{\B{IJ}}$。</p>
+      <p>(4) $3$ 个数中最大值的期望值为 $\B{K}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>AB/CD = 19/35</li><li>E/FG = 6/35</li><li>H/IJ = 9/19</li><li>K = 6</li></ul>
+        <p>全部取法：${}_7\mathrm{C}_3=35$ 种。奇数有 $1,3,5,7$ 共 $4$ 个，偶数有 $2,4,6$ 共 $3$ 个。</p>
+        <p>(1) 和为偶数，奇数的个数必须是偶数。奇数 $0$ 个：${}_3\mathrm{C}_3=1$ 种。奇数 $2$ 个、偶数 $1$ 个：${}_4\mathrm{C}_2\times 3=18$ 种。合计 $19$ 种，概率为 $\dfrac{19}{35}$。</p>
+        <p>(2) 最大值为 $5$：必须含 $5$，另外 $2$ 张从 $1,2,3,4$ 中选，${}_4\mathrm{C}_2=6$ 种，概率为 $\dfrac{6}{35}$。</p>
+        <p>(3) 分母是 (1) 的 $19$ 种。含 $7$（奇数）时必须是“奇数 $2$ 个、偶数 $1$ 个”，另一个奇数有 $3$ 种，偶数有 $3$ 种，共 $9$ 种。所以条件概率为 $\dfrac{9}{19}$。</p>
+        <p>(4) 最大值为 $m$ 的取法有 ${}_{m-1}\mathrm{C}_2$ 种：$m=3,4,5,6,7$ 时分别为 $1,3,6,10,15$ 种，合计 $35$ 种（检查无误）。期望值为 $\dfrac{3\cdot1+4\cdot3+5\cdot6+6\cdot10+7\cdot15}{35}=\dfrac{210}{35}=6$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>填分数时没有约分。EJU 形式的题通常要求最简分数，答案框的位数也是一个提示。</li>
+        <li>前一小题的分母在后面的条件概率中还要用，重新计算时算出了不同的分母，应该先检查是否一致。</li>
+        <li>把“同时取出”算成排列，分子却用了组合。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>综合题的小问是一步步设计好的，前面的结果通常会在后面用到，所以先把中间结果（如 $19$ 种）写下来。答案框的位数可以用于检查：如果框是两位数而你算出三位数，就要回头检查。例题和补充例题都建议先限时自己做一遍，再打开答案。</p>
+    </div>
   </section>
 
   <section id="practice">
@@ -465,67 +894,82 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
     <div class="q" id="Q1"><div class="q-head"><b>1</b><span>集合的元素个数</span><span class="origin">原创</span></div>
       <p>$1$ 到 $200$ 的整数中，$3$ 或 $5$ 的倍数有多少个？两者的倍数都不是的有多少个？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$93$ 个；$107$ 个。</strong>$66+40-13=93$，$200-93=107$。</p></div></div>
+      <div class="ans" hidden><p><strong>$93$ 个；$107$ 个。</strong>$66+40-13=93$，$200-93=107$。</p><p><strong>详细步骤：</strong>$3$ 的倍数 $\left\lfloor\dfrac{200}{3}\right\rfloor=66$ 个，$5$ 的倍数 $\left\lfloor\dfrac{200}{5}\right\rfloor=40$ 个，两者的公倍数即 $15$ 的倍数 $\left\lfloor\dfrac{200}{15}\right\rfloor=13$ 个。“都不是”就是并集的补集。</p></div></div>
     <div class="q" id="Q2"><div class="q-head"><b>2</b><span>约数</span><span class="origin">原创</span></div>
       <p>求 $360$ 的正约数的个数及其总和。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$24$ 个；总和 $1170$。</strong>$360=2^3\cdot3^2\cdot5$，个数 $4\cdot3\cdot2=24$，总和 $(1+2+4+8)(1+3+9)(1+5)=15\cdot13\cdot6=1170$。</p></div></div>
+      <div class="ans" hidden><p><strong>$24$ 个；总和 $1170$。</strong>$360=2^3\cdot3^2\cdot5$，个数 $4\cdot3\cdot2=24$，总和 $(1+2+4+8)(1+3+9)(1+5)=15\cdot13\cdot6=1170$。</p><p><strong>详细步骤：</strong>先做素因数分解，个数是“各指数加 $1$ 再相乘”。总和公式的每个括号列出一个素数的所有幂，展开后每一项正好是一个约数。</p></div></div>
     <div class="q" id="Q3"><div class="q-head"><b>3</b><span>圆排列</span><span class="origin">原创</span></div>
       <p>$6$ 人围圆桌而坐。坐法共有多少种？其中 $A$、$B$ 相邻的有多少种？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$120$ 种；$48$ 种。</strong>$5!=120$；把 $A,B$ 捆成一个，$5$ 个对象圆排列 $4!$，内部 $2$ 种：$24\times2=48$。</p></div></div>
+      <div class="ans" hidden><p><strong>$120$ 种；$48$ 种。</strong>$5!=120$；把 $A,B$ 捆成一个，$5$ 个对象圆排列 $4!$，内部 $2$ 种：$24\times2=48$。</p><p><strong>详细步骤：</strong>固定 $A$ 后其余 $5$ 人排列，得 $5!$。相邻时，$A,B$ 的捆有 $AB$、$BA$ 两种内部顺序，所以要乘 $2$。</p></div></div>
     <div class="q" id="Q4"><div class="q-head"><b>4</b><span>含相同元素的排列</span><span class="origin">原创</span></div>
       <p>把 TOKYOTO 的 $7$ 个字母排成一列，共有多少种？其中两个 T 相邻的有多少种？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$420$ 种；$120$ 种。</strong>T 有 $2$ 个、O 有 $3$ 个：$\dfrac{7!}{2!\,3!}=420$。把 TT 看作一个：$\dfrac{6!}{3!}=120$。</p></div></div>
+      <div class="ans" hidden><p><strong>$420$ 种；$120$ 种。</strong>T 有 $2$ 个、O 有 $3$ 个：$\dfrac{7!}{2!\,3!}=420$。把 TT 看作一个：$\dfrac{6!}{3!}=120$。</p><p><strong>详细步骤：</strong>字母统计：T $2$ 个，O $3$ 个，K、Y 各 $1$ 个，合计 $7$ 个。TT 捆在一起后还有 $6$ 个对象，其中 O 有 $3$ 个；T 相同，内部不再乘 $2$。</p></div></div>
     <div class="q" id="Q5"><div class="q-head"><b>5</b><span>组合</span><span class="origin">原创</span></div>
       <p>从男生 $5$ 人、女生 $4$ 人中选 $3$ 人。至少有 $1$ 名女生的选法有多少种？男女都有的选法呢？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$74$ 种；$70$ 种。</strong>$84-{}_5\mathrm{C}_3=84-10=74$；再减去全女 ${}_4\mathrm{C}_3=4$，得 $70$。</p></div></div>
+      <div class="ans" hidden><p><strong>$74$ 种；$70$ 种。</strong>$84-{}_5\mathrm{C}_3=84-10=74$；再减去全女 ${}_4\mathrm{C}_3=4$，得 $70$。</p><p><strong>详细步骤：</strong>全部 ${}_9\mathrm{C}_3=84$。“至少 $1$ 名女生”的反面是全为男生；“男女都有”的反面是全为男生或全为女生。</p></div></div>
     <div class="q" id="Q6"><div class="q-head"><b>6</b><span>最短路径</span><span class="origin">原创</span></div>
       <p>在方格路上从 $(0,0)$ 走到 $(5,4)$，每步向右或向上 $1$ 格。共有多少种走法？不经过点 $(2,1)$ 的有多少种？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$126$ 种；$66$ 种。</strong>${}_9\mathrm{C}_4=126$；经过 $(2,1)$：${}_3\mathrm{C}_1\cdot{}_6\mathrm{C}_3=3\cdot20=60$；$126-60=66$。</p></div></div>
+      <div class="ans" hidden><p><strong>$126$ 种；$66$ 种。</strong>${}_9\mathrm{C}_4=126$；经过 $(2,1)$：${}_3\mathrm{C}_1\cdot{}_6\mathrm{C}_3=3\cdot20=60$；$126-60=66$。</p><p><strong>详细步骤：</strong>$(0,0)\to(2,1)$ 是右 $2$ 上 $1$，${}_3\mathrm{C}_1=3$ 种；$(2,1)\to(5,4)$ 是右 $3$ 上 $3$，${}_6\mathrm{C}_3=20$ 种。</p></div></div>
     <div class="q" id="Q7"><div class="q-head"><b>7</b><span>分组</span><span class="origin">原创</span></div>
       <p>$6$ 人分成每组 $2$ 人的 $3$ 组（组没有名字），有多少种分法？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$15$ 种。</strong>$\dfrac{{}_6\mathrm{C}_2\cdot{}_4\mathrm{C}_2\cdot{}_2\mathrm{C}_2}{3!}=\dfrac{90}{6}=15$。</p></div></div>
+      <div class="ans" hidden><p><strong>$15$ 种。</strong>$\dfrac{{}_6\mathrm{C}_2\cdot{}_4\mathrm{C}_2\cdot{}_2\mathrm{C}_2}{3!}=\dfrac{90}{6}=15$。</p><p><strong>详细步骤：</strong>先把组当作有名字的：$15\cdot 6\cdot 1=90$ 种。$3$ 组人数相同且没有名字，同一种分法被数了 $3!=6$ 次。</p></div></div>
     <div class="q" id="Q8"><div class="q-head"><b>8</b><span>整数解的个数</span><span class="origin">原创</span></div>
       <p>$x+y+z=10$ 的正整数解有多少组？非负整数解有多少组？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$36$ 组；$66$ 组。</strong>正整数解：$9$ 个空隙选 $2$ 个放隔板，${}_9\mathrm{C}_2=36$。非负整数解：${}_{12}\mathrm{C}_2=66$。</p></div></div>
+      <div class="ans" hidden><p><strong>$36$ 组；$66$ 组。</strong>正整数解：$9$ 个空隙选 $2$ 个放隔板，${}_9\mathrm{C}_2=36$。非负整数解：${}_{12}\mathrm{C}_2=66$。</p><p><strong>详细步骤：</strong>正整数解也可以令 $x=x^\prime+1$ 等，化为 $x^\prime+y^\prime+z^\prime=7$ 的非负整数解，得 ${}_9\mathrm{C}_2=36$，与隔板法一致。非负整数解：$10$ 个○加 $2$ 根隔板，共 $12$ 个位置。</p></div></div>
     <div class="q" id="Q9"><div class="q-head"><b>9</b><span>对立事件</span><span class="origin">原创</span></div>
       <p>掷 $3$ 颗骰子。求至少出现一个 $6$ 的概率，以及三个点数之积为偶数的概率。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$\dfrac{91}{216}$；$\dfrac78$。</strong>$1-\left(\dfrac56\right)^3=\dfrac{91}{216}$；积为奇数即全为奇数，$1-\left(\dfrac12\right)^3=\dfrac78$。</p></div></div>
+      <div class="ans" hidden><p><strong>$\dfrac{91}{216}$；$\dfrac78$。</strong>$1-\left(\dfrac56\right)^3=\dfrac{91}{216}$；积为奇数即全为奇数，$1-\left(\dfrac12\right)^3=\dfrac78$。</p><p><strong>详细步骤：</strong>两问都是对立事件：“至少一个 $6$”的反面是“全部不是 $6$”；因数中只要有一个偶数，积就是偶数，所以“积为偶数”的反面是“全为奇数”。</p></div></div>
     <div class="q" id="Q10"><div class="q-head"><b>10</b><span>最大值的概率</span><span class="origin">原创</span></div>
       <p>掷 $3$ 颗骰子，求点数最大值恰好为 $4$ 的概率。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$\dfrac{37}{216}$。</strong>“全部 $\le4$”减去“全部 $\le3$”：$\dfrac{4^3-3^3}{6^3}=\dfrac{37}{216}$。</p></div></div>
+      <div class="ans" hidden><p><strong>$\dfrac{37}{216}$。</strong>“全部 $\le4$”减去“全部 $\le3$”：$\dfrac{4^3-3^3}{6^3}=\dfrac{37}{216}$。</p><p><strong>详细步骤：</strong>“最大值恰好为 $4$”等于“全部 $\le 4$ 且至少一个是 $4$”。“全部 $\le 4$”中去掉“全部 $\le 3$”，剩下的就是至少有一个 $4$ 的情况。</p></div></div>
     <div class="q" id="Q11"><div class="q-head"><b>11</b><span>反复试验</span><span class="origin">原创</span></div>
       <p>甲每局获胜的概率为 $\dfrac23$（无平局），先胜 $3$ 局者赢得比赛。求甲赢得比赛的概率，以及比赛恰好进行到第 $5$ 局的概率。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$\dfrac{64}{81}$；$\dfrac{8}{27}$。</strong>甲在第 $3,4,5$ 局胜出：$\left(\dfrac23\right)^3\left(1+3\cdot\dfrac13+6\cdot\dfrac19\right)=\dfrac{8}{27}\cdot\dfrac83=\dfrac{64}{81}$。到第 $5$ 局即前 $4$ 局 $2$ 胜 $2$ 负：${}_4\mathrm{C}_2\left(\dfrac23\right)^2\left(\dfrac13\right)^2=\dfrac{8}{27}$。</p></div></div>
+      <div class="ans" hidden><p><strong>$\dfrac{64}{81}$；$\dfrac{8}{27}$。</strong>甲在第 $3,4,5$ 局胜出：$\left(\dfrac23\right)^3\left(1+3\cdot\dfrac13+6\cdot\dfrac19\right)=\dfrac{8}{27}\cdot\dfrac83=\dfrac{64}{81}$。到第 $5$ 局即前 $4$ 局 $2$ 胜 $2$ 负：${}_4\mathrm{C}_2\left(\dfrac23\right)^2\left(\dfrac13\right)^2=\dfrac{8}{27}$。</p><p><strong>详细步骤：</strong>按结束局数分类：$3$ 局胜出 $\left(\dfrac23\right)^3=\dfrac{8}{27}$；$4$ 局胜出是前 $3$ 局 $2$ 胜 $1$ 负再胜，${}_3\mathrm{C}_2\left(\dfrac23\right)^2\dfrac13\cdot\dfrac23=\dfrac{8}{27}$；$5$ 局胜出是前 $4$ 局 $2$ 胜 $2$ 负再胜，$\dfrac{8}{27}\cdot\dfrac23=\dfrac{16}{81}$。合计 $\dfrac{24+24+16}{81}=\dfrac{64}{81}$。最后一局固定为胜，所以系数不是 ${}_5\mathrm{C}_3$。</p></div></div>
     <div class="q" id="Q12"><div class="q-head"><b>12</b><span>条件概率</span><span class="origin">原创</span></div>
       <p>掷两颗骰子，已知点数之和为 $8$，求至少有一颗是 $3$ 的条件概率。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$\dfrac25$。</strong>和为 $8$ 有 $(2,6),(3,5),(4,4),(5,3),(6,2)$ 共 $5$ 种，含 $3$ 的有 $2$ 种。</p></div></div>
+      <div class="ans" hidden><p><strong>$\dfrac25$。</strong>和为 $8$ 有 $(2,6),(3,5),(4,4),(5,3),(6,2)$ 共 $5$ 种，含 $3$ 的有 $2$ 种。</p><p><strong>详细步骤：</strong>把全集缩小到“和为 $8$”的 $5$ 种。这 $5$ 种等可能，所以直接数：含 $3$ 的只有 $(3,5),(5,3)$。</p></div></div>
     <div class="q" id="Q13"><div class="q-head"><b>13</b><span>抽签</span><span class="origin">原创</span></div>
       <p>$10$ 支签中有 $3$ 支中奖，$A$、$B$ 依次各抽 $1$ 支（不放回）。求 $B$ 中奖的概率；已知 $B$ 中奖时，$A$ 也中奖的条件概率。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$\dfrac{3}{10}$；$\dfrac29$。</strong>$P(B)=\dfrac{3}{10}\cdot\dfrac29+\dfrac{7}{10}\cdot\dfrac39=\dfrac{3}{10}$，与抽签顺序无关。$P_B(A)=\dfrac{6/90}{27/90}=\dfrac29$。</p></div></div>
+      <div class="ans" hidden><p><strong>$\dfrac{3}{10}$；$\dfrac29$。</strong>$P(B)=\dfrac{3}{10}\cdot\dfrac29+\dfrac{7}{10}\cdot\dfrac39=\dfrac{3}{10}$，与抽签顺序无关。$P_B(A)=\dfrac{6/90}{27/90}=\dfrac29$。</p><p><strong>详细步骤：</strong>按 $A$ 的结果分类求 $P(B)$。求条件概率时，分子是“两人都中奖”$\dfrac{3}{10}\cdot\dfrac29=\dfrac{6}{90}$，分母是 $P(B)=\dfrac{27}{90}$。</p></div></div>
     <div class="q" id="Q14"><div class="q-head"><b>14</b><span>期望值</span><span class="origin">原创</span></div>
       <p>掷两颗骰子，设较大的点数（相同时取该点数）为 $X$，求 $X$ 的期望值。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$\dfrac{161}{36}$。</strong>$P(X=k)=\dfrac{2k-1}{36}$，$\sum_{k=1}^{6}k(2k-1)=161$。</p></div></div>
+      <div class="ans" hidden><p><strong>$\dfrac{161}{36}$。</strong>$P(X=k)=\dfrac{2k-1}{36}$，$\sum_{k=1}^{6}k(2k-1)=161$。</p><p><strong>详细步骤：</strong>“$X\le k$”即两颗都不大于 $k$，有 $k^2$ 种，所以 $X=k$ 的有 $k^2-(k-1)^2=2k-1$ 种。代入得 $1+6+15+28+45+66=161$。</p></div></div>
     <div class="q" id="Q15"><div class="q-head"><b>15</b><span>奖券</span><span class="origin">原创</span></div>
       <p>$100$ 张奖券中，$1000$ 円的有 $2$ 张、$200$ 円的有 $8$ 张、$50$ 円的有 $40$ 张，其余没有奖金。抽 $1$ 张，求奖金的期望值。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$56$ 円。</strong>$\dfrac{1000\cdot2+200\cdot8+50\cdot40}{100}=\dfrac{5600}{100}=56$。</p></div></div>
+      <div class="ans" hidden><p><strong>$56$ 円。</strong>$\dfrac{1000\cdot2+200\cdot8+50\cdot40}{100}=\dfrac{5600}{100}=56$。</p><p><strong>详细步骤：</strong>没有奖金的奖券有 $100-2-8-40=50$ 张，奖金为 $0$，对和没有贡献。各奖项的合计分别为 $2000$、$1600$、$2000$ 円。</p></div></div>
     <div class="q" id="Q16"><div class="q-head"><b>16</b><span>投掷次数的期望</span><span class="origin">原创</span></div>
       <p>反复掷硬币，出现正面就停止，但最多掷 $3$ 次。求投掷次数的期望值。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><strong>$\dfrac74$ 次。</strong>$P(1)=\dfrac12,\ P(2)=\dfrac14,\ P(3)=\dfrac14$（第 $3$ 次无论正反都停止），$1\cdot\dfrac12+2\cdot\dfrac14+3\cdot\dfrac14=\dfrac74$。</p></div></div>
+      <div class="ans" hidden><p><strong>$\dfrac74$ 次。</strong>$P(1)=\dfrac12,\ P(2)=\dfrac14,\ P(3)=\dfrac14$（第 $3$ 次无论正反都停止），$1\cdot\dfrac12+2\cdot\dfrac14+3\cdot\dfrac14=\dfrac74$。</p><p><strong>详细步骤：</strong>检查概率之和：$\dfrac12+\dfrac14+\dfrac14=1$。第 $3$ 次的 $\dfrac14$ 就是“前 $2$ 次都是反面”的概率，第 $3$ 次无论结果如何都停止。</p></div></div>
+    <div class="q" id="Q17"><div class="q-head"><b>补充例题 9-1</b><span>大小关系与组合</span><span class="origin">原创</span></div>
+      <p>依次掷一颗骰子 $3$ 次，点数依次为 $a,b,c$。求 $a\lt b\lt c$ 的概率，以及 $a\le b\le c$ 的概率。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$\dfrac{5}{54}$；$\dfrac{7}{27}$。</strong>全部结果 $6^3=216$ 种。</p><ol><li>$a\lt b\lt c$：从 $1$ 到 $6$ 中选 $3$ 个不同的数，从小到大的顺序只有一种，所以是 ${}_6\mathrm{C}_3=20$ 种，概率为 $\dfrac{20}{216}=\dfrac{5}{54}$。</li><li>$a\le b\le c$：是从 $6$ 种点数中可重复地选 $3$ 个（重复组合）。$3$ 个○和 $5$ 根隔板，共 $8$ 个位置：${}_8\mathrm{C}_3=56$ 种。</li><li>概率为 $\dfrac{56}{216}=\dfrac{7}{27}$。</li></ol></div></div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $a\lt b\lt c$ 算成排列 ${}_6\mathrm{P}_3$。大小顺序已经确定，选好后不能再排。</li>
+        <li>把 $a\le b\le c$ 算成 ${}_6\mathrm{C}_3$，漏掉相等的情况。</li>
+        <li>看完答案就算会了。建议隔一天后不看答案重做一遍，错题按上面各节的“常见错误”归类。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>练习时先判断题型：分类还是分步？要不要排序？是否等可能？是否独立？能不能用对立事件？这五个问题能覆盖本章的大部分题目。正式考试时间紧张，建议练到看到题干就能决定方法的程度。</p>
+    </div>
   </section>
 
   <section id="terms">
@@ -538,6 +982,29 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
       <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
       <tbody></tbody>
     </table></div>
+    <p><strong>怎样读题？</strong>计数与概率的题目常常靠一两个词决定做法。「<span lang="ja">少なくとも</span><span class="kana" lang="ja">（すくなくとも）</span>」对应对立事件，「<span lang="ja">もとに戻す</span><span class="kana" lang="ja">（もとにもどす）</span>」决定是否独立，「〜とき」之前的是条件。下面的例题演示如何把日语题干逐句译成算式。</p>
+    <div class="box good">
+      <p><strong>补充例题 10-1（读日语题干）：</strong><span lang="ja">赤玉 $4$ 個、白玉 $2$ 個が入った袋から、もとに戻さずに $1$ 個ずつ $2$ 回取り出す。$2$ 回目に白玉が出たとき、$1$ 回目も白玉である条件付き確率を求めよ。</span></p>
+      <ol>
+        <li>译文：袋中有红球 $4$ 个、白球 $2$ 个，不放回地每次取 $1$ 个，取 $2$ 次。已知第 $2$ 次取到白球时，求第 $1$ 次也是白球的条件概率。</li>
+        <li>“とき”前面的“第 $2$ 次为白球”是条件，放在分母。按第 $1$ 次分类：$P=\dfrac46\cdot\dfrac25+\dfrac26\cdot\dfrac15=\dfrac{8+2}{30}=\dfrac13$。</li>
+        <li>两次都是白球：$\dfrac26\cdot\dfrac15=\dfrac{1}{15}$。</li>
+        <li>所求为 $\dfrac{1}{15}\div\dfrac13=\dfrac15$。</li>
+      </ol>
+      <p>答：$\dfrac15$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把「<span lang="ja">排反</span><span class="kana" lang="ja">（はいはん）</span>」（互斥）与「<span lang="ja">独立</span><span class="kana" lang="ja">（どくりつ）</span>」混淆。</li>
+        <li>把「<span lang="ja">余事象</span><span class="kana" lang="ja">（よじしょう）</span>」误读成“剩余的事件”，它是对立事件，即 $A$ 不发生。</li>
+        <li>把「<span lang="ja">組合せ</span><span class="kana" lang="ja">（くみあわせ）</span>」和「<span lang="ja">組分け</span><span class="kana" lang="ja">（くみわけ）</span>」混同：前者是选取，后者是分组。</li>
+        <li>把「<span lang="ja">多くとも</span><span class="kana" lang="ja">（おおくとも）</span>」（至多）和「<span lang="ja">少なくとも</span><span class="kana" lang="ja">（すくなくとも）</span>」（至少）看反。</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>EJU 也可以选用日语或英语试卷，请按自己选的语言熟悉术语。如果选日语，建议能够从读音认出这些词，并能把题干中的「〜のとき」「〜である確率を求めよ」等句式直接转换成算式。表格支持搜索，可用来快速复习。</p>
+    </div>
   </section>
 
   <footer>
@@ -572,6 +1039,14 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
     ['题目常用语', [
       ['さいころ', 'さいころ', '骰子'], ['硬貨', 'こうか', '硬币'], ['くじ', 'くじ', '签、彩票'], ['袋', 'ふくろ', '袋子'],
       ['取り出す', 'とりだす', '取出'], ['もとに戻す', 'もとにもどす', '放回'], ['同時に', 'どうじに', '同时'], ['目', 'め', '（骰子的）点数']
+    ]],
+    ['补充术语', [
+      ['包除原理', 'ほうじょげんり', '容斥原理'], ['ベン図', 'ベンず', '维恩图'], ['樹形図', 'じゅけいず', '树形图'], ['素因数分解', 'そいんすうぶんかい', '素因数分解'],
+      ['最小公倍数', 'さいしょうこうばいすう', '最小公倍数'], ['約数', 'やくすう', '约数'], ['円卓', 'えんたく', '圆桌'], ['交互に', 'こうごに', '交替'],
+      ['隣り合わない', 'となりあわない', '不相邻'], ['並べる', 'ならべる', '排列（动词）'], ['選ぶ', 'えらぶ', '选择'], ['区別する', 'くべつする', '区分'],
+      ['パスカルの三角形', 'パスカルのさんかくけい', '杨辉三角'], ['正八角形', 'せいはちかっけい', '正八边形'], ['対角線', 'たいかくせん', '对角线'],
+      ['表', 'おもて', '（硬币）正面'], ['裏', 'うら', '（硬币）反面'], ['ちょうど', 'ちょうど', '恰好'], ['多くとも', 'おおくとも', '至多'],
+      ['不良品', 'ふりょうひん', '次品'], ['原因の確率', 'げんいんのかくりつ', '原因的概率'], ['賞金', 'しょうきん', '奖金'], ['参加費', 'さんかひ', '参加费'], ['不利', 'ふり', '不利']
     ]]
   ];
 
