@@ -284,6 +284,60 @@ html { scroll-padding-top: 100px; }
     <div class="box warn">
       <p><strong>易错：</strong>判定「$72$ 的倍数」要拆成互素的 $8$ 和 $9$。拆成 $6$ 和 $12$ 不行，因为同时是 $6$、$12$ 的倍数只能保证是 $12$ 的倍数。</p>
     </div>
+    <p><strong>判定法的统一推导：</strong>任何正整数都可以按位展开，如四位数 $N=1000a+100b+10c+d$。判定法的思路都一样：把 $N$ 分成「一定是倍数的部分」和「剩下的部分」，整除性只由后者决定。</p>
+    <div class="tw"><table>
+      <thead><tr><th>除数</th><th>关键事实</th><th>结论</th></tr></thead>
+      <tbody>
+        <tr><td>$2,\ 5$</td><td>$10$ 是 $2$ 和 $5$ 的倍数，所以十位以上的部分都是倍数</td><td>只看个位</td></tr>
+        <tr><td>$4$</td><td>$100=4\times 25$，所以百位以上的部分都是倍数</td><td>只看末两位</td></tr>
+        <tr><td>$8$</td><td>$1000=8\times 125$，所以千位以上的部分都是倍数</td><td>只看末三位</td></tr>
+        <tr><td>$3,\ 9$</td><td>$10^k-1=99\cdots 9$ 是 $9$ 的倍数，所以 $10^k$ 除以 $9$ 余 $1$</td><td>只看数字和</td></tr>
+        <tr><td>$11$</td><td>$10=11-1$，所以 $10^k$ 除以 $11$ 的余数在 $1$ 与 $-1$（即 $10$）之间交替</td><td>看奇偶位之差</td></tr>
+      </tbody>
+    </table></div>
+    <p>以四位数为例验证 $11$ 的判定：$1000a+100b+10c+d=11(91a+9b+c)+(b+d-a-c)$，前一部分是 $11$ 的倍数，所以只需看 $(b+d)-(a+c)$。</p>
+    <p><strong>为什么 $72$ 要拆成互素的两个数？</strong>若 $N$ 同时是互素的 $m,n$ 的倍数，则 $N$ 的素因数分解同时包含 $m$ 和 $n$ 的全部素因数，且两者没有重叠，所以 $N$ 是 $mn$ 的倍数。一般地，同时是 $m,n$ 的倍数只能推出是 $m,n$ 的<strong>最小公倍数</strong>的倍数。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用 $4$ 和 $9$ 判定 $36$ 的倍数</b><span class="origin">原创</span></div>
+      <p>五位数 $7a36b$（$a,b$ 是一位数字）是 $36$ 的倍数。求所有的数字组 $(a,b)$。</p>
+      <div class="ans">
+        <ol>
+          <li>拆分：$36=4\times 9$，且 $4,9$ 互素，所以条件等价于同时是 $4$ 和 $9$ 的倍数。</li>
+          <li>用 $4$ 的条件：末两位 $6b$ 是 $4$ 的倍数，即 $60,64,68$，所以 $b=0,4,8$。</li>
+          <li>用 $9$ 的条件：数字和 $7+a+3+6+b=16+a+b$ 是 $9$ 的倍数。</li>
+          <li>分情况：$b=0$ 时 $16+a$ 为 $9$ 的倍数，$a=2$；$b=4$ 时 $20+a$ 为 $9$ 的倍数，$a=7$；$b=8$ 时 $24+a$ 为 $9$ 的倍数，$a=3$。</li>
+          <li>检验：$72360=36\times 2010$，$77364=36\times 2149$，$73368=36\times 2038$。</li>
+        </ol>
+        <p><strong>答案：</strong>$(a,b)=(2,0),\ (7,4),\ (3,8)$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用 $9$ 和 $11$ 判定 $99$ 的倍数</b><span class="origin">原创</span></div>
+      <p>四位数 $a27b$（$a\ne 0$）是 $99$ 的倍数。求 $a,b$。</p>
+      <div class="ans">
+        <ol>
+          <li>拆分：$99=9\times 11$，且 $9,11$ 互素。</li>
+          <li>$9$ 的条件：$a+b+9$ 是 $9$ 的倍数。因为 $1\le a+b\le 18$，所以 $a+b=9$ 或 $18$。</li>
+          <li>$11$ 的条件：从个位起，奇数位之和为 $b+2$，偶数位之和为 $7+a$，差 $b-a-5$ 是 $11$ 的倍数。因为 $-14\le b-a-5\le 3$，所以 $b-a-5=0$ 或 $-11$，即 $b-a=5$ 或 $-6$。</li>
+          <li>联立：$a+b$ 与 $b-a$ 的奇偶性必须相同。$a+b=9$（奇）只能配 $b-a=5$，得 $a=2,\ b=7$；$a+b=18$（偶）只能配 $b-a=-6$，得 $b=6,\ a=12$，不是一位数字，舍去。</li>
+          <li>检验：$2277=99\times 23$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a=2,\ b=7$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把「数字和是 $3$ 的倍数」用到 $4$ 或 $8$ 上。数字和只对 $3,9$ 有效，例如 $13$ 与 $31$ 数字和相同，但 $4$ 的整除情况不必相同（$12$ 是 $4$ 的倍数，$21$ 不是）。</li>
+        <li>判定 $8$ 时只看末两位。$116$ 的末两位 $16$ 是 $8$ 的倍数，但 $116=8\times 14+4$ 不是 $8$ 的倍数。</li>
+        <li>判定 $11$ 时忘记差可以是 $0$ 或负数。差为 $0$、$\pm 11$、$\pm 22$ 都算。</li>
+        <li>求数字时漏掉范围：$a,b$ 只能取 $0$ 到 $9$，且最高位不能为 $0$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目出现带字母的多位数时，先用「只看末尾」的条件（$2,4,5,8$）缩小个位的可能，再用数字和求另一个字母，这样分情况最少。填空的方框数还可以提示答案的位数。</p>
+      <p><strong>日语术语：</strong><span lang="ja">倍数の判定法</span>（<span class="kana" lang="ja">ばいすうのはんていほう</span>）：倍数判定法；<span lang="ja">下2桁</span>（<span class="kana" lang="ja">しもにけた</span>）：末两位；<span lang="ja">下3桁</span>（<span class="kana" lang="ja">しもさんけた</span>）：末三位；<span lang="ja">一の位</span>（<span class="kana" lang="ja">いちのくらい</span>）：个位；<span lang="ja">各位の和</span>（<span class="kana" lang="ja">かくいのわ</span>）：各位数字之和。</p>
+    </div>
   </section>
 
   <section id="prime">
@@ -299,12 +353,87 @@ html { scroll-padding-top: 100px; }
     <div class="box good">
       <p><strong>例：</strong>$360=2^3\cdot 3^2\cdot 5$，正约数共 $4\cdot 3\cdot 2=24$ 个，总和为 $15\cdot 13\cdot 6=1170$。</p>
     </div>
+    <p><strong>为什么只试到 $\sqrt n$？</strong>若 $n=ab$ 是合数且 $1&lt;a\le b$，则 $a^2\le ab=n$，所以 $a\le\sqrt n$。也就是说，合数必有一个不超过 $\sqrt n$ 的因数；这个因数再分解，就得到不超过 $\sqrt n$ 的素因数。如果试完都除不尽，$n$ 就是素数。</p>
+    <p><strong>约数个数公式为什么成立？</strong>$N=p^aq^br^c$ 的正约数恰好是 $p^xq^yr^z$（$0\le x\le a,\ 0\le y\le b,\ 0\le z\le c$）。由分解的唯一性，不同的指数组对应不同的约数，而 $x,y,z$ 各有 $a+1,\ b+1,\ c+1$ 种选法，相乘即得个数。</p>
+    <p><strong>约数总和公式为什么成立？</strong>把 $(1+p+\dots+p^a)(1+q+\dots+q^b)(1+r+\dots+r^c)$ 展开，每一项恰好是从三个括号各取一项相乘，即 $p^xq^yr^z$，每个约数恰好出现一次，所以展开式就是所有约数之和。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　素数判定与约数的分类</b><span class="origin">原创</span></div>
+      <p>(1) 判断 $437$ 是否为素数。</p>
+      <p>(2) 求 $504$ 的正约数的个数和总和。</p>
+      <p>(3) $504$ 的正约数中，奇数有几个？偶数的总和是多少？</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $20^2=400&lt;437&lt;441=21^2$，所以只需试 $2,3,5,7,11,13,17,19$。前七个都除不尽，而 $437=19\times 23$，所以是合数。</li>
+          <li>(2) 分解：$504=2^3\cdot 63=2^3\cdot 3^2\cdot 7$。</li>
+          <li>(2) 个数：$(3+1)(2+1)(1+1)=24$。总和：$(1+2+4+8)(1+3+9)(1+7)=15\cdot 13\cdot 8=1560$。</li>
+          <li>(3) 奇约数不含 $2$，即 $3^2\cdot 7$ 的约数，共 $3\cdot 2=6$ 个，总和 $13\cdot 8=104$。</li>
+          <li>(3) 偶约数的总和 = 全部总和 − 奇约数总和 $=1560-104=1456$；也可直接算 $(2+4+8)\cdot 13\cdot 8=1456$，两者一致。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) 合数；(2) $24$ 个，总和 $1560$；(3) 奇约数 $6$ 个，偶约数总和 $1456$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由约数个数反求自然数</b><span class="origin">原创</span></div>
+      <p>求正约数恰好有 $15$ 个的最小正整数。</p>
+      <div class="ans">
+        <ol>
+          <li>约数个数等于各「指数 $+1$」之积，而 $15=15$ 或 $15=5\times 3$。</li>
+          <li>情形一：$N=p^{14}$，最小为 $2^{14}=16384$。</li>
+          <li>情形二：$N=p^4q^2$。要使 $N$ 最小，较大的指数应配给较小的素数，所以取 $p=2,\ q=3$，得 $N=2^4\cdot 3^2=144$。</li>
+          <li>比较两种情形，$144&lt;16384$。</li>
+        </ol>
+        <p><strong>答案：</strong>$144$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $1$ 当作素数。素数要求大于 $1$；否则素因数分解就不再唯一（$6=2\cdot 3=1\cdot 2\cdot 3$）。</li>
+        <li>约数个数算成指数之积。$360=2^3\cdot 3^2\cdot 5$ 的约数是 $4\cdot 3\cdot 2=24$ 个，不是 $3\cdot 2\cdot 1=6$ 个，因为指数可以取 $0$。</li>
+        <li>分解没有彻底：$504=8\cdot 63$ 还不是素因数分解，$8$ 和 $63$ 都要继续拆开。</li>
+        <li>试除时只试到 $\sqrt n$ 的一半，或漏掉 $7,11,13$ 这样的素数。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>分解大数时从小的素数依次试，每拆一次就把结果记下，用相乘来验算。熟记 $2^{10}=1024$ 以及 $91=7\times 13$、$119=7\times 17$、$221=13\times 17$ 这类看起来像素数的合数，可以省下不少时间。</p>
+      <p><strong>日语术语：</strong><span lang="ja">素数</span>（<span class="kana" lang="ja">そすう</span>）：素数；<span lang="ja">合成数</span>（<span class="kana" lang="ja">ごうせいすう</span>）：合数；<span lang="ja">素因数分解</span>（<span class="kana" lang="ja">そいんすうぶんかい</span>）：素因数分解；<span lang="ja">正の約数</span>（<span class="kana" lang="ja">せいのやくすう</span>）：正约数；<span lang="ja">約数の個数</span>（<span class="kana" lang="ja">やくすうのこすう</span>）：约数的个数；<span lang="ja">約数の総和</span>（<span class="kana" lang="ja">やくすうのそうわ</span>）：约数的总和。</p>
+    </div>
     <h3>常见用法</h3>
     <ul>
       <li><strong>平方数</strong>（<span lang="ja">平方数</span>）：所有素因数的指数都是偶数。立方数：指数都是 $3$ 的倍数。例如要使 $84n$ 成为平方数，把 $84=2^2\cdot 3\cdot 7$ 中指数为奇数的补齐。</li>
       <li><strong>阶乘中素因数的个数</strong>：$n!$ 中素因数 $p$ 的指数为 $\left\lfloor\dfrac{n}{p}\right\rfloor+\left\lfloor\dfrac{n}{p^2}\right\rfloor+\left\lfloor\dfrac{n}{p^3}\right\rfloor+\cdots$。</li>
       <li><strong>末尾 $0$ 的个数</strong>：等于因数 $10=2\cdot 5$ 的个数，而 $5$ 比 $2$ 少，所以数 $5$ 的指数。</li>
     </ul>
+    <p><strong>平方数的条件为什么是「指数都是偶数」？</strong>若 $N=M^2$，$M$ 的素因数分解中每个指数乘以 $2$ 就得到 $N$ 的指数，所以都是偶数；反过来，指数都是偶数时把每个指数减半就得到 $M$。由于分解唯一，这两个方向都成立。</p>
+    <p><strong>阶乘的指数公式为什么要加多项？</strong>$1,2,\dots,n$ 中 $p$ 的倍数有 $\lfloor n/p\rfloor$ 个，每个至少贡献一个 $p$；其中 $p^2$ 的倍数还要多贡献一个，共 $\lfloor n/p^2\rfloor$ 个；依此类推。这样每个数中的 $p$ 都恰好被数到指数那么多次。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　平方数与阶乘的指数</b><span class="origin">原创</span></div>
+      <p>(1) 求使 $\sqrt{540n}$ 为整数的最小正整数 $n$ 及此时根号的值。</p>
+      <p>(2) $100!$ 的末尾连续有几个 $0$？</p>
+      <p>(3) 求使 $40!$ 能被 $6^k$ 整除的最大整数 $k$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $540=2^2\cdot 3^3\cdot 5$，指数为奇数的是 $3$ 和 $5$，各补一个，$n=15$。$540\times 15=8100=90^2$。</li>
+          <li>(2) $5$ 的指数：$\lfloor 100/5\rfloor+\lfloor 100/25\rfloor=20+4=24$（$125&gt;100$，后面都是 $0$）。</li>
+          <li>(2) $2$ 的指数：$50+25+12+6+3+1=97$，比 $24$ 大，所以因数 $10$ 的个数由 $5$ 决定，为 $24$。</li>
+          <li>(3) $6=2\times 3$，要同时数 $2$ 和 $3$。$2$ 的指数：$20+10+5+2+1=38$。$3$ 的指数：$\lfloor 40/3\rfloor+\lfloor 40/9\rfloor+\lfloor 40/27\rfloor=13+4+1=18$。</li>
+          <li>(3) $k$ 不能超过两者中较小的，所以 $k=18$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $n=15$，值为 $90$；(2) $24$ 个；(3) $k=18$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只除以 $5$ 不除以 $25,125$。$100!$ 的 $5$ 的指数若只算 $\lfloor 100/5\rfloor=20$ 就少了 $4$，因为 $25,50,75,100$ 各含两个 $5$。</li>
+        <li>求立方数时按「补成偶数」处理。立方数要把指数补成 $3$ 的倍数。</li>
+        <li>求 $6^k$、$12^k$ 这类合数幂时只看一个素因数。$12^k=2^{2k}3^k$，$2$ 的指数还要除以 $2$ 再比较。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>看到 $\sqrt{\square\, n}$、$\dfrac{\square}{n}$ 是平方数或「末尾 $0$ 的个数」，第一步都是素因数分解。题目问最小的 $n$ 时只补齐缺的部分，不要多乘。</p>
+      <p><strong>日语术语：</strong><span lang="ja">平方数</span>（<span class="kana" lang="ja">へいほうすう</span>）：平方数；<span lang="ja">立方数</span>（<span class="kana" lang="ja">りっぽうすう</span>）：立方数；<span lang="ja">階乗</span>（<span class="kana" lang="ja">かいじょう</span>）：阶乘；<span lang="ja">指数</span>（<span class="kana" lang="ja">しすう</span>）：指数；<span lang="ja">末尾</span>（<span class="kana" lang="ja">まつび</span>）：末尾；<span lang="ja">連続して並ぶ</span>（<span class="kana" lang="ja">れんぞくしてならぶ</span>）：连续排列。</p>
+    </div>
   </section>
 
   <section id="gcd">
@@ -320,6 +449,48 @@ html { scroll-padding-top: 100px; }
     </div>
     <p>题目给出 $G$ 和 $L$ 求 $a,b$ 时，先求 $a'b'=L/G$，再枚举<strong>互素</strong>的分解。</p>
     <p>互素有一条常用性质：若 $a,b$ 互素且 $ak$ 是 $b$ 的倍数，则 $k$ 是 $b$ 的倍数。解不定方程时就靠这一条。</p>
+    <p><strong>$ab=GL$ 的推导：</strong>看某个素数 $p$，设它在 $a,b$ 中的指数分别为 $e,f$。$G$ 中的指数是 $\min(e,f)$，$L$ 中的指数是 $\max(e,f)$，而 $\min(e,f)+\max(e,f)=e+f$。所有素数都如此，所以 $GL$ 与 $ab$ 的分解完全相同。</p>
+    <p><strong>$a&#39;,b&#39;$ 为什么互素？</strong>若 $a&#39;,b&#39;$ 有大于 $1$ 的公约数 $d$，则 $Gd$ 也是 $a,b$ 的公约数，且比 $G$ 大，与 $G$ 是最大公约数矛盾。</p>
+    <p><strong>互素性质的理由：</strong>设 $a,b$ 互素且 $ak$ 是 $b$ 的倍数。$b$ 的每个素因数都整除 $ak$，但 $a$ 不含这些素因数，所以它们全部（连同指数）出现在 $k$ 中，即 $k$ 是 $b$ 的倍数。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　已知和与最大公约数</b><span class="origin">原创</span></div>
+      <p>正整数 $a&lt;b$ 满足 $a+b=96$，且最大公约数为 $12$。求所有的 $(a,b)$。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $a=12a&#39;,\ b=12b&#39;$，其中 $a&#39;,b&#39;$ 互素，$a&#39;&lt;b&#39;$。</li>
+          <li>代入和：$12(a&#39;+b&#39;)=96$，所以 $a&#39;+b&#39;=8$。</li>
+          <li>列举：$(1,7),(2,6),(3,5)$。其中 $(2,6)$ 的公约数为 $2$，不互素，舍去。</li>
+          <li>还原：$(1,7)\to(12,84)$，$(3,5)\to(36,60)$。</li>
+          <li>检验：$\gcd(12,84)=12$，$\gcd(36,60)=12$，和都是 $96$。</li>
+        </ol>
+        <p><strong>答案：</strong>$(a,b)=(12,84),\ (36,60)$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　已知与某数的最大公约数</b><span class="origin">原创</span></div>
+      <p>不超过 $100$ 的正整数 $n$ 中，满足 $\gcd(n,24)=6$ 的有几个？</p>
+      <div class="ans">
+        <ol>
+          <li>$n$ 是 $6$ 的倍数，设 $n=6m$，而 $24=6\times 4$。</li>
+          <li>于是 $\gcd(6m,6\times 4)=6\gcd(m,4)$，条件变为 $\gcd(m,4)=1$，即 $m$ 是奇数。</li>
+          <li>范围：$6m\le 100$，所以 $m\le 16$；奇数 $m=1,3,\dots,15$ 共 $8$ 个。</li>
+          <li>对应 $n=6,18,30,42,54,66,78,90$。</li>
+        </ol>
+        <p><strong>答案：</strong>$8$ 个。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>枚举 $a&#39;b&#39;=L/G$ 时没有检查互素。如 $L/G=12$ 时 $(2,6)$ 不合格，因为这时最大公约数会变成 $2G$。</li>
+        <li>把 $ab=GL$ 用到三个数上。例如 $2,4,6$ 的积为 $48$，而 $G=2,\ L=12$，$GL=24$。这个公式只对两个数成立。</li>
+        <li>$G$ 取了较大指数或 $L$ 取了较小指数。可以用 $G\le a\le L$ 快速检验。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>凡是题目给出最大公约数，立即写 $a=Ga&#39;,\ b=Gb&#39;$（$a&#39;,b&#39;$ 互素），把问题化成小数字的枚举。算完用 $ab=GL$ 验算一次，错误多半能被发现。</p>
+      <p><strong>日语术语：</strong><span lang="ja">最大公約数</span>（<span class="kana" lang="ja">さいだいこうやくすう</span>）：最大公约数；<span lang="ja">最小公倍数</span>（<span class="kana" lang="ja">さいしょうこうばいすう</span>）：最小公倍数；<span lang="ja">互いに素</span>（<span class="kana" lang="ja">たがいにそ</span>）：互素；<span lang="ja">公約数</span>（<span class="kana" lang="ja">こうやくすう</span>）：公约数；<span lang="ja">公倍数</span>（<span class="kana" lang="ja">こうばいすう</span>）：公倍数。</p>
+    </div>
   </section>
 
   <section id="division">
@@ -331,6 +502,34 @@ html { scroll-padding-top: 100px; }
       <p>$q$ 叫<strong>商</strong>（<span lang="ja">商</span>），$r$ 叫<strong>余数</strong>（<span lang="ja">余り</span>）。</p>
     </div>
     <p>注意余数不能是负数：$-17=5\times(-4)+3$，所以 $-17$ 除以 $5$ 商 $-4$ 余 $3$。</p>
+    <p><strong>除法定理为什么成立？</strong>存在性：把 $b$ 的所有倍数 $\dots,-b,0,b,2b,\dots$ 标在数轴上，它们把数轴分成长度为 $b$ 的区间，$a$ 必落在某个 $bq\le a&lt;b(q+1)$ 中，取 $r=a-bq$，就有 $0\le r&lt;b$。唯一性：若 $bq+r=bq_1+r_1$，则 $b(q-q_1)=r_1-r$；右边的绝对值小于 $b$，而左边是 $b$ 的倍数，所以两边都是 $0$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　负数的除法与商余的条件</b><span class="origin">原创</span></div>
+      <p>(1) 求 $-23$ 除以 $6$ 的商和余数。</p>
+      <p>(2) 正整数 $N$ 除以 $13$ 时商与余数相等。这样的 $N$ 有几个？最大的是多少？</p>
+      <p>(3) $100$ 除以正整数 $b$ 余 $4$。求 $b$ 的个数。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 找不超过 $-23$ 的最大的 $6$ 的倍数，是 $-24=6\times(-4)$。于是 $-23=6\times(-4)+1$，商 $-4$ 余 $1$。</li>
+          <li>(2) 设商与余数都是 $q$，则 $N=13q+q=14q$。余数要满足 $0\le q&lt;13$，又 $N&gt;0$，所以 $q=1,2,\dots,12$。共 $12$ 个，最大的是 $14\times 12=168$。</li>
+          <li>(3) $100=bq+4$，即 $bq=96$，所以 $b$ 是 $96$ 的约数；又余数小于除数，所以 $b&gt;4$。</li>
+          <li>(3) $96=2^5\cdot 3$ 的约数共 $12$ 个，去掉不超过 $4$ 的 $1,2,3,4$，剩下 $6,8,12,16,24,32,48,96$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) 商 $-4$，余 $1$；(2) $12$ 个，最大 $168$；(3) $8$ 个。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $-23\div 6$ 写成商 $-3$ 余 $-5$。EJU 中的余数必须满足 $0\le r&lt;b$，不能是负数。</li>
+        <li>忘记余数小于除数。「除以 $b$ 余 $4$」隐含 $b&gt;4$，所以 $b=1,2,3,4$ 都要舍去。</li>
+        <li>商和余数相等时忘记 $q&lt;13$ 这个限制，把 $q=13$ 也算进去。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>看到「除以 $b$ 余 $r$」，立刻写成 $a=bq+r$，再把条件 $0\le r&lt;b$ 写在旁边。很多题目的解的个数就是由这个不等式决定的。</p>
+      <p><strong>日语术语：</strong><span lang="ja">割る数</span>（<span class="kana" lang="ja">わるすう</span>）：除数；<span lang="ja">割られる数</span>（<span class="kana" lang="ja">わられるすう</span>）：被除数；<span lang="ja">商</span>（<span class="kana" lang="ja">しょう</span>）：商；<span lang="ja">余り</span>（<span class="kana" lang="ja">あまり</span>）：余数；<span lang="ja">割り切れる</span>（<span class="kana" lang="ja">わりきれる</span>）：整除。</p>
+    </div>
     <h3>余数的运算</h3>
     <p>设 $a,b$ 除以 $m$ 的余数分别为 $r,s$，则下列各式除以 $m$ 的余数相同：</p>
     <div class="formula-grid">
@@ -340,6 +539,37 @@ html { scroll-padding-top: 100px; }
       <div>$a^k$ 与 $r^k$</div>
     </div>
     <p>因此求 $3^{2026}$ 这类大数的余数时，只需找余数的循环节。</p>
+    <p><strong>为什么余数可以直接运算？</strong>设 $a=mx+r,\ b=my+s$。展开得 $a+b=m(x+y)+(r+s)$，$ab=m(mxy+xs+ry)+rs$，第一项都是 $m$ 的倍数，所以只有 $r+s$、$rs$ 影响余数。$a^k$ 就是把乘法重复 $k$ 次。</p>
+    <p>注意 $r+s$、$rs$ 本身可能不小于 $m$，或 $r-s$ 为负，这时要再加减 $m$ 的倍数调整到 $0$ 到 $m-1$ 之间。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用循环与负余数算大数</b><span class="origin">原创</span></div>
+      <p>(1) 求 $5^{2026}$ 除以 $7$ 的余数。</p>
+      <p>(2) 求 $2026^3$ 除以 $9$ 的余数。</p>
+      <p>(3) 求 $8^{101}$ 除以 $9$ 的余数。</p>
+      <p>(4) 整数 $n$ 除以 $7$ 余 $3$。求 $n^2+2n+5$ 除以 $7$ 的余数。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 列出 $5^k$ 除以 $7$ 的余数：$5,\ 4,\ 6,\ 2,\ 3,\ 1$，之后循环，周期为 $6$。</li>
+          <li>(1) $2026=6\times 337+4$，对应第 $4$ 个，余数为 $2$。</li>
+          <li>(2) 数字和 $2+0+2+6=10$，所以 $2026$ 除以 $9$ 余 $1$，$2026^3$ 的余数为 $1^3=1$。</li>
+          <li>(3) $8=9-1$，所以 $8^{101}$ 与 $(-1)^{101}=-1$ 的余数相同。把 $-1$ 调整到范围内：$-1+9=8$。</li>
+          <li>(4) 把 $n$ 换成余数 $3$：$9+6+5=20=7\times 2+6$，余数为 $6$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $2$；(2) $1$；(3) $8$；(4) $6$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把余数相除。除法不能照搬：$20$ 与 $8$ 除以 $12$ 同余，但两边除以 $4$ 后的 $5$ 与 $2$ 除以 $12$ 余数不同。</li>
+        <li>循环节数错。$2026\div 6$ 余 $4$ 要对应第 $4$ 项；余数为 $0$ 时对应最后一项，而不是第 $0$ 项。</li>
+        <li>最后答案留下负数或大于除数的数，如把 $-1$ 或 $20$ 直接填上。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>找循环时，一旦余数出现 $1$，后面就重复了，可以就此停下。底数接近除数的倍数时（如 $8$ 对 $9$）用 $-1$ 代替，比列表更快。</p>
+      <p><strong>日语术语：</strong><span lang="ja">余り</span>（<span class="kana" lang="ja">あまり</span>）：余数；<span lang="ja">周期</span>（<span class="kana" lang="ja">しゅうき</span>）：周期；<span lang="ja">繰り返す</span>（<span class="kana" lang="ja">くりかえす</span>）：重复、循环；<span lang="ja">循環</span>（<span class="kana" lang="ja">じゅんかん</span>）：循环。</p>
+    </div>
     <h3>按余数分类</h3>
     <p>整数可按除以 $m$ 的余数分成 $m$ 类，证明题常用：</p>
     <ul>
@@ -348,6 +578,36 @@ html { scroll-padding-top: 100px; }
       <li>奇数的平方：$(2k+1)^2=4k(k+1)+1$，$k(k+1)$ 是偶数，所以它除以 $8$ 余 $1$。</li>
     </ul>
     <p><strong>连续整数之积</strong>（<span lang="ja">連続する整数の積</span>）：连续 $2$ 个整数之积是 $2$ 的倍数，连续 $3$ 个整数之积是 $6$ 的倍数。遇到 $n^3-n=(n-1)n(n+1)$ 要立刻想到这一点。</p>
+    <p><strong>分类为什么可靠？</strong>由除法定理，每个整数恰好属于一类，所以逐类验证后就覆盖了全部整数，不重不漏。写成 $3k\pm 1$ 比写成 $3k+1,\ 3k+2$ 更方便，因为 $(3k\pm 1)^2=3(3k^2\pm 2k)+1$ 可以一次算完。</p>
+    <p><strong>连续整数之积的理由：</strong>连续 $3$ 个整数中，必有一个除以 $3$ 余 $0$（三类余数各出现一次），又至少有一个偶数，而 $2,3$ 互素，所以积是 $6$ 的倍数。类似的恒等式也很有用：$n(n+1)(2n+1)=(n-1)n(n+1)+n(n+1)(n+2)$，右边两项都是连续 $3$ 个整数之积，所以左边总是 $6$ 的倍数。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　按余数分类的证明</b><span class="origin">原创</span></div>
+      <p>(1) 证明：对任意整数 $n$，$n^5-n$ 是 $30$ 的倍数。</p>
+      <p>(2) 证明：不存在整数 $x,y$ 使 $x^2+y^2=2027$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 分解：$n^5-n=n(n^4-1)=(n-1)n(n+1)(n^2+1)$。</li>
+          <li>(1) $(n-1)n(n+1)$ 是连续 $3$ 个整数之积，所以是 $6$ 的倍数。因为 $30=6\times 5$ 且 $6,5$ 互素，只需再证是 $5$ 的倍数。</li>
+          <li>(1) 按除以 $5$ 的余数分类：$n=5k$ 时因数 $n$ 是 $5$ 的倍数；$n=5k\pm 1$ 时因数 $n\mp 1$ 是 $5$ 的倍数；$n=5k\pm 2$ 时 $n^2+1=25k^2\pm 20k+5$ 是 $5$ 的倍数。</li>
+          <li>(1) 五类都成立，所以 $n^5-n$ 是 $30$ 的倍数。</li>
+          <li>(2) 平方数除以 $4$ 的余数：$(2k)^2=4k^2$ 余 $0$；$(2k+1)^2=4(k^2+k)+1$ 余 $1$。</li>
+          <li>(2) 所以 $x^2+y^2$ 除以 $4$ 的余数只能是 $0,1,2$。而 $2027=4\times 506+3$ 余 $3$，矛盾，故不存在。</li>
+        </ol>
+        <p><strong>答案：</strong>两个结论均得证。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>分类不完整，例如除以 $5$ 只讨论 $5k,\ 5k+1$，或者只试几个具体的 $n$ 就当作证明。试例子只能帮助猜想，不能代替证明。</li>
+        <li>混淆连续整数的结论：连续 $3$ 个整数之积是 $6$ 的倍数，但不一定是 $12$ 的倍数，如 $1\cdot 2\cdot 3=6$。</li>
+        <li>把「$n^2$ 除以 $3$ 余 $0$ 或 $1$」记成「余 $0,1,2$」。$n^2$ 不可能除以 $3$ 余 $2$，这正是常用的反证依据。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>看到「对所有 $n$ 都是某数的倍数」，先因式分解找连续整数之积，再对剩下的因数分类。看到「无整数解」，试试取一个合适的模（常用 $3,4,8$），比较两边可能的余数。</p>
+      <p><strong>日语术语：</strong><span lang="ja">連続する整数の積</span>（<span class="kana" lang="ja">れんぞくするせいすうのせき</span>）：连续整数之积；<span lang="ja">偶数</span>（<span class="kana" lang="ja">ぐうすう</span>）：偶数；<span lang="ja">奇数</span>（<span class="kana" lang="ja">きすう</span>）：奇数；<span lang="ja">場合分け</span>（<span class="kana" lang="ja">ばあいわけ</span>）：分情况讨论；<span lang="ja">証明</span>（<span class="kana" lang="ja">しょうめい</span>）：证明。</p>
+    </div>
   </section>
 
   <section id="euclid">
@@ -361,6 +621,48 @@ html { scroll-padding-top: 100px; }
     <p><strong>倒推</strong>可以把 $21$ 表示成 $252$ 和 $105$ 的组合，这正是下一节解不定方程的工具：</p>
     $$21=105-42\times 2=105-(252-105\times 2)\times 2=105\times 5+252\times(-2).$$
 
+    <p><strong>为什么一定会结束？</strong>每一步的余数都比除数小，所以余数序列 $r_1&gt;r_2&gt;\cdots\ge 0$ 是严格递减的非负整数，有限步后必为 $0$。设最后 $r_{k-1}=r_k q$，则 $\gcd(r_{k-1},r_k)=r_k$，再由原理一路等回去，$r_k$ 就是原来两数的最大公约数。</p>
+    <p><strong>为什么比素因数分解更有效？</strong>$1071$、$462$ 这样的数不容易一眼分解，互除法只用除法就能得到结果，而且每两步余数至少减半，步数很少。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　互除法求 G、L 并约分</b><span class="origin">原创</span></div>
+      <p>(1) 用互除法求 $1071$ 与 $462$ 的最大公约数和最小公倍数。</p>
+      <p>(2) 约分 $\dfrac{1071}{462}$。</p>
+      <p>(3) 把最大公约数表示成 $462x+1071y$ 的形式。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $1071=462\times 2+147$；$462=147\times 3+21$；$147=21\times 7+0$。所以 $G=21$。</li>
+          <li>(1) $L=\dfrac{ab}{G}=\dfrac{1071\times 462}{21}=1071\times 22=23562$。</li>
+          <li>(2) 分子分母都除以 $21$：$1071=21\times 51$，$462=21\times 22$，得 $\dfrac{51}{22}$。</li>
+          <li>(3) 倒推：$21=462-147\times 3$，把 $147=1071-462\times 2$ 代入，得 $21=462-(1071-462\times 2)\times 3=462\times 7+1071\times(-3)$。</li>
+          <li>(3) 检验：$3234-3213=21$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $G=21,\ L=23562$；(2) $\dfrac{51}{22}$；(3) $x=7,\ y=-3$（表示法不唯一）。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　含字母的最大公约数</b><span class="origin">原创</span></div>
+      <p>设 $n$ 为正整数。求 $3n+5$ 与 $n+1$ 的最大公约数。</p>
+      <div class="ans">
+        <ol>
+          <li>把 $3n+5$ 当被除数：$3n+5=(n+1)\times 3+2$。</li>
+          <li>由原理，$\gcd(3n+5,n+1)=\gcd(n+1,2)$。</li>
+          <li>$2$ 的约数只有 $1,2$，所以结果取决于 $n+1$ 的奇偶：$n$ 为奇数时 $n+1$ 是偶数，结果为 $2$；$n$ 为偶数时 $n+1$ 是奇数，结果为 $1$。</li>
+        </ol>
+        <p><strong>答案：</strong>$n$ 为奇数时为 $2$，$n$ 为偶数时为 $1$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把最后的余数 $0$ 或最后的商当作答案。答案是余数为 $0$ 那一步的<strong>除数</strong>。</li>
+        <li>倒推时代入错位。每次只代入一个余数，并且把同类项（如 $462$ 的系数）合并后再继续。</li>
+        <li>含字母时忘记讨论。$\gcd(n+1,2)$ 不是定值，要按 $n$ 的奇偶分情况。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>倒推容易出错，结束后把系数代回原式计算一次，只需几秒。如果题目已经给出 $\gcd$，也可以用 $a,b$ 同除以 $G$ 后再找特解，让数字变小。</p>
+      <p><strong>日语术语：</strong><span lang="ja">ユークリッドの互除法</span>（<span class="kana" lang="ja">ユークリッドのごじょほう</span>）：欧几里得算法；<span lang="ja">約分</span>（<span class="kana" lang="ja">やくぶん</span>）：约分；<span lang="ja">既約分数</span>（<span class="kana" lang="ja">きやくぶんすう</span>）：最简分数；<span lang="ja">除法</span>（<span class="kana" lang="ja">じょほう</span>）：除法。</p>
+    </div>
     <div class="explorer" id="eu">
       <h3 style="margin-top:0">交互演示：用正方形铺满长方形</h3>
       <p style="font-size:15px;color:var(--ink-2)">互除法的几何意义：在长 $a$、宽 $b$ 的长方形里不断切下尽量多的最大正方形，每一步的商就是切下的个数，最后的正方形边长就是最大公约数。同一颜色表示同一步。</p>
@@ -371,6 +673,34 @@ html { scroll-padding-top: 100px; }
       <div class="tw"><table class="steps"><thead><tr><th>步</th><th>被除数 = 除数 × 商 + 余数</th></tr></thead><tbody id="eu-rows"></tbody></table></div>
       <div class="status" id="eu-status" aria-live="polite"></div>
     </div>
+    <p><strong>几何意义为什么成立？</strong>把 $a\times b$ 的长方形切下 $q$ 个边长为 $b$ 的正方形，剩下 $r\times b$ 的长方形，这正是 $a=bq+r$。一个正方形若能铺满 $a\times b$，它的边长就必须同时整除 $a$ 和 $b$；切割过程保持这一点，所以最后的正方形边长就是最大公约数。</p>
+    <p><strong>使用方法：</strong>先把滑块调到下题的 $a=168,\ b=64$，再逐步增加「显示步数」，把图形、表格和下面的算式对照着看。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　切正方形与铺地砖</b><span class="origin">原创</span></div>
+      <p>长 $168$、宽 $64$ 的长方形。</p>
+      <p>(1) 按互除法的方式不断切下最大的正方形，一共切下几个？最后的正方形边长是多少？</p>
+      <p>(2) 用同样大小的正方形地砖无缝铺满这个长方形，地砖边长取整数且最大时，需要多少块？</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 逐步相除：$168=64\times 2+40$（$2$ 个），$64=40\times 1+24$（$1$ 个），$40=24\times 1+16$（$1$ 个），$24=16\times 1+8$（$1$ 个），$16=8\times 2+0$（$2$ 个）。</li>
+          <li>(1) 正方形个数等于所有商之和：$2+1+1+1+2=7$；最后边长为 $8$。</li>
+          <li>(2) 地砖边长必须是 $168$ 和 $64$ 的公约数，最大为 $\gcd(168,64)=8$。</li>
+          <li>(2) 块数为 $\dfrac{168}{8}\times\dfrac{64}{8}=21\times 8=168$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $7$ 个，边长 $8$；(2) $168$ 块。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把互除法的步数（本题 $5$ 步）当成正方形的个数（$7$ 个）。每一步切下的个数是商，可以大于 $1$。</li>
+        <li>把两种问题混淆：互除法切出的正方形大小不等，铺地砖要求大小相同。两者只是最后的边长都等于 $\gcd$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>应用题中「无缝铺满」「分成相同的组且不剩余」对应最大公约数；「同时到达」「拼成正方形」对应最小公倍数。先判断是 $G$ 还是 $L$，再计算。</p>
+      <p><strong>日语术语：</strong><span lang="ja">正方形</span>（<span class="kana" lang="ja">せいほうけい</span>）：正方形；<span lang="ja">長方形</span>（<span class="kana" lang="ja">ちょうほうけい</span>）：长方形；<span lang="ja">敷き詰める</span>（<span class="kana" lang="ja">しきつめる</span>）：铺满；<span lang="ja">一辺の長さ</span>（<span class="kana" lang="ja">いっぺんのながさ</span>）：边长。</p>
+    </div>
   </section>
 
   <section id="diophantine">
@@ -380,6 +710,34 @@ html { scroll-padding-top: 100px; }
       <p><strong>有解条件：</strong>$ax+by=c$ 有整数解 $\iff$ $c$ 是 $\gcd(a,b)$ 的倍数。特别地，$a,b$ 互素时 $ax+by=1$ 一定有整数解。</p>
     </div>
     <p>例如 $6x+9y=4$ 无整数解：左边总是 $3$ 的倍数，右边不是。</p>
+    <p><strong>有解条件的推导：</strong>设 $G=\gcd(a,b)$。必要性：$a,b$ 都是 $G$ 的倍数，所以 $ax+by$ 总是 $G$ 的倍数，$c$ 也必须是。充分性：互除法倒推可以得到 $as+bt=G$；若 $c=Gm$，两边乘 $m$，得 $a(sm)+b(tm)=c$，这就是一组解。</p>
+    <p>所以解方程前先约分：两边同除以 $G$ 后系数互素，才能直接使用下面的一般解公式。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　先判断、再约分</b><span class="origin">原创</span></div>
+      <p>(1) $14x+21y=5$ 有整数解吗？</p>
+      <p>(2) 求 $14x+21y=35$ 的全部整数解。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $\gcd(14,21)=7$，而 $5$ 不是 $7$ 的倍数，所以无整数解。</li>
+          <li>(2) $35$ 是 $7$ 的倍数，两边除以 $7$：$2x+3y=5$，此时 $2,3$ 互素。</li>
+          <li>(2) 观察得特解 $(x,y)=(1,1)$。</li>
+          <li>(2) 相减：$2(x-1)=-3(y-1)$。$2,3$ 互素，所以 $x-1$ 是 $3$ 的倍数，设 $x-1=3k$，代回得 $y-1=-2k$。</li>
+          <li>(2) 检验：$14(1+3k)+21(1-2k)=35+42k-42k=35$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) 无整数解；(2) $x=1+3k,\ y=1-2k$（$k$ 为整数）。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>没有约分就套公式。$14x+21y=35$ 若直接写 $x=1+21k,\ y=1-14k$，会漏掉 $k$ 的中间值对应的解，如 $(4,-1)$。</li>
+        <li>只因为试不出解就断定无解。判断有无解要用 $\gcd$ 整除 $c$ 这个条件。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题干问「有无整数解」时，一步求 $\gcd$ 就能定论。题干给出常数较大的方程时，先检查能否约分，数字变小后特解往往一眼可见。</p>
+      <p><strong>日语术语：</strong><span lang="ja">整数解</span>（<span class="kana" lang="ja">せいすうかい</span>）：整数解；<span lang="ja">解なし</span>（<span class="kana" lang="ja">かいなし</span>）：无解；<span lang="ja">係数</span>（<span class="kana" lang="ja">けいすう</span>）：系数；<span lang="ja">定数</span>（<span class="kana" lang="ja">ていすう</span>）：常数。</p>
+    </div>
     <h3>解法三步</h3>
     <ol>
       <li><strong>找一组特解</strong>（<span lang="ja">特殊解</span>）：系数小时直接试，系数大时用互除法倒推。</li>
@@ -397,29 +755,227 @@ html { scroll-padding-top: 100px; }
     <div class="box warn">
       <p><strong>限定正整数解时：</strong>把一般解代入 $x&gt;0,\ y&gt;0$，解出 $k$ 的范围再数个数。系数小的也可以直接抓「某个未知数必是某数的倍数」来枚举。</p>
     </div>
+    <p><strong>第 3 步为什么得到全部解？</strong>由 $a(x-x_0)=-b(y-y_0)$，左边是 $a$ 的倍数，右边是 $b$ 的倍数。$a,b$ 互素时，$b$ 必须整除 $x-x_0$，设 $x-x_0=bk$；代回消去 $a$，得 $y-y_0=-ak$。反过来，任何整数 $k$ 代回都满足原方程，所以这个公式不多不少，恰好给出所有解。</p>
+    <p><strong>符号的直观理解：</strong>$x$ 增加 $b$ 使左边增加 $ab$，$y$ 就要减少 $a$ 来抵消，所以两式中 $k$ 的符号相反。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　互除法求一般解</b><span class="origin">原创</span></div>
+      <p>求 $27x+16y=1$ 的全部整数解。</p>
+      <div class="ans">
+        <ol>
+          <li>互除法：$27=16\times 1+11$；$16=11\times 1+5$；$11=5\times 2+1$。</li>
+          <li>倒推：$1=11-5\times 2=11-(16-11)\times 2=11\times 3-16\times 2$。</li>
+          <li>再代入 $11=27-16$：$1=(27-16)\times 3-16\times 2=27\times 3+16\times(-5)$。特解为 $(3,-5)$。</li>
+          <li>一般解：$x=3+16k,\ y=-5-27k$。</li>
+          <li>检验：$27\times 3+16\times(-5)=81-80=1$。</li>
+        </ol>
+        <p><strong>答案：</strong>$x=3+16k,\ y=-5-27k$（$k$ 为整数）。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　限定正整数解</b><span class="origin">原创</span></div>
+      <p>求 $7x+11y=200$ 的所有正整数解，并求 $x+y$ 的最小值。</p>
+      <div class="ans">
+        <ol>
+          <li>$7x=200-11y$ 要是 $7$ 的倍数。依次试 $y=1$：$200-11=189=7\times 27$，所以特解为 $(27,1)$。</li>
+          <li>一般解：$x=27-11k,\ y=1+7k$。</li>
+          <li>限定范围：$x&gt;0$ 得 $k&lt;\dfrac{27}{11}$，$y&gt;0$ 得 $k&gt;-\dfrac17$，所以 $k=0,1,2$。</li>
+          <li>对应 $(27,1),\ (16,8),\ (5,15)$。</li>
+          <li>$x+y=28-4k$，随 $k$ 增大而减小，$k=2$ 时最小，为 $20$。</li>
+        </ol>
+        <p><strong>答案：</strong>$(x,y)=(27,1),(16,8),(5,15)$；$x+y$ 的最小值为 $20$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　余数问题化为不定方程</b><span class="origin">原创</span></div>
+      <p>求除以 $7$ 余 $2$、除以 $11$ 余 $5$ 的最小三位数。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $n=7x+2=11y+5$，整理得 $7x-11y=3$。</li>
+          <li>试 $x=2$：$14-11=3$，所以 $y=1$，$n=7\times 2+2=16$。</li>
+          <li>一般解为 $x=2+11k,\ y=1+7k$，代回得 $n=7(2+11k)+2=16+77k$，所以 $n$ 每隔 $7\times 11=77$ 出现一次。</li>
+          <li>依次为 $16,\ 93,\ 170,\dots$，最小的三位数是 $170$。</li>
+          <li>检验：$170=7\times 24+2=11\times 15+5$。</li>
+        </ol>
+        <p><strong>答案：</strong>$170$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>一般解的符号写反，如写成 $x=3+16k,\ y=-5+27k$。写完代回原方程，$k$ 的项必须抵消。</li>
+        <li>$x,y$ 的周期写反：$x$ 的周期是 $y$ 的系数 $b$，$y$ 的周期是 $x$ 的系数 $a$。</li>
+        <li>限定范围时把 $k&lt;\dfrac{27}{11}$ 算成 $k\le 3$，或者把「正整数」当成「非负整数」，多算了 $0$。</li>
+        <li>余数问题中周期用了 $7+11$。周期应是两个除数的最小公倍数。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>填空题的一般解可能因特解不同而写法不同，要按题目要求（如「$x$ 为最小正整数」）确定唯一的一组。题中明确要求「最小」「最大」时，把一般解代入后看单调性，不必逐个列举。</p>
+      <p><strong>日语术语：</strong><span lang="ja">特殊解</span>（<span class="kana" lang="ja">とくしゅかい</span>）：特解；<span lang="ja">一般解</span>（<span class="kana" lang="ja">いっぱんかい</span>）：一般解；<span lang="ja">自然数の組</span>（<span class="kana" lang="ja">しぜんすうのくみ</span>）：自然数组；<span lang="ja">代入</span>（<span class="kana" lang="ja">だいにゅう</span>）：代入；<span lang="ja">最小値</span>（<span class="kana" lang="ja">さいしょうち</span>）：最小值。</p>
+    </div>
   </section>
 
   <section id="base">
     <h2>7 记数法（n 进制）</h2>
     <p class="jp-sub" lang="ja">記数法 — n進法</p>
     <p><strong>$n$ 进制</strong>（<span lang="ja">n進法</span>）只用数字 $0,1,\dots,n-1$，各位的权是 $n$ 的幂。写法上在右下角标注底数，如 $2301_{(4)}$。</p>
+    <p><strong>为什么表示是唯一的？</strong>$N=a_kn^k+\dots+a_1n+a_0$ 中，除 $a_0$ 外的每一项都是 $n$ 的倍数，而 $0\le a_0&lt;n$，所以 $a_0$ 正是 $N$ 除以 $n$ 的余数，由除法定理它是唯一的。再对商重复同样的讨论，每一位都被唯一确定。这也说明进制转换的本质就是整数除法。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由表示式求底数</b><span class="origin">原创</span></div>
+      <p>(1) 数 $1234_{(n)}$ 中，底数 $n$ 最小可以是多少？</p>
+      <p>(2) $121_{(n)}$ 用十进制表示为 $49$。求 $n$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $n$ 进制的数字不超过 $n-1$。出现了数字 $4$，所以 $n-1\ge 4$，$n\ge 5$，最小为 $5$。</li>
+          <li>(2) 按权展开：$n^2+2n+1=49$，即 $(n+1)^2=49$。</li>
+          <li>(2) $n+1=\pm 7$，得 $n=6$ 或 $n=-8$；底数是不小于 $2$ 的整数，所以 $n=6$。</li>
+          <li>(2) 检验数字范围：数字 $2\le 5$ 合格；$36+12+1=49$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $5$；(2) $n=6$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>出现 $n$ 进制中不存在的数字，如 $5_{(5)}$、$2_{(2)}$。最大数字是 $n-1$。</li>
+        <li>解出底数后没有舍去负值或不满足数字范围的值。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目中含字母底数时，把「数字 $&lt;$ 底数」作为隐含条件写在草稿上，常用它来筛选答案。</p>
+      <p><strong>日语术语：</strong><span lang="ja">n進法</span>（<span class="kana" lang="ja">エヌしんほう</span>）：n 进制；<span lang="ja">記数法</span>（<span class="kana" lang="ja">きすうほう</span>）：记数法；<span lang="ja">底</span>（<span class="kana" lang="ja">てい</span>）：底；<span lang="ja">位取り</span>（<span class="kana" lang="ja">くらいどり</span>）：数位。</p>
+    </div>
     <h3>$n$ 进制 → 十进制：按权展开</h3>
     $$2301_{(4)}=2\cdot 4^3+3\cdot 4^2+0\cdot 4+1=177.$$
     <p>小数部分权为 $n^{-1},n^{-2},\dots$：$0.101_{(2)}=\dfrac12+\dfrac18=\dfrac58$。</p>
+    <p><strong>为什么这样展开？</strong>这就是记数法的定义：从右起第 $k$ 位（从 $0$ 数）的权是 $n^k$，每位数字表示有几个这样的权。小数点后第 $k$ 位的权是 $n^{-k}$，规律完全相同。</p>
+    <p><strong>更快的算法（逐次乘）：</strong>$a_3n^3+a_2n^2+a_1n+a_0=\bigl(((a_3n+a_2)n+a_1)n+a_0\bigr)$，从最高位起「乘 $n$ 加下一位」，数字大时能减少计算量。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　含小数的按权展开</b><span class="origin">原创</span></div>
+      <p>把下列各数化为十进制：(1) $3142_{(5)}$；(2) $0.23_{(4)}$；(3) $12.21_{(3)}$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 按权展开：$3\cdot 125+1\cdot 25+4\cdot 5+2=375+25+20+2=422$。</li>
+          <li>(1) 用逐次乘验算：$3\to 3\times 5+1=16\to 16\times 5+4=84\to 84\times 5+2=422$。</li>
+          <li>(2) $\dfrac24+\dfrac{3}{16}=\dfrac{8+3}{16}=\dfrac{11}{16}=0.6875$。</li>
+          <li>(3) 整数部分：$1\cdot 3+2=5$。小数部分：$\dfrac23+\dfrac19=\dfrac79$。合计 $5+\dfrac79=\dfrac{52}{9}$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $422$；(2) $\dfrac{11}{16}$；(3) $\dfrac{52}{9}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把最低位的权当成 $n$。个位的权是 $n^0=1$，所以 $4$ 位数的最高位的权是 $n^3$，不是 $n^4$。</li>
+        <li>小数部分的权写成 $n,n^2$。小数点后第一位的权是 $\dfrac1n$。</li>
+        <li>把 $12.21_{(3)}$ 的整数和小数部分混在一起算。分开算再相加最稳。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>答案要求分数时要约到最简；若小数部分的分母是 $n$ 的幂，化成十进制小数前先判断能否除尽。</p>
+      <p><strong>日语术语：</strong><span lang="ja">小数</span>（<span class="kana" lang="ja">しょうすう</span>）：小数；<span lang="ja">整数部分</span>（<span class="kana" lang="ja">せいすうぶぶん</span>）：整数部分；<span lang="ja">小数部分</span>（<span class="kana" lang="ja">しょうすうぶぶん</span>）：小数部分；<span lang="ja">既約分数</span>（<span class="kana" lang="ja">きやくぶんすう</span>）：最简分数。</p>
+    </div>
     <h3>十进制 → $n$ 进制</h3>
     <ul>
       <li><strong>整数部分：</strong>反复除以 $n$，把余数<strong>由下往上</strong>读。例：$100\div 3$ 依次余 $1,0,2,0,1$，所以 $100=10201_{(3)}$。</li>
       <li><strong>小数部分：</strong>反复乘以 $n$，把整数部分<strong>由上往下</strong>读。例：$0.625\times 2=1.25$，$0.25\times 2=0.5$，$0.5\times 2=1$，所以 $0.625=0.101_{(2)}$。</li>
     </ul>
+    <p><strong>整数部分为什么由下往上读？</strong>$N=a_kn^k+\dots+a_1n+a_0$，第一次除以 $n$ 的余数是最低位 $a_0$，商是 $a_kn^{k-1}+\dots+a_1$；再除一次得 $a_1$，以此类推。所以先得到的是低位，写答案时要倒过来读。</p>
+    <p><strong>小数部分为什么由上往下读？</strong>$x=0.b_1b_2b_3\cdots_{(n)}$ 乘以 $n$，小数点右移一位，得 $b_1.b_2b_3\cdots_{(n)}$，整数部分就是 $b_1$。先得到的是高位，所以顺着读。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　整数与小数的转换</b><span class="origin">原创</span></div>
+      <p>(1) 把 $2025$ 化为五进制。</p>
+      <p>(2) 把 $0.6875$ 化为四进制。</p>
+      <p>(3) 把 $23.625$ 化为二进制。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $2025\div 5=405$ 余 $0$；$405\div 5=81$ 余 $0$；$81\div 5=16$ 余 $1$；$16\div 5=3$ 余 $1$；$3\div 5=0$ 余 $3$。由下往上读得 $31100_{(5)}$。</li>
+          <li>(1) 检验：$3\cdot 625+1\cdot 125+1\cdot 25=1875+125+25=2025$。</li>
+          <li>(2) $0.6875\times 4=2.75$，取 $2$；$0.75\times 4=3$，取 $3$，小数部分为 $0$，结束。由上往下读得 $0.23_{(4)}$。</li>
+          <li>(3) 分开处理。整数部分：$23=16+4+2+1=10111_{(2)}$。</li>
+          <li>(3) 小数部分：$0.625\times 2=1.25$（取 $1$），$0.25\times 2=0.5$（取 $0$），$0.5\times 2=1$（取 $1$），得 $0.101_{(2)}$。合起来为 $10111.101_{(2)}$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $31100_{(5)}$；(2) $0.23_{(4)}$；(3) $10111.101_{(2)}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>整数部分顺着读。$100$ 的三进制写成 $10201$ 是对称的看不出错，但多数情况读反就错了，如 $23$ 不是 $11101_{(2)}$。</li>
+        <li>小数部分倒着读，或把整数部分的方向搬过来。可以记成「除法倒读，乘法顺读」。</li>
+        <li>乘完之后把整数部分也继续乘。应把取出的整数部分去掉，只用小数部分继续。</li>
+        <li>以为有限小数换进制后仍是有限小数。十进制的 $0.1$ 化成二进制是 $0.000110011\cdots_{(2)}$，不断循环。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>转换后用按权展开验算一次。二进制转换时，把 $1,2,4,8,16,32,64,128,256,512,1024$ 记熟，直接拆成 $2$ 的幂之和往往比反复除法快。</p>
+      <p><strong>日语术语：</strong><span lang="ja">有限小数</span>（<span class="kana" lang="ja">ゆうげんしょうすう</span>）：有限小数；<span lang="ja">循環小数</span>（<span class="kana" lang="ja">じゅんかんしょうすう</span>）：循环小数；<span lang="ja">2進法</span>（<span class="kana" lang="ja">にしんほう</span>）：二进制；<span lang="ja">5進法</span>（<span class="kana" lang="ja">ごしんほう</span>）：五进制。</p>
+    </div>
     <h3>位数与数字的范围</h3>
     <p>$N$ 在 $n$ 进制下是 $k$ 位数 $\iff n^{k-1}\le N&lt;n^k$。用字母表示各位数字时别忘了范围：$n$ 进制的各位数字满足 $0\le a\le n-1$，且最高位不为 $0$。</p>
 
+    <p><strong>位数不等式的来历：</strong>$k$ 位数中最小的是 $100\cdots 0_{(n)}=n^{k-1}$，最大的是 $(n-1)(n-1)\cdots(n-1)_{(n)}=n^k-1$，所以 $n^{k-1}\le N\le n^k-1$，也就是 $n^{k-1}\le N&lt;n^k$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　位数与数字的条件</b><span class="origin">原创</span></div>
+      <p>(1) $1000$ 在二进制下是几位数？</p>
+      <p>(2) 三进制下为四位、二进制下为六位的正整数有几个？</p>
+      <p>(3) 两位数 $ab_{(7)}$ 与 $ba_{(9)}$ 表示同一个数（$a,b$ 都不为 $0$）。求这个数。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $2^9=512\le 1000&lt;1024=2^{10}$，所以 $k-1=9$，是 $10$ 位。</li>
+          <li>(2) 三进制四位：$27\le N&lt;81$；二进制六位：$32\le N&lt;64$。</li>
+          <li>(2) 取交集：$32\le N&lt;64$，共 $64-32=32$ 个。</li>
+          <li>(3) 按权展开：$7a+b=9b+a$，整理得 $6a=8b$，即 $3a=4b$。</li>
+          <li>(3) 由 $3,4$ 互素，$a$ 是 $4$ 的倍数；$a,b$ 同时是七进制和九进制数字，满足 $1\le a,b\le 6$，所以 $a=4,\ b=3$。</li>
+          <li>(3) 这个数为 $7\times 4+3=31$，检验 $9\times 3+4=31$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $10$ 位；(2) $32$ 个；(3) $31$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $k$ 位的范围写成 $n^k\le N&lt;n^{k+1}$。$k$ 位数的最高位权是 $n^{k-1}$，如三位的十进制数从 $10^2$ 开始。</li>
+        <li>数个数时把右端点算进去。$32\le N&lt;64$ 共 $32$ 个，不是 $33$ 个。</li>
+        <li>数字范围只考虑一个底数。同时出现在两种进制中的数字，要满足较小底数的限制。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>求某个进制下的位数时，先列出该底数的幂再比较，不要逐次相除。题目出现 $ab_{(n)}$ 的形式时，注意它表示 $an+b$，而不是乘积 $ab$。</p>
+      <p><strong>日语术语：</strong><span lang="ja">桁</span>（<span class="kana" lang="ja">けた</span>）：位（数位）；<span lang="ja">桁数</span>（<span class="kana" lang="ja">けたすう</span>）：位数；<span lang="ja">最高位</span>（<span class="kana" lang="ja">さいこうい</span>）：最高位；<span lang="ja">3桁の数</span>（<span class="kana" lang="ja">さんけたのかず</span>）：三位数。</p>
+    </div>
     <div class="explorer">
       <h3 style="margin-top:0">交互演示：进制转换</h3>
       <div class="ctrl"><label for="bs-n">十进制数</label><input id="bs-n" type="range" min="1" max="2100" value="177"><output id="bs-n-o"></output></div>
       <div class="ctrl"><label for="bs-b">底数</label><input id="bs-b" type="range" min="2" max="9" value="4"><output id="bs-b-o"></output></div>
       <div class="digits" id="bs-digits"></div>
       <div class="status" id="bs-status" aria-live="polite"></div>
+    </div>
+    <p><strong>二进制与八进制、四进制的关系：</strong>因为 $8=2^3$、$4=2^2$，把二进制数从右起每 $3$ 位（或每 $2$ 位）分成一组，每组正好对应八进制（或四进制）的一位。这个方法不用经过十进制，可用上面的滑块验证。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用分组法在进制之间转换</b><span class="origin">原创</span></div>
+      <p>(1) 不经过十进制，把 $101101110_{(2)}$ 化为八进制和四进制，并用十进制检验。</p>
+      <p>(2) 把 $1024$ 分别化为四进制和八进制。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 从右起每 $3$ 位一组：$101\ |\ 101\ |\ 110$，分别是 $5,5,6$，所以是 $556_{(8)}$。</li>
+          <li>(1) 从右起每 $2$ 位一组：$1\ |\ 01\ |\ 10\ |\ 11\ |\ 10$，分别是 $1,1,2,3,2$，所以是 $11232_{(4)}$。</li>
+          <li>(1) 检验：$5\cdot 64+5\cdot 8+6=366$；$256+64+32+12+2=366$；演示中取十进制 $366$，底数 $8$ 和 $4$ 结果相同。</li>
+          <li>(2) $1024=4^5$，所以是 $1$ 后面跟 $5$ 个 $0$：$100000_{(4)}$。</li>
+          <li>(2) $1024=2\cdot 512=2\cdot 8^3$，所以是 $2000_{(8)}$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $556_{(8)}$，$11232_{(4)}$；(2) $100000_{(4)}$，$2000_{(8)}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>分组时从左边开始。必须从<strong>个位</strong>（右边）开始，整数部分最左边不足一组时前面补 $0$。</li>
+        <li>把滑块的「底数」当作数的位数。底数决定权的大小，位数由 $n^{k-1}\le N&lt;n^k$ 决定。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>分组法是快速验算工具：二进制、四进制、八进制之间互换时，它比先化成十进制快得多，也不容易出现大数计算的错误。</p>
+      <p><strong>日语术语：</strong><span lang="ja">8進法</span>（<span class="kana" lang="ja">はっしんほう</span>）：八进制；<span lang="ja">4進法</span>（<span class="kana" lang="ja">よんしんほう</span>）：四进制；<span lang="ja">3進法</span>（<span class="kana" lang="ja">さんしんほう</span>）：三进制；<span lang="ja">10進法</span>（<span class="kana" lang="ja">じっしんほう</span>）：十进制。</p>
     </div>
   </section>
 
@@ -441,6 +997,7 @@ html { scroll-padding-top: 100px; }
         <p>(1) 互除法：$1147=899+248$，$899=248\times 3+155$，$248=155+93$，$155=93+62$，$93=62+31$，$62=31\times 2$，所以 $G=31$。又 $1147=31\times 37$，$899=31\times 29$，所以 $L=31\times 37\times 29=33263$。</p>
         <p>(2) $37\times 11=407$，$29\times 14=406$，所以 $37\times 11+29\times(-14)=1$。一般解为 $x=11+29k$，$x$ 的最小正整数值是 $11$，此时 $y=-14$。</p>
         <p>(3) 两边除以 $31$ 得 $37x+29y=1000$。对 $x=1,2,\dots$ 检验 $1000-37x$ 是否为 $29$ 的倍数，首次成立于 $x=9$：$1000-333=667=29\times 23$。一般解为 $x=9+29k,\ y=23-37k$，$k=0$ 时为正整数解；$k\ge 1$ 时 $y&lt;0$，$k\le -1$ 时 $x&lt;0$，故只有 $(x,y)=(9,23)$。</p>
+        <p><strong>解题思路：</strong>第 (3) 问先约分，把大系数方程化成 $37x+29y=1000$。(2) 的结果也能用：两边乘 $1000$ 得特解 $(11000,-14000)$，但数字太大，所以这里直接试小的 $x$。检验：$37\times 9+29\times 23=333+667=1000$。</p>
       </div>
     </article>
 
@@ -457,6 +1014,7 @@ html { scroll-padding-top: 100px; }
         <p>(2) 个数 $(4+1)(2+1)(1+1)=30$；总和 $(1+2+4+8+16)(1+3+9)(1+5)=31\cdot 13\cdot 6=2418$。</p>
         <p>(3) 只有 $5$ 的指数是奇数，所以 $m=5$，$720\times 5=3600=60^2$。</p>
         <p>(4) 指数要补成 $3$ 的倍数：$2^4\to 2^6$ 需 $2^2$，$3^2\to 3^3$ 需 $3$，$5\to 5^3$ 需 $5^2$。$n=4\cdot 3\cdot 25=300$，$720\times 300=216000=60^3$。</p>
+        <p><strong>解题思路：</strong>第 (3)(4) 问的通法：把 $720m$ 的每个指数补到偶数或 $3$ 的倍数，且只补到最近的倍数才最小。也可用指数减半、除以 $3$ 直接求根：$2^4\cdot 3^2\cdot 5^2=(2^2\cdot 3\cdot 5)^2=60^2$；$2^6\cdot 3^3\cdot 5^3=(2^2\cdot 3\cdot 5)^3=60^3$。</p>
       </div>
     </article>
 
@@ -473,6 +1031,7 @@ html { scroll-padding-top: 100px; }
         <p>(1) $32+16+4+1=53$。$53=1\cdot 27+2\cdot 9+2\cdot 3+2$，所以 $53=1222_{(3)}$。</p>
         <p>(2) $\dfrac12+\dfrac18=\dfrac58$。</p>
         <p>(3) $49a+7b+c=25c+5b+a$，整理得 $48a+2b=24c$，即 $24a+b=12c$。于是 $b$ 是 $12$ 的倍数；$a,b,c$ 同时是五进制数字，$0\le b\le 4$，所以 $b=0$，$c=2a$。最高位 $a,c$ 不为 $0$ 且不超过 $4$，所以 $(a,c)=(1,2),(2,4)$。对应 $N=102_{(7)}=201_{(5)}=51$ 和 $N=204_{(7)}=402_{(5)}=102$。</p>
+        <p><strong>解题思路：</strong>第 (3) 问的要点：$a,b,c$ 必须同时是七进制和五进制的数字，所以都不超过 $4$；最高位是七进制的 $a$ 和五进制的 $c$，它们都不能为 $0$。</p>
       </div>
     </article>
 
@@ -487,8 +1046,40 @@ html { scroll-padding-top: 100px; }
         <p>(1) $3+5=8$ 余 $1$；$3\times 5=15$ 余 $1$；$9+25=34$ 余 $6$。</p>
         <p>(2) $2^3=8$ 除以 $7$ 余 $1$，而 $100=3\times 33+1$，所以 $2^{100}=(2^3)^{33}\cdot 2$ 的余数为 $1\cdot 2=2$。</p>
         <p>(3) $n^3+5n=(n-1)n(n+1)+6n$。连续 $3$ 个整数之积是 $6$ 的倍数，所以整体是 $6$ 的倍数。又 $n=1$ 时值恰为 $6$，所以 $6$ 是最大的。</p>
+        <p><strong>解题思路：</strong>第 (3) 问为什么要变形：$n^3+5n$ 本身不能直接看出倍数，把 $5n$ 拆成 $-n+6n$ 后才出现 $n^3-n$。「最大」要靠 $n=1$ 的值 $6$ 给出上限，因为公约数不能超过任何一个取值。</p>
       </div>
     </article>
+    <p><strong>做填空题的通用流程：</strong>① 看方框数量，预估答案的位数；② 按小题顺序做，前一小题的结果常是后一小题的工具；③ 每得到一个数就验算一次（代回原式、用 $ab=GL$ 或按权展开）；④ 答案是分数时确认已约到最简。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　综合填空</b><span class="origin">原创</span></div>
+      <p>设 $a=396,\ b=1080$。</p>
+      <p>(1) $a=2^{\B{A}}\cdot 3^{\B{B}}\cdot 11$，$a$ 的正约数共有 $\B{CD}$ 个。</p>
+      <p>(2) $a$ 与 $b$ 的最大公约数为 $\B{EF}$，最小公倍数为 $\B{GHIJK}$。</p>
+      <p>(3) 方程 $11x+30y=1$ 的整数解中，$x$ 为最小正整数的解是 $x=\B{LM}$，$y=-\B{N}$。</p>
+      <p>(4) $a$ 用七进制表示为 $\B{PQRS}_{(7)}$。</p>
+      <div class="ans">
+        <ul class="keys"><li>A = 2</li><li>B = 2</li><li>C = 1</li><li>D = 8</li><li>E = 3</li><li>F = 6</li><li>G = 1</li><li>H = 1</li><li>I = 8</li><li>J = 8</li><li>K = 0</li><li>L = 1</li><li>M = 1</li><li>N = 4</li><li>P = 1</li><li>Q = 1</li><li>R = 0</li><li>S = 4</li></ul>
+        <ol>
+          <li>(1) $396=4\times 99=2^2\cdot 3^2\cdot 11$，约数个数 $3\cdot 3\cdot 2=18$。</li>
+          <li>(2) 互除法：$1080=396\times 2+288$；$396=288+108$；$288=108\times 2+72$；$108=72+36$；$72=36\times 2$。所以 $G=36$，$L=\dfrac{396\times 1080}{36}=11\times 1080=11880$。</li>
+          <li>(3) $396=36\times 11$，$1080=36\times 30$，所以 $11,30$ 互素，方程有解。试 $x=1,2,\dots$，要使 $1-11x$ 是 $30$ 的倍数：$x=11$ 时 $1-121=-120=30\times(-4)$，所以 $(x,y)=(11,-4)$。</li>
+          <li>(4) $396\div 7=56$ 余 $4$；$56\div 7=8$ 余 $0$；$8\div 7=1$ 余 $1$；$1\div 7=0$ 余 $1$。由下往上读得 $1104_{(7)}$。检验：$343+49+4=396$。</li>
+        </ol>
+        <p><strong>答案：</strong>见上方各方框的数字。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>方框位数对不上还继续往下做。方框数与答案位数不符时，多半是前面算错了，应立即回头检查。</li>
+        <li>把 $L=ab/G$ 中的 $ab$ 先乘出来再除。先约分（$396\div 36=11$）能避免大数计算。</li>
+        <li>不定方程没用到约分后的系数，直接用了 $396,1080$，导致数字过大且特解不好找。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>EJU 的答案以马克卡填涂，答错一格不会有部分分，所以验算很值得。遇到卡住的一问可以先跳过，后面的小题不一定都依赖它。</p>
+      <p><strong>日语术语：</strong><span lang="ja">空欄</span>（<span class="kana" lang="ja">くうらん</span>）：空栏、方框；<span lang="ja">解答</span>（<span class="kana" lang="ja">かいとう</span>）：解答；<span lang="ja">約分</span>（<span class="kana" lang="ja">やくぶん</span>）：约分；<span lang="ja">マークシート</span>（<span class="kana" lang="ja">マークシート</span>）：答题卡。</p>
+    </div>
   </section>
 
   <section id="practice">
@@ -498,82 +1089,107 @@ html { scroll-padding-top: 100px; }
     <div class="q" data-p="1"><div class="q-head"><b>1</b>倍数判定</div>
       <p>四位数 $8a35$（$a$ 是一位数字）是 $9$ 的倍数时，$a$ 是多少？是 $11$ 的倍数时呢？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$9$ 的倍数：$a=2$；$11$ 的倍数：$a=6$</b></p><p>数字和 $16+a$ 为 $9$ 的倍数，得 $a=2$。奇偶位差 $(5+a)-(3+8)=a-6$ 为 $11$ 的倍数，得 $a=6$。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$9$ 的倍数：$a=2$；$11$ 的倍数：$a=6$</b></p><p>数字和 $16+a$ 为 $9$ 的倍数，得 $a=2$。奇偶位差 $(5+a)-(3+8)=a-6$ 为 $11$ 的倍数，得 $a=6$。</p><p><strong>详细步骤：</strong>$9$ 的倍数：$8+a+3+5=16+a$，$0\le a\le 9$ 时 $16\le 16+a\le 25$，其中 $9$ 的倍数只有 $18$，所以 $a=2$（$8235=9\times 915$）。$11$ 的倍数：$a-6$ 的范围是 $-6$ 到 $3$，只有 $0$ 是 $11$ 的倍数，所以 $a=6$（$8635=11\times 785$）。</p></div></div>
 
     <div class="q" data-p="2"><div class="q-head"><b>2</b>倍数判定</div>
       <p>五位数 $3a72b$ 是 $72$ 的倍数。求所有的数字组 $(a,b)$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$(a,b)=(6,0),(7,8)$</b></p><p>$8$ 的倍数：末三位 $72b$ 中 $b=0$ 或 $8$。$9$ 的倍数：数字和 $12+a+b$。$b=0$ 时 $a=6$；$b=8$ 时 $a=7$。即 $36720$、$37728$。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$(a,b)=(6,0),(7,8)$</b></p><p>$8$ 的倍数：末三位 $72b$ 中 $b=0$ 或 $8$。$9$ 的倍数：数字和 $12+a+b$。$b=0$ 时 $a=6$；$b=8$ 时 $a=7$。即 $36720$、$37728$。</p><p><strong>详细步骤：</strong>$72=8\times 9$，且 $8,9$ 互素。$72b$ 中，$720=8\times 90$、$728=8\times 91$，其余 $b$ 都不行。$b=0$：$12+a$ 是 $9$ 的倍数，$a=6$。$b=8$：$20+a$ 是 $9$ 的倍数，$a=7$。检验：$36720=72\times 510$，$37728=72\times 524$。</p></div></div>
 
     <div class="q" data-p="3"><div class="q-head"><b>3</b>约数</div>
       <p>求 $360$ 的正约数的个数与总和。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$24$ 个，总和 $1170$</b></p><p>$360=2^3\cdot 3^2\cdot 5$。个数 $4\cdot 3\cdot 2=24$；总和 $15\cdot 13\cdot 6=1170$。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$24$ 个，总和 $1170$</b></p><p>$360=2^3\cdot 3^2\cdot 5$。个数 $4\cdot 3\cdot 2=24$；总和 $15\cdot 13\cdot 6=1170$。</p><p><strong>详细步骤：</strong>分解：$360=36\times 10=2^3\cdot 3^2\cdot 5$。个数：每个指数加 $1$ 再相乘。总和：$1+2+4+8=15$，$1+3+9=13$，$1+5=6$，相乘得 $1170$。</p></div></div>
 
     <div class="q" data-p="4"><div class="q-head"><b>4</b>约数</div>
       <p>$180$ 的正约数中，奇数有几个？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$6$ 个</b></p><p>$180=2^2\cdot 3^2\cdot 5$。奇约数不含 $2$，是 $3^2\cdot 5$ 的约数，共 $3\cdot 2=6$ 个。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$6$ 个</b></p><p>$180=2^2\cdot 3^2\cdot 5$。奇约数不含 $2$，是 $3^2\cdot 5$ 的约数，共 $3\cdot 2=6$ 个。</p><p><strong>详细步骤：</strong>全部约数共 $3\cdot 3\cdot 2=18$ 个，其中奇约数 $6$ 个，所以偶约数有 $18-6=12$ 个，也可以作为验算。</p></div></div>
 
     <div class="q" data-p="5"><div class="q-head"><b>5</b>平方数</div>
       <p>求使 $\sqrt{84n}$ 为整数的最小正整数 $n$，以及此时 $\sqrt{84n}$ 的值。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$n=21$，$\sqrt{84n}=42$</b></p><p>$84=2^2\cdot 3\cdot 7$，补上 $3\cdot 7=21$，$84\times 21=1764=42^2$。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$n=21$，$\sqrt{84n}=42$</b></p><p>$84=2^2\cdot 3\cdot 7$，补上 $3\cdot 7=21$，$84\times 21=1764=42^2$。</p><p><strong>详细步骤：</strong>指数为奇数的素因数是 $3$ 和 $7$，$n$ 至少含 $3\cdot 7$，所以最小的 $n=21$。根号的值可直接由指数减半得到：$2^2\cdot 3^2\cdot 7^2=(2\cdot 3\cdot 7)^2=42^2$。</p></div></div>
 
     <div class="q" data-p="6"><div class="q-head"><b>6</b>阶乘</div>
       <p>$30!$ 的末尾连续有几个 $0$？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$7$ 个</b></p><p>数 $5$ 的指数：$\left\lfloor\dfrac{30}{5}\right\rfloor+\left\lfloor\dfrac{30}{25}\right\rfloor=6+1=7$，而 $2$ 的指数更大。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$7$ 个</b></p><p>数 $5$ 的指数：$\left\lfloor\dfrac{30}{5}\right\rfloor+\left\lfloor\dfrac{30}{25}\right\rfloor=6+1=7$，而 $2$ 的指数更大。</p><p><strong>详细步骤：</strong>$0$ 的个数等于因数 $10$ 的个数。$2$ 的指数为 $15+7+3+1=26$，$5$ 的指数为 $7$，取较小者。注意 $25$ 含两个 $5$，这就是第二项 $\lfloor 30/25\rfloor=1$ 的来源。</p></div></div>
 
     <div class="q" data-p="7"><div class="q-head"><b>7</b>G 与 L</div>
       <p>正整数 $a&lt;b$ 的最大公约数为 $12$，最小公倍数为 $180$。求所有的 $(a,b)$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$(a,b)=(12,180),(36,60)$</b></p><p>$a=12a'$，$b=12b'$，$a'b'=180\div 12=15$，$a',b'$ 互素且 $a'&lt;b'$：$(1,15),(3,5)$。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$(a,b)=(12,180),(36,60)$</b></p><p>$a=12a'$，$b=12b'$，$a'b'=180\div 12=15$，$a',b'$ 互素且 $a'&lt;b'$：$(1,15),(3,5)$。</p><p><strong>详细步骤：</strong>$a&#39;,b&#39;$ 互素是必要条件，$15$ 的分解只有 $1\times 15$ 和 $3\times 5$，都互素，所以都保留。验算：$12\times 180=2160=36\times 60$，符合 $ab=GL$。</p></div></div>
 
     <div class="q" data-p="8"><div class="q-head"><b>8</b>互除法</div>
       <p>用互除法求 $2023$ 与 $1547$ 的最大公约数。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$119$</b></p><p>$2023=1547+476$，$1547=476\times 3+119$，$476=119\times 4$。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$119$</b></p><p>$2023=1547+476$，$1547=476\times 3+119$，$476=119\times 4$。</p><p><strong>详细步骤：</strong>余数为 $0$ 的那一步的除数是 $119$。检验：$2023=119\times 17$，$1547=119\times 13$，而 $17,13$ 互素。</p></div></div>
 
     <div class="q" data-p="9"><div class="q-head"><b>9</b>不定方程</div>
       <p>求 $17x+23y=1$ 的一般解，以及 $x$ 为最小正整数时的解。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$x=-4+23k,\ y=3-17k$；最小正 $x$：$(x,y)=(19,-14)$</b></p><p>$23=17+6$，$17=6\times 2+5$，$6=5+1$。倒推 $1=6-5=6\times 3-17=23\times 3+17\times(-4)$。取 $k=1$ 得 $(19,-14)$。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$x=-4+23k,\ y=3-17k$；最小正 $x$：$(x,y)=(19,-14)$</b></p><p>$23=17+6$，$17=6\times 2+5$，$6=5+1$。倒推 $1=6-5=6\times 3-17=23\times 3+17\times(-4)$。取 $k=1$ 得 $(19,-14)$。</p><p><strong>详细步骤：</strong>倒推细节：$1=6-5=6-(17-6\times 2)=6\times 3-17=(23-17)\times 3-17=23\times 3+17\times(-4)$，特解 $(x_0,y_0)=(-4,3)$。一般解 $x=-4+23k$ 中，$k=0$ 时 $x=-4&lt;0$，$k=1$ 时 $x=19$ 是最小正值，此时 $y=3-17=-14$。检验：$323-322=1$。</p></div></div>
 
     <div class="q" data-p="10"><div class="q-head"><b>10</b>不定方程</div>
       <p>$3x+5y=100$ 的正整数解有几组？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$6$ 组</b></p><p>特解 $(30,2)$，一般解 $x=30-5k,\ y=2+3k$。由 $x&gt;0,\ y&gt;0$ 得 $k=0,1,\dots,5$，共 $6$ 组：$(30,2),(25,5),(20,8),(15,11),(10,14),(5,17)$。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$6$ 组</b></p><p>特解 $(30,2)$，一般解 $x=30-5k,\ y=2+3k$。由 $x&gt;0,\ y&gt;0$ 得 $k=0,1,\dots,5$，共 $6$ 组：$(30,2),(25,5),(20,8),(15,11),(10,14),(5,17)$。</p><p><strong>详细步骤：</strong>不等式：$30-5k&gt;0$ 得 $k&lt;6$；$2+3k&gt;0$ 得 $k&gt;-\dfrac23$，所以整数 $k$ 从 $0$ 到 $5$。也可以看出：$3x$ 除以 $5$ 要余 $0$，所以 $x$ 是 $5$ 的倍数，$x=5,10,\dots,30$，共 $6$ 个。</p></div></div>
 
     <div class="q" data-p="11"><div class="q-head"><b>11</b>应用</div>
       <p>买每个 $120$ 日元的苹果和每个 $70$ 日元的橘子，各至少一个，共付 $1000$ 日元。各买了几个？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">苹果 $6$ 个，橘子 $4$ 个</b></p><p>$12a+7b=100$。$a=6$ 时 $7b=28$，$b=4$。一般解 $a=6+7k,\ b=4-12k$，满足 $a,b\ge 1$ 的只有 $k=0$。</p></div></div>
+      <div class="ans" hidden><p><b class="a">苹果 $6$ 个，橘子 $4$ 个</b></p><p>$12a+7b=100$。$a=6$ 时 $7b=28$，$b=4$。一般解 $a=6+7k,\ b=4-12k$，满足 $a,b\ge 1$ 的只有 $k=0$。</p><p><strong>详细步骤：</strong>方程：$120a+70b=1000$，两边除以 $10$ 得 $12a+7b=100$。范围：$a\ge 1$ 得 $k\ge 0$；$b\ge 1$ 得 $4-12k\ge 1$，$k\le\dfrac14$，所以 $k=0$。检验：$120\times 6+70\times 4=720+280=1000$。</p></div></div>
 
     <div class="q" data-p="12"><div class="q-head"><b>12</b>余数</div>
       <p>$100$ 以下的正整数中，除以 $5$ 余 $3$、除以 $7$ 余 $4$ 的有哪些？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$18,\ 53,\ 88$（共 $3$ 个）</b></p><p>设 $n=5x+3=7y+4$，得 $5x-7y=1$，特解 $(x,y)=(3,2)$，所以 $n=18$。其余每隔 $5\times 7=35$ 出现一次。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$18,\ 53,\ 88$（共 $3$ 个）</b></p><p>设 $n=5x+3=7y+4$，得 $5x-7y=1$，特解 $(x,y)=(3,2)$，所以 $n=18$。其余每隔 $5\times 7=35$ 出现一次。</p><p><strong>详细步骤：</strong>一般解为 $n=18+35k$。下一个是 $18+35=53$，再下一个 $88$，再下一个 $123$ 超过 $100$。检验：$88=5\times 17+3=7\times 12+4$。</p></div></div>
 
     <div class="q" data-p="13"><div class="q-head"><b>13</b>余数</div>
       <p>$3^{2026}$ 的个位数字是多少？</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$9$</b></p><p>个位按 $3,9,7,1$ 循环，周期 $4$。$2026=4\times 506+2$，对应第 $2$ 个，即 $9$。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$9$</b></p><p>个位按 $3,9,7,1$ 循环，周期 $4$。$2026=4\times 506+2$，对应第 $2$ 个，即 $9$。</p><p><strong>详细步骤：</strong>个位就是除以 $10$ 的余数：$3^1=3$，$3^2=9$，$3^3=27$（个位 $7$），$3^4=81$（个位 $1$），之后重复。余数 $2$ 对应第 $2$ 项 $9$。</p></div></div>
 
     <div class="q" data-p="14"><div class="q-head"><b>14</b>n 进制</div>
       <p>把十进制数 $2026$ 化为八进制。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$3752_{(8)}$</b></p><p>$2026\div 8=253$ 余 $2$，$253\div 8=31$ 余 $5$，$31\div 8=3$ 余 $7$，由下往上读得 $3752$。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$3752_{(8)}$</b></p><p>$2026\div 8=253$ 余 $2$，$253\div 8=31$ 余 $5$，$31\div 8=3$ 余 $7$，由下往上读得 $3752$。</p><p><strong>详细步骤：</strong>最后 $3\div 8=0$ 余 $3$，所以最高位是 $3$。检验：$3\cdot 512+7\cdot 64+5\cdot 8+2=1536+448+40+2=2026$。</p></div></div>
 
     <div class="q" data-p="15"><div class="q-head"><b>15</b>n 进制</div>
       <p>计算 $101101_{(2)}\times 101_{(2)}$，结果用二进制表示。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$11100001_{(2)}$</b></p><p>化为十进制：$45\times 5=225=128+64+32+1$。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$11100001_{(2)}$</b></p><p>化为十进制：$45\times 5=225=128+64+32+1$。</p><p><strong>详细步骤：</strong>也可以直接做二进制竖式：$101_{(2)}=4+1$，所以结果等于 $101101_{(2)}$ 左移两位（乘 $4$）再加上它本身：$10110100_{(2)}+101101_{(2)}=11100001_{(2)}$，与十进制结果一致。</p></div></div>
 
     <div class="q" data-p="16"><div class="q-head"><b>16</b>n 进制</div>
       <p>把 $0.32_{(5)}$ 化为十进制小数。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p><b class="a">$0.68$</b></p><p>$\dfrac35+\dfrac{2}{25}=\dfrac{17}{25}=0.68$。</p></div></div>
+      <div class="ans" hidden><p><b class="a">$0.68$</b></p><p>$\dfrac35+\dfrac{2}{25}=\dfrac{17}{25}=0.68$。</p><p><strong>详细步骤：</strong>小数点后第 $1$ 位的权是 $\dfrac15$，第 $2$ 位的权是 $\dfrac1{25}$。通分：$\dfrac{15}{25}+\dfrac{2}{25}=\dfrac{17}{25}$，分子分母同乘 $4$，得 $\dfrac{68}{100}=0.68$。</p></div></div>
+    <p><strong>使用建议：</strong>先按题型定位方法再动笔：第 1–2 题用倍数判定；第 3–6 题用素因数分解；第 7 题用 $a=Ga&#39;,\ b=Gb&#39;$；第 8–11 题用互除法和不定方程；第 12–13 题用余数；第 14–16 题用进制。做错的题回到对应小节，先看「为什么成立」，再重做。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　综合提高：三个余数条件</b><span class="origin">原创</span></div>
+      <p>（不计入上面 16 题）求除以 $3$ 余 $2$、除以 $5$ 余 $3$、除以 $7$ 余 $2$ 的最小正整数。</p>
+      <div class="ans">
+        <ol>
+          <li>先合并前两个条件：$n=3a+2=5b+3$，得 $3a-5b=1$，取 $a=2,\ b=1$，$n=8$。所以 $n=8+15t$（$t$ 为整数）。</li>
+          <li>代入第三个条件：$8$ 除以 $7$ 余 $1$，$15$ 除以 $7$ 余 $1$，所以 $8+15t$ 除以 $7$ 的余数与 $1+t$ 相同。</li>
+          <li>要余 $2$，最小取 $t=1$，得 $n=23$。</li>
+          <li>检验：$23=3\times 7+2=5\times 4+3=7\times 3+2$。其余的解每隔 $3\times 5\times 7=105$ 出现一次。</li>
+        </ol>
+        <p><strong>答案：</strong>$23$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只对一道题看答案而不重做。看懂和做对是两回事，至少隔一天再独立做一次。</li>
+        <li>三个条件同时处理导致混乱。应当两两合并，每次都把解写成「起点 + 周期」的形式。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>考试时间有限，建议整理每类题的第一步：约数→分解，$G,L$→设 $a&#39;,b&#39;$，大数余数→找循环，不定方程→找特解。看清题型就立刻写第一步。</p>
+      <p><strong>日语术语：</strong><span lang="ja">連立</span>（<span class="kana" lang="ja">れんりつ</span>）：联立；<span lang="ja">条件</span>（<span class="kana" lang="ja">じょうけん</span>）：条件；<span lang="ja">検算</span>（<span class="kana" lang="ja">けんざん</span>）：验算。</p>
+    </div>
   </section>
 
   <section id="terms">
@@ -586,6 +1202,44 @@ html { scroll-padding-top: 100px; }
       <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
       <tbody></tbody>
     </table></div>
+    <p><strong>如何记术语：</strong>EJU 的试题用日语或英语作答，选日语的话，题目中的关键词决定解法。与其逐词背诵，不如记住典型句型。下表列出常见句型的含义：</p>
+    <div class="tw"><table>
+      <thead><tr><th>日语句型</th><th>中文含义</th></tr></thead>
+      <tbody>
+        <tr><td lang="ja">$a$ を $b$ で割ると $r$ 余る</td><td>$a$ 除以 $b$ 余 $r$</td></tr>
+        <tr><td lang="ja">$a$ は $b$ で割り切れる</td><td>$a$ 能被 $b$ 整除</td></tr>
+        <tr><td lang="ja">$a$ と $b$ は互いに素である</td><td>$a$ 与 $b$ 互素</td></tr>
+        <tr><td lang="ja">$n$ は正の整数とする</td><td>设 $n$ 为正整数</td></tr>
+        <tr><td lang="ja">すべて求めよ</td><td>求出全部</td></tr>
+        <tr><td lang="ja">$2$ 桁の自然数</td><td>两位的自然数</td></tr>
+      </tbody>
+    </table></div>
+    <article class="q">
+      <div class="q-head"><b>补充例题　读懂日语题目</b><span class="origin">原创</span></div>
+      <p><span lang="ja">$2$ 桁の自然数のうち、$7$ で割ると $3$ 余り、$5$ で割り切れるものをすべて求めよ。</span></p>
+      <div class="ans">
+        <ol>
+          <li>理解题意：在两位的自然数中，求除以 $7$ 余 $3$，并且能被 $5$ 整除的全部数。</li>
+          <li>设 $n=7x+3=5y$，整理得 $5y-7x=3$。</li>
+          <li>试 $x=1$：$7+3=10=5\times 2$，所以 $n=10$ 满足条件。</li>
+          <li>周期为 $5\times 7=35$，所以 $n=10+35k$，依次为 $10,45,80,115,\dots$。</li>
+          <li>两位数只有前三个。检验：$45=7\times 6+3$，$80=7\times 11+3$，都能被 $5$ 整除。</li>
+        </ol>
+        <p><strong>答案：</strong>$10,\ 45,\ 80$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>混淆<span lang="ja">約数</span>（约数）与<span lang="ja">倍数</span>（倍数）。<span lang="ja">「$a$ は $b$ の倍数」</span>是 $a=bk$，方向不要反。</li>
+        <li>把<span lang="ja">素数</span>与<span lang="ja">互いに素</span>混为一谈。素数说的是一个数，互素说的是两个数的关系，如 $8$ 和 $9$ 都不是素数，却互素。</li>
+        <li>把<span lang="ja">少なくとも</span>（<span class="kana" lang="ja">すくなくとも</span>，至少）或<span lang="ja">以下</span>（含本数）、<span lang="ja">未満</span>（不含本数）读错，导致端点算错。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>日语题干读不顺时，先圈出数字和<span lang="ja">割る、余り、倍数、約数、互いに素</span>这些关键词，大致题型就清楚了。注意<span lang="ja">以上・以下</span>含本数，<span lang="ja">より大きい・未満</span>不含本数。</p>
+      <p><strong>日语术语：</strong><span lang="ja">求めよ</span>（<span class="kana" lang="ja">もとめよ</span>）：求（题目用语）；<span lang="ja">すべて</span>（<span class="kana" lang="ja">すべて</span>）：全部；<span lang="ja">〜のうち</span>（<span class="kana" lang="ja">〜のうち</span>）：在……之中；<span lang="ja">未満</span>（<span class="kana" lang="ja">みまん</span>）：小于（不含本数）；<span lang="ja">以下</span>（<span class="kana" lang="ja">いか</span>）：不超过（含本数）。</p>
+    </div>
   </section>
 
   <footer>
@@ -765,7 +1419,37 @@ html { scroll-padding-top: 100px; }
     ['位取り', 'くらいどり', '数位、定位'],
     ['桁', 'けた', '位数（数位）'],
     ['小数', 'しょうすう', '小数'],
-    ['既約分数', 'きやくぶんすう', '最简分数']
+    ['既約分数', 'きやくぶんすう', '最简分数'],
+    ['下2桁', 'しもにけた', '末两位'],
+    ['下3桁', 'しもさんけた', '末三位'],
+    ['一の位', 'いちのくらい', '个位'],
+    ['正の約数', 'せいのやくすう', '正约数'],
+    ['立方数', 'りっぽうすう', '立方数'],
+    ['割る数', 'わるすう', '除数'],
+    ['割られる数', 'わられるすう', '被除数'],
+    ['周期', 'しゅうき', '周期'],
+    ['循環', 'じゅんかん', '循环'],
+    ['場合分け', 'ばあいわけ', '分情况讨论'],
+    ['証明', 'しょうめい', '证明'],
+    ['約分', 'やくぶん', '约分'],
+    ['正方形', 'せいほうけい', '正方形'],
+    ['長方形', 'ちょうほうけい', '长方形'],
+    ['敷き詰める', 'しきつめる', '铺满'],
+    ['係数', 'けいすう', '系数'],
+    ['定数', 'ていすう', '常数'],
+    ['代入', 'だいにゅう', '代入'],
+    ['解なし', 'かいなし', '无解'],
+    ['底', 'てい', '底'],
+    ['整数部分', 'せいすうぶぶん', '整数部分'],
+    ['小数部分', 'しょうすうぶぶん', '小数部分'],
+    ['有限小数', 'ゆうげんしょうすう', '有限小数'],
+    ['循環小数', 'じゅんかんしょうすう', '循环小数'],
+    ['最高位', 'さいこうい', '最高位'],
+    ['桁数', 'けたすう', '位数'],
+    ['空欄', 'くうらん', '空栏、方框'],
+    ['検算', 'けんざん', '验算'],
+    ['未満', 'みまん', '小于（不含本数）'],
+    ['以下', 'いか', '不超过（含本数）']
   ];
   var tbody = document.querySelector('#term-table tbody');
   TERMS.forEach(function (t) {

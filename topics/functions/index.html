@@ -269,10 +269,71 @@ html { scroll-padding-top: 100px; }
       <div><svg class="chart" id="fig-k-neg" role="img" aria-label="k 为负时的分式函数图像"></svg><figcaption>$k&lt;0$：$y=-\dfrac{2}{x-1}+1$，两支在左上、右下</figcaption></div>
     </figure>
 
+    <p><strong>为什么是这样的图像：</strong>看 $y=\dfrac kx$。$x$ 的绝对值越大，$\dfrac kx$ 越接近 $0$，所以曲线向两端贴近 $x$ 轴但碰不到；$x$ 越接近 $0$，$\left|\dfrac kx\right|$ 越大，所以曲线贴近 $y$ 轴，且 $x=0$ 处没有定义。这就是两条渐近线的来历。</p>
+    <p><strong>为什么平移后是这个式子：</strong>把图像向右移 $p$、向上移 $q$，新图像上的点 $(x,y)$ 由原图像上的点 $(x-p,\ y-q)$ 移动而来，所以它满足 $y-q=\dfrac{k}{x-p}$，整理后就是标准形。“向右移 $p$”写成 $x-p$，符号看起来相反，原因正在于此。</p>
+    <p><strong>为什么 $(p,q)$ 是对称中心：</strong>令 $X=x-p,\ Y=y-q$，方程变成 $Y=\dfrac kX$。把 $(X,Y)$ 换成 $(-X,-Y)$，方程不变，所以图像关于新原点 $(p,q)$ 点对称。<strong>为什么值域是 $y\ne q$：</strong>$\dfrac{k}{x-p}$ 分子不为 $0$，永远不等于 $0$，而其他实数都能取到。<strong>单调性：</strong>$k&gt;0$ 时，同一支上 $x-p$ 增大，$\dfrac{k}{x-p}$ 减小，所以各自递减；$k&lt;0$ 时反过来。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由标准形读出图像信息</b><span class="origin">原创</span></div>
+      <p>对 $y=-\dfrac{3}{x+2}+1$，求：(1) 渐近线与单调性；(2) 与两坐标轴的交点；(3) 图像上的点 $(1,0)$ 关于对称中心的对称点。</p>
+      <div class="ans">
+        <ol>
+          <li>对照标准形：$k=-3,\ p=-2,\ q=1$（$x+2=x-(-2)$，所以 $p$ 是 $-2$）。</li>
+          <li>(1) 渐近线为 $x=-2,\ y=1$。因 $k&lt;0$，在 $x&lt;-2$ 和 $x&gt;-2$ 上各自递增。</li>
+          <li>(2) 令 $x=0$：$y=-\dfrac32+1=-\dfrac12$。令 $y=0$：$\dfrac{3}{x+2}=1$，即 $x+2=3$，得 $x=1$。</li>
+          <li>(3) 对称中心 $(-2,1)$ 是 $(1,0)$ 与对称点的中点，所以对称点为 $(2\cdot(-2)-1,\ 2\cdot1-0)=(-5,2)$。</li>
+          <li>检验：$x=-5$ 时 $y=-\dfrac{3}{-3}+1=2$，确实在图像上。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) 渐近线 $x=-2,\ y=1$，两区间上各自递增；(2) $\left(0,-\dfrac12\right)$，$(1,0)$；(3) $(-5,2)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $y=\dfrac{k}{x+2}$ 的渐近线写成 $x=2$。应让分母为 $0$，得 $x=-2$。</li>
+        <li>把平移方向弄反：向右移 $p$ 是把 $x$ 换成 $x-p$，向上移 $q$ 是把 $y$ 换成 $y-q$。</li>
+        <li>只看 $k$ 的符号就比较两支上的函数值。单调性只在同一支内有效，跨过渐近线不能比较。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>填空题常连续问渐近线、值域和交点。先把式子写成标准形，读出 $k,p,q$，再画一张草图：两条虚线、点 $(p,q)$、两支曲线，后面几问往往能直接读出来。</p>
+      <p><strong>日语术语：</strong><span lang="ja">点対称</span>（<span class="kana" lang="ja">てんたいしょう</span>）：点对称；<span lang="ja">対称の中心</span>（<span class="kana" lang="ja">たいしょうのちゅうしん</span>）：对称中心；<span lang="ja">x 軸方向に p だけ平行移動する</span>（<span class="kana" lang="ja">エックスじくほうこうにピーだけへいこういどうする</span>）：沿 $x$ 轴方向平移 $p$。</p>
+    </div>
+
     <h3>化成标准形</h3>
     <p>$y=\dfrac{ax+b}{cx+d}\ (c\ne0,\ ad-bc\ne0)$ 用分子除以分母（或凑分母）化成标准形：</p>
     $$\frac{3x+5}{x+1}=\frac{3(x+1)+2}{x+1}=3+\frac{2}{x+1}.$$
     <p>所以渐近线是 $x=-1,\ y=3$。速算：纵向渐近线让<strong>分母为 0</strong>，横向渐近线是<strong>一次项系数之比</strong> $y=\dfrac ac$。若 $ad-bc=0$，分子分母可约，图像退化为直线去掉一点，不是双曲线。</p>
+
+    <p><strong>一般推导：</strong>分子除以分母，商是 $\dfrac ac$，余数是 $b-\dfrac{ad}{c}$，于是</p>
+    <p>$$\frac{ax+b}{cx+d}=\frac ac+\frac{b-\frac{ad}{c}}{cx+d}=\frac ac+\frac{\ \frac{bc-ad}{c^2}\ }{x+\frac dc}.$$</p>
+    <p>由此直接得到：$p=-\dfrac dc,\ q=\dfrac ac,\ k=\dfrac{bc-ad}{c^2}$。这也说明了条件 $ad-bc\ne0$ 的作用：它等于 $0$ 时 $k=0$，函数恒等于常数 $\dfrac ac$（只是在 $x=-\dfrac dc$ 处无定义）。$k$ 的符号由 $bc-ad$ 决定，可以用它快速判断单调方向。</p>
+    <p><strong>横向渐近线为什么是系数比：</strong>$|x|$ 很大时，分子约等于 $ax$，分母约等于 $cx$，比值趋近 $\dfrac ac$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　$x$ 的系数不是 1 时化标准形</b><span class="origin">原创</span></div>
+      <p>把 $y=\dfrac{6x-1}{2x+1}$ 化成 $y=\dfrac{k}{x-p}+q$ 的形式，并写出 $k,p,q$ 和渐近线。</p>
+      <div class="ans">
+        <ol>
+          <li>凑分母：$6x-1=3(2x+1)-4$（展开右边 $6x+3-4=6x-1$，确认无误）。</li>
+          <li>分开写：$y=\dfrac{3(2x+1)-4}{2x+1}=3-\dfrac{4}{2x+1}$。</li>
+          <li>分母提出 $2$：$\dfrac{4}{2x+1}=\dfrac{4}{2\left(x+\frac12\right)}=\dfrac{2}{x+\frac12}$，所以 $y=-\dfrac{2}{x+\frac12}+3$。</li>
+          <li>读出 $k=-2,\ p=-\dfrac12,\ q=3$，渐近线为 $x=-\dfrac12,\ y=3$。</li>
+          <li>用公式核对：$a=6,b=-1,c=2,d=1$，$k=\dfrac{bc-ad}{c^2}=\dfrac{-2-6}{4}=-2$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>$k=-2,\ p=-\dfrac12,\ q=3$；渐近线 $x=-\dfrac12,\ y=3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>$x$ 的系数不为 $1$ 时，直接把 $k$ 读成 $-4$。必须先把分母化成 $x-p$ 的形式，上题的 $k$ 是 $-2$。</li>
+        <li>凑分母后不展开检验，常数项算错，如把 $6x-1$ 写成 $3(2x+1)+2$。</li>
+        <li>横向渐近线写成 $y=\dfrac bd$。应是 $x$ 的系数之比 $\dfrac ac$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>只问渐近线时不必化简：分母为 $0$ 给出纵向渐近线，系数比给出横向渐近线，几秒就够。问 $k$、单调性或区间上的值域时，再写出完整标准形。</p>
+      <p><strong>日语术语：</strong><span lang="ja">約分</span>（<span class="kana" lang="ja">やくぶん</span>）：约分；<span lang="ja">通分</span>（<span class="kana" lang="ja">つうぶん</span>）：通分；<span lang="ja">分子の次数を下げる</span>（<span class="kana" lang="ja">ぶんしのじすうをさげる</span>）：降低分子次数；<span lang="ja">商</span>（<span class="kana" lang="ja">しょう</span>）：商；<span lang="ja">余り</span>（<span class="kana" lang="ja">あまり</span>）：余数。</p>
+    </div>
 
     <h3>用图像解方程和不等式</h3>
     <div class="box good">
@@ -283,6 +344,39 @@ html { scroll-padding-top: 100px; }
     <div class="box warn">
       <p><strong>常见失分：</strong>不等式两边直接乘 $x-1$ 而不讨论正负。分母正负未知时，要么分 $x&gt;p$、$x&lt;p$ 讨论，要么两边乘 $(x-p)^2&gt;0$，要么看图。另外，$y=\dfrac kx$ 不能说“在定义域上递减”，因为 $f(-1)&lt;f(1)$（当 $k&gt;0$），只能说在两个区间上分别递减。</p>
     </div>
+    <p><strong>为什么不能直接去分母：</strong>不等式两边乘负数时不等号要反向，而 $x-p$ 的符号随 $x$ 变化。乘 $(x-p)^2$ 没有这个问题，因为它在定义域内恒正。</p>
+    <p><strong>通用步骤：</strong>① 移项，把一边化为 $0$；② 通分并因式分解成 $\dfrac{N(x)}{D(x)}$；③ 在数轴上标出 $N$ 和 $D$ 的零点；④ 列符号表，逐段判断。符号只可能在这些点变化，因为连续的因式不经过 $0$ 就不会变号。注意：分子的零点可能属于解（$\le,\ \ge$ 时），分母的零点<strong>一定不属于</strong>解。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　带等号的分式不等式</b><span class="origin">原创</span></div>
+      <p>解不等式 $\dfrac{3}{x+1}\le x-1$。</p>
+      <div class="ans">
+        <div class="tw"><table class="sign">
+          <thead><tr><th>$x$</th><th>$x&lt;-2$</th><th>$-2$</th><th>$-2&lt;x&lt;-1$</th><th>$-1$</th><th>$-1&lt;x&lt;2$</th><th>$2$</th><th>$x&gt;2$</th></tr></thead>
+          <tbody><tr><td>$\dfrac{(x-2)(x+2)}{x+1}$</td><td>$-$</td><td>$0$</td><td>$+$</td><td>无定义</td><td>$-$</td><td>$0$</td><td>$+$</td></tr></tbody>
+        </table></div>
+        <ol>
+          <li>定义域：$x\ne-1$。</li>
+          <li>移项通分：$x-1-\dfrac{3}{x+1}=\dfrac{(x-1)(x+1)-3}{x+1}=\dfrac{x^2-4}{x+1}=\dfrac{(x-2)(x+2)}{x+1}\ge0$。</li>
+          <li>零点依次为 $x=-2,\ -1,\ 2$，列符号表（见本题解答开头的表格）。</li>
+          <li>取值为正或零的部分：$-2\le x&lt;-1$，或 $x\ge2$。$x=-1$ 是分母的零点，必须用开区间。</li>
+          <li>检验：$x=3$ 时 $\dfrac34\le2$ 成立；$x=0$ 时 $3\le-1$ 不成立，与结果一致。</li>
+        </ol>
+        <p><strong>答案：</strong>$-2\le x&lt;-1$ 或 $x\ge2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把分母的零点也算进解：上题写成 $-2\le x\le-1$ 就错了。</li>
+        <li>解出交点后，只写两个根之间的范围，忽略了中间的断点把解分成两段。</li>
+        <li>分情况讨论后忘记与前提求交集，如 $x&gt;-1$ 时得到 $x\le-2$ 却没有舍去。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>选项或填空的形式常常是“$x&lt;\square$ 或 $\square&lt;x&lt;\square$”，它提示解有两段。计算结束后取一个点代入检验，只需几秒，能发现大部分方向错误。</p>
+      <p><strong>日语术语：</strong><span lang="ja">両辺</span>（<span class="kana" lang="ja">りょうへん</span>）：两边；<span lang="ja">移項</span>（<span class="kana" lang="ja">いこう</span>）：移项；<span lang="ja">不等号の向き</span>（<span class="kana" lang="ja">ふとうごうのむき</span>）：不等号的方向；<span lang="ja">場合分け</span>（<span class="kana" lang="ja">ばあいわけ</span>）：分情况讨论；<span lang="ja">上側にある</span>（<span class="kana" lang="ja">うえがわにある</span>）：在上方。</p>
+    </div>
+
   </section>
 
   <section id="irrational">
@@ -303,10 +397,69 @@ html { scroll-padding-top: 100px; }
     <figure class="plot"><svg class="chart" id="fig-sqrt" style="max-width:480px;margin:auto" role="img" aria-label="无理函数的四种朝向"></svg>
       <figcaption>四种朝向（起点都在原点）：<span style="color:var(--c1)">$y=\sqrt{x}$</span>、<span style="color:var(--c2)">$y=\sqrt{-x}$</span>、<span style="color:var(--c3)">$y=-\sqrt{x}$</span>、<span style="color:var(--c4)">$y=-\sqrt{-x}$</span>。</figcaption></figure>
 
+    <p><strong>为什么是半条抛物线：</strong>由 $y=\sqrt{ax}$ 平方得 $y^2=ax$，即 $x=\dfrac{y^2}{a}$，这是一条开口朝左或朝右的抛物线。但算术平方根非负，所以只保留 $y\ge0$ 的上半部分。前面加负号则保留下半部分。</p>
+    <p><strong>为什么起点是 $(p,q)$：</strong>根号内为 $0$ 时根号部分取最小值 $0$，此时 $x=p,\ y=q$。定义域由 $a(x-p)\ge0$ 决定：$a&gt;0$ 时 $x\ge p$，$a&lt;0$ 时 $x\le p$。<strong>单调性的判断：</strong>$a(x-p)$ 随 $x$ 增大而增大（$a&gt;0$）或减小（$a&lt;0$），根号保持这个方向，前面的负号再把方向反转一次。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　$a&lt;0$ 且带负号的无理函数</b><span class="origin">原创</span></div>
+      <p>对 $y=-\sqrt{6-2x}+1$，求：(1) 起点、定义域、值域与单调性；(2) 与坐标轴的交点；(3) $-5\le x\le1$ 时的值域。</p>
+      <div class="ans">
+        <ol>
+          <li>提系数：$6-2x=-2(x-3)$，所以 $y=-\sqrt{-2(x-3)}+1$，$a=-2,\ p=3,\ q=1$。</li>
+          <li>(1) 起点 $(3,1)$。由 $6-2x\ge0$ 得定义域 $x\le3$。根号部分取遍 $[0,\infty)$，所以值域 $y\le1$。$x$ 增大时 $6-2x$ 减小，根号减小，加负号后 $y$ 增大，所以递增。</li>
+          <li>(2) $x=0$ 时 $y=1-\sqrt6$。令 $y=0$：$\sqrt{6-2x}=1$，得 $6-2x=1$，$x=\dfrac52$（满足 $x\le3$）。</li>
+          <li>(3) 函数递增，只需看端点：$x=-5$ 时 $y=-\sqrt{16}+1=-3$，$x=1$ 时 $y=-\sqrt4+1=-1$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) 起点 $(3,1)$，$x\le3$，$y\le1$，递增；(2) $(0,\ 1-\sqrt6)$，$\left(\dfrac52,0\right)$；(3) $-3\le y\le-1$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>不提系数就读起点，把 $\sqrt{6-2x}$ 的起点读成 $x=6$。应解 $6-2x=0$，得 $x=3$。</li>
+        <li>看到前面有负号就断定递减。方向由 $a$ 的符号和前面的正负号共同决定，上题两者都为负，结果递增。</li>
+        <li>以为根号外的负号影响定义域。定义域只由根号内决定。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>不必背四种朝向的表格。解“根号内 $=0$”得起点，再代入一个点确定方向，就能迅速画出草图。</p>
+      <p><strong>日语术语：</strong><span lang="ja">平方根</span>（<span class="kana" lang="ja">へいほうこん</span>）：平方根；<span lang="ja">根号の中</span>（<span class="kana" lang="ja">こんごうのなか</span>）：根号内；<span lang="ja">放物線</span>（<span class="kana" lang="ja">ほうぶつせん</span>）：抛物线；<span lang="ja">始点</span>（<span class="kana" lang="ja">してん</span>）：起点；<span lang="ja">増加する</span>（<span class="kana" lang="ja">ぞうかする</span>）：递增；<span lang="ja">減少する</span>（<span class="kana" lang="ja">げんしょうする</span>）：递减。</p>
+    </div>
+
     <h3>无理方程：当心增根</h3>
     <p>两边平方得到的是<strong>必要条件</strong>，不一定等价，可能产生增根（<span lang="ja">無縁解</span>）。正确的同值变形（<span lang="ja">同値</span>）是：</p>
     $$\sqrt{A}=B\iff A=B^2\ \text{且}\ B\ge0.$$
     <p>例：解 $\sqrt{x+2}=x$。平方得 $x^2-x-2=0$，$x=2,-1$；因要求 $x\ge0$，舍去 $x=-1$，所以 $x=2$。</p>
+
+    <p><strong>增根从哪里来：</strong>平方运算把符号信息丢掉了：$A=B$ 和 $A=-B$ 平方后都是 $A^2=B^2$。所以平方后方程的解，既包含原方程的解，也包含“符号相反的方程”的解。上例的 $x=-1$ 其实是 $-\sqrt{x+2}=x$ 的解：$-\sqrt{1}=-1$。</p>
+    <p><strong>为什么 $\sqrt A=B\iff A=B^2$ 且 $B\ge0$：</strong>由左到右，$\sqrt A\ge0$ 推出 $B\ge0$，平方得 $A=B^2$。由右到左，$A=B^2$ 且 $B\ge0$，则 $\sqrt A=\sqrt{B^2}=|B|=B$。这里不必另写 $A\ge0$，因为 $A=B^2$ 已经保证了它。</p>
+    <p><strong>含两个根号时：</strong>先移项，让等号一边只有一个根号再平方，每平方一次消去一个根号。如果直接平方，会得到交叉项 $2\sqrt{A}\sqrt{B}$，依然含根号。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　含两个根号的方程</b><span class="origin">原创</span></div>
+      <p>解方程 $\sqrt{x+3}+\sqrt{x-2}=5$。</p>
+      <div class="ans">
+        <ol>
+          <li>定义域：$x+3\ge0$ 且 $x-2\ge0$，即 $x\ge2$。</li>
+          <li>移项，把一个根号留在左边：$\sqrt{x+3}=5-\sqrt{x-2}$。</li>
+          <li>两边平方：$x+3=25-10\sqrt{x-2}+(x-2)$。</li>
+          <li>$x$ 恰好消去：$10\sqrt{x-2}=20$，即 $\sqrt{x-2}=2$。</li>
+          <li>再平方：$x-2=4$，$x=6$，满足 $x\ge2$。</li>
+          <li>代回检验：$\sqrt9+\sqrt4=3+2=5$，成立。</li>
+        </ol>
+        <p><strong>答案：</strong>$x=6$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>平方后不检验，把增根也写进答案。</li>
+        <li>把 $(5-\sqrt{x-2})^2$ 展开成 $25+(x-2)$，漏掉中间项 $-10\sqrt{x-2}$。</li>
+        <li>条件只写 $A\ge0$ 而漏掉 $B\ge0$。真正排除增根的是 $B\ge0$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>平方后若得到两个根，先用 $B\ge0$ 排除，不要逐个做复杂的代入。答案中“$\square$ は不適”这类说法就是在舍去增根。</p>
+      <p><strong>日语术语：</strong><span lang="ja">2乗する</span>（<span class="kana" lang="ja">にじょうする</span>）：平方；<span lang="ja">必要条件</span>（<span class="kana" lang="ja">ひつようじょうけん</span>）：必要条件；<span lang="ja">十分条件</span>（<span class="kana" lang="ja">じゅうぶんじょうけん</span>）：充分条件；<span lang="ja">不適</span>（<span class="kana" lang="ja">ふてき</span>）：不符合（舍去）；<span lang="ja">代入する</span>（<span class="kana" lang="ja">だいにゅうする</span>）：代入。</p>
+    </div>
 
     <h3>无理不等式：看图最稳</h3>
     <p>接上例，$y=\sqrt{x+2}$ 从点 $(-2,0)$ 出发，与 $y=x$ 只交于 $x=2$。于是</p>
@@ -315,6 +468,35 @@ html { scroll-padding-top: 100px; }
     <div class="formula-grid">
       <div>$\sqrt A&gt;B\iff (B&lt;0\ \text{且}\ A\ge0)$ 或 $(B\ge0\ \text{且}\ A&gt;B^2)$</div>
       <div>$\sqrt A&lt;B\iff A\ge0$ 且 $B&gt;0$ 且 $A&lt;B^2$</div>
+    </div>
+
+    <p><strong>为什么 $\sqrt A&gt;B$ 要分两种情况：</strong>$B&lt;0$ 时，只要左边有意义，非负数一定大于负数，所以只需 $A\ge0$；$B\ge0$ 时，两边都非负，平方不改变大小关系，得 $A&gt;B^2$（此时 $A\ge0$ 自动成立）。</p>
+    <p><strong>为什么 $\sqrt A&lt;B$ 只有一种情况：</strong>$\sqrt A\ge0$，要小于 $B$ 就必须 $B&gt;0$；两边都非负后才可以平方得 $A&lt;B^2$。这里要单独写 $A\ge0$，因为 $A&lt;B^2$ 并不保证根号有意义。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　同一对函数的两个方向</b><span class="origin">原创</span></div>
+      <p>解不等式：(1) $\sqrt{x+5}&lt;x+3$；(2) $\sqrt{x+5}\ge x+3$。</p>
+      <div class="ans">
+        <ol>
+          <li>定义域：$x\ge-5$。</li>
+          <li>先求交点：平方得 $x+5=x^2+6x+9$，即 $x^2+5x+4=(x+1)(x+4)=0$，$x=-1$ 或 $-4$。</li>
+          <li>检查：$x+3\ge0$ 要求 $x\ge-3$，所以舍去 $x=-4$，唯一交点是 $x=-1$（$y=2$）。</li>
+          <li>(1) 需要 $x+3&gt;0$ 且 $(x+1)(x+4)&gt;0$：在 $x&gt;-3$ 上得 $x&gt;-1$。</li>
+          <li>(2) 两个不等式的解合起来应是整个定义域，所以 (2) 的解是 $(1)$ 在 $x\ge-5$ 中的补集：$-5\le x\le-1$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $x&gt;-1$；(2) $-5\le x\le-1$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>漏掉定义域的下界，把 (2) 写成 $x\le-1$。</li>
+        <li>不看 $B$ 的符号直接平方：由 $(x+1)(x+4)&gt;0$ 得到 $x&lt;-4$ 或 $x&gt;-1$，多出了 $-5\le x&lt;-4$ 这一段假解。</li>
+        <li>把 $\sqrt A&gt;B$ 中 $B&lt;0$ 的情况漏掉，丢掉“恒成立”的那一段。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>优先看图：半条抛物线与直线通常只有一两个交点，上下关系一眼可见。写答案前检查定义域的端点是否应当包含，它是最常见的命题陷阱。</p>
+      <p><strong>日语术语：</strong><span lang="ja">定義域の端</span>（<span class="kana" lang="ja">ていぎいきのはし</span>）：定义域的端点；<span lang="ja">常に成り立つ</span>（<span class="kana" lang="ja">つねになりたつ</span>）：恒成立；<span lang="ja">共通部分</span>（<span class="kana" lang="ja">きょうつうぶぶん</span>）：交集（公共部分）；<span lang="ja">下側にある</span>（<span class="kana" lang="ja">したがわにある</span>）：在下方。</p>
     </div>
 
     <h3>高频题型：含参数的实数解个数</h3>
@@ -334,6 +516,36 @@ html { scroll-padding-top: 100px; }
     <div class="box warn">
       <p><strong>常见失分：</strong>只用判别式 $D&gt;0$ 就说“两解”。$k$ 很小时 $D&gt;0$，但平方方程有一个根不满足 $x+k\ge0$，实际只有一解。判别式只负责找相切位置，个数要看图。</p>
     </div>
+    <p><strong>为什么交点个数等于解的个数：</strong>方程 $\sqrt{x+1}=x+k$ 的实数解，正是 $y=\sqrt{x+1}$ 与 $y=x+k$ 交点的横坐标。把含参数的部分单独放在一边，$k$ 变化时就成了一组可以移动的直线，个数的变化只会发生在<strong>过端点</strong>和<strong>相切</strong>这两种临界位置。</p>
+    <p><strong>为什么判别式只负责相切：</strong>平方后的二次方程同时表示整条抛物线与直线的交点，而曲线只是上半条。$D&gt;0$ 时可能有一个交点落在下半条，所以必须再结合图像或 $B\ge0$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　绕定点旋转的直线</b><span class="origin">原创</span></div>
+      <p>讨论方程 $\sqrt x=k(x+1)$ 的实数解个数（$k$ 为实常数）。</p>
+      <div class="ans">
+        <ol>
+          <li>看成 $y=\sqrt x$（从原点出发、递增的半条抛物线）与 $y=k(x+1)$ 的交点。直线恒过定点 $(-1,0)$，$k$ 是它的斜率。</li>
+          <li>$k&lt;0$：$x\ge0$ 时直线上 $y&lt;0$，而 $\sqrt x\ge0$，没有交点。</li>
+          <li>$k=0$：直线是 $x$ 轴，只交于原点，一个解。</li>
+          <li>求相切位置：平方得 $k^2(x+1)^2=x$，即 $k^2x^2+(2k^2-1)x+k^2=0$。判别式 $D=(2k^2-1)^2-4k^4=1-4k^2=0$，取正值 $k=\dfrac12$。此时方程为 $\dfrac14(x-1)^2=0$，切点 $(1,1)$。</li>
+          <li>$0&lt;k&lt;\dfrac12$：$D&gt;0$，两根之积为 $1$、两根之和 $\dfrac{1-2k^2}{k^2}&gt;0$，所以两根都为正；此时 $k(x+1)&gt;0$，两根都满足原方程，共两个解。</li>
+          <li>$k&gt;\dfrac12$：$D&lt;0$，没有解。</li>
+        </ol>
+        <p><strong>答案：</strong>$k&lt;0$ 或 $k&gt;\dfrac12$ 时 $0$ 个；$k=0$ 或 $k=\dfrac12$ 时 $1$ 个；$0&lt;k&lt;\dfrac12$ 时 $2$ 个。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只讨论相切，忘记过端点的位置（如 $k=0$ 时直线过起点 $(0,0)$）。</li>
+        <li>判别式解出 $k=\pm\dfrac12$ 后把 $k=-\dfrac12$ 也当成相切。它对应的是下半条抛物线，与 $y=\sqrt x$ 没有公共点。</li>
+        <li>区间端点开闭弄错：过起点时交点存在，这个端点通常要包含。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>看到“実数解の個数”或“異なる2つの共有点”，第一反应是分离出一个固定图像和一组移动的直线。平行移动的直线看截距，绕定点旋转的直线看斜率。</p>
+      <p><strong>日语术语：</strong><span lang="ja">実数解の個数</span>（<span class="kana" lang="ja">じっすうかいのこすう</span>）：实数解的个数；<span lang="ja">異なる2つの共有点</span>（<span class="kana" lang="ja">ことなるふたつのきょうゆうてん</span>）：两个不同的公共点；<span lang="ja">傾き</span>（<span class="kana" lang="ja">かたむき</span>）：斜率；<span lang="ja">切片</span>（<span class="kana" lang="ja">せっぺん</span>）：截距；<span lang="ja">重解</span>（<span class="kana" lang="ja">じゅうかい</span>）：重根。</p>
+    </div>
+
   </section>
 
   <section id="inverse">
@@ -344,6 +556,34 @@ html { scroll-padding-top: 100px; }
     <p>若对值域中每个 $y$，都恰有一个 $x$ 使 $y=f(x)$（即<strong>一一对应</strong>，<span lang="ja">1対1の対応</span>），就可以由 $y$ 反求 $x$，这个新函数就是反函数 $f^{-1}$：</p>
     $$y=f(x)\iff x=f^{-1}(y).$$
     <p>单调函数一定有反函数。$y=x^2$（$x$ 取全体实数）没有反函数，因为 $y=1$ 对应 $x=\pm1$；限制为 $x\ge0$ 后才有，反函数是 $y=\sqrt x$。</p>
+
+    <p><strong>为什么需要一一对应：</strong>函数要求每个输入只有一个输出。反过来由 $y$ 求 $x$ 时，如果同一个 $y$ 对应两个 $x$，“反过来的对应”就不是函数了。在图上的判断方法：任何一条水平线与图像至多有一个交点。</p>
+    <p><strong>为什么（严格）单调函数一定有反函数：</strong>若 $x_1\ne x_2$，严格单调保证 $f(x_1)\ne f(x_2)$，所以不同的 $x$ 对应不同的 $y$。反过来不一定成立：$y=\dfrac1x$ 在整个定义域上不单调，但它是一一对应的，有反函数（就是它自己）。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　限制定义域使反函数存在</b><span class="origin">原创</span></div>
+      <p>$f(x)=x^2-4x+1\ (x\ge a)$。(1) 求使 $f$ 有反函数的 $a$ 的最小值；(2) 取这个 $a$，求 $f$ 的值域和 $f^{-1}(1)$。</p>
+      <div class="ans">
+        <ol>
+          <li>配方：$f(x)=(x-2)^2-3$，对称轴 $x=2$，顶点 $(2,-3)$。</li>
+          <li>(1) $a&lt;2$ 时，区间内含有关于 $x=2$ 对称的两点（如 $a$ 与 $4-a$），函数值相同，不是一一对应。$a\ge2$ 时 $f$ 严格递增。所以最小值为 $a=2$。</li>
+          <li>(2) $x\ge2$ 时，$f(x)\ge f(2)=-3$，值域 $y\ge-3$。</li>
+          <li>求 $f^{-1}(1)$ 就是解 $f(x)=1$：$x^2-4x=0$，$x=0$ 或 $4$。在 $x\ge2$ 上只取 $x=4$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $a=2$；(2) 值域 $y\ge-3$，$f^{-1}(1)=4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $f^{-1}(x)$ 理解为 $\dfrac{1}{f(x)}$。上标 $-1$ 表示反函数，不是倒数。</li>
+        <li>不看定义域就说 $x^2$ 没有反函数。定义域限制后，情况就变了。</li>
+        <li>解 $f(x)=b$ 求 $f^{-1}(b)$ 时，得到两个根都写上，不用定义域筛选。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>求 $f^{-1}(b)$ 的具体值时，不要先求整个反函数，解方程 $f(x)=b$ 更快。题目写“$x\ge\square$ で定義された”时，这个条件几乎一定在后面用来选根。</p>
+      <p><strong>日语术语：</strong><span lang="ja">狭義単調</span>（<span class="kana" lang="ja">きょうぎたんちょう</span>）：严格单调；<span lang="ja">単調増加</span>（<span class="kana" lang="ja">たんちょうぞうか</span>）：单调递增；<span lang="ja">単調減少</span>（<span class="kana" lang="ja">たんちょうげんしょう</span>）：单调递减；<span lang="ja">対称軸</span>（<span class="kana" lang="ja">たいしょうじく</span>）：对称轴；<span lang="ja">頂点</span>（<span class="kana" lang="ja">ちょうてん</span>）：顶点。</p>
+    </div>
 
     <h3>求法三步</h3>
     <ol>
@@ -363,6 +603,34 @@ html { scroll-padding-top: 100px; }
       </tbody>
     </table></div>
 
+    <p><strong>为什么要交换 $x,y$：</strong>第 2 步得到的 $x=g(y)$ 已经是反函数，只是自变量写作 $y$。按习惯把自变量写成 $x$，才能和原函数画在同一坐标系中。<strong>为什么第 1 步最先做：</strong>解方程时常出现平方运算，它会扩大范围，如 $y=\sqrt{x-1}$ 解成 $x=y^2+1$ 后，式子本身已看不出 $y\ge0$；此外，值域还用来决定开方时取正号或负号。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　二次函数取负号的反函数</b><span class="origin">原创</span></div>
+      <p>求 $f(x)=-x^2+2x+3\ (x\le1)$ 的反函数及其定义域。</p>
+      <div class="ans">
+        <ol>
+          <li>配方：$f(x)=-(x-1)^2+4$。在 $x\le1$ 上递增，最大值为 $f(1)=4$，值域 $y\le4$。这就是反函数的定义域。</li>
+          <li>解 $x$：$(x-1)^2=4-y$，$x-1=\pm\sqrt{4-y}$。</li>
+          <li>定号：因 $x\le1$，$x-1\le0$，所以取负号，$x=1-\sqrt{4-y}$。</li>
+          <li>交换 $x,y$：$f^{-1}(x)=1-\sqrt{4-x}\ (x\le4)$。</li>
+          <li>检验：$f(-1)=-1-2+3=0$，而 $f^{-1}(0)=1-\sqrt4=-1$，互逆。</li>
+        </ol>
+        <p><strong>答案：</strong>$f^{-1}(x)=1-\sqrt{4-x}$，定义域 $x\le4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>开方时习惯性取正号。应由原函数的定义域决定，上题取负号。</li>
+        <li>把反函数的定义域写成使式子有意义的范围。如 $\sqrt{x-1}$ 的反函数 $x^2+1$ 看起来对全体实数有意义，定义域却是 $x\ge0$。</li>
+        <li>忘记交换 $x,y$，或交换后不写定义域。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>反函数的定义域常以填空出现，且答案不是 “全体实数”。养成先写值域的习惯。最后代入一个具体点互相检验，能发现符号错误。</p>
+      <p><strong>日语术语：</strong><span lang="ja">平方完成</span>（<span class="kana" lang="ja">へいほうかんせい</span>）：配方；<span lang="ja">xについて解く</span>（<span class="kana" lang="ja">エックスについてとく</span>）：对 $x$ 求解；<span lang="ja">xとyを入れ替える</span>（<span class="kana" lang="ja">エックスとワイをいれかえる</span>）：交换 $x$ 与 $y$；<span lang="ja">実数全体</span>（<span class="kana" lang="ja">じっすうぜんたい</span>）：全体实数。</p>
+    </div>
+
     <h3>性质</h3>
     <div class="formula-grid">
       <div>$f^{-1}$ 的定义域 $=f$ 的值域</div>
@@ -377,6 +645,35 @@ html { scroll-padding-top: 100px; }
     <div class="box warn">
       <p><strong>常见失分：</strong>认为 $y=f(x)$ 与 $y=f^{-1}(x)$ 的交点一定在 $y=x$ 上。$f$ <strong>递增</strong>时确实如此；$f$ 递减时不一定。反例：$f(x)=\sqrt{1-x}$，反函数为 $f^{-1}(x)=1-x^2\ (x\ge0)$，两图像交于 $(0,1)$ 和 $(1,0)$，它们都不在 $y=x$ 上（$y=x$ 上的交点是 $x=\dfrac{-1+\sqrt5}{2}$）。</p>
     </div>
+    <p><strong>为什么关于 $y=x$ 对称：</strong>点 $(a,b)$ 在 $y=f(x)$ 上 $\iff b=f(a)\iff a=f^{-1}(b)\iff$ 点 $(b,a)$ 在 $y=f^{-1}(x)$ 上。而 $(a,b)$ 与 $(b,a)$ 正好关于 $y=x$ 对称：中点 $\left(\dfrac{a+b}{2},\dfrac{a+b}{2}\right)$ 在 $y=x$ 上，连线斜率为 $-1$，与 $y=x$ 垂直。</p>
+    <p><strong>为什么 $f$ 递增时交点都在 $y=x$ 上：</strong>设 $(a,b)$ 是 $f$ 与 $f^{-1}$ 的交点，则 $f(a)=b$ 且 $f(b)=a$。若 $a&lt;b$，递增给出 $f(a)&lt;f(b)$，即 $b&lt;a$，矛盾；$a&gt;b$ 同样矛盾。所以 $a=b$。于是解 $f(x)=f^{-1}(x)$ 可以简化成解 $f(x)=x$。</p>
+    <p><strong>为什么 $a+d=0$ 时 $f^{-1}=f$：</strong>对 $y=\dfrac{ax+b}{cx+d}$ 解 $x$，得 $x=\dfrac{-dy+b}{cy-a}$，即 $f^{-1}(x)=\dfrac{-dx+b}{cx-a}$。当 $d=-a$ 时，它与 $f$ 完全相同。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用反函数的点定系数</b><span class="origin">原创</span></div>
+      <p>$f(x)=\dfrac{ax+b}{x+1}$ 的图像过点 $(1,2)$，其反函数的图像过点 $(3,0)$。求 $a,b$、$f^{-1}(x)$，以及 $y=f(x)$ 与 $y=x$ 的交点。</p>
+      <div class="ans">
+        <ol>
+          <li>$f^{-1}$ 过 $(3,0)$，等价于 $f$ 过 $(0,3)$：$f(0)=b=3$。</li>
+          <li>$f$ 过 $(1,2)$：$\dfrac{a+b}{2}=2$，所以 $a=1$。于是 $f(x)=\dfrac{x+3}{x+1}$。</li>
+          <li>解 $x$：$y(x+1)=x+3$，$x(y-1)=3-y$，$x=\dfrac{3-y}{y-1}$。交换得 $f^{-1}(x)=\dfrac{3-x}{x-1}\ (x\ne1)$。</li>
+          <li>交点：$\dfrac{x+3}{x+1}=x$，$x^2+x=x+3$，$x^2=3$，$x=\pm\sqrt3$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a=1,\ b=3$；$f^{-1}(x)=\dfrac{3-x}{x-1}$；交点 $(\sqrt3,\sqrt3)$，$(-\sqrt3,-\sqrt3)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把“反函数过 $(3,0)$”直接代入 $f$，写成 $f(3)=0$。应当交换坐标，得 $f(0)=3$。</li>
+        <li>$f$ 递减时仍只解 $f(x)=x$，漏掉不在 $y=x$ 上的交点。</li>
+        <li>把 $f(f^{-1}(x))=x$ 用在值域之外。如 $f(x)=x^2\ (x\ge0)$ 时，$x=-1$ 不能代入 $f(f^{-1}(x))$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>“反函数的图像过点”几乎总是用 $f(a)=b\iff f^{-1}(b)=a$ 处理，不必求反函数。遇到交点题，先判断单调方向，再决定能否化简成 $f(x)=x$。</p>
+      <p><strong>日语术语：</strong><span lang="ja">直線 y=x に関して対称</span>（<span class="kana" lang="ja">ちょくせんワイイコールエックスにかんしてたいしょう</span>）：关于直线 $y=x$ 对称；<span lang="ja">グラフが点を通る</span>（<span class="kana" lang="ja">グラフがてんをとおる</span>）：图像过某点；<span lang="ja">垂直</span>（<span class="kana" lang="ja">すいちょく</span>）：垂直；<span lang="ja">中点</span>（<span class="kana" lang="ja">ちゅうてん</span>）：中点。</p>
+    </div>
+
   </section>
 
   <section id="explorer">
@@ -407,6 +704,34 @@ html { scroll-padding-top: 100px; }
       </div>
       <div class="status" id="ex-status" aria-live="polite"></div>
     </div>
+    <p><strong>怎么用它：</strong>① 把 $p,q$ 调成相等，观察蓝、红两条曲线重合，这对应 $f^{-1}=f$；② 把分式族的 $p$ 和 $q$ 互换，观察两条曲线互相交换，说明 $f^{-1}$ 的渐近线正是 $f$ 的渐近线沿 $y=x$ 翻折；③ 切换到“无理”，把 $a$ 调成负数，观察 $f$ 递减时公共点可能离开 $y=x$。</p>
+    <p><strong>为什么分式族的 $p,q$ 互换：</strong>由 $y=\dfrac{a}{x-p}+q$ 得 $y-q=\dfrac{a}{x-p}$，所以 $x-p=\dfrac{a}{y-q}$，$x=\dfrac{a}{y-q}+p$。交换 $x,y$ 得 $f^{-1}(x)=\dfrac{a}{x-q}+p$，$a$ 不变，$p,q$ 互换。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用探索器的默认参数验算</b><span class="origin">原创</span></div>
+      <p>探索器默认取 $a=2,\ p=1,\ q=-1$，此时 $f(x)=\dfrac{2}{x-1}-1$。(1) 手算 $f^{-1}(x)$ 和两者的公共点；(2) 改为 $q=1$，再求 $f^{-1}$，以及 $y=f(x)$ 与 $y=x$ 的公共点。算完后在上面的探索器中对照。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 由公式，$f^{-1}(x)=\dfrac{2}{x+1}+1$。点对应：$f(3)=0$，而 $f^{-1}(0)=3$，正确。</li>
+          <li>(1) 解 $f(x)=x$：$\dfrac{2}{x-1}=x+1$，$x^2-1=2$，$x=\pm\sqrt3\approx\pm1.73$，与状态栏显示一致。</li>
+          <li>(2) $p=q=1$ 时，$f(x)=\dfrac{2}{x-1}+1=\dfrac{x+1}{x-1}$，$p,q$ 互换后不变，所以 $f^{-1}=f$。</li>
+          <li>(2) 解 $f(x)=x$：$\dfrac{2}{x-1}=x-1$，$(x-1)^2=2$，$x=1\pm\sqrt2$，即约 $2.41$ 和 $-0.41$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $f^{-1}(x)=\dfrac{2}{x+1}+1$，公共点的 $x=\pm\sqrt3$；(2) $f^{-1}=f$，与 $y=x$ 的公共点的 $x=1\pm\sqrt2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $f^{-1}$ 写成 $\dfrac{a}{x-p}+q$，即忘记 $p,q$ 互换。</li>
+        <li>以为 $p=q$ 时 $f$ 与 $f^{-1}$ 只有两个公共点。这时两条曲线完全重合，公共点有无穷多个；$y=x$ 上的公共点才是两个。</li>
+        <li>把探索器显示的约数当作精确答案。考试中要写 $\pm\sqrt3$ 这样的精确值。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>考试没有探索器，但可以用同样的思维验算：在原函数上取一个好算的点，交换坐标后代入反函数。这比重算一遍更快。</p>
+      <p><strong>日语术语：</strong><span lang="ja">実験する</span>（<span class="kana" lang="ja">じっけんする</span>）：动手试验；<span lang="ja">重なる</span>（<span class="kana" lang="ja">かさなる</span>）：重合；<span lang="ja">近似値</span>（<span class="kana" lang="ja">きんじち</span>）：近似值；<span lang="ja">真の値</span>（<span class="kana" lang="ja">しんのあたい</span>）：精确值（真值）。</p>
+    </div>
+
   </section>
 
   <section id="composite">
@@ -418,10 +743,67 @@ html { scroll-padding-top: 100px; }
     $$(g\circ f)(x)=g\bigl(f(x)\bigr).$$
     <p>注意读法：$g\circ f$ 中<strong>右边的 $f$ 先作用</strong>。要求 $f$ 的值落在 $g$ 的定义域内。</p>
 
+    <p><strong>为什么右边的函数先作用：</strong>写法 $g(f(x))$ 中，要先算出括号内的 $f(x)$，才能代入 $g$。把函数看作加工步骤，$x\to f(x)\to g(f(x))$。</p>
+    <p><strong>计算方法：</strong>把 $g$ 表达式中的每一个 $x$ 都替换成带括号的 $f(x)$。先写 “$g(\ \ )=$” 再往括号里填，比直接心算更不易出错。开方时记住 $\sqrt{A^2}=|A|$，不是 $A$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　含绝对值的复合结果</b><span class="origin">原创</span></div>
+      <p>$f(x)=x^2-2x,\ g(x)=\sqrt{x+1}$。(1) 化简 $(g\circ f)(x)$，并求 $(g\circ f)(3)$ 和 $(g\circ f)(-2)$；(2) 求 $(f\circ g)(3)$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 先检查 $f$ 的值是否落入 $g$ 的定义域：$x^2-2x+1=(x-1)^2\ge0$，所以任意实数 $x$ 都可以。</li>
+          <li>(1) 代入：$(g\circ f)(x)=\sqrt{(x^2-2x)+1}=\sqrt{(x-1)^2}=|x-1|$。</li>
+          <li>(1) 求值：$(g\circ f)(3)=|2|=2$，$(g\circ f)(-2)=|-3|=3$。若误写为 $x-1$，后者会得到错误的 $-3$。</li>
+          <li>(2) 先算内层 $g(3)=\sqrt4=2$，再算外层 $f(2)=4-4=0$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $|x-1|$，$2$，$3$；(2) $0$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $g\circ f$ 读成“先 $g$ 后 $f$”。</li>
+        <li>替换时不加括号：$f(x)=x^2-2x$ 中代入 $x+1$，写成 $x+1^2-2x+1$。</li>
+        <li>把 $\sqrt{(x-1)^2}$ 直接化成 $x-1$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>日语题常写成 $g(f(x))$ 或 “$f(x)$ を $g$ に代入する”，也可能用 $(g\circ f)(x)$。如果只求某个点的函数值，由内向外逐层算数字，不必先写出整个式子。</p>
+      <p><strong>日语术语：</strong><span lang="ja">代入</span>（<span class="kana" lang="ja">だいにゅう</span>）：代入；<span lang="ja">絶対値</span>（<span class="kana" lang="ja">ぜったいち</span>）：绝对值；<span lang="ja">内側の関数</span>（<span class="kana" lang="ja">うちがわのかんすう</span>）：内层函数；<span lang="ja">外側の関数</span>（<span class="kana" lang="ja">そとがわのかんすう</span>）：外层函数。</p>
+    </div>
+
     <h3>顺序不可交换</h3>
     <p>取 $f(x)=2x-1,\ g(x)=x^2+1$：</p>
     $$(g\circ f)(x)=(2x-1)^2+1=4x^2-4x+2,\qquad (f\circ g)(x)=2(x^2+1)-1=2x^2+1.$$
     <p>一般 $g\circ f\ne f\circ g$，但结合律成立：$h\circ(g\circ f)=(h\circ g)\circ f$。</p>
+
+    <p><strong>为什么不可交换：</strong>两步加工的顺序不同，结果一般不同。如“先乘 $2$ 再加 $1$”得 $2x+1$，“先加 $1$ 再乘 $2$”得 $2x+2$。</p>
+    <p><strong>为什么结合律成立：</strong>两边都等于 $h(g(f(x)))$，都是按 $f,g,h$ 的同一顺序加工，只是分组不同。<strong>一次函数何时可交换：</strong>设 $f=ax+b,\ g=cx+d$，则 $f(g(x))=acx+ad+b$，$g(f(x))=acx+cb+d$，所以条件是 $ad+b=cb+d$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　求可交换的条件</b><span class="origin">原创</span></div>
+      <p>$f(x)=2x+t,\ g(x)=3x+1$，且对所有实数 $x$ 都有 $f(g(x))=g(f(x))$。求常数 $t$。</p>
+      <div class="ans">
+        <ol>
+          <li>$f(g(x))=2(3x+1)+t=6x+2+t$。</li>
+          <li>$g(f(x))=3(2x+t)+1=6x+3t+1$。</li>
+          <li>这是对所有 $x$ 成立的恒等式，所以系数对应相等。一次项都是 $6$，常数项要求 $2+t=3t+1$。</li>
+          <li>解得 $2t=1$，$t=\dfrac12$。</li>
+          <li>检验：$f(g(x))=6x+\dfrac52$，$g(f(x))=3\left(2x+\dfrac12\right)+1=6x+\dfrac52$，相等。</li>
+        </ol>
+        <p><strong>答案：</strong>$t=\dfrac12$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $f(g(x))$ 和 $g(f(x))$ 当成一样，只计算一个。</li>
+        <li>把 $g(f(x))$ 误写成 $g(x)f(x)$。复合不是乘法。</li>
+        <li>把“对所有 $x$ 成立”当作方程求 $x$。恒等式应比较系数。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>“すべての実数 $x$ について成り立つ”提示这是恒等式，用系数比较。练习题 10 则是方程，要求 $x$ 的值。两者的区分是审题重点。</p>
+      <p><strong>日语术语：</strong><span lang="ja">恒等式</span>（<span class="kana" lang="ja">こうとうしき</span>）：恒等式；<span lang="ja">係数比較</span>（<span class="kana" lang="ja">けいすうひかく</span>）：比较系数；<span lang="ja">交換法則</span>（<span class="kana" lang="ja">こうかんほうそく</span>）：交换律；<span lang="ja">結合法則</span>（<span class="kana" lang="ja">けつごうほうそく</span>）：结合律。</p>
+    </div>
 
     <h3>定义域必须回到原函数</h3>
     <div class="tw"><table>
@@ -434,6 +816,35 @@ html { scroll-padding-top: 100px; }
       </tbody>
     </table></div>
 
+    <p><strong>为什么必须回到原函数：</strong>$(g\circ f)(x)$ 的计算过程是先算 $f(x)$，所以 $x$ 必须属于 $f$ 的定义域；接着要把 $f(x)$ 代入 $g$，所以 $f(x)$ 必须属于 $g$ 的定义域。写成公式：</p>
+    <p>$$\text{定义域}(g\circ f)=\{x\mid x\in\text{定义域}(f)\ \text{且}\ f(x)\in\text{定义域}(g)\}.$$</p>
+    <p>化简只改变式子的外观，不改变定义域，所以判断定义域要在化简<strong>之前</strong>进行。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　两个方向的定义域</b><span class="origin">原创</span></div>
+      <p>$f(x)=\sqrt{x-1},\ g(x)=\dfrac{1}{x-2}$。分别求 $(f\circ g)(x)$ 和 $(g\circ f)(x)$ 的定义域。</p>
+      <div class="ans">
+        <ol>
+          <li>$(f\circ g)(x)=\sqrt{\dfrac{1}{x-2}-1}$。内层要求 $x\ne2$，外层要求 $\dfrac{1}{x-2}-1\ge0$。</li>
+          <li>通分：$\dfrac{1}{x-2}-1=\dfrac{3-x}{x-2}\ge0$。列符号：分子分母同号或分子为 $0$，得 $2&lt;x\le3$。</li>
+          <li>$(g\circ f)(x)=\dfrac{1}{\sqrt{x-1}-2}$。内层要求 $x\ge1$，外层要求分母不为 $0$，即 $\sqrt{x-1}\ne2$。</li>
+          <li>解 $\sqrt{x-1}=2$ 得 $x=5$，所以定义域为 $x\ge1$ 且 $x\ne5$。</li>
+        </ol>
+        <p><strong>答案：</strong>$(f\circ g)$：$2&lt;x\le3$；$(g\circ f)$：$x\ge1$ 且 $x\ne5$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只看最后的式子。如 $(\sqrt x)^2=x$ 化简后就以为定义域是全体实数。</li>
+        <li>只考虑内层或只考虑外层，如上题只写 $x\ge1$，漏掉 $x\ne5$。</li>
+        <li>解 $\dfrac{3-x}{x-2}\ge0$ 时把 $x=2$ 算进去。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目常问复合函数的值域，它也要先确定内层的值域，再把它作为外层的输入。解题顺序是：内层定义域 → 内层值域 → 外层的函数值范围。</p>
+      <p><strong>日语术语：</strong><span lang="ja">定義域に含まれる</span>（<span class="kana" lang="ja">ていぎいきにふくまれる</span>）：包含于定义域；<span lang="ja">分母が0にならない</span>（<span class="kana" lang="ja">ぶんぼがゼロにならない</span>）：分母不为 0；<span lang="ja">根号の中が0以上</span>（<span class="kana" lang="ja">こんごうのなかがゼロいじょう</span>）：根号内不小于 0。</p>
+    </div>
+
     <h3>与反函数的关系</h3>
     <div class="formula-grid">
       <div>$(f^{-1}\circ f)(x)=x,\quad (f\circ f^{-1})(x)=x$</div>
@@ -444,6 +855,35 @@ html { scroll-padding-top: 100px; }
       $$f(t)=(t-1)^2+3(t-1)=t^2+t-2,\quad\text{即}\ f(x)=x^2+x-2.$$
     </div>
     <p>复合函数的求导（链式法则）和反函数的求导见<a href="../../claude/#deriv">微分与积分</a>页。</p>
+    <p><strong>为什么 $(g\circ f)^{-1}=f^{-1}\circ g^{-1}$：</strong>设 $y=g(f(x))$。先用 $g^{-1}$ 去掉外层，得 $g^{-1}(y)=f(x)$；再用 $f^{-1}$ 去掉内层，得 $f^{-1}(g^{-1}(y))=x$。所以反函数先作用 $g^{-1}$，后作用 $f^{-1}$。</p>
+    <p><strong>反求函数时为什么要注意 $t$ 的范围：</strong>令 $t=\varphi(x)$ 时，$f(t)$ 只对 $\varphi$ 能取到的 $t$ 有信息，所以 $f$ 的定义域就是 $\varphi$ 的值域。如 $t=\sqrt x+1$ 时，$t\ge1$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　复合的反函数与换元反求</b><span class="origin">原创</span></div>
+      <p>(1) $f(x)=2x+3,\ g(x)=\dfrac1x$，求 $(g\circ f)^{-1}(x)$。(2) 已知 $f(\sqrt x+1)=x+2\sqrt x\ (x\ge0)$，求 $f(x)$ 及其定义域。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $g^{-1}(x)=\dfrac1x$（$g$ 是自身的反函数），$f^{-1}(x)=\dfrac{x-3}{2}$。</li>
+          <li>(1) 按“先 $g^{-1}$ 后 $f^{-1}$”：$(g\circ f)^{-1}(x)=f^{-1}\left(\dfrac1x\right)=\dfrac{\frac1x-3}{2}=\dfrac{1-3x}{2x}$。</li>
+          <li>(1) 直接验算：$y=\dfrac{1}{2x+3}$ 解得 $x=\dfrac{1-3y}{2y}$，一致。</li>
+          <li>(2) 令 $t=\sqrt x+1$，因 $x\ge0$，所以 $t\ge1$，且 $\sqrt x=t-1$，$x=(t-1)^2$。</li>
+          <li>(2) 代入右边：$(t-1)^2+2(t-1)=t^2-1$。所以 $f(x)=x^2-1$，定义域 $x\ge1$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\dfrac{1-3x}{2x}$（$x\ne0$）；(2) $f(x)=x^2-1\ (x\ge1)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把顺序写成 $g^{-1}\circ f^{-1}$。上题会得到 $\dfrac{2}{x-3}$，代入一个点就能发现错误。</li>
+        <li>换元后不写新变量的范围，上题 (2) 把定义域写成全体实数。</li>
+        <li>混淆 $f(x+1)$ 和 $f(x)+1$。前者改变输入，后者改变输出。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>换元法的三步是：令 $t$ 等于括号里的整体 → 把 $x$ 用 $t$ 表示 → 代入后把 $t$ 换回 $x$。答案写完后，用 $x=$ 一个具体的值代入原条件检验。</p>
+      <p><strong>日语术语：</strong><span lang="ja">置き換える</span>（<span class="kana" lang="ja">おきかえる</span>）：换元；<span lang="ja">合成関数の逆関数</span>（<span class="kana" lang="ja">ごうせいかんすうのぎゃくかんすう</span>）：复合函数的反函数；<span lang="ja">とりうる値の範囲</span>（<span class="kana" lang="ja">とりうるあたいのはんい</span>）：可取值的范围。</p>
+    </div>
+
   </section>
 
   <section id="examples">
@@ -465,6 +905,7 @@ html { scroll-padding-top: 100px; }
         <p>(1) $2x+5=2(x+1)+3$，所以 $f(x)=2+\dfrac{3}{x+1}$，渐近线 $x=-1,\ y=2$。</p>
         <p>(2) $k=3&gt;0$，在 $x&gt;-1$ 上递减。$f(0)=5,\ f(2)=3$，所以 $3\le y\le5$。</p>
         <p>(3) 令 $u=x+1$，不等式化为 $2+\dfrac3u&gt;u$。$u&gt;0$ 时，$u^2-2u-3&lt;0$，得 $0&lt;u&lt;3$；$u&lt;0$ 时，$u^2-2u-3&gt;0$，得 $u&lt;-1$。还原得 $x&lt;-2$ 或 $-1&lt;x&lt;2$。</p>
+        <p><strong>详细步骤：</strong>(3) 也可以移项：$f(x)-(x+1)=-\dfrac{(x-2)(x+2)}{x+1}&gt;0$，即 $\dfrac{(x-2)(x+2)}{x+1}&lt;0$。零点 $-2,-1,2$ 把数轴分成四段，从最右段的 $+$ 开始交替变号，为负的是 $x&lt;-2$ 和 $-1&lt;x&lt;2$，结果相同。检验：$x=0$ 时 $5&gt;1$ 成立，$x=3$ 时 $\dfrac{11}{4}&gt;4$ 不成立。</p>
       </div>
     </article>
 
@@ -481,6 +922,7 @@ html { scroll-padding-top: 100px; }
         <p>(1) $2x+4\ge0$，即 $x\ge-2$。</p>
         <p>(2) 平方：$(x+k)^2=2x+4$，即 $x^2+(2k-2)x+k^2-4=0$。判别式 $\dfrac D4=(k-1)^2-(k^2-4)=5-2k=0$，得 $k=\dfrac52$。重根 $x=1-k=-\dfrac32$，$y=\sqrt{1}=1$。</p>
         <p>(3) 直线过起点 $(-2,0)$ 时 $k=2$，此时有两个公共点；$k$ 增大到 $\dfrac52$ 时相切。所以 $2\le k&lt;\dfrac52$。</p>
+        <p><strong>详细步骤：</strong>(3) 代入验证：$k=2$ 时 $\sqrt{2x+4}=x+2$，令 $u=x+2$ 得 $\sqrt{2u}=u$，$u=0$ 或 $2$，即 $x=-2,\ 0$，两个公共点，所以 $k=2$ 要包含。$k=3$ 时判别式 $5-2k&lt;0$，没有公共点。</p>
         <p>(4) $-2\le x&lt;0$ 时右边为负，恒成立。$x\ge0$ 时平方得 $x^2-2x-4&lt;0$，即 $x&lt;1+\sqrt5$。合并得 $-2\le x&lt;1+\sqrt5$。</p>
       </div>
     </article>
@@ -497,6 +939,7 @@ html { scroll-padding-top: 100px; }
         <p>(1) $y(x+1)=3x-1$，整理得 $x(y-3)=-(y+1)$，所以 $x=-\dfrac{y+1}{y-3}$，交换 $x,y$ 得 $f^{-1}(x)=-\dfrac{x+1}{x-3}$。</p>
         <p>(2) $\dfrac{3x-1}{x+1}=x$ 化为 $x^2-2x+1=0$，即 $(x-1)^2=0$，重根 $x=1$，公共点 $(1,1)$。</p>
         <p>(3) $f(f(x))=\dfrac{3\cdot\frac{3x-1}{x+1}-1}{\frac{3x-1}{x+1}+1}=\dfrac{9x-3-(x+1)}{3x-1+x+1}=\dfrac{8x-4}{4x}=\dfrac{2x-1}{x}$。</p>
+        <p><strong>详细步骤：</strong>(3) 分子分母同乘 $x+1$ 消去内层分母：分子 $3(3x-1)-(x+1)=8x-4$，分母 $(3x-1)+(x+1)=4x$，约去 $4$。注意 $f(f(x))$ 中 $x\ne-1$（内层有意义）且 $x\ne0$（外层分母不为 $0$，因为 $f(0)=-1$）。(2) 中的重根表示相切：$y=f(x)$ 在 $x=1$ 处的切线斜率恰为 $1$。</p>
       </div>
     </article>
 
@@ -516,8 +959,44 @@ html { scroll-padding-top: 100px; }
         <p>(3) $g(f(x))=(3x+1)+1=3x+2$，但定义域要沿用 $f$ 的：$3x+1\ge0$，即 $x\ge-\dfrac13$。</p>
         <p>(4) $f(g(x))=\sqrt{3(x^2+1)+1}=\sqrt{3x^2+4}$，$x=0$ 时最小值为 $\sqrt4=2$。</p>
         <p>(5) $\sqrt{3x+1}=x$ 要求 $x\ge0$，平方得 $x^2-3x-1=0$，取正根 $x=\dfrac{3+\sqrt{13}}{2}$。</p>
+        <p><strong>详细步骤：</strong>(1) 的条件转换是本题的关键：反函数过 $(4,5)$ 就是 $f(5)=4$，代入后 $\sqrt{5a+b}=4$。验算：$f(1)=\sqrt4=2$，$f(5)=\sqrt{16}=4$。(5) 中负根 $\dfrac{3-\sqrt{13}}{2}$ 不满足 $x\ge0$，是平方带来的增根。</p>
       </div>
     </article>
+    <p><strong>做这类大题的通用顺序：</strong>先把标准形写好（第 (1) 问通常就是它）→ 画草图 → 用草图回答值域和不等式。EJU 的后几问常常要用到前几问的结果，所以每问写完后要检查它与下一问的联系。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　分式函数综合</b><span class="origin">原创</span></div>
+      <p>函数 $f(x)=\dfrac{ax+1}{x+b}$ 的图像的渐近线为 $x=-2$ 和 $y=3$。</p>
+      <p>(1) $a=\B{A},\ b=\B{B}$。</p>
+      <p>(2) $f(x)=\B{C}-\dfrac{\B{D}}{x+\B{E}}$。</p>
+      <p>(3) $f^{-1}(x)=\dfrac{\B{F}\,x-\B{G}}{\B{H}-x}$。</p>
+      <p>(4) 曲线 $y=f(x)$ 与直线 $y=x$ 的公共点的 $x$ 坐标为 $\dfrac{\B{I}\pm\sqrt{\B{J}}}{\B{K}}$。</p>
+      <p>(5) 当 $0\le x\le3$ 时，$f(x)$ 的取值范围是 $\dfrac{\B{L}}{\B{M}}\le y\le\B{N}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 3</li><li>B = 2</li><li>C = 3</li><li>D = 5</li><li>E = 2</li><li>F = 2</li><li>G = 1</li><li>H = 3</li><li>I = 1</li><li>J = 5</li><li>K = 2</li><li>L = 1</li><li>M = 2</li><li>N = 2</li></ul>
+        <ol>
+          <li>(1) 分母为 $0$ 给出 $x=-b=-2$，所以 $b=2$；系数比给出 $y=a=3$。</li>
+          <li>(2) $3x+1=3(x+2)-5$，所以 $f(x)=3-\dfrac{5}{x+2}$。</li>
+          <li>(3) $y(x+2)=3x+1$，整理为 $x(y-3)=1-2y$，$x=\dfrac{2y-1}{3-y}$。交换 $x,y$ 得 $f^{-1}(x)=\dfrac{2x-1}{3-x}$。</li>
+          <li>(4) $3x+1=x^2+2x$，即 $x^2-x-1=0$，$x=\dfrac{1\pm\sqrt5}{2}$。</li>
+          <li>(5) $k=-5&lt;0$，在 $x&gt;-2$ 上递增。$f(0)=\dfrac12,\ f(3)=\dfrac{10}{5}=2$，所以 $\dfrac12\le y\le2$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a=3,\ b=2$；$f^{-1}(x)=\dfrac{2x-1}{3-x}$；公共点 $x=\dfrac{1\pm\sqrt5}{2}$；范围 $\dfrac12\le y\le2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>区间跨过渐近线时仍只代入端点。先确认区间不含 $x=p$，才能用单调性。</li>
+        <li>分数没有约到最简，或方框个数与答案位数不符。方框数量本身是一种检查手段。</li>
+        <li>把 $f^{-1}$ 的分母符号写反，如填成 $x-3$。要按题目给出的形式 $\B{H}-x$ 调整分子分母的符号。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>填空的格式就是提示：看到 $\B{A}+\dfrac{\B{B}}{x+\B{C}}$ 就知道要化标准形，看到分子含 $\pm\sqrt{\ }$ 就知道是二次方程的两根。时间紧时，不要在一个空上停留太久，后面几问仍可能独立得分。</p>
+      <p><strong>日语术语：</strong><span lang="ja">次の文中の□にあてはまる数を入れよ</span>（<span class="kana" lang="ja">つぎのぶんちゅうのしかくにあてはまるかずをいれよ</span>）：在文中方框内填入相应的数；<span lang="ja">既約分数</span>（<span class="kana" lang="ja">きやくぶんすう</span>）：最简分数；<span lang="ja">取りうる値の範囲</span>（<span class="kana" lang="ja">とりうるあたいのはんい</span>）：取值范围。</p>
+    </div>
+
   </section>
 
   <section id="practice">
@@ -530,62 +1009,90 @@ html { scroll-padding-top: 100px; }
     <div class="q"><div class="q-head"><b>1</b>渐近线</div>
       <p>求 $y=\dfrac{3x+7}{x+2}$ 的渐近线。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$y=3+\dfrac{1}{x+2}$，渐近线为 $x=-2,\ y=3$。</p></div></div>
+      <div class="ans" hidden><p>$y=3+\dfrac{1}{x+2}$，渐近线为 $x=-2,\ y=3$。</p><p><strong>详细步骤：</strong>凑分母：$3x+7=3(x+2)+1$，分开写成 $3+\dfrac{1}{x+2}$。分母为 $0$ 给出 $x=-2$，常数部分给出 $y=3$。</p></div></div>
 
     <div class="q"><div class="q-head"><b>2</b>值域</div>
       <p>求 $y=\dfrac{x+1}{x-1}\ (2\le x\le4)$ 的值域。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$y=1+\dfrac{2}{x-1}$，在此区间递减。$x=4$ 时 $y=\dfrac53$，$x=2$ 时 $y=3$，所以 $\dfrac53\le y\le3$。</p></div></div>
+      <div class="ans" hidden><p>$y=1+\dfrac{2}{x-1}$，在此区间递减。$x=4$ 时 $y=\dfrac53$，$x=2$ 时 $y=3$，所以 $\dfrac53\le y\le3$。</p><p><strong>详细步骤：</strong>先确认区间 $[2,4]$ 不含渐近线 $x=1$，才能只看端点。$k=2&gt;0$，所以 $x$ 增大时 $y$ 减小，最大值在 $x=2$，最小值在 $x=4$。</p></div></div>
 
     <div class="q"><div class="q-head"><b>3</b>分式不等式</div>
       <p>解不等式 $\dfrac{2}{x-1}&lt;x$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$x&gt;1$ 时，$2&lt;x(x-1)$，即 $(x-2)(x+1)&gt;0$，得 $x&gt;2$。$x&lt;1$ 时不等号反向，$(x-2)(x+1)&lt;0$，得 $-1&lt;x&lt;1$。答案：$-1&lt;x&lt;1$ 或 $x&gt;2$。</p></div></div>
+      <div class="ans" hidden><p>$x&gt;1$ 时，$2&lt;x(x-1)$，即 $(x-2)(x+1)&gt;0$，得 $x&gt;2$。$x&lt;1$ 时不等号反向，$(x-2)(x+1)&lt;0$，得 $-1&lt;x&lt;1$。答案：$-1&lt;x&lt;1$ 或 $x&gt;2$。</p><p><strong>详细步骤：</strong>也可以移项得 $\dfrac{x^2-x-2}{x-1}=\dfrac{(x-2)(x+1)}{x-1}&gt;0$，零点 $-1,1,2$，符号由左至右为 $-,+,-,+$。为正的部分就是答案。</p></div></div>
 
     <div class="q"><div class="q-head"><b>4</b>定义域与值域</div>
       <p>求 $y=\sqrt{4-2x}+1$ 的定义域和值域。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$4-2x\ge0$，定义域 $x\le2$；根号部分取遍 $[0,\infty)$，值域 $y\ge1$。</p></div></div>
+      <div class="ans" hidden><p>$4-2x\ge0$，定义域 $x\le2$；根号部分取遍 $[0,\infty)$，值域 $y\ge1$。</p><p><strong>详细步骤：</strong>$\sqrt{4-2x}$ 的起点在 $x=2$，此时 $y=1$。根号部分非负，所以 $y$ 的最小值就是 $1$。</p></div></div>
 
     <div class="q"><div class="q-head"><b>5</b>无理方程</div>
       <p>解方程 $\sqrt{x+7}=x+1$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>平方得 $x^2+x-6=0$，$x=2,-3$。要求 $x+1\ge0$，舍去增根 $x=-3$。答案：$x=2$。</p></div></div>
+      <div class="ans" hidden><p>平方得 $x^2+x-6=0$，$x=2,-3$。要求 $x+1\ge0$，舍去增根 $x=-3$。答案：$x=2$。</p><p><strong>详细步骤：</strong>$x+7=(x+1)^2$ 展开为 $x^2+x-6=(x+3)(x-2)=0$。检验：$x=2$ 时 $\sqrt9=3$ 成立；$x=-3$ 时左边 $2$，右边 $-2$，不成立。</p></div></div>
 
     <div class="q"><div class="q-head"><b>6</b>无理不等式</div>
       <p>解不等式 $\sqrt{6-x}&gt;x$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$x&lt;0$ 时恒成立。$0\le x\le6$ 时平方得 $x^2+x-6&lt;0$，即 $(x+3)(x-2)&lt;0$，得 $0\le x&lt;2$。合并：$x&lt;2$。</p></div></div>
+      <div class="ans" hidden><p>$x&lt;0$ 时恒成立。$0\le x\le6$ 时平方得 $x^2+x-6&lt;0$，即 $(x+3)(x-2)&lt;0$，得 $0\le x&lt;2$。合并：$x&lt;2$。</p><p><strong>详细步骤：</strong>定义域 $x\le6$。分两种情况：$x&lt;0$ 时非负数大于负数；$x\ge0$ 时两边都非负，可以平方。合并 $x&lt;0$ 与 $0\le x&lt;2$ 得 $x&lt;2$。</p></div></div>
 
     <div class="q"><div class="q-head"><b>7</b>反函数</div>
       <p>求 $y=\dfrac{2x-1}{x+3}$ 的反函数及其定义域。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$y(x+3)=2x-1$，得 $x(2-y)=3y+1$，所以 $f^{-1}(x)=\dfrac{3x+1}{2-x}$。定义域 $x\ne2$（原函数值域 $y\ne2$）。</p></div></div>
+      <div class="ans" hidden><p>$y(x+3)=2x-1$，得 $x(2-y)=3y+1$，所以 $f^{-1}(x)=\dfrac{3x+1}{2-x}$。定义域 $x\ne2$（原函数值域 $y\ne2$）。</p><p><strong>详细步骤：</strong>展开 $yx+3y=2x-1$，把含 $x$ 的项移到一边：$x(y-2)=-3y-1$，两边乘 $-1$ 得 $x(2-y)=3y+1$。交换 $x,y$ 即得。</p></div></div>
 
     <div class="q"><div class="q-head"><b>8</b>反函数</div>
       <p>求 $y=x^2-2x+3\ (x\ge1)$ 的反函数及其定义域。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$y=(x-1)^2+2$，值域 $y\ge2$。因 $x\ge1$，解得 $x=1+\sqrt{y-2}$（取正号）。反函数 $y=1+\sqrt{x-2}$，定义域 $x\ge2$。</p></div></div>
+      <div class="ans" hidden><p>$y=(x-1)^2+2$，值域 $y\ge2$。因 $x\ge1$，解得 $x=1+\sqrt{y-2}$（取正号）。反函数 $y=1+\sqrt{x-2}$，定义域 $x\ge2$。</p><p><strong>详细步骤：</strong>$x\ge1$ 上函数递增，所以有反函数。检验：$f(3)=6$，反函数在 $x=6$ 处的值为 $1+\sqrt4=3$。</p></div></div>
 
     <div class="q"><div class="q-head"><b>9</b>自反函数</div>
       <p>$f(x)=\dfrac{ax+3}{x-2}$ 的反函数与 $f$ 自身相同，求常数 $a$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>需要两条渐近线 $x=2,\ y=a$ 关于 $y=x$ 对称，即 $a=2$。验证：$f(x)=2+\dfrac{7}{x-2}$，代入得 $f(f(x))=x$。</p></div></div>
+      <div class="ans" hidden><p>需要两条渐近线 $x=2,\ y=a$ 关于 $y=x$ 对称，即 $a=2$。验证：$f(x)=2+\dfrac{7}{x-2}$，代入得 $f(f(x))=x$。</p><p><strong>详细步骤：</strong>用公式 $a+d=0$：这里 $d=-2$，也得 $a=2$。此时 $f(x)=\dfrac{2x+3}{x-2}$，要注意 $ad-bc=-4-3=-7\ne0$，不是退化情形。</p></div></div>
 
     <div class="q"><div class="q-head"><b>10</b>复合函数</div>
       <p>$f(x)=2x-1,\ g(x)=x^2+1$。解方程 $(f\circ g)(x)=(g\circ f)(x)$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$2x^2+1=4x^2-4x+2$，即 $2x^2-4x+1=0$，$x=\dfrac{2\pm\sqrt2}{2}$。</p></div></div>
+      <div class="ans" hidden><p>$2x^2+1=4x^2-4x+2$，即 $2x^2-4x+1=0$，$x=\dfrac{2\pm\sqrt2}{2}$。</p><p><strong>详细步骤：</strong>先分别求出两个复合函数，令其相等后整理成二次方程，用求根公式：$x=\dfrac{4\pm\sqrt{16-8}}{4}=\dfrac{2\pm\sqrt2}{2}$。</p></div></div>
 
     <div class="q"><div class="q-head"><b>11</b>反求函数</div>
       <p>已知 $f(2x+1)=4x^2+6x$，求 $f(x)$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>令 $t=2x+1$，则 $2x=t-1$，$4x^2+6x=(t-1)^2+3(t-1)=t^2+t-2$。所以 $f(x)=x^2+x-2$。</p></div></div>
+      <div class="ans" hidden><p>令 $t=2x+1$，则 $2x=t-1$，$4x^2+6x=(t-1)^2+3(t-1)=t^2+t-2$。所以 $f(x)=x^2+x-2$。</p><p><strong>详细步骤：</strong>关键是把 $4x^2+6x$ 写成 $(2x)^2+3(2x)$。检验：$x=1$ 时左边 $f(3)=9+3-2=10$，右边 $4+6=10$。</p></div></div>
 
     <div class="q"><div class="q-head"><b>12</b>复合的反函数</div>
       <p>$f(x)=2x+1,\ g(x)=x^3$，求 $(g\circ f)^{-1}(x)$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
-      <div class="ans" hidden><p>$(g\circ f)^{-1}=f^{-1}\circ g^{-1}$。$g^{-1}(x)=\sqrt[3]{x}$，$f^{-1}(x)=\dfrac{x-1}{2}$，所以结果为 $\dfrac{\sqrt[3]{x}-1}{2}$。</p></div></div>
+      <div class="ans" hidden><p>$(g\circ f)^{-1}=f^{-1}\circ g^{-1}$。$g^{-1}(x)=\sqrt[3]{x}$，$f^{-1}(x)=\dfrac{x-1}{2}$，所以结果为 $\dfrac{\sqrt[3]{x}-1}{2}$。</p><p><strong>详细步骤：</strong>直接验算：$y=(2x+1)^3$，开立方得 $\sqrt[3]y=2x+1$，所以 $x=\dfrac{\sqrt[3]y-1}{2}$，一致。检验：$x=1$ 时 $y=27$，$\dfrac{\sqrt[3]{27}-1}{2}=1$。</p></div></div>
+    <p><strong>使用方法：</strong>先独立完成，再对照答案和上面每题的“详细步骤”。错题要归类：是定义域、符号，还是增根？下面的补充例题把这三类要点放在同一道题中。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　无理函数与反函数的交点</b><span class="origin">原创</span></div>
+      <p>求曲线 $y=\sqrt{x+3}$ 与它的反函数图像的公共点。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ol>
+          <li>$f(x)=\sqrt{x+3}$ 的值域是 $y\ge0$。解得 $x=y^2-3$，所以 $f^{-1}(x)=x^2-3\ (x\ge0)$。</li>
+          <li>$f$ 递增，所以公共点都在 $y=x$ 上，只需解 $\sqrt{x+3}=x$。</li>
+          <li>要求 $x\ge0$，平方得 $x^2-x-3=0$，$x=\dfrac{1\pm\sqrt{13}}{2}$。</li>
+          <li>$\dfrac{1-\sqrt{13}}{2}&lt;0$，舍去。这个值虽然满足 $x^2-3=x$，但不在反函数的定义域 $x\ge0$ 内。</li>
+        </ol>
+        <p><strong>答案：</strong>公共点只有一个：$\left(\dfrac{1+\sqrt{13}}{2},\ \dfrac{1+\sqrt{13}}{2}\right)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>直接解 $x^2-3=x$ 而忘记 $x\ge0$，得到两个公共点。</li>
+        <li>解 $f(x)=f^{-1}(x)$ 时不判断单调性，要么计算量过大，要么漏解。</li>
+        <li>对答案时只看结果，不检查自己的步骤。过程错但结果碰巧对的题，也应算作错题。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>建议限时练习：12 题控制在 25 分钟内。先用 $k,p,q$ 或起点画草图的习惯，在考场上比任何公式都省时间。</p>
+      <p><strong>日语术语：</strong><span lang="ja">演習問題</span>（<span class="kana" lang="ja">えんしゅうもんだい</span>）：练习题；<span lang="ja">解答</span>（<span class="kana" lang="ja">かいとう</span>）：解答；<span lang="ja">計算ミス</span>（<span class="kana" lang="ja">けいさんミス</span>）：计算失误。</p>
+    </div>
+
   </section>
 
   <section id="terms">
@@ -598,6 +1105,34 @@ html { scroll-padding-top: 100px; }
       <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
       <tbody></tbody>
     </table></div>
+    <p><strong>怎么记：</strong>日语题干的动词和数学名词同样重要。“$x$ について解く”“$\square$ を通る”“$\square$ に接する”这类固定表达，决定了你要做什么。建议用表格上方的搜索框按中文、日文或假名查询；下面的例题示范了如何读一道日语题。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　读日语题干</b><span class="origin">原创</span></div>
+      <p lang="ja">関数 $f(x)=\dfrac{2x-3}{x-2}$ のグラフの漸近線を求めよ。また、$f(x)$ の逆関数を求めよ。</p>
+      <p class="kana">中文：求函数 $f(x)=\dfrac{2x-3}{x-2}$ 图像的渐近线；并求 $f(x)$ 的反函数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ol>
+          <li>关键词：<span lang="ja">グラフ</span>（图像）、<span lang="ja">漸近線</span>（渐近线）、<span lang="ja">逆関数</span>（反函数）、<span lang="ja">求めよ</span>（求）。</li>
+          <li>$2x-3=2(x-2)+1$，所以 $f(x)=2+\dfrac{1}{x-2}$，渐近线 $x=2,\ y=2$。</li>
+          <li>解 $x$：$y(x-2)=2x-3$，$x(y-2)=2y-3$，$x=\dfrac{2y-3}{y-2}$。</li>
+          <li>交换 $x,y$：$f^{-1}(x)=\dfrac{2x-3}{x-2}$，与 $f(x)$ 完全相同。定义域 $x\ne2$，值域 $y\ne2$。这与 $a+d=2-2=0$ 的结论一致。</li>
+        </ol>
+        <p><strong>答案：</strong>渐近线 $x=2,\ y=2$；反函数 $f^{-1}(x)=\dfrac{2x-3}{x-2}$（$x\ne2$）。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把<span lang="ja">定義域</span>和<span lang="ja">値域</span>的读音与含义弄混：<span lang="ja">値域</span>读作 <span class="kana" lang="ja">ちいき</span>，不要读成 <span class="kana" lang="ja">あたいいき</span>。</li>
+        <li>把<span lang="ja">接点</span>与<span lang="ja">交点</span>混用。相切时的公共点叫<span lang="ja">接点</span>（<span class="kana" lang="ja">せってん</span>）；问<span lang="ja">共有点の個数</span>时，相切也算 $1$ 个。</li>
+        <li>把<span lang="ja">無縁解</span>译成“无解”。它的意思是平方产生的增根，方程可能仍有其他解。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>EJU 数学可选日语或英语试卷，选日语时要能迅速读懂题干。不需要逐字翻译，先圈出函数式和“$\square$ を求めよ”，再回头确认条件（$\ge,\ &gt;$ 和 “$\square$ のとき”）。</p>
+      <p><strong>日语术语：</strong><span lang="ja">求めよ</span>（<span class="kana" lang="ja">もとめよ</span>）：求；<span lang="ja">ただし</span>（<span class="kana" lang="ja">ただし</span>）：但是（附加条件）；<span lang="ja">のとき</span>（<span class="kana" lang="ja">のとき</span>）：当……时；<span lang="ja">すべての</span>（<span class="kana" lang="ja">すべての</span>）：所有的。</p>
+    </div>
   </section>
 
   <footer>
@@ -632,6 +1167,14 @@ html { scroll-padding-top: 100px; }
       ['グラフ', 'グラフ', '图像'], ['交点', 'こうてん', '交点'], ['共有点', 'きょうゆうてん', '公共点'],
       ['接する', 'せっする', '相切'], ['接点', 'せってん', '切点'], ['定数', 'ていすう', '常数'],
       ['最大値', 'さいだいち', '最大值'], ['最小値', 'さいしょうち', '最小值']
+    ]],
+    ['本页补充用语', [
+      ['点対称', 'てんたいしょう', '点对称'], ['約分', 'やくぶん', '约分'], ['通分', 'つうぶん', '通分'],
+      ['移項', 'いこう', '移项'], ['場合分け', 'ばあいわけ', '分情况讨论'], ['必要条件', 'ひつようじょうけん', '必要条件'],
+      ['十分条件', 'じゅうぶんじょうけん', '充分条件'], ['不適', 'ふてき', '不符合（舍去）'], ['傾き', 'かたむき', '斜率'],
+      ['切片', 'せっぺん', '截距'], ['重解', 'じゅうかい', '重根'], ['平方完成', 'へいほうかんせい', '配方'],
+      ['恒等式', 'こうとうしき', '恒等式'], ['係数比較', 'けいすうひかく', '比较系数'], ['置き換える', 'おきかえる', '换元'],
+      ['絶対値', 'ぜったいち', '绝对值'], ['既約分数', 'きやくぶんすう', '最简分数']
     ]]
   ];
 
