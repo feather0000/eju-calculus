@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 12 数列</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：等差数列、等比数列、阶差数列、Σ 求和、递推式、数学归纳法，含原创例题、练习题、交互演示和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+.back { display: inline-block; color: #c5d3ef; text-decoration: none; font-size: 15px; margin-bottom: 18px; }
+.back:hover { text-decoration: underline; }
+@media (max-width: 900px) {
+  nav.toc { top: 34px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <a class="back" href="../../">← 目录</a>
+      <p class="eyebrow">EJU 数学コース2 · 出题项目 12 · 数列</p>
+      <h1>数列</h1>
+      <p class="lead">从等差、等比数列出发，讲到阶差数列、$\Sigma$ 求和、递推式与数学归纳法：每个知识点都配小例子，再用原创的 EJU 风格填空题和练习题检验。日语术语随文标注，文末有完整对照表。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$a_n=a_1+\sum_{k=1}^{n-1}b_k\quad(n\ge 2)$$
+      $$a_{n+1}-\alpha=p\,(a_n-\alpha)$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#arith">1 等差数列</a></li>
+        <li><a href="#geom">2 等比数列</a></li>
+        <li><a href="#diff">3 阶差数列</a></li>
+        <li><a href="#sigma">4 各种数列与 Σ</a></li>
+        <li><a href="#recur">5 递推式与探索器</a></li>
+        <li><a href="#induct">6 数学归纳法</a></li>
+        <li><a href="#examples">7 原创例题</a></li>
+        <li><a href="#practice">8 练习题</a></li>
+        <li><a href="#terms">9 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box warn" style="margin-top:28px">
+    <p><strong>范围说明：</strong>本页对应 JASSO 2026 年度起适用的数学シラバス中コース2 的出题项目 12：等差数列・等比数列、階差数列、いろいろな数列（$\Sigma$）；漸化式と数列、数学的帰納法。数列的极限属于项目 18（极限），这里只在探索器中直观提及。</p>
+  </div>
+
+  <section id="arith">
+    <h2>1 等差数列</h2>
+    <p class="jp-sub" lang="ja">等差数列 — 公差・一般項・和</p>
+    <p>按顺序排列的一列数叫<strong>数列</strong>（<span lang="ja">数列</span>），第 $n$ 项的表达式 $a_n$ 叫<strong>通项</strong>（<span lang="ja">一般項</span>）。相邻两项之差恒为常数 $d$（<span lang="ja">公差</span>）的数列叫等差数列。首项（<span lang="ja">初項</span>）为 $a$ 时：</p>
+    <div class="formula-grid">
+      <div>$a_n=a+(n-1)d$</div>
+      <div>$S_n=\dfrac{n(a+l)}{2}$（$l$ 为末项）</div>
+      <div>$S_n=\dfrac{n\{2a+(n-1)d\}}{2}$</div>
+      <div>等差中项：$2b=a+c$</div>
+    </div>
+    <p>$a,b,c$ 依次成等差数列，等价于 $2b=a+c$。三个数成等差时，设成 $x-d,\ x,\ x+d$ 计算最省事。</p>
+    <div class="box good">
+      <p><strong>常见题型：和的最大值。</strong>首项 $100$、公差 $-7$ 的数列，$a_n=107-7n$。由 $a_n&lt;0$ 得 $n&gt;15.2\cdots$，所以第 $16$ 项首次为负。正项加到第 $15$ 项时和最大：$a_{15}=2$，$S_{15}=\dfrac{15(100+2)}{2}=765$。</p>
+    </div>
+    <p>判断依据：$a_n$ 是 $n$ 的一次式（$d\ne0$ 时）；$S_n$ 是 $n$ 的二次式且没有常数项。</p>
+  </section>
+
+  <section id="geom">
+    <h2>2 等比数列</h2>
+    <p class="jp-sub" lang="ja">等比数列 — 公比・一般項・和</p>
+    <p>相邻两项之比恒为常数 $r$（<span lang="ja">公比</span>）的数列叫等比数列。首项为 $a$ 时：</p>
+    <div class="formula-grid">
+      <div>$a_n=ar^{n-1}$</div>
+      <div>$r\ne1$：$S_n=\dfrac{a(1-r^n)}{1-r}=\dfrac{a(r^n-1)}{r-1}$</div>
+      <div>$r=1$：$S_n=na$</div>
+      <div>等比中项：$b^2=ac$</div>
+    </div>
+    <div class="box warn">
+      <p><strong>易错：</strong>公比含字母时，一定要分 $r=1$ 与 $r\ne1$ 讨论；由 $b^2=ac$ 求 $b$ 时，正负两个值都要考虑。</p>
+    </div>
+    <div class="box good">
+      <p><strong>小例子：</strong>数列 $2,6,18,\dots$ 中 $a_n=2\cdot3^{n-1}$。由 $3^5=243&lt;500&lt;729=3^6$，首次超过 $1000$ 的是第 $7$ 项；前 $5$ 项和 $S_5=\dfrac{2(3^5-1)}{3-1}=242$。</p>
+    </div>
+    <h3>应用：复利与定期存款</h3>
+    <p>年利率 $r$、按复利（<span lang="ja">複利</span>）计算，每年年初存入 $a$，第 $n$ 年年末的本息合计（<span lang="ja">元利合計</span>）是一个等比数列的和：</p>
+    $$a(1+r)+a(1+r)^2+\cdots+a(1+r)^n=\frac{a(1+r)\{(1+r)^n-1\}}{r}.$$
+  </section>
+
+  <section id="diff">
+    <h2>3 阶差数列</h2>
+    <p class="jp-sub" lang="ja">階差数列 — 隣り合う項の差</p>
+    <p>对数列 $\{a_n\}$，令 $b_n=a_{n+1}-a_n$，$\{b_n\}$ 就是它的<strong>阶差数列</strong>（<span lang="ja">階差数列</span>）。把 $n-1$ 个差加起来，得到：</p>
+    $$a_n=a_1+\sum_{k=1}^{n-1}b_k\qquad(n\ge2).$$
+    <div class="box warn">
+      <p><strong>两个注意点：</strong>① $\Sigma$ 的上限是 $n-1$，不是 $n$；② 公式只对 $n\ge2$ 成立，最后必须单独检查 $n=1$ 时结果是否等于 $a_1$。</p>
+    </div>
+    <div class="box good">
+      <p><strong>小例子：</strong>$1,2,5,10,17,\dots$ 的差为 $1,3,5,7,\dots$，即 $b_n=2n-1$。当 $n\ge2$ 时</p>
+      $$a_n=1+\sum_{k=1}^{n-1}(2k-1)=1+(n-1)^2=n^2-2n+2,$$
+      <p>$n=1$ 时值为 $1$，也成立。</p>
+    </div>
+    <p>看到一个数列规律不明显时，先写出相邻项的差：差是等差或等比数列，就能用上面的公式。差还看不出规律，再取一次差。</p>
+  </section>
+
+  <section id="sigma">
+    <h2>4 各种数列与 Σ</h2>
+    <p class="jp-sub" lang="ja">いろいろな数列 — 和の記号 Σ</p>
+    <p>$\displaystyle\sum_{k=1}^{n}a_k=a_1+a_2+\cdots+a_n$，$\Sigma$ 可以按项拆开，常数可以提出：$\displaystyle\sum_{k=1}^{n}(pa_k+qb_k)=p\sum_{k=1}^{n}a_k+q\sum_{k=1}^{n}b_k$。注意乘积不能拆：$\sum a_kb_k\ne\sum a_k\sum b_k$。</p>
+    <h3>必背公式</h3>
+    <div class="formula-grid">
+      <div>$\displaystyle\sum_{k=1}^{n}c=nc$</div>
+      <div>$\displaystyle\sum_{k=1}^{n}k=\frac{n(n+1)}{2}$</div>
+      <div>$\displaystyle\sum_{k=1}^{n}k^2=\frac{n(n+1)(2n+1)}{6}$</div>
+      <div>$\displaystyle\sum_{k=1}^{n}k^3=\left\{\frac{n(n+1)}{2}\right\}^2$</div>
+      <div>$\displaystyle\sum_{k=1}^{n}r^{k-1}=\frac{r^n-1}{r-1}\ (r\ne1)$</div>
+      <div>$\displaystyle\sum_{k=1}^{n-1}k=\frac{n(n-1)}{2}$</div>
+    </div>
+    <p>例：$\displaystyle\sum_{k=1}^{n}(3k^2-k)=\frac{n(n+1)(2n+1)}{2}-\frac{n(n+1)}{2}=n^2(n+1)$。</p>
+
+    <h3>裂项相消（部分分数分解）</h3>
+    <p>把通项写成“差”的形式，中间项全部抵消（<span lang="ja">部分分数分解</span>）：</p>
+    <div class="tw"><table>
+      <thead><tr><th>通项</th><th>变形</th><th>前 $n$ 项和</th></tr></thead>
+      <tbody>
+        <tr><td>$\dfrac{1}{k(k+1)}$</td><td>$\dfrac1k-\dfrac1{k+1}$</td><td>$\dfrac{n}{n+1}$</td></tr>
+        <tr><td>$\dfrac{1}{(2k-1)(2k+1)}$</td><td>$\dfrac12\Bigl(\dfrac1{2k-1}-\dfrac1{2k+1}\Bigr)$</td><td>$\dfrac{n}{2n+1}$</td></tr>
+        <tr><td>$\dfrac{1}{\sqrt{k+1}+\sqrt{k}}$</td><td>$\sqrt{k+1}-\sqrt{k}$</td><td>$\sqrt{n+1}-1$</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>错位相减：（等差）×（等比）</h3>
+    <p>求 $S=\displaystyle\sum_{k=1}^{n}k\cdot2^{k-1}$：写出 $S$ 与 $2S$，错开一位相减。</p>
+    $$\begin{aligned}S&amp;=1+2\cdot2+3\cdot2^2+\cdots+n\cdot2^{n-1}\\ 2S&amp;=\phantom{1+{}}1\cdot2+2\cdot2^2+\cdots+(n-1)2^{n-1}+n\cdot2^n\end{aligned}$$
+    $$-S=(1+2+\cdots+2^{n-1})-n\cdot2^n=2^n-1-n\cdot2^n\ \Longrightarrow\ S=(n-1)2^n+1.$$
+
+    <h3>由和求通项</h3>
+    <p>已知 $S_n$ 时，$a_1=S_1$，且 $a_n=S_n-S_{n-1}\ (n\ge2)$。例：$S_n=n^2+n$ 时 $a_n=2n$，$n=1$ 也成立。若 $S_n$ 带非零常数项，$a_1$ 就与 $n\ge2$ 的式子不一致（见练习 8）。</p>
+
+    <h3>群数列</h3>
+    <p>把数列按规则分组（<span lang="ja">群数列</span>），比如 $1\mid2,3\mid4,5,6\mid\cdots$，第 $m$ 组有 $m$ 个数。关键是算出“第 $m$ 组之前共有多少项”：$1+2+\cdots+(m-1)=\dfrac{m(m-1)}{2}$，于是第 $m$ 组首项的序号为 $\dfrac{m(m-1)}{2}+1$。</p>
+
+    <h3>通项本身是和</h3>
+    <p>$1,\ 1+2,\ 1+2+3,\dots$ 的通项为 $a_k=\dfrac{k(k+1)}{2}$，前 $n$ 项和为 $\dfrac{n(n+1)(n+2)}{6}$。先求通项，再用 $\Sigma$，这是固定步骤。</p>
+  </section>
+
+  <section id="recur">
+    <h2>5 递推式</h2>
+    <p class="jp-sub" lang="ja">漸化式と数列 — 一般項を求める</p>
+    <p>用前面的项表示后一项的式子叫<strong>递推式</strong>（<span lang="ja">漸化式</span>）。解题目标是化成已知的等差、等比或阶差形式，再求通项。</p>
+    <div class="tw"><table>
+      <thead><tr><th>类型</th><th>形式</th><th>做法</th></tr></thead>
+      <tbody>
+        <tr><td>等差型</td><td>$a_{n+1}=a_n+d$</td><td>公差 $d$</td></tr>
+        <tr><td>等比型</td><td>$a_{n+1}=ra_n$</td><td>公比 $r$</td></tr>
+        <tr><td>阶差型</td><td>$a_{n+1}=a_n+f(n)$</td><td>$a_n=a_1+\sum_{k=1}^{n-1}f(k)$</td></tr>
+        <tr><td>一次型</td><td>$a_{n+1}=pa_n+q$</td><td>由 $\alpha=p\alpha+q$ 化为 $a_{n+1}-\alpha=p(a_n-\alpha)$</td></tr>
+        <tr><td>指数项型</td><td>$a_{n+1}=pa_n+q^n$</td><td>两边除以 $q^{n+1}$ 或 $p^{n+1}$</td></tr>
+        <tr><td>一次式项型</td><td>$a_{n+1}=pa_n+(\text{$n$ 的一次式})$</td><td>取阶差，或凑 $a_n+sn+t$ 成等比</td></tr>
+        <tr><td>分式型</td><td>$a_{n+1}=\dfrac{a_n}{pa_n+q}$</td><td>取倒数 $b_n=\dfrac1{a_n}$</td></tr>
+        <tr><td>乘方型</td><td>$a_{n+1}=ca_n^{\,2}$（各项为正）</td><td>两边取对数</td></tr>
+        <tr><td>三项型</td><td>$a_{n+2}+pa_{n+1}+qa_n=0$</td><td>解特征方程 $x^2+px+q=0$</td></tr>
+        <tr><td>含 $S_n$ 型</td><td>$S_n=f(a_n,n)$</td><td>用 $a_{n+1}=S_{n+1}-S_n$ 消去 $S_n$</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>一次型（最高频）</h3>
+    <p>$a_1=1,\ a_{n+1}=2a_n+3$：由 $\alpha=2\alpha+3$（<span lang="ja">特性方程式</span>）得 $\alpha=-3$，所以 $a_{n+1}+3=2(a_n+3)$。$\{a_n+3\}$ 是首项 $4$、公比 $2$ 的等比数列：</p>
+    $$a_n+3=4\cdot2^{n-1}\ \Longrightarrow\ a_n=2^{n+1}-3.$$
+
+    <h3>其他类型的小例子</h3>
+    <ul>
+      <li><strong>一次式项型：</strong>$a_1=1,\ a_{n+1}=2a_n+n$。可凑成 $a_{n+1}+(n+1)+1=2(a_n+n+1)$，所以 $a_n+n+1=3\cdot2^{n-1}$，$a_n=3\cdot2^{n-1}-n-1$。</li>
+      <li><strong>乘方型：</strong>$a_1=1,\ a_{n+1}=2a_n^{\,2}$。令 $b_n=\log_2a_n$，得 $b_{n+1}=2b_n+1$，$b_1=0$，于是 $b_n=2^{n-1}-1$，$a_n=2^{2^{n-1}-1}$。</li>
+      <li><strong>三项型：</strong>$a_1=1,\ a_2=3,\ a_{n+2}=3a_{n+1}-2a_n$。$x^2-3x+2=0$ 的解为 $1,2$，所以 $a_{n+1}-a_n=2^n$ 且 $a_{n+1}-2a_n=1$，相减得 $a_n=2^n-1$。</li>
+      <li><strong>特征方程有重根：</strong>解为 $\alpha$（重根）时，由 $a_{n+1}-\alpha a_n$ 成公比 $\alpha$ 的等比数列继续求解。如 $a_1=3,\ a_2=8,\ a_{n+2}=4a_{n+1}-4a_n$，可得 $a_n=(n+2)2^{n-1}$。</li>
+    </ul>
+
+    <div class="explorer" id="rec-box">
+      <h3 style="margin-top:0">一次型递推探索器：$a_{n+1}=pa_n+q$</h3>
+      <div class="ex-head" id="rec-presets" role="group" aria-label="预设"></div>
+      <figure class="plot" style="margin:0">
+        <svg class="chart" id="rec-svg" viewBox="0 0 640 300" role="img" aria-label="数列各项的图像"></svg>
+        <figcaption>横轴为项数 $n$，竖线与圆点表示 $a_n$，虚线表示不动点 $\alpha$。</figcaption>
+      </figure>
+      <div class="ctrl"><label for="r-a">$a_1$</label><input type="range" id="r-a" min="-6" max="6" step="1"><output id="r-a-o"></output></div>
+      <div class="ctrl"><label for="r-p">$p$</label><input type="range" id="r-p" min="-2" max="2" step="0.5"><output id="r-p-o"></output></div>
+      <div class="ctrl"><label for="r-q">$q$</label><input type="range" id="r-q" min="-6" max="6" step="1"><output id="r-q-o"></output></div>
+      <div class="ctrl"><label for="r-n">项数 $N$</label><input type="range" id="r-n" min="3" max="12" step="1"><output id="r-n-o"></output></div>
+      <div class="read">
+        <div class="wide"><small>通项</small><span id="r-formula"></span></div>
+        <div class="wide"><small>前 N 项（小数最多保留 3 位）</small><span id="r-terms"></span></div>
+        <div><small>不动点 α</small><span id="r-alpha"></span></div>
+        <div><small>和 S_N</small><span id="r-sum"></span></div>
+      </div>
+      <div class="status" id="r-status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="induct">
+    <h2>6 数学归纳法</h2>
+    <p class="jp-sub" lang="ja">数学的帰納法 — 自然数 n に関する証明</p>
+    <p>要证明命题 $P(n)$ 对所有正整数（<span lang="ja">自然数</span>）$n$ 成立，只需两步：</p>
+    <ol>
+      <li><strong>起点：</strong>证明 $P(1)$ 成立。</li>
+      <li><strong>递推：</strong>假设（<span lang="ja">仮定</span>）$P(k)$ 成立，证明 $P(k+1)$ 也成立。</li>
+    </ol>
+    <div class="box good">
+      <p><strong>等式的例子：</strong>证明 $1+3+\cdots+(2n-1)=n^2$。$n=1$ 时两边都是 $1$。假设 $n=k$ 时成立，则</p>
+      $$1+3+\cdots+(2k-1)+(2k+1)=k^2+2k+1=(k+1)^2,$$
+      <p>所以 $n=k+1$ 时也成立。因此对所有正整数 $n$ 成立。</p>
+    </div>
+    <h3>三种常见变形</h3>
+    <ul>
+      <li><strong>整除：</strong>把假设写成 $f(k)=mq$（$q$ 为整数），代入 $f(k+1)$ 后提出公因数，见例题 5。</li>
+      <li><strong>不等式：</strong>起点可以不是 $1$，例如“$n\ge4$ 时 $2^n\ge n^2$”从 $n=4$ 开始，见练习 12。</li>
+      <li><strong>递推式猜想后证明：</strong>先算几项猜通项，再用归纳法证明。三项递推要用前两项的假设，这时起点要验证 $n=1,2$，并假设 $n=k,k+1$ 都成立。</li>
+    </ul>
+    <div class="box warn">
+      <p><strong>易错：</strong>两步缺一不可，而且递推步骤必须真正用到假设。答卷中“假设 $n=k$ 时成立”这句不能省略。</p>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2>7 原创例题</h2>
+    <p class="jp-sub" lang="ja">EJU 形式のオリジナル問題</p>
+    <p>以下均为本页原创的模拟题，不是 EJU 真题。$\B{A}$、$\B{B}$ 等每个字母代表一位数字（$0$–$9$），$\B{AB}$ 表示两位数；分数约到最简。</p>
+
+    <article class="q">
+      <div class="q-head"><b>例题 1　等差数列与绝对值之和</b><span class="origin">原创</span></div>
+      <p>等差数列 $\{a_n\}$ 满足 $a_4=11$，$a_9=-4$。</p>
+      <p>(1) 公差为 $-\B{A}$，首项为 $\B{BC}$，通项为 $a_n=\B{DE}-\B{F}n$。</p>
+      <p>(2) 前 $n$ 项和 $S_n$ 在 $n=\B{G}$ 时取最大值 $\B{HI}$。</p>
+      <p>(3) $\displaystyle\sum_{k=1}^{20}|a_k|=\B{JKL}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 3</li><li>BC = 20</li><li>DE = 23</li><li>F = 3</li><li>G = 7</li><li>HI = 77</li><li>JKL = 324</li></ul>
+        <p>(1) $5d=a_9-a_4=-15$，$d=-3$；$a_1=a_4-3d=20$；$a_n=20-3(n-1)=23-3n$。</p>
+        <p>(2) $a_7=2&gt;0$，$a_8=-1&lt;0$，所以 $n=7$ 时最大，$S_7=\dfrac{7(20+2)}{2}=77$。</p>
+        <p>(3) $S_{20}=\dfrac{20(20-37)}{2}=-170$。第 $8$ 项起为负，第 $8$ 到 $20$ 项之和为 $S_{20}-S_7=-247$，所以</p>
+        $$\sum_{k=1}^{20}|a_k|=77+247=324.$$
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 2　等比数列与错位相减</b><span class="origin">原创</span></div>
+      <p>首项为 $a$、公比为实数 $r$ 的等比数列 $\{a_n\}$ 满足 $a_1+a_2+a_3=7$，$a_4+a_5+a_6=56$。</p>
+      <p>(1) $r=\B{A}$，$a=\B{B}$。</p>
+      <p>(2) 前 $n$ 项和 $S_n$ 首次超过 $1000$ 时，$n=\B{CD}$。</p>
+      <p>(3) $T_n=\displaystyle\sum_{k=1}^{n}ka_k$，则 $T_n=(n-\B{E})\cdot2^n+\B{F}$，$T_8=\B{GHIJ}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 1</li><li>CD = 10</li><li>E = 1</li><li>F = 1</li><li>GHIJ = 1793</li></ul>
+        <p>(1) 第二式等于第一式乘 $r^3$，所以 $r^3=8$，实数解 $r=2$；代回得 $7a=7$，$a=1$。</p>
+        <p>(2) $S_n=2^n-1$。$2^9-1=511$，$2^{10}-1=1023$，所以 $n=10$。</p>
+        <p>(3) $a_k=2^{k-1}$，由错位相减（第 4 节）得 $T_n=(n-1)2^n+1$，$T_8=7\cdot256+1=1793$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 3　阶差数列、Σ 与裂项</b><span class="origin">原创</span></div>
+      <p>数列 $\{a_n\}$：$3,\ 4,\ 7,\ 12,\ 19,\ \dots$ 的阶差数列 $\{b_n\}$ 是等差数列。</p>
+      <p>(1) $b_n=\B{A}n-\B{B}$。</p>
+      <p>(2) $a_n=n^2-\B{C}n+\B{D}$。</p>
+      <p>(3) $\displaystyle\sum_{k=1}^{10}a_k=\B{EFG}$。</p>
+      <p>(4) $\displaystyle\sum_{k=1}^{n}\frac{1}{b_kb_{k+1}}=\frac{n}{\B{H}n+\B{I}}$，这个和大于 $\dfrac{49}{100}$ 的最小正整数 $n$ 是 $\B{JK}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 1</li><li>C = 2</li><li>D = 4</li><li>EFG = 315</li><li>H = 2</li><li>I = 1</li><li>JK = 25</li></ul>
+        <p>(1) 差为 $1,3,5,7,\dots$，所以 $b_n=2n-1$。</p>
+        <p>(2) $n\ge2$ 时 $a_n=3+\displaystyle\sum_{k=1}^{n-1}(2k-1)=3+(n-1)^2=n^2-2n+4$；$n=1$ 时值为 $3$，也成立。</p>
+        <p>(3) $\displaystyle\sum_{k=1}^{10}(k^2-2k+4)=385-110+40=315$。</p>
+        <p>(4) 裂项得 $\dfrac{n}{2n+1}$。由 $\dfrac{n}{2n+1}&gt;\dfrac{49}{100}$ 得 $100n&gt;98n+49$，$n&gt;24.5$，所以最小为 $25$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 4　三种递推式</b><span class="origin">原创</span></div>
+      <p>(1) $a_1=1,\ a_{n+1}=3a_n+4$。变形为 $a_{n+1}+\B{A}=3(a_n+\B{A})$，所以 $a_n=\B{B}^n-\B{C}$，并且</p>
+      $$\sum_{k=1}^{n}a_k=\frac{3^{n+1}-\B{D}}{\B{E}}-\B{F}n.$$
+      <p>(2) $b_1=1,\ b_{n+1}=2b_n+3^n$，则 $b_n=\B{G}^n-\B{H}^n$。</p>
+      <p>(3) 数列 $\{c_n\}$ 的前 $n$ 项和 $S_n$ 满足 $S_n=2c_n-n$。则 $c_1=\B{I}$，$c_{n+1}=2c_n+\B{J}$，$c_n=2^n-\B{K}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 3</li><li>C = 2</li><li>D = 3</li><li>E = 2</li><li>F = 2</li><li>G = 3</li><li>H = 2</li><li>I = 1</li><li>J = 1</li><li>K = 1</li></ul>
+        <p>(1) $\alpha=3\alpha+4$ 得 $\alpha=-2$，所以 $a_{n+1}+2=3(a_n+2)$，$a_n+2=3\cdot3^{n-1}=3^n$，$a_n=3^n-2$。求和：$\displaystyle\sum_{k=1}^{n}3^k-2n=\frac{3^{n+1}-3}{2}-2n$。</p>
+        <p>(2) 两边除以 $2^{n+1}$，令 $d_n=\dfrac{b_n}{2^n}$，得 $d_{n+1}=d_n+\dfrac12\Bigl(\dfrac32\Bigr)^n$，$d_1=\dfrac12$。由阶差公式，$n\ge2$ 时</p>
+        $$d_n=\frac12+\sum_{k=1}^{n-1}\frac12\Bigl(\frac32\Bigr)^k=\Bigl(\frac32\Bigr)^n-1,$$
+        <p>$n=1$ 时也成立。所以 $b_n=3^n-2^n$。</p>
+        <p>(3) $n=1$：$c_1=2c_1-1$，$c_1=1$。$c_{n+1}=S_{n+1}-S_n=2c_{n+1}-2c_n-1$，所以 $c_{n+1}=2c_n+1$。于是 $c_{n+1}+1=2(c_n+1)$，$c_n+1=2\cdot2^{n-1}=2^n$，$c_n=2^n-1$。</p>
+      </div>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>例题 5　数学归纳法</b><span class="origin">原创</span></div>
+      <p>(1) 用数学归纳法证明：对所有正整数 $n$，$f(n)=4^n+6n-1$ 是 $9$ 的倍数。</p>
+      <p>$n=1$ 时 $f(1)=\B{A}$，成立。假设 $f(k)=9m$（$m$ 为整数），则</p>
+      $$f(k+1)=4f(k)-\B{BC}k+\B{D}=9\bigl(4m-\B{E}k+\B{F}\bigr),$$
+      <p>所以 $n=k+1$ 时也成立。</p>
+      <p>(2) $a_1=2,\ a_{n+1}=2-\dfrac{1}{a_n}$。则 $a_2=\dfrac{\B{G}}{2}$，$a_3=\dfrac{4}{\B{H}}$，由此猜想 $a_n=\dfrac{n+\B{I}}{n}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 9</li><li>BC = 18</li><li>D = 9</li><li>E = 2</li><li>F = 1</li><li>G = 3</li><li>H = 3</li><li>I = 1</li></ul>
+        <p>(1) $f(1)=4+6-1=9$。$4f(k)=4^{k+1}+24k-4$，而 $f(k+1)=4^{k+1}+6k+5$，两者相差 $-18k+9$。所以</p>
+        $$f(k+1)=4f(k)-18k+9=36m-18k+9=9(4m-2k+1).$$
+        <p>(2) $a_2=2-\dfrac12=\dfrac32$，$a_3=2-\dfrac23=\dfrac43$。猜想 $a_n=\dfrac{n+1}{n}$，用归纳法证明：$n=1$ 时 $a_1=2$，成立。假设 $a_k=\dfrac{k+1}{k}$，则</p>
+        $$a_{k+1}=2-\frac{k}{k+1}=\frac{k+2}{k+1},$$
+        <p>所以 $n=k+1$ 时也成立。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>8 练习题</h2>
+    <p class="jp-sub" lang="ja">練習問題 — クリックで解答表示</p>
+
+    <article class="q"><div class="q-head"><b>练习 1</b><span>等差中项</span></div>
+      <p>三个数成等差数列，和为 $15$，积为 $80$。按从小到大的顺序求这三个数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：$2,\ 5,\ 8$。</strong>设为 $5-d,\ 5,\ 5+d$（和为 $15$ 决定中项为 $5$）。$5(25-d^2)=80$，$d^2=9$，从小到大取 $d=3$。</p></div>
+    </article>
+
+    <article class="q"><div class="q-head"><b>练习 2</b><span>等比数列</span></div>
+      <p>实数等比数列满足 $a_2=6,\ a_5=48$。求公比、首项与前 $6$ 项和。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：$r=2,\ a_1=3,\ S_6=189$。</strong>$r^3=\dfrac{48}{6}=8$，$r=2$，$a_1=3$，$S_6=3(2^6-1)=189$。</p></div>
+    </article>
+
+    <article class="q"><div class="q-head"><b>练习 3</b><span>倍数之和</span></div>
+      <p>求 $1$ 到 $100$ 的整数中，$3$ 的倍数或 $5$ 的倍数的总和。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：$2418$。</strong>$3$ 的倍数之和 $=3\cdot\dfrac{33\cdot34}{2}=1683$；$5$ 的倍数之和 $=5\cdot\dfrac{20\cdot21}{2}=1050$；$15$ 的倍数之和 $=15\cdot\dfrac{6\cdot7}{2}=315$。$1683+1050-315=2418$。</p></div>
+    </article>
+
+    <article class="q"><div class="q-head"><b>练习 4</b><span>Σ 计算</span></div>
+      <p>求 $\displaystyle\sum_{k=1}^{n}k(k+1)$（因式分解的形式），并求 $n=10$ 时的值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：$\dfrac{n(n+1)(n+2)}{3}$；$440$。</strong>$\dfrac{n(n+1)(2n+1)}{6}+\dfrac{n(n+1)}{2}=\dfrac{n(n+1)(2n+4)}{6}$。$n=10$：$\dfrac{10\cdot11\cdot12}{3}=440$。</p></div>
+    </article>
+
+    <article class="q"><div class="q-head"><b>练习 5</b><span>错位相减</span></div>
+      <p>求 $S_n=\displaystyle\sum_{k=1}^{n}k\cdot3^{k-1}$，并求 $S_4$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：$S_n=\dfrac{(2n-1)3^n+1}{4}$；$S_4=142$。</strong>$S_n-3S_n=(1+3+\cdots+3^{n-1})-n3^n=\dfrac{3^n-1}{2}-n3^n$，整理即得。验算：$1+6+27+108=142$。</p></div>
+    </article>
+
+    <article class="q"><div class="q-head"><b>练习 6</b><span>阶差数列</span></div>
+      <p>数列 $2,3,5,9,17,\dots$ 的阶差数列是等比数列。求通项 $a_n$ 与 $a_{10}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：$a_n=2^{n-1}+1$；$a_{10}=513$。</strong>差为 $1,2,4,8,\dots$，$b_n=2^{n-1}$。$n\ge2$ 时 $a_n=2+\displaystyle\sum_{k=1}^{n-1}2^{k-1}=2+2^{n-1}-1$，$n=1$ 时也成立。</p></div>
+    </article>
+
+    <article class="q"><div class="q-head"><b>练习 7</b><span>一次型递推</span></div>
+      <p>$a_1=2,\ a_{n+1}=2a_n-3$。求通项 $a_n$ 与 $a_8$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：$a_n=3-2^{n-1}$；$a_8=-125$。</strong>$\alpha=2\alpha-3$ 得 $\alpha=3$，$a_{n+1}-3=2(a_n-3)$，$a_1-3=-1$，所以 $a_n-3=-2^{n-1}$。</p></div>
+    </article>
+
+    <article class="q"><div class="q-head"><b>练习 8</b><span>由和求通项</span></div>
+      <p>前 $n$ 项和 $S_n=n^2+3n+1$。求 $a_n$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：$a_1=5$；$n\ge2$ 时 $a_n=2n+2$。</strong>$n\ge2$ 时 $a_n=S_n-S_{n-1}=2n+2$。这个式子在 $n=1$ 时给出 $4$，而 $a_1=S_1=5$，不一致，必须分开写。</p></div>
+    </article>
+
+    <article class="q"><div class="q-head"><b>练习 9</b><span>分式型递推</span></div>
+      <p>$a_1=1,\ a_{n+1}=\dfrac{a_n}{3a_n+1}$。求通项 $a_n$ 与 $a_{10}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：$a_n=\dfrac{1}{3n-2}$；$a_{10}=\dfrac1{28}$。</strong>取倒数：$\dfrac1{a_{n+1}}=\dfrac1{a_n}+3$。$\Bigl\{\dfrac1{a_n}\Bigr\}$ 是首项 $1$、公差 $3$ 的等差数列。</p></div>
+    </article>
+
+    <article class="q"><div class="q-head"><b>练习 10</b><span>三项递推</span></div>
+      <p>$a_1=1,\ a_2=4,\ a_{n+2}=5a_{n+1}-6a_n$。求通项 $a_n$ 与 $a_5$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：$a_n=2\cdot3^{n-1}-2^{n-1}$；$a_5=146$。</strong>$x^2-5x+6=0$ 的解为 $2,3$。$a_{n+1}-2a_n=2\cdot3^{n-1}$，$a_{n+1}-3a_n=2^{n-1}$，两式相减即得。</p></div>
+    </article>
+
+    <article class="q"><div class="q-head"><b>练习 11</b><span>群数列</span></div>
+      <p>正整数分组为 $1\mid2,3\mid4,5,6\mid7,8,9,10\mid\cdots$，第 $m$ 组有 $m$ 个数。(1) 求第 $10$ 组所有数之和。(2) $100$ 是第几组的第几个数？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>答案：(1) $505$；(2) 第 $14$ 组第 $9$ 个。</strong>第 $m$ 组首项为 $\dfrac{m(m-1)}{2}+1$。(1) 第 $10$ 组是 $46$ 到 $55$，和为 $\dfrac{10(46+55)}{2}=505$。(2) 第 $14$ 组首项 $92$，第 $15$ 组首项 $106$，$100-92+1=9$。</p></div>
+    </article>
+
+    <article class="q"><div class="q-head"><b>练习 12</b><span>归纳法证明不等式</span></div>
+      <p>证明：$n\ge4$ 的整数都满足 $2^n\ge n^2$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>证明要点：</strong>$n=4$ 时 $16=16$，成立。假设 $k\ge4$ 时 $2^k\ge k^2$，则 $2^{k+1}\ge2k^2$。而 $2k^2-(k+1)^2=k^2-2k-1=(k-1)^2-2&gt;0$（因为 $k\ge4$），所以 $2^{k+1}\ge(k+1)^2$。注意 $n=3$ 时 $8&lt;9$，不成立，所以起点必须是 $4$。</p></div>
+    </article>
+  </section>
+
+  <section id="terms">
+    <h2>9 术语对照</h2>
+    <p class="jp-sub" lang="ja">用語対照表 — 日本語・読み方・中国語</p>
+    <div class="bar">
+      <input class="search" id="term-q" type="search" placeholder="搜索术语（日语、读音或中文）" aria-label="搜索术语">
+      <span id="term-n" class="kana"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody>
+        <tr class="group"><td colspan="3">基本概念</td></tr>
+        <tr><td lang="ja">数列</td><td class="kana" lang="ja">すうれつ</td><td>数列</td></tr>
+        <tr><td lang="ja">項</td><td class="kana" lang="ja">こう</td><td>项</td></tr>
+        <tr><td lang="ja">初項</td><td class="kana" lang="ja">しょこう</td><td>首项</td></tr>
+        <tr><td lang="ja">末項</td><td class="kana" lang="ja">まっこう</td><td>末项</td></tr>
+        <tr><td lang="ja">項数</td><td class="kana" lang="ja">こうすう</td><td>项数</td></tr>
+        <tr><td lang="ja">一般項</td><td class="kana" lang="ja">いっぱんこう</td><td>通项</td></tr>
+        <tr><td lang="ja">和</td><td class="kana" lang="ja">わ</td><td>和</td></tr>
+        <tr><td lang="ja">自然数</td><td class="kana" lang="ja">しぜんすう</td><td>自然数（正整数）</td></tr>
+        <tr class="group"><td colspan="3">等差・等比・阶差</td></tr>
+        <tr><td lang="ja">等差数列</td><td class="kana" lang="ja">とうさすうれつ</td><td>等差数列</td></tr>
+        <tr><td lang="ja">公差</td><td class="kana" lang="ja">こうさ</td><td>公差</td></tr>
+        <tr><td lang="ja">等差中項</td><td class="kana" lang="ja">とうさちゅうこう</td><td>等差中项</td></tr>
+        <tr><td lang="ja">等比数列</td><td class="kana" lang="ja">とうひすうれつ</td><td>等比数列</td></tr>
+        <tr><td lang="ja">公比</td><td class="kana" lang="ja">こうひ</td><td>公比</td></tr>
+        <tr><td lang="ja">等比中項</td><td class="kana" lang="ja">とうひちゅうこう</td><td>等比中项</td></tr>
+        <tr><td lang="ja">階差数列</td><td class="kana" lang="ja">かいさすうれつ</td><td>阶差数列</td></tr>
+        <tr><td lang="ja">複利</td><td class="kana" lang="ja">ふくり</td><td>复利</td></tr>
+        <tr><td lang="ja">元利合計</td><td class="kana" lang="ja">がんりごうけい</td><td>本息合计</td></tr>
+        <tr class="group"><td colspan="3">Σ 与各种数列</td></tr>
+        <tr><td lang="ja">いろいろな数列</td><td class="kana" lang="ja">いろいろなすうれつ</td><td>各种数列</td></tr>
+        <tr><td lang="ja">総和</td><td class="kana" lang="ja">そうわ</td><td>总和</td></tr>
+        <tr><td lang="ja">和の記号</td><td class="kana" lang="ja">わのきごう</td><td>求和符号（Σ）</td></tr>
+        <tr><td lang="ja">部分分数分解</td><td class="kana" lang="ja">ぶぶんぶんすうぶんかい</td><td>部分分式分解（裂项）</td></tr>
+        <tr><td lang="ja">群数列</td><td class="kana" lang="ja">ぐんすうれつ</td><td>分组数列</td></tr>
+        <tr class="group"><td colspan="3">递推式与归纳法</td></tr>
+        <tr><td lang="ja">漸化式</td><td class="kana" lang="ja">ぜんかしき</td><td>递推式</td></tr>
+        <tr><td lang="ja">隣接2項間漸化式</td><td class="kana" lang="ja">りんせつにこうかんぜんかしき</td><td>相邻两项递推式</td></tr>
+        <tr><td lang="ja">隣接3項間漸化式</td><td class="kana" lang="ja">りんせつさんこうかんぜんかしき</td><td>相邻三项递推式</td></tr>
+        <tr><td lang="ja">特性方程式</td><td class="kana" lang="ja">とくせいほうていしき</td><td>特征方程</td></tr>
+        <tr><td lang="ja">逆数</td><td class="kana" lang="ja">ぎゃくすう</td><td>倒数</td></tr>
+        <tr><td lang="ja">数学的帰納法</td><td class="kana" lang="ja">すうがくてききのうほう</td><td>数学归纳法</td></tr>
+        <tr><td lang="ja">仮定する</td><td class="kana" lang="ja">かていする</td><td>假设</td></tr>
+        <tr><td lang="ja">成り立つ</td><td class="kana" lang="ja">なりたつ</td><td>成立</td></tr>
+        <tr><td lang="ja">倍数</td><td class="kana" lang="ja">ばいすう</td><td>倍数</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <footer>本页例题与练习均为原创，答案已用 Python（sympy）计算验证。题目为学习用途，并非 EJU 真题。</footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = [].slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + e.target.id;
+          a.classList.toggle('on', on);
+          if (on && a.parentNode.parentNode.scrollWidth > a.parentNode.parentNode.clientWidth) {
+            a.parentNode.parentNode.scrollLeft = a.offsetLeft - 40;
+          }
+        });
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 答案开关 ---------- */
+  document.querySelectorAll('.toggle-ans').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var ans = b.nextElementSibling, show = ans.hidden;
+      ans.hidden = !show;
+      b.setAttribute('aria-expanded', String(show));
+      b.textContent = show ? '隐藏答案' : '显示答案';
+    });
+  });
+
+  /* ---------- 术语搜索 ---------- */
+  var termRows = [].slice.call(document.querySelectorAll('#term-table tbody tr'));
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase(), n = 0;
+    termRows.forEach(function (r) {
+      if (r.classList.contains('group')) { r.hidden = !!q; return; }
+      var hit = r.textContent.toLowerCase().indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) n++;
+    });
+    $('term-n').textContent = '共 ' + n + ' 条';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 递推式探索器 ---------- */
+  (function () {
+    var svg = $('rec-svg'), W = 640, H = 300, L = 52, R = 16, T = 16, B = 30;
+    var S = { a: 1, p: 2, q: 3, n: 8 };
+    var MINUS = '−';
+    function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var t = a % b; a = b; b = t; } return a || 1; }
+    function sgn(s) { return s.replace(/-/g, MINUS); }
+    /* 分数文本：num/den 约分后输出 */
+    function frac(num, den) {
+      if (den < 0) { num = -num; den = -den; }
+      var g = gcd(num, den); num /= g; den /= g;
+      return sgn(den === 1 ? String(num) : num + '/' + den);
+    }
+    function num(x) { return sgn(String(Number(x.toFixed(3)))); }
+    /* p = P/2，用整数运算得到精确的 α 与系数 */
+    function formula() {
+      var P = Math.round(S.p * 2), a = S.a, q = S.q;
+      if (P === 2) {
+        if (q === 0) return 'aₙ = ' + sgn(String(a));
+        return 'aₙ = ' + sgn(String(a)) + (q > 0 ? ' + ' : ' ' + MINUS + ' ') + '(n' + MINUS + '1)·' + Math.abs(q);
+      }
+      if (P === 0) return 'a₁ = ' + sgn(String(a)) + '，n ≥ 2 时 aₙ = ' + sgn(String(q));
+      var an = 2 * q, ad = 2 - P;                 /* α = an/ad */
+      var cn = a * ad - an, cd = ad;              /* a₁ − α = cn/cd */
+      if (cn === 0) return 'aₙ = ' + frac(an, ad);
+      var base = frac(P, 2);
+      base = (P === 2 * Math.floor(P / 2) && P > 0) ? base : '(' + base + ')';
+      var coef = frac(Math.abs(cn), Math.abs(cd)), neg = (cn < 0) !== (cd < 0);
+      var term = coef + '·' + base + 'ⁿ⁻¹';
+      if (an === 0) return 'aₙ = ' + (neg ? MINUS : '') + term;
+      return 'aₙ = ' + frac(an, ad) + (neg ? ' ' + MINUS + ' ' : ' + ') + term;
+    }
+    function alphaText() {
+      var P = Math.round(S.p * 2);
+      if (P === 2) return S.q === 0 ? '所有项都是不动点' : '不存在（p = 1, q ≠ 0）';
+      return 'α = ' + frac(2 * S.q, 2 - P);
+    }
+    function statusText(terms) {
+      var p = S.p, q = S.q, P = Math.round(p * 2);
+      if (P === 2 && q === 0) return '常数列：公差 0、公比 1，每一项都等于 a₁。';
+      if (P === 2) return '等差数列：p = 1，公差 q = ' + sgn(String(q)) + '，各项不断增大或减小。';
+      if (P === 0) return 'p = 0：从第 2 项起恒为 q。';
+      if (2 * q === S.a * (2 - P)) return 'a₁ 恰好等于不动点 α，数列是常数列。';
+      var kind = q === 0 ? '等比数列：q = 0，公比 p = ' + num(p) + '。' : '一次型：{aₙ − α} 是公比 ' + num(p) + ' 的等比数列。';
+      if (Math.abs(p) < 1) return kind + '|p| < 1，各项趋近 α（数列收敛）。';
+      if (P === -2) return kind + 'p = −1，两个值交替出现（振荡）。';
+      return kind + '|p| > 1，与 α 的距离不断放大（发散）。';
+    }
+    function niceStep(range) {
+      var raw = range / 5, m = Math.pow(10, Math.floor(Math.log10(raw))), r = raw / m;
+      return (r < 1.5 ? 1 : r < 3.5 ? 2 : r < 7.5 ? 5 : 10) * m;
+    }
+    function draw() {
+      var terms = [S.a], i;
+      for (i = 1; i < S.n; i++) terms.push(S.p * terms[i - 1] + S.q);
+      var P = Math.round(S.p * 2), hasAlpha = P !== 2 && P !== 0;
+      var alpha = hasAlpha ? S.q / (1 - S.p) : 0;
+      var lo = Math.min(0, Math.min.apply(null, terms)), hi = Math.max(0, Math.max.apply(null, terms));
+      if (hasAlpha && Math.abs(S.p) < 1) { lo = Math.min(lo, alpha); hi = Math.max(hi, alpha); }
+      if (hi === lo) { hi += 1; lo -= 1; }
+      var pad = (hi - lo) * .08; hi += pad; lo -= pad;
+      var X = function (k) { return L + (W - L - R) * (k - .5) / S.n; };
+      var Y = function (v) { return T + (H - T - B) * (hi - v) / (hi - lo); };
+      var h = '', step = niceStep(hi - lo), v;
+      for (v = Math.ceil(lo / step) * step; v <= hi; v += step) {
+        var y = Y(v).toFixed(1), z = Math.abs(v) < step / 1e6 ? 0 : v;
+        h += '<line class="grid" x1="' + L + '" x2="' + (W - R) + '" y1="' + y + '" y2="' + y + '"/>';
+        h += '<text class="tick" x="' + (L - 6) + '" y="' + (+y + 4) + '" text-anchor="end">' + num(z) + '</text>';
+      }
+      var y0 = Y(0).toFixed(1);
+      h += '<line class="axis" x1="' + L + '" x2="' + (W - R) + '" y1="' + y0 + '" y2="' + y0 + '"/>';
+      for (i = 1; i <= S.n; i++) {
+        h += '<text class="tick" x="' + X(i).toFixed(1) + '" y="' + (H - 9) + '" text-anchor="middle">' + i + '</text>';
+      }
+      if (hasAlpha && alpha >= lo && alpha <= hi) {
+        var ya = Y(alpha).toFixed(1);
+        h += '<line class="s3" x1="' + L + '" x2="' + (W - R) + '" y1="' + ya + '" y2="' + ya + '"/>';
+        h += '<text class="lbl" x="' + (W - R - 4) + '" y="' + (+ya - 6) + '" text-anchor="end">α</text>';
+      }
+      terms.forEach(function (t, j) {
+        var x = X(j + 1).toFixed(1);
+        h += '<line class="s1" x1="' + x + '" x2="' + x + '" y1="' + y0 + '" y2="' + Y(t).toFixed(1) + '"/>';
+        h += '<circle class="dot2" cx="' + x + '" cy="' + Y(t).toFixed(1) + '" r="5"/>';
+      });
+      svg.innerHTML = h;
+      $('r-a-o').textContent = sgn(String(S.a));
+      $('r-p-o').textContent = num(S.p);
+      $('r-q-o').textContent = sgn(String(S.q));
+      $('r-n-o').textContent = S.n;
+      $('r-formula').textContent = formula();
+      $('r-terms').textContent = terms.map(num).join(', ');
+      $('r-alpha').textContent = alphaText();
+      $('r-sum').textContent = 'S = ' + num(terms.reduce(function (s, t) { return s + t; }, 0));
+      $('r-status').textContent = statusText(terms);
+    }
+    function sync() { $('r-a').value = S.a; $('r-p').value = S.p; $('r-q').value = S.q; $('r-n').value = S.n; draw(); }
+    [['a', 'r-a'], ['p', 'r-p'], ['q', 'r-q'], ['n', 'r-n']].forEach(function (c) {
+      $(c[1]).addEventListener('input', function () { S[c[0]] = parseFloat(this.value); draw(); });
+    });
+    [['等差', 2, 1, 3], ['等比', 1, 2, 0], ['一次型发散', 1, 2, 3], ['收敛', 6, .5, 1], ['振荡收敛', 6, -.5, 3], ['p = −1', 3, -1, 2]].forEach(function (d) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = d[0];
+      b.addEventListener('click', function () { S.a = d[1]; S.p = d[2]; S.q = d[3]; sync(); });
+      $('rec-presets').appendChild(b);
+    });
+    sync();
+  })();
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['status', 'read'],
+      throwOnError: false
+    });
+  }
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

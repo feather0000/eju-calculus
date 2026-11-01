@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 14 向量</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：平面向量、位置向量、向量方程、空间向量，含原创例题、练习题、向量拖动演示和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#vec-svg { user-select: none; -webkit-user-select: none; background: var(--surface); border-radius: 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+
+.back { margin: 0 0 14px; font-size: 15px; }
+.hero .back a { color: #c5d3ef; text-decoration: none; }
+.hero .back a:hover { text-decoration: underline; }
+.ctrl[hidden] { display: none; }
+svg .mk { fill: var(--c1); }
+svg .vl { fill: none; stroke-width: 3; stroke-linecap: round; }
+svg .vh { stroke: none; }
+svg .vl.va { stroke: var(--c1); } svg .vh.va { fill: var(--c1); }
+svg .vl.vb { stroke: var(--c2); } svg .vh.vb { fill: var(--c2); }
+svg .vl.vp { stroke: var(--c3); } svg .vh.vp { fill: var(--c3); }
+svg .vname { font-weight: 700; font-size: 15px; }
+svg .grip { fill: transparent; stroke: none; cursor: grab; touch-action: none; }
+svg .grip:focus-visible { stroke: var(--accent); stroke-width: 2; }
+svg .knob { pointer-events: none; stroke: var(--surface); stroke-width: 2; }
+svg .ka { fill: var(--c1); } svg .kb { fill: var(--c2); }
+svg.fig { max-width: 480px; margin: auto; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <p class="back"><a href="../../">← 目录</a></p>
+      <p class="eyebrow">EJU 数学コース2 · 出題項目 14 · ベクトル</p>
+      <h1>14 向量</h1>
+      <p class="lead">从平面向量的运算、成分、内积，到位置向量、向量方程，再到空间向量与空间图形。每个知识点都配例子，文中有可拖动的向量演示，最后用原创的 EJU 风格填空题和练习题检验。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$\vec a\cdot\vec b=|\vec a||\vec b|\cos\theta$$
+      $$\vec p=\frac{n\vec a+m\vec b}{m+n}$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#ops">1 向量的运算</a></li>
+        <li><a href="#comp">2 向量的成分</a></li>
+        <li><a href="#dot">3 内积</a></li>
+        <li><a href="#demo">4 交互演示</a></li>
+        <li><a href="#pos">5 位置向量</a></li>
+        <li><a href="#fig">6 向量与图形</a></li>
+        <li><a href="#eq">7 向量方程</a></li>
+        <li><a href="#coord">8 空间坐标</a></li>
+        <li><a href="#space">9 空间向量</a></li>
+        <li><a href="#solid">10 空间图形与方程</a></li>
+        <li><a href="#examples">11 原创例题</a></li>
+        <li><a href="#practice">12 练习题</a></li>
+        <li><a href="#terms">13 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box warn" style="margin-top:28px">
+    <p><strong>记号提醒：</strong>日语把坐标形式的分量叫「<span lang="ja">成分</span>」，把数量积叫「<span lang="ja">内積</span>」，写作 $\vec a\cdot\vec b$。内积的结果是<strong>数</strong>，不是向量；点号不能省略，也不能写成叉号。</p>
+  </div>
+
+  <section id="ops">
+    <h2>1 平面向量的运算</h2>
+    <p class="jp-sub" lang="ja">平面ベクトルの演算 — 和・差・実数倍</p>
+    <p>向量（<span lang="ja">ベクトル</span>）是有大小和方向的量，只要大小和方向相同就视为相等，与起点位置无关。$\ov{AB}$ 的大小记作 $|\ov{AB}|$。大小为 $1$ 的向量叫单位向量（<span lang="ja">単位ベクトル</span>），大小为 $0$ 的向量叫零向量（<span lang="ja">零ベクトル</span>），记作 $\vec 0$。</p>
+    <div class="tw"><table>
+      <thead><tr><th>运算</th><th>规则</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>和</td><td>$\ov{AB}+\ov{BC}=\ov{AC}$</td><td>首尾相接；也可用平行四边形法则</td></tr>
+        <tr><td>差</td><td>$\ov{OB}-\ov{OA}=\ov{AB}$</td><td>同起点相减，“终点减起点”</td></tr>
+        <tr><td>实数倍</td><td>$k\vec a$</td><td>$k&gt;0$ 同向，$k&lt;0$ 反向，大小变为 $|k||\vec a|$</td></tr>
+        <tr><td>逆向量</td><td>$\ov{BA}=-\ov{AB}$</td><td>大小相同、方向相反（<span lang="ja">逆ベクトル</span>）</td></tr>
+      </tbody>
+    </table></div>
+    <p>运算律与普通字母式相同：$\vec a+\vec b=\vec b+\vec a$，$(\vec a+\vec b)+\vec c=\vec a+(\vec b+\vec c)$，$k(\vec a+\vec b)=k\vec a+k\vec b$。</p>
+
+    <h3>平行与一次独立</h3>
+    <p>$\vec a,\vec b$ 都不是 $\vec 0$ 时：</p>
+    $$\vec a\parallel\vec b\iff\vec b=k\vec a\ \text{（存在实数 }k\text{）}.$$
+    <p>若 $\vec a\ne\vec 0,\ \vec b\ne\vec 0$ 且 $\vec a\not\parallel\vec b$，称两者<strong>一次独立</strong>（<span lang="ja">1次独立</span>）。这时平面上任意向量 $\vec p$ 都能<strong>唯一</strong>地写成 $\vec p=s\vec a+t\vec b$，因此可以比较系数：</p>
+    $$s\vec a+t\vec b=s'\vec a+t'\vec b\iff s=s'\ \text{且}\ t=t'.$$
+    <div class="box good">
+      <p><strong>例：</strong>平行四边形 $ABCD$ 中，令 $\ov{AB}=\vec b,\ \ov{AD}=\vec d$，则对角线 $\ov{AC}=\vec b+\vec d$，$\ov{BD}=\vec d-\vec b$。</p>
+    </div>
+  </section>
+
+  <section id="comp">
+    <h2>2 向量的成分</h2>
+    <p class="jp-sub" lang="ja">ベクトルの成分 — x 成分・y 成分</p>
+    <p>把向量的起点放到原点，终点坐标 $(a_1,a_2)$ 就是它的成分：$\vec a=(a_1,a_2)$。</p>
+    <div class="formula-grid">
+      <div>$\vec a\pm\vec b=(a_1\pm b_1,\ a_2\pm b_2)$</div>
+      <div>$k\vec a=(ka_1,\ ka_2)$</div>
+      <div>$|\vec a|=\sqrt{a_1^2+a_2^2}$</div>
+      <div>$\ov{AB}=(x_B-x_A,\ y_B-y_A)$</div>
+      <div>平行：$a_1b_2-a_2b_1=0$</div>
+      <div>单位向量：$\pm\dfrac{\vec a}{|\vec a|}$</div>
+    </div>
+    <div class="box good">
+      <p><strong>例：</strong>$\vec a=(3,1),\ \vec b=(1,2)$。$2\vec a-3\vec b=(3,-4)$，大小为 $\sqrt{3^2+4^2}=5$。</p>
+      <p>把 $\vec c=(5,5)$ 写成 $s\vec a+t\vec b$：由 $3s+t=5,\ s+2t=5$ 得 $s=1,\ t=2$，即 $\vec c=\vec a+2\vec b$。</p>
+      <p>$A(1,2),\ B(4,6)$ 时，$\ov{AB}=(3,4)$，$|\ov{AB}|=5$，同向的单位向量为 $\Bigl(\dfrac35,\dfrac45\Bigr)$。</p>
+    </div>
+  </section>
+
+  <section id="dot">
+    <h2>3 内积</h2>
+    <p class="jp-sub" lang="ja">ベクトルの内積 — なす角・垂直条件</p>
+    <p>$\vec a,\vec b$ 的夹角（<span lang="ja">なす角</span>）为 $\theta\ (0^\circ\le\theta\le180^\circ)$，两向量必须<strong>起点对齐</strong>后才能量角。内积定义为</p>
+    $$\vec a\cdot\vec b=|\vec a||\vec b|\cos\theta=a_1b_1+a_2b_2.$$
+    <div class="formula-grid">
+      <div>$\vec a\cdot\vec a=|\vec a|^2$</div>
+      <div>$\vec a\cdot\vec b=\vec b\cdot\vec a$</div>
+      <div>$\vec a\cdot(\vec b+\vec c)=\vec a\cdot\vec b+\vec a\cdot\vec c$</div>
+      <div>$|\vec a+\vec b|^2=|\vec a|^2+2\vec a\cdot\vec b+|\vec b|^2$</div>
+      <div>$\cos\theta=\dfrac{\vec a\cdot\vec b}{|\vec a||\vec b|}$</div>
+      <div>垂直：$\vec a\perp\vec b\iff\vec a\cdot\vec b=0$</div>
+    </div>
+    <p>上面的垂直条件要求 $\vec a,\vec b$ 都不是 $\vec 0$。$\vec a$ 在 $\vec b$ 方向的<strong>正射影</strong>（<span lang="ja">正射影ベクトル</span>）为 $\dfrac{\vec a\cdot\vec b}{|\vec b|^2}\vec b$，它是求垂足的捷径。</p>
+
+    <h3>三角形面积</h3>
+    <p>由 $\sin\theta=\sqrt{1-\cos^2\theta}$ 可得，$\ov{OA}=\vec a,\ \ov{OB}=\vec b$ 时</p>
+    $$S=\frac12\sqrt{|\vec a|^2|\vec b|^2-(\vec a\cdot\vec b)^2}=\frac12|a_1b_2-a_2b_1|.$$
+    <div class="box good">
+      <p><strong>例：</strong>$\vec a=(3,1),\ \vec b=(1,2)$：$\vec a\cdot\vec b=5$，$\cos\theta=\dfrac{5}{\sqrt{10}\sqrt5}=\dfrac{\sqrt2}{2}$，所以 $\theta=45^\circ$。面积 $S=\dfrac12|3\cdot2-1\cdot1|=\dfrac52$。$\vec a$ 在 $\vec b$ 方向的正射影为 $\dfrac55\vec b=(1,2)$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>常见失分：</strong>$\vec a\cdot\vec b=0$ 推不出 $\vec a=\vec 0$ 或 $\vec b=\vec 0$（可能垂直）；$\vec a\cdot\vec b=\vec a\cdot\vec c$ 不能约去 $\vec a$；$|\vec a+\vec b|$ 不等于 $|\vec a|+|\vec b|$，要先平方；三角形中 $\ov{AB}$ 与 $\ov{BC}$ 的夹角是内角的<strong>补角</strong>，因为起点没有对齐。</p>
+    </div>
+  </section>
+
+  <section id="demo">
+    <h2>4 交互演示：拖动向量</h2>
+    <p class="jp-sub">拖动 $\vec a$、$\vec b$ 的终点（坐标按 $0.5$ 吸附），观察线性组合、内积和分点的变化</p>
+    <div class="explorer">
+      <div class="ex-head" role="group" aria-label="演示模式">
+        <button class="chip" type="button" data-mode="comb" aria-pressed="true">线性组合</button>
+        <button class="chip" type="button" data-mode="dot" aria-pressed="false">内积与正射影</button>
+        <button class="chip" type="button" data-mode="div" aria-pressed="false">直线 AB 上的点</button>
+      </div>
+      <svg id="vec-svg" class="chart" viewBox="0 0 640 440" role="application" aria-label="可拖动的向量演示：选中端点后也可用方向键移动"></svg>
+      <div class="ctrl" id="row-s"><label for="s-range">s</label><input id="s-range" type="range" min="-2" max="2" step="0.1" value="1"><output id="s-out">1</output></div>
+      <div class="ctrl" id="row-t"><label for="t-range">t</label><input id="t-range" type="range" min="-2" max="2" step="0.1" value="1"><output id="t-out">1</output></div>
+      <div class="read" id="vec-read"></div>
+      <div class="status" id="vec-status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="pos">
+    <h2>5 位置向量</h2>
+    <p class="jp-sub" lang="ja">位置ベクトル — 内分点・外分点・重心</p>
+    <p>取定点 $O$，点 $A$ 的<strong>位置向量</strong>就是 $\vec a=\ov{OA}$，记作 $A(\vec a)$。于是 $\ov{AB}=\vec b-\vec a$。</p>
+    <figure class="plot">
+      <svg class="chart fig" viewBox="0 0 400 210" role="img" aria-label="三角形 OAB，点 P 把线段 AB 内分为 m 比 n">
+        <defs><marker id="ah" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" class="mk"></path></marker></defs>
+        <line x1="60" y1="180" x2="340" y2="170" class="s1" marker-end="url(#ah)"></line>
+        <line x1="60" y1="180" x2="150" y2="30" class="s1" marker-end="url(#ah)"></line>
+        <line x1="340" y1="170" x2="150" y2="30" class="sm"></line>
+        <line x1="60" y1="180" x2="277" y2="123" class="s2" marker-end="url(#ah)"></line>
+        <circle cx="277" cy="123" r="4.5" class="dot2"></circle>
+        <text x="46" y="196" class="lbl">O</text><text x="348" y="178" class="lbl">A</text><text x="146" y="22" class="lbl">B</text><text x="282" y="115" class="lbl">P</text>
+        <text x="318" y="140" class="tick">m</text><text x="208" y="70" class="tick">n</text>
+      </svg>
+      <figcaption>$P$ 把 $AB$ 内分为 $m:n$（$AP:PB=m:n$）时，靠近 $A$ 的权重反而是 $n$：“交叉相乘”。</figcaption>
+    </figure>
+    <div class="tw"><table>
+      <thead><tr><th>点</th><th>位置向量</th></tr></thead>
+      <tbody>
+        <tr><td>内分点 $m:n$（<span lang="ja">内分</span>）</td><td>$\vec p=\dfrac{n\vec a+m\vec b}{m+n}$</td></tr>
+        <tr><td>外分点 $m:n$（<span lang="ja">外分</span>，$m\ne n$）</td><td>$\vec p=\dfrac{-n\vec a+m\vec b}{m-n}$</td></tr>
+        <tr><td>中点</td><td>$\vec p=\dfrac{\vec a+\vec b}{2}$</td></tr>
+        <tr><td>三角形重心（<span lang="ja">重心</span>）</td><td>$\vec g=\dfrac{\vec a+\vec b+\vec c}{3}$</td></tr>
+      </tbody>
+    </table></div>
+    <h3>共线条件</h3>
+    <p>三点 $A,B,P$ 共线（<span lang="ja">一直線上</span>）等价于 $\ov{AP}=k\ov{AB}$，也等价于</p>
+    $$\vec p=(1-t)\vec a+t\vec b\quad\text{（系数之和为 }1\text{）}.$$
+    <p>这一条经常用来“定比例”：若 $\vec p=x\vec a+y\vec b$ 且 $P$ 在直线 $AB$ 上，则 $x+y=1$。</p>
+  </section>
+
+  <section id="fig">
+    <h2>6 向量与图形</h2>
+    <p class="jp-sub" lang="ja">ベクトルと図形 — 交点・垂線の足・面積比</p>
+
+    <h3>① 两条路径求交点</h3>
+    <p>$\vec a,\vec b$ 一次独立时，把交点 $P$ 沿两条线段各表示一次，再比较系数。这是 EJU 向量题最常见的套路，完整做法见<a href="#examples">例题 2</a>。</p>
+
+    <h3>② 求垂足</h3>
+    <p>设 $\ov{OH}=(1-t)\vec a+t\vec b$，由 $\ov{OH}\cdot\ov{AB}=0$ 解出 $t$。</p>
+
+    <h3>③ 角平分线</h3>
+    <p>$\angle AOB$ 的平分线交 $AB$ 于 $D$，则 $AD:DB=|\vec a|:|\vec b|$，所以</p>
+    $$\ov{OD}=\frac{|\vec b|\vec a+|\vec a|\vec b}{|\vec a|+|\vec b|}.$$
+    <p>例如 $OA=3,\ OB=2,\ \angle AOB=60^\circ$（$\vec a\cdot\vec b=3$）时，$\ov{OD}=\dfrac{2\vec a+3\vec b}{5}$，$|\ov{OD}|=\dfrac{6\sqrt3}{5}$。</p>
+
+    <h3>④ 垂直的证明</h3>
+    <p>菱形中 $|\vec a|=|\vec b|$，对角线 $\vec a+\vec b$ 与 $\vec b-\vec a$ 的内积为 $|\vec b|^2-|\vec a|^2=0$，所以对角线互相垂直。把长度、垂直都翻译成内积，就能不靠图形直觉完成证明。</p>
+
+    <h3>⑤ 面积比：$l\ov{PA}+m\ov{PB}+n\ov{PC}=\vec 0$</h3>
+    <p>$l,m,n&gt;0$ 时 $P$ 在 $\triangle ABC$ 内部，以 $A$ 为起点改写，得</p>
+    $$\ov{AP}=\frac{m\ov{AB}+n\ov{AC}}{l+m+n},\qquad\triangle PBC:\triangle PCA:\triangle PAB=l:m:n.$$
+  </section>
+
+  <section id="eq">
+    <h2>7 向量方程</h2>
+    <p class="jp-sub" lang="ja">ベクトル方程式 — 直線・円</p>
+    <p>动点 $P(\vec p)$ 满足的向量等式叫向量方程；代入成分就变回熟悉的 $x,y$ 方程。</p>
+    <div class="tw"><table>
+      <thead><tr><th>图形</th><th>向量方程</th><th>成分形式</th></tr></thead>
+      <tbody>
+        <tr><td>过 $A(\vec a)$、方向 $\vec d$ 的直线</td><td>$\vec p=\vec a+t\vec d$</td><td>$x=x_0+tl,\ y=y_0+tm$</td></tr>
+        <tr><td>过 $A,B$ 两点的直线</td><td>$\vec p=(1-t)\vec a+t\vec b$</td><td>—</td></tr>
+        <tr><td>过 $A(\vec a)$、法向量 $\vec n$ 的直线</td><td>$\vec n\cdot(\vec p-\vec a)=0$</td><td>$l(x-x_0)+m(y-y_0)=0$</td></tr>
+        <tr><td>中心 $C(\vec c)$、半径 $r$ 的圆</td><td>$|\vec p-\vec c|=r$</td><td>$(x-x_0)^2+(y-y_0)^2=r^2$</td></tr>
+        <tr><td>以 $AB$ 为直径的圆</td><td>$(\vec p-\vec a)\cdot(\vec p-\vec b)=0$</td><td>$(x-x_A)(x-x_B)+(y-y_A)(y-y_B)=0$</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box good">
+      <p><strong>例：</strong>过 $A(1,2)$、方向 $(3,-1)$ 的直线：$x=1+3t,\ y=2-t$，消去 $t$ 得 $x+3y=7$。</p>
+      <p>过 $A(1,2)$、法向量 $(2,3)$ 的直线：$2(x-1)+3(y-2)=0$，即 $2x+3y=8$。</p>
+    </div>
+    <h3>$\vec p=s\vec a+t\vec b$ 的存在范围</h3>
+    <p>$\vec a,\vec b$ 一次独立时，由系数条件可以读出点 $P$ 的范围（<span lang="ja">存在範囲</span>）：</p>
+    <div class="tw"><table>
+      <thead><tr><th>条件</th><th>$P$ 的范围</th></tr></thead>
+      <tbody>
+        <tr><td>$s+t=1$</td><td>直线 $AB$</td></tr>
+        <tr><td>$s+t=1,\ s\ge0,\ t\ge0$</td><td>线段 $AB$</td></tr>
+        <tr><td>$s+t\le1,\ s\ge0,\ t\ge0$</td><td>$\triangle OAB$ 的内部及边界</td></tr>
+        <tr><td>$0\le s\le1,\ 0\le t\le1$</td><td>以 $OA,OB$ 为邻边的平行四边形内部及边界</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="coord">
+    <h2>8 空间坐标</h2>
+    <p class="jp-sub" lang="ja">空間座標 — 座標平面・2 点間の距離</p>
+    <p>三条互相垂直的坐标轴确定 $xy$ 平面（$z=0$）、$yz$ 平面（$x=0$）、$zx$ 平面（$y=0$）。点 $(a,b,c)$ 关于 $xy$ 平面的对称点是 $(a,b,-c)$，关于 $z$ 轴的对称点是 $(-a,-b,c)$，关于原点的对称点是 $(-a,-b,-c)$。</p>
+    <div class="formula-grid">
+      <div>$AB=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}$</div>
+      <div>内分点：$\Bigl(\dfrac{nx_1+mx_2}{m+n},\ \dfrac{ny_1+my_2}{m+n},\ \dfrac{nz_1+mz_2}{m+n}\Bigr)$</div>
+    </div>
+    <p>原点到点 $(1,2,3)$ 的距离为 $\sqrt{1+4+9}=\sqrt{14}$。</p>
+    <p>与坐标平面相切、相交的球面题，都是先看中心到该平面的距离（就是对应坐标的绝对值），再用勾股定理。</p>
+  </section>
+
+  <section id="space">
+    <h2>9 空间向量</h2>
+    <p class="jp-sub" lang="ja">空間ベクトル — 成分・内積・法線ベクトル</p>
+    <p>运算法则与平面完全相同，只是多一个成分。</p>
+    <div class="formula-grid">
+      <div>$\vec a=(a_1,a_2,a_3)$</div>
+      <div>$|\vec a|=\sqrt{a_1^2+a_2^2+a_3^2}$</div>
+      <div>$\vec a\cdot\vec b=a_1b_1+a_2b_2+a_3b_3$</div>
+      <div>$\vec a\cdot\vec b=|\vec a||\vec b|\cos\theta$</div>
+    </div>
+    <p>不共面的三个向量 $\vec a,\vec b,\vec c$ 一次独立，空间中任意 $\vec p$ 都能唯一地写成 $\vec p=s\vec a+t\vec b+u\vec c$，这时可以对三个系数同时作比较。</p>
+    <div class="box good">
+      <p><strong>夹角：</strong>$(1,1,0)$ 与 $(1,0,1)$：$\cos\theta=\dfrac{1}{\sqrt2\sqrt2}=\dfrac12$，$\theta=60^\circ$。</p>
+      <p><strong>同时垂直于两个向量：</strong>设 $\vec n=(x,y,z)$ 与 $(1,2,0),\ (0,1,-1)$ 都垂直，则 $x+2y=0,\ y-z=0$，取 $y=1$ 得 $\vec n=(-2,1,1)$（它的任意非零实数倍也可以）。</p>
+    </div>
+  </section>
+
+  <section id="solid">
+    <h2>10 向量与空间图形、向量方程</h2>
+    <p class="jp-sub" lang="ja">ベクトルと空間図形・ベクトル方程式 — 共面条件・垂線・球面</p>
+
+    <h3>共面条件</h3>
+    <p>点 $P$ 在平面 $ABC$ 上（$A,B,C$ 不共线）等价于下面两式之一：</p>
+    $$\ov{AP}=s\ov{AB}+t\ov{AC},\qquad\ov{OP}=x\ov{OA}+y\ov{OB}+z\ov{OC}\ \ (x+y+z=1).$$
+    <div class="box good">
+      <p><strong>例：</strong>$\ov{OP}=\dfrac12\vec a+\dfrac13\vec b+\dfrac14\vec c$，直线 $OP$ 交平面 $ABC$ 于 $Q$。设 $\ov{OQ}=k\ov{OP}$，系数和为 $1$：$k\Bigl(\dfrac12+\dfrac13+\dfrac14\Bigr)=1$，所以 $k=\dfrac{12}{13}$。</p>
+    </div>
+
+    <h3>从点向平面作垂线</h3>
+    <figure class="plot">
+      <svg class="chart fig" viewBox="0 0 400 240" role="img" aria-label="四面体 OABC，从 O 向平面 ABC 作垂线，垂足为 H">
+        <polygon points="210,215 345,150 160,30" class="fillc"></polygon>
+        <line x1="60" y1="185" x2="210" y2="215" class="s1"></line>
+        <line x1="60" y1="185" x2="160" y2="30" class="s1"></line>
+        <line x1="60" y1="185" x2="345" y2="150" class="sm"></line>
+        <line x1="210" y1="215" x2="345" y2="150" class="s1"></line>
+        <line x1="345" y1="150" x2="160" y2="30" class="s1"></line>
+        <line x1="160" y1="30" x2="210" y2="215" class="s1"></line>
+        <line x1="60" y1="185" x2="235" y2="130" class="s2"></line>
+        <circle cx="235" cy="130" r="4.5" class="dot2"></circle>
+        <text x="44" y="199" class="lbl">O</text><text x="206" y="233" class="lbl">A</text><text x="352" y="156" class="lbl">B</text><text x="155" y="22" class="lbl">C</text><text x="242" y="124" class="lbl">H</text>
+      </svg>
+      <figcaption>垂足 $H$：$\ov{OH}$ 同时垂直于平面内两个不平行的向量 $\ov{AB},\ov{AC}$。</figcaption>
+    </figure>
+    <ol>
+      <li>设 $\ov{OH}=\ov{OA}+s\ov{AB}+t\ov{AC}$（$H$ 在平面上）；</li>
+      <li>列 $\ov{OH}\cdot\ov{AB}=0,\ \ov{OH}\cdot\ov{AC}=0$（垂直于平面）；</li>
+      <li>解出 $s,t$，再求高 $|\ov{OH}|$ 与体积 $V=\dfrac13Sh$。</li>
+    </ol>
+    <p>棱长为 $1$ 的正四面体 $OABC$ 中，$\vec a\cdot\vec b=\vec b\cdot\vec c=\vec c\cdot\vec a=\dfrac12$，这个基底非常好用。四面体的重心为 $\dfrac{\vec a+\vec b+\vec c+\vec d}{4}$。</p>
+
+    <h3>空间中的向量方程</h3>
+    <div class="tw"><table>
+      <thead><tr><th>图形</th><th>向量方程</th><th>成分形式</th></tr></thead>
+      <tbody>
+        <tr><td>直线</td><td>$\vec p=\vec a+t\vec d$</td><td>$x=x_0+tl,\ y=y_0+tm,\ z=z_0+tn$</td></tr>
+        <tr><td>球面（<span lang="ja">球面</span>）</td><td>$|\vec p-\vec c|=r$</td><td>$(x-x_0)^2+(y-y_0)^2+(z-z_0)^2=r^2$</td></tr>
+        <tr><td>以 $AB$ 为直径的球面</td><td>$(\vec p-\vec a)\cdot(\vec p-\vec b)=0$</td><td>—</td></tr>
+        <tr><td>平面</td><td>$\vec n\cdot(\vec p-\vec a)=0$</td><td>$lx+my+nz=d$，其中 $\vec n=(l,m,n)$</td></tr>
+      </tbody>
+    </table></div>
+    <p>点 $(x_0,y_0,z_0)$ 到平面 $lx+my+nz=d$ 的距离为 $\dfrac{|lx_0+my_0+nz_0-d|}{\sqrt{l^2+m^2+n^2}}$。平面的方程在部分教材中属于发展内容，但解题时直接使用法向量会非常快。</p>
+    <p>球面（半径 $r$）与平面（中心到平面的距离 $d&lt;r$）相交时，截口是半径为 $\sqrt{r^2-d^2}$ 的圆。</p>
+  </section>
+
+  <section id="examples">
+    <h2>11 原创 EJU 风格例题</h2>
+    <p class="jp-sub">以下题目均为本讲义<strong>原创</strong>，仅模仿 EJU 的填空形式，并非真题。</p>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框字母对应一个数字（$0$–$9$），例如 $\B{AB}$ 是两位数；分数要约到最简，根号内的数要尽量小。</p>
+    </div>
+
+    <article class="q" data-ex="例题 1">
+      <div class="q-head"><b>例题 1　内积与垂足</b><span class="origin">原创</span></div>
+      <p>在 $\triangle OAB$ 中，$OA=3,\ OB=2,\ \angle AOB=60^\circ$。令 $\ov{OA}=\vec a,\ \ov{OB}=\vec b$。</p>
+      <p>(1) $\vec a\cdot\vec b=\B{A}$，$AB=\sqrt{\B{B}}$。</p>
+      <p>(2) $\triangle OAB$ 的面积为 $\dfrac{\B{C}\sqrt{\B{D}}}{\B{E}}$。</p>
+      <p>(3) 从 $O$ 向 $AB$ 作垂线，垂足为 $P$。则 $\ov{OP}=\dfrac{\B{F}}{\B{G}}\vec a+\dfrac{\B{H}}{\B{I}}\vec b$，$|\ov{OP}|=\dfrac{\B{J}\sqrt{\B{KL}}}{\B{M}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 3</li><li>B = 7</li><li>C = 3</li><li>D = 3</li><li>E = 2</li><li>F = 1</li><li>G = 7</li><li>H = 6</li><li>I = 7</li><li>J = 3</li><li>KL = 21</li><li>M = 7</li></ul>
+        <p>(1) $\vec a\cdot\vec b=3\cdot2\cdot\cos60^\circ=3$；$AB^2=|\vec b-\vec a|^2=4-6+9=7$。</p>
+        <p>(2) $S=\dfrac12\cdot3\cdot2\cdot\sin60^\circ=\dfrac{3\sqrt3}{2}$。</p>
+        <p>(3) 设 $\ov{OP}=(1-t)\vec a+t\vec b$。由 $\ov{OP}\cdot(\vec b-\vec a)=0$：</p>
+        $$(1-t)(\vec a\cdot\vec b-|\vec a|^2)+t(|\vec b|^2-\vec a\cdot\vec b)=-6(1-t)+t=0,$$
+        <p>所以 $t=\dfrac67$，$\ov{OP}=\dfrac17\vec a+\dfrac67\vec b$。又 $|\ov{OP}|=\dfrac{2S}{AB}=\dfrac{3\sqrt3}{\sqrt7}=\dfrac{3\sqrt{21}}{7}$。</p>
+      </div>
+    </article>
+
+    <article class="q" data-ex="例题 2">
+      <div class="q-head"><b>例题 2　两条路径求交点</b><span class="origin">原创</span></div>
+      <p>在 $\triangle OAB$ 中，点 $C$ 把 $OA$ 内分为 $2:1$，点 $D$ 把 $OB$ 内分为 $3:1$。线段 $AD$ 与 $BC$ 的交点为 $P$，直线 $OP$ 与 $AB$ 的交点为 $Q$。令 $\ov{OA}=\vec a,\ \ov{OB}=\vec b$。</p>
+      <p>(1) $\ov{OP}=\dfrac{\B{A}}{\B{B}}\vec a+\dfrac{\B{C}}{\B{D}}\vec b$。</p>
+      <p>(2) $\ov{OQ}=\dfrac{\B{E}}{\B{F}}\vec a+\dfrac{\B{G}}{\B{H}}\vec b$，所以 $AQ:QB=\B{I}:\B{J}$。</p>
+      <p>(3) $OP:PQ=\B{K}:\B{L}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 1</li><li>B = 3</li><li>C = 1</li><li>D = 2</li><li>E = 2</li><li>F = 5</li><li>G = 3</li><li>H = 5</li><li>I = 3</li><li>J = 2</li><li>K = 5</li><li>L = 1</li></ul>
+        <p>(1) $P$ 在 $AD$ 上：$\ov{OP}=(1-s)\vec a+\dfrac34s\vec b$。$P$ 在 $BC$ 上：$\ov{OP}=\dfrac23t\vec a+(1-t)\vec b$。因 $\vec a,\vec b$ 一次独立，比较系数：</p>
+        $$1-s=\frac23t,\qquad\frac34s=1-t\quad\Longrightarrow\quad s=\frac23,\ t=\frac12,$$
+        <p>所以 $\ov{OP}=\dfrac13\vec a+\dfrac12\vec b$。</p>
+        <p>(2) 设 $\ov{OQ}=k\ov{OP}$。$Q$ 在 $AB$ 上，系数和为 $1$：$k\Bigl(\dfrac13+\dfrac12\Bigr)=1$，$k=\dfrac65$。于是 $\ov{OQ}=\dfrac25\vec a+\dfrac35\vec b$，由内分公式（交叉相乘）得 $AQ:QB=3:2$。</p>
+        <p>(3) $OQ=\dfrac65OP$，所以 $OP:PQ=1:\dfrac15=5:1$。</p>
+      </div>
+    </article>
+
+    <article class="q" data-ex="例题 3">
+      <div class="q-head"><b>例题 3　四面体的高与体积</b><span class="origin">原创</span></div>
+      <p>空间中有 $A(2,0,0),\ B(0,4,0),\ C(0,0,4)$，$O$ 为原点。</p>
+      <p>(1) $\ov{AB}\cdot\ov{AC}=\B{A}$，$\cos\angle BAC=\dfrac{\B{B}}{\B{C}}$，$\triangle ABC$ 的面积为 $\B{D}\sqrt{\B{E}}$。</p>
+      <p>(2) 从 $O$ 向平面 $ABC$ 作垂线，垂足 $H$ 的坐标为 $\Bigl(\dfrac{\B{F}}{\B{G}},\ \dfrac{\B{H}}{\B{I}},\ \dfrac{\B{J}}{\B{K}}\Bigr)$。</p>
+      <p>(3) $|\ov{OH}|=\dfrac{\B{L}\sqrt{\B{M}}}{\B{N}}$，四面体 $OABC$ 的体积为 $\dfrac{\B{PQ}}{\B{R}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 4</li><li>B = 1</li><li>C = 5</li><li>D = 4</li><li>E = 6</li><li>F = 4</li><li>G = 3</li><li>H = 2</li><li>I = 3</li><li>J = 2</li><li>K = 3</li><li>L = 2</li><li>M = 6</li><li>N = 3</li><li>PQ = 16</li><li>R = 3</li></ul>
+        <p>(1) $\ov{AB}=(-2,4,0),\ \ov{AC}=(-2,0,4)$，内积为 $4$，两者大小都是 $\sqrt{20}$，所以 $\cos\angle BAC=\dfrac{4}{20}=\dfrac15$。面积 $S=\dfrac12\sqrt{20\cdot20-4^2}=\dfrac12\sqrt{384}=4\sqrt6$。</p>
+        <p>(2) 设 $\ov{OH}=\ov{OA}+s\ov{AB}+t\ov{AC}=(2-2s-2t,\ 4s,\ 4t)$。由 $\ov{OH}\cdot\ov{AB}=0,\ \ov{OH}\cdot\ov{AC}=0$ 得 $s=t=\dfrac16$，所以 $H\Bigl(\dfrac43,\dfrac23,\dfrac23\Bigr)$。</p>
+        <p>(3) $|\ov{OH}|=\sqrt{\dfrac{16+4+4}{9}}=\dfrac{2\sqrt6}{3}$，$V=\dfrac13\cdot4\sqrt6\cdot\dfrac{2\sqrt6}{3}=\dfrac{16}{3}$。检算：以 $OAB$ 为底，$V=\dfrac13\cdot4\cdot4=\dfrac{16}{3}$，一致。</p>
+      </div>
+    </article>
+
+    <article class="q" data-ex="例题 4">
+      <div class="q-head"><b>例题 4　球面与直线</b><span class="origin">原创</span></div>
+      <p>球面 $S$ 的中心为 $C(1,2,1)$，半径为 $3$。直线 $\ell$ 过点 $(4,0,-1)$，方向向量为 $(-1,1,1)$，所以 $\ell$ 上的点可写成 $(4-t,\ t,\ -1+t)$。</p>
+      <p>(1) $S$ 的方程为 $x^2+y^2+z^2-\B{A}x-\B{B}y-\B{C}z-\B{D}=0$。</p>
+      <p>(2) $\ell$ 与 $S$ 的交点满足 $\B{E}t^2-\B{FG}t+\B{H}=0$，所以 $t=\dfrac{\B{I}}{\B{J}}$ 或 $t=\B{K}$。</p>
+      <p>(3) $\ell$ 被 $S$ 截得的弦长为 $\dfrac{\B{LM}\sqrt{\B{N}}}{\B{P}}$，$C$ 到 $\ell$ 的距离为 $\dfrac{\sqrt{\B{Q}}}{\B{R}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 4</li><li>C = 2</li><li>D = 3</li><li>E = 3</li><li>FG = 14</li><li>H = 8</li><li>I = 2</li><li>J = 3</li><li>K = 4</li><li>LM = 10</li><li>N = 3</li><li>P = 3</li><li>Q = 6</li><li>R = 3</li></ul>
+        <p>(1) $(x-1)^2+(y-2)^2+(z-1)^2=9$，展开得 $x^2+y^2+z^2-2x-4y-2z-3=0$。</p>
+        <p>(2) 代入：$(3-t)^2+(t-2)^2+(t-2)^2=9$，整理得 $3t^2-14t+8=0$，即 $(3t-2)(t-4)=0$。</p>
+        <p>(3) 方向向量大小为 $\sqrt3$，弦长为 $\Bigl(4-\dfrac23\Bigr)\sqrt3=\dfrac{10\sqrt3}{3}$。距离：$d=\sqrt{9-\Bigl(\dfrac{5\sqrt3}{3}\Bigr)^2}=\sqrt{\dfrac23}=\dfrac{\sqrt6}{3}$。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>12 练习题</h2>
+    <div class="bar">
+      <p class="jp-sub" style="margin:0">共 13 题，均为原创，点击按钮查看答案和简要解析。</p>
+      <button class="toggle-ans" id="toggle-all" type="button" style="margin:0">显示全部答案</button>
+    </div>
+
+    <div class="q"><div class="q-head"><b>1</b>成分与内积</div>
+      <p>$\vec a=(2,-1),\ \vec b=(1,3)$。求 $|2\vec a-\vec b|$、$\vec a\cdot\vec b$ 以及夹角 $\theta$ 的 $\cos\theta$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$2\vec a-\vec b=(3,-5)$，大小为 $\mathbf{\sqrt{34}}$。$\vec a\cdot\vec b=2-3=\mathbf{-1}$。$\cos\theta=\dfrac{-1}{\sqrt5\sqrt{10}}=\mathbf{-\dfrac{\sqrt2}{10}}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>2</b>垂直与平行</div>
+      <p>$\vec a=(1,2),\ \vec b=(x,-3)$。分别求 $\vec a\perp\vec b$、$\vec a\parallel\vec b$ 时 $x$ 的值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>垂直：$x-6=0$，$x=\mathbf 6$。平行：$1\cdot(-3)-2x=0$，$x=\mathbf{-\dfrac32}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>3</b>平方展开</div>
+      <p>$|\vec a|=2,\ |\vec b|=3,\ |\vec a-\vec b|=\sqrt7$。求 $\vec a,\vec b$ 的夹角及 $|\vec a+2\vec b|$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$4-2\vec a\cdot\vec b+9=7$，得 $\vec a\cdot\vec b=3$，$\cos\theta=\dfrac12$，$\theta=\mathbf{60^\circ}$。$|\vec a+2\vec b|^2=4+12+36=52$，所以 $|\vec a+2\vec b|=\mathbf{2\sqrt{13}}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>4</b>最小值</div>
+      <p>$\vec a=(3,1),\ \vec b=(1,2)$，$t$ 为实数。求 $|\vec a+t\vec b|$ 的最小值及此时的 $t$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$|\vec a+t\vec b|^2=5t^2+10t+10=5(t+1)^2+5$，所以 $t=\mathbf{-1}$ 时取最小值 $\mathbf{\sqrt5}$。此时 $\vec a-\vec b=(2,-1)$ 恰好与 $\vec b$ 垂直。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>5</b>面积比</div>
+      <p>$\triangle ABC$ 内的点 $P$ 满足 $2\ov{PA}+3\ov{PB}+4\ov{PC}=\vec 0$。直线 $AP$ 交 $BC$ 于 $D$。求 $BD:DC$、$AP:PD$ 以及 $\triangle PBC:\triangle PCA:\triangle PAB$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\ov{AP}=\dfrac{3\ov{AB}+4\ov{AC}}{9}=\dfrac79\cdot\dfrac{3\ov{AB}+4\ov{AC}}{7}$。所以 $BD:DC=\mathbf{4:3}$，$AP:PD=\mathbf{7:2}$，面积比为 $\mathbf{2:3:4}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>6</b>三角形面积</div>
+      <p>求 $A(1,1),\ B(4,2),\ C(2,5)$ 构成的三角形面积。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\ov{AB}=(3,1),\ \ov{AC}=(1,4)$，$S=\dfrac12|3\cdot4-1\cdot1|=\mathbf{\dfrac{11}{2}}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>7</b>向量方程</div>
+      <p>(1) 求过 $(1,2)$、法向量为 $(3,-1)$ 的直线方程。(2) $A(1,0),\ B(3,4)$，把 $(\vec p-\vec a)\cdot(\vec p-\vec b)=0$ 表示的图形写成 $x,y$ 的方程，并求中心和半径。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>(1) $3(x-1)-(y-2)=0$，即 $\mathbf{3x-y=1}$。</p><p>(2) $(x-1)(x-3)+y(y-4)=0$，即 $x^2+y^2-4x-4y+3=0$，也就是 $(x-2)^2+(y-2)^2=5$。这是以 $AB$ 为直径的圆，中心 $\mathbf{(2,2)}$，半径 $\mathbf{\sqrt5}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>8</b>空间坐标</div>
+      <p>$A(1,2,3),\ B(3,0,4)$。求 $AB$ 的长、把 $AB$ 内分为 $2:1$ 的点，以及直线 $AB$ 与 $xy$ 平面的交点。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\ov{AB}=(2,-2,1)$，$AB=\mathbf 3$。内分点 $\dfrac{\vec a+2\vec b}{3}=\mathbf{\Bigl(\dfrac73,\dfrac23,\dfrac{11}{3}\Bigr)}$。直线上的点为 $(1+2t,\ 2-2t,\ 3+t)$，令 $z=0$ 得 $t=-3$，交点 $\mathbf{(-5,8,0)}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>9</b>空间内积</div>
+      <p>$\vec a=(1,1,0),\ \vec b=(0,1,1)$。求夹角，并求同时垂直于 $\vec a,\vec b$ 的单位向量。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\cos\theta=\dfrac{1}{\sqrt2\sqrt2}=\dfrac12$，$\theta=\mathbf{60^\circ}$。设 $(x,y,z)$，由 $x+y=0,\ y+z=0$ 得方向 $(1,-1,1)$，单位化为 $\mathbf{\pm\dfrac{1}{\sqrt3}(1,-1,1)}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>10</b>共面条件</div>
+      <p>$A(1,0,0),\ B(0,2,0),\ C(0,0,3)$。点 $D(1,1,z)$ 在平面 $ABC$ 上，求 $z$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\ov{AD}=s\ov{AB}+t\ov{AC}$：$(0,1,z)=(-s-t,\ 2s,\ 3t)$。得 $s=\dfrac12,\ t=-\dfrac12$，所以 $z=\mathbf{-\dfrac32}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>11</b>正四面体</div>
+      <p>棱长为 $1$ 的正四面体 $OABC$，$G$ 为 $\triangle ABC$ 的重心，$M$ 为 $BC$ 的中点。求 $|\ov{OG}|$ 和 $\cos\angle AOM$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$|\ov{OG}|^2=\dfrac{|\vec a+\vec b+\vec c|^2}{9}=\dfrac{3+6\cdot\frac12}{9}=\dfrac23$，所以 $|\ov{OG}|=\mathbf{\dfrac{\sqrt6}{3}}$。</p><p>$\ov{OM}=\dfrac{\vec b+\vec c}{2}$，$\vec a\cdot\ov{OM}=\dfrac12$，$|\ov{OM}|=\dfrac{\sqrt3}{2}$，所以 $\cos\angle AOM=\dfrac{1/2}{1\cdot\sqrt3/2}=\mathbf{\dfrac{\sqrt3}{3}}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>12</b>球面的截口</div>
+      <p>中心 $(1,-2,3)$、与 $xy$ 平面相切的球面，被平面 $z=1$ 截得的圆的中心和半径是多少？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>相切说明半径等于中心到 $xy$ 平面的距离 $3$。中心到 $z=1$ 的距离为 $2$，截口半径 $\sqrt{9-4}=\mathbf{\sqrt5}$，圆心 $\mathbf{(1,-2,1)}$。</p></div></div>
+
+    <div class="q"><div class="q-head"><b>13</b>点到平面</div>
+      <p>求点 $P(3,1,2)$ 到平面 $2x-y+2z=1$ 的距离及垂足。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>距离 $\dfrac{|6-1+4-1|}{\sqrt{4+1+4}}=\mathbf{\dfrac83}$。垂足为 $P-\dfrac89(2,-1,2)=\mathbf{\Bigl(\dfrac{11}{9},\dfrac{17}{9},\dfrac29\Bigr)}$，代回平面方程成立。</p></div></div>
+  </section>
+
+  <section id="terms">
+    <h2>13 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页依据 JASSO 2026 年度起适用的数学シラバス中「ベクトル」项目的内容范围编写。例题和练习均为原创，并非 EJU 真题；所有答案已用 SymPy 计算验证。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['平面向量', [
+      ['ベクトル', 'ベクトル', '向量'], ['大きさ', 'おおきさ', '大小（模）'], ['向き', 'むき', '方向（朝向）'],
+      ['単位ベクトル', 'たんいベクトル', '单位向量'], ['零ベクトル', 'ゼロベクトル', '零向量'], ['逆ベクトル', 'ぎゃくベクトル', '相反向量'],
+      ['実数倍', 'じっすうばい', '实数倍（数乘）'], ['平行', 'へいこう', '平行'], ['1次独立', 'いちじどくりつ', '一次独立（线性无关）'],
+      ['成分', 'せいぶん', '成分（分量）'], ['内積', 'ないせき', '内积（数量积）'], ['なす角', 'なすかく', '夹角'],
+      ['垂直', 'すいちょく', '垂直'], ['正射影', 'せいしゃえい', '正射影（投影）']
+    ]],
+    ['位置向量与图形', [
+      ['位置ベクトル', 'いちベクトル', '位置向量'], ['始点', 'してん', '起点'], ['終点', 'しゅうてん', '终点'],
+      ['内分', 'ないぶん', '内分'], ['外分', 'がいぶん', '外分'], ['中点', 'ちゅうてん', '中点'],
+      ['重心', 'じゅうしん', '重心'], ['内心', 'ないしん', '内心'], ['外心', 'がいしん', '外心'],
+      ['垂心', 'すいしん', '垂心'], ['一直線上', 'いっちょくせんじょう', '同一直线上'], ['交点', 'こうてん', '交点'],
+      ['垂線の足', 'すいせんのあし', '垂足'], ['面積比', 'めんせきひ', '面积比'], ['平行四辺形', 'へいこうしへんけい', '平行四边形'],
+      ['ひし形', 'ひしがた', '菱形']
+    ]],
+    ['向量方程', [
+      ['ベクトル方程式', 'ベクトルほうていしき', '向量方程'], ['方向ベクトル', 'ほうこうベクトル', '方向向量'], ['法線ベクトル', 'ほうせんベクトル', '法向量'],
+      ['媒介変数', 'ばいかいへんすう', '参数'], ['存在範囲', 'そんざいはんい', '（点的）存在范围'], ['直径', 'ちょっけい', '直径']
+    ]],
+    ['空间', [
+      ['空間座標', 'くうかんざひょう', '空间坐标'], ['空間ベクトル', 'くうかんベクトル', '空间向量'], ['座標平面', 'ざひょうへいめん', '坐标平面'],
+      ['座標軸', 'ざひょうじく', '坐标轴'], ['原点', 'げんてん', '原点'], ['同一平面上', 'どういつへいめんじょう', '同一平面上（共面）'],
+      ['四面体', 'しめんたい', '四面体'], ['正四面体', 'せいしめんたい', '正四面体'], ['体積', 'たいせき', '体积'],
+      ['球面', 'きゅうめん', '球面'], ['接する', 'せっする', '相切'], ['切り口', 'きりくち', '截口（截面）']
+    ]]
+  ];
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja">' + t[0] + '</td><td class="kana" lang="ja">' + t[1] + '</td><td>' + t[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = $('term-count');
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 答案按钮 ---------- */
+  function setAns(btn, open) {
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '隐藏答案' : '显示答案';
+    btn.nextElementSibling.hidden = !open;
+  }
+  var allBtn = $('toggle-all');
+  document.addEventListener('click', function (e) {
+    if (e.target !== allBtn && e.target.classList && e.target.classList.contains('toggle-ans')) {
+      setAns(e.target, e.target.getAttribute('aria-expanded') !== 'true');
+    }
+  });
+  allBtn.addEventListener('click', function () {
+    var btns = document.querySelectorAll('#practice .q .toggle-ans');
+    var open = allBtn.textContent.indexOf('显示') === 0;
+    btns.forEach(function (b) { setAns(b, open); });
+    allBtn.textContent = open ? '隐藏全部答案' : '显示全部答案';
+  });
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('on', on);
+          var list = a.parentNode.parentNode;
+          if (on && list.scrollWidth > list.clientWidth) {
+            list.scrollLeft = a.parentNode.offsetLeft - list.offsetLeft - 24;
+          }
+        });
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 向量演示 ---------- */
+  var svg = $('vec-svg'), NS = 'http://www.w3.org/2000/svg';
+  var UNIT = 40, OX = 320, OY = 240;
+  var state = { mode: 'comb', a: [3, 1], b: [1, 2], s: 1, t: 1 };
+  var RANGE = { comb: [-2, 2], div: [-1, 2] };
+  function sx(x) { return OX + x * UNIT; }
+  function sy(y) { return OY - y * UNIT; }
+  function el(name, attrs, parent) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  var grid = el('g', {}, svg), scene = el('g', {}, svg), handles = el('g', {}, svg);
+  var x, y;
+  for (x = -8; x <= 8; x++) el('line', { x1: sx(x), x2: sx(x), y1: 0, y2: 440, 'class': x === 0 ? 'axis' : 'grid' }, grid);
+  for (y = -5; y <= 6; y++) el('line', { y1: sy(y), y2: sy(y), x1: 0, x2: 640, 'class': y === 0 ? 'axis' : 'grid' }, grid);
+  [-6, -4, -2, 2, 4, 6].forEach(function (v) {
+    el('text', { x: sx(v), y: OY + 16, 'class': 'tick', 'text-anchor': 'middle' }, grid).textContent = fmt(v);
+  });
+  [-4, -2, 2, 4].forEach(function (v) {
+    el('text', { x: OX - 7, y: sy(v) + 4, 'class': 'tick', 'text-anchor': 'end' }, grid).textContent = fmt(v);
+  });
+  function fmt(v) {
+    var r = Math.round(v * 100) / 100;
+    if (r === 0) r = 0;
+    return String(r).replace('-', '−');
+  }
+  function pt(v) { return '(' + fmt(v[0]) + ', ' + fmt(v[1]) + ')'; }
+  function arrow(from, to, cls, label) {
+    var x1 = sx(from[0]), y1 = sy(from[1]), x2 = sx(to[0]), y2 = sy(to[1]);
+    var dx = x2 - x1, dy = y2 - y1, len = Math.sqrt(dx * dx + dy * dy);
+    if (len < 1) return;
+    var ux = dx / len, uy = dy / len, L = Math.min(12, len), W = L * .45;
+    el('line', { x1: x1, y1: y1, x2: x2 - ux * L * .7, y2: y2 - uy * L * .7, 'class': 'vl ' + cls }, scene);
+    el('polygon', { points: x2 + ',' + y2 + ' ' + (x2 - ux * L - uy * W) + ',' + (y2 - uy * L + ux * W) + ' ' + (x2 - ux * L + uy * W) + ',' + (y2 - uy * L - ux * W), 'class': 'vh ' + cls }, scene);
+    if (label) el('text', { x: x2 + 9, y: y2 - 8, 'class': 'lbl vname' }, scene).textContent = label;
+  }
+  function seg(p, q, cls) { el('line', { x1: sx(p[0]), y1: sy(p[1]), x2: sx(q[0]), y2: sy(q[1]), 'class': cls || 'sm' }, scene); }
+  function dotAt(p, cls, label) {
+    el('circle', { cx: sx(p[0]), cy: sy(p[1]), r: 5, 'class': cls }, scene);
+    if (label) el('text', { x: sx(p[0]) + 9, y: sy(p[1]) + 18, 'class': 'lbl' }, scene).textContent = label;
+  }
+  function readout(items) {
+    $('vec-read').innerHTML = items.map(function (it) {
+      return '<div' + (it[2] ? ' class="wide"' : '') + '><small>' + it[0] + '</small>' + it[1] + '</div>';
+    }).join('');
+  }
+  function add(u, v, k, l) { return [k * u[0] + l * v[0], k * u[1] + l * v[1]]; }
+  function norm(v) { return Math.sqrt(v[0] * v[0] + v[1] * v[1]); }
+
+  function draw() {
+    var a = state.a, b = state.b, s = state.s, t = state.t;
+    scene.textContent = '';
+    $('s-out').textContent = fmt(s);
+    $('t-out').textContent = fmt(t);
+    $('row-s').hidden = state.mode !== 'comb';
+    $('row-t').hidden = state.mode === 'dot';
+    var dotv = a[0] * b[0] + a[1] * b[1], cross = a[0] * b[1] - a[1] * b[0];
+    if (state.mode === 'comb') {
+      var sa = add(a, b, s, 0), tb = add(a, b, 0, t), p = add(a, b, s, t);
+      seg(sa, p); seg(tb, p);
+      arrow([0, 0], sa, 'va'); arrow([0, 0], tb, 'vb');
+      arrow([0, 0], a, 'va', 'a'); arrow([0, 0], b, 'vb', 'b');
+      arrow([0, 0], p, 'vp', 'p');
+      readout([['p = s a + t b', pt(p)], ['|p|', fmt(norm(p))], ['s + t', fmt(s + t)]]);
+      var sum = Math.round((s + t) * 100) / 100, msg;
+      if (cross === 0) msg = 'a 与 b 平行，不是一次独立：p 只能在一条直线上移动。';
+      else if (sum === 1) msg = 's + t = 1：P 落在直线 AB 上。';
+      else if (s >= 0 && t >= 0 && sum < 1) msg = 's ≥ 0，t ≥ 0，s + t ≤ 1：P 在 △OAB 内部或边界上。';
+      else msg = 'a、b 一次独立：调节 s、t 可以到达平面上任意一点。';
+      $('vec-status').textContent = msg;
+    } else if (state.mode === 'dot') {
+      var k = dotv / (b[0] * b[0] + b[1] * b[1]), h = add(a, b, 0, k);
+      var c = dotv / (norm(a) * norm(b)), deg = Math.acos(Math.max(-1, Math.min(1, c))) * 180 / Math.PI;
+      seg([0, 0], k < 0 ? h : b); seg(a, h);
+      arrow([0, 0], h, 'vp');
+      arrow([0, 0], a, 'va', 'a'); arrow([0, 0], b, 'vb', 'b');
+      dotAt(h, 'dot3', '垂足');
+      readout([['a · b', fmt(dotv)], ['|a|，|b|', fmt(norm(a)) + '，' + fmt(norm(b))], ['夹角 θ', fmt(deg) + '°'], ['a 在 b 方向的正射影', pt(h)], ['△ 面积 = ½|a₁b₂ − a₂b₁|', fmt(Math.abs(cross) / 2)]]);
+      $('vec-status').textContent = dotv === 0 ? 'a · b = 0：两向量垂直。' : dotv > 0 ? 'a · b > 0：夹角为锐角，正射影与 b 同向。' : 'a · b < 0：夹角为钝角，正射影与 b 反向。';
+    } else {
+      var q = add(a, b, 1 - t, t), same = a[0] === b[0] && a[1] === b[1];
+      if (!same) {
+        var d = add(b, a, 1, -1), n = 20 / norm(d);
+        seg(add(a, d, 1, -n), add(a, d, 1, n));
+        seg(a, b, 's1');
+      }
+      arrow([0, 0], a, 'va', 'A'); arrow([0, 0], b, 'vb', 'B');
+      arrow([0, 0], q, 'vp', 'P');
+      readout([['p = (1 − t) a + t b', pt(q)], ['系数和', fmt(1 - t) + ' + ' + fmt(t) + ' = 1']]);
+      var tr = Math.round(t * 100) / 100, m;
+      if (same) m = 'A 与 B 重合，请拖开其中一点。';
+      else if (tr === 0) m = 'P 与 A 重合。';
+      else if (tr === 1) m = 'P 与 B 重合。';
+      else if (tr > 0 && tr < 1) m = 'P 把 AB 内分：AP : PB = ' + fmt(tr) + ' : ' + fmt(1 - tr) + '。';
+      else m = 'P 把 AB 外分：AP : PB = ' + fmt(Math.abs(tr)) + ' : ' + fmt(Math.abs(1 - tr)) + '。';
+      $('vec-status').textContent = m;
+    }
+    syncHandles();
+  }
+
+  var hA = el('circle', { r: 20, 'class': 'grip', tabindex: 0, 'aria-label': '向量 a 的终点' }, handles);
+  var hB = el('circle', { r: 20, 'class': 'grip', tabindex: 0, 'aria-label': '向量 b 的终点' }, handles);
+  var dotA = el('circle', { r: 6, 'class': 'knob ka' }, handles), dotB = el('circle', { r: 6, 'class': 'knob kb' }, handles);
+  function syncHandles() {
+    [[hA, state.a], [hB, state.b], [dotA, state.a], [dotB, state.b]].forEach(function (h) {
+      h[0].setAttribute('cx', sx(h[1][0])); h[0].setAttribute('cy', sy(h[1][1]));
+    });
+  }
+  function moveTo(which, nx, ny) {
+    nx = Math.max(-6, Math.min(6, Math.round(nx * 2) / 2));
+    ny = Math.max(-4.5, Math.min(5, Math.round(ny * 2) / 2));
+    if (nx === 0 && ny === 0) return;   /* 不允许零向量 */
+    state[which] = [nx, ny];
+    draw();
+  }
+  var dragging = null;
+  function grab(which, h) {
+    h.addEventListener('pointerdown', function (e) {
+      dragging = which;
+      svg.setPointerCapture(e.pointerId);
+      e.preventDefault();
+      h.focus({ preventScroll: true });
+    });
+    h.addEventListener('keydown', function (e) {
+      var v = state[which], D = { ArrowLeft: [-.5, 0], ArrowRight: [.5, 0], ArrowUp: [0, .5], ArrowDown: [0, -.5] }[e.key];
+      if (!D) return;
+      e.preventDefault();
+      moveTo(which, v[0] + D[0], v[1] + D[1]);
+    });
+  }
+  grab('a', hA); grab('b', hB);
+  svg.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    var m = svg.getScreenCTM().inverse(), p = svg.createSVGPoint();
+    p.x = e.clientX; p.y = e.clientY;
+    p = p.matrixTransform(m);
+    moveTo(dragging, (p.x - OX) / UNIT, (OY - p.y) / UNIT);
+  });
+  ['pointerup', 'pointercancel'].forEach(function (n) {
+    svg.addEventListener(n, function () { dragging = null; });
+  });
+  $('s-range').addEventListener('input', function () { state.s = +this.value; draw(); });
+  $('t-range').addEventListener('input', function () { state.t = +this.value; draw(); });
+  document.querySelectorAll('[data-mode]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      state.mode = btn.dataset.mode;
+      document.querySelectorAll('[data-mode]').forEach(function (b) { b.setAttribute('aria-pressed', b === btn); });
+      if (state.mode === 'div') {
+        var tr = $('t-range');
+        tr.min = RANGE.div[0]; tr.max = RANGE.div[1]; tr.value = .5;
+        state.t = +tr.value;
+      } else if (state.mode === 'comb') {
+        var r = $('t-range');
+        r.min = RANGE.comb[0]; r.max = RANGE.comb[1];
+        state.t = +r.value;
+      }
+      draw();
+    });
+  });
+  draw();
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: {
+        '\\B': '\\boxed{\\mathsf{#1}}',
+        '\\ov': '\\overrightarrow{#1}'
+      },
+      ignoredClasses: ['status', 'read'],
+      throwOnError: false
+    });
+  }
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

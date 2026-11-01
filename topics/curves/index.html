@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 16 式与曲线</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：二次曲线（抛物线、椭圆、双曲线）、媒介变数表示、极坐标与极方程，含原创例题、练习题、交互演示和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#ex-svg { user-select: none; -webkit-user-select: none; background: var(--surface); border-radius: 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+
+.back { margin: 0 0 14px; font-size: 15px; }
+.hero .back a { color: #c5d3ef; text-decoration: none; }
+.hero .back a:hover { text-decoration: underline; }
+.ctrl[hidden] { display: none; }
+svg.fig { max-width: 520px; margin: auto; }
+svg rect.sm { fill: none; }
+svg circle.sm { fill: none; opacity: .55; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <p class="back"><a href="../../">← 目录</a></p>
+      <p class="eyebrow">EJU 数学コース2 · 出題項目 16 · 式と曲線</p>
+      <h1>16 式与曲线</h1>
+      <p class="lead">抛物线、椭圆、双曲线三种二次曲线，再加上描述曲线的另外两种语言：媒介变数表示和极坐标。每个知识点都配例子，文中有可操作的曲线演示，最后用原创的 EJU 风格填空题和练习题检验。日语术语随文标注，文末有对照表。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$$
+      $$r=\frac{ed}{1+e\cos\theta}$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#parabola">1 抛物线</a></li>
+        <li><a href="#ellipse">2 椭圆</a></li>
+        <li><a href="#hyperbola">3 双曲线</a></li>
+        <li><a href="#general">4 平移与直线</a></li>
+        <li><a href="#param">5 媒介变数表示</a></li>
+        <li><a href="#polar">6 极坐标</a></li>
+        <li><a href="#polareq">7 极方程</a></li>
+        <li><a href="#demo">8 交互演示</a></li>
+        <li><a href="#examples">9 原创例题</a></li>
+        <li><a href="#practice">10 练习题</a></li>
+        <li><a href="#terms">11 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <section id="parabola">
+    <h2>1 抛物线</h2>
+    <p class="jp-sub" lang="ja">放物線（ほうぶつせん）・焦点・準線</p>
+    <p>到定点 $F$（<strong>焦点</strong>，日语同写作 <span lang="ja">焦点</span>）与到定直线 $\ell$（<strong>准线</strong>，<span lang="ja">準線</span>）距离相等的点的轨迹，叫做抛物线。设焦点 $(p,0)$、准线 $x=-p$，由 $\sqrt{(x-p)^2+y^2}=|x+p|$ 两边平方就得到标准形。</p>
+    <div class="tw"><table>
+      <thead><tr><th>标准形</th><th>焦点</th><th>准线</th><th>轴</th><th>顶点</th></tr></thead>
+      <tbody>
+        <tr><td>$y^2=4px$</td><td>$(p,0)$</td><td>$x=-p$</td><td>$x$ 轴</td><td>原点</td></tr>
+        <tr><td>$x^2=4py$</td><td>$(0,p)$</td><td>$y=-p$</td><td>$y$ 轴</td><td>原点</td></tr>
+      </tbody>
+    </table></div>
+    <p>$p$ 可以为负：$p&gt;0$ 时 $y^2=4px$ 向右开口，$p&lt;0$ 时向左开口。例如 $y^2=8x$ 中 $4p=8$，所以 $p=2$，焦点 $(2,0)$，准线 $x=-2$。</p>
+    <figure class="plot">
+      <svg class="chart fig" id="fig-parabola" role="img" aria-label="抛物线 y²=6x：曲线上的点 P 到焦点 F 的距离等于到准线的距离"></svg>
+      <figcaption>抛物线上任一点 $P$ 满足 $PF=PH$（$H$ 是 $P$ 到准线的垂足）。</figcaption>
+    </figure>
+    <div class="box"><strong>常用结论</strong>
+      <ul>
+        <li>在点 $(x_1,y_1)$ 处的切线：$y_1y=2p(x+x_1)$。</li>
+        <li>过焦点的弦 $PQ$（$P,Q$ 的 $x$ 坐标为 $x_1,x_2$）：$PQ=PF+QF=x_1+x_2+2p$。这是用准线把距离换成 $x$ 坐标的结果。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="ellipse">
+    <h2>2 椭圆</h2>
+    <p class="jp-sub" lang="ja">楕円（だえん）・長軸・短軸</p>
+    <p>到两个定点 $F,F'$ 的<strong>距离之和为定值</strong>的点的轨迹，叫做椭圆。焦点在 $x$ 轴上时，设焦点 $(\pm c,0)$、距离之和 $2a$，令 $b^2=a^2-c^2$，得</p>
+    $$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\qquad(a&gt;b&gt;0),\qquad c=\sqrt{a^2-b^2}.$$
+    <div class="tw"><table>
+      <thead><tr><th></th><th>$a&gt;b&gt;0$（横长）</th><th>$b&gt;a&gt;0$（纵长）</th></tr></thead>
+      <tbody>
+        <tr><td>焦点</td><td>$(\pm\sqrt{a^2-b^2},\,0)$</td><td>$(0,\,\pm\sqrt{b^2-a^2})$</td></tr>
+        <tr><td>长轴长（<span lang="ja">長軸</span>）</td><td>$2a$</td><td>$2b$</td></tr>
+        <tr><td>短轴长（<span lang="ja">短軸</span>）</td><td>$2b$</td><td>$2a$</td></tr>
+        <tr><td>距离之和</td><td>$2a$</td><td>$2b$</td></tr>
+      </tbody>
+    </table></div>
+    <figure class="plot">
+      <svg class="chart fig" id="fig-ellipse" role="img" aria-label="椭圆：a=4，b=2.5，曲线上的点 P 到两焦点距离之和恒为 8"></svg>
+      <figcaption>$PF+PF'=2a$。短轴端点到焦点的距离恰好是 $a$，所以 $a,b,c$ 构成斜边为 $a$ 的直角三角形。</figcaption>
+    </figure>
+    <div class="box good"><strong>和圆的关系</strong>
+      <p>把圆 $x^2+y^2=a^2$ 沿 $y$ 轴方向缩放为 $\dfrac{b}{a}$ 倍，就得到椭圆 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$。因此椭圆的面积是 $\pi ab$。</p>
+    </div>
+    <div class="box"><strong>切线</strong> 椭圆上点 $(x_1,y_1)$ 处的切线：$\dfrac{x_1x}{a^2}+\dfrac{y_1y}{b^2}=1$。</div>
+    <div class="box warn"><strong>易错</strong> 椭圆是 $c^2=a^2-b^2$（$a$ 最大），下一节的双曲线是 $c^2=a^2+b^2$（$c$ 最大）。求焦点前先看分母哪个大。</div>
+  </section>
+
+  <section id="hyperbola">
+    <h2>3 双曲线</h2>
+    <p class="jp-sub" lang="ja">双曲線（そうきょくせん）・漸近線・直角双曲線</p>
+    <p>到两个定点 $F,F'$ 的<strong>距离之差的绝对值为定值</strong> $2a$ 的点的轨迹，叫做双曲线。设焦点 $(\pm c,0)$，令 $b^2=c^2-a^2$。</p>
+    <div class="tw"><table>
+      <thead><tr><th>标准形（$a,b&gt;0$）</th><th>焦点</th><th>顶点</th><th>渐近线</th><th>距离差</th></tr></thead>
+      <tbody>
+        <tr><td>$\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$</td><td>$(\pm\sqrt{a^2+b^2},\,0)$</td><td>$(\pm a,0)$</td><td>$y=\pm\dfrac{b}{a}x$</td><td>$2a$</td></tr>
+        <tr><td>$\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=-1$</td><td>$(0,\,\pm\sqrt{a^2+b^2})$</td><td>$(0,\pm b)$</td><td>$y=\pm\dfrac{b}{a}x$</td><td>$2b$</td></tr>
+      </tbody>
+    </table></div>
+    <figure class="plot">
+      <svg class="chart fig" id="fig-hyperbola" role="img" aria-label="双曲线：a=2，b=1.5，两支和两条渐近线"></svg>
+      <figcaption>$\dfrac{x^2}{4}-\dfrac{y^2}{9/4}=1$。以 $x=\pm a,\ y=\pm b$ 围成的矩形的对角线就是渐近线；从原点到矩形顶点的距离恰好是 $c$。</figcaption>
+    </figure>
+    <ul>
+      <li><strong>渐近线的快速写法</strong>：把右边的 $\pm1$ 换成 $0$，$\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=0$ 因式分解即得。</li>
+      <li><strong>直角双曲线</strong>（<span lang="ja">直角双曲線</span>）：$a=b$ 时两条渐近线互相垂直，如 $x^2-y^2=4$。$xy=k\ (k\ne0)$ 也是直角双曲线。</li>
+      <li><strong>切线</strong>：曲线 $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$ 上点 $(x_1,y_1)$ 处的切线为 $\dfrac{x_1x}{a^2}-\dfrac{y_1y}{b^2}=1$。</li>
+    </ul>
+  </section>
+
+  <section id="general">
+    <h2>4 平移、与直线的关系、离心率</h2>
+    <p class="jp-sub" lang="ja">平行移動・共有点・判別式・離心率</p>
+    <h3>4.1 配方与平移</h3>
+    <p>曲线 $f(x,y)=0$ 按向量 $(s,t)$ 平移后变为 $f(x-s,\,y-t)=0$。焦点、顶点、中心、准线和渐近线都一起平移。形如 $Ax^2+Cy^2+Dx+Ey+F=0$ 的方程，先配方再判断类型：</p>
+    <div class="tw"><table>
+      <thead><tr><th>系数特征</th><th>通常表示的曲线</th></tr></thead>
+      <tbody>
+        <tr><td>$AC=0$（只有一个平方项）</td><td>抛物线</td></tr>
+        <tr><td>$AC&gt;0$，$A\ne C$</td><td>椭圆</td></tr>
+        <tr><td>$A=C\ne0$</td><td>圆</td></tr>
+        <tr><td>$AC&lt;0$</td><td>双曲线</td></tr>
+      </tbody>
+    </table></div>
+    <p>例：$y^2-4y-4x+8=0$ 配方得 $(y-2)^2=4(x-1)$，是 $y^2=4x$ 向右平移 $1$、向上平移 $2$。顶点 $(1,2)$，焦点 $(2,2)$，准线 $x=0$。</p>
+    <p class="kana">“通常”是因为可能退化：例如 $x^2-y^2=0$ 是两条直线，$x^2+2y^2=0$ 只是一个点。</p>
+
+    <h3>4.2 直线与二次曲线的共有点</h3>
+    <p>把直线代入曲线得到关于 $x$（或 $y$）的方程。若是二次方程，用判别式 $D$（<span lang="ja">判別式</span>）判断：$D&gt;0$ 两个共有点，$D=0$ 相切（<span lang="ja">接する</span>），$D&lt;0$ 没有共有点。弦的中点和长度用根与系数的关系求。</p>
+    <div class="formula-grid">
+      <div>椭圆的切线条件：$y=mx+n$ 与 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ 相切 $\iff n^2=a^2m^2+b^2$</div>
+      <div>双曲线的切线条件：$y=mx+n$ 与 $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$ 相切 $\iff n^2=a^2m^2-b^2$（$n\ne0$）</div>
+      <div>斜率为 $m$ 的直线 $y=mx+n$（$m\ne0$）与 $y^2=4px$ 相切 $\iff n=\dfrac{p}{m}$</div>
+      <div>弦长：$PQ=\sqrt{1+m^2}\,|x_1-x_2|$</div>
+    </div>
+    <div class="box warn"><strong>易错</strong> 代入后 $x^2$ 的系数可能为 $0$，此时不是二次方程，不能用判别式。与抛物线的轴平行的直线、与双曲线渐近线平行（且不是渐近线）的直线，都只有 <strong>1 个共有点但并不相切</strong>。</div>
+
+    <h3>4.3 离心率：把三种曲线统一起来</h3>
+    <p>到焦点的距离与到准线的距离之比为定值 $e$（<strong>离心率</strong> <span lang="ja">離心率</span>）的点的轨迹是二次曲线：</p>
+    $$\frac{PF}{PH}=e$$
+    <p>$0&lt;e&lt;1$ 时是椭圆，$e=1$ 时是抛物线，$e&gt;1$ 时是双曲线。</p>
+    <p>标准形的椭圆和双曲线（焦点在 $x$ 轴上）都有 $e=\dfrac{c}{a}$，准线为 $x=\pm\dfrac{a^2}{c}$。第 8 节可以连续改变 $e$，观察曲线如何变形。</p>
+  </section>
+
+  <section id="param">
+    <h2>5 媒介变数表示</h2>
+    <p class="jp-sub" lang="ja">媒介変数表示（ばいかいへんすうひょうじ）・サイクロイド</p>
+    <p>用一个变量 $t$（<span lang="ja">媒介変数</span>，即参数）同时表示 $x=f(t),\ y=g(t)$，就是曲线的媒介变数表示。动点的运动、最大最小值问题常用这种写法。</p>
+    <div class="tw"><table>
+      <thead><tr><th>曲线</th><th>方程</th><th>媒介变数表示</th><th>依据</th></tr></thead>
+      <tbody>
+        <tr><td>圆</td><td>$x^2+y^2=a^2$</td><td>$x=a\cos\theta,\ y=a\sin\theta$</td><td>$\cos^2\theta+\sin^2\theta=1$</td></tr>
+        <tr><td>椭圆</td><td>$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$</td><td>$x=a\cos\theta,\ y=b\sin\theta$</td><td>同上</td></tr>
+        <tr><td>双曲线</td><td>$\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$</td><td>$x=\dfrac{a}{\cos\theta},\ y=b\tan\theta$</td><td>$\dfrac{1}{\cos^2\theta}-\tan^2\theta=1$</td></tr>
+        <tr><td>抛物线</td><td>$y^2=4px$</td><td>$x=pt^2,\ y=2pt$</td><td>代入验证</td></tr>
+        <tr><td>平移</td><td>中心移到 $(s,t)$</td><td>$x=s+a\cos\theta,\ y=t+b\sin\theta$</td><td>各加常数</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box warn"><strong>易错：椭圆的 $\theta$ 不是 $OP$ 的方向角</strong>
+      <p>$\theta$ 是半径 $a$ 的辅助圆上对应点的方向角。例如 $a=3,b=2,\theta=\dfrac{\pi}{4}$ 时，$P\left(\dfrac{3\sqrt2}{2},\sqrt2\right)$，$OP$ 的斜率是 $\dfrac23$，方向角不是 $\dfrac{\pi}{4}$。</p>
+    </div>
+    <h3>消去媒介变数</h3>
+    <p>解出 $t$ 再代入，或利用恒等式消去。<strong>消去后务必检查 $x,y$ 的取值范围</strong>，范围可能只是曲线的一部分：</p>
+    <ul>
+      <li>$x=\cos\theta,\ y=\cos2\theta$：由 $y=2x^2-1$ 知是抛物线，但只有 $-1\le x\le1$ 这一段。</li>
+      <li>$x=\dfrac{1-t^2}{1+t^2},\ y=\dfrac{2t}{1+t^2}$：满足 $x^2+y^2=1$，但取不到点 $(-1,0)$，因为 $x=\dfrac{2}{1+t^2}-1&gt;-1$。</li>
+    </ul>
+    <h3>摆线</h3>
+    <p>半径 $a$ 的圆沿 $x$ 轴无滑动滚动时，圆周上一个定点描出的曲线叫做<strong>摆线</strong>（<span lang="ja">サイクロイド</span>）。以转过的角 $\theta$ 为媒介变数：</p>
+    $$x=a(\theta-\sin\theta),\qquad y=a(1-\cos\theta).$$
+    <p>圆心在 $(a\theta,a)$，定点相对圆心的位置是 $(-a\sin\theta,-a\cos\theta)$，两者相加就得到上式。周期 $2\pi a$，最高点 $y=2a$。</p>
+    <div class="box"><strong>与微分的联系</strong> $\dfrac{dy}{dx}=\dfrac{dy/d\theta}{dx/d\theta}$。例如摆线 $\dfrac{dy}{dx}=\dfrac{\sin\theta}{1-\cos\theta}$。曲线长 $\displaystyle\int\sqrt{\left(\frac{dx}{d\theta}\right)^2+\left(\frac{dy}{d\theta}\right)^2}\,d\theta$，摆线一拱长为 $8a$。积分的详细内容见「微分与积分」专题。</div>
+  </section>
+
+  <section id="polar">
+    <h2>6 极坐标</h2>
+    <p class="jp-sub" lang="ja">極座標（きょくざひょう）・極・始線・偏角</p>
+    <p>取点 $O$（<strong>极</strong> <span lang="ja">極</span>）和从它出发的半直线 $OX$（<strong>始线</strong> <span lang="ja">始線</span>）。点 $P$ 用距离 $r=OP$ 和偏角 $\theta$（<span lang="ja">偏角</span>，从 $OX$ 逆时针量到 $OP$）表示为 $P(r,\theta)$。</p>
+    <figure class="plot">
+      <svg class="chart fig" id="fig-polar" role="img" aria-label="极坐标示意图：点 P 到极 O 的距离 r，偏角 θ，直角坐标为 r cos θ 和 r sin θ"></svg>
+      <figcaption>极 $O$ 取为原点、始线取为 $x$ 轴正方向时，两种坐标可以互换。</figcaption>
+    </figure>
+    <div class="formula-grid">
+      <div>极坐标 → 直角坐标：$x=r\cos\theta,\quad y=r\sin\theta$</div>
+      <div>直角坐标 → 极坐标：$r=\sqrt{x^2+y^2},\quad \cos\theta=\dfrac{x}{r},\ \sin\theta=\dfrac{y}{r}$</div>
+    </div>
+    <p>例：$\left(2,\dfrac{5\pi}{6}\right)$ 的直角坐标是 $(-\sqrt3,1)$。反过来求 $\theta$ 时不要只看 $\tan\theta=\dfrac{y}{x}$，要同时看 $(x,y)$ 所在的象限。</p>
+    <div class="box"><strong>表示不唯一</strong>
+      <ul>
+        <li>$(r,\theta)$ 与 $(r,\theta+2n\pi)$ 是同一点。题目通常限定 $r&gt;0,\ 0\le\theta&lt;2\pi$ 来保证唯一。</li>
+        <li>极方程中允许 $r&lt;0$，约定 $(r,\theta)$ 与 $(-r,\theta+\pi)$ 表示同一点。</li>
+        <li>极 $O$ 的 $r=0$，$\theta$ 可取任意值。</li>
+      </ul>
+    </div>
+    <p>两点 $A(r_1,\theta_1),\ B(r_2,\theta_2)$ 与极 $O$ 组成三角形，直接用余弦定理和面积公式：</p>
+    $$AB^2=r_1^2+r_2^2-2r_1r_2\cos(\theta_2-\theta_1),\qquad S=\frac12 r_1r_2\,|\sin(\theta_2-\theta_1)|.$$
+  </section>
+
+  <section id="polareq">
+    <h2>7 极方程</h2>
+    <p class="jp-sub" lang="ja">極方程式（きょくほうていしき）・カージオイド</p>
+    <p>用 $r,\theta$ 的关系式 $r=f(\theta)$ 或 $F(r,\theta)=0$ 表示的曲线方程，叫做<strong>极方程</strong>。</p>
+    <h3>7.1 直线与圆</h3>
+    <div class="tw"><table>
+      <thead><tr><th>图形</th><th>极方程</th><th>直角坐标</th></tr></thead>
+      <tbody>
+        <tr><td>过极、方向角 $\alpha$ 的直线</td><td>$\theta=\alpha$</td><td>$y=(\tan\alpha)x$（$\alpha\neq\dfrac{\pi}{2}$ 时）</td></tr>
+        <tr><td>过 $A(a,\alpha)$、垂直于 $OA$ 的直线（$a&gt;0$）</td><td>$r\cos(\theta-\alpha)=a$</td><td>$x\cos\alpha+y\sin\alpha=a$</td></tr>
+        <tr><td>垂直于始线的直线</td><td>$r\cos\theta=a$</td><td>$x=a$</td></tr>
+        <tr><td>圆心在极、半径 $a$ 的圆</td><td>$r=a$</td><td>$x^2+y^2=a^2$</td></tr>
+        <tr><td>圆心 $(a,0)$、半径 $a$ 的圆</td><td>$r=2a\cos\theta$</td><td>$(x-a)^2+y^2=a^2$</td></tr>
+        <tr><td>圆心 $(a,\alpha)$、半径 $a$ 的圆</td><td>$r=2a\cos(\theta-\alpha)$</td><td>过极的圆</td></tr>
+      </tbody>
+    </table></div>
+    <h3>7.2 极方程与直角方程互化</h3>
+    <p>核心替换：$r\cos\theta\to x,\ r\sin\theta\to y,\ r^2\to x^2+y^2$。缺少 $r$ 时，两边同乘 $r$ 再替换。</p>
+    <p>例：$r=4\cos\theta$ 两边乘 $r$，得 $r^2=4r\cos\theta$，即 $x^2+y^2=4x$，所以 $(x-2)^2+y^2=4$。</p>
+    <p>例：$r\cos\left(\theta-\dfrac{\pi}{3}\right)=2$ 用加法定理展开，$\dfrac12 r\cos\theta+\dfrac{\sqrt3}{2}r\sin\theta=2$，所以 $x+\sqrt3y=4$。</p>
+    <h3>7.3 二次曲线的极方程</h3>
+    <p>取焦点为极、准线为 $x=d\ (d&gt;0)$。由 $PF=e\cdot PH$，得 $r=e(d-r\cos\theta)$，整理后：</p>
+    $$r=\frac{ed}{1+e\cos\theta}.$$
+    <p>准线在左侧 $x=-d$ 时，分母变为 $1-e\cos\theta$。类型只由 $e$ 决定：$0&lt;e&lt;1$ 椭圆，$e=1$ 抛物线，$e&gt;1$ 双曲线。分母常数项不是 $1$ 时要先化成 $1$，例如 $r=\dfrac{3}{2-\cos\theta}=\dfrac{3/2}{1-\frac12\cos\theta}$，所以 $e=\dfrac12$。</p>
+    <h3>7.4 常见的极曲线</h3>
+    <div class="tw"><table>
+      <thead><tr><th>名称</th><th>极方程</th><th>特点</th></tr></thead>
+      <tbody>
+        <tr><td>心形线（<span lang="ja">カージオイド</span>）</td><td>$r=a(1+\cos\theta)$</td><td>关于始线对称，$r$ 的最大值 $2a$</td></tr>
+        <tr><td>阿基米德螺线（<span lang="ja">アルキメデスの渦巻線</span>）</td><td>$r=a\theta$</td><td>$r$ 与 $\theta$ 成正比</td></tr>
+        <tr><td>双纽线（<span lang="ja">レムニスケート</span>）</td><td>$r^2=a^2\cos2\theta$</td><td>形如 $\infty$，过极</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box good"><strong>解题提示</strong> 求极曲线上 $x$ 或 $y$ 的最大值时，写成 $x=f(\theta)\cos\theta,\ y=f(\theta)\sin\theta$，把它当作以 $\theta$ 为媒介变数的曲线来处理。</div>
+  </section>
+
+  <section id="demo">
+    <h2>8 交互演示：曲线是怎样画出来的</h2>
+    <p class="jp-sub">选择一种模式，拖动滑块或按「播放」，观察动点和数值的变化</p>
+    <div class="explorer">
+      <div class="ex-head" role="group" aria-label="演示模式">
+        <button class="chip" type="button" data-mode="conic" aria-pressed="true">离心率统一</button>
+        <button class="chip" type="button" data-mode="ellipse" aria-pressed="false">椭圆与辅助圆</button>
+        <button class="chip" type="button" data-mode="cycloid" aria-pressed="false">摆线</button>
+        <button class="chip" type="button" data-mode="cardioid" aria-pressed="false">心形线</button>
+        <button class="chip" type="button" data-mode="pcircle" aria-pressed="false">极方程的圆</button>
+        <button class="chip" type="button" data-mode="spiral" aria-pressed="false">螺线</button>
+      </div>
+      <svg id="ex-svg" class="chart" role="img" aria-label="曲线演示图，数值显示在下方"></svg>
+      <div class="ctrl" id="row-a"><label for="r-a" id="lab-a"></label><input id="r-a" type="range"><output id="out-a"></output></div>
+      <div class="ctrl" id="row-b"><label for="r-b" id="lab-b"></label><input id="r-b" type="range"><output id="out-b"></output></div>
+      <div class="ctrl" id="row-t"><label for="r-t" id="lab-t"></label><input id="r-t" type="range"><output id="out-t"></output></div>
+      <button class="chip" id="play" type="button">▶ 播放</button>
+      <div class="read" id="ex-read"></div>
+      <div class="status" id="ex-status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2>9 原创例题（EJU 填空格式）</h2>
+    <p class="jp-sub">以下题目均为原创，并非 EJU 真题。方框 $\B{A}$、$\B{BC}$ 中每个字母对应一位数字。建议先自己做，再点开解答。</p>
+
+    <article class="q" data-ex="例题 1">
+      <div class="q-head"><b>例题 1　椭圆的平移与切线</b><span class="origin">原创</span></div>
+      <p>考虑曲线 $C:\ 4x^2+9y^2-16x+54y+61=0$。</p>
+      <p>(1) $C$ 的方程可化为 $\dfrac{(x-\B{A})^2}{\B{B}}+\dfrac{(y+\B{C})^2}{\B{D}}=1$。</p>
+      <p>(2) $C$ 的焦点是 $(\B{E}\pm\sqrt{\B{F}},\ -\B{G})$，离心率是 $\dfrac{\sqrt{\B{H}}}{\B{I}}$。</p>
+      <p>(3) 直线 $y=x+k$ 与 $C$ 相切时，$k=-\B{J}\pm\sqrt{\B{KL}}$。</p>
+      <p>(4) 直线 $y=x-5$ 被 $C$ 截得的弦长为 $\dfrac{\B{MN}\sqrt{\B{OP}}}{\B{QR}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 9</li><li>C = 3</li><li>D = 4</li><li>E = 2</li><li>F = 5</li><li>G = 3</li><li>H = 5</li><li>I = 3</li><li>J = 5</li><li>KL = 13</li><li>MN = 12</li><li>OP = 26</li><li>QR = 13</li></ul>
+        <p>(1) 配方：$4(x-2)^2+9(y+3)^2=36$，两边除以 $36$ 得 $\dfrac{(x-2)^2}{9}+\dfrac{(y+3)^2}{4}=1$。</p>
+        <p>(2) 中心 $(2,-3)$，$a=3,\ b=2$，$c=\sqrt{9-4}=\sqrt5$。长轴平行于 $x$ 轴，故焦点为 $(2\pm\sqrt5,-3)$，$e=\dfrac{c}{a}=\dfrac{\sqrt5}{3}$。</p>
+        <p>(3) 令 $X=x-2,\ Y=y+3$，则 $\dfrac{X^2}{9}+\dfrac{Y^2}{4}=1$，直线化为 $Y=X+(k+5)$。由切线条件 $n^2=a^2m^2+b^2$：</p>
+        $$(k+5)^2=9\cdot1+4=13,\qquad k=-5\pm\sqrt{13}.$$
+        <p>(4) $k=-5$ 时直线为 $Y=X$（过中心）。代入得 $\dfrac{X^2}{9}+\dfrac{X^2}{4}=1$，$X^2=\dfrac{36}{13}$，$X=\pm\dfrac{6}{\sqrt{13}}$。弦长为</p>
+        $$\sqrt2\cdot\frac{12}{\sqrt{13}}=\frac{12\sqrt{26}}{13}.$$
+      </div>
+    </article>
+
+    <article class="q" data-ex="例题 2">
+      <div class="q-head"><b>例题 2　抛物线的焦点弦</b><span class="origin">原创</span></div>
+      <p>考虑抛物线 $C:\ y^2=8x$。</p>
+      <p>(1) $C$ 的焦点是 $(\B{A},0)$，准线是 $x=-\B{B}$。</p>
+      <p>(2) 过焦点且斜率为 $1$ 的直线与 $C$ 交于两点 $P,Q$。则 $PQ=\B{CD}$。</p>
+      <p>(3) 过焦点且不与 $x$ 轴平行的直线与 $C$ 交于两点，这两点的中点的轨迹是抛物线 $y^2=\B{E}(x-\B{F})$，该抛物线的焦点的 $x$ 坐标是 $\B{G}$。</p>
+      <p>(4) (2) 中 $C$ 在 $P,Q$ 处的两条切线的交点是 $(-\B{H},\ \B{I})$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 2</li><li>CD = 16</li><li>E = 4</li><li>F = 2</li><li>G = 3</li><li>H = 2</li><li>I = 4</li></ul>
+        <p>(1) $4p=8$，$p=2$，焦点 $(2,0)$，准线 $x=-2$。</p>
+        <p>(2) 把 $y=x-2$ 代入：$x^2-12x+4=0$，所以 $x_1+x_2=12$。由焦点弦公式，$PQ=x_1+x_2+2p=12+4=16$。</p>
+        <p>(3) 设直线为 $x=ly+2$（这样可以包含垂直于 $x$ 轴的情形）。代入得 $y^2-8ly-16=0$，所以中点满足 $y=4l$，$x=ly+2=4l^2+2$。消去 $l$：$l=\dfrac{y}{4}$，$x=\dfrac{y^2}{4}+2$，即</p>
+        $$y^2=4(x-2).$$
+        <p>$l$ 取遍全体实数，所以 $y$ 也取遍全体实数，轨迹是整条抛物线。它是 $y^2=4x$（焦点 $(1,0)$）向右平移 $2$，所以焦点是 $(3,0)$。</p>
+        <p>(4) 设 $P(x_1,y_1),\ Q(x_2,y_2)$，切线为 $y_iy=4(x+x_i)$。斜率 $1$ 的直线对应 $l=1$，有 $y_1+y_2=8,\ y_1y_2=-16$。两式相减并用 $x_i=y_i^2/8$，得交点 $y=\dfrac{y_1+y_2}{2}=4$，$x=\dfrac{y_1y_2}{8}=-2$，即 $(-2,4)$。交点在准线上，这对所有焦点弦都成立。</p>
+      </div>
+    </article>
+
+    <article class="q" data-ex="例题 3">
+      <div class="q-head"><b>例题 3　由定义求双曲线</b><span class="origin">原创</span></div>
+      <p>设 $F(5,0),\ F'(-5,0)$，满足 $|PF-PF'|=6$ 的点 $P$ 的轨迹为 $C$。</p>
+      <p>(1) $C$ 的方程是 $\dfrac{x^2}{\B{A}}-\dfrac{y^2}{\B{BC}}=1$，渐近线是 $y=\pm\dfrac{\B{D}}{\B{E}}x$，离心率是 $\dfrac{\B{F}}{\B{G}}$。</p>
+      <p>(2) $C$ 上的点 $P$ 满足 $\angle FPF'=90^\circ$ 时，$\triangle PFF'$ 的面积是 $\B{HI}$，$P$ 的 $y$ 坐标的绝对值是 $\dfrac{\B{JK}}{\B{L}}$。</p>
+      <p>(3) $C$ 在点 $(3\sqrt2,\ 4)$ 处的切线与 $x$ 轴交点的 $x$ 坐标是 $\dfrac{\B{M}\sqrt{\B{N}}}{\B{O}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 9</li><li>BC = 16</li><li>D = 4</li><li>E = 3</li><li>F = 5</li><li>G = 3</li><li>HI = 16</li><li>JK = 16</li><li>L = 5</li><li>M = 3</li><li>N = 2</li><li>O = 2</li></ul>
+        <p>(1) $2a=6,\ c=5$，所以 $a=3,\ b^2=c^2-a^2=16$。方程为 $\dfrac{x^2}{9}-\dfrac{y^2}{16}=1$，渐近线 $y=\pm\dfrac43x$，$e=\dfrac{c}{a}=\dfrac53$。</p>
+        <p>(2) 设 $PF=u,\ PF'=v$。$|u-v|=6$，勾股定理给出 $u^2+v^2=FF'^2=100$。由 $(u-v)^2=u^2+v^2-2uv$ 得 $36=100-2uv$，$uv=32$，面积 $=\dfrac12uv=16$。又面积 $=\dfrac12\cdot10\cdot|y|$，所以 $|y|=\dfrac{16}{5}$。</p>
+        <p>(3) 切线公式：$\dfrac{3\sqrt2\,x}{9}-\dfrac{4y}{16}=1$。令 $y=0$：$x=\dfrac{9}{3\sqrt2}=\dfrac{3\sqrt2}{2}$。</p>
+      </div>
+    </article>
+
+    <article class="q" data-ex="例题 4">
+      <div class="q-head"><b>例题 4　用媒介变数求最大值</b><span class="origin">原创</span></div>
+      <p>点 $P$ 的坐标为 $(3\cos\theta,\ 2\sin\theta)$（$0\le\theta&lt;2\pi$）。</p>
+      <p>(1) $P$ 的轨迹是椭圆 $\dfrac{x^2}{\B{A}}+\dfrac{y^2}{\B{B}}=1$。</p>
+      <p>(2) $x+2y$ 的最大值是 $\B{C}$，此时 $P\left(\dfrac{\B{D}}{\B{E}},\ \dfrac{\B{F}}{\B{G}}\right)$。</p>
+      <p>(3) 内接于该椭圆、各边平行于坐标轴的矩形面积的最大值是 $\B{HI}$。此时第一象限的顶点为 $\left(\dfrac{\B{J}\sqrt{\B{K}}}{\B{L}},\ \sqrt{\B{M}}\right)$。</p>
+      <p>(4) 在 (3) 的顶点处，椭圆切线的斜率是 $-\dfrac{\B{N}}{\B{O}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 9</li><li>B = 4</li><li>C = 5</li><li>D = 9</li><li>E = 5</li><li>F = 8</li><li>G = 5</li><li>HI = 12</li><li>J = 3</li><li>K = 2</li><li>L = 2</li><li>M = 2</li><li>N = 2</li><li>O = 3</li></ul>
+        <p>(1) $\cos\theta=\dfrac{x}{3},\ \sin\theta=\dfrac{y}{2}$，代入 $\cos^2\theta+\sin^2\theta=1$。</p>
+        <p>(2) $x+2y=3\cos\theta+4\sin\theta=5\sin(\theta+\alpha)$，其中 $\cos\alpha=\dfrac45,\ \sin\alpha=\dfrac35$。最大值 $5$ 在 $\cos\theta=\dfrac35,\ \sin\theta=\dfrac45$ 时取到，此时 $P\left(\dfrac95,\dfrac85\right)$。</p>
+        <p>(3) 第一象限的顶点取 $0&lt;\theta&lt;\dfrac{\pi}{2}$，面积 $=4xy=24\sin\theta\cos\theta=12\sin2\theta$，$\theta=\dfrac{\pi}{4}$ 时最大值 $12$。顶点为 $\left(\dfrac{3\sqrt2}{2},\sqrt2\right)$。</p>
+        <p>(4) $\dfrac{dy}{dx}=\dfrac{2\cos\theta}{-3\sin\theta}$，$\theta=\dfrac{\pi}{4}$ 时为 $-\dfrac23$。</p>
+      </div>
+    </article>
+
+    <article class="q" data-ex="例题 5">
+      <div class="q-head"><b>例题 5　极方程的圆与直线</b><span class="origin">原创</span></div>
+      <p>考虑以原点为极、$x$ 轴正方向为始线的极坐标。圆 $C:\ r=4\cos\theta$，直线 $\ell:\ r\cos\left(\theta-\dfrac{\pi}{3}\right)=2$。</p>
+      <p>(1) 直角坐标下，$C$ 是 $(x-\B{A})^2+y^2=\B{B}$，$\ell$ 是 $x+\sqrt{\B{C}}\,y=\B{D}$。</p>
+      <p>(2) $C$ 与 $\ell$ 的交点的极坐标（$r&gt;0,\ 0\le\theta&lt;2\pi$）是 $(\B{E},\ 0)$ 和 $\left(\B{F},\ \dfrac{\pi}{\B{G}}\right)$。</p>
+      <p>(3) $\ell$ 被 $C$ 截得的弦长是 $\B{H}\sqrt{\B{I}}$。</p>
+      <p>(4) 这两个交点与极 $O$ 组成的三角形面积是 $\B{J}\sqrt{\B{K}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 2</li><li>B = 4</li><li>C = 3</li><li>D = 4</li><li>E = 4</li><li>F = 2</li><li>G = 3</li><li>H = 2</li><li>I = 3</li><li>J = 2</li><li>K = 3</li></ul>
+        <p>(1) 由第 7.2 节，$C:\ (x-2)^2+y^2=4$，$\ell:\ x+\sqrt3y=4$。</p>
+        <p>(2) 联立极方程：$4\cos\theta\cos\left(\theta-\dfrac{\pi}{3}\right)=2$。用积化和差，$2\left\{\cos\left(2\theta-\dfrac{\pi}{3}\right)+\dfrac12\right\}=2$，所以 $\cos\left(2\theta-\dfrac{\pi}{3}\right)=\dfrac12$。在 $r=4\cos\theta&gt;0$ 的范围内得 $\theta=0,\ \dfrac{\pi}{3}$，分别对应 $r=4,\ 2$。</p>
+        <p>(3) 圆心 $(2,0)$ 到 $\ell$ 的距离 $\dfrac{|2-4|}{\sqrt{1+3}}=1$，弦长 $=2\sqrt{4-1}=2\sqrt3$。</p>
+        <p>(4) $S=\dfrac12\cdot4\cdot2\cdot\sin\dfrac{\pi}{3}=2\sqrt3$。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <h2>10 练习题</h2>
+    <div class="bar">
+      <p class="jp-sub" style="margin:0">共 17 题，均为原创，点击按钮查看答案和简要解析。</p>
+      <button class="toggle-ans" id="toggle-all" type="button" style="margin:0">显示全部答案</button>
+    </div>
+
+    <div class="q" data-p="1"><div class="q-head"><b>1</b>抛物线</div>
+      <p>求抛物线 $x^2=-12y$ 的焦点和准线。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$4p=-12$，$p=-3$。焦点 $\mathbf{(0,-3)}$，准线 $\mathbf{y=3}$。</p></div></div>
+
+    <div class="q" data-p="2"><div class="q-head"><b>2</b>椭圆</div>
+      <p>求椭圆 $9x^2+25y^2=225$ 的焦点、长轴长、短轴长和离心率。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\dfrac{x^2}{25}+\dfrac{y^2}{9}=1$，$c=\sqrt{25-9}=4$。焦点 $\mathbf{(\pm4,0)}$，长轴 $\mathbf{10}$，短轴 $\mathbf{6}$，$e=\mathbf{\dfrac45}$。</p></div></div>
+
+    <div class="q" data-p="3"><div class="q-head"><b>3</b>双曲线</div>
+      <p>求双曲线 $16x^2-9y^2=-144$ 的焦点、顶点和渐近线。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>两边除以 $144$：$\dfrac{x^2}{9}-\dfrac{y^2}{16}=-1$，$c=\sqrt{9+16}=5$。焦点 $\mathbf{(0,\pm5)}$，顶点 $\mathbf{(0,\pm4)}$，渐近线 $\mathbf{y=\pm\dfrac43x}$。</p></div></div>
+
+    <div class="q" data-p="4"><div class="q-head"><b>4</b>由定义求方程</div>
+      <p>求焦点为 $(\pm2,0)$ 且过点 $(2,3)$ 的椭圆的方程。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>到两焦点的距离为 $3$ 和 $\sqrt{4^2+3^2}=5$，所以 $2a=8$，$a=4$，$b^2=16-4=12$。方程为 $\mathbf{\dfrac{x^2}{16}+\dfrac{y^2}{12}=1}$。</p></div></div>
+
+    <div class="q" data-p="5"><div class="q-head"><b>5</b>平移</div>
+      <p>求曲线 $y^2-4y-4x+8=0$ 的顶点、焦点和准线。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$(y-2)^2=4(x-1)$，由 $y^2=4x$ 平移而来。顶点 $\mathbf{(1,2)}$，焦点 $\mathbf{(2,2)}$，准线 $\mathbf{x=0}$。</p></div></div>
+
+    <div class="q" data-p="6"><div class="q-head"><b>6</b>切线</div>
+      <p>求椭圆 $\dfrac{x^2}{8}+\dfrac{y^2}{2}=1$ 在点 $(2,1)$ 处的切线。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$\dfrac{2x}{8}+\dfrac{y}{2}=1$，整理得 $\mathbf{x+2y=4}$。</p></div></div>
+
+    <div class="q" data-p="7"><div class="q-head"><b>7</b>共有点</div>
+      <p>直线 $y=x+k$ 与双曲线 $\dfrac{x^2}{4}-y^2=1$ 相切时求 $k$；并求有两个共有点时 $k$ 的范围。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>代入得 $3x^2+8kx+4k^2+4=0$，$\dfrac{D}{4}=16k^2-3(4k^2+4)=4k^2-12$。相切：$\mathbf{k=\pm\sqrt3}$。两个共有点：$\mathbf{|k|&gt;\sqrt3}$。</p></div></div>
+
+    <div class="q" data-p="8"><div class="q-head"><b>8</b>离心率与轨迹</div>
+      <p>点 $P$ 到 $F(1,0)$ 的距离与到直线 $x=4$ 的距离之比为 $1:2$。求 $P$ 的轨迹。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$2\sqrt{(x-1)^2+y^2}=|x-4|$，平方整理得 $3x^2+4y^2=12$，即椭圆 $\mathbf{\dfrac{x^2}{4}+\dfrac{y^2}{3}=1}$。（$e=\dfrac12$，与定义一致。）</p></div></div>
+
+    <div class="q" data-p="9"><div class="q-head"><b>9</b>消去媒介变数</div>
+      <p>曲线 $x=t^2-2t,\ y=t-1$ 用 $x,y$ 表示是什么？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$t=y+1$，代入得 $x=(y+1)^2-2(y+1)$，即 $\mathbf{x=y^2-1}$。这是顶点 $(-1,0)$ 的抛物线；$y$ 取全体实数，是整条曲线。</p></div></div>
+
+    <div class="q" data-p="10"><div class="q-head"><b>10</b>注意范围</div>
+      <p>曲线 $x=\cos\theta+\sin\theta,\ y=\sin\theta\cos\theta$ 用 $x,y$ 表示，并写出 $x$ 的范围。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$x^2=1+2\sin\theta\cos\theta=1+2y$，所以 $\mathbf{y=\dfrac{x^2-1}{2}}$。又 $x=\sqrt2\sin\left(\theta+\dfrac{\pi}{4}\right)$，所以 $\mathbf{-\sqrt2\le x\le\sqrt2}$，只是抛物线的一段。</p></div></div>
+
+    <div class="q" data-p="11"><div class="q-head"><b>11</b>双曲线的媒介变数</div>
+      <p>$t&gt;0$ 时，曲线 $x=t+\dfrac1t,\ y=t-\dfrac1t$ 用 $x,y$ 表示，并写出 $x$ 的范围。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$x^2-y^2=4$，所以方程是 $\mathbf{x^2-y^2=4}$。相加平均不等式给出 $\mathbf{x\ge2}$（$t=1$ 时取等号），只是右侧一支。</p></div></div>
+
+    <div class="q" data-p="12"><div class="q-head"><b>12</b>摆线</div>
+      <p>摆线 $x=2(t-\sin t),\ y=2(1-\cos t)$（$0\le t\le2\pi$）。求最高点的坐标、$t=\dfrac{\pi}{2}$ 处切线的斜率和这一拱的长度。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>最高点在 $t=\pi$：$\mathbf{(2\pi,4)}$。$\dfrac{dy}{dx}=\dfrac{\sin t}{1-\cos t}$，$t=\dfrac{\pi}{2}$ 时斜率为 $\mathbf{1}$。速度 $\sqrt{x'^2+y'^2}=4\sin\dfrac{t}{2}$，$\displaystyle\int_0^{2\pi}4\sin\frac{t}{2}\,dt=\mathbf{16}$。</p></div></div>
+
+    <div class="q" data-p="13"><div class="q-head"><b>13</b>坐标互换</div>
+      <p>(1) 把极坐标 $\left(2,\dfrac{5\pi}{6}\right)$ 化为直角坐标。 (2) 把直角坐标 $(1,-\sqrt3)$ 化为极坐标（$r&gt;0,\ 0\le\theta&lt;2\pi$）。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>(1) $\mathbf{(-\sqrt3,1)}$。(2) $r=2$，点在第四象限，$\mathbf{\left(2,\dfrac{5\pi}{3}\right)}$。</p></div></div>
+
+    <div class="q" data-p="14"><div class="q-head"><b>14</b>极方程化直角方程</div>
+      <p>把 $r=2(\cos\theta+\sin\theta)$ 化为直角方程，并说明是什么图形。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>两边乘 $r$：$x^2+y^2=2x+2y$，即 $\mathbf{(x-1)^2+(y-1)^2=2}$。这是圆心 $(1,1)$、半径 $\sqrt2$ 的圆。</p></div></div>
+
+    <div class="q" data-p="15"><div class="q-head"><b>15</b>极坐标与三角形</div>
+      <p>极坐标下 $A\left(3,\dfrac{\pi}{6}\right),\ B\left(4,\dfrac{\pi}{2}\right)$。求 $AB$ 的长和 $\triangle OAB$ 的面积。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>夹角 $\dfrac{\pi}{3}$。$AB^2=9+16-2\cdot3\cdot4\cdot\dfrac12=13$，$AB=\mathbf{\sqrt{13}}$。$S=\dfrac12\cdot3\cdot4\cdot\dfrac{\sqrt3}{2}=\mathbf{3\sqrt3}$。</p></div></div>
+
+    <div class="q" data-p="16"><div class="q-head"><b>16</b>二次曲线的极方程</div>
+      <p>极方程 $r=\dfrac{3}{2-\cos\theta}$ 表示什么曲线？求离心率和直角方程。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$r=\dfrac{3/2}{1-\frac12\cos\theta}$，$e=\mathbf{\dfrac12}$，是椭圆。由 $2r=3+x$ 平方：$4(x^2+y^2)=(x+3)^2$，整理得 $\mathbf{\dfrac{(x-1)^2}{4}+\dfrac{y^2}{3}=1}$。</p></div></div>
+
+    <div class="q" data-p="17"><div class="q-head"><b>17</b>心形线</div>
+      <p>心形线 $r=1+\cos\theta$（$0\le\theta&lt;2\pi$）上点的 $y$ 坐标的最大值是多少？此时 $\theta$ 是多少？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p>$y=(1+\cos\theta)\sin\theta$，$\dfrac{dy}{d\theta}=2\cos^2\theta+\cos\theta-1=(2\cos\theta-1)(\cos\theta+1)$。$\cos\theta=\dfrac12$ 时最大，所以 $\mathbf{\theta=\dfrac{\pi}{3}}$，$y=\mathbf{\dfrac{3\sqrt3}{4}}$。</p></div></div>
+  </section>
+
+  <section id="terms">
+    <h2>11 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页依据 JASSO 2026 年度起适用的数学シラバス中「式と曲線」项目的内容范围编写。例题和练习均为原创，并非 EJU 真题；所有答案已用 SymPy 计算验证。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['二次曲线', [
+      ['2次曲線', 'にじきょくせん', '二次曲线'], ['放物線', 'ほうぶつせん', '抛物线'], ['楕円', 'だえん', '椭圆'],
+      ['双曲線', 'そうきょくせん', '双曲线'], ['焦点', 'しょうてん', '焦点'], ['準線', 'じゅんせん', '准线'],
+      ['頂点', 'ちょうてん', '顶点'], ['軸', 'じく', '轴'], ['中心', 'ちゅうしん', '中心'],
+      ['長軸', 'ちょうじく', '长轴'], ['短軸', 'たんじく', '短轴'], ['漸近線', 'ぜんきんせん', '渐近线'],
+      ['直角双曲線', 'ちょっかくそうきょくせん', '直角双曲线（等轴双曲线）'], ['離心率', 'りしんりつ', '离心率'],
+      ['標準形', 'ひょうじゅんけい', '标准形'], ['平行移動', 'へいこういどう', '平移'], ['軌跡', 'きせき', '轨迹']
+    ]],
+    ['直线与曲线', [
+      ['接線', 'せっせん', '切线'], ['接点', 'せってん', '切点'], ['接する', 'せっする', '相切'],
+      ['共有点', 'きょうゆうてん', '共有点（公共点）'], ['交点', 'こうてん', '交点'], ['判別式', 'はんべつしき', '判别式'],
+      ['弦', 'げん', '弦'], ['中点', 'ちゅうてん', '中点'], ['解と係数の関係', 'かいとけいすうのかんけい', '根与系数的关系']
+    ]],
+    ['媒介变数', [
+      ['媒介変数', 'ばいかいへんすう', '媒介变数（参数）'], ['媒介変数表示', 'ばいかいへんすうひょうじ', '参数表示'],
+      ['消去する', 'しょうきょする', '消去'], ['サイクロイド', 'サイクロイド', '摆线'],
+      ['曲線の長さ', 'きょくせんのながさ', '曲线的长度（弧长）'], ['値域', 'ちいき', '值域']
+    ]],
+    ['极坐标', [
+      ['極座標', 'きょくざひょう', '极坐标'], ['直交座標', 'ちょっこうざひょう', '直角坐标'], ['極', 'きょく', '极（极点）'],
+      ['始線', 'しせん', '始线（极轴）'], ['偏角', 'へんかく', '偏角（极角）'], ['動径', 'どうけい', '动径'],
+      ['極方程式', 'きょくほうていしき', '极方程'], ['カージオイド', 'カージオイド', '心形线'],
+      ['アルキメデスの渦巻線', 'アルキメデスのうずまきせん', '阿基米德螺线'], ['レムニスケート', 'レムニスケート', '双纽线']
+    ]]
+  ];
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja">' + t[0] + '</td><td class="kana" lang="ja">' + t[1] + '</td><td>' + t[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = $('term-count');
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 答案按钮 ---------- */
+  function setAns(btn, open) {
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '隐藏答案' : '显示答案';
+    btn.nextElementSibling.hidden = !open;
+  }
+  var allBtn = $('toggle-all');
+  document.addEventListener('click', function (e) {
+    if (e.target !== allBtn && e.target.classList && e.target.classList.contains('toggle-ans')) {
+      setAns(e.target, e.target.getAttribute('aria-expanded') !== 'true');
+    }
+  });
+  allBtn.addEventListener('click', function () {
+    var btns = document.querySelectorAll('#practice .q .toggle-ans');
+    var open = allBtn.textContent.indexOf('显示') === 0;
+    btns.forEach(function (b) { setAns(b, open); });
+    allBtn.textContent = open ? '隐藏全部答案' : '显示全部答案';
+  });
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        tocLinks.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('on', on);
+          if (on && window.innerWidth <= 900 && a.parentNode.parentNode.scrollTo) {
+            a.parentNode.parentNode.scrollTo({ left: a.offsetLeft - 40 });
+          }
+        });
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ---------- 绘图工具 ---------- */
+  function fmt(v) {
+    var s = (Math.round(v * 100) / 100).toFixed(2).replace(/\.?0+$/, '');
+    return s === '-0' ? '0' : s;
+  }
+  function Plot(xmin, xmax, ymin, ymax, step) {
+    var U = 640 / (xmax - xmin), H = (ymax - ymin) * U, out = [], self = this;
+    this.viewBox = '0 0 640 ' + H;
+    this.sx = function (x) { return (x - xmin) * U; };
+    this.sy = function (y) { return (ymax - y) * U; };
+    this.U = U;
+    this.add = function (s) { out.push(s); return self; };
+    this.line = function (a, b, c, d, cls) {
+      return self.add('<line class="' + cls + '" x1="' + self.sx(a) + '" y1="' + self.sy(b) + '" x2="' + self.sx(c) + '" y2="' + self.sy(d) + '"/>');
+    };
+    this.text = function (x, y, s, cls, dx, dy) {
+      return self.add('<text class="' + (cls || 'lbl') + '" x="' + (self.sx(x) + (dx || 0)) + '" y="' + (self.sy(y) + (dy || 0)) + '">' + s + '</text>');
+    };
+    this.dot = function (x, y, cls, rad) {
+      return self.add('<circle class="' + (cls || 'dot') + '" cx="' + self.sx(x) + '" cy="' + self.sy(y) + '" r="' + (rad || 5) + '"/>');
+    };
+    this.circle = function (x, y, r, cls) {
+      return self.add('<circle class="' + cls + '" cx="' + self.sx(x) + '" cy="' + self.sy(y) + '" r="' + r * U + '"/>');
+    };
+    /* 超出 limit 的点断开，这样双曲线两支不会被连起来 */
+    this.curve = function (fn, t0, t1, cls, n) {
+      var d = '', pen = false, N = n || 480, limit = 2 * (xmax - xmin);
+      for (var i = 0; i <= N; i++) {
+        var p = fn(t0 + (t1 - t0) * i / N);
+        if (!p || !isFinite(p[0]) || !isFinite(p[1]) || Math.abs(p[0]) > limit || Math.abs(p[1]) > limit) { pen = false; continue; }
+        d += (pen ? 'L' : 'M') + self.sx(p[0]).toFixed(1) + ' ' + self.sy(p[1]).toFixed(1);
+        pen = true;
+      }
+      return self.add('<path class="' + cls + '" d="' + d + '"/>');
+    };
+    var i;
+    for (i = Math.ceil(xmin / step) * step; i <= xmax; i += step) self.line(i, ymin, i, ymax, 'grid');
+    for (i = Math.ceil(ymin / step) * step; i <= ymax; i += step) self.line(xmin, i, xmax, i, 'grid');
+    self.line(xmin, 0, xmax, 0, 'axis');
+    self.line(0, ymin, 0, ymax, 'axis');
+    this.mount = function (svg) {
+      svg.setAttribute('viewBox', self.viewBox);
+      svg.innerHTML = out.join('');
+    };
+  }
+
+  /* ---------- 静态插图 ---------- */
+  (function () {
+    var p = new Plot(-5, 8, -5, 5, 1), a = 1.5;
+    p.line(-a, -5, -a, 5, 'sm');
+    p.curve(function (t) { return [t * t / (4 * a), t]; }, -6, 6, 's1');
+    var py = 3.6, px = py * py / (4 * a);
+    p.line(a, 0, px, py, 's2').line(px, py, -a, py, 's2');
+    p.dot(a, 0, 'dot2').dot(px, py).dot(-a, py, 'dot3');
+    p.text(a, 0, 'F', 'lbl', 6, 18).text(px, py, 'P', 'lbl', 8, -6).text(-a, py, 'H', 'lbl', -18, -6).text(-a, -4.4, '准线', 'lbl', 6, 0);
+    p.mount($('fig-parabola'));
+
+    var q = new Plot(-5.5, 5.5, -3.4, 3.4, 1), c = Math.sqrt(16 - 6.25);
+    q.curve(function (t) { return [4 * Math.cos(t), 2.5 * Math.sin(t)]; }, 0, 2 * Math.PI, 's1');
+    var X = 2.2, Y = 2.5 * Math.sqrt(1 - X * X / 16);
+    q.line(c, 0, X, Y, 's2').line(-c, 0, X, Y, 's2').line(0, 0, 0, 2.5, 'sm').line(0, 2.5, c, 0, 'sm');
+    q.dot(c, 0, 'dot2').dot(-c, 0, 'dot2').dot(X, Y).dot(4, 0, 'dot3').dot(0, 2.5, 'dot3');
+    q.text(c, 0, 'F', 'lbl', -4, 20).text(-c, 0, "F'", 'lbl', -8, 20).text(X, Y, 'P', 'lbl', 8, -6).text(4, 0, 'a', 'lbl', 8, -6).text(0, 2.5, 'b', 'lbl', -14, -6);
+    q.mount($('fig-ellipse'));
+
+    var h = new Plot(-6.5, 6.5, -4, 4, 1), A = 2, B = 1.5, C = 2.5;
+    [1, -1].forEach(function (s) {
+      h.curve(function (t) { return [s * A * Math.cosh(t), B * Math.sinh(t)]; }, -2.5, 2.5, 's1');
+    });
+    h.line(-6.5, -6.5 * B / A, 6.5, 6.5 * B / A, 's3').line(-6.5, 6.5 * B / A, 6.5, -6.5 * B / A, 's3');
+    h.add('<rect class="sm" x="' + h.sx(-A) + '" y="' + h.sy(B) + '" width="' + 2 * A * h.U + '" height="' + 2 * B * h.U + '"/>');
+    h.dot(C, 0, 'dot2').dot(-C, 0, 'dot2').dot(A, 0, 'dot3').dot(-A, 0, 'dot3');
+    h.text(C, 0, 'F', 'lbl', 6, 18).text(-C, 0, "F'", 'lbl', -16, 18);
+    h.mount($('fig-hyperbola'));
+
+    var o = new Plot(-1, 5, -0.8, 3.6, 1), R = 3.6, T = Math.PI / 4 + 0.1, ox = R * Math.cos(T), oy = R * Math.sin(T);
+    o.line(0, 0, ox, oy, 's1').line(ox, oy, ox, 0, 'sm');
+    o.curve(function (t) { return [0.8 * Math.cos(t), 0.8 * Math.sin(t)]; }, 0, T, 's2', 40);
+    o.dot(0, 0, 'dot2').dot(ox, oy);
+    o.text(0, 0, 'O（极）', 'lbl', -22, 22).text(ox, oy, 'P(r, θ)', 'lbl', 10, -4).text(ox / 2, oy / 2, 'r', 'lbl', -14, -8)
+      .text(0.85, 0.3, 'θ').text(4.4, 0, '始线', 'lbl', 0, -8).text(ox, 0, 'r cos θ', 'tick', -22, 18).text(ox, oy / 2, 'r sin θ', 'tick', 8, 4);
+    o.mount($('fig-polar'));
+  })();
+
+  /* ---------- 交互演示 ---------- */
+  var TAU = 2 * Math.PI, DEG = Math.PI / 180;
+  var MODES = {
+    conic:    { a: ['离心率 e', .1, 2, .05, .6], b: ['准线 d', .5, 4, .1, 3], t: ['θ（度）', 0, 360, 1, 60] },
+    ellipse:  { a: ['a', 1, 6, .1, 4], b: ['b', 1, 4, .1, 2.5], t: ['θ（度）', 0, 360, 1, 40] },
+    cycloid:  { a: ['半径 a', .5, 1.5, .05, 1], t: ['θ（度）', 0, 720, 1, 120] },
+    cardioid: { a: ['a', .5, 2.5, .05, 2], t: ['θ（度）', 0, 360, 1, 60] },
+    pcircle:  { a: ['a', .5, 2.5, .05, 2], t: ['θ（度）', 0, 180, 1, 60] },
+    spiral:   { a: ['a', .5, 2.5, .05, 2], t: ['θ（度）', 0, 360, 1, 180] }
+  };
+  var mode = 'conic', svg = $('ex-svg');
+  function setRow(key, cfg) {
+    var row = $('row-' + key);
+    row.hidden = !cfg;
+    if (!cfg) return;
+    var r = $('r-' + key);
+    $('lab-' + key).textContent = cfg[0];
+    r.min = cfg[1]; r.max = cfg[2]; r.step = cfg[3]; r.value = cfg[4];
+  }
+  function setMode(m) {
+    mode = m;
+    setRow('a', MODES[m].a); setRow('b', MODES[m].b); setRow('t', MODES[m].t);
+    document.querySelectorAll('[data-mode]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.mode === m); });
+    draw();
+  }
+  function read(items) {
+    $('ex-read').innerHTML = items.map(function (it) { return '<div><small>' + it[0] + '</small>' + it[1] + '</div>'; }).join('');
+  }
+  function polarGrid(p, rmax) {
+    for (var r = 1; r <= rmax; r++) p.circle(0, 0, r, 'sm');
+  }
+
+  function draw() {
+    var a = +$('r-a').value, b = +$('r-b').value, deg = +$('r-t').value, th = deg * DEG;
+    $('out-a').textContent = fmt(a); $('out-b').textContent = fmt(b); $('out-t').textContent = deg + '°';
+    var p, st;
+    if (mode === 'conic') {
+      var e = a, d = b, den = 1 + e * Math.cos(th);
+      p = new Plot(-10, 10, -6.5, 6.5, 1);
+      p.line(d, -6.5, d, 6.5, 'sm').text(d, -6, '准线', 'lbl', 6, 0);
+      p.curve(function (t) {
+        var de = 1 + e * Math.cos(t);
+        if (Math.abs(de) < 1e-3) return null;
+        var r = e * d / de;
+        return [r * Math.cos(t), r * Math.sin(t)];
+      }, 0, TAU, 's1', 1440);
+      p.dot(0, 0, 'dot2').text(0, 0, 'F', 'lbl', -14, 18);
+      var type = e < .999 ? '椭圆' : (e > 1.001 ? '双曲线' : '抛物线');
+      if (Math.abs(den) < .02) {
+        read([['类型', type], ['r', '趋于无穷']]);
+        st = '此方向上分母 1+e cos θ 接近 0，点跑向无穷远：θ 对应' + (e > 1.001 ? '渐近线方向' : '抛物线的开口方向') + '。';
+      } else {
+        var r = e * d / den, x = r * Math.cos(th), y = r * Math.sin(th), pf = Math.abs(r), ph = Math.abs(d - x);
+        p.line(0, 0, x, y, 's2').line(x, y, d, y, 's2').dot(x, y).dot(d, y, 'dot3');
+        p.text(x, y, 'P', 'lbl', 8, -6).text(d, y, 'H', 'lbl', 8, -6);
+        read([['类型', type], ['r', fmt(r)], ['PF', fmt(pf)], ['PH', fmt(ph)], ['PF ÷ PH', fmt(pf / ph)]]);
+        st = '无论 θ 取何值，PF ÷ PH 都等于 e = ' + fmt(e) + '。';
+        if (r < 0) st += ' 这里 r 为负，P 落在双曲线的另一支上。';
+        if (Math.abs(x) > 10 || Math.abs(y) > 6.5) st += ' P 已超出视窗，可减小 d。';
+      }
+    } else if (mode === 'ellipse') {
+      p = new Plot(-7, 7, -4.8, 4.8, 1);
+      var ca = Math.cos(th), sa = Math.sin(th), ex = a * ca, ey = b * sa;
+      p.circle(0, 0, a, 'sm').circle(0, 0, b, 'sm');
+      p.curve(function (t) { return [a * Math.cos(t), b * Math.sin(t)]; }, 0, TAU, 's1');
+      p.line(0, 0, Math.max(a, b) * ca, Math.max(a, b) * sa, 'sm');
+      p.line(ex, a * sa, ex, ey, 's2').line(b * ca, ey, ex, ey, 's2').line(0, 0, ex, ey, 's3');
+      p.dot(a * ca, a * sa, 'dot3').dot(b * ca, b * sa, 'dot3').dot(ex, ey);
+      p.text(ex, ey, 'P', 'lbl', 8, -6);
+      var ang = Math.atan2(ey, ex) / DEG; if (ang < 0) ang += 360;
+      read([['P 的坐标', '(' + fmt(ex) + ', ' + fmt(ey) + ')'], ['媒介变数 θ', deg + '°'], ['OP 的方向角', fmt(ang) + '°']]);
+      st = 'P 的 x 坐标取自半径 a 的圆，y 坐标取自半径 b 的圆。a ≠ b 时，OP 的方向角一般不等于 θ。';
+    } else if (mode === 'cycloid') {
+      p = new Plot(-.5, 19.5, -.8, 3.6, 1);
+      p.curve(function (t) { return [a * (t - Math.sin(t)), a * (1 - Math.cos(t))]; }, 0, 4 * Math.PI, 'sm', 400);
+      p.curve(function (t) { return [a * (t - Math.sin(t)), a * (1 - Math.cos(t))]; }, 0, Math.max(th, .001), 's1', 400);
+      var cx = a * th, px = a * (th - Math.sin(th)), py = a * (1 - Math.cos(th));
+      p.circle(cx, a, a, 'disc').line(cx, a, px, py, 's2').dot(cx, a, 'dot3').dot(px, py);
+      p.text(px, py, 'P', 'lbl', 8, -6);
+      var dn = 1 - Math.cos(th);
+      read([['P 的坐标', '(' + fmt(px) + ', ' + fmt(py) + ')'], ['圆心', '(' + fmt(cx) + ', ' + fmt(a) + ')'], ['切线斜率 dy/dx', dn < 1e-6 ? '不存在（尖点）' : fmt(Math.sin(th) / dn)]]);
+      st = '圆无滑动滚动，所以滚过的距离 aθ 等于圆心的 x 坐标。最高点 y = 2a = ' + fmt(2 * a) + '，周期 2πa ≈ ' + fmt(TAU * a) + '。';
+    } else {
+      p = new Plot(-8, 8, -5.5, 5.5, 1);
+      polarGrid(p, 5);
+      var fn = mode === 'cardioid' ? function (t) { return a * (1 + Math.cos(t)); }
+        : mode === 'pcircle' ? function (t) { return 2 * a * Math.cos(t); }
+        : function (t) { return a * t / Math.PI; };
+      var end = mode === 'pcircle' ? Math.PI : TAU;
+      var at = function (t) { var r = fn(t); return [r * Math.cos(t), r * Math.sin(t)]; };
+      p.curve(at, 0, end, 's3');
+      p.curve(at, 0, Math.max(th, .001), 's1');
+      var rr = fn(th), q = at(th);
+      p.line(0, 0, 6 * Math.cos(th), 6 * Math.sin(th), 'sm');
+      p.line(0, 0, q[0], q[1], 's2').dot(q[0], q[1]).dot(0, 0, 'dot2');
+      p.text(q[0], q[1], 'P', 'lbl', 8, -6);
+      read([['r', fmt(rr)], ['θ', deg + '°'], ['直角坐标 (x, y)', '(' + fmt(q[0]) + ', ' + fmt(q[1]) + ')']]);
+      st = mode === 'cardioid' ? '心形线 r = a(1 + cos θ)：θ = 0 时 r 最大为 2a，θ = 180° 时回到极。'
+        : mode === 'pcircle' ? '圆 r = 2a cos θ：θ 超过 90° 后 r &lt; 0，点落在反方向上，所以 θ 从 0° 到 180° 正好画完一圈。'
+        : '螺线 r = aθ/π：θ 每增加 360°，r 增加 2a，这里只画一圈。';
+    }
+    p.mount(svg);
+    $('ex-status').innerHTML = st;
+  }
+  document.querySelectorAll('[data-mode]').forEach(function (btn) {
+    btn.addEventListener('click', function () { stop(); setMode(btn.dataset.mode); });
+  });
+  ['r-a', 'r-b', 'r-t'].forEach(function (id) { $(id).addEventListener('input', draw); });
+
+  var raf = null, playBtn = $('play');
+  function stop() { if (raf) cancelAnimationFrame(raf); raf = null; playBtn.textContent = '▶ 播放'; }
+  function tick() {
+    var r = $('r-t'), v = +r.value + 1;
+    r.value = v > +r.max ? 0 : v;
+    draw();
+    raf = requestAnimationFrame(tick);
+  }
+  playBtn.addEventListener('click', function () {
+    if (raf) { stop(); return; }
+    playBtn.textContent = '❚❚ 暂停';
+    raf = requestAnimationFrame(tick);
+  });
+  setMode('conic');
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['status', 'read'],
+      throwOnError: false
+    });
+  }
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

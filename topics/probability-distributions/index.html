@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 13 概率分布</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：随机变量与概率分布、期望方差标准差、协方差与相关系数、变换 aX+b、随机变量的和与二项分布，含原创例题、练习题、交互演示和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 104px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 34px; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+.back { margin: 0 0 14px; font-size: 15px; }
+.back a { color: #c5d3ef; }
+.legend i.sw { width: 12px; height: 12px; border: 0; border-radius: 3px; }
+.legend i.ring { background: var(--ink); border-radius: 50%; box-shadow: 0 0 0 2px var(--surface); }
+svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer-events: none; }
+#b-svg .tick, #b-svg .lbl { font-size: 15px; }
+#b-sim { margin-top: 2px; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <p class="back"><a href="../../">← 目录</a></p>
+      <p class="eyebrow">EJU 数学コース2 · 13 確率分布</p>
+      <h1>概率分布</h1>
+      <p class="lead">把“随机的结果”变成数：先写出概率分布，再用期望、方差、标准差描述它；用协方差、相关系数描述两个变量的关系；最后掌握线性变换和求和这两个最省时间的工具。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$V(X)=E(X^2)-\{E(X)\}^2$$
+      $$E(aX+b)=aE(X)+b$$
+      $$r=\frac{\mathrm{Cov}(X,Y)}{\sigma(X)\,\sigma(Y)}$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#rv">1 随机变量与分布</a></li>
+        <li><a href="#moments">2 期望·方差·标准差</a></li>
+        <li><a href="#cov">3 协方差·相关系数</a></li>
+        <li><a href="#linear">4 变换 aX+b</a></li>
+        <li><a href="#sum">5 和与期望</a></li>
+        <li><a href="#examples">6 原创例题</a></li>
+        <li><a href="#practice">7 练习题</a></li>
+        <li><a href="#terms">8 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box warn" style="margin-top:28px">
+    <p><strong>符号提醒：</strong>日本教材常用 $E(X)$ 表示期望，$V(X)$ 表示方差，$\sigma(X)$ 表示标准差，$B(n,p)$ 表示二项分布；协方差写作 $\mathrm{Cov}(X,Y)$，相关系数常写作 $r$。</p>
+  </div>
+
+  <section id="rv">
+    <h2>1 随机变量与概率分布</h2>
+    <p class="jp-sub" lang="ja">確率変数と確率分布</p>
+    <p>随试验结果而取不同数值、且取每个值的概率都确定的变量，叫<strong>随机变量</strong>（<span lang="ja">確率変数</span>）。把它的取值与对应概率列成表，就是<strong>概率分布</strong>（<span lang="ja">確率分布</span>）。</p>
+    <div class="tw"><table class="sign">
+      <thead><tr><th>$X$</th><td>$x_1$</td><td>$x_2$</td><td>$\cdots$</td><td>$x_n$</td><td>计</td></tr></thead>
+      <tbody><tr><th>$P$</th><td>$p_1$</td><td>$p_2$</td><td>$\cdots$</td><td>$p_n$</td><td>$1$</td></tr></tbody>
+    </table></div>
+    <p>概率分布必须同时满足两条：</p>
+    $$p_i\ge 0,\qquad p_1+p_2+\cdots+p_n=1.$$
+    <p>$P(X=x_i)=p_i$ 表示“$X$ 取 $x_i$ 的概率”，$P(a\le X\le b)$ 就是落在该范围内的 $p_i$ 之和。</p>
+    <div class="box good">
+      <p><strong>例：</strong>投两枚硬币，$X$ 为正面朝上的枚数。四种等可能结果中，$X=0,1,2$ 分别有 $1,2,1$ 种，所以 $P(X=0)=\dfrac14$，$P(X=1)=\dfrac12$，$P(X=2)=\dfrac14$，合计为 $1$。</p>
+    </div>
+    <div class="box warn">
+      <p><strong>易错：</strong>写完分布表先检查概率和是否为 $1$。这一步几乎不花时间，却能查出大多数漏数和重复计数。</p>
+    </div>
+  </section>
+
+  <section id="moments">
+    <h2>2 期望、方差、标准差</h2>
+    <p class="jp-sub" lang="ja">期待値・分散・標準偏差</p>
+    <p>记 $m=E(X)$。<strong>期望</strong>描述分布的中心，<strong>方差</strong>和<strong>标准差</strong>描述分布围绕中心的离散程度。</p>
+    <div class="formula-grid">
+      <div>$$E(X)=\sum_{i=1}^{n}x_ip_i$$</div>
+      <div>$$V(X)=\sum_{i=1}^{n}(x_i-m)^2p_i$$</div>
+      <div>$$\sigma(X)=\sqrt{V(X)}$$</div>
+    </div>
+    <p>展开方差的定义，可得到实际计算最常用的公式：</p>
+    $$V(X)=E(X^2)-\{E(X)\}^2.$$
+    <p>其中 $E(X^2)=\sum x_i^2p_i$。注意 $E(X^2)$ 一般<strong>不等于</strong> $\{E(X)\}^2$；两者之差正是方差，所以恒有 $E(X^2)\ge\{E(X)\}^2$。</p>
+    <div class="box good">
+      <p><strong>例（接第 1 节两枚硬币）：</strong>$E(X)=0\cdot\dfrac14+1\cdot\dfrac12+2\cdot\dfrac14=1$，$E(X^2)=1\cdot\dfrac12+4\cdot\dfrac14=\dfrac32$，于是 $V(X)=\dfrac32-1^2=\dfrac12$，$\sigma(X)=\dfrac{\sqrt2}{2}$。</p>
+    </div>
+    <div class="box">
+      <p><strong>常用结果：</strong>一枚骰子的点数 $D$：$E(D)=\dfrac72$，$V(D)=\dfrac{35}{12}$。建议能当场推出：$E(D^2)=\dfrac{91}{6}$，$\dfrac{91}{6}-\dfrac{49}{4}=\dfrac{35}{12}$。</p>
+    </div>
+    <p>标准差与 $X$ 的单位相同，方差的单位是其平方；所以题目问“离散程度有多大”时，通常用标准差作答。</p>
+  </section>
+
+  <section id="cov">
+    <h2>3 协方差与相关系数</h2>
+    <p class="jp-sub" lang="ja">共分散・相関係数</p>
+    <p>两个随机变量 $X,Y$ 的<strong>联合分布</strong>（<span lang="ja">同時分布</span>）给出每一对取值的概率 $P(X=x_i,\,Y=y_j)$。各行、各列分别求和，就得到 $X$、$Y$ 各自的分布（<span lang="ja">周辺分布</span>）。记 $m_X=E(X)$，$m_Y=E(Y)$：</p>
+    $$\mathrm{Cov}(X,Y)=E\bigl((X-m_X)(Y-m_Y)\bigr)=E(XY)-E(X)E(Y).$$
+    <p>再除以两个标准差消除单位，就是<strong>相关系数</strong>：</p>
+    $$r=\frac{\mathrm{Cov}(X,Y)}{\sigma(X)\,\sigma(Y)},\qquad -1\le r\le 1.$$
+    <ul>
+      <li>$r&gt;0$：正相关，一方大时另一方也倾向于大（<span lang="ja">正の相関</span>）；$r&lt;0$：负相关（<span lang="ja">負の相関</span>）。</li>
+      <li>$|r|$ 越接近 $1$，线性关系越强；$r=\pm1$ 时点都落在一条直线上。</li>
+      <li>$r=0$ 只表示没有<strong>线性</strong>关系，不表示两者无关。</li>
+      <li>$X$ 与 $Y$ 独立 $\Rightarrow$ $\mathrm{Cov}(X,Y)=0$，但<strong>反过来不成立</strong>（见练习 7）。</li>
+    </ul>
+    <div class="box good">
+      <p><strong>例：</strong>联合分布如下表。</p>
+      <div class="tw"><table class="sign">
+        <thead><tr><th>$X\backslash Y$</th><th>$0$</th><th>$1$</th><th>计</th></tr></thead>
+        <tbody>
+          <tr><th>$0$</th><td>$\dfrac25$</td><td>$\dfrac15$</td><td>$\dfrac35$</td></tr>
+          <tr><th>$1$</th><td>$\dfrac1{10}$</td><td>$\dfrac3{10}$</td><td>$\dfrac25$</td></tr>
+          <tr><th>计</th><td>$\dfrac12$</td><td>$\dfrac12$</td><td>$1$</td></tr>
+        </tbody>
+      </table></div>
+      <p>$E(X)=\dfrac25$，$E(Y)=\dfrac12$，$E(XY)=1\cdot1\cdot\dfrac3{10}=\dfrac3{10}$，所以 $\mathrm{Cov}(X,Y)=\dfrac3{10}-\dfrac25\cdot\dfrac12=\dfrac1{10}$。又 $V(X)=\dfrac25-\dfrac4{25}=\dfrac6{25}$，$V(Y)=\dfrac14$，故 $r=\dfrac{1/10}{\frac{\sqrt6}{5}\cdot\frac12}=\dfrac{\sqrt6}{6}$。</p>
+    </div>
+  </section>
+
+  <section id="linear">
+    <h2>4 随机变量的变换 $aX+b$</h2>
+    <p class="jp-sub" lang="ja">確率変数の変換</p>
+    <p>对常数 $a,b$，令 $Y=aX+b$：</p>
+    <div class="formula-grid">
+      <div>$$E(Y)=aE(X)+b$$</div>
+      <div>$$V(Y)=a^2V(X)$$</div>
+      <div>$$\sigma(Y)=|a|\,\sigma(X)$$</div>
+    </div>
+    <p>直观理解：加上 $b$ 只是把分布整体平移，离散程度不变；乘以 $a$ 会把间距放大 $|a|$ 倍，所以标准差乘 $|a|$，方差乘 $a^2$。</p>
+    <div class="box good">
+      <p><strong>例：</strong>两枚硬币的 $X$ 有 $E(X)=1$，$V(X)=\dfrac12$。令 $Y=2X+3$，则 $E(Y)=5$，$V(Y)=4\cdot\dfrac12=2$。</p>
+    </div>
+    <p>两个变量分别做线性变换时：</p>
+    $$\mathrm{Cov}(aX+b,\,cY+d)=ac\,\mathrm{Cov}(X,Y).$$
+    <p>相关系数的绝对值不变；若 $ac&gt;0$，$r$ 不变；若 $ac&lt;0$，$r$ 变号。</p>
+    <div class="box">
+      <p><strong>标准化（<span lang="ja">標準化</span>）：</strong>取 $Z=\dfrac{X-m}{\sigma}$，其中 $m=E(X)$，$\sigma=\sigma(X)&gt;0$，则 $E(Z)=0$，$V(Z)=1$。</p>
+    </div>
+
+    <div class="explorer" id="lab">
+      <h3 style="margin-top:0">动手试试：变换如何移动分布</h3>
+      <p style="font-size:15px;color:var(--ink-2)">$X$ 取 $1,2,3,4,5$。拖动“权重”改变 $X$ 的分布（程序自动归一化，使概率和为 $1$），再调 $a,b$，观察 $Y=aX+b$ 的中心和宽度。</p>
+      <div class="ex-head" id="lab-presets"></div>
+      <div id="lab-weights"></div>
+      <div class="ctrl"><label for="lab-a">系数 a</label><input id="lab-a" type="range" min="-3" max="3" step="1" value="2"><output id="lab-a-o" for="lab-a"></output></div>
+      <div class="ctrl"><label for="lab-b">常数 b</label><input id="lab-b" type="range" min="-5" max="5" step="1" value="-3"><output id="lab-b-o" for="lab-b"></output></div>
+      <figure class="plot" style="margin-top:12px">
+        <svg class="chart" id="lab-svg" viewBox="0 0 640 330" role="img" aria-label="X 与 Y=aX+b 的概率分布条形图，上下两行共用同一条数轴"></svg>
+        <figcaption>上行为 $X$，下行为 $Y=aX+b$，共用同一条数轴。竖线是期望，横线是“期望 $\pm$ 标准差”的范围。悬停或点击条形可查看具体概率。</figcaption>
+      </figure>
+      <div class="read" id="lab-read"></div>
+      <div class="tw"><table class="sign" id="lab-table"></table></div>
+      <div class="status" id="lab-status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="sum">
+    <h2>5 随机变量的和与期望</h2>
+    <p class="jp-sub" lang="ja">確率変数の和と期待値・二項分布</p>
+    <h3>和的期望：总是可以直接相加</h3>
+    $$E(X+Y)=E(X)+E(Y),\qquad E(aX+bY)=aE(X)+bE(Y).$$
+    <p>这条公式<strong>不要求独立</strong>。三个及以上的变量同样成立。</p>
+    <h3>和的方差：要看协方差</h3>
+    $$V(X+Y)=V(X)+V(Y)+2\,\mathrm{Cov}(X,Y).$$
+    <p>更一般地，$V(aX+bY)=a^2V(X)+b^2V(Y)+2ab\,\mathrm{Cov}(X,Y)$。</p>
+    <h3>独立时的公式</h3>
+    <p>$X,Y$ <strong>独立</strong>（<span lang="ja">独立</span>）指对所有取值都有 $P(X=x,\,Y=y)=P(X=x)P(Y=y)$。此时 $\mathrm{Cov}(X,Y)=0$，并有：</p>
+    <div class="formula-grid">
+      <div>$$E(XY)=E(X)E(Y)$$</div>
+      <div>$$V(X+Y)=V(X)+V(Y)$$</div>
+    </div>
+    <div class="box good">
+      <p><strong>例：</strong>三枚骰子的点数和 $S$：不必列出 $3$ 到 $18$ 的分布，直接得 $E(S)=3\cdot\dfrac72=\dfrac{21}2$；因三枚独立，$V(S)=3\cdot\dfrac{35}{12}=\dfrac{35}4$。</p>
+    </div>
+    <h3>二项分布：和的典型应用</h3>
+    <p>每次成功概率为 $p$ 的独立试验重复 $n$ 次，成功次数 $X$ 服从<strong>二项分布</strong> $B(n,p)$（<span lang="ja">二項分布</span>）。记 $q=1-p$：</p>
+    $$P(X=k)={}_n\mathrm{C}_k\,p^kq^{n-k}\quad(k=0,1,\dots,n).$$
+    <p>令 $X_i$ 在第 $i$ 次成功时取 $1$、失败时取 $0$，则 $X=X_1+\cdots+X_n$，且 $E(X_i)=p$，$V(X_i)=p-p^2=pq$。由和的公式立刻得到：</p>
+    <div class="formula-grid">
+      <div>$$E(X)=np$$</div>
+      <div>$$V(X)=npq$$</div>
+      <div>$$\sigma(X)=\sqrt{npq}$$</div>
+    </div>
+    <div class="box warn">
+      <p><strong>易错：</strong>不放回抽取时各次之间不独立，不是二项分布。此时期望仍可按和计算，方差则必须考虑协方差，或者直接写分布表（见例题 2、练习 3）。</p>
+    </div>
+  </section>
+
+  <section id="examples">
+    <h2>6 原创 EJU 风格例题</h2>
+    <p class="jp-sub">以下题目均为本讲义<strong>原创</strong>，仅模仿 EJU 的填空形式，并非真题。</p>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框字母对应一个数字（$0$–$9$），例如 $\B{AB}$ 是两位数；分数约到最简，根号内的数尽量小。</p>
+    </div>
+
+    <article class="q" id="E1">
+      <div class="q-head"><b>例题 1　卡片之和的分布</b><span class="origin">原创</span></div>
+      <p>袋中有写着 $1$ 的卡片 $3$ 张、写着 $2$ 的卡片 $2$ 张、写着 $3$ 的卡片 $1$ 张。同时取出 $2$ 张，两张卡片上的数之和记为 $X$。</p>
+      <p>(1) $P(X=3)=\dfrac{\B{A}}{\B{B}}$，$P(X=4)=\dfrac{\B{C}}{\B{DE}}$。</p>
+      <p>(2) $E(X)=\dfrac{\B{FG}}{\B{H}}$，$V(X)=\dfrac{\B{I}}{\B{J}}$，$\sigma(X)=\dfrac{\B{K}\sqrt{\B{L}}}{\B{M}}$。</p>
+      <p>(3) 令 $Y=3X-1$，则 $E(Y)=\B{N}$，$V(Y)=\B{O}$，$\sigma(Y)=\B{P}\sqrt{\B{Q}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A/B = 2/5</li><li>C/DE = 4/15</li><li>FG/H = 10/3</li><li>I/J = 8/9</li><li>K√L/M = 2√2/3</li><li>N = 9</li><li>O = 8</li><li>P√Q = 2√2</li></ul>
+        <p>(1) 全部取法 ${}_6\mathrm{C}_2=15$ 种。$X=2$：两张都是 $1$，$3$ 种；$X=3$：$1$ 和 $2$，$3\cdot2=6$ 种；$X=4$：$2$ 和 $2$，或 $1$ 和 $3$，$1+3=4$ 种；$X=5$：$2$ 和 $3$，$2$ 种。合计 $15$，无遗漏。所以 $P(X=3)=\dfrac6{15}=\dfrac25$，$P(X=4)=\dfrac4{15}$。</p>
+        <p>(2) $E(X)=\dfrac{2\cdot3+3\cdot6+4\cdot4+5\cdot2}{15}=\dfrac{50}{15}=\dfrac{10}3$。$E(X^2)=\dfrac{4\cdot3+9\cdot6+16\cdot4+25\cdot2}{15}=12$，所以 $V(X)=12-\dfrac{100}9=\dfrac89$，$\sigma(X)=\dfrac{2\sqrt2}3$。</p>
+        <p>(3) $E(Y)=3\cdot\dfrac{10}3-1=9$，$V(Y)=9\cdot\dfrac89=8$，$\sigma(Y)=2\sqrt2$。</p>
+      </div>
+    </article>
+
+    <article class="q" id="E2">
+      <div class="q-head"><b>例题 2　协方差与相关系数</b><span class="origin">原创</span></div>
+      <p>袋中有红球 $2$ 个、白球 $2$ 个、黑球 $1$ 个。同时取出 $2$ 个，其中红球个数记为 $X$，白球个数记为 $Y$。</p>
+      <p>(1) $E(X)=\dfrac{\B{A}}{\B{B}}$，$V(X)=\dfrac{\B{C}}{\B{DE}}$。（$Y$ 的分布与 $X$ 相同。）</p>
+      <p>(2) $E(XY)=\dfrac{\B{F}}{\B{G}}$，所以 $\mathrm{Cov}(X,Y)=-\dfrac{\B{H}}{\B{IJ}}$，相关系数 $r=-\dfrac{\B{K}}{\B{L}}$。</p>
+      <p>(3) $V(X+Y)=\dfrac{\B{M}}{\B{NO}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A/B = 4/5</li><li>C/DE = 9/25</li><li>F/G = 2/5</li><li>H/IJ = 6/25</li><li>K/L = 2/3</li><li>M/NO = 6/25</li></ul>
+        <p>(1) 全部取法 ${}_5\mathrm{C}_2=10$ 种。$P(X=2)=\dfrac1{10}$，$P(X=1)=\dfrac{2\cdot3}{10}=\dfrac35$，$P(X=0)=\dfrac3{10}$。所以 $E(X)=\dfrac15+\dfrac35=\dfrac45$，$E(X^2)=\dfrac25+\dfrac35=1$，$V(X)=1-\dfrac{16}{25}=\dfrac9{25}$。</p>
+        <p>(2) $XY\ne0$ 只有 $X=Y=1$（红白各一个）的情形，有 $2\cdot2=4$ 种，所以 $E(XY)=\dfrac4{10}=\dfrac25$。$\mathrm{Cov}(X,Y)=\dfrac25-\dfrac45\cdot\dfrac45=-\dfrac6{25}$。$\sigma(X)=\sigma(Y)=\dfrac35$，故 $r=\dfrac{-6/25}{9/25}=-\dfrac23$。红球多时白球名额就少，负相关符合直觉。</p>
+        <p>(3) $V(X+Y)=\dfrac9{25}+\dfrac9{25}+2\cdot\left(-\dfrac6{25}\right)=\dfrac6{25}$。检验：$X+Y$ 是非黑球的个数，取值 $2$ 的概率为 $\dfrac35$，取值 $1$ 的概率为 $\dfrac25$，方差为 $\dfrac35\cdot\dfrac25=\dfrac6{25}$，一致。</p>
+      </div>
+    </article>
+
+    <article class="q" id="E3">
+      <div class="q-head"><b>例题 3　独立变量的和与二项分布</b><span class="origin">原创</span></div>
+      <p>(1) 掷一枚骰子，点数 $D$ 满足 $E(D)=\dfrac{\B{A}}{\B{B}}$，$V(D)=\dfrac{\B{CD}}{\B{EF}}$。</p>
+      <p>(2) 独立地掷两枚骰子，点数为 $D_1,D_2$。$E(D_1+D_2)=\B{G}$，$V(D_1+D_2)=\dfrac{\B{HI}}{\B{J}}$，$E(D_1D_2)=\dfrac{\B{KL}}{\B{MN}}$。</p>
+      <p>(3) 将一枚骰子掷 $180$ 次，点数不超过 $2$ 的次数记为 $X$，则 $E(X)=\B{OP}$，$V(X)=\B{QR}$。每次点数不超过 $2$ 得 $3$ 分，否则扣 $1$ 分，总分记为 $Z$，则 $E(Z)=\B{ST}$，$\sigma(Z)=\B{U}\sqrt{\B{VW}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A/B = 7/2</li><li>CD/EF = 35/12</li><li>G = 7</li><li>HI/J = 35/6</li><li>KL/MN = 49/4</li><li>OP = 60</li><li>QR = 40</li><li>ST = 60</li><li>U√VW = 8√10</li></ul>
+        <p>(1) $E(D)=\dfrac{1+2+\cdots+6}6=\dfrac72$，$E(D^2)=\dfrac{91}6$，$V(D)=\dfrac{91}6-\dfrac{49}4=\dfrac{35}{12}$。</p>
+        <p>(2) $E(D_1+D_2)=2\cdot\dfrac72=7$。由独立性，$V(D_1+D_2)=2\cdot\dfrac{35}{12}=\dfrac{35}6$，$E(D_1D_2)=\dfrac72\cdot\dfrac72=\dfrac{49}4$。</p>
+        <p>(3) $X$ 服从 $B\left(180,\dfrac13\right)$，$E(X)=60$，$V(X)=180\cdot\dfrac13\cdot\dfrac23=40$。$Z=3X-(180-X)=4X-180$，所以 $E(Z)=4\cdot60-180=60$，$V(Z)=16\cdot40=640$，$\sigma(Z)=\sqrt{640}=8\sqrt{10}$。</p>
+      </div>
+    </article>
+
+    <article class="q" id="E4">
+      <div class="q-head"><b>例题 4　由期望和方差反求分布，再标准化</b><span class="origin">原创</span></div>
+      <p>随机变量 $X$ 只取 $-1,0,2$，且 $P(X=-1)=a$，$P(X=0)=b$，$P(X=2)=c$。已知 $E(X)=\dfrac12$，$V(X)=\dfrac54$。</p>
+      <p>(1) $a=\dfrac{\B{A}}{\B{B}}$，$b=\dfrac{\B{C}}{\B{D}}$，$c=\dfrac{\B{E}}{\B{F}}$。</p>
+      <p>(2) $Y=-2X+3$ 满足 $E(Y)=\B{G}$，$V(Y)=\B{H}$，$\sigma(Y)=\sqrt{\B{I}}$。</p>
+      <p>(3) 常数 $p&gt;0$ 和 $q$ 使 $Z=pX+q$ 满足 $E(Z)=0$，$V(Z)=1$，则 $p=\dfrac{\B{J}\sqrt{\B{K}}}{\B{L}}$，$q=-\dfrac{\sqrt{\B{M}}}{\B{N}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A/B = 1/6</li><li>C/D = 1/2</li><li>E/F = 1/3</li><li>G = 2</li><li>H = 5</li><li>√I = √5</li><li>J√K/L = 2√5/5</li><li>√M/N = √5/5</li></ul>
+        <p>(1) 由 $E(X^2)=V(X)+\{E(X)\}^2=\dfrac54+\dfrac14=\dfrac32$，列方程：$a+b+c=1$，$-a+2c=\dfrac12$，$a+4c=\dfrac32$。后两式相加得 $6c=2$，所以 $c=\dfrac13$，$a=\dfrac16$，$b=\dfrac12$。</p>
+        <p>(2) $E(Y)=-2\cdot\dfrac12+3=2$，$V(Y)=4\cdot\dfrac54=5$，$\sigma(Y)=\sqrt5$。</p>
+        <p>(3) $V(Z)=p^2\cdot\dfrac54=1$ 且 $p&gt;0$，得 $p=\dfrac2{\sqrt5}=\dfrac{2\sqrt5}5$。$E(Z)=\dfrac p2+q=0$，得 $q=-\dfrac p2=-\dfrac{\sqrt5}5$。</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="practice">
+    <div class="bar">
+      <h2>7 练习题</h2>
+      <button class="chip" id="toggle-all" type="button">显示全部答案</button>
+    </div>
+    <p class="jp-sub">全部原创。先自己算，再点开核对。</p>
+
+    <div class="q" id="Q1"><div class="q-head"><b>1</b><span>确定常数</span><span class="origin">原创</span></div>
+      <p>$X$ 取 $1,2,3,4$，且 $P(X=k)=ck$。求常数 $c$、$P(X\ge3)$、$E(X)$ 和 $V(X)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$c=\frac{1}{10}$，$P(X\ge3)=\frac{7}{10}$，$E(X)=3$，$V(X)=1$。</strong>$10c=1$；$\dfrac{3+4}{10}=\dfrac7{10}$；$E(X)=\dfrac{1+4+9+16}{10}=3$；$E(X^2)=\dfrac{1+8+27+64}{10}=10$，$V(X)=10-9=1$。</p></div></div>
+
+    <div class="q" id="Q2"><div class="q-head"><b>2</b><span>由分布表计算</span><span class="origin">原创</span></div>
+      <p>$P(X=0)=\dfrac14$，$P(X=2)=\dfrac12$，$P(X=4)=\dfrac14$。求 $E(X)$、$V(X)$、$\sigma(X)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$E(X)=2$，$V(X)=2$，$\sigma(X)=\sqrt2$。</strong>分布关于 $2$ 对称，故 $E(X)=2$；$V(X)=4\cdot\dfrac14+0+4\cdot\dfrac14=2$。</p></div></div>
+
+    <div class="q" id="Q3"><div class="q-head"><b>3</b><span>不放回抽签</span><span class="origin">原创</span></div>
+      <p>$10$ 支签中有 $3$ 支中奖签，同时抽 $2$ 支，中奖支数为 $X$。求 $E(X)$ 和 $V(X)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$E(X)=\frac{3}{5}$，$V(X)=\frac{28}{75}$。</strong>$P(X=0)=\dfrac{21}{45}=\dfrac7{15}$，$P(X=1)=\dfrac{21}{45}=\dfrac7{15}$，$P(X=2)=\dfrac3{45}=\dfrac1{15}$。$E(X)=\dfrac{7+2}{15}=\dfrac35$；$E(X^2)=\dfrac{7+4}{15}=\dfrac{11}{15}$，$V(X)=\dfrac{11}{15}-\dfrac9{25}=\dfrac{28}{75}$。</p></div></div>
+
+    <div class="q" id="Q4"><div class="q-head"><b>4</b><span>线性变换</span><span class="origin">原创</span></div>
+      <p>$E(X)=4$，$V(X)=9$，$Y=-2X+5$。求 $E(Y)$、$V(Y)$、$\sigma(Y)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$E(Y)=-3$，$V(Y)=36$，$\sigma(Y)=6$。</strong>$-2\cdot4+5=-3$；$(-2)^2\cdot9=36$；$\sigma(Y)=|-2|\cdot3=6$。</p></div></div>
+
+    <div class="q" id="Q5"><div class="q-head"><b>5</b><span>反求变换系数</span><span class="origin">原创</span></div>
+      <p>$E(X)=10$，$\sigma(X)=2$。常数 $a&lt;0$ 和 $b$ 使 $Y=aX+b$ 满足 $E(Y)=50$，$\sigma(Y)=10$。求 $a,b$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$a=-5$，$b=100$。</strong>$|a|\cdot2=10$ 且 $a&lt;0$，得 $a=-5$；$-50+b=50$，得 $b=100$。</p></div></div>
+
+    <div class="q" id="Q6"><div class="q-head"><b>6</b><span>相关系数</span><span class="origin">原创</span></div>
+      <p>$X,Y$ 都只取 $0,1$，且 $P(0,0)=P(1,1)=\dfrac25$，$P(0,1)=P(1,0)=\dfrac1{10}$，其中 $P(x,y)$ 表示 $P(X=x,\,Y=y)$。求 $\mathrm{Cov}(X,Y)$ 和 $r$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$\mathrm{Cov}(X,Y)=\frac{3}{20}$，$r=\frac{3}{5}$。</strong>$E(X)=E(Y)=\dfrac12$，$E(XY)=\dfrac25$，协方差 $\dfrac25-\dfrac14=\dfrac3{20}$；$\sigma(X)=\sigma(Y)=\dfrac12$，$r=\dfrac{3/20}{1/4}=\dfrac35$。</p></div></div>
+
+    <div class="q" id="Q7"><div class="q-head"><b>7</b><span>协方差为 0 与独立</span><span class="origin">原创</span></div>
+      <p>$X$ 以相等的概率取 $-1,0,1$，$Y=X^2$。求 $\mathrm{Cov}(X,Y)$，并判断 $X,Y$ 是否独立。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$\mathrm{Cov}(X,Y)=0$，但不独立：$P(X=0,Y=0)=\frac{1}{3}$，而 $P(X=0)P(Y=0)=\frac{1}{9}$。</strong>$E(X)=0$，$E(XY)=E(X^3)=0$，所以协方差为 $0$。$X=0$ 与 $Y=0$ 是同一事件，$\dfrac13\ne\dfrac13\cdot\dfrac13$。</p></div></div>
+
+    <div class="q" id="Q8"><div class="q-head"><b>8</b><span>和的方差</span><span class="origin">原创</span></div>
+      <p>$V(X)=4$，$V(Y)=9$，相关系数 $r=-\dfrac13$。求 $V(X+Y)$ 和 $V(2X-Y)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$V(X+Y)=9$，$V(2X-Y)=33$。</strong>$\mathrm{Cov}(X,Y)=-\dfrac13\cdot2\cdot3=-2$。$V(X+Y)=4+9+2(-2)=9$；$V(2X-Y)=4\cdot4+9-2\cdot2\cdot(-2)=33$。</p></div></div>
+
+    <div class="q" id="Q9"><div class="q-head"><b>9</b><span>独立变量的线性组合</span><span class="origin">原创</span></div>
+      <p>骰子点数 $X$ 与硬币结果 $Y$（正面 $1$、反面 $0$）独立。求 $E(2X+3Y)$ 和 $V(2X+3Y)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$E=\frac{17}{2}$，$V=\frac{167}{12}$。</strong>$E=2\cdot\dfrac72+3\cdot\dfrac12=\dfrac{17}2$；$V=4\cdot\dfrac{35}{12}+9\cdot\dfrac14=\dfrac{35}3+\dfrac94=\dfrac{167}{12}$。</p></div></div>
+
+    <div class="q" id="Q10"><div class="q-head"><b>10</b><span>反求二项分布参数</span><span class="origin">原创</span></div>
+      <p>$X$ 服从 $B(n,p)$，$E(X)=12$，$V(X)=8$。求 $p$ 和 $n$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$p=\frac{1}{3}$，$n=36$。</strong>$\dfrac{V(X)}{E(X)}=1-p=\dfrac23$，所以 $p=\dfrac13$；$n=12\div\dfrac13=36$。</p></div></div>
+
+    <div class="q" id="Q11"><div class="q-head"><b>11</b><span>二项分布</span><span class="origin">原创</span></div>
+      <p>$5$ 道四选一的题全部随机作答，答对题数为 $X$。求 $P(X=2)$、$E(X)$、$V(X)$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$P(X=2)=\frac{135}{512}$，$E(X)=\frac{5}{4}$，$V(X)=\frac{15}{16}$。</strong>$X$ 服从 $B\left(5,\dfrac14\right)$：${}_5\mathrm{C}_2\left(\dfrac14\right)^2\left(\dfrac34\right)^3=\dfrac{270}{1024}=\dfrac{135}{512}$；$np=\dfrac54$；$npq=\dfrac{15}{16}$。</p></div></div>
+
+    <div class="q" id="Q12"><div class="q-head"><b>12</b><span>变换后的协方差</span><span class="origin">原创</span></div>
+      <p>$\mathrm{Cov}(X,Y)=3$，相关系数 $r=\dfrac35$。令 $U=2X+1$，$W=-3Y+4$，求 $\mathrm{Cov}(U,W)$ 和 $U,W$ 的相关系数。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden><p><strong>$\mathrm{Cov}(U,W)=-18$，相关系数 $-\frac{3}{5}$。</strong>$2\cdot(-3)\cdot3=-18$；系数之积为负，相关系数只变号，绝对值不变。</p></div></div>
+  </section>
+
+  <section id="terms">
+    <h2>8 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页按 2026 年度起适用的 EJU 数学シラバス项目 13 组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。所有例题和练习题均为原创，答案已用 Python（SymPy）枚举或符号计算验证。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['分布与数字特征', [
+      ['確率変数', 'かくりつへんすう', '随机变量'], ['確率分布', 'かくりつぶんぷ', '概率分布'], ['分布', 'ぶんぷ', '分布'],
+      ['期待値', 'きたいち', '期望值'], ['平均', 'へいきん', '平均、均值'], ['分散', 'ぶんさん', '方差'], ['標準偏差', 'ひょうじゅんへんさ', '标准差'],
+      ['偏差', 'へんさ', '偏差'], ['変量', 'へんりょう', '变量（数据）'], ['標準化', 'ひょうじゅんか', '标准化'], ['変換', 'へんかん', '变换']
+    ]],
+    ['两个随机变量', [
+      ['同時分布', 'どうじぶんぷ', '联合分布'], ['周辺分布', 'しゅうへんぶんぷ', '边缘分布'], ['共分散', 'きょうぶんさん', '协方差'], ['相関係数', 'そうかんけいすう', '相关系数'],
+      ['相関', 'そうかん', '相关'], ['正の相関', 'せいのそうかん', '正相关'], ['負の相関', 'ふのそうかん', '负相关'], ['独立', 'どくりつ', '独立'], ['従属', 'じゅうぞく', '不独立、从属']
+    ]],
+    ['和与二项分布', [
+      ['確率変数の和', 'かくりつへんすうのわ', '随机变量的和'], ['確率変数の積', 'かくりつへんすうのせき', '随机变量的积'], ['二項分布', 'にこうぶんぷ', '二项分布'],
+      ['反復試行', 'はんぷくしこう', '反复试验'], ['試行', 'しこう', '试验'], ['事象', 'じしょう', '事件'], ['成功', 'せいこう', '成功（试验）']
+    ]],
+    ['题目常用语', [
+      ['さいころ', 'さいころ', '骰子'], ['硬貨', 'こうか', '硬币'], ['くじ', 'くじ', '签、彩票'], ['同時に取り出す', 'どうじにとりだす', '同时取出'],
+      ['もとに戻さない', 'もとにもどさない', '不放回'], ['〜の個数', '〜のこすう', '……的个数'], ['得点', 'とくてん', '得分'], ['定数', 'ていすう', '常数']
+    ]]
+  ];
+
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja"><strong>' + t[0] + '</strong></td><td class="kana" lang="ja">' + t[1] + '</td><td>' + t[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = document.getElementById('term-count');
+  function filterTerms() {
+    var q = document.getElementById('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  document.getElementById('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 答案按钮 ---------- */
+  function setAns(btn, open) {
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '隐藏答案' : '显示答案';
+    btn.nextElementSibling.hidden = !open;
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.classList && e.target.classList.contains('toggle-ans')) {
+      setAns(e.target, e.target.getAttribute('aria-expanded') !== 'true');
+    }
+  });
+  var allBtn = document.getElementById('toggle-all');
+  allBtn.addEventListener('click', function () {
+    var btns = document.querySelectorAll('#practice .toggle-ans');
+    var open = allBtn.textContent.indexOf('显示') === 0;
+    btns.forEach(function (b) { setAns(b, open); });
+    allBtn.textContent = open ? '隐藏全部答案' : '显示全部答案';
+  });
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = document.getElementById('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('on', on);
+          if (on && a.parentNode.parentNode.scrollWidth > a.parentNode.parentNode.clientWidth) {
+            var ol = a.parentNode.parentNode;
+            ol.scrollLeft = a.offsetLeft - ol.offsetLeft - 20;
+          }
+        });
+      });
+    }, { rootMargin: '-25% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- 变换演示 ---------- */
+  function $(id) { return document.getElementById(id); }
+  var NS = 'http://www.w3.org/2000/svg';
+  var XS = [1, 2, 3, 4, 5];
+  var S = { w: [1, 2, 3, 2, 1], a: 2, b: -3, pick: null };
+  var PRESETS = [
+    { t: '对称', w: [1, 2, 3, 2, 1], a: 2, b: -3 },
+    { t: '等概率', w: [1, 1, 1, 1, 1], a: 1, b: 5 },
+    { t: '偏向一侧，a<0', w: [6, 4, 2, 1, 1], a: -2, b: 5 },
+    { t: 'a=0（退化）', w: [1, 2, 3, 2, 1], a: 0, b: 4 }
+  ];
+  function fmt(v) { var s = (Math.round(v * 1000) / 1000).toFixed(3).replace(/\.?0+$/, ''); return s === '-0' || s === '' ? '0' : s; }
+  function sign(v) { return v < 0 ? '−' + Math.abs(v) : '+' + v; }
+  function stats(d) {
+    var e = 0, e2 = 0;
+    d.forEach(function (o) { e += o.x * o.p; e2 += o.x * o.x * o.p; });
+    var v = Math.max(0, e2 - e * e);
+    return { e: e, v: v, s: Math.sqrt(v) };
+  }
+  function distX() {
+    var t = S.w.reduce(function (s, v) { return s + v; }, 0);
+    if (t === 0) return XS.map(function (x) { return { x: x, p: .2 }; });
+    return XS.map(function (x, i) { return { x: x, p: S.w[i] / t }; });
+  }
+  function distY(dx) {
+    var m = {};
+    dx.forEach(function (o) { var y = S.a * o.x + S.b; m[y] = (m[y] || 0) + o.p; });
+    return Object.keys(m).map(Number).sort(function (p, q) { return p - q; }).map(function (y) { return { x: y, p: m[y] }; });
+  }
+  function el(tag, attrs, parent, text) {
+    var e = document.createElementNS(NS, tag);
+    for (var a in attrs) e.setAttribute(a, attrs[a]);
+    if (text !== undefined) e.textContent = text;
+    parent.appendChild(e);
+    return e;
+  }
+  var L = 20, R = 620, MIN = -20, MAX = 20;
+  function px(v) { return L + (R - L) * (v - MIN) / (MAX - MIN); }
+  function row(svg, d, st, base, h, fill, name, top) {
+    var W = 11, ty = function (p) { return base - h * p / top; };
+    el('line', { x1: L, x2: R, y1: base, y2: base, 'class': 'axis' }, svg);
+    for (var t = MIN; t <= MAX; t += 5) {
+      el('line', { x1: px(t), x2: px(t), y1: base, y2: base + 4, 'class': 'axis' }, svg);
+      el('text', { x: px(t), y: base + 18, 'text-anchor': 'middle', 'class': 'tick' }, svg, t);
+    }
+    el('text', { x: L, y: base - h + 2, 'class': 'lbl' }, svg, name);
+    d.forEach(function (o) {
+      var bh = base - ty(o.p), r = Math.min(4, bh, W / 2), x = px(o.x) - W / 2;
+      if (bh > .3) el('path', {
+        d: 'M' + x + ' ' + base + 'V' + (base - bh + r) + 'Q' + x + ' ' + (base - bh) + ' ' + (x + r) + ' ' + (base - bh) +
+           'H' + (x + W - r) + 'Q' + (x + W) + ' ' + (base - bh) + ' ' + (x + W) + ' ' + (base - bh + r) + 'V' + base + 'Z',
+        fill: fill
+      }, svg);
+      var hit = el('rect', { x: px(o.x) - 7, y: base - h, width: 14, height: h + 4, fill: 'transparent', style: 'cursor:pointer' }, svg);
+      var msg = name.split('（')[0] + ' = ' + o.x + ' 的概率为 ' + fmt(o.p);
+      el('title', {}, hit, msg);
+      function show() { $('lab-status').textContent = msg + '。'; }
+      hit.addEventListener('pointerenter', show);
+      hit.addEventListener('click', show);
+    });
+    var my = base - h * .96;
+    el('line', { x1: px(st.e - st.s), x2: px(st.e + st.s), y1: my, y2: my, stroke: 'var(--ink)', 'stroke-width': 2, 'stroke-linecap': 'round' }, svg);
+    el('line', { x1: px(st.e), x2: px(st.e), y1: base, y2: my - 6, 'class': 'sm', style: 'stroke:var(--ink);stroke-width:1.5' }, svg);
+  }
+  function update() {
+    var dx = distX(), dy = distY(dx), sx = stats(dx), sy = stats(dy), svg = $('lab-svg');
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var top = dx.concat(dy).reduce(function (m, o) { return Math.max(m, o.p); }, .5);
+    row(svg, dx, sx, 136, 118, 'var(--c1)', 'X', top);
+    row(svg, dy, sy, 296, 118, 'var(--c2)', 'Y（aX+b）', top);
+    S.w.forEach(function (v, i) { $('w' + i).value = v; $('w' + i + '-o').textContent = fmt(dx[i].p); });
+    $('lab-a').value = S.a; $('lab-b').value = S.b;
+    $('lab-a-o').textContent = S.a; $('lab-b-o').textContent = S.b;
+    function cell(l, x, y) { return '<div><small>' + l + '</small>X：<b>' + fmt(x) + '</b>　Y：<b>' + fmt(y) + '</b></div>'; }
+    $('lab-read').innerHTML = cell('期望 E', sx.e, sy.e) + cell('方差 V', sx.v, sy.v) + cell('标准差 σ', sx.s, sy.s);
+    var h = '<tbody><tr><th>Y</th>', h2 = '<tr><th>P</th>';
+    dy.forEach(function (o) { h += '<td>' + o.x + '</td>'; h2 += '<td>' + fmt(o.p) + '</td>'; });
+    $('lab-table').innerHTML = h + '</tr>' + h2 + '</tr></tbody>';
+    $('lab-status').textContent = 'Y = ' + S.a + 'X ' + sign(S.b) + '：E(Y) = ' + S.a + ' × ' + fmt(sx.e) + ' ' + sign(S.b) + ' = ' + fmt(sy.e) +
+      '；V(Y) = ' + (S.a * S.a) + ' × ' + fmt(sx.v) + ' = ' + fmt(sy.v) + '；σ(Y) = ' + Math.abs(S.a) + ' × ' + fmt(sx.s) + ' = ' + fmt(sy.s) + '。';
+    Array.prototype.forEach.call($('lab-presets').children, function (b, i) {
+      var x = PRESETS[i];
+      b.setAttribute('aria-pressed', x.a === S.a && x.b === S.b && x.w.join() === S.w.join());
+    });
+  }
+  XS.forEach(function (x, i) {
+    var c = document.createElement('div');
+    c.className = 'ctrl';
+    c.innerHTML = '<label for="w' + i + '">权重 X=' + x + '</label><input id="w' + i + '" type="range" min="0" max="6" step="1"><output id="w' + i + '-o" for="w' + i + '"></output>';
+    $('lab-weights').appendChild(c);
+    c.querySelector('input').addEventListener('input', function () { S.w[i] = +this.value; update(); });
+  });
+  PRESETS.forEach(function (x) {
+    var b = document.createElement('button');
+    b.className = 'chip'; b.type = 'button'; b.textContent = x.t;
+    b.addEventListener('click', function () { S.w = x.w.slice(); S.a = x.a; S.b = x.b; update(); });
+    $('lab-presets').appendChild(b);
+  });
+  $('lab-a').addEventListener('input', function () { S.a = +this.value; update(); });
+  $('lab-b').addEventListener('input', function () { S.b = +this.value; update(); });
+  update();
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\mathsf{#1}}' },
+      ignoredClasses: ['status', 'read'],
+      throwOnError: false
+    });
+  }
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>
