@@ -279,6 +279,38 @@ svg.fig { max-width: 480px; margin: auto; }
     </table></div>
     <p>运算律与普通字母式相同：$\vec a+\vec b=\vec b+\vec a$，$(\vec a+\vec b)+\vec c=\vec a+(\vec b+\vec c)$，$k(\vec a+\vec b)=k\vec a+k\vec b$。</p>
 
+
+    <p><strong>为什么与起点无关？</strong>向量只记录“朝哪个方向、走多远”这一位移，不记录从哪里出发。所以平行四边形 $ABCD$ 中 $\ov{AB}=\ov{DC}$：两条边的长度和方向都相同，尽管起点不同。正因为可以自由平移，我们才能把向量首尾相接或起点对齐。</p>
+    <p><strong>“终点减起点”从何而来？</strong>从 $O$ 走到 $A$ 再走到 $B$，与直接从 $O$ 走到 $B$ 位移相同：$\ov{OA}+\ov{AB}=\ov{OB}$。移项得 $\ov{AB}=\ov{OB}-\ov{OA}$。以后任何向量都可以用这一步换成同一起点的两个向量之差。</p>
+    <p><strong>为什么 $k(\vec a+\vec b)=k\vec a+k\vec b$？</strong>$k&gt;0$ 时，把以 $\vec a,\vec b$ 为两边的三角形放大 $k$ 倍，得到相似三角形，第三边也放大 $k$ 倍且方向不变；$k&lt;0$ 时再整体反向即可。因此向量可以像字母式一样去括号、合并同类项。但向量之间没有除法。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　化简与解向量方程</b><span class="origin">原创</span></div>
+      <p>(1) 化简 $\ov{AB}+\ov{CA}-\ov{CB}$。(2) 解 $3(\vec x-\vec a)+2\vec b=\vec x+\vec a$。(3) 求满足 $2\vec x+\vec y=\vec a,\ \vec x-\vec y=\vec b$ 的 $\vec x,\vec y$。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) 调换顺序，让向量首尾相接：$\ov{CA}+\ov{AB}=\ov{CB}$。</li>
+        <li>再减去 $\ov{CB}$，得 $\ov{CB}-\ov{CB}=\vec 0$。结果是零向量，不是数 $0$。</li>
+        <li>(2) 去括号：$3\vec x-3\vec a+2\vec b=\vec x+\vec a$。把 $\vec x$ 移到左边，其余移到右边：$2\vec x=4\vec a-2\vec b$，所以 $\vec x=2\vec a-\vec b$。</li>
+        <li>(3) 两式相加消去 $\vec y$：$3\vec x=\vec a+\vec b$，所以 $\vec x=\dfrac{\vec a+\vec b}{3}$。</li>
+        <li>代回第二式：$\vec y=\vec x-\vec b=\dfrac{\vec a-2\vec b}{3}$。检算：$2\vec x+\vec y=\dfrac{2\vec a+2\vec b+\vec a-2\vec b}{3}=\vec a$，成立。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\vec 0$；(2) $\vec x=2\vec a-\vec b$；(3) $\vec x=\dfrac{\vec a+\vec b}{3},\ \vec y=\dfrac{\vec a-2\vec b}{3}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把差的方向记反：$\ov{OB}-\ov{OA}$ 是 $\ov{AB}$，不是 $\ov{BA}$。</li>
+        <li>把 $\vec a-\vec a$ 写成数 $0$。向量相减的结果是零向量 $\vec 0$。</li>
+        <li>认为 $|\vec a+\vec b|=|\vec a|+|\vec b|$。三角形两边之和大于第三边，一般只有 $|\vec a+\vec b|\le|\vec a|+|\vec b|$，同向时才取等号。</li>
+        <li>写出 $\vec a\div\vec b$ 这样的式子。向量之间不能相除。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目给图形时，先选定两个基底向量，把所有向量都用它们表示。路径可以多拐几次，例如 $\ov{MN}=\ov{MA}+\ov{AB}+\ov{BN}$，只要首尾相接就成立。</p>
+      <p><strong>日语术语：</strong><span lang="ja">始点</span>（<span class="kana" lang="ja">してん</span>）：起点；<span lang="ja">終点</span>（<span class="kana" lang="ja">しゅうてん</span>）：终点；<span lang="ja">大きさ</span>（<span class="kana" lang="ja">おおきさ</span>）：大小；<span lang="ja">向き</span>（<span class="kana" lang="ja">むき</span>）：方向（朝向）；<span lang="ja">実数倍</span>（<span class="kana" lang="ja">じっすうばい</span>）：实数倍。</p>
+    </div>
+
     <h3>平行与一次独立</h3>
     <p>$\vec a,\vec b$ 都不是 $\vec 0$ 时：</p>
     $$\vec a\parallel\vec b\iff\vec b=k\vec a\ \text{（存在实数 }k\text{）}.$$
@@ -286,6 +318,35 @@ svg.fig { max-width: 480px; margin: auto; }
     $$s\vec a+t\vec b=s'\vec a+t'\vec b\iff s=s'\ \text{且}\ t=t'.$$
     <div class="box good">
       <p><strong>例：</strong>平行四边形 $ABCD$ 中，令 $\ov{AB}=\vec b,\ \ov{AD}=\vec d$，则对角线 $\ov{AC}=\vec b+\vec d$，$\ov{BD}=\vec d-\vec b$。</p>
+    </div>
+
+    <p><strong>为什么能分解，而且分解唯一？</strong><em>存在性：</em>把 $\vec p$ 的起点放在 $O$，过终点 $P$ 分别作 $\vec a,\vec b$ 的平行线，与另一条方向所在直线相交，便得到以 $OP$ 为对角线的平行四边形，于是 $\vec p=s\vec a+t\vec b$。</p>
+    <p><em>唯一性：</em>假设 $s\vec a+t\vec b=s'\vec a+t'\vec b$ 而 $s\ne s'$，移项得 $\vec a=\dfrac{t'-t}{s-s'}\vec b$，即 $\vec a\parallel\vec b$（或 $\vec a=\vec 0$），与一次独立矛盾。所以 $s=s'$，再由 $\vec b\ne\vec 0$ 得 $t=t'$。比较系数的依据就是这条唯一性。</p>
+    <p><strong>注意前提：</strong>若 $\vec b=2\vec a$，则 $3\vec a+\vec b=\vec a+2\vec b$（两边都等于 $5\vec a$），但系数并不相等。没有一次独立，就不能比较系数。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　比较系数与平行条件</b><span class="origin">原创</span></div>
+      <p>$\vec a,\vec b$ 一次独立。(1) 若 $(s+2)\vec a+(t-1)\vec b=2t\vec a+(3-s)\vec b$，求 $s,t$。(2) 若 $\vec p=\vec a+2\vec b$ 与 $\vec q=3\vec a+k\vec b$ 平行，求 $k$。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) 因为 $\vec a,\vec b$ 一次独立，$\vec a$ 与 $\vec b$ 的系数分别相等：$s+2=2t$，$t-1=3-s$。</li>
+        <li>第二式化为 $s+t=4$。代入 $s=2t-2$：$3t-2=4$，所以 $t=2$，$s=2$。</li>
+        <li>(2) $\vec p\ne\vec 0$，所以平行等价于存在实数 $\lambda$ 使 $\vec q=\lambda\vec p$，即 $3\vec a+k\vec b=\lambda\vec a+2\lambda\vec b$。</li>
+        <li>比较系数：$\lambda=3$，$k=2\lambda=6$。此时 $\vec q=3\vec p$，确实同向平行。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $s=2,\ t=2$；(2) $k=6$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>没有确认一次独立就比较系数。解答中应写明“$\vec a,\vec b$ 一次独立”。</li>
+        <li>写成 $\vec a\parallel\vec b\iff\vec a=k\vec b$ 时忘记两个向量都不能是零向量。</li>
+        <li>误以为 $k$ 只能取正数。$k&lt;0$ 时两向量反向，同样算平行。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题面的「$\vec a$ と $\vec b$ は 1次独立である」或「$O,A,B$ は同一直線上にない」就是在告诉你可以比较系数。$\triangle OAB$ 中的 $\ov{OA},\ov{OB}$ 自动满足这一条件。</p>
+      <p><strong>日语术语：</strong><span lang="ja">1次独立</span>（<span class="kana" lang="ja">いちじどくりつ</span>）：一次独立；<span lang="ja">1次結合</span>（<span class="kana" lang="ja">いちじけつごう</span>）：线性组合；<span lang="ja">係数を比較する</span>（<span class="kana" lang="ja">けいすうをひかくする</span>）：比较系数；<span lang="ja">平行</span>（<span class="kana" lang="ja">へいこう</span>）：平行。</p>
     </div>
   </section>
 
@@ -306,6 +367,52 @@ svg.fig { max-width: 480px; margin: auto; }
       <p>把 $\vec c=(5,5)$ 写成 $s\vec a+t\vec b$：由 $3s+t=5,\ s+2t=5$ 得 $s=1,\ t=2$，即 $\vec c=\vec a+2\vec b$。</p>
       <p>$A(1,2),\ B(4,6)$ 时，$\ov{AB}=(3,4)$，$|\ov{AB}|=5$，同向的单位向量为 $\Bigl(\dfrac35,\dfrac45\Bigr)$。</p>
     </div>
+
+    <p><strong>成分的本质：</strong>取 $x,y$ 轴方向的单位向量 $\vec e_1=(1,0),\ \vec e_2=(0,1)$（<span lang="ja">基本ベクトル</span>），它们一次独立，所以 $\vec a=a_1\vec e_1+a_2\vec e_2$ 的写法唯一。成分就是这两个系数。因此两向量相等当且仅当成分分别相等，加减和实数倍也只需按成分计算。</p>
+    <p><strong>大小公式：</strong>$a_1,a_2$ 是直角三角形的两条直角边，$|\vec a|$ 是斜边，由勾股定理得 $|\vec a|=\sqrt{a_1^2+a_2^2}$。</p>
+    <p><strong>平行条件 $a_1b_2-a_2b_1=0$：</strong>若 $\vec b=k\vec a$，则 $a_1b_2-a_2b_1=a_1(ka_2)-a_2(ka_1)=0$。反之，设 $\vec a\ne\vec 0$ 且 $a_1b_2=a_2b_1$：当 $a_1\ne0$ 时取 $k=\dfrac{b_1}{a_1}$，得 $b_1=ka_1,\ b_2=ka_2$；$a_2\ne0$ 时同理。这个写法不用担心分母为 $0$，比写比例式更安全。</p>
+    <p><strong>单位向量：</strong>$\vec a$ 除以自身大小后，大小变为 $1$，方向不变，所以同向单位向量是 $\dfrac{\vec a}{|\vec a|}$，反向的是 $-\dfrac{\vec a}{|\vec a|}$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用成分分解与判定平行</b><span class="origin">原创</span></div>
+      <p>$\vec a=(2,3),\ \vec b=(-1,4)$。(1) 把 $\vec c=(1,18)$ 写成 $s\vec a+t\vec b$，并求 $|\vec c|$。(2) 求使 $\vec a+t\vec b$ 与 $(1,1)$ 平行的实数 $t$。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) $s\vec a+t\vec b=(2s-t,\ 3s+4t)$。比较成分：$2s-t=1$，$3s+4t=18$。</li>
+        <li>第一式乘 $4$ 后与第二式相加：$11s=22$，所以 $s=2$；代回得 $t=3$。</li>
+        <li>检算：$2(2,3)+3(-1,4)=(4-3,\ 6+12)=(1,18)$，正确。</li>
+        <li>$|\vec c|=\sqrt{1^2+18^2}=\sqrt{325}=5\sqrt{13}$。</li>
+        <li>(2) $\vec a+t\vec b=(2-t,\ 3+4t)$。与 $(1,1)$ 平行：$(2-t)\cdot1-(3+4t)\cdot1=0$，即 $-1-5t=0$，$t=-\dfrac15$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\vec c=2\vec a+3\vec b$，$|\vec c|=5\sqrt{13}$；(2) $t=-\dfrac15$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　平行四边形的第四个顶点</b><span class="origin">原创</span></div>
+      <p>平行四边形 $ABCD$ 中，$A(1,2),\ B(4,3),\ C(6,7)$。求 $D$ 的坐标和边 $AD$ 的长。</p>
+      <div class="ans">
+        <ol>
+        <li>注意顶点按 $A\to B\to C\to D$ 的顺序排列，所以 $\ov{AD}=\ov{BC}$，而不是 $\ov{AD}=\ov{CB}$。</li>
+        <li>$\ov{BC}=(6-4,\ 7-3)=(2,4)$。</li>
+        <li>$D$ 的坐标 $=A+\ov{BC}=(1+2,\ 2+4)=(3,6)$。</li>
+        <li>检算：对角线互相平分，$AC$ 的中点 $\Bigl(\dfrac72,\dfrac92\Bigr)$ 与 $BD$ 的中点 $\Bigl(\dfrac72,\dfrac92\Bigr)$ 相同。</li>
+        <li>$AD=\sqrt{2^2+4^2}=2\sqrt5$。</li>
+        </ol>
+        <p><strong>答案：</strong>$D(3,6)$，$AD=2\sqrt5$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $\ov{AB}$ 算成“起点减终点”。$A(1,2),\ B(4,6)$ 时 $\ov{AB}=(3,4)$，不是 $(-3,-4)$。</li>
+        <li>只写一个单位向量。“与 $\vec a$ 平行的单位向量”有 $\pm\dfrac{\vec a}{|\vec a|}$ 两个；“同向”才只有一个。</li>
+        <li>用 $\dfrac{a_1}{b_1}=\dfrac{a_2}{b_2}$ 判断平行而忽略分母为 $0$ 的情况。优先用 $a_1b_2-a_2b_1=0$。</li>
+        <li>平行四边形顶点次序读错，得到另外的点。题目写 $ABCD$ 时次序是固定的。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>求大小时，先把公因数提出来可以减少计算量：$|(6,8)|=2|(3,4)|=10$。填空题答案根号内要化到最小，例如 $\sqrt{325}=5\sqrt{13}$。</p>
+      <p><strong>日语术语：</strong><span lang="ja">成分</span>（<span class="kana" lang="ja">せいぶん</span>）：成分（分量）；<span lang="ja">基本ベクトル</span>（<span class="kana" lang="ja">きほんベクトル</span>）：基本向量；<span lang="ja">成分表示</span>（<span class="kana" lang="ja">せいぶんひょうじ</span>）：成分表示；<span lang="ja">三平方の定理</span>（<span class="kana" lang="ja">さんへいほうのていり</span>）：勾股定理。</p>
+    </div>
   </section>
 
   <section id="dot">
@@ -323,6 +430,53 @@ svg.fig { max-width: 480px; margin: auto; }
     </div>
     <p>上面的垂直条件要求 $\vec a,\vec b$ 都不是 $\vec 0$。$\vec a$ 在 $\vec b$ 方向的<strong>正射影</strong>（<span lang="ja">正射影ベクトル</span>）为 $\dfrac{\vec a\cdot\vec b}{|\vec b|^2}\vec b$，它是求垂足的捷径。</p>
 
+    <p><strong>两个定义为什么相等？</strong>把 $\vec a,\vec b$ 的起点对齐，第三边就是 $\vec b-\vec a$。由余弦定理：</p>
+    $$|\vec b-\vec a|^2=|\vec a|^2+|\vec b|^2-2|\vec a||\vec b|\cos\theta.$$
+    <p>代入成分，左边 $=(b_1-a_1)^2+(b_2-a_2)^2=|\vec a|^2+|\vec b|^2-2(a_1b_1+a_2b_2)$。比较两边，就得到 $|\vec a||\vec b|\cos\theta=a_1b_1+a_2b_2$。$\theta=0^\circ,180^\circ$ 时三角形退化，但等式仍可直接验证。</p>
+    <p><strong>几何意义：</strong>$|\vec a|\cos\theta$ 是 $\vec a$ 在 $\vec b$ 方向上带符号的投影长度，所以内积 $=$ 投影长度 $\times|\vec b|$。$\theta$ 为锐角时内积为正，直角时为 $0$，钝角时为负。</p>
+    <p><strong>正射影公式的推导：</strong>投影长度 $|\vec a|\cos\theta=\dfrac{\vec a\cdot\vec b}{|\vec b|}$，乘上 $\vec b$ 方向的单位向量 $\dfrac{\vec b}{|\vec b|}$，得 $\dfrac{\vec a\cdot\vec b}{|\vec b|^2}\vec b$。</p>
+    <p><strong>平方展开的依据：</strong>内积满足交换律和分配律，所以 $|\vec a+\vec b|^2=(\vec a+\vec b)\cdot(\vec a+\vec b)=|\vec a|^2+2\vec a\cdot\vec b+|\vec b|^2$。遇到“大小”，先平方，就能转换成内积计算。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由大小和夹角计算</b><span class="origin">原创</span></div>
+      <p>$|\vec a|=3,\ |\vec b|=2$，夹角为 $120^\circ$。求 (1) $|2\vec a+\vec b|$；(2) 使 $\vec a+t\vec b$ 与 $\vec a-\vec b$ 垂直的 $t$；(3) $\vec a$ 与 $\vec a+\vec b$ 夹角的余弦。</p>
+      <div class="ans">
+        <ol>
+        <li>先求内积：$\vec a\cdot\vec b=3\cdot2\cdot\cos120^\circ=-3$。</li>
+        <li>(1) $|2\vec a+\vec b|^2=4|\vec a|^2+4\vec a\cdot\vec b+|\vec b|^2=36-12+4=28$，所以 $|2\vec a+\vec b|=2\sqrt7$。</li>
+        <li>(2) $(\vec a+t\vec b)\cdot(\vec a-\vec b)=|\vec a|^2+(t-1)\vec a\cdot\vec b-t|\vec b|^2=9-3(t-1)-4t=12-7t$。令其为 $0$，得 $t=\dfrac{12}{7}$。</li>
+        <li>(3) $|\vec a+\vec b|^2=9-6+4=7$；$\vec a\cdot(\vec a+\vec b)=9-3=6$。</li>
+        <li>所以 $\cos\varphi=\dfrac{6}{3\sqrt7}=\dfrac{2}{\sqrt7}=\dfrac{2\sqrt7}{7}$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $2\sqrt7$；(2) $t=\dfrac{12}{7}$；(3) $\dfrac{2\sqrt7}{7}$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　正射影与分解</b><span class="origin">原创</span></div>
+      <p>$\vec a=(4,2),\ \vec b=(3,-1)$。求 $\vec a$ 在 $\vec b$ 方向的正射影，并把 $\vec a$ 分解成与 $\vec b$ 平行和垂直的两个向量之和。</p>
+      <div class="ans">
+        <ol>
+        <li>$\vec a\cdot\vec b=12-2=10$，$|\vec b|^2=9+1=10$。</li>
+        <li>正射影 $=\dfrac{10}{10}\vec b=(3,-1)$。</li>
+        <li>垂直部分 $=\vec a-(3,-1)=(1,3)$。</li>
+        <li>检算：$(1,3)\cdot(3,-1)=3-3=0$，确实垂直。</li>
+        </ol>
+        <p><strong>答案：</strong>正射影为 $(3,-1)$；$\vec a=(3,-1)+(1,3)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把正射影公式的分母写成 $|\vec b|$。求正射影<strong>向量</strong>时分母是 $|\vec b|^2$；求投影<strong>长度</strong>时才是 $|\vec b|$。</li>
+        <li>$\vec a\cdot\vec b$ 的结果写成向量，或写出 $(\vec a\cdot\vec b)\cdot\vec c=\vec a\cdot(\vec b\cdot\vec c)$。这两边一般不相等，内积没有结合律。</li>
+        <li>$\cos\theta&lt;0$ 时仍取锐角。夹角范围是 $0^\circ\le\theta\le180^\circ$，$\cos\theta=-\dfrac12$ 对应 $120^\circ$。</li>
+        <li>把 $|\vec a|^2$ 算成成分平方和后又多开一次根号。$\vec a\cdot\vec a=|\vec a|^2$ 不带根号。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>常见流程是：由「$|\vec a-\vec b|=\cdots$」平方求出 $\vec a\cdot\vec b$，再计算其他长度或夹角。最小值题 $|\vec a+t\vec b|$ 也先平方，配方后别忘记开根号。</p>
+      <p><strong>日语术语：</strong><span lang="ja">内積</span>（<span class="kana" lang="ja">ないせき</span>）：内积；<span lang="ja">なす角</span>（<span class="kana" lang="ja">なすかく</span>）：夹角；<span lang="ja">垂直</span>（<span class="kana" lang="ja">すいちょく</span>）：垂直；<span lang="ja">正射影</span>（<span class="kana" lang="ja">せいしゃえい</span>）：正射影；<span lang="ja">鋭角</span>（<span class="kana" lang="ja">えいかく</span>）：锐角；<span lang="ja">鈍角</span>（<span class="kana" lang="ja">どんかく</span>）：钝角；<span lang="ja">余弦定理</span>（<span class="kana" lang="ja">よげんていり</span>）：余弦定理。</p>
+    </div>
+
     <h3>三角形面积</h3>
     <p>由 $\sin\theta=\sqrt{1-\cos^2\theta}$ 可得，$\ov{OA}=\vec a,\ \ov{OB}=\vec b$ 时</p>
     $$S=\frac12\sqrt{|\vec a|^2|\vec b|^2-(\vec a\cdot\vec b)^2}=\frac12|a_1b_2-a_2b_1|.$$
@@ -331,6 +485,35 @@ svg.fig { max-width: 480px; margin: auto; }
     </div>
     <div class="box warn">
       <p><strong>常见失分：</strong>$\vec a\cdot\vec b=0$ 推不出 $\vec a=\vec 0$ 或 $\vec b=\vec 0$（可能垂直）；$\vec a\cdot\vec b=\vec a\cdot\vec c$ 不能约去 $\vec a$；$|\vec a+\vec b|$ 不等于 $|\vec a|+|\vec b|$，要先平方；三角形中 $\ov{AB}$ 与 $\ov{BC}$ 的夹角是内角的<strong>补角</strong>，因为起点没有对齐。</p>
+    </div>
+
+    <p><strong>完整推导：</strong>$S=\dfrac12|\vec a||\vec b|\sin\theta$，且 $\sin\theta\ge0$，所以 $\sin\theta=\sqrt{1-\cos^2\theta}$。把 $\cos\theta=\dfrac{\vec a\cdot\vec b}{|\vec a||\vec b|}$ 代入并整理，$|\vec a||\vec b|$ 进入根号：</p>
+    $$S=\frac12|\vec a||\vec b|\sqrt{1-\frac{(\vec a\cdot\vec b)^2}{|\vec a|^2|\vec b|^2}}=\frac12\sqrt{|\vec a|^2|\vec b|^2-(\vec a\cdot\vec b)^2}.$$
+    <p>再代入成分，恒等式 $(a_1^2+a_2^2)(b_1^2+b_2^2)-(a_1b_1+a_2b_2)^2=(a_1b_2-a_2b_1)^2$ 把根号消去，得 $S=\dfrac12|a_1b_2-a_2b_1|$。第二个公式只适用于平面成分；空间问题要用根号形式。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　两种面积公式</b><span class="origin">原创</span></div>
+      <p>(1) 求 $A(1,2),\ B(5,3),\ C(2,7)$ 构成的三角形面积。(2) $OA=4,\ OB=3,\ \vec a\cdot\vec b=6$，求 $\triangle OAB$ 的面积。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) 先把一个顶点当公共起点：$\ov{AB}=(4,1),\ \ov{AC}=(1,5)$。</li>
+        <li>$S=\dfrac12|4\cdot5-1\cdot1|=\dfrac{19}{2}$。</li>
+        <li>(2) $S=\dfrac12\sqrt{4^2\cdot3^2-6^2}=\dfrac12\sqrt{108}=3\sqrt3$。</li>
+        <li>检算：$\cos\theta=\dfrac{6}{12}=\dfrac12$，$\sin\theta=\dfrac{\sqrt3}{2}$，$S=\dfrac12\cdot4\cdot3\cdot\dfrac{\sqrt3}{2}=3\sqrt3$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\dfrac{19}{2}$；(2) $3\sqrt3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>忘记绝对值或系数 $\dfrac12$。面积必须为正，$\dfrac12|a_1b_2-a_2b_1|$ 中两者都不能省。</li>
+        <li>直接用三个顶点的坐标代入公式。公式中的成分来自两条<strong>同起点</strong>的边向量；若没有顶点在原点，要先相减。</li>
+        <li>把根号式写成 $\dfrac12\sqrt{|\vec a||\vec b|-\vec a\cdot\vec b}$，漏掉平方。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>已知 $|\vec a|,|\vec b|,\vec a\cdot\vec b$ 时用根号式；已知坐标时用成分式。两式结果可互相检算。若题目先问 $\cos\theta$，也可以接着用 $\dfrac12|\vec a||\vec b|\sin\theta$。</p>
+      <p><strong>日语术语：</strong><span lang="ja">面積</span>（<span class="kana" lang="ja">めんせき</span>）：面积；<span lang="ja">三角形</span>（<span class="kana" lang="ja">さんかくけい</span>）：三角形；<span lang="ja">絶対値</span>（<span class="kana" lang="ja">ぜったいち</span>）：绝对值。</p>
     </div>
   </section>
 
@@ -348,6 +531,34 @@ svg.fig { max-width: 480px; margin: auto; }
       <div class="ctrl" id="row-t"><label for="t-range">t</label><input id="t-range" type="range" min="-2" max="2" step="0.1" value="1"><output id="t-out">1</output></div>
       <div class="read" id="vec-read"></div>
       <div class="status" id="vec-status" aria-live="polite"></div>
+    </div>
+
+    <p><strong>怎样使用这个演示？</strong>“线性组合”模式把 $\vec p$ 拆成 $s\vec a$ 和 $t\vec b$，虚线正好组成平行四边形，这就是第 1 节分解的存在性。“内积与正射影”模式中，从 $\vec a$ 的终点向 $\vec b$ 所在直线作垂线，垂足就是正射影的终点；把夹角拖过 $90^\circ$，可以看到内积由正变负。“直线 $AB$ 上的点”模式对应 $\vec p=(1-t)\vec a+t\vec b$：$0&lt;t&lt;1$ 是内分，$t&lt;0$ 或 $t&gt;1$ 是外分。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用演示核对手算</b><span class="origin">原创</span></div>
+      <p>先手算，再在演示中核对。(1) “线性组合”模式：$\vec a=(3,1),\ \vec b=(1,2),\ s=2,\ t=-1$，求 $\vec p$ 和 $|\vec p|$，并判断 $P$ 的位置。(2) “内积与正射影”模式：把终点拖到 $\vec a=(2,2),\ \vec b=(3,-1)$，求内积、正射影和面积。(3) “直线 $AB$ 上的点”模式：$A(3,1),\ B(1,2),\ t=1.5$，求 $P$ 和 $AP:PB$。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) $\vec p=2(3,1)-(1,2)=(5,0)$，$|\vec p|=5$。又 $s+t=1$，所以 $P$ 在直线 $AB$ 上。</li>
+        <li>(2) $\vec a\cdot\vec b=6-2=4$，$|\vec b|^2=10$。正射影 $=\dfrac{4}{10}(3,-1)=\Bigl(\dfrac65,-\dfrac25\Bigr)=(1.2,-0.4)$。</li>
+        <li>面积 $=\dfrac12|2\cdot(-1)-2\cdot3|=\dfrac12|-8|=4$。内积为正，说明夹角是锐角。</li>
+        <li>(3) $\vec p=-0.5(3,1)+1.5(1,2)=(0,2.5)$。</li>
+        <li>$t=1.5&gt;1$，$P$ 在 $AB$ 延长线上 $B$ 一侧。由 $\ov{AP}=1.5\ov{AB}$，得 $AP:PB=1.5:0.5=3:1$，是外分。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\vec p=(5,0)$，$|\vec p|=5$，$P$ 在直线 $AB$ 上；(2) 内积 $4$，正射影 $(1.2,-0.4)$，面积 $4$；(3) $P(0,2.5)$，$AP:PB=3:1$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把演示里的 $t$ 与比值混淆。$\vec p=(1-t)\vec a+t\vec b$ 中，$t$ 是 $\dfrac{AP}{AB}$（带符号），不是 $\dfrac{AP}{PB}$。</li>
+        <li>看到系数和为 $1$ 就认为 $P$ 在线段上。只有两个系数都非负才在线段上，否则在延长线上。</li>
+        <li>把正射影与 $\vec a$ 混淆。正射影总是与 $\vec b$ 平行。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>考试不能用演示，但可以养成同样的习惯：解完后画草图，看答案方向是否合理。例如内积为负时，正射影应与 $\vec b$ 反向。</p>
+      <p><strong>日语术语：</strong><span lang="ja">線分</span>（<span class="kana" lang="ja">せんぶん</span>）：线段；<span lang="ja">延長線</span>（<span class="kana" lang="ja">えんちょうせん</span>）：延长线；<span lang="ja">始点をそろえる</span>（<span class="kana" lang="ja">してんをそろえる</span>）：对齐起点。</p>
     </div>
   </section>
 
@@ -377,33 +588,237 @@ svg.fig { max-width: 480px; margin: auto; }
         <tr><td>三角形重心（<span lang="ja">重心</span>）</td><td>$\vec g=\dfrac{\vec a+\vec b+\vec c}{3}$</td></tr>
       </tbody>
     </table></div>
+    <p><strong>内分公式的推导：</strong>$AP:PB=m:n$ 说明 $\ov{AP}=\dfrac{m}{m+n}\ov{AB}$。代入 $\ov{AB}=\vec b-\vec a$：</p>
+    $$\vec p=\vec a+\frac{m}{m+n}(\vec b-\vec a)=\frac{n\vec a+m\vec b}{m+n}.$$
+    <p>所以“交叉相乘”并不需要硬记：$P$ 离 $A$ 越近，$\vec a$ 的权重越大，而 $A$ 的权重 $n$ 恰好是 $P$ 到<strong>另一端</strong>的那一份。</p>
+    <p><strong>外分公式的推导：</strong>$P$ 外分 $AB$ 为 $m:n$ 时，$P$ 在直线 $AB$ 上，且 $\ov{AP}=\dfrac{m}{m-n}\ov{AB}$（$m&gt;n$ 时 $P$ 在 $B$ 外侧，$m&lt;n$ 时系数为负，$P$ 在 $A$ 外侧）。展开得 $\vec p=\dfrac{-n\vec a+m\vec b}{m-n}$。这正是把内分公式中的 $n$ 换成 $-n$。</p>
+    <p><strong>重心公式的推导：</strong>$BC$ 的中点 $M$ 的位置向量为 $\dfrac{\vec b+\vec c}{2}$，重心把中线 $AM$ 内分为 $2:1$，所以 $\vec g=\dfrac{\vec a+2\cdot\frac{\vec b+\vec c}{2}}{3}=\dfrac{\vec a+\vec b+\vec c}{3}$。结果对 $\vec a,\vec b,\vec c$ 对称，这也说明三条中线交于同一点。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　内分点、外分点与重心</b><span class="origin">原创</span></div>
+      <p>$A(2,3),\ B(8,-3),\ C(2,9)$。求 (1) 把 $AB$ 内分为 $2:1$ 的点 $P$；(2) 把 $AB$ 外分为 $3:1$ 的点 $Q$；(3) 把 $AB$ 外分为 $1:3$ 的点 $R$；(4) $\triangle ABC$ 的重心 $G$。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) $\vec p=\dfrac{1\cdot\vec a+2\vec b}{3}=\dfrac{(2,3)+(16,-6)}{3}=(6,-1)$。</li>
+        <li>(2) $m=3,\ n=1$：$\vec q=\dfrac{-\vec a+3\vec b}{2}=\dfrac{(-2,-3)+(24,-9)}{2}=(11,-6)$。$AQ:QB=3:1$ 说明 $Q$ 离 $B$ 更近，确实在 $B$ 外侧。</li>
+        <li>(3) $m=1,\ n=3$：$\vec r=\dfrac{-3\vec a+\vec b}{1-3}=\dfrac{(-6,-9)+(8,-3)}{-2}=(-1,6)$，在 $A$ 外侧。</li>
+        <li>(4) $G=\Bigl(\dfrac{2+8+2}{3},\dfrac{3-3+9}{3}\Bigr)=(4,3)$。</li>
+        <li>检算 (2)：$\ov{AQ}=(9,-9),\ \ov{BQ}=(3,-3)$，长度比为 $3:1$，成立。</li>
+        </ol>
+        <p><strong>答案：</strong>$P(6,-1)$，$Q(11,-6)$，$R(-1,6)$，$G(4,3)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>内分公式不交叉，写成 $\dfrac{m\vec a+n\vec b}{m+n}$。可以用“$m$ 很大时 $P$ 靠近 $B$”快速检查。</li>
+        <li>外分公式分母写成 $m+n$，或把 $m:n$ 与 $n:m$ 视为同一个点。外分的 $3:1$ 与 $1:3$ 是两个不同的点。</li>
+        <li>$m=n$ 时还套外分公式。此时分母为 $0$，外分点不存在。</li>
+        <li>位置向量的起点 $O$ 中途更换。同一道题的 $\vec a,\vec b,\vec p$ 必须以同一点为起点。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>不必一定以原点为起点。题目给定 $\triangle OAB$ 时用 $O$，$\triangle ABC$ 中常以 $A$ 为起点，这样 $\vec a=\vec 0$，式子更短。</p>
+      <p><strong>日语术语：</strong><span lang="ja">位置ベクトル</span>（<span class="kana" lang="ja">いちベクトル</span>）：位置向量；<span lang="ja">内分点</span>（<span class="kana" lang="ja">ないぶんてん</span>）：内分点；<span lang="ja">外分点</span>（<span class="kana" lang="ja">がいぶんてん</span>）：外分点；<span lang="ja">中線</span>（<span class="kana" lang="ja">ちゅうせん</span>）：中线；<span lang="ja">重心</span>（<span class="kana" lang="ja">じゅうしん</span>）：重心。</p>
+    </div>
+
     <h3>共线条件</h3>
     <p>三点 $A,B,P$ 共线（<span lang="ja">一直線上</span>）等价于 $\ov{AP}=k\ov{AB}$，也等价于</p>
     $$\vec p=(1-t)\vec a+t\vec b\quad\text{（系数之和为 }1\text{）}.$$
     <p>这一条经常用来“定比例”：若 $\vec p=x\vec a+y\vec b$ 且 $P$ 在直线 $AB$ 上，则 $x+y=1$。</p>
+
+    <p><strong>系数和为 $1$ 的推导：</strong>由 $\ov{AP}=t\ov{AB}$ 得 $\vec p-\vec a=t(\vec b-\vec a)$，整理为 $\vec p=(1-t)\vec a+t\vec b$，系数之和为 $(1-t)+t=1$。反过来，若 $\vec p=x\vec a+y\vec b$ 且 $x+y=1$，令 $t=y$ 就回到上式。注意：从“$P$ 在直线上”推出“已知表示式 $x\vec a+y\vec b$ 的系数和为 $1$”，要用到比较系数，所以需要 $O$ 不在直线 $AB$ 上（$\vec a,\vec b$ 一次独立）。</p>
+    <p>$t$ 还直接给出位置：$t=0$ 对应 $A$，$t=1$ 对应 $B$，$0&lt;t&lt;1$ 在线段内，其他值在延长线上。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用共线条件求未知数</b><span class="origin">原创</span></div>
+      <p>(1) $\triangle OAB$ 中，$\ov{OP}=x\vec a+\dfrac13\vec b$，且 $P$ 在直线 $AB$ 上，求 $x$ 和 $AP:PB$。(2) $A(1,2),\ B(3,5),\ C(k,11)$ 共线，求 $k$。(3) 证明：若 $\ov{OC}=2\vec a-\vec b$，则 $A$ 是线段 $BC$ 的中点。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) 系数和为 $1$：$x+\dfrac13=1$，$x=\dfrac23$。</li>
+        <li>$\ov{OP}=\dfrac{2\vec a+\vec b}{3}$，对照内分公式 $\dfrac{n\vec a+m\vec b}{m+n}$，得 $n=2,\ m=1$，即 $AP:PB=1:2$。</li>
+        <li>(2) $\ov{AB}=(2,3)$，$\ov{AC}=(k-1,9)$。由平行条件：$2\cdot9-3(k-1)=0$，所以 $k=7$。</li>
+        <li>(3) $\ov{AC}=\ov{OC}-\vec a=\vec a-\vec b=-(\vec b-\vec a)=-\ov{AB}$。</li>
+        <li>所以 $\ov{AC}$ 与 $\ov{AB}$ 大小相等、方向相反，$A$ 是 $BC$ 的中点。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $x=\dfrac23$，$AP:PB=1:2$；(2) $k=7$；(3) 已证明。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>系数比读反：$\ov{OP}=\dfrac{2\vec a+\vec b}{3}$ 表示 $AP:PB=1:2$，不是 $2:1$。</li>
+        <li>系数和不为 $1$ 时仍判断为在直线 $AB$ 上。这时先提出倍数：$\vec p=k\cdot(\text{系数和为 }1\text{ 的向量})$，再解释。</li>
+        <li>只要 $\ov{AP}\parallel\ov{BQ}$ 就下结论说四点共线。共线要求<strong>有公共点</strong>的两向量平行。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>证明三点共线时，最标准的写法是算出 $\ov{AC}=k\ov{AB}$，并说明两向量有公共点 $A$。题面常写「3 点 $A,B,C$ は一直線上にある」。</p>
+      <p><strong>日语术语：</strong><span lang="ja">一直線上にある</span>（<span class="kana" lang="ja">いっちょくせんじょうにある</span>）：在同一直线上；<span lang="ja">共線</span>（<span class="kana" lang="ja">きょうせん</span>）：共线；<span lang="ja">比</span>（<span class="kana" lang="ja">ひ</span>）：比。</p>
+    </div>
   </section>
 
   <section id="fig">
     <h2>6 向量与图形</h2>
     <p class="jp-sub" lang="ja">ベクトルと図形 — 交点・垂線の足・面積比</p>
+    <p>图形题的共同思路是“翻译”：选定两个一次独立的基底向量，把点表示为向量；把“在直线上”翻译成系数和为 $1$ 或 $k$ 倍，把“垂直”翻译成内积为 $0$，把“长度”翻译成平方后的内积。下面五种题型都是这个思路的应用。</p>
 
     <h3>① 两条路径求交点</h3>
     <p>$\vec a,\vec b$ 一次独立时，把交点 $P$ 沿两条线段各表示一次，再比较系数。这是 EJU 向量题最常见的套路，完整做法见<a href="#examples">例题 2</a>。</p>
 
+    <p><strong>为什么要走两条路？</strong>一条直线上的点只有一个未知参数，$P$ 在两条直线上，就得到含两个参数的两种写法。又因为 $\vec a,\vec b$ 一次独立，写法唯一，两种写法的系数必须相等，正好得到两个方程。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　线段的交点</b><span class="origin">原创</span></div>
+      <p>$\triangle OAB$ 中，$C$ 是 $OA$ 的中点，$D$ 把 $OB$ 内分为 $2:1$，$AD$ 与 $BC$ 交于 $P$，直线 $OP$ 交 $AB$ 于 $Q$。用 $\vec a,\vec b$ 表示 $\ov{OP}$ 和 $\ov{OQ}$，并求 $AQ:QB$。</p>
+      <div class="ans">
+        <ol>
+        <li>$\ov{OC}=\dfrac12\vec a,\ \ov{OD}=\dfrac23\vec b$。</li>
+        <li>$P$ 在 $AD$ 上，设 $AP:PD=s:(1-s)$：$\ov{OP}=(1-s)\vec a+\dfrac23s\vec b$。</li>
+        <li>$P$ 在 $BC$ 上，设 $BP:PC=t:(1-t)$：$\ov{OP}=\dfrac12t\vec a+(1-t)\vec b$。</li>
+        <li>$\vec a,\vec b$ 一次独立，比较系数：$1-s=\dfrac12t$，$\dfrac23s=1-t$。由第二式 $t=1-\dfrac23s$，代入第一式得 $1-s=\dfrac12-\dfrac13s$，所以 $s=\dfrac34$，$t=\dfrac12$。</li>
+        <li>于是 $\ov{OP}=\dfrac14\vec a+\dfrac12\vec b$。</li>
+        <li>设 $\ov{OQ}=k\ov{OP}$。$Q$ 在 $AB$ 上，系数和为 $1$：$k\Bigl(\dfrac14+\dfrac12\Bigr)=1$，$k=\dfrac43$。所以 $\ov{OQ}=\dfrac13\vec a+\dfrac23\vec b$。</li>
+        <li>对照内分公式，$AQ:QB=2:1$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\ov{OP}=\dfrac14\vec a+\dfrac12\vec b$，$\ov{OQ}=\dfrac13\vec a+\dfrac23\vec b$，$AQ:QB=2:1$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>两条路径用了同一个参数 $t$。两条线上的比例一般不同，必须设 $s,t$ 两个参数。</li>
+        <li>比较系数前没有写“$\vec a,\vec b$ 一次独立”。</li>
+        <li>求出 $s,t$ 后忘记代回 $\ov{OP}$，把 $s$ 或 $t$ 当成答案。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>求出 $\ov{OP}$ 后，把比较系数得到的结果代入两条路径各算一次，两者一致就基本不会错。题目常接着问 $OP$ 延长后与 $AB$ 的交点，用“$k$ 倍 + 系数和为 $1$”立刻可解。</p>
+      <p><strong>日语术语：</strong><span lang="ja">交点</span>（<span class="kana" lang="ja">こうてん</span>）：交点；<span lang="ja">線分</span>（<span class="kana" lang="ja">せんぶん</span>）：线段；<span lang="ja">直線</span>（<span class="kana" lang="ja">ちょくせん</span>）：直线。</p>
+    </div>
     <h3>② 求垂足</h3>
     <p>设 $\ov{OH}=(1-t)\vec a+t\vec b$，由 $\ov{OH}\cdot\ov{AB}=0$ 解出 $t$。</p>
 
+    <p><strong>两个条件恰好确定垂足：</strong>$H$ 在直线 $AB$ 上用一个参数 $t$ 表示，$OH\perp AB$ 提供一个方程，未知数和方程数相同。展开时只需要 $|\vec a|^2,|\vec b|^2,\vec a\cdot\vec b$ 三个量：</p>
+    $$\ov{OH}\cdot\ov{AB}=\bigl((1-t)\vec a+t\vec b\bigr)\cdot(\vec b-\vec a)=(1-t)(\vec a\cdot\vec b-|\vec a|^2)+t(|\vec b|^2-\vec a\cdot\vec b)=0.$$
+    <article class="q">
+      <div class="q-head"><b>补充例题　求垂足与高</b><span class="origin">原创</span></div>
+      <p>$\triangle OAB$ 中，$OA=4,\ OB=3,\ \angle AOB=60^\circ$。从 $O$ 向 $AB$ 作垂线，垂足为 $H$。用 $\vec a,\vec b$ 表示 $\ov{OH}$，并求 $|\ov{OH}|$。</p>
+      <div class="ans">
+        <ol>
+        <li>$\vec a\cdot\vec b=4\cdot3\cdot\cos60^\circ=6$。</li>
+        <li>设 $\ov{OH}=(1-t)\vec a+t\vec b$。代入上式：$(1-t)(6-16)+t(9-6)=-10(1-t)+3t=0$。</li>
+        <li>解得 $t=\dfrac{10}{13}$，所以 $\ov{OH}=\dfrac{3}{13}\vec a+\dfrac{10}{13}\vec b$。</li>
+        <li>$|\ov{AB}|^2=16-12+9=13$，$\triangle OAB$ 的面积 $S=\dfrac12\cdot4\cdot3\cdot\sin60^\circ=3\sqrt3$。</li>
+        <li>由 $S=\dfrac12\cdot AB\cdot OH$，得 $|\ov{OH}|=\dfrac{2\cdot3\sqrt3}{\sqrt{13}}=\dfrac{6\sqrt{39}}{13}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\ov{OH}=\dfrac{3}{13}\vec a+\dfrac{10}{13}\vec b$，$|\ov{OH}|=\dfrac{6\sqrt{39}}{13}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $\ov{OH}\cdot\ov{AB}=0$ 写成 $\ov{OH}\cdot\ov{OA}=0$。垂直的对象是底边 $AB$。</li>
+        <li>展开时漏掉内积项或 $(1-t)$ 的符号。可以先写出 $\vec a\cdot\vec b-|\vec a|^2$ 和 $|\vec b|^2-\vec a\cdot\vec b$ 两个数，再代入。</li>
+        <li>以为垂足一定在线段内。$\angle A$ 或 $\angle B$ 为钝角时，$t$ 可能小于 $0$ 或大于 $1$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>$|\ov{OH}|$ 不一定要展开计算，用面积 $\dfrac{2S}{AB}$ 通常更快。如果已有成分，也可以用正射影求垂足。</p>
+      <p><strong>日语术语：</strong><span lang="ja">垂線</span>（<span class="kana" lang="ja">すいせん</span>）：垂线；<span lang="ja">垂線の足</span>（<span class="kana" lang="ja">すいせんのあし</span>）：垂足；<span lang="ja">底辺</span>（<span class="kana" lang="ja">ていへん</span>）：底边；<span lang="ja">高さ</span>（<span class="kana" lang="ja">たかさ</span>）：高。</p>
+    </div>
     <h3>③ 角平分线</h3>
     <p>$\angle AOB$ 的平分线交 $AB$ 于 $D$，则 $AD:DB=|\vec a|:|\vec b|$，所以</p>
     $$\ov{OD}=\frac{|\vec b|\vec a+|\vec a|\vec b}{|\vec a|+|\vec b|}.$$
     <p>例如 $OA=3,\ OB=2,\ \angle AOB=60^\circ$（$\vec a\cdot\vec b=3$）时，$\ov{OD}=\dfrac{2\vec a+3\vec b}{5}$，$|\ov{OD}|=\dfrac{6\sqrt3}{5}$。</p>
 
+    <p><strong>为什么 $AD:DB=|\vec a|:|\vec b|$？</strong>$D$ 在角平分线上，到 $OA,OB$ 的距离相等，设为 $h$。于是 $\triangle OAD$ 与 $\triangle OBD$ 的面积比为 $\dfrac12|\vec a|h:\dfrac12|\vec b|h=|\vec a|:|\vec b|$。这两个三角形又以 $AD,DB$ 为底、共享从 $O$ 出发的高，面积比也等于 $AD:DB$。代入内分公式即得上面的结论。</p>
+    <p><strong>另一个角度：</strong>单位向量 $\dfrac{\vec a}{|\vec a|}$ 与 $\dfrac{\vec b}{|\vec b|}$ 长度相等，它们的和是菱形的对角线，恰好平分夹角。因此角平分线的方向是 $\dfrac{\vec a}{|\vec a|}+\dfrac{\vec b}{|\vec b|}$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　钝角三角形的角平分线</b><span class="origin">原创</span></div>
+      <p>$\triangle OAB$ 中，$OA=4,\ OB=2,\ \angle AOB=120^\circ$。$\angle AOB$ 的平分线交 $AB$ 于 $D$。求 $\ov{OD}$ 和 $|\ov{OD}|$。</p>
+      <div class="ans">
+        <ol>
+        <li>$AD:DB=OA:OB=4:2=2:1$。</li>
+        <li>由内分公式：$\ov{OD}=\dfrac{1\cdot\vec a+2\vec b}{3}=\dfrac{\vec a+2\vec b}{3}$。</li>
+        <li>$\vec a\cdot\vec b=4\cdot2\cdot\cos120^\circ=-4$。</li>
+        <li>$|\vec a+2\vec b|^2=16+4(-4)+4\cdot4=16$，所以 $|\ov{OD}|=\dfrac43$。</li>
+        <li>检算：$\ov{OD}\cdot\vec a=\dfrac{16-8}{3}=\dfrac83$，所以 $\cos\angle AOD=\dfrac{8/3}{(4/3)\cdot4}=\dfrac12$，确实是 $60^\circ$，等于 $120^\circ$ 的一半。</li>
+        </ol>
+        <p><strong>答案：</strong>$\ov{OD}=\dfrac{\vec a+2\vec b}{3}$，$|\ov{OD}|=\dfrac43$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>比值与权重搞反：$AD:DB=|\vec a|:|\vec b|$，所以 $\vec a$ 的系数中出现的是 $|\vec b|$。</li>
+        <li>把 $\vec a+\vec b$ 当成角平分线方向。只有 $|\vec a|=|\vec b|$ 时才成立，一般要先单位化。</li>
+        <li>把角平分线的比值与中线混淆。中线给出 $1:1$，与两边长无关。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>求内心时，可用两次角平分线性质：先在 $AB$ 上求 $D$，再在 $\triangle OAD$ 中用 $OI:ID=OA:AD$。这类题的比值通常可以约成简单的整数比。</p>
+      <p><strong>日语术语：</strong><span lang="ja">角の二等分線</span>（<span class="kana" lang="ja">かくのにとうぶんせん</span>）：角平分线；<span lang="ja">内心</span>（<span class="kana" lang="ja">ないしん</span>）：内心；<span lang="ja">二等分する</span>（<span class="kana" lang="ja">にとうぶんする</span>）：二等分。</p>
+    </div>
     <h3>④ 垂直的证明</h3>
     <p>菱形中 $|\vec a|=|\vec b|$，对角线 $\vec a+\vec b$ 与 $\vec b-\vec a$ 的内积为 $|\vec b|^2-|\vec a|^2=0$，所以对角线互相垂直。把长度、垂直都翻译成内积，就能不靠图形直觉完成证明。</p>
 
+    <p><strong>翻译表：</strong>“$AB\perp CD$”对应 $\ov{AB}\cdot\ov{CD}=0$；“$AB=CD$”对应 $|\ov{AB}|^2=|\ov{CD}|^2$；“$AB\parallel CD$”对应 $\ov{CD}=k\ov{AB}$。证明时先选好基底，再把结论翻译成要证的等式。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用内积证明几何结论</b><span class="origin">原创</span></div>
+      <p>(1) 证明：若 $\vec a,\vec b$ 都不是 $\vec 0$ 且 $|\vec a+\vec b|=|\vec a-\vec b|$，则 $\vec a\perp\vec b$。(2) $\triangle ABC$ 中，$M$ 是 $BC$ 的中点。证明中线定理 $AB^2+AC^2=2(AM^2+BM^2)$，并在 $AB=5,\ AC=7,\ BC=8$ 时求 $AM$。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) 两边非负，平方后等价：$|\vec a|^2+2\vec a\cdot\vec b+|\vec b|^2=|\vec a|^2-2\vec a\cdot\vec b+|\vec b|^2$。</li>
+        <li>整理得 $4\vec a\cdot\vec b=0$，所以 $\vec a\cdot\vec b=0$，又两向量都不是 $\vec 0$，故 $\vec a\perp\vec b$。几何上，这说明对角线相等的平行四边形是长方形。</li>
+        <li>(2) 以 $A$ 为起点，令 $\ov{AB}=\vec b,\ \ov{AC}=\vec c$。则 $\ov{AM}=\dfrac{\vec b+\vec c}{2}$，$\ov{BM}=\dfrac{\vec c-\vec b}{2}$。</li>
+        <li>$AM^2+BM^2=\dfrac{|\vec b+\vec c|^2+|\vec c-\vec b|^2}{4}=\dfrac{2|\vec b|^2+2|\vec c|^2}{4}$，内积项抵消。乘 $2$ 即得 $AB^2+AC^2=2(AM^2+BM^2)$。</li>
+        <li>代入数值：$BM=4$，$25+49=2(AM^2+16)$，所以 $AM^2=21$，$AM=\sqrt{21}$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1)(2) 的等式已证明；$AM=\sqrt{21}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只写“由图可知垂直”。证明必须算出内积为 $0$，并说明两向量都不是零向量。</li>
+        <li>从 $|\vec a|=|\vec b|$ 推出 $\vec a=\vec b$。大小相等不代表方向相同。</li>
+        <li>把 $|\vec a+\vec b|^2$ 展开时漏掉 $2\vec a\cdot\vec b$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>虽然 EJU 不写证明过程，但填空题的中间步骤常沿用这种推理，比如空格里要填 $|\vec a|^2-|\vec b|^2$ 的值。熟悉翻译方法，才能跟上题目给出的思路。</p>
+      <p><strong>日语术语：</strong><span lang="ja">中線定理</span>（<span class="kana" lang="ja">ちゅうせんていり</span>）：中线定理；<span lang="ja">証明</span>（<span class="kana" lang="ja">しょうめい</span>）：证明；<span lang="ja">長方形</span>（<span class="kana" lang="ja">ちょうほうけい</span>）：长方形；<span lang="ja">ひし形</span>（<span class="kana" lang="ja">ひしがた</span>）：菱形。</p>
+    </div>
     <h3>⑤ 面积比：$l\ov{PA}+m\ov{PB}+n\ov{PC}=\vec 0$</h3>
     <p>$l,m,n&gt;0$ 时 $P$ 在 $\triangle ABC$ 内部，以 $A$ 为起点改写，得</p>
     $$\ov{AP}=\frac{m\ov{AB}+n\ov{AC}}{l+m+n},\qquad\triangle PBC:\triangle PCA:\triangle PAB=l:m:n.$$
+
+    <p><strong>完整推导：</strong>以 $A$ 为起点，$\ov{PA}=-\ov{AP}$，$\ov{PB}=\ov{AB}-\ov{AP}$，$\ov{PC}=\ov{AC}-\ov{AP}$。代入等式：$-l\ov{AP}+m(\ov{AB}-\ov{AP})+n(\ov{AC}-\ov{AP})=\vec 0$，所以 $(l+m+n)\ov{AP}=m\ov{AB}+n\ov{AC}$。</p>
+    <p><strong>面积比从何而来？</strong>变形为 $\ov{AP}=\dfrac{m+n}{l+m+n}\cdot\dfrac{m\ov{AB}+n\ov{AC}}{m+n}$。后一个分式是 $BC$ 上的点 $D$，$BD:DC=n:m$，所以 $AP:PD=(m+n):l$。因为 $\triangle PBC$ 与 $\triangle ABC$ 同底 $BC$，面积比等于高之比 $PD:AD=l:(l+m+n)$。对另外两个三角形同理，得到 $l:m:n$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由向量等式求比和面积</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 内的点 $P$ 满足 $3\ov{PA}+4\ov{PB}+5\ov{PC}=\vec 0$，直线 $AP$ 交 $BC$ 于 $D$。求 $BD:DC$ 和 $AP:PD$。若 $\triangle ABC$ 的面积为 $24$，求 $\triangle PBC,\ \triangle PCA,\ \triangle PAB$ 的面积。</p>
+      <div class="ans">
+        <ol>
+        <li>以 $A$ 为起点改写：$-3\ov{AP}+4(\ov{AB}-\ov{AP})+5(\ov{AC}-\ov{AP})=\vec 0$，所以 $\ov{AP}=\dfrac{4\ov{AB}+5\ov{AC}}{12}$。</li>
+        <li>为了在 $BC$ 上得到系数和为 $1$ 的形式，提出 $\dfrac{9}{12}$：$\ov{AP}=\dfrac34\cdot\dfrac{4\ov{AB}+5\ov{AC}}{9}$。</li>
+        <li>因此 $\ov{AD}=\dfrac{4\ov{AB}+5\ov{AC}}{9}$，$BD:DC=5:4$。</li>
+        <li>又 $\ov{AP}=\dfrac34\ov{AD}$，所以 $AP:PD=3:1$。</li>
+        <li>面积比 $\triangle PBC:\triangle PCA:\triangle PAB=3:4:5$，总份数为 $12$，每份面积为 $2$。所以三个面积依次为 $6,\ 8,\ 10$。</li>
+        </ol>
+        <p><strong>答案：</strong>$BD:DC=5:4$，$AP:PD=3:1$，面积依次为 $6,\ 8,\ 10$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $\ov{PA}$ 直接替换成 $\ov{AP}$，漏掉负号。</li>
+        <li>对应关系弄错：系数 $l$（$\ov{PA}$ 的系数）对应的是不含 $A$ 的 $\triangle PBC$，不是 $\triangle PAB$。</li>
+        <li>$BD:DC$ 写成 $m:n$。由内分公式，$\ov{AD}=\dfrac{m\ov{AB}+n\ov{AC}}{m+n}$ 表示 $BD:DC=n:m$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>可以记住结论快速核对：对 $3,4,5$ 这样的系数，面积比就是 $3:4:5$。但题目常要求按步骤填写 $\ov{AP}$，所以改写过程也要熟练。</p>
+      <p><strong>日语术语：</strong><span lang="ja">面積比</span>（<span class="kana" lang="ja">めんせきひ</span>）：面积比；<span lang="ja">三角形の内部</span>（<span class="kana" lang="ja">さんかくけいのないぶ</span>）：三角形内部；<span lang="ja">辺</span>（<span class="kana" lang="ja">へん</span>）：边。</p>
+    </div>
   </section>
 
   <section id="eq">
@@ -424,6 +839,37 @@ svg.fig { max-width: 480px; margin: auto; }
       <p><strong>例：</strong>过 $A(1,2)$、方向 $(3,-1)$ 的直线：$x=1+3t,\ y=2-t$，消去 $t$ 得 $x+3y=7$。</p>
       <p>过 $A(1,2)$、法向量 $(2,3)$ 的直线：$2(x-1)+3(y-2)=0$，即 $2x+3y=8$。</p>
     </div>
+
+    <p><strong>每个方程的来历：</strong><em>方向式：</em>$P$ 在直线上 $\iff\ov{AP}\parallel\vec d$ 或 $P=A$ $\iff\vec p-\vec a=t\vec d$。<em>法线式：</em>$\ov{AP}$ 都与 $\vec n$ 垂直，所以 $\vec n\cdot(\vec p-\vec a)=0$。<em>圆：</em>圆是到 $C$ 距离等于 $r$ 的点集，所以 $|\vec p-\vec c|=r$。</p>
+    <p><em>直径式：</em>当 $P$ 不是 $A,B$ 时，直径所对的圆周角是直角，即 $\ov{PA}\perp\ov{PB}$；$P=A$ 或 $P=B$ 时内积也是 $0$。所以这个方程恰好表示以 $AB$ 为直径的圆。</p>
+    <p><strong>切线也能用同样的想法：</strong>圆 $|\vec p-\vec c|=r$ 上一点 $P_0$ 处的切线与半径 $\ov{CP_0}$ 垂直，所以 $(\vec p_0-\vec c)\cdot(\vec p-\vec p_0)=0$，也可以写成 $(\vec p_0-\vec c)\cdot(\vec p-\vec c)=r^2$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　把向量方程化成 $x,y$ 的方程</b><span class="origin">原创</span></div>
+      <p>(1) 求过 $A(2,-1)$、方向向量 $(1,3)$ 的直线方程。(2) $A(-1,2),\ B(3,4)$，求以 $AB$ 为直径的圆的方程。(3) 求 (2) 中的圆在点 $(2,5)$ 处的切线。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) $x=2+t,\ y=-1+3t$。消去 $t$：$3x-y=3(2+t)-(-1+3t)=7$，所以 $3x-y=7$。</li>
+        <li>(2) $(\vec p-\vec a)\cdot(\vec p-\vec b)=0$ 的成分形式是 $(x+1)(x-3)+(y-2)(y-4)=0$。</li>
+        <li>展开并配方：$x^2-2x-3+y^2-6y+8=0$，即 $(x-1)^2+(y-3)^2=5$。中心 $(1,3)$，半径 $\sqrt5$。</li>
+        <li>(3) 先确认点在圆上：$(2-1)^2+(5-3)^2=5$，成立。半径方向为 $(2,5)-(1,3)=(1,2)$，它就是切线的法向量。</li>
+        <li>切线：$1\cdot(x-2)+2(y-5)=0$，即 $x+2y=12$。检算：中心到切线的距离为 $\dfrac{|1+6-12|}{\sqrt5}=\sqrt5$，等于半径。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $3x-y=7$；(2) $(x-1)^2+(y-3)^2=5$；(3) $x+2y=12$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>混淆方向向量和法向量。直线 $ax+by=c$ 的法向量是 $(a,b)$，方向向量是 $(b,-a)$ 这样与之垂直的向量。</li>
+        <li>把 $|\vec p-\vec c|=r$ 写成 $\vec p-\vec c=r$。左边是向量，右边是数，不能相等。</li>
+        <li>以为参数式只有一种写法。同一直线的 $t$ 可以有不同的起点和倍数，比较结果要化成同一形式。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>看到 $|\vec p|^2-2\vec p\cdot\vec c+\cdots=0$ 这种式子，配方就是圆：$|\vec p-\vec c|^2=\cdots$。需要求交点时，把直线参数式代入圆的方程，转化为 $t$ 的二次方程。</p>
+      <p><strong>日语术语：</strong><span lang="ja">ベクトル方程式</span>（<span class="kana" lang="ja">ベクトルほうていしき</span>）：向量方程；<span lang="ja">方向ベクトル</span>（<span class="kana" lang="ja">ほうこうベクトル</span>）：方向向量；<span lang="ja">法線ベクトル</span>（<span class="kana" lang="ja">ほうせんベクトル</span>）：法向量；<span lang="ja">媒介変数表示</span>（<span class="kana" lang="ja">ばいかいへんすうひょうじ</span>）：参数表示；<span lang="ja">接線</span>（<span class="kana" lang="ja">せっせん</span>）：切线。</p>
+    </div>
+
     <h3>$\vec p=s\vec a+t\vec b$ 的存在范围</h3>
     <p>$\vec a,\vec b$ 一次独立时，由系数条件可以读出点 $P$ 的范围（<span lang="ja">存在範囲</span>）：</p>
     <div class="tw"><table>
@@ -435,6 +881,35 @@ svg.fig { max-width: 480px; margin: auto; }
         <tr><td>$0\le s\le1,\ 0\le t\le1$</td><td>以 $OA,OB$ 为邻边的平行四边形内部及边界</td></tr>
       </tbody>
     </table></div>
+
+    <p><strong>为什么 $s+t\le1$ 是三角形？</strong>设 $s+t=k\ (0&lt;k\le1,\ s,t\ge0)$，令 $s=ks',\ t=kt'$，则 $s'+t'=1$，$\vec p=k(s'\vec a+t'\vec b)$。括号内的点在线段 $AB$ 上，乘 $k$ 后落在把线段 $AB$ 向 $O$ 缩放 $k$ 倍所得的线段上。$k$ 从 $0$ 变到 $1$，这些线段扫过的区域正是 $\triangle OAB$。</p>
+    <p><strong>一般方法：</strong>遇到 $\alpha s+\beta t=\gamma$ 这种条件（$\alpha,\beta,\gamma&gt;0$），把两边除以 $\gamma$，写成 $\dfrac{\alpha}{\gamma}s+\dfrac{\beta}{\gamma}t=1$，再令 $\vec a'=\dfrac{\gamma}{\alpha}\vec a,\ \vec b'=\dfrac{\gamma}{\beta}\vec b$。这时 $\vec p=\dfrac{\alpha}{\gamma}s\,\vec a'+\dfrac{\beta}{\gamma}t\,\vec b'$，新系数和为 $1$，就可以套用上表。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　把条件改写成系数和为 $1$</b><span class="origin">原创</span></div>
+      <p>$\triangle OAB$ 的面积为 $2$，$\ov{OP}=s\vec a+t\vec b$，$s,t\ge0$。分别求点 $P$ 的范围的面积：(1) $2s+3t\le6$；(2) $1\le s+t\le2$。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) 两边除以 $6$：$\dfrac s3+\dfrac t2\le1$。令 $s'=\dfrac s3,\ t'=\dfrac t2$，则 $s',t'\ge0$，$s'+t'\le1$。</li>
+        <li>又 $\vec p=s'(3\vec a)+t'(2\vec b)$。令 $\ov{OA'}=3\vec a,\ \ov{OB'}=2\vec b$，所以 $P$ 的范围是 $\triangle OA'B'$ 的内部及边界。</li>
+        <li>两边分别放大 $3$ 倍和 $2$ 倍，夹角不变，面积放大 $3\times2=6$ 倍，所以面积为 $2\times6=12$。</li>
+        <li>(2) $s+t=k$ 时，$P$ 在线段 $A_kB_k$ 上，其中 $\ov{OA_k}=k\vec a,\ \ov{OB_k}=k\vec b$。$k$ 从 $1$ 变到 $2$，得到梯形 $A_1A_2B_2B_1$。</li>
+        <li>面积 $=$ $\triangle OA_2B_2$ 面积 $-$ $\triangle OAB$ 面积 $=2\times2^2-2=6$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $12$；(2) $6$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>漏掉 $s\ge0,\ t\ge0$。只有 $s+t\le1$ 时，范围是直线 $AB$ 靠 $O$ 一侧的整个半平面。</li>
+        <li>放大比例算错：边长放大 $k$ 倍，相似图形的面积放大 $k^2$ 倍；两边放大的倍数不同时，面积乘两个倍数。</li>
+        <li>把平行四边形的条件 $0\le s,t\le1$ 与三角形的条件 $s+t\le1$ 混淆。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题面出现「点 $P$ の存在範囲」时，先化成系数和为 $1$，确定新的两个端点。常考结果有线段、三角形、平行四边形、梯形。</p>
+      <p><strong>日语术语：</strong><span lang="ja">存在範囲</span>（<span class="kana" lang="ja">そんざいはんい</span>）：存在范围；<span lang="ja">線分</span>（<span class="kana" lang="ja">せんぶん</span>）：线段；<span lang="ja">台形</span>（<span class="kana" lang="ja">だいけい</span>）：梯形；<span lang="ja">周および内部</span>（<span class="kana" lang="ja">しゅうおよびないぶ</span>）：边界及内部。</p>
+    </div>
   </section>
 
   <section id="coord">
@@ -447,6 +922,37 @@ svg.fig { max-width: 480px; margin: auto; }
     </div>
     <p>原点到点 $(1,2,3)$ 的距离为 $\sqrt{1+4+9}=\sqrt{14}$。</p>
     <p>与坐标平面相切、相交的球面题，都是先看中心到该平面的距离（就是对应坐标的绝对值），再用勾股定理。</p>
+    <p><strong>距离公式的来历：</strong>两次勾股定理。先在水平面内：$(x_1,y_1)$ 到 $(x_2,y_2)$ 的距离 $d$ 满足 $d^2=(x_2-x_1)^2+(y_2-y_1)^2$；再把 $d$ 和高度差 $z_2-z_1$ 作为直角边：$AB^2=d^2+(z_2-z_1)^2$。</p>
+    <p><strong>对称点的规律：</strong>关于坐标平面对称，只改变与该平面垂直的那个坐标的符号；关于坐标轴对称，保留该轴的坐标，其余两个变号；关于原点对称，三个都变号。可以这样记：平面变一个，轴变两个，原点变三个。</p>
+    <p><strong>球面与坐标平面的交线：</strong>中心 $(a,b,c)$、半径 $r$ 的球面与 $xy$ 平面（$z=0$）相交时，代入 $z=0$ 得 $(x-a)^2+(y-b)^2=r^2-c^2$。这正是用勾股定理得到的截口圆：半径为 $\sqrt{r^2-c^2}$，中心为 $(a,b,0)$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　距离、分点、对称与球面截口</b><span class="origin">原创</span></div>
+      <p>$A(1,-2,3),\ B(4,2,-1)$。(1) 求 $AB$ 及把 $AB$ 内分为 $1:2$ 的点。(2) 求 $A$ 关于 $xy$ 平面、关于 $y$ 轴的对称点。(3) 求 $x$ 轴上与 $A,B$ 等距的点。(4) 球面中心 $(2,-3,4)$、半径 $5$，分别求它被 $xy$ 平面、$yz$ 平面、$zx$ 平面截得的圆的半径。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) $AB=\sqrt{3^2+4^2+(-4)^2}=\sqrt{41}$。内分点为 $\dfrac{2A+B}{3}=\Bigl(\dfrac{6}{3},\dfrac{-2}{3},\dfrac{5}{3}\Bigr)=\Bigl(2,-\dfrac23,\dfrac53\Bigr)$。</li>
+        <li>(2) 关于 $xy$ 平面：$z$ 变号，得 $(1,-2,-3)$。关于 $y$ 轴：保留 $y$，$x,z$ 变号，得 $(-1,-2,-3)$。</li>
+        <li>(3) 设点 $(x,0,0)$。由距离相等：$(x-1)^2+4+9=(x-4)^2+4+1$，展开：$x^2-2x+14=x^2-8x+21$。</li>
+        <li>解得 $6x=7$，$x=\dfrac76$，所求点为 $\Bigl(\dfrac76,0,0\Bigr)$。</li>
+        <li>(4) 中心到 $xy,\ yz,\ zx$ 平面的距离分别是 $4,\ 2,\ 3$。</li>
+        <li>截口半径依次为 $\sqrt{25-16}=3$，$\sqrt{25-4}=\sqrt{21}$，$\sqrt{25-9}=4$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\sqrt{41}$，$\Bigl(2,-\dfrac23,\dfrac53\Bigr)$；(2) $(1,-2,-3)$，$(-1,-2,-3)$；(3) $\Bigl(\dfrac76,0,0\Bigr)$；(4) $3,\ \sqrt{21},\ 4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把点到 $xy$ 平面的距离算成 $x$ 坐标或 $\sqrt{x^2+y^2}$。到 $xy$ 平面的距离是 $|z|$。</li>
+        <li>关于 $y$ 轴对称时只把 $y$ 变号。实际上 $y$ 不变，$x,z$ 变号。</li>
+        <li>把截口半径当作 $r-d$。要用勾股定理：$\sqrt{r^2-d^2}$。</li>
+        <li>距离是长度，用坐标算“中心到平面的距离”时忘记取绝对值，例如中心的 $y=-3$ 时距离是 $3$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>画一张简单的长方体草图，可以快速判断点的位置。球面题中，「$xy$ 平面に接する」表示半径 $=|z_0|$，这个条件常用来确定半径。</p>
+      <p><strong>日语术语：</strong><span lang="ja">座標平面</span>（<span class="kana" lang="ja">ざひょうへいめん</span>）：坐标平面；<span lang="ja">対称な点</span>（<span class="kana" lang="ja">たいしょうなてん</span>）：对称点；<span lang="ja">2点間の距離</span>（<span class="kana" lang="ja">にてんかんのきょり</span>）：两点间距离；<span lang="ja">接する</span>（<span class="kana" lang="ja">せっする</span>）：相切；<span lang="ja">切り口</span>（<span class="kana" lang="ja">きりくち</span>）：截口。</p>
+    </div>
   </section>
 
   <section id="space">
@@ -464,17 +970,91 @@ svg.fig { max-width: 480px; margin: auto; }
       <p><strong>夹角：</strong>$(1,1,0)$ 与 $(1,0,1)$：$\cos\theta=\dfrac{1}{\sqrt2\sqrt2}=\dfrac12$，$\theta=60^\circ$。</p>
       <p><strong>同时垂直于两个向量：</strong>设 $\vec n=(x,y,z)$ 与 $(1,2,0),\ (0,1,-1)$ 都垂直，则 $x+2y=0,\ y-z=0$，取 $y=1$ 得 $\vec n=(-2,1,1)$（它的任意非零实数倍也可以）。</p>
     </div>
+
+    <p><strong>为什么平面的结论都能搬到空间？</strong>任意两个向量起点对齐后都落在同一平面内，所以余弦定理的推导照样成立：$|\vec b-\vec a|^2=|\vec a|^2+|\vec b|^2-2|\vec a||\vec b|\cos\theta$，代入三个成分就得到 $a_1b_1+a_2b_2+a_3b_3$。</p>
+    <p><strong>为什么需要三个向量？</strong>两个一次独立的向量只能生成一个平面。第三个向量不在这个平面内时，过空间任一点作与它平行的直线，这条直线与该平面恰好交于一点。于是从 $O$ 到该点的向量，等于平面内的一个向量加上第三个向量的实数倍，所以三者可以生成整个空间，且表示唯一。</p>
+    <p><strong>求法向量的本质：</strong>$\vec n=(x,y,z)$ 有三个未知数，但垂直条件只有两个方程，因此解有无穷多个，彼此是实数倍关系。可以令其中一个未知数为方便的数，解出其余两个；最后用内积代回检算。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　空间中的长度、夹角与法向量</b><span class="origin">原创</span></div>
+      <p>$\vec a=(1,2,-2),\ \vec b=(3,0,4)$。求 (1) 夹角 $\theta$ 的余弦；(2) 同时垂直于 $\vec a,\vec b$ 的单位向量；(3) $|\vec a+t\vec b|$ 的最小值及此时的 $t$。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) $|\vec a|=\sqrt{1+4+4}=3$，$|\vec b|=\sqrt{9+16}=5$，$\vec a\cdot\vec b=3-8=-5$，所以 $\cos\theta=\dfrac{-5}{15}=-\dfrac13$。</li>
+        <li>(2) 设 $\vec n=(x,y,z)$，则 $x+2y-2z=0$，$3x+4z=0$。令 $x=4$，由第二式得 $z=-3$；代入第一式：$4+2y+6=0$，$y=-5$。</li>
+        <li>$\vec n=(4,-5,-3)$，$|\vec n|=\sqrt{16+25+9}=5\sqrt2$。检算：$4-10+6=0$，$12-12=0$。单位向量为 $\pm\dfrac{1}{5\sqrt2}(4,-5,-3)$。</li>
+        <li>(3) $|\vec a+t\vec b|^2=9+2t(-5)+25t^2=25t^2-10t+9=25\Bigl(t-\dfrac15\Bigr)^2+8$。</li>
+        <li>所以 $t=\dfrac15$ 时取最小值 $\sqrt8=2\sqrt2$。此时 $(\vec a+t\vec b)\cdot\vec b=-5+25\cdot\dfrac15=0$，即与 $\vec b$ 垂直，符合几何直观。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $-\dfrac13$；(2) $\pm\dfrac{1}{5\sqrt2}(4,-5,-3)$；(3) $t=\dfrac15$ 时最小值为 $2\sqrt2$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用三个向量表示</b><span class="origin">原创</span></div>
+      <p>$\vec a=(1,1,0),\ \vec b=(0,1,1),\ \vec c=(1,0,1)$。把 $\vec p=(3,5,4)$ 写成 $s\vec a+t\vec b+u\vec c$。</p>
+      <div class="ans">
+        <ol>
+        <li>比较成分：$s+u=3$，$s+t=5$，$t+u=4$。</li>
+        <li>三式相加：$2(s+t+u)=12$，所以 $s+t+u=6$。</li>
+        <li>分别相减：$t=6-3=3$，$u=6-5=1$，$s=6-4=2$。</li>
+        <li>检算：$2(1,1,0)+3(0,1,1)+(1,0,1)=(3,5,4)$，正确。</li>
+        </ol>
+        <p><strong>答案：</strong>$\vec p=2\vec a+3\vec b+\vec c$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>认为空间中两个向量就能表示任意向量。平面用两个，空间需要不共面的三个。</li>
+        <li>把成分式的平行条件从平面照搬成 $a_1b_2-a_2b_1=0$。空间中要写 $\vec b=k\vec a$，三个成分都成比例。</li>
+        <li>认为法向量只有一个。任意非零实数倍都可以；但“单位法向量”有正负两个。</li>
+        <li>认为 $\vec n$ 只需垂直于一个向量就足够。确定方向至少需要两个不平行的向量。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>求最小值时，有两条路：配方或利用 $(\vec a+t\vec b)\perp\vec b$。后者给出 $t=-\dfrac{\vec a\cdot\vec b}{|\vec b|^2}$，可用来核对答案。</p>
+      <p><strong>日语术语：</strong><span lang="ja">空間ベクトル</span>（<span class="kana" lang="ja">くうかんベクトル</span>）：空间向量；<span lang="ja">法線ベクトル</span>（<span class="kana" lang="ja">ほうせんベクトル</span>）：法向量；<span lang="ja">同一平面上にない</span>（<span class="kana" lang="ja">どういつへいめんじょうにない</span>）：不共面；<span lang="ja">最小値</span>（<span class="kana" lang="ja">さいしょうち</span>）：最小值。</p>
+    </div>
   </section>
 
   <section id="solid">
     <h2>10 向量与空间图形、向量方程</h2>
     <p class="jp-sub" lang="ja">ベクトルと空間図形・ベクトル方程式 — 共面条件・垂線・球面</p>
+    <p>空间图形题的翻译方法与平面相同，只是基底变成三个向量。解题前先确认：要表示的点在直线上（一个参数）、在平面上（两个参数），还是在球面上（一个长度条件）。参数个数决定需要列几个方程。</p>
 
     <h3>共面条件</h3>
     <p>点 $P$ 在平面 $ABC$ 上（$A,B,C$ 不共线）等价于下面两式之一：</p>
     $$\ov{AP}=s\ov{AB}+t\ov{AC},\qquad\ov{OP}=x\ov{OA}+y\ov{OB}+z\ov{OC}\ \ (x+y+z=1).$$
     <div class="box good">
       <p><strong>例：</strong>$\ov{OP}=\dfrac12\vec a+\dfrac13\vec b+\dfrac14\vec c$，直线 $OP$ 交平面 $ABC$ 于 $Q$。设 $\ov{OQ}=k\ov{OP}$，系数和为 $1$：$k\Bigl(\dfrac12+\dfrac13+\dfrac14\Bigr)=1$，所以 $k=\dfrac{12}{13}$。</p>
+    </div>
+
+    <p><strong>系数和为 $1$ 的推导：</strong>由 $\ov{AP}=s\ov{AB}+t\ov{AC}$ 展开：$\vec p-\vec a=s(\vec b-\vec a)+t(\vec c-\vec a)$，所以 $\vec p=(1-s-t)\vec a+s\vec b+t\vec c$。三个系数之和恒为 $1$。这与平面中“共线时系数和为 $1$”完全对应。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　求平面上的点与交点</b><span class="origin">原创</span></div>
+      <p>(1) $A(1,0,0),\ B(0,2,0),\ C(0,0,2)$，点 $P(1,2,z)$ 在平面 $ABC$ 上，求 $z$。(2) 四面体 $OABC$ 中，$\ov{OP}=\dfrac13\vec a+\dfrac14\vec b+\dfrac16\vec c$，直线 $OP$ 交平面 $ABC$ 于 $Q$，求 $OP:PQ$。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) $\ov{AB}=(-1,2,0)$，$\ov{AC}=(-1,0,2)$，$\ov{AP}=(0,2,z)$。</li>
+        <li>设 $\ov{AP}=s\ov{AB}+t\ov{AC}=(-s-t,\ 2s,\ 2t)$。比较成分：$-s-t=0$，$2s=2$，所以 $s=1,\ t=-1$。</li>
+        <li>$z=2t=-2$。检算：截距式平面 $x+\dfrac y2+\dfrac z2=1$，代入得 $1+1-1=1$，成立。</li>
+        <li>(2) 设 $\ov{OQ}=k\ov{OP}=\dfrac k3\vec a+\dfrac k4\vec b+\dfrac k6\vec c$。</li>
+        <li>$Q$ 在平面 $ABC$ 上，系数和为 $1$：$k\Bigl(\dfrac13+\dfrac14+\dfrac16\Bigr)=\dfrac34k=1$，所以 $k=\dfrac43$。</li>
+        <li>$OQ=\dfrac43OP$，$PQ=\dfrac13OP$，所以 $OP:PQ=3:1$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $z=-2$；(2) $OP:PQ=3:1$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把共面条件中的系数和 $1$ 用在了 $\ov{AP}=s\ov{AB}+t\ov{AC}$ 上。这种写法的 $s,t$ 没有和的限制。</li>
+        <li>使用系数和条件时，向量的起点不是平面外的同一点 $O$。</li>
+        <li>只验证了 $P$ 与 $A,B$ 的关系，就下结论说 $P$ 在平面内。还要用到第三个点 $C$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目常要求求直线 $OP$ 与平面 $ABC$ 的交点，这是 EJU 的高频题型。记住“$k$ 倍 + 系数和为 $1$”，一行就能算出 $k$。</p>
+      <p><strong>日语术语：</strong><span lang="ja">同一平面上</span>（<span class="kana" lang="ja">どういつへいめんじょう</span>）：同一平面上；<span lang="ja">四面体</span>（<span class="kana" lang="ja">しめんたい</span>）：四面体；<span lang="ja">平面</span>（<span class="kana" lang="ja">へいめん</span>）：平面。</p>
     </div>
 
     <h3>从点向平面作垂线</h3>
@@ -500,6 +1080,50 @@ svg.fig { max-width: 480px; margin: auto; }
     </ol>
     <p>棱长为 $1$ 的正四面体 $OABC$ 中，$\vec a\cdot\vec b=\vec b\cdot\vec c=\vec c\cdot\vec a=\dfrac12$，这个基底非常好用。四面体的重心为 $\dfrac{\vec a+\vec b+\vec c+\vec d}{4}$。</p>
 
+    <p><strong>为什么只需垂直于两个向量？</strong>平面内任意向量 $\vec v$ 都可写成 $\vec v=s\ov{AB}+t\ov{AC}$，所以 $\ov{OH}\cdot\vec v=s\ov{OH}\cdot\ov{AB}+t\ov{OH}\cdot\ov{AC}=0$。也就是说，垂直于平面内两个不平行的向量，就垂直于整个平面。</p>
+    <p><strong>未知数与方程数：</strong>平面上的 $H$ 含 $s,t$ 两个未知数，垂直条件也恰好给出两个方程，所以可以解出唯一的垂足。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　垂足、高与体积</b><span class="origin">原创</span></div>
+      <p>$A(1,0,0),\ B(0,2,0),\ C(0,0,2)$，$O$ 为原点。求从 $O$ 向平面 $ABC$ 作垂线的垂足 $H$、高 $|\ov{OH}|$、$\triangle ABC$ 的面积和四面体 $OABC$ 的体积。</p>
+      <div class="ans">
+        <ol>
+        <li>$\ov{AB}=(-1,2,0)$，$\ov{AC}=(-1,0,2)$。设 $\ov{OH}=\ov{OA}+s\ov{AB}+t\ov{AC}=(1-s-t,\ 2s,\ 2t)$。</li>
+        <li>$\ov{OH}\cdot\ov{AB}=-(1-s-t)+4s=5s+t-1=0$。</li>
+        <li>$\ov{OH}\cdot\ov{AC}=-(1-s-t)+4t=s+5t-1=0$。</li>
+        <li>两式解得 $s=t=\dfrac16$，所以 $H\Bigl(\dfrac23,\dfrac13,\dfrac13\Bigr)$。</li>
+        <li>$|\ov{OH}|=\sqrt{\dfrac{4+1+1}{9}}=\dfrac{\sqrt6}{3}$。</li>
+        <li>$|\ov{AB}|^2=|\ov{AC}|^2=5$，$\ov{AB}\cdot\ov{AC}=1$，所以 $S=\dfrac12\sqrt{25-1}=\sqrt6$。</li>
+        <li>$V=\dfrac13\cdot\sqrt6\cdot\dfrac{\sqrt6}{3}=\dfrac23$。检算：以 $\triangle OAB$（面积 $1$）为底、$OC=2$ 为高，$V=\dfrac13\cdot1\cdot2=\dfrac23$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>$H\Bigl(\dfrac23,\dfrac13,\dfrac13\Bigr)$，$|\ov{OH}|=\dfrac{\sqrt6}{3}$，$S=\sqrt6$，$V=\dfrac23$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　正四面体对棱垂直</b><span class="origin">原创</span></div>
+      <p>棱长为 $1$ 的正四面体 $OABC$ 中，证明 $\ov{AB}\perp\ov{OC}$。</p>
+      <div class="ans">
+        <ol>
+        <li>令 $\ov{OA}=\vec a,\ \ov{OB}=\vec b,\ \ov{OC}=\vec c$。则 $\vec a\cdot\vec b=\vec b\cdot\vec c=\vec c\cdot\vec a=1\cdot1\cdot\cos60^\circ=\dfrac12$。</li>
+        <li>$\ov{AB}\cdot\ov{OC}=(\vec b-\vec a)\cdot\vec c=\vec b\cdot\vec c-\vec a\cdot\vec c=\dfrac12-\dfrac12=0$。</li>
+        <li>两向量都不是 $\vec 0$，所以 $\ov{AB}\perp\ov{OC}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\ov{AB}\cdot\ov{OC}=0$，已证明。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只列一个垂直条件。要垂直于平面，必须对两个不平行的向量都列式。</li>
+        <li>体积公式漏掉 $\dfrac13$，或把三角形面积写成 $|\ov{AB}||\ov{AC}|$。</li>
+        <li>正四面体内积写成 $1$。两条棱的夹角是 $60^\circ$，棱长为 $1$ 时内积是 $\dfrac12$。</li>
+        <li>面积套用平面成分公式 $\dfrac12|a_1b_2-a_2b_1|$。在空间中要用根号形式。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>坐标轴上的三点（如本题）可以用法向量 $(2,1,1)$ 直接求：$H$ 与法向量平行，所以设 $H=k(2,1,1)$，代入平面方程 $2x+y+z=2$，$k=\dfrac13$，再次得到相同的 $H$。填空题可用此法核对。</p>
+      <p><strong>日语术语：</strong><span lang="ja">垂線を下ろす</span>（<span class="kana" lang="ja">すいせんをおろす</span>）：作垂线；<span lang="ja">体積</span>（<span class="kana" lang="ja">たいせき</span>）：体积；<span lang="ja">正四面体</span>（<span class="kana" lang="ja">せいしめんたい</span>）：正四面体；<span lang="ja">底面</span>（<span class="kana" lang="ja">ていめん</span>）：底面。</p>
+    </div>
+
     <h3>空间中的向量方程</h3>
     <div class="tw"><table>
       <thead><tr><th>图形</th><th>向量方程</th><th>成分形式</th></tr></thead>
@@ -512,6 +1136,38 @@ svg.fig { max-width: 480px; margin: auto; }
     </table></div>
     <p>点 $(x_0,y_0,z_0)$ 到平面 $lx+my+nz=d$ 的距离为 $\dfrac{|lx_0+my_0+nz_0-d|}{\sqrt{l^2+m^2+n^2}}$。平面的方程在部分教材中属于发展内容，但解题时直接使用法向量会非常快。</p>
     <p>球面（半径 $r$）与平面（中心到平面的距离 $d&lt;r$）相交时，截口是半径为 $\sqrt{r^2-d^2}$ 的圆。</p>
+
+    <p><strong>平面方程的来历：</strong>$\vec n$ 垂直于平面内所有向量，所以 $\ov{AP}\cdot\vec n=0$。展开为 $lx+my+nz=lx_0+my_0+nz_0$，右边是常数 $d$，这也说明平面方程的系数就是法向量的成分。</p>
+    <p><strong>点到平面距离的推导：</strong>取平面上一点 $A$，距离等于 $\ov{AP_0}$ 在 $\vec n$ 方向上投影的绝对值，即 $\dfrac{|\vec n\cdot(\vec p_0-\vec a)|}{|\vec n|}$。由于 $\vec n\cdot\vec a=d$，分子就是 $|lx_0+my_0+nz_0-d|$。</p>
+    <p><strong>球面截口：</strong>设球心为 $C$，垂足为 $F$，截口上的任一点为 $Q$。则 $\triangle CFQ$ 在 $F$ 处是直角，$FQ^2=r^2-d^2$ 是定值，所以截口是以 $F$ 为圆心、半径为 $\sqrt{r^2-d^2}$ 的圆。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　球面、平面与直线</b><span class="origin">原创</span></div>
+      <p>球面的中心为 $C(1,-1,2)$，半径为 $3$，平面 $\alpha:2x-y+2z=1$。(1) 求 $C$ 到 $\alpha$ 的距离、截口圆的半径和圆心。(2) 求过 $(1,0,2)$、方向向量 $(1,2,-1)$ 的直线与 $\alpha$ 的交点。(3) $A(1,0,2),\ B(3,4,-2)$，求以 $AB$ 为直径的球面方程。</p>
+      <div class="ans">
+        <ol>
+        <li>(1) $d=\dfrac{|2+1+4-1|}{\sqrt{4+1+4}}=\dfrac63=2$。截口半径 $\sqrt{9-4}=\sqrt5$。</li>
+        <li>圆心是 $C$ 到 $\alpha$ 的垂足。代入 $C$ 时左边比右边大 $6$，沿法向量 $(2,-1,2)$ 移动：$C-\dfrac{6}{9}(2,-1,2)=\Bigl(-\dfrac13,-\dfrac13,\dfrac23\Bigr)$。代回：$-\dfrac23+\dfrac13+\dfrac43=1$，成立。</li>
+        <li>(2) 直线上的点为 $(1+t,\ 2t,\ 2-t)$。代入 $\alpha$：$2(1+t)-2t+2(2-t)=1$，即 $6-2t=1$，$t=\dfrac52$。</li>
+        <li>交点为 $\Bigl(\dfrac72,\ 5,\ -\dfrac12\Bigr)$。检算：$7-5-1=1$，成立。</li>
+        <li>(3) 中心是 $AB$ 中点 $(2,2,0)$，半径 $\dfrac12\sqrt{2^2+4^2+4^2}=3$，所以方程为 $(x-2)^2+(y-2)^2+z^2=9$。</li>
+        <li>也可用直径式：$(x-1)(x-3)+y(y-4)+(z-2)(z+2)=0$，配方后结果相同。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $d=2$，半径 $\sqrt5$，圆心 $\Bigl(-\dfrac13,-\dfrac13,\dfrac23\Bigr)$；(2) $\Bigl(\dfrac72,5,-\dfrac12\Bigr)$；(3) $(x-2)^2+(y-2)^2+z^2=9$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>距离公式分子忘记减 $d$，或分母忘记开根号。</li>
+        <li>把截口圆的圆心当作球心。截口圆的圆心是球心到平面的<strong>垂足</strong>。</li>
+        <li>把半径 $3$ 写进方程时不平方，写成 $(x-2)^2+(y-2)^2+z^2=3$。</li>
+        <li>求垂足时把 $\dfrac{6}{9}$ 写成 $\dfrac{6}{3}$。投影向量分母是 $|\vec n|^2$，不是 $|\vec n|$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>直线与球面、平面相交的题目，都是把参数式 $(x_0+tl,\ y_0+tm,\ z_0+tn)$ 代入方程。弦长等于两个 $t$ 的差乘以方向向量的大小。</p>
+      <p><strong>日语术语：</strong><span lang="ja">球面の方程式</span>（<span class="kana" lang="ja">きゅうめんのほうていしき</span>）：球面方程；<span lang="ja">中心</span>（<span class="kana" lang="ja">ちゅうしん</span>）：中心；<span lang="ja">半径</span>（<span class="kana" lang="ja">はんけい</span>）：半径；<span lang="ja">平面の方程式</span>（<span class="kana" lang="ja">へいめんのほうていしき</span>）：平面方程。</p>
+    </div>
   </section>
 
   <section id="examples">
@@ -584,6 +1240,47 @@ svg.fig { max-width: 480px; margin: auto; }
         <p>(3) 方向向量大小为 $\sqrt3$，弦长为 $\Bigl(4-\dfrac23\Bigr)\sqrt3=\dfrac{10\sqrt3}{3}$。距离：$d=\sqrt{9-\Bigl(\dfrac{5\sqrt3}{3}\Bigr)^2}=\sqrt{\dfrac23}=\dfrac{\sqrt6}{3}$。</p>
       </div>
     </article>
+
+    <p><strong>做题的通用节奏：</strong>① 先写基底和已知的内积；② 依次用小题的结果，EJU 的前一小题往往是后一小题的工具；③ 填写时根据方框数目判断答案形式，比如分母方框有两位时，答案不太可能是小整数；④ 留时间用另一种方法核对。上面四道例题都遵循这个流程。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　EJU 风格：最小值</b><span class="origin">原创</span></div>
+      <p>$\vec a=(1,3),\ \vec b=(2,-1)$，$t$ 为实数。$|\vec a+t\vec b|$ 在 $t=\dfrac{\B{A}}{\B{B}}$ 时取最小值 $\dfrac{\B{C}\sqrt{\B{D}}}{\B{E}}$。</p>
+      <div class="ans">
+        <ol>
+        <li>$\vec a\cdot\vec b=2-3=-1$，$|\vec a|^2=10$，$|\vec b|^2=5$。</li>
+        <li>$|\vec a+t\vec b|^2=5t^2-2t+10=5\Bigl(t-\dfrac15\Bigr)^2+\dfrac{49}{5}$。</li>
+        <li>所以 $t=\dfrac15$ 时最小，最小值为 $\sqrt{\dfrac{49}{5}}=\dfrac{7}{\sqrt5}=\dfrac{7\sqrt5}{5}$。</li>
+        <li>核对：$(\vec a+t\vec b)\cdot\vec b=-1+5\cdot\dfrac15=0$，此时恰好与 $\vec b$ 垂直。</li>
+        </ol>
+        <p><strong>答案：</strong>A = 1，B = 5，C = 7，D = 5，E = 5。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　EJU 风格：正四面体的公垂线</b><span class="origin">原创</span></div>
+      <p>棱长为 $1$ 的正四面体 $OABC$ 中，$M$ 是 $AB$ 的中点，$N$ 是 $OC$ 的中点。则 $\ov{MN}=-\dfrac{\B{F}}{\B{G}}\vec a-\dfrac{\B{H}}{\B{I}}\vec b+\dfrac{\B{J}}{\B{K}}\vec c$，$|\ov{MN}|=\dfrac{\sqrt{\B{L}}}{\B{M}}$，且 $\ov{MN}\cdot\ov{AB}=\B{N}$。</p>
+      <div class="ans">
+        <ol>
+        <li>$\ov{MN}=\ov{ON}-\ov{OM}=\dfrac12\vec c-\dfrac{\vec a+\vec b}{2}=-\dfrac12\vec a-\dfrac12\vec b+\dfrac12\vec c$。</li>
+        <li>$|\vec a+\vec b-\vec c|^2=3+2\vec a\cdot\vec b-2\vec a\cdot\vec c-2\vec b\cdot\vec c=3+1-1-1=2$。</li>
+        <li>所以 $|\ov{MN}|=\dfrac12\sqrt2=\dfrac{\sqrt2}{2}$。</li>
+        <li>$\ov{MN}\cdot\ov{AB}=\dfrac12(\vec c-\vec a-\vec b)\cdot(\vec b-\vec a)=\dfrac12\Bigl(\dfrac12-\dfrac12-\dfrac12+1-1+\dfrac12\Bigr)=0$。</li>
+        <li>同样可算出 $\ov{MN}\cdot\ov{OC}=0$，所以 $MN$ 是对棱 $AB,OC$ 的公垂线。</li>
+        </ol>
+        <p><strong>答案：</strong>F = 1，G = 2，H = 1，I = 2，J = 1，K = 2，L = 2，M = 2，N = 0。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>没有把分数约到最简，或把根号留在分母。$\dfrac{7}{\sqrt5}$ 要写成 $\dfrac{7\sqrt5}{5}$ 才能填入方框。</li>
+        <li>两位数方框（如 $\B{AB}$）的十位和个位分开理解错误，或者遇到负号时没有留意题目已印好的符号。</li>
+        <li>做完第 (1) 小题就不再回头用它。后面的小题大多建立在前面的结果之上。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>方框格式本身也是提示：若答案形式写成 $\dfrac{\B{C}\sqrt{\B{D}}}{\B{E}}$，说明结果含根号且已有理化。如果算出的结果与形式不符，优先检查计算。</p>
+      <p><strong>日语术语：</strong><span lang="ja">有理化</span>（<span class="kana" lang="ja">ゆうりか</span>）：有理化；<span lang="ja">既約分数</span>（<span class="kana" lang="ja">きやくぶんすう</span>）：最简分数；<span lang="ja">空欄</span>（<span class="kana" lang="ja">くうらん</span>）：空格。</p>
+    </div>
   </section>
 
   <section id="practice">
@@ -657,6 +1354,34 @@ svg.fig { max-width: 480px; margin: auto; }
       <p>求点 $P(3,1,2)$ 到平面 $2x-y+2z=1$ 的距离及垂足。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
       <div class="ans" hidden><p>距离 $\dfrac{|6-1+4-1|}{\sqrt{4+1+4}}=\mathbf{\dfrac83}$。垂足为 $P-\dfrac89(2,-1,2)=\mathbf{\Bigl(\dfrac{11}{9},\dfrac{17}{9},\dfrac29\Bigr)}$，代回平面方程成立。</p></div></div>
+
+    <p><strong>建议的练习方法：</strong>先把 13 题盖住答案独立做完，再对答案；做错的题写清错在“翻译”“展开”还是“计算”。第 1～7 题对应平面向量，第 8～13 题对应空间向量。下面的补充例题用正射影求垂足，再用面积公式核对。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　一题多解：点到直线的垂足</b><span class="origin">原创</span></div>
+      <p>$A(1,1),\ B(5,3),\ C(2,6)$。从 $C$ 向直线 $AB$ 作垂线，垂足为 $H$。求 $H$ 的坐标、$CH$ 的长以及 $\triangle ABC$ 的面积。</p>
+      <div class="ans">
+        <ol>
+        <li>$\ov{AB}=(4,2)$，$\ov{AC}=(1,5)$，$\ov{AB}\cdot\ov{AC}=4+10=14$，$|\ov{AB}|^2=20$。</li>
+        <li>用正射影：$\ov{AH}=\dfrac{14}{20}\ov{AB}=\dfrac{7}{10}(4,2)=\Bigl(\dfrac{14}{5},\dfrac75\Bigr)$。</li>
+        <li>所以 $H=\Bigl(1+\dfrac{14}{5},\ 1+\dfrac75\Bigr)=\Bigl(\dfrac{19}{5},\dfrac{12}{5}\Bigr)$。</li>
+        <li>$\ov{CH}=\Bigl(\dfrac95,-\dfrac{18}{5}\Bigr)=\dfrac95(1,-2)$，所以 $CH=\dfrac95\sqrt5=\dfrac{9\sqrt5}{5}$。又 $\ov{CH}\cdot\ov{AB}=\dfrac95(4-4)=0$，垂直得到确认。</li>
+        <li>面积：$S=\dfrac12|4\cdot5-2\cdot1|=9$。检算：$\dfrac12\cdot AB\cdot CH=\dfrac12\cdot2\sqrt5\cdot\dfrac{9\sqrt5}{5}=9$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>$H\Bigl(\dfrac{19}{5},\dfrac{12}{5}\Bigr)$，$CH=\dfrac{9\sqrt5}{5}$，$S=9$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>算出 $\ov{AH}$ 后直接当作 $H$ 的坐标，忘记加上 $A$ 的坐标。</li>
+        <li>只对答案、不查原因。同样的错误往往会在后面的题目中重复出现。</li>
+        <li>第 2 题这类题把垂直与平行的条件混用：垂直是 $a_1b_1+a_2b_2=0$，平行是 $a_1b_2-a_2b_1=0$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>EJU 数学的时间较紧，建议每题先判断需要哪个工具（比较系数、内积、系数和为 $1$），再动笔。计算完毕后用代回或另一种方法迅速核对。</p>
+      <p><strong>日语术语：</strong><span lang="ja">解答</span>（<span class="kana" lang="ja">かいとう</span>）：解答；<span lang="ja">確かめる</span>（<span class="kana" lang="ja">たしかめる</span>）：验证；<span lang="ja">練習問題</span>（<span class="kana" lang="ja">れんしゅうもんだい</span>）：练习题。</p>
+    </div>
   </section>
 
   <section id="terms">
@@ -669,6 +1394,33 @@ svg.fig { max-width: 480px; margin: auto; }
       <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
       <tbody></tbody>
     </table></div>
+
+    <p><strong>读题时怎样用这张表？</strong>EJU 题面是日语，向量部分最常见的动词结构是「〜を求めよ」（求……）、「〜とする」（设……）、「〜のとき」（当……时）。先找到这些结构，就能分清题目的条件和所求。「内分する」「なす角」「1次独立」这些词一旦认出，题型也基本确定了。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　读日语题面并解答</b><span class="origin">原创</span></div>
+      <p><span lang="ja">$\vec a=(1,2),\ \vec b=(3,1)$ のとき、$\vec a$ と $\vec b$ のなす角 $\theta$ を求めよ。また、$\vec a+t\vec b$ と $\vec b$ が垂直となるような実数 $t$ の値を求めよ。</span></p>
+      <div class="ans">
+        <ol>
+        <li>译文：当 $\vec a=(1,2),\ \vec b=(3,1)$ 时，求 $\vec a$ 与 $\vec b$ 的夹角 $\theta$。另外，求使 $\vec a+t\vec b$ 与 $\vec b$ 垂直的实数 $t$ 的值。</li>
+        <li>$\vec a\cdot\vec b=3+2=5$，$|\vec a|=\sqrt5$，$|\vec b|=\sqrt{10}$。</li>
+        <li>$\cos\theta=\dfrac{5}{\sqrt5\sqrt{10}}=\dfrac{5}{5\sqrt2}=\dfrac{\sqrt2}{2}$，所以 $\theta=45^\circ$。</li>
+        <li>$(\vec a+t\vec b)\cdot\vec b=\vec a\cdot\vec b+t|\vec b|^2=5+10t=0$，所以 $t=-\dfrac12$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\theta=45^\circ$，$t=-\dfrac12$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把「なす角」理解成某个内角。它指的是起点对齐后两向量的夹角。</li>
+        <li>「$\vec a$ の大きさ」被当作成分。「大きさ」是 $|\vec a|$，「成分」才是坐标形式。</li>
+        <li>把「内分する」和「外分する」看反，或者把比 $m:n$ 的顺序读反：「$AB$ を $m:n$ に内分する」指 $AP:PB=m:n$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>可以在搜索框输入中文、日语或假名来查询。复习时试着遮住中文列，只看日语说出意思，在考场上就能减少读题时间。</p>
+      <p><strong>日语术语：</strong><span lang="ja">求めよ</span>（<span class="kana" lang="ja">もとめよ</span>）：求……；<span lang="ja">〜とする</span>（<span class="kana" lang="ja">とする</span>）：设为……；<span lang="ja">実数</span>（<span class="kana" lang="ja">じっすう</span>）：实数；<span lang="ja">値</span>（<span class="kana" lang="ja">あたい</span>）：值。</p>
+    </div>
   </section>
 
   <footer>
@@ -708,6 +1460,13 @@ svg.fig { max-width: 480px; margin: auto; }
       ['座標軸', 'ざひょうじく', '坐标轴'], ['原点', 'げんてん', '原点'], ['同一平面上', 'どういつへいめんじょう', '同一平面上（共面）'],
       ['四面体', 'しめんたい', '四面体'], ['正四面体', 'せいしめんたい', '正四面体'], ['体積', 'たいせき', '体积'],
       ['球面', 'きゅうめん', '球面'], ['接する', 'せっする', '相切'], ['切り口', 'きりくち', '截口（截面）']
+    ]],
+    ['补充术语', [
+      ['基本ベクトル', 'きほんベクトル', '基本向量'], ['1次結合', 'いちじけつごう', '线性组合'], ['係数を比較する', 'けいすうをひかくする', '比较系数'],
+      ['内分点', 'ないぶんてん', '内分点'], ['外分点', 'がいぶんてん', '外分点'], ['中線定理', 'ちゅうせんていり', '中线定理'],
+      ['角の二等分線', 'かくのにとうぶんせん', '角平分线'], ['媒介変数表示', 'ばいかいへんすうひょうじ', '参数表示'], ['接線', 'せっせん', '切线'],
+      ['平面の方程式', 'へいめんのほうていしき', '平面方程'], ['球面の方程式', 'きゅうめんのほうていしき', '球面方程'], ['余弦定理', 'よげんていり', '余弦定理'],
+      ['三平方の定理', 'さんへいほうのていり', '勾股定理'], ['鋭角', 'えいかく', '锐角'], ['鈍角', 'どんかく', '钝角']
     ]]
   ];
   var termBody = document.querySelector('#term-table tbody');

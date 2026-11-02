@@ -271,6 +271,51 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       </tbody>
     </table></div>
     <p>这张表来自两块三角板：边长比 $1:1:\sqrt2$（$45^\circ$）和 $1:\sqrt3:2$（$30^\circ,60^\circ$）。</p>
+    <p><strong>为什么比值只由角决定：</strong>两个直角三角形若有一个锐角都等于 $\theta$，则三个角对应相等，两者相似，对应边成比例。所以无论三角形画多大，$\dfrac ac$、$\dfrac bc$、$\dfrac ab$ 都不变。这些比值只取决于 $\theta$，才可以写成 $\theta$ 的函数 $\sin\theta,\cos\theta,\tan\theta$。</p>
+    <p><strong>特殊值怎么推出来：</strong></p>
+    <ul>
+      <li>$45^\circ$：取腰长为 $1$ 的等腰直角三角形，由勾股定理得斜边 $\sqrt{1^2+1^2}=\sqrt2$，所以 $\sin45^\circ=\dfrac{1}{\sqrt2}=\dfrac{\sqrt2}{2}$，$\tan45^\circ=1$。</li>
+      <li>$30^\circ,60^\circ$：取边长为 $2$ 的等边三角形，沿一条高对折，得到斜边 $2$、短直角边 $1$ 的直角三角形，另一条直角边为 $\sqrt{2^2-1^2}=\sqrt3$。短边 $1$ 所对的角是 $30^\circ$，因此 $\sin30^\circ=\dfrac12$，$\cos30^\circ=\dfrac{\sqrt3}{2}$，$\tan30^\circ=\dfrac{1}{\sqrt3}=\dfrac{\sqrt3}{3}$。</li>
+    </ul>
+    <p><strong>记忆方法：</strong>$\sin$ 是“对边 ÷ 斜边”，$\cos$ 是“邻边 ÷ 斜边”，$\tan$ 是“对边 ÷ 邻边”。在表中可以看到，同一列里 $\sin\theta$ 总小于 $1$（对边短于斜边），而 $\tan\theta$ 可以大于 $1$（$\theta&gt;45^\circ$ 时对边长于邻边）。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　从边长求三角比</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中 $\angle C=90^\circ$，$AB=13$，$BC=5$。求 $\sin A,\cos A,\tan A$ 和 $\tan B$。</p>
+      <div class="ans">
+        <ol>
+          <li>先求第三边：$AC=\sqrt{AB^2-BC^2}=\sqrt{169-25}=12$。</li>
+          <li>看角 $A$：对边是 $BC=5$，邻边是 $AC=12$，斜边是 $AB=13$，所以 $\sin A=\dfrac5{13}$，$\cos A=\dfrac{12}{13}$，$\tan A=\dfrac5{12}$。</li>
+          <li>看角 $B$：对边和邻边互换，对边是 $AC=12$，邻边是 $BC=5$，所以 $\tan B=\dfrac{12}{5}$。</li>
+          <li>检验：$\sin^2A+\cos^2A=\dfrac{25+144}{169}=1$，且 $\tan A\tan B=1$（$A,B$ 互余）。</li>
+        </ol>
+        <p><strong>答案：</strong>$\sin A=\dfrac{5}{13}$，$\cos A=\dfrac{12}{13}$，$\tan A=\dfrac{5}{12}$，$\tan B=\dfrac{12}{5}$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　前进一段后再测仰角</b><span class="origin">原创</span></div>
+      <p>塔 $PH$ 垂直于水平地面。从地面点 $A$ 看塔顶 $P$ 的仰角为 $30^\circ$；向塔底 $H$ 沿直线前进 $20\text{ m}$ 到达 $B$，仰角变为 $60^\circ$。求 $BH$ 和塔高 $PH$（眼睛高度忽略不计）。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $BH=x$，则 $AH=x+20$。两个直角三角形 $\triangle PBH$、$\triangle PAH$ 共用直角边 $PH$。</li>
+          <li>用 $a=b\tan\theta$ 把塔高写两次：$PH=x\tan60^\circ=\sqrt3\,x$，$PH=(x+20)\tan30^\circ=\dfrac{x+20}{\sqrt3}$。</li>
+          <li>列方程：$\sqrt3\,x=\dfrac{x+20}{\sqrt3}$，两边乘 $\sqrt3$ 得 $3x=x+20$，所以 $x=10$。</li>
+          <li>代回：$PH=\sqrt3\cdot10=10\sqrt3$。</li>
+        </ol>
+        <p><strong>答案：</strong>$BH=10\text{ m}$，$PH=10\sqrt3\text{ m}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把“邻边”和“对边”认反。它们是相对于所考察的角而言的，换一个角就会互换（如上题的 $\tan A$ 与 $\tan B$）。</li>
+        <li>三角形摆放方向变化后仍按 $\dfrac ac$ 套公式。应先找到角和斜边，再判断对边、邻边。</li>
+        <li>把 $\tan30^\circ$ 和 $\tan60^\circ$ 记反。可用“角越大越陡，$\tan$ 越大”来检查：$\tan30^\circ&lt;1&lt;\tan60^\circ$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>答案常含根号，分母通常要有理化后再填入答案格。遇到 $\tan$ 的问题，先画草图并标出直角，再用字母表示未知长度，往往一个方程就能解决。</p>
+      <p><strong>日语术语：</strong><span lang="ja">直角をはさむ2辺</span>（<span class="kana" lang="ja">ちょっかくをはさむにへん</span>）：夹直角的两边（两条直角边）；<span lang="ja">相似</span>（<span class="kana" lang="ja">そうじ</span>）：相似；<span lang="ja">仰角</span>（<span class="kana" lang="ja">ぎょうかく</span>）：仰角；<span lang="ja">俯角</span>（<span class="kana" lang="ja">ふかく</span>）：俯角。</p>
+    </div>
   </section>
 
   <section id="obtuse">
@@ -297,6 +342,33 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <p class="status" id="uc-note"></p>
     </div>
 
+    <p><strong>为什么这样定义：</strong>当 $\theta$ 是锐角时，从 $P$ 向 $x$ 轴作垂线，得到斜边 $OP=1$、对边 $y$、邻边 $x$ 的直角三角形，所以 $\sin\theta=\dfrac y1=y$，$\cos\theta=\dfrac x1=x$，$\tan\theta=\dfrac yx$，和第 1 节的定义完全一致。单位圆定义只是把旧定义延伸到钝角，并没有改变原来的含义。半径为 $r$ 的圆同样成立：$\sin\theta=\dfrac yr$，$\cos\theta=\dfrac xr$。</p>
+    <p><strong>为什么 $\tan90^\circ$ 不存在：</strong>$\theta=90^\circ$ 时 $P(0,1)$，$\dfrac yx$ 的分母为 $0$；几何上，直线 $OP$ 是 $y$ 轴，与切线 $x=1$ 平行，没有交点。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由坐标求三角比，由斜率求角</b><span class="origin">原创</span></div>
+      <p>(1) 单位圆上半部分的点 $P\left(-\dfrac5{13},\dfrac{12}{13}\right)$ 对应角 $\theta$，求 $\sin\theta,\cos\theta,\tan\theta$。(2) 直线 $y=-x+2$ 与 $x$ 轴正方向所成的角为 $\alpha\ (0^\circ\le\alpha&lt;180^\circ)$，求 $\alpha$ 及 $\sin\alpha,\cos\alpha$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 先确认点在单位圆上：$\dfrac{25+144}{169}=1$。由定义直接读出 $\sin\theta=y=\dfrac{12}{13}$，$\cos\theta=x=-\dfrac5{13}$。</li>
+          <li>(1) $\tan\theta=\dfrac yx=\dfrac{12}{13}\div\left(-\dfrac5{13}\right)=-\dfrac{12}5$。$x&lt;0,\ y&gt;0$，符合钝角的符号规律。</li>
+          <li>(2) 直线的斜率等于 $\tan\alpha$，平移不改变倾斜方向，所以 $\tan\alpha=-1$。</li>
+          <li>(2) $\tan\alpha&lt;0$ 说明 $\alpha$ 是钝角，而 $\tan135^\circ=-1$，故 $\alpha=135^\circ$，于是 $\sin\alpha=\dfrac{\sqrt2}2$，$\cos\alpha=-\dfrac{\sqrt2}2$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\sin\theta=\dfrac{12}{13}$，$\cos\theta=-\dfrac{5}{13}$，$\tan\theta=-\dfrac{12}{5}$；(2) $\alpha=135^\circ$，$\sin\alpha=\dfrac{\sqrt2}{2}$，$\cos\alpha=-\dfrac{\sqrt2}{2}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $\sin$ 和 $\cos$ 对应的坐标记反。$\cos\theta$ 是横坐标 $x$，$\sin\theta$ 是纵坐标 $y$。</li>
+        <li>看到钝角仍用直角三角形的边长计算，结果漏掉负号。边长总是正的，$\cos\theta$ 的负号来自坐标。</li>
+        <li>写出 $\tan90^\circ=0$ 或 $\tan90^\circ=\infty$。正确说法是“不存在”。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>遇到 $0^\circ\sim180^\circ$ 的问题，先画上半单位圆。取值范围、解的个数和符号都能直接从图上看到，比背结论更可靠。</p>
+      <p><strong>日语术语：</strong><span lang="ja">座標</span>（<span class="kana" lang="ja">ざひょう</span>）：坐标；<span lang="ja">x 軸の正の向き</span>（<span class="kana" lang="ja">エックスじくのせいのむき</span>）：$x$ 轴正方向；<span lang="ja">存在しない</span>（<span class="kana" lang="ja">そんざいしない</span>）：不存在；<span lang="ja">接線</span>（<span class="kana" lang="ja">せっせん</span>）：切线。</p>
+    </div>
     <h3>符号与特殊值</h3>
     <div class="tw"><table class="sign">
       <thead><tr><th>$\theta$</th><th>$0^\circ$</th><th>$30^\circ$</th><th>$45^\circ$</th><th>$60^\circ$</th><th>$90^\circ$</th><th>$120^\circ$</th><th>$135^\circ$</th><th>$150^\circ$</th><th>$180^\circ$</th></tr></thead>
@@ -312,6 +384,32 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="box warn">
       <p><strong>易错点：</strong>$\cos\theta$ 的值唯一决定 $\theta$，$\tan\theta$ 也是（$\theta\ne90^\circ$）；但 $\sin\theta=k\ (0&lt;k&lt;1)$ 对应 $\theta$ 和 $180^\circ-\theta$ <strong>两个</strong>角。例如 $\sin\theta=\dfrac12$ 时 $\theta=30^\circ$ 或 $150^\circ$。</p>
     </div>
+    <p><strong>表怎么记：</strong>不必背整张表。$\sin$ 一行关于 $90^\circ$ 左右对称（$P$ 的高度相同），$\cos$ 一行左右互为相反数（$P$ 的横坐标相反）。因此只要记住 $0^\circ\sim90^\circ$，右半部分可以由 $180^\circ-\theta$ 的关系得到。例如 $\cos150^\circ$：$150^\circ=180^\circ-30^\circ$，所以 $\cos150^\circ=-\cos30^\circ=-\dfrac{\sqrt3}2$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　特殊值的计算与反求角</b><span class="origin">原创</span></div>
+      <p>(1) 计算 $\sin120^\circ\cos150^\circ+\cos120^\circ\sin150^\circ$。(2) 在 $0^\circ\le\theta\le180^\circ$ 内分别求满足 $\sin\theta=\dfrac{\sqrt3}2$、$\cos\theta=-\dfrac{\sqrt2}2$、$\tan\theta=-\dfrac{\sqrt3}3$ 的 $\theta$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 逐项代入：$\dfrac{\sqrt3}2\cdot\left(-\dfrac{\sqrt3}2\right)+\left(-\dfrac12\right)\cdot\dfrac12=-\dfrac34-\dfrac14=-1$。</li>
+          <li>(2) $\sin\theta=\dfrac{\sqrt3}2$：高度为 $\dfrac{\sqrt3}2$ 的点有左右两个，$\theta=60^\circ$ 或 $120^\circ$。</li>
+          <li>(2) $\cos\theta=-\dfrac{\sqrt2}2$：横坐标确定后点唯一。$\cos45^\circ=\dfrac{\sqrt2}{2}$，取负号对应 $180^\circ-45^\circ$，得 $\theta=135^\circ$。</li>
+          <li>(2) $\tan\theta=-\dfrac{\sqrt3}3$：负值说明是钝角。$\tan30^\circ=\dfrac{\sqrt3}3$，所以 $\theta=180^\circ-30^\circ=150^\circ$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $-1$；(2) $\theta=60^\circ$ 或 $120^\circ$；$\theta=135^\circ$；$\theta=150^\circ$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>解 $\sin\theta=\dfrac{\sqrt3}2$ 时只写 $60^\circ$，漏掉 $120^\circ$。</li>
+        <li>认为 $\sin\theta$ 在 $0^\circ\sim180^\circ$ 内可以取负值。此范围内 $\sin\theta\ge0$，出现负解必须舍去。</li>
+        <li>把 $\cos120^\circ$ 算成 $\dfrac12$，忘记钝角的余弦为负。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>解三角形时“求出 $\sin$ 再求角”会有两个候选，“求出 $\cos$ 再求角”只有一个。两条路都能走时，优先用余弦定理求角，可以避免讨论。</p>
+      <p><strong>日语术语：</strong><span lang="ja">符号</span>（<span class="kana" lang="ja">ふごう</span>）：符号；<span lang="ja">値</span>（<span class="kana" lang="ja">あたい</span>）：值；<span lang="ja">値の範囲</span>（<span class="kana" lang="ja">あたいのはんい</span>）：取值范围。</p>
+    </div>
   </section>
 
   <section id="relation">
@@ -323,6 +421,38 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <div>$$1+\tan^2\theta=\frac{1}{\cos^2\theta}$$</div>
     </div>
     <p><strong>已知一个求其余：</strong>例如 $\cos\theta=-\dfrac13$ 时，$0^\circ\le\theta\le180^\circ$ 保证 $\sin\theta\ge0$，所以 $\sin\theta=\sqrt{1-\dfrac19}=\dfrac{2\sqrt2}{3}$，$\tan\theta=\dfrac{\sin\theta}{\cos\theta}=-2\sqrt2$。</p>
+    <p><strong>三个公式的来历：</strong>设单位圆上的点 $P(x,y)$，$x=\cos\theta,\ y=\sin\theta$。</p>
+    <ul>
+      <li>由定义 $\tan\theta=\dfrac yx$，代入即得 $\tan\theta=\dfrac{\sin\theta}{\cos\theta}$。</li>
+      <li>$P$ 在单位圆 $x^2+y^2=1$ 上，代入即得 $\sin^2\theta+\cos^2\theta=1$，它实质上是勾股定理。</li>
+      <li>把上式两边除以 $\cos^2\theta\ (\theta\ne90^\circ)$：$\tan^2\theta+1=\dfrac1{\cos^2\theta}$。</li>
+    </ul>
+    <p><strong>开方时如何定符号：</strong>由 $\sin^2\theta+\cos^2\theta=1$ 开方总有 $\pm$，要靠角的范围来定。在 $0^\circ\le\theta\le180^\circ$ 内 $\sin\theta\ge0$，所以求 $\sin\theta$ 时只取正；求 $\cos\theta$ 时则要先判断 $\theta$ 是锐角还是钝角。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　已知 $\sin\theta$，要分两种情况</b><span class="origin">原创</span></div>
+      <p>$0^\circ\le\theta\le180^\circ$，$\sin\theta=\dfrac35$。求 $\cos\theta$ 和 $\tan\theta$。</p>
+      <div class="ans">
+        <ol>
+          <li>由相互关系：$\cos^2\theta=1-\sin^2\theta=1-\dfrac9{25}=\dfrac{16}{25}$，所以 $\cos\theta=\pm\dfrac45$。</li>
+          <li>题目没有说明 $\theta$ 是锐角还是钝角，而 $\sin\theta=\dfrac35$ 对两者都成立，因此两个符号都要保留。</li>
+          <li>$\theta$ 为锐角时：$\cos\theta=\dfrac45$，$\tan\theta=\dfrac35\div\dfrac45=\dfrac34$。</li>
+          <li>$\theta$ 为钝角时：$\cos\theta=-\dfrac45$，$\tan\theta=\dfrac35\div\left(-\dfrac45\right)=-\dfrac34$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\cos\theta=\dfrac45,\ \tan\theta=\dfrac34$（锐角）；或 $\cos\theta=-\dfrac45,\ \tan\theta=-\dfrac34$（钝角）。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>开方后只取正号。已知 $\sin\theta$ 求 $\cos\theta$ 时，钝角对应负值。</li>
+        <li>把 $\sin^2\theta$ 理解为 $\sin(\theta^2)$。它表示 $(\sin\theta)^2$。</li>
+        <li>已知 $\tan\theta$ 时误写 $1+\tan^2\theta=\cos^2\theta$。右边应为 $\dfrac1{\cos^2\theta}$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>已知 $\tan\theta$ 时，先用 $1+\tan^2\theta=\dfrac1{\cos^2\theta}$ 求 $\cos\theta$，再用 $\sin\theta=\tan\theta\cos\theta$ 求 $\sin\theta$，这个顺序最省力。题目写明“$\theta$ 为钝角”就是在告诉你取哪个符号。</p>
+      <p><strong>日语术语：</strong><span lang="ja">平方根</span>（<span class="kana" lang="ja">へいほうこん</span>）：平方根；<span lang="ja">分母を有理化する</span>（<span class="kana" lang="ja">ぶんぼをゆうりかする</span>）：将分母有理化；<span lang="ja">場合分け</span>（<span class="kana" lang="ja">ばあいわけ</span>）：分情况讨论。</p>
+    </div>
     <h3>互补、互余公式</h3>
     <div class="formula-grid">
       <div>$$\sin(90^\circ-\theta)=\cos\theta$$</div>
@@ -333,14 +463,104 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <div>$$\tan(180^\circ-\theta)=-\tan\theta$$</div>
     </div>
     <p>在 $\triangle ABC$ 中 $A+B+C=180^\circ$，所以有 $\sin(B+C)=\sin A$，$\cos(B+C)=-\cos A$，这在证明题和求值题里经常出现。</p>
+    <p><strong>为什么成立：</strong></p>
+    <ul>
+      <li><strong>$180^\circ-\theta$：</strong>角 $\theta$ 对应点 $P(x,y)$，角 $180^\circ-\theta$ 对应 $P$ 关于 $y$ 轴的对称点 $P'(-x,y)$。纵坐标不变，所以 $\sin$ 不变；横坐标变号，所以 $\cos$ 变号；$\tan=\dfrac{y}{-x}$ 也变号。</li>
+      <li><strong>$90^\circ-\theta$：</strong>在直角三角形中，两个锐角 $A,B$ 互余，$A$ 的对边正是 $B$ 的邻边，所以 $\sin A=\cos B$，$\cos A=\sin B$，$\tan A=\dfrac{1}{\tan B}$。这也解释了为什么叫“余弦”：它是余角（<span lang="ja">余角</span>）的正弦。</li>
+    </ul>
+    <article class="q">
+      <div class="q-head"><b>补充例题　互余、互补的化简</b><span class="origin">原创</span></div>
+      <p>不查表计算：(1) $\sin40^\circ\cos50^\circ+\cos40^\circ\sin50^\circ$；(2) $\cos20^\circ+\cos160^\circ+\tan10^\circ\tan80^\circ$。(3) $\triangle ABC$ 中 $\cos A=\dfrac13$，求 $\sin(B+C)$ 和 $\tan(B+C)$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 用互余：$\cos50^\circ=\sin40^\circ$，$\sin50^\circ=\cos40^\circ$。原式 $=\sin^240^\circ+\cos^240^\circ=1$。</li>
+          <li>(2) 用互补：$\cos160^\circ=-\cos20^\circ$，前两项和为 $0$。用互余：$\tan80^\circ=\dfrac1{\tan10^\circ}$，第三项为 $1$。原式 $=1$。</li>
+          <li>(3) $B+C=180^\circ-A$，所以 $\sin(B+C)=\sin A$，$\tan(B+C)=-\tan A$。</li>
+          <li>(3) $A$ 是三角形内角，$\sin A&gt;0$：$\sin A=\sqrt{1-\dfrac19}=\dfrac{2\sqrt2}3$，$\tan A=\dfrac{\sin A}{\cos A}=2\sqrt2$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $1$；(2) $1$；(3) $\sin(B+C)=\dfrac{2\sqrt2}{3}$，$\tan(B+C)=-2\sqrt2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>写成 $\sin(180^\circ-\theta)=-\sin\theta$。上半圆内 $\sin$ 恒非负，互补时不变号。</li>
+        <li>把 $\tan(90^\circ-\theta)$ 写成 $-\tan\theta$。互余得到的是倒数，互补得到的才是相反数。</li>
+        <li>三角形中写 $\cos(B+C)=\cos A$，漏掉负号。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>看到一组不熟悉的角度（如 $25^\circ,65^\circ,100^\circ$）时，几乎一定是要两两相加凑 $90^\circ$ 或 $180^\circ$。先配对，再化简，不需要也无法用近似值。EJU 不允许使用计算器。</p>
+      <p><strong>日语术语：</strong><span lang="ja">余角</span>（<span class="kana" lang="ja">よかく</span>）：余角；<span lang="ja">補角</span>（<span class="kana" lang="ja">ほかく</span>）：补角；<span lang="ja">内角</span>（<span class="kana" lang="ja">ないかく</span>）：内角。</p>
+    </div>
     <h3>对称式：已知 $\sin\theta+\cos\theta$</h3>
     <p>两边平方，用 $\sin^2\theta+\cos^2\theta=1$ 得 $\sin\theta\cos\theta=\dfrac{(\sin\theta+\cos\theta)^2-1}{2}$。接着 $\sin^3\theta+\cos^3\theta$、$\tan\theta+\dfrac1{\tan\theta}=\dfrac1{\sin\theta\cos\theta}$ 都能算出。见例题 1。</p>
+    <p><strong>为什么这些量都能算出来：</strong>设 $u=\sin\theta+\cos\theta$，$v=\sin\theta\cos\theta$。平方得 $u^2=1+2v$，所以 $u$ 决定 $v$。其余的式子都可以用 $u,v$ 表示：</p>
+    $$\sin^3\theta+\cos^3\theta=u(1-v),\qquad \tan\theta+\frac1{\tan\theta}=\frac{\sin^2\theta+\cos^2\theta}{\sin\theta\cos\theta}=\frac1v.$$
+    <p>差则由 $(\sin\theta-\cos\theta)^2=1-2v$ 得到，开方时符号要由 $\theta$ 的范围确定。知道和与差之后，再相加减就能求出 $\sin\theta,\cos\theta$ 本身。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　已知 $\sin\theta-\cos\theta$</b><span class="origin">原创</span></div>
+      <p>$0^\circ&lt;\theta&lt;180^\circ$，$\sin\theta-\cos\theta=\dfrac12$。求 $\sin\theta\cos\theta$、$\sin\theta+\cos\theta$、$\sin^3\theta-\cos^3\theta$、$\tan\theta+\dfrac1{\tan\theta}$ 以及 $\sin\theta$。</p>
+      <div class="ans">
+        <ol>
+          <li>平方：$1-2\sin\theta\cos\theta=\dfrac14$，所以 $\sin\theta\cos\theta=\dfrac38$。</li>
+          <li>定范围：$\sin\theta&gt;0$ 且积为正，所以 $\cos\theta&gt;0$，$\theta$ 是锐角，和为正。</li>
+          <li>$(\sin\theta+\cos\theta)^2=1+2\cdot\dfrac38=\dfrac74$，取正值，$\sin\theta+\cos\theta=\dfrac{\sqrt7}2$。</li>
+          <li>立方差：$\sin^3\theta-\cos^3\theta=(\sin\theta-\cos\theta)(\sin^2\theta+\sin\theta\cos\theta+\cos^2\theta)=\dfrac12\left(1+\dfrac38\right)=\dfrac{11}{16}$。</li>
+          <li>$\tan\theta+\dfrac1{\tan\theta}=\dfrac1{\sin\theta\cos\theta}=\dfrac83$。</li>
+          <li>和与差相加再除以 $2$：$\sin\theta=\dfrac12\left(\dfrac{\sqrt7}2+\dfrac12\right)=\dfrac{\sqrt7+1}4$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\sin\theta\cos\theta=\dfrac38$，$\sin\theta+\cos\theta=\dfrac{\sqrt7}2$，$\sin^3\theta-\cos^3\theta=\dfrac{11}{16}$，$\tan\theta+\dfrac1{\tan\theta}=\dfrac83$，$\sin\theta=\dfrac{1+\sqrt7}4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>平方时漏掉中间项，写成 $(\sin\theta+\cos\theta)^2=1$。</li>
+        <li>立方和公式的符号出错：$a^3+b^3=(a+b)(a^2-ab+b^2)$，$a^3-b^3=(a-b)(a^2+ab+b^2)$。</li>
+        <li>开方得到和或差时不判断符号。应先由积的符号判断 $\theta$ 是锐角还是钝角。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>这类题常按“积 → 差（或和）→ 立方和 → $\sin\theta,\cos\theta$”的顺序分小问，前一问的结果就是后一问的材料。积为负时可以立刻判定 $\theta$ 为钝角，这也常是题目中的一问。</p>
+      <p><strong>日语术语：</strong><span lang="ja">対称式</span>（<span class="kana" lang="ja">たいしょうしき</span>）：对称式；<span lang="ja">両辺を2乗する</span>（<span class="kana" lang="ja">りょうへんをにじょうする</span>）：两边平方；<span lang="ja">和と積</span>（<span class="kana" lang="ja">わとせき</span>）：和与积。</p>
+    </div>
     <h3>方程、不等式与最值</h3>
     <ul>
       <li>$\sin\theta,\cos\theta$ 混合的二次式：用 $\sin^2\theta=1-\cos^2\theta$ 统一成一种三角比，令 $t=\cos\theta$ 转化为二次函数或二次方程。</li>
       <li><strong>务必写出 $t$ 的范围</strong>：$\cos\theta$ 对应 $-1\le t\le1$，$\sin\theta$ 对应 $0\le t\le1$。</li>
       <li>不等式：在单位圆上看。例如 $\cos\theta&lt;\dfrac12$ 的解是 $60^\circ&lt;\theta\le180^\circ$。</li>
     </ul>
+    <p><strong>为什么换元后要限制范围：</strong>令 $t=\sin\theta$ 后，问题变成关于 $t$ 的代数问题，但 $t$ 并不是任意实数。例如二次方程的根 $t=-\dfrac12$ 在代数上正确，却没有 $\theta\in[0^\circ,180^\circ]$ 与之对应。求最值时也一样：二次函数的顶点若落在范围外，就不是最值点。</p>
+    <p><strong>解不等式的步骤：</strong>① 化成关于 $\sin\theta$ 或 $\cos\theta$ 的不等式；② 求出边界对应的角；③ 在上半单位圆上判断哪一段满足条件。$\cos\theta$ 随 $\theta$ 增大而单调递减，所以 $\cos\theta&lt;k$ 对应“$\theta$ 大于某值”；$\sin\theta$ 不单调，要分左右两段看。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　方程、不等式与最值各一问</b><span class="origin">原创</span></div>
+      <p>设 $0^\circ\le\theta\le180^\circ$。(1) 解方程 $2\cos^2\theta+\sin\theta-1=0$。(2) 解不等式 $2\cos^2\theta-\cos\theta-1&lt;0$。(3) 求 $y=2\cos^2\theta+2\sin\theta-1$ 的最大值、最小值及对应的 $\theta$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 令 $s=\sin\theta\ (0\le s\le1)$，代入 $\cos^2\theta=1-s^2$：$2s^2-s-1=0$，即 $(2s+1)(s-1)=0$。</li>
+          <li>(1) $s=-\dfrac12$ 不在范围内，舍去；$s=1$ 给出 $\theta=90^\circ$。</li>
+          <li>(2) 令 $c=\cos\theta\ (-1\le c\le1)$，因式分解：$(2c+1)(c-1)&lt;0$，所以 $-\dfrac12&lt;c&lt;1$。</li>
+          <li>(2) $\cos120^\circ=-\dfrac12$，$\cos0^\circ=1$，$\cos\theta$ 单调递减，所以 $0^\circ&lt;\theta&lt;120^\circ$。</li>
+          <li>(3) 令 $s=\sin\theta\ (0\le s\le1)$：$y=2(1-s^2)+2s-1=-2s^2+2s+1=-2\left(s-\dfrac12\right)^2+\dfrac32$。</li>
+          <li>(3) 顶点 $s=\dfrac12$ 在范围内，最大值 $\dfrac32$，对应 $\theta=30^\circ,150^\circ$。</li>
+          <li>(3) 端点 $s=0,1$ 到对称轴距离相等，$y$ 都是 $1$，这就是最小值，对应 $\theta=0^\circ,90^\circ,180^\circ$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\theta=90^\circ$；(2) $0^\circ&lt;\theta&lt;120^\circ$；(3) 最大值 $\dfrac32$（$\theta=30^\circ,150^\circ$），最小值 $1$（$\theta=0^\circ,90^\circ,180^\circ$）。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>令 $t=\sin\theta$ 后写 $-1\le t\le1$。在本页的角度范围内应为 $0\le t\le1$。</li>
+        <li>求出 $t$ 就停笔，没有换回 $\theta$，或换回时漏掉 $\sin\theta$ 对应的第二个角。</li>
+        <li>不等式 $\cos\theta&lt;k$ 的方向弄反。$\cos\theta$ 递减，$\theta$ 越大，值越小。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>求最值时一定要写范围、配方、比较顶点和端点。题目若同时问“此时的 $\theta$”，答案可能不止一个，要留意答题格的数量。</p>
+      <p><strong>日语术语：</strong><span lang="ja">方程式</span>（<span class="kana" lang="ja">ほうていしき</span>）：方程；<span lang="ja">不等式</span>（<span class="kana" lang="ja">ふとうしき</span>）：不等式；<span lang="ja">最大値</span>（<span class="kana" lang="ja">さいだいち</span>）：最大值；<span lang="ja">最小値</span>（<span class="kana" lang="ja">さいしょうち</span>）：最小值；<span lang="ja">平方完成</span>（<span class="kana" lang="ja">へいほうかんせい</span>）：配方。</p>
+    </div>
   </section>
 
   <section id="sine">
@@ -352,6 +572,40 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="box warn">
       <p><strong>两解陷阱：</strong>已知两边和其中一边的对角（如 $a,b,A$）时，用 $\sin B=\dfrac{b\sin A}{a}$ 可能得到 $B$ 和 $180^\circ-B$ 两个候选。要用 $A+B&lt;180^\circ$ 或“大边对大角”判断是否都成立（见练习 8）。</p>
     </div>
+    <p><strong>为什么成立（证明 $\dfrac{a}{\sin A}=2R$）：</strong>设外接圆圆心为 $O$，作直径 $BA'$，则 $BA'=2R$，且直径所对的圆周角 $\angle BCA'=90^\circ$。</p>
+    <ul>
+      <li><strong>$A$ 为锐角：</strong>$A'$ 和 $A$ 在弦 $BC$ 同侧，由同弧上的圆周角相等，$\angle A'=A$。在直角三角形 $A'BC$ 中，$a=BC=2R\sin A$。</li>
+      <li><strong>$A$ 为直角：</strong>$BC$ 本身是直径，$a=2R=2R\sin90^\circ$。</li>
+      <li><strong>$A$ 为钝角：</strong>$A'$ 和 $A$ 在 $BC$ 异侧，圆内接四边形对角互补，$\angle A'=180^\circ-A$，于是 $a=2R\sin(180^\circ-A)=2R\sin A$。</li>
+    </ul>
+    <p>对 $B,C$ 同理，三个比值都等于 $2R$。由此可知它们彼此相等，而且这个公共值有明确的几何意义：外接圆的直径。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　何时两解，何时一解</b><span class="origin">原创</span></div>
+      <p>(1) $a=2$，$b=2\sqrt3$，$A=30^\circ$，求 $R$、$B$、$c$。(2) $a=2\sqrt3$，$b=2$，$A=60^\circ$，求 $B$、$c$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $2R=\dfrac{2}{\sin30^\circ}=4$，所以 $R=2$。$\sin B=\dfrac{b}{2R}=\dfrac{2\sqrt3}{4}=\dfrac{\sqrt3}2$，候选为 $B=60^\circ$ 或 $120^\circ$。</li>
+          <li>(1) 检查：$b&gt;a$，所以 $B&gt;A=30^\circ$，两个候选都满足 $A+B&lt;180^\circ$，都成立。</li>
+          <li>(1) $B=60^\circ$ 时 $C=90^\circ$，$c=2R\sin90^\circ=4$；$B=120^\circ$ 时 $C=30^\circ$，$c=2R\sin30^\circ=2$。</li>
+          <li>(2) $2R=\dfrac{2\sqrt3}{\sin60^\circ}=4$，$\sin B=\dfrac24=\dfrac12$，候选为 $B=30^\circ$ 或 $150^\circ$。</li>
+          <li>(2) $b&lt;a$，大边对大角，所以 $B&lt;A=60^\circ$，舍去 $150^\circ$（此时 $A+B=210^\circ$，也不可能）。于是 $B=30^\circ$，$C=90^\circ$，$c=4\sin90^\circ=4$。</li>
+          <li>检验：用余弦定理，(1) 的两组都有 $a^2=12+c^2-4\sqrt3\,c\cos30^\circ=c^2-6c+12=4$；(2) 有 $a^2=4+16-16\cos60^\circ=12$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $R=2$；$B=60^\circ,\ c=4$ 或 $B=120^\circ,\ c=2$。(2) $B=30^\circ$，$c=4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把公式的值记成 $R$。比值等于直径 $2R$，不是半径。</li>
+        <li>由 $\sin B$ 反求角时只写锐角，或者不检查就保留两个角。</li>
+        <li>把 $a:b:c=\sin A:\sin B:\sin C$ 误当成 $a:b:c=A:B:C$。边与角本身不成比例：$A:B:C=1:1:2$ 时，$a:b:c=1:1:\sqrt2$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>已知两角一边时，直接用正弦定理。已知两边及一边对角时，也可以令第三边为 $c$，用余弦定理列二次方程：正根的个数就是解的个数，不容易漏解。题目出现 $R$ 时，首先考虑正弦定理。</p>
+      <p><strong>日语术语：</strong><span lang="ja">円周角</span>（<span class="kana" lang="ja">えんしゅうかく</span>）：圆周角；<span lang="ja">直径</span>（<span class="kana" lang="ja">ちょっけい</span>）：直径；<span lang="ja">比</span>（<span class="kana" lang="ja">ひ</span>）：比；<span lang="ja">対角</span>（<span class="kana" lang="ja">たいかく</span>）：对角。</p>
+    </div>
   </section>
 
   <section id="cosine">
@@ -362,6 +616,36 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <div>$$\cos A=\frac{b^2+c^2-a^2}{2bc}$$</div>
     </div>
     <p>另两式轮换 $a,b,c$ 即得。<strong>什么时候用：</strong>已知两边及夹角求第三边（例：$b=4,c=5,A=60^\circ$ 时 $a^2=16+25-20=21$，$a=\sqrt{21}$），或已知三边求角。</p>
+    <p><strong>为什么成立（坐标证明）：</strong>把 $A$ 放在原点，$B(c,0)$，$C(b\cos A,\ b\sin A)$。这个写法对锐角、直角、钝角都成立，这正是第 2 节把三角比推广到钝角的好处。由两点间距离公式：</p>
+    $$a^2=(b\cos A-c)^2+(b\sin A)^2=b^2(\cos^2A+\sin^2A)-2bc\cos A+c^2=b^2+c^2-2bc\cos A.$$
+    <p>$A=90^\circ$ 时 $\cos A=0$，公式退化为勾股定理，所以余弦定理可以看作勾股定理的推广，$-2bc\cos A$ 是修正项。</p>
+    <p><strong>第一余弦定理的投影解释：</strong>从 $A$ 向直线 $BC$ 作垂线，$c\cos B$ 和 $b\cos C$ 分别是 $AB$、$AC$ 在 $BC$ 上的带符号投影，两者之和正好是 $a$。角为钝角时投影为负，公式仍然成立。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　已知三边求角；已知两边和对角求边</b><span class="origin">原创</span></div>
+      <p>(1) $a=\sqrt{13}$，$b=3$，$c=4$，求 $A$。(2) $a=7$，$b=5$，$A=60^\circ$，求 $c$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 代入：$\cos A=\dfrac{b^2+c^2-a^2}{2bc}=\dfrac{9+16-13}{2\cdot3\cdot4}=\dfrac{12}{24}=\dfrac12$。</li>
+          <li>(1) $0^\circ&lt;A&lt;180^\circ$ 内 $\cos$ 取值对应唯一的角，$A=60^\circ$。</li>
+          <li>(2) 已知的是 $A$ 的对边 $a$，所以写 $a^2=b^2+c^2-2bc\cos A$，把 $c$ 看作未知数：$49=25+c^2-2\cdot5\cdot c\cdot\dfrac12$。</li>
+          <li>(2) 整理：$c^2-5c-24=0$，$(c-8)(c+3)=0$。</li>
+          <li>(2) 边长为正，舍去 $c=-3$，得 $c=8$。检验：$25+64-40=49$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $A=60^\circ$；(2) $c=8$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>忘记 $2bc\cos A$ 中的系数 $2$，或把减号写成加号。</li>
+        <li>$A$ 为钝角时重复处理符号：$\cos120^\circ=-\dfrac12$，代入后 $-2bc\cos A$ 变为 $+bc$，不要再改一次号。</li>
+        <li>把分子写成 $a^2+b^2-c^2$ 去求 $\cos A$。减去的必须是所求角的对边的平方。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>选择定理时看条件：两边及夹角，或者三边，就用余弦定理。整数边的三角形（如 $3,5,7$、$5,7,8$）常常含 $60^\circ$ 或 $120^\circ$，算出的余弦如果不是 $\pm\dfrac12$ 一类的值，也不必惊慌，后面多半要继续求 $\sin$ 和面积。</p>
+      <p><strong>日语术语：</strong><span lang="ja">2点間の距離</span>（<span class="kana" lang="ja">にてんかんのきょり</span>）：两点间距离；<span lang="ja">間の角</span>（<span class="kana" lang="ja">あいだのかく</span>）：夹角（两边所夹的角）；<span lang="ja">正射影</span>（<span class="kana" lang="ja">せいしゃえい</span>）：正投影。</p>
+    </div>
     <h3>判断角的类型</h3>
     <p>$\cos A$ 的符号由 $b^2+c^2-a^2$ 决定：</p>
     <div class="tw"><table class="sign">
@@ -373,6 +657,33 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <p><strong>选哪个定理？</strong>边与角统一：含 $\sin$ 的边角关系式用 $\sin A=\dfrac{a}{2R}$ 化为边，含 $\cos$ 的用余弦定理化为边，再因式分解判断三角形形状（见练习 15）。另有第一余弦定理 $a=b\cos C+c\cos B$，投影一看便知。</p>
     </div>
 
+    <p><strong>为什么只看最大边：</strong>大边对大角，三角形最多有一个钝角或直角，而这样的角只能是最大角。最大角若是锐角，其余两角自然也是锐角。</p>
+    <p><strong>还要满足三角形条件：</strong>三条线段能构成三角形，必须任意两边之和大于第三边，也就是 $|b-c|&lt;a&lt;b+c$。含参数的问题要先写这个条件，再判断角的类型。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　含参数的钝角三角形</b><span class="origin">原创</span></div>
+      <p>三边长为 $3,4,x$ 的三角形是钝角三角形。求 $x$ 的取值范围。</p>
+      <div class="ans">
+        <ol>
+          <li>三角形条件：$4-3&lt;x&lt;4+3$，即 $1&lt;x&lt;7$。</li>
+          <li>情形一，$x$ 是最大边（$x\ge4$）：钝角条件 $x^2&gt;3^2+4^2=25$，所以 $x&gt;5$。结合三角形条件得 $5&lt;x&lt;7$。</li>
+          <li>情形二，$4$ 是最大边（$x&lt;4$）：钝角条件 $4^2&gt;3^2+x^2$，所以 $x^2&lt;7$，$x&lt;\sqrt7$。结合三角形条件得 $1&lt;x&lt;\sqrt7$。</li>
+          <li>两种情形合并。检验：$x=2$ 时 $\cos=\dfrac{9+4-16}{12}&lt;0$；$x=6$ 时 $\cos=\dfrac{9+16-36}{24}&lt;0$；$x=4$ 时 $\dfrac{9+16-16}{24}&gt;0$，确为锐角。</li>
+        </ol>
+        <p><strong>答案：</strong>$1&lt;x&lt;\sqrt7$ 或 $5&lt;x&lt;7$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只考虑 $x$ 是最大边，漏掉 $1&lt;x&lt;\sqrt7$。</li>
+        <li>忘记三角形条件，把答案写成 $x&gt;5$。</li>
+        <li>用“不是最大边”的角判断形状：某个非最大角是锐角，不能说明三角形是锐角三角形。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>判断形状时不必算出 $\cos$ 的具体值，只比较 $a^2$ 和 $b^2+c^2$ 的大小，计算量更小。常见的勾股数 $3,4,5$、$5,12,13$、$8,15,17$ 可以一眼识别直角三角形。</p>
+      <p><strong>日语术语：</strong><span lang="ja">鋭角三角形</span>（<span class="kana" lang="ja">えいかくさんかくけい</span>）：锐角三角形；<span lang="ja">鈍角三角形</span>（<span class="kana" lang="ja">どんかくさんかくけい</span>）：钝角三角形；<span lang="ja">三角形の成立条件</span>（<span class="kana" lang="ja">さんかくけいのせいりつじょうけん</span>）：三角形成立条件。</p>
+    </div>
     <div class="explorer" id="tri">
       <svg class="chart" id="tri-svg" viewBox="0 0 480 300" role="img" aria-label="由两边和夹角确定的三角形及其外接圆，读数见下方"></svg>
       <div class="ctrl"><label for="tri-b">边 b = CA</label><input id="tri-b" type="range" min="1" max="10" step="0.5" value="5"><output id="tri-b-o" for="tri-b"></output></div>
@@ -403,18 +714,132 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <tr><td>四边形，对角线 $p,q$，夹角 $\theta$</td><td>$S=\dfrac12pq\sin\theta$（例：$p=6,q=8,\theta=30^\circ$ 时 $S=12$）</td></tr>
       </tbody>
     </table></div>
+    <p><strong>公式从哪里来：</strong></p>
+    <ul>
+      <li><strong>$S=\dfrac12bc\sin A$：</strong>以 $b$ 为底，$B$ 到直线 $AC$ 的高是 $c\sin A$（$A$ 为钝角时，高在三角形外，长度为 $c\sin(180^\circ-A)=c\sin A$，公式不变）。由“底 × 高 ÷ 2”即得。</li>
+      <li><strong>$S=\dfrac{abc}{4R}$：</strong>把 $\sin A=\dfrac a{2R}$ 代入上式。</li>
+      <li><strong>$S=\dfrac12r(a+b+c)$：</strong>连接内心 $I$ 与三个顶点，把三角形分成三块，每块以一条边为底、以 $r$ 为高。</li>
+      <li><strong>海伦公式：</strong>由 $\sin^2A=1-\cos^2A=(1+\cos A)(1-\cos A)$，代入 $\cos A=\dfrac{b^2+c^2-a^2}{2bc}$，分别得 $1+\cos A=\dfrac{(b+c)^2-a^2}{2bc}$，$1-\cos A=\dfrac{a^2-(b-c)^2}{2bc}$。用平方差分解后，四个因子正好是 $2s,\ 2(s-a),\ 2(s-b),\ 2(s-c)$。</li>
+      <li><strong>$S=\dfrac12pq\sin\theta$：</strong>两条对角线把四边形分成四个三角形，四个小三角形的夹角都是 $\theta$ 或 $180^\circ-\theta$，正弦都相同，相加后合并为 $\dfrac12pq\sin\theta$。</li>
+    </ul>
+    <article class="q">
+      <div class="q-head"><b>补充例题　一个三角形的多种量</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 三边为 $a=7,\ b=8,\ c=9$。求 $\cos A$、面积 $S$、内切圆半径 $r$、外接圆半径 $R$。</p>
+      <div class="ans">
+        <ol>
+          <li>余弦定理：$\cos A=\dfrac{64+81-49}{2\cdot8\cdot9}=\dfrac{96}{144}=\dfrac23$。</li>
+          <li>内角的正弦为正：$\sin A=\sqrt{1-\dfrac49}=\dfrac{\sqrt5}3$。</li>
+          <li>面积：$S=\dfrac12\cdot8\cdot9\cdot\dfrac{\sqrt5}3=12\sqrt5$。用海伦公式检验：$s=12$，$\sqrt{12\cdot5\cdot4\cdot3}=\sqrt{720}=12\sqrt5$。</li>
+          <li>内切圆：$r=\dfrac{S}{s}=\dfrac{12\sqrt5}{12}=\sqrt5$。</li>
+          <li>外接圆：$R=\dfrac{a}{2\sin A}=\dfrac{7}{2\sqrt5/3}=\dfrac{21}{2\sqrt5}=\dfrac{21\sqrt5}{10}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\cos A=\dfrac23$，$S=12\sqrt5$，$r=\sqrt5$，$R=\dfrac{21\sqrt5}{10}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>海伦公式中的 $s$ 是半周长，代成周长会出错。</li>
+        <li>$S=\dfrac12bc\sin A$ 中的 $A$ 必须是 $b,c$ 的夹角。</li>
+        <li>内切圆公式写成 $S=r(a+b+c)$，漏掉 $\dfrac12$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>标准流程是“余弦定理 → $\sin$ → 面积 → $r,R$”，EJU 的小问也常按这个顺序排列。海伦公式用来验算面积很快。</p>
+      <p><strong>日语术语：</strong><span lang="ja">高さ</span>（<span class="kana" lang="ja">たかさ</span>）：高；<span lang="ja">底辺</span>（<span class="kana" lang="ja">ていへん</span>）：底边；<span lang="ja">周の長さ</span>（<span class="kana" lang="ja">しゅうのながさ</span>）：周长；<span lang="ja">内接円の半径</span>（<span class="kana" lang="ja">ないせつえんのはんけい</span>）：内切圆半径。</p>
+    </div>
     <h3>三个常见套路</h3>
     <ul>
       <li><strong>角平分线的长</strong>：$AD$ 平分 $\angle A$ 时，用面积分割 $\triangle ABC=\triangle ABD+\triangle ACD$ 列方程，解出 $AD$。</li>
       <li><strong>圆内接四边形</strong>（<span lang="ja">円に内接する四角形</span>）：对角互补，$\cos D=-\cos B$，$\sin D=\sin B$。对同一条对角线 $AC$ 列两次余弦定理，消去 $AC^2$ 求 $\cos B$。</li>
       <li><strong>平行四边形</strong>：面积 $=ab\sin\theta$；邻角互补，两条对角线分别用 $\cos\theta$ 和 $-\cos\theta$。</li>
     </ul>
+    <p><strong>为什么这些套路有效：</strong>角平分线把一个角分成两个已知角，面积分割后，未知长度 $AD$ 同时出现在两个 $\dfrac12bc\sin A$ 中，是一次方程。圆内接四边形对角互补，$\cos$ 恰好相反，所以两次余弦定理相减时可以消去未知的对角线。平行四边形两条对角线的平方和满足 $p^2+q^2=2(a^2+b^2)$，这是因为两式中 $\pm2ab\cos\theta$ 相互抵消。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用面积分割求角平分线</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中 $AB=6$，$AC=3$，$\angle A=60^\circ$，$\angle A$ 的平分线交 $BC$ 于 $D$。求 $AD$。</p>
+      <div class="ans">
+        <ol>
+          <li>$\angle BAD=\angle CAD=30^\circ$。设 $AD=x$。</li>
+          <li>整体面积：$S=\dfrac12\cdot6\cdot3\cdot\sin60^\circ=\dfrac{9\sqrt3}2$。</li>
+          <li>分割面积：$S=\dfrac12\cdot6\cdot x\sin30^\circ+\dfrac12\cdot3\cdot x\sin30^\circ=\dfrac94x$。</li>
+          <li>列方程：$\dfrac94x=\dfrac{9\sqrt3}2$，所以 $x=2\sqrt3$。</li>
+        </ol>
+        <p><strong>答案：</strong>$AD=2\sqrt3$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　圆内接四边形：先求 $\cos$，再求面积</b><span class="origin">原创</span></div>
+      <p>四边形 $ABCD$ 内接于圆，$AB=1$，$BC=2$，$CD=3$，$DA=4$。求 $\cos B$、$AC$ 和四边形面积。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $x=\cos B$，对角互补，所以 $\cos D=-x$。</li>
+          <li>对 $AC$ 列两次余弦定理：$AC^2=1+4-4x$，$AC^2=9+16+24x$。</li>
+          <li>相等：$5-4x=25+24x$，所以 $x=-\dfrac{20}{28}=-\dfrac57$。</li>
+          <li>$AC^2=5+\dfrac{20}7=\dfrac{55}7$，$AC=\sqrt{\dfrac{55}7}=\dfrac{\sqrt{385}}7$。</li>
+          <li>$\sin D=\sin B=\sqrt{1-\dfrac{25}{49}}=\dfrac{2\sqrt6}7$。面积 $=\dfrac12\cdot1\cdot2\cdot\sin B+\dfrac12\cdot3\cdot4\cdot\sin D=7\cdot\dfrac{2\sqrt6}7=2\sqrt6$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\cos B=-\dfrac57$，$AC=\dfrac{\sqrt{385}}7$，面积 $2\sqrt6$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　平行四边形：由一条对角线求另一条</b><span class="origin">原创</span></div>
+      <p>平行四边形 $ABCD$ 中 $AB=3$，$BC=5$，$AC=7$。求 $\angle ABC$、$BD$ 和面积。</p>
+      <div class="ans">
+        <ol>
+          <li>在 $\triangle ABC$ 中：$\cos\angle ABC=\dfrac{9+25-49}{2\cdot3\cdot5}=-\dfrac12$，所以 $\angle ABC=120^\circ$。</li>
+          <li>邻角互补，$\angle BAD=60^\circ$，$AD=BC=5$。在 $\triangle ABD$ 中：$BD^2=9+25-2\cdot3\cdot5\cos60^\circ=19$，$BD=\sqrt{19}$。</li>
+          <li>面积 $=3\cdot5\cdot\sin120^\circ=\dfrac{15\sqrt3}2$。</li>
+          <li>检验：$AC^2+BD^2=49+19=68=2(3^2+5^2)$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\angle ABC=120^\circ$，$BD=\sqrt{19}$，面积 $\dfrac{15\sqrt3}2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>角平分线题仍用原来的角 $A$ 计算分块面积。两块用的都是 $\dfrac A2$。</li>
+        <li>圆内接四边形中把 $\cos D$ 写成 $\cos B$。$\sin$ 相等，$\cos$ 互为相反数。</li>
+        <li>平行四边形面积写成 $\dfrac12ab\sin\theta$。它是两个三角形之和，等于 $ab\sin\theta$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目说“内接于圆”时，立即写下 $B+D=180^\circ$，并设 $\cos B=x$。这类题的小问通常依次问 $\cos$、对角线、面积和外接圆半径，其中外接圆半径可以对 $\triangle ABC$ 用正弦定理求，因为四边形的外接圆也是 $\triangle ABC$ 的外接圆。</p>
+      <p><strong>日语术语：</strong><span lang="ja">角の二等分線</span>（<span class="kana" lang="ja">かくのにとうぶんせん</span>）：角平分线；<span lang="ja">対角の和</span>（<span class="kana" lang="ja">たいかくのわ</span>）：对角之和；<span lang="ja">中線定理</span>（<span class="kana" lang="ja">ちゅうせんていり</span>）：中线定理。</p>
+    </div>
   </section>
 
   <section id="solid">
     <h2>7 空间图形的应用</h2>
     <p class="jp-sub" lang="ja">空間図形への応用 — 切り口の三角形を取り出す</p>
     <p>核心只有一句话：<strong>把空间问题拆成若干平面三角形</strong>，在每个三角形里用勾股定理、正弦定理、余弦定理。</p>
+    <p><strong>为什么可以这样拆：</strong>三角比和正弦、余弦定理都是平面上的结论，但任意三个不共线的点都确定一个平面，所以空间中的每个三角形都可以单独拿出来计算。关键在于选出<strong>含未知量且其他量已知</strong>的三角形，把它单独画成平面图，标上已求出的长度。线段与平面垂直时，它和平面内所有直线都垂直，这是构造直角三角形的主要依据。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　正四棱锥的高、体积与侧面倾斜</b><span class="origin">原创</span></div>
+      <p>正四棱锥 $O\text{-}ABCD$，底面是边长为 $4$ 的正方形，侧棱 $OA=6$。设 $H$ 为底面中心，$M$ 为 $AB$ 的中点。求 $OH$、体积 $V$、$OM$，以及侧面 $OAB$ 与底面所成角的余弦。</p>
+      <div class="ans">
+        <ol>
+          <li>在底面正方形里：对角线 $AC=4\sqrt2$，所以 $HA=2\sqrt2$。</li>
+          <li>取出 $\triangle OHA$（$\angle OHA=90^\circ$）：$OH=\sqrt{36-8}=\sqrt{28}=2\sqrt7$。</li>
+          <li>体积：$V=\dfrac13\cdot4^2\cdot2\sqrt7=\dfrac{32\sqrt7}3$。</li>
+          <li>取出 $\triangle OAM$：$OA=OB$，所以 $OM\perp AB$；$AM=2$，$OM=\sqrt{36-4}=4\sqrt2$。</li>
+          <li>$HM\perp AB$ 且 $HM=2$，$OM\perp AB$，所以两面所成角就是 $\angle OMH$。在直角三角形 $OHM$ 中，$\cos\angle OMH=\dfrac{HM}{OM}=\dfrac2{4\sqrt2}=\dfrac{\sqrt2}4$。</li>
+        </ol>
+        <p><strong>答案：</strong>$OH=2\sqrt7$，$V=\dfrac{32\sqrt7}3$，$OM=4\sqrt2$，余弦为 $\dfrac{\sqrt2}4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把棱长当作高。高必须垂直于底面，要用勾股定理由侧棱求出。</li>
+        <li>棱锥体积漏掉 $\dfrac13$。</li>
+        <li>把正方形的半对角线写成边长的一半：$HA=2\sqrt2$，而 $HM=2$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>立体题不必追求图画得逼真。把需要的三角形单独重画成平面图、标好长度，比在立体图上直接计算更不容易出错。</p>
+      <p><strong>日语术语：</strong><span lang="ja">正四角錐</span>（<span class="kana" lang="ja">せいしかくすい</span>）：正四棱锥；<span lang="ja">側面</span>（<span class="kana" lang="ja">そくめん</span>）：侧面；<span lang="ja">垂直</span>（<span class="kana" lang="ja">すいちょく</span>）：垂直；<span lang="ja">中点</span>（<span class="kana" lang="ja">ちゅうてん</span>）：中点。</p>
+    </div>
     <h3>常用方法</h3>
     <ul>
       <li><strong>测量（<span lang="ja">測量</span>）</strong>：塔 $PH$ 垂直于地面时，$\triangle PAH$ 是直角三角形，$PH=AH\tan(\text{仰角})$；$AH$ 则在地面上的 $\triangle ABH$ 里用正弦或余弦定理求。</li>
@@ -425,6 +850,51 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="box">
       <p><strong>值得记住：</strong>棱长为 $a$ 的正四面体（<span lang="ja">正四面体</span>）：高 $\dfrac{\sqrt6}{3}a$，体积 $\dfrac{\sqrt2}{12}a^3$，相邻两面所成角的余弦 $\dfrac13$。考试中仍建议能当场推导（见练习 14）。</p>
     </div>
+    <p><strong>每种方法的依据：</strong></p>
+    <ul>
+      <li><strong>外心结论：</strong>$OH\perp$ 平面 $ABC$，所以 $\triangle OHA,\triangle OHB,\triangle OHC$ 都是直角三角形，且斜边相等、直角边 $OH$ 公共，三者全等，于是 $HA=HB=HC$。</li>
+      <li><strong>二面角：</strong>二面角的大小定义为在棱上同一点、在两个面内分别作垂直于棱的射线所成的角。正四面体中，取棱 $BC$ 的中点 $M$，$AM,DM$ 都垂直于 $BC$，所以 $\angle AMD$ 就是所求的角。</li>
+      <li><strong>等积法：</strong>同一个四面体的体积不随底面选取而变。若点到平面的距离不好直接求，就换一个容易求高的底面先算体积。</li>
+    </ul>
+    <article class="q">
+      <div class="q-head"><b>补充例题　地面三角形与仰角结合</b><span class="origin">原创</span></div>
+      <p>塔 $PH$ 垂直于水平地面，从地面点 $A$ 看塔顶的仰角为 $45^\circ$，从地面点 $B$ 看塔顶的仰角为 $30^\circ$，$AB=20\text{ m}$，$\angle AHB=30^\circ$。求塔高 $h=PH$。</p>
+      <div class="ans">
+        <ol>
+          <li>在 $\triangle PAH$ 中：$AH=\dfrac{h}{\tan45^\circ}=h$。</li>
+          <li>在 $\triangle PBH$ 中：$BH=\dfrac{h}{\tan30^\circ}=\sqrt3\,h$。</li>
+          <li>在地面 $\triangle ABH$ 中用余弦定理：$20^2=h^2+3h^2-2\cdot h\cdot\sqrt3h\cdot\cos30^\circ$。</li>
+          <li>化简：$400=4h^2-3h^2=h^2$，因 $h&gt;0$，得 $h=20$。</li>
+        </ol>
+        <p><strong>答案：</strong>$h=20\text{ m}$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　等积法求点到平面的距离</b><span class="origin">原创</span></div>
+      <p>棱长为 $6$ 的正方体 $ABCD\text{-}EFGH$（$AE$ 为侧棱）。求四面体 $ABDE$ 的体积、$\triangle BDE$ 的面积、$A$ 到平面 $BDE$ 的距离 $d$；设 $M$ 为 $BD$ 的中点，再求平面 $BDE$ 与底面 $ABCD$ 所成角（即 $\angle AME$）的余弦。</p>
+      <div class="ans">
+        <ol>
+          <li>换底：以 $\triangle ABD$ 为底、$AE$ 为高，因为 $AE\perp$ 底面。$V=\dfrac13\cdot\dfrac12\cdot6\cdot6\cdot6=36$。</li>
+          <li>$BD,DE,EB$ 都是面对角线，长 $6\sqrt2$，所以 $\triangle BDE$ 是等边三角形，面积 $=\dfrac{\sqrt3}4(6\sqrt2)^2=18\sqrt3$。</li>
+          <li>等积：$\dfrac13\cdot18\sqrt3\cdot d=36$，得 $d=\dfrac{6}{\sqrt3}=2\sqrt3$。</li>
+          <li>$AB=AD$，$EB=ED$，所以 $AM\perp BD$，$EM\perp BD$，$\angle AME$ 就是所成角。$AM=3\sqrt2$，$EM=\sqrt{AM^2+AE^2}=\sqrt{18+36}=3\sqrt6$。</li>
+          <li>$\triangle AME$ 中 $\angle EAM=90^\circ$，$\cos\angle AME=\dfrac{3\sqrt2}{3\sqrt6}=\dfrac{\sqrt3}3$。</li>
+        </ol>
+        <p><strong>答案：</strong>$V=36$，面积 $18\sqrt3$，$d=2\sqrt3$，余弦 $\dfrac{\sqrt3}3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>看到 $OA=OB=OC$ 就认为 $H$ 是重心或内心。它是外心，只有正三角形时这三者才重合。</li>
+        <li>把两条未垂直于棱的线段的夹角当作二面角。作图时要确认两条线都与棱垂直。</li>
+        <li>仰角题把斜线长度当作水平距离。$AH$ 是水平距离，$PA$ 是斜线。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目如果有“$H$ 为垂足”和“长度相等”，先想外接圆半径和正弦定理；如果要求“点到平面的距离”，先想等积法。多小问的题目中，前面求出的体积往往正是为等积法准备的。</p>
+      <p><strong>日语术语：</strong><span lang="ja">垂線の足</span>（<span class="kana" lang="ja">すいせんのあし</span>）：垂足；<span lang="ja">二面角</span>（<span class="kana" lang="ja">にめんかく</span>）：二面角；<span lang="ja">距離</span>（<span class="kana" lang="ja">きょり</span>）：距离；<span lang="ja">重心</span>（<span class="kana" lang="ja">じゅうしん</span>）：重心。</p>
+    </div>
   </section>
 
   <section id="examples">
@@ -434,6 +904,7 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <p><strong>填空格式：</strong>与 EJU 一样，每个字母 $\B{A},\B{B},\dots$ 代表一个数字（0～9）；$\B{BC}$ 表示两位数。分数化为最简，根号内的数尽量小。为便于阅读，本页把负号直接印在题面上。</p>
     </div>
 
+    <p><strong>怎么用这些例题：</strong>先遮住答案自己填空，每道题限时约 15 分钟。做完后对照解答，不仅要看数字是否一致，还要看自己选择的定理和解答的顺序是否相同。填空形式本身也提供信息：$\dfrac{\B{A}\sqrt{\B{B}}}{\B{C}}$ 说明答案含根号，$\B{BC}$ 说明结果是两位数；如果算出的结果放不进答题格，就要回头检查。</p>
     <article class="q">
       <div class="q-head"><b>例题 1　相互关系与对称式</b><span class="origin">原创</span></div>
       <p>设 $0^\circ&lt;\theta&lt;180^\circ$，且 $\sin\theta+\cos\theta=\dfrac13$。</p>
@@ -495,6 +966,34 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <p>(3) $\triangle OAC$ 是腰长 $7$、底 $8$ 的等腰三角形，高 $=\sqrt{49-16}=\sqrt{33}$，面积 $=4\sqrt{33}$。等积法：$\dfrac13\cdot4\sqrt{33}\cdot d=\dfrac{70\sqrt2}{3}$，$d=\dfrac{35\sqrt2}{2\sqrt{33}}=\dfrac{35\sqrt{66}}{66}$。</p>
       </div>
     </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　从两边夹角到中线</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中，$AB=8$，$AC=5$，$\angle A=60^\circ$，$M$ 为边 $BC$ 的中点。</p>
+      <p>(1) $BC=\B{A}$，$\triangle ABC$ 的面积为 $\B{BC}\sqrt{\B{D}}$。</p>
+      <p>(2) 外接圆半径 $R=\dfrac{\B{E}\sqrt{\B{F}}}{\B{G}}$，内切圆半径 $r=\sqrt{\B{H}}$。</p>
+      <p>(3) 中线 $AM=\dfrac{\sqrt{\B{IJK}}}{\B{L}}$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ul class="keys"><li>A = 7</li><li>BC = 10</li><li>D = 3</li><li>E = 7</li><li>F = 3</li><li>G = 3</li><li>H = 3</li><li>IJK = 129</li><li>L = 2</li></ul>
+        <ol>
+          <li>(1) 余弦定理：$BC^2=64+25-2\cdot8\cdot5\cdot\dfrac12=49$，$BC=7$。面积 $=\dfrac12\cdot8\cdot5\cdot\dfrac{\sqrt3}2=10\sqrt3$。</li>
+          <li>(2) 正弦定理：$R=\dfrac{7}{2\sin60^\circ}=\dfrac7{\sqrt3}=\dfrac{7\sqrt3}3$。由 $S=\dfrac12r(8+5+7)=10r$，得 $r=\sqrt3$。</li>
+          <li>(3) 中线定理：$AB^2+AC^2=2(AM^2+BM^2)$，即 $89=2\left(AM^2+\dfrac{49}4\right)$，$AM^2=\dfrac{129}4$，所以 $AM=\dfrac{\sqrt{129}}2$。</li>
+        </ol>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>答案写成未化简的形式，如 $\dfrac{7}{\sqrt3}$，结果与答题格不匹配。分母要有理化。</li>
+        <li>把 $\B{BC}$ 理解成两个数相乘。它表示一个两位数的十位和个位。</li>
+        <li>前一小问算错却继续往下做。发现答题格位数不对时，应立即回头检查。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>EJU 是填写数字的答题卡形式，不看过程。遇到难以继续的一问，可以先用答题格的形状判断方向。小问之间往往相互依赖，第一问务必验算。</p>
+      <p><strong>日语术语：</strong><span lang="ja">中線</span>（<span class="kana" lang="ja">ちゅうせん</span>）：中线；<span lang="ja">解答欄</span>（<span class="kana" lang="ja">かいとうらん</span>）：答题栏；<span lang="ja">既約分数</span>（<span class="kana" lang="ja">きやくぶんすう</span>）：最简分数。</p>
+    </div>
   </section>
 
   <section id="practice">
@@ -504,6 +1003,7 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <button class="chip" id="toggle-all" type="button">显示全部答案</button>
     </div>
 
+    <p><strong>建议做法：</strong>练习 1～6 对应相互关系和三角方程，7～9 对应正弦定理，10～11 对应面积，12～14 对应空间图形，15 是边角转换。先按顺序做，错题回到对应小节重读“为什么成立”，再做一遍，不要只看解析。</p>
     <article class="q" data-p="1"><div class="q-head"><b>练习 1</b><span>特殊角</span><span class="origin">原创</span></div>
       <p>求 $\sin150^\circ$，$\cos135^\circ$，$\tan120^\circ$ 的值。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
@@ -579,6 +1079,33 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
       <div class="ans" hidden><p><strong>答案：</strong>$a=b$ 的等腰三角形，或 $C=90^\circ$ 的直角三角形</p><p>代入余弦定理并去分母：$a^2(b^2+c^2-a^2)=b^2(c^2+a^2-b^2)$，整理得 $(a^2-b^2)(a^2+b^2-c^2)=0$。注意不能直接约去 $a^2-b^2$，否则会漏解。</p></div>
     </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　边角转换判断形状</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 满足 $\sin A=2\sin B\cos C$。这个三角形是什么形状？</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ol>
+          <li>用正弦定理把 $\sin$ 换成边：$\sin A=\dfrac a{2R}$，$\sin B=\dfrac b{2R}$。</li>
+          <li>用余弦定理把 $\cos$ 换成边：$\cos C=\dfrac{a^2+b^2-c^2}{2ab}$。</li>
+          <li>代入：$\dfrac a{2R}=2\cdot\dfrac b{2R}\cdot\dfrac{a^2+b^2-c^2}{2ab}$，两边乘 $2R$ 并化简，得 $a=\dfrac{a^2+b^2-c^2}{a}$。</li>
+          <li>两边乘 $a$：$a^2=a^2+b^2-c^2$，所以 $b^2=c^2$。边长为正，$b=c$。</li>
+          <li>以上每一步都可逆，所以 $b=c$ 是充要条件。数值检验：取 $B=C=40^\circ$，$A=100^\circ$，$2\sin40^\circ\cos40^\circ=\sin80^\circ=\sin100^\circ$，等式成立。</li>
+        </ol>
+        <p><strong>答案：</strong>$b=c$ 的等腰三角形。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>约去可能为 $0$ 的因式，从而漏解（见练习 15）。</li>
+        <li>解出 $\sin B$ 后不检查两个候选（见练习 8）。</li>
+        <li>只对答案数字，不写推导，下次遇到形式稍变的题仍然不会。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>判断形状的题目，一般把所有条件统一成边，再因式分解。答案可能是“等腰三角形”“直角三角形”或两者之一，选择题中要仔细看选项的措辞。</p>
+      <p><strong>日语术语：</strong><span lang="ja">等式</span>（<span class="kana" lang="ja">とうしき</span>）：等式；<span lang="ja">因数分解</span>（<span class="kana" lang="ja">いんすうぶんかい</span>）：因式分解；<span lang="ja">必要十分条件</span>（<span class="kana" lang="ja">ひつようじゅうぶんじょうけん</span>）：充要条件。</p>
+    </div>
   </section>
 
   <section id="terms">
@@ -591,6 +1118,32 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
       <tbody></tbody>
     </table></div>
+    <p><strong>如何用这张表：</strong>EJU 数学用日语出题，读题速度直接影响解题时间。建议按“读音 → 中文 → 在题目里认出来”的顺序记。很多术语汉字和中文相同，但读音需要单独记；也有几个容易混淆：<span lang="ja">正接</span> 是“正切”，<span lang="ja">内接円</span> 是“内切圆”，<span lang="ja">立方体</span> 是“正方体”。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　读懂日语题面</b><span class="origin">原创</span></div>
+      <p lang="ja">△ABC において，AB = 6，AC = 4，∠A = 60° とする。このとき，辺 BC の長さ，△ABC の面積，および外接円の半径を求めよ。</p>
+      <div class="ans">
+        <ol>
+          <li>翻译：在 $\triangle ABC$ 中，设 $AB=6$，$AC=4$，$\angle A=60^\circ$。求边 $BC$ 的长、$\triangle ABC$ 的面积以及外接圆的半径。其中 <span lang="ja">〜において</span> 是“在……中”，<span lang="ja">〜とする</span> 是“设……”，<span lang="ja">および</span> 是“以及”，<span lang="ja">求めよ</span> 是“求”。</li>
+          <li>余弦定理：$BC^2=36+16-2\cdot6\cdot4\cdot\dfrac12=28$，$BC=2\sqrt7$。</li>
+          <li>面积：$S=\dfrac12\cdot6\cdot4\cdot\sin60^\circ=6\sqrt3$。</li>
+          <li>正弦定理：$R=\dfrac{2\sqrt7}{2\sin60^\circ}=\dfrac{2\sqrt7}{\sqrt3}=\dfrac{2\sqrt{21}}3$。</li>
+        </ol>
+        <p><strong>答案：</strong>$BC=2\sqrt7$，面积 $6\sqrt3$，$R=\dfrac{2\sqrt{21}}3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 <span lang="ja">内接円</span> 理解成“内接于某圆的图形”。它指内切于三角形的圆，即内切圆。</li>
+        <li>把 <span lang="ja">正接</span> 理解成切线。切线是 <span lang="ja">接線</span>，<span lang="ja">正接</span> 是 $\tan$。</li>
+        <li>把 <span lang="ja">対辺</span>（对边）和 <span lang="ja">対角</span>（对角）混淆。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>平时做题时把题面中的关键词圈出来，并尽量读出声。考场上看到 <span lang="ja">外接円の半径</span> 就想到正弦定理，看到 <span lang="ja">内接円の半径</span> 就想到面积公式。</p>
+      <p><strong>日语术语：</strong><span lang="ja">〜を求めよ</span>（<span class="kana" lang="ja">〜をもとめよ</span>）：求……；<span lang="ja">〜とする</span>（<span class="kana" lang="ja">〜とする</span>）：设……；<span lang="ja">辺の長さ</span>（<span class="kana" lang="ja">へんのながさ</span>）：边长。</p>
+    </div>
   </section>
 
   <footer>
@@ -617,7 +1170,8 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       ['外接円', 'がいせつえん', '外接圆'], ['内接円', 'ないせつえん', '内切圆'], ['外心', 'がいしん', '外心'],
       ['内心', 'ないしん', '内心'], ['二等辺三角形', 'にとうへんさんかくけい', '等腰三角形'], ['正三角形', 'せいさんかくけい', '等边三角形'],
       ['直角三角形', 'ちょっかくさんかくけい', '直角三角形'], ['対辺', 'たいへん', '对边'], ['斜辺', 'しゃへん', '斜边'],
-      ['二等分線', 'にとうぶんせん', '平分线（角の二等分線：角平分线）'], ['対角線', 'たいかくせん', '对角线']
+      ['二等分線', 'にとうぶんせん', '平分线（角の二等分線：角平分线）'], ['対角線', 'たいかくせん', '对角线'],
+      ['余角', 'よかく', '余角'], ['補角', 'ほかく', '补角'], ['中線定理', 'ちゅうせんていり', '中线定理'], ['円周角', 'えんしゅうかく', '圆周角']
     ]],
     ['面积与四边形', [
       ['面積', 'めんせき', '面积'], ['ヘロンの公式', 'ヘロンのこうしき', '海伦公式'], ['平行四辺形', 'へいこうしへんけい', '平行四边形'],
@@ -627,7 +1181,8 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       ['空間図形', 'くうかんずけい', '空间图形'], ['四面体', 'しめんたい', '四面体'], ['正四面体', 'せいしめんたい', '正四面体'],
       ['立方体', 'りっぽうたい', '正方体'], ['体積', 'たいせき', '体积'], ['底面', 'ていめん', '底面'],
       ['垂線', 'すいせん', '垂线'], ['切り口', 'きりくち', '截面'], ['測量', 'そくりょう', '测量'],
-      ['仰角', 'ぎょうかく', '仰角'], ['俯角', 'ふかく', '俯角']
+      ['仰角', 'ぎょうかく', '仰角'], ['俯角', 'ふかく', '俯角'],
+      ['二面角', 'にめんかく', '二面角'], ['垂線の足', 'すいせんのあし', '垂足'], ['正四角錐', 'せいしかくすい', '正四棱锥']
     ]]
   ];
 
