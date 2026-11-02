@@ -259,6 +259,34 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     $$AP:AB=AQ:AC=PQ:BC,\qquad AP:PB=AQ:QC.$$
     <p>特别地，连接两边中点的线段平行于第三边，且等于第三边的一半（<span lang="ja">中点連結定理</span>）。相似比为 $k$ 的两个图形，面积比为 $k^2$，体积比为 $k^3$。</p>
 
+    <p><strong>为什么成立：</strong>因为 $PQ\parallel BC$，同位角相等：$\angle APQ=\angle ABC$，$\angle AQP=\angle ACB$，所以 $\triangle APQ\sim\triangle ABC$（两角对应相等），对应边成比例，这就得到 $AP:AB=AQ:AC=PQ:BC$。再由 $AB=AP+PB$、$AC=AQ+QC$ 作差，得 $AP:PB=AQ:QC$。注意第二个比例式里<strong>没有</strong> $PQ:BC$，因为 $PB,QC$ 不是相似三角形的边。</p>
+    <p>相似比为 $k$ 时，面积比为 $k^2$：底和高都变成 $k$ 倍，面积 $\dfrac12\times$底$\times$高就变成 $k^2$ 倍。体积比为 $k^3$ 的道理相同：长、宽、高三个方向都放大 $k$ 倍。中点连结定理就是 $k=\dfrac12$ 的特例。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　平行线、线段比与面积</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 的面积为 $50$，$BC=15$。边 $AB,AC$ 上的点 $P,Q$ 满足 $PQ\parallel BC$，$AP:PB=2:3$，$AQ=4$。求 $QC$、$PQ$、$\triangle APQ$ 的面积以及四边形 $PBCQ$ 的面积。</p>
+      <div class="ans">
+        <ol>
+          <li>由 $PQ\parallel BC$ 得 $AQ:QC=AP:PB=2:3$，所以 $QC=\dfrac32AQ=6$。</li>
+          <li>先把部分比化为全体比：$AP:AB=2:(2+3)=2:5$，这就是相似比。</li>
+          <li>$PQ:BC=2:5$，所以 $PQ=\dfrac25\cdot15=6$。</li>
+          <li>面积比为 $2^2:5^2=4:25$，所以 $\triangle APQ=\dfrac{4}{25}\cdot50=8$。</li>
+          <li>四边形 $PBCQ=50-8=42$。</li>
+        </ol>
+        <p><strong>答案：</strong>$QC=6$，$PQ=6$，$\triangle APQ=8$，四边形 $PBCQ=42$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $AP:PB$ 直接当相似比。相似比必须用 $AP:AB$，本题是 $2:5$ 而不是 $2:3$。</li>
+        <li>写成 $AP:PB=PQ:BC$。含第三边 $PQ,BC$ 的比例，只能用全段 $AP:AB$。</li>
+        <li>面积比忘记平方，或把梯形面积当成 $\dfrac{3}{5}$；梯形部分要用 $1-\dfrac{4}{25}=\dfrac{21}{25}$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目给「部分比」时，先在草稿上换成「全体比」再填空。出现面积比的小问，通常就是前一小问相似比的平方，可用于快速验算。</p>
+      <p><strong>日语术语：</strong><span lang="ja">平行線</span>（<span class="kana" lang="ja">へいこうせん</span>）：平行线；<span lang="ja">線分</span>（<span class="kana" lang="ja">せんぶん</span>）：线段；<span lang="ja">相似</span>（<span class="kana" lang="ja">そうじ</span>）：相似；<span lang="ja">相似比</span>（<span class="kana" lang="ja">そうじひ</span>）：相似比；<span lang="ja">面積比</span>（<span class="kana" lang="ja">めんせきひ</span>）：面积比。</p>
+    </div>
     <h3>角平分线定理</h3>
     <p>设 $AD$ 是 $\angle A$ 的内角平分线（$D$ 在边 $BC$ 上），$AE$ 是外角平分线（$E$ 在直线 $BC$ 上，$AB\ne AC$）。它们都把 $BC$ 按 $AB:AC$ 分割：</p>
     $$BD:DC=AB:AC,\qquad BE:EC=AB:AC.$$
@@ -266,6 +294,36 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     $$AD^2=AB\cdot AC-BD\cdot DC.$$
     <div class="box good">
       <p><strong>小例子：</strong>$AB=6,\ AC=4,\ BC=5$ 时，$BD:DC=3:2$，故 $BD=3,\ DC=2$，$AD^2=24-6=18$，$AD=3\sqrt2$。</p>
+    </div>
+    <p><strong>为什么成立（内角平分线）：</strong>过 $C$ 作 $AD$ 的平行线，与 $BA$ 的延长线交于 $K$。由平行线得 $\angle ACK=\angle CAD$（内错角），$\angle AKC=\angle BAD$（同位角）。又 $\angle BAD=\angle CAD$，所以 $\angle ACK=\angle AKC$，$AK=AC$。对 $\triangle BCK$ 用平行线比例：$BD:DC=BA:AK=AB:AC$。</p>
+    <p><strong>另一种看法：</strong>$\triangle ABD$ 与 $\triangle ACD$ 以 $BD,DC$ 为底时高相同，面积比为 $BD:DC$；以 $AB,AC$ 为底时，$D$ 到两边距离相等（$D$ 在角平分线上），面积比为 $AB:AC$。两个比表示同一个面积比，所以相等。</p>
+    <p><strong>角平分线长公式的推导：</strong>延长 $AD$ 交外接圆于 $E$。$\angle BAD=\angle EAC$，$\angle ABD=\angle AEC$（同弧），故 $\triangle ABD\sim\triangle AEC$，得 $AB\cdot AC=AD\cdot AE=AD(AD+DE)=AD^2+AD\cdot DE$。再由相交弦定理（第 6 节）$AD\cdot DE=BD\cdot DC$，即得 $AD^2=AB\cdot AC-BD\cdot DC$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　内角与外角平分线</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中 $AB=8,\ AC=6,\ BC=7$。$\angle A$ 的内角平分线交 $BC$ 于 $D$，外角平分线交直线 $BC$ 于 $E$。求 $BD,\ DC,\ AD,\ CE,\ BE$。</p>
+      <div class="ans">
+        <ol>
+          <li>内分比：$BD:DC=AB:AC=8:6=4:3$。</li>
+          <li>$BC=7$ 分成 $4+3$ 份，每份为 $1$，所以 $BD=4,\ DC=3$。</li>
+          <li>$AD^2=AB\cdot AC-BD\cdot DC=48-12=36$，所以 $AD=6$。</li>
+          <li>外分比同样是 $BE:EC=4:3$。因为 $AB&gt;AC$，$E$ 更靠近 $C$，落在 $BC$ 向 $C$ 一侧的延长线上。</li>
+          <li>设 $BE=4k,\ EC=3k$，则 $BE-EC=BC$，即 $k=7$，所以 $CE=21,\ BE=28$。</li>
+        </ol>
+        <p><strong>答案：</strong>$BD=4,\ DC=3,\ AD=6,\ CE=21,\ BE=28$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>外分时仍用 $BE+EC=BC$。外分点在线段外，应为 $BE-EC=BC$。</li>
+        <li>弄错外分点的方向：$E$ 总在较短边的端点一侧，$AB&gt;AC$ 时在 $C$ 一侧的延长线上。</li>
+        <li>把公式记成 $AD^2=AB\cdot AC+BD\cdot DC$。$AD$ 比 $AB,AC$ 的几何平均小，所以是减号。</li>
+        <li>$AB=AC$ 时外角平分线与 $BC$ 平行，不存在交点 $E$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>内角平分线长公式在 EJU 中不一定直接给出，但比用两次余弦定理快得多。填空形如 $\B{A}\sqrt{\B{B}}$ 时，先算平方，再化最简根式。</p>
+      <p><strong>日语术语：</strong><span lang="ja">角の二等分線</span>（<span class="kana" lang="ja">かくのにとうぶんせん</span>）：角平分线；<span lang="ja">内分する</span>（<span class="kana" lang="ja">ないぶんする</span>）：内分；<span lang="ja">外分する</span>（<span class="kana" lang="ja">がいぶんする</span>）：外分；<span lang="ja">延長</span>（<span class="kana" lang="ja">えんちょう</span>）：延长（线）。</p>
     </div>
   </section>
 
@@ -287,6 +345,39 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <p><strong>易错：</strong>钝角三角形的外心和垂心都在三角形外部；直角三角形的外心是斜边中点，垂心是直角顶点。可以在下面的演示里拖动顶点观察。</p>
     </div>
 
+    <p><strong>为什么三线共点：</strong>垂直平分线上的点到线段两端等距。设 $AB,BC$ 的垂直平分线交于 $O$，则 $OA=OB=OC$，所以 $O$ 也在 $CA$ 的垂直平分线上，这就是外心。内心同理：角平分线上的点到角两边等距，两条角平分线的交点到三边等距，自然也在第三条角平分线上。</p>
+    <p><strong>重心为什么是 $2:1$：</strong>设中线 $AD,BE$ 交于 $G$。$DE$ 是中位线，$DE\parallel AB$ 且 $DE=\dfrac12AB$，所以 $\triangle GDE\sim\triangle GAB$，相似比 $1:2$，于是 $AG:GD=BG:GE=2:1$。</p>
+    <p><strong>角度公式：</strong>$\angle BOC=2\angle A$ 是圆心角定理。在 $\triangle IBC$ 中，$\angle BIC=180^\circ-\dfrac{\angle B+\angle C}{2}=180^\circ-\dfrac{180^\circ-\angle A}{2}=90^\circ+\dfrac{\angle A}{2}$。</p>
+    <p><strong>面积公式：</strong>连接 $I$ 与三顶点，把三角形分成高都是 $r$ 的三块，$S=\dfrac12(a+b+c)r=rs$。对旁心 $I_A$，有 $S=\triangle I_AAB+\triangle I_ACA-\triangle I_ABC=\dfrac12(c+b-a)r_a=(s-a)r_a$，所以 $r_a=\dfrac{S}{s-a}$。</p>
+    <p><strong>$AI:ID$ 与 $AH$：</strong>由角平分线定理 $BD=\dfrac{ca}{b+c}$（其中 $a=BC,\ b=CA,\ c=AB$），在 $\triangle ABD$ 中 $BI$ 平分 $\angle B$，故 $AI:ID=c:\dfrac{ca}{b+c}=(b+c):a$。对锐角三角形，作外接圆直径 $BA'$，则 $AH\parallel A'C$、$CH\parallel A'A$（都与同一边垂直），$AHCA'$ 是平行四边形，所以 $AH=A'C=2R\cos A$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　同一个三角形的多种「心」</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中 $AB=13,\ BC=14,\ CA=15$。求面积 $S$、内切圆半径 $r$、外接圆半径 $R$、与边 $BC$ 相切的旁切圆半径 $r_a$、$AI:ID$（$D$ 为直线 $AI$ 与 $BC$ 的交点）以及 $AH$（$H$ 为垂心）。</p>
+      <div class="ans">
+        <ol>
+          <li>$s=\dfrac{13+14+15}{2}=21$；海伦公式：$S=\sqrt{21\cdot7\cdot6\cdot8}=84$。</li>
+          <li>$r=\dfrac Ss=\dfrac{84}{21}=4$。</li>
+          <li>由 $a=2R\sin A$ 与 $S=\dfrac12bc\sin A$ 得 $R=\dfrac{abc}{4S}=\dfrac{13\cdot14\cdot15}{336}=\dfrac{65}{8}$。</li>
+          <li>$r_a=\dfrac{S}{s-a}=\dfrac{84}{21-14}=12$。</li>
+          <li>$AI:ID=(AB+AC):BC=28:14=2:1$。</li>
+          <li>余弦定理：$\cos A=\dfrac{13^2+15^2-14^2}{2\cdot13\cdot15}=\dfrac{33}{65}&gt;0$，$A$ 为锐角，$AH=2R\cos A=2\cdot\dfrac{65}{8}\cdot\dfrac{33}{65}=\dfrac{33}{4}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$S=84,\ r=4,\ R=\dfrac{65}{8},\ r_a=12,\ AI:ID=2:1,\ AH=\dfrac{33}{4}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>混淆外心和内心：外心到<strong>顶点</strong>等距（垂直平分线），内心到<strong>边</strong>等距（角平分线）。</li>
+        <li>把 $S=rs$ 中的 $s$ 当作周长。$s$ 是半周长。</li>
+        <li>把重心的比写反：靠近顶点的一段是 $2$，靠近边的一段是 $1$。</li>
+        <li>$A$ 为钝角时直接用 $\angle BOC=2\angle A$ 或 $\angle BHC=180^\circ-\angle A$。这些式子要按图形位置调整。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题干写「重心」时立刻想到 $2:1$ 和面积三等分，写「内心」时想到角平分线和 $S=rs$，写「外心」时想到 $OA=OB=OC$ 和圆周角。$13,14,15$ 这种面积为整数的三角形很常见，记住 $S=84$ 有助于验算。</p>
+      <p><strong>日语术语：</strong><span lang="ja">外接円</span>（<span class="kana" lang="ja">がいせつえん</span>）：外接圆；<span lang="ja">内接円</span>（<span class="kana" lang="ja">ないせつえん</span>）：内切圆；<span lang="ja">傍接円</span>（<span class="kana" lang="ja">ぼうせつえん</span>）：旁切圆；<span lang="ja">半径</span>（<span class="kana" lang="ja">はんけい</span>）：半径；<span lang="ja">ヘロンの公式</span>（<span class="kana" lang="ja">ヘロンのこうしき</span>）：海伦公式；<span lang="ja">余弦定理</span>（<span class="kana" lang="ja">よげんていり</span>）：余弦定理；<span lang="ja">正弦定理</span>（<span class="kana" lang="ja">せいげんていり</span>）：正弦定理。</p>
+    </div>
     <h3>五心探索器</h3>
     <div class="explorer" id="centers-demo">
       <div class="ex-head" id="tri-presets" role="group" aria-label="选择三角形形状"></div>
@@ -298,6 +389,33 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <div class="ctrl"><label for="ax">A 水平</label><input type="range" id="ax" min="20" max="620" step="1"><output id="ax-o"></output></div>
       <div class="ctrl"><label for="ay">A 垂直</label><input type="range" id="ay" min="20" max="420" step="1"><output id="ay-o"></output></div>
       <div class="read" id="tri-read"></div>
+    </div>
+    <p><strong>怎样用这个演示：</strong>① 把 $\angle A$ 拖成钝角，观察外心、垂心跑到三角形外部，而内心、重心始终在内部；② 拖到接近直角，观察外心靠近斜边中点、垂心靠近直角顶点；③ 拖成接近等边，观察外心、重心、垂心、内心逐渐重合。</p>
+    <p><strong>欧拉线为什么成立：</strong>以外心 $O$ 为原点，用向量表示三顶点，有 $|\vec A|=|\vec B|=|\vec C|=R$。令 $\vec H=\vec A+\vec B+\vec C$，则 $(\vec H-\vec A)\cdot(\vec B-\vec C)=(\vec B+\vec C)\cdot(\vec B-\vec C)=|\vec B|^2-|\vec C|^2=0$，即 $AH\perp BC$；同理可得另外两条，所以这个点正是垂心。又 $\vec G=\dfrac13(\vec A+\vec B+\vec C)=\dfrac13\vec H$，所以 $O,G,H$ 共线且 $OG:GH=1:2$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用坐标验证欧拉线</b><span class="origin">原创</span></div>
+      <p>坐标平面上 $A(2,4),\ B(0,0),\ C(6,0)$。求重心 $G$、外心 $O$、垂心 $H$，并求 $OG:GH$。</p>
+      <div class="ans">
+        <ol>
+          <li>重心：$G\left(\dfrac{2+0+6}{3},\dfrac{4+0+0}{3}\right)=\left(\dfrac83,\dfrac43\right)$。</li>
+          <li>外心：$BC$ 的垂直平分线是 $x=3$。设 $O(3,y)$，由 $OA^2=OB^2$ 得 $1+(y-4)^2=9+y^2$，$-8y+17=9$，$y=1$，所以 $O(3,1)$，$R=\sqrt{10}$。</li>
+          <li>垂心：过 $A$ 的高是 $x=2$。$AC$ 的斜率为 $-1$，过 $B$ 的高斜率为 $1$，即 $y=x$。两线交于 $H(2,2)$。</li>
+          <li>$\overrightarrow{OG}=\left(-\dfrac13,\dfrac13\right)$，$\overrightarrow{GH}=\left(-\dfrac23,\dfrac23\right)=2\overrightarrow{OG}$，所以三点共线，$OG:GH=1:2$。</li>
+        </ol>
+        <p><strong>答案：</strong>$G\left(\dfrac83,\dfrac43\right),\ O(3,1),\ H(2,2),\ OG:GH=1:2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>以为五心都在三角形内部。只有内心和重心一定在内部，旁心一定在外部。</li>
+        <li>把欧拉线的比写成 $OG:GH=2:1$。重心更靠近外心，所以是 $1:2$。</li>
+        <li>以为内心也在欧拉线上。一般情况下内心不在，等腰三角形时才在对称轴上。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>欧拉线属于课外拓展，但遇到坐标形式的五心题时，可以用 $\vec H=3\vec G-2\vec O$ 快速验算。题目问「在三角形内部还是外部」时，先判断是锐角、直角还是钝角三角形。</p>
+      <p><strong>日语术语：</strong><span lang="ja">オイラー線</span>（<span class="kana" lang="ja">オイラーせん</span>）：欧拉线；<span lang="ja">鋭角三角形</span>（<span class="kana" lang="ja">えいかくさんかくけい</span>）：锐角三角形；<span lang="ja">鈍角三角形</span>（<span class="kana" lang="ja">どんかくさんかくけい</span>）：钝角三角形；<span lang="ja">直角三角形</span>（<span class="kana" lang="ja">ちょっかくさんかくけい</span>）：直角三角形。</p>
     </div>
   </section>
 
@@ -311,6 +429,35 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <h3>切恩瓦定理（チェバ）</h3>
     <p>$\triangle ABC$ 的三条线 $AD,BE,CF$ 交于一点时，</p>
     $$\frac{AF}{FB}\cdot\frac{BD}{DC}\cdot\frac{CE}{EA}=1.$$
+    <p><strong>名称说明：</strong>本页的「切恩瓦定理」在中文教材中更常写作<strong>塞瓦定理</strong>，二者是同一定理。</p>
+    <p><strong>为什么成立：</strong>同高三角形的面积比等于底边比。$\triangle ABD:\triangle ACD=BD:DC$，$\triangle OBD:\triangle OCD=BD:DC$，两式相减（等比性质）得 $\triangle OAB:\triangle OCA=BD:DC$。同理 $\triangle OBC:\triangle OAB=CE:EA$，$\triangle OCA:\triangle OBC=AF:FB$。三式相乘，三个面积全部约掉，乘积为 $1$。</p>
+    <p>这个证明同时给出了一个实用结论：<strong>由比值可以直接得到 $O$ 分出的三块面积之比</strong>。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　切恩瓦定理与三块面积</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中，$AD,BE,CF$ 交于一点 $O$（$D,E,F$ 分别在边 $BC,CA,AB$ 上），$AF:FB=2:3$，$BD:DC=1:2$。求 $CE:EA$，以及 $\triangle OBC,\ \triangle OCA,\ \triangle OAB$ 各占 $\triangle ABC$ 面积的几分之几。</p>
+      <div class="ans">
+        <ol>
+          <li>切恩瓦定理：$\dfrac23\cdot\dfrac12\cdot\dfrac{CE}{EA}=1$，所以 $\dfrac{CE}{EA}=3$，$CE:EA=3:1$。</li>
+          <li>$\triangle OAB:\triangle OCA=BD:DC=1:2$。</li>
+          <li>$\triangle OCA:\triangle OBC=AF:FB=2:3$。</li>
+          <li>两个比中 $\triangle OCA$ 都是 $2$，可以连比：$\triangle OAB:\triangle OCA:\triangle OBC=1:2:3$。</li>
+          <li>总份数为 $6$，所以依次占 $\dfrac16,\ \dfrac13,\ \dfrac12$。验算：$\triangle OBC:\triangle OAB=3:1=CE:EA$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>$CE:EA=3:1$；$\triangle OBC=\dfrac12S,\ \triangle OCA=\dfrac13S,\ \triangle OAB=\dfrac16S$（$S$ 为 $\triangle ABC$ 的面积）。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>比值顺序写错，如写成 $\dfrac{AF}{FB}\cdot\dfrac{DC}{BD}\cdot\dfrac{CE}{EA}$。要沿 $A\to F\to B\to D\to C\to E\to A$ 绕一圈。</li>
+        <li>连比时不统一公共项。本题两式中 $\triangle OCA$ 恰好都是 $2$；不相同时要先通分。</li>
+        <li>把 $\triangle OBC$ 对应到 $BD:DC$。这个比比较的是 $BC$ <strong>两侧</strong>的 $\triangle OAB,\triangle OCA$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>面积比填空常紧跟在切恩瓦定理之后。用「三块面积连比」可以一次得到所有结果。证明三线共点时用逆定理，写法是「$\dfrac{AF}{FB}\cdot\dfrac{BD}{DC}\cdot\dfrac{CE}{EA}=1$，故三线共点」。</p>
+      <p><strong>日语术语：</strong><span lang="ja">チェバの定理</span>（<span class="kana" lang="ja">チェバのていり</span>）：切恩瓦定理（塞瓦定理）；<span lang="ja">1点で交わる</span>（<span class="kana" lang="ja">いってんでまじわる</span>）：交于一点；<span lang="ja">逆</span>（<span class="kana" lang="ja">ぎゃく</span>）：逆命题、逆定理。</p>
+    </div>
     <h3>梅涅劳斯定理（メネラウス）</h3>
     <p>一条不过顶点的直线与直线 $AB,BC,CA$ 分别交于 $F,D,E$ 时，公式形式相同：</p>
     $$\frac{AF}{FB}\cdot\frac{BD}{DC}\cdot\frac{CE}{EA}=1.$$
@@ -318,6 +465,34 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <p><strong>记忆方法：</strong>从一个顶点出发，沿三角形绕一圈：顶点 → 分点 → 顶点 → 分点 → 顶点 → 分点 → 回到起点。依次写成「分子、分母」交替。梅涅劳斯定理的关键是选好<strong>哪个三角形</strong>和<strong>哪条截线</strong>：要求 $BO:OE$，就选以 $BE$ 为一边的 $\triangle ABE$，截线取 $C,O,F$ 所在直线。</p>
     </div>
     <p>两个定理的逆命题也成立，可用于证明三线共点（切恩瓦）或三点共线（梅涅劳斯）。线段比求出后，常继续用「同高的三角形面积比等于底边比」求面积比。</p>
+    <p><strong>为什么成立：</strong>过 $C$ 作 $CK\parallel AB$，$K$ 在截线上。由 $\triangle DBF\sim\triangle DCK$ 得 $\dfrac{BD}{DC}=\dfrac{BF}{CK}$；由 $\triangle ECK\sim\triangle EAF$ 得 $\dfrac{CE}{EA}=\dfrac{CK}{AF}$。代入后 $\dfrac{AF}{FB}\cdot\dfrac{BF}{CK}\cdot\dfrac{CK}{AF}=1$。</p>
+    <p><strong>与切恩瓦的区别：</strong>公式相同，但切恩瓦是过顶点的三条线共点，分点通常在边上；梅涅劳斯是一条直线截三边所在直线，恰有一个或三个分点在延长线上。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用两次梅涅劳斯定理</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中，$D$ 在边 $BC$ 上，$BD:DC=2:1$；$E$ 是边 $CA$ 的中点。$AD$ 与 $BE$ 交于 $O$。求 $AO:OD$、$BO:OE$，以及 $\triangle OAB$ 占 $\triangle ABC$ 面积的几分之几。</p>
+      <div class="ans">
+        <ol>
+          <li>求 $AO:OD$：选以 $AD$ 为一边的 $\triangle ADC$，截线 $B,O,E$。绕行 $A\to O\to D\to B\to C\to E\to A$：$\dfrac{AO}{OD}\cdot\dfrac{DB}{BC}\cdot\dfrac{CE}{EA}=1$。</li>
+          <li>代入 $\dfrac{DB}{BC}=\dfrac23$，$\dfrac{CE}{EA}=1$，得 $\dfrac{AO}{OD}=\dfrac32$。</li>
+          <li>求 $BO:OE$：选以 $BE$ 为一边的 $\triangle BCE$，截线 $A,O,D$。绕行 $B\to D\to C\to A\to E\to O\to B$：$\dfrac{BD}{DC}\cdot\dfrac{CA}{AE}\cdot\dfrac{EO}{OB}=1$。</li>
+          <li>代入 $\dfrac{BD}{DC}=2$，$\dfrac{CA}{AE}=2$，得 $\dfrac{EO}{OB}=\dfrac14$，$BO:OE=4:1$。</li>
+          <li>面积：$\triangle ABD=\dfrac23S$；$AO:AD=3:5$，所以 $\triangle OAB=\dfrac35\cdot\dfrac23S=\dfrac25S$。</li>
+        </ol>
+        <p><strong>答案：</strong>$AO:OD=3:2$，$BO:OE=4:1$，$\triangle OAB=\dfrac25S$（$S$ 为 $\triangle ABC$ 的面积）。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $\dfrac{DB}{BC}$ 写成 $\dfrac{DB}{DC}$。绕行时分子、分母是相邻的<strong>顶点到分点</strong>长度，$B$ 是分点时要看整段 $BC$ 与 $DB$。</li>
+        <li>三角形选错：要求的线段必须落在所选三角形的一条边上。</li>
+        <li>线段比用部分比代入面积：$\triangle OAB$ 要用 $AO:AD=3:5$，不是 $3:2$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>三步选法：①要求的比在哪条线段上，就选以它为边的三角形；②另外两个已知比所在的边决定第三个顶点；③其余的点所在直线就是截线。写完后检查每个字母在分子、分母中各出现一次。</p>
+      <p><strong>日语术语：</strong><span lang="ja">メネラウスの定理</span>（<span class="kana" lang="ja">メネラウスのていり</span>）：梅涅劳斯定理；<span lang="ja">一直線上にある</span>（<span class="kana" lang="ja">いっちょくせんじょうにある</span>）：共线；<span lang="ja">三角形の面積</span>（<span class="kana" lang="ja">さんかくけいのめんせき</span>）：三角形的面积。</p>
+    </div>
   </section>
 
   <section id="cyclic">
@@ -333,17 +508,129 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <p>逆命题同样成立：只要满足对角互补，或同侧两点对同一线段的张角相等，四点就共圆（<span lang="ja">4点が同一円周上にある</span>）。</p>
     <p>计算时最常用的是对对角线 $AC$ 用两次余弦定理，并代入 $\cos D=-\cos B$：</p>
     $$AB^2+BC^2-2AB\cdot BC\cos B=CD^2+DA^2+2CD\cdot DA\cos B.$$
+    <p><strong>对角互补为什么成立：</strong>$\angle A$ 对弧 $BCD$，$\angle C$ 对弧 $BAD$，这两段弧合起来是整个圆。圆周角是所对弧的圆心角的一半，所以 $\angle A+\angle C=\dfrac12\cdot360^\circ=180^\circ$。外角等于内对角，是因为外角和 $\angle A$ 都是 $\angle C$ 的补角。</p>
+    <p><strong>余弦定理那条式子的由来：</strong>$AC$ 同时是 $\triangle ABC$ 和 $\triangle ADC$ 的边，$AC^2$ 可以写两次；又 $\angle D=180^\circ-\angle B$，所以 $\cos D=-\cos B$，方程只含一个未知量 $\cos B$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　四边求对角线、面积与外接圆半径</b><span class="origin">原创</span></div>
+      <p>四边形 $ABCD$ 内接于圆，$AB=5,\ BC=8,\ CD=3,\ DA=5$。求 $\cos\angle B$、$AC$、四边形面积、圆的半径 $R$ 和 $BD$。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $c=\cos\angle B$，则 $\cos\angle D=-c$。$AC^2=25+64-80c=9+25+30c$，即 $89-80c=34+30c$，所以 $c=\dfrac12$，$\angle B=60^\circ$。</li>
+          <li>$AC^2=89-40=49$，$AC=7$。</li>
+          <li>$\sin B=\sin D=\dfrac{\sqrt3}{2}$，面积 $=\dfrac12(5\cdot8+3\cdot5)\cdot\dfrac{\sqrt3}{2}=\dfrac{55\sqrt3}{4}$。</li>
+          <li>对 $\triangle ABC$ 用正弦定理：$2R=\dfrac{AC}{\sin B}=\dfrac{14}{\sqrt3}$，$R=\dfrac{7\sqrt3}{3}$。</li>
+          <li>同理设 $x=\cos\angle A$，$\cos\angle C=-x$：$BD^2=50-50x=73+48x$，得 $x=-\dfrac{23}{98}$，$BD^2=50+\dfrac{575}{49}=\dfrac{3025}{49}$，$BD=\dfrac{55}{7}$。</li>
+          <li>验算（托勒密定理，<span lang="ja">トレミーの定理</span>）：$AC\cdot BD=55=AB\cdot CD+BC\cdot DA=15+40$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>$\cos\angle B=\dfrac12,\ AC=7$，面积 $\dfrac{55\sqrt3}{4}$，$R=\dfrac{7\sqrt3}{3},\ BD=\dfrac{55}{7}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>两次余弦定理都用 $\cos B$ 而不变号。$D$ 这一侧应是 $+2CD\cdot DA\cos B$。</li>
+        <li>把相邻的角当成互补。只有<strong>对角</strong>互补，$\angle A+\angle B$ 一般不是 $180^\circ$。</li>
+        <li>面积写成 $\dfrac12AC\cdot BD$。只有对角线垂直时才成立。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>四边已知的圆内接四边形是常考模板：余弦值 → 对角线 → 正弦值 → 面积 → 外接圆半径。每一步都用前一步的结果，一步错会连带出错，所以要代回验证。</p>
+      <p><strong>日语术语：</strong><span lang="ja">対角</span>（<span class="kana" lang="ja">たいかく</span>）：对角；<span lang="ja">4点が同一円周上にある</span>（<span class="kana" lang="ja">よんてんがどういつえんしゅうじょうにある</span>）：四点共圆；<span lang="ja">対角線</span>（<span class="kana" lang="ja">たいかくせん</span>）：对角线；<span lang="ja">トレミーの定理</span>（<span class="kana" lang="ja">トレミーのていり</span>）：托勒密定理。</p>
+    </div>
   </section>
 
   <section id="circle-line">
     <h2>5 圆与直线</h2>
     <p class="jp-sub" lang="ja">円と直線 — 接線の長さ・接弦定理</p>
     <p>设圆心到直线的距离为 $d$，半径为 $r$：$d&lt;r$ 时有 $2$ 个交点，$d=r$ 时相切（$1$ 个切点），$d&gt;r$ 时没有公共点。切线垂直于过切点的半径。</p>
+    <p><strong>为什么成立：</strong>设 $H$ 为圆心 $O$ 到直线的垂足，$OH=d$。直线上任意一点 $X$ 到 $O$ 的距离满足 $OX^2=d^2+HX^2\ge d^2$。所以 $d&gt;r$ 时直线上所有点都在圆外；$d=r$ 时只有 $H$ 在圆上；$d&lt;r$ 时取 $HX=\sqrt{r^2-d^2}$，两侧各有一个交点。这同时说明<strong>弦长为 $2\sqrt{r^2-d^2}$</strong>，且切线垂直于过切点的半径。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　平行弦的距离</b><span class="origin">原创</span></div>
+      <p>半径为 $13$ 的圆中有两条平行弦，长分别为 $24$ 和 $10$。求这两条弦之间的距离。</p>
+      <div class="ans">
+        <ol>
+          <li>圆心到长 $24$ 的弦的距离：$\sqrt{13^2-12^2}=5$。</li>
+          <li>圆心到长 $10$ 的弦的距离：$\sqrt{13^2-5^2}=12$。</li>
+          <li>两弦在圆心同侧时，距离为 $12-5=7$。</li>
+          <li>两弦在圆心两侧时，距离为 $12+5=17$。</li>
+        </ol>
+        <p><strong>答案：</strong>$7$ 或 $17$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>勾股定理中代入整条弦长。应该代入<strong>半弦长</strong>。</li>
+        <li>只考虑同侧情形而漏解。题目没有说明位置时要分类。</li>
+        <li>把 $d=r$ 也算作两个交点。相切时只有一个公共点。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>弦长问题固定作法是「圆心、弦中点、弦端点」组成的直角三角形。图上若没有标位置，要留意是否存在两种答案。</p>
+      <p><strong>日语术语：</strong><span lang="ja">弦</span>（<span class="kana" lang="ja">げん</span>）：弦；<span lang="ja">接する</span>（<span class="kana" lang="ja">せっする</span>）：相切；<span lang="ja">接点</span>（<span class="kana" lang="ja">せってん</span>）：切点；<span lang="ja">共有点</span>（<span class="kana" lang="ja">きょうゆうてん</span>）：公共点。</p>
+    </div>
     <h3>切线长定理</h3>
     <p>从圆外一点 $P$ 引两条切线，切点为 $A,B$，则 $PA=PB$。应用到内切圆：设切点把三边分开，$a=BC,\ b=CA,\ c=AB$，则从 $A$ 到切点的长度为</p>
     $$\frac{b+c-a}{2}=s-a.$$
+    <p><strong>为什么成立：</strong>连接 $OP,OA,OB$。$\angle OAP=\angle OBP=90^\circ$，$OA=OB$，$OP$ 公共，所以两个直角三角形全等（斜边和一条直角边对应相等），得 $PA=PB$。</p>
+    <p><strong>$s-a$ 的来历：</strong>设内切圆切 $BC,CA,AB$ 于 $D,E,F$，令 $AE=AF=x,\ BD=BF=y,\ CD=CE=z$。三边相加得 $2(x+y+z)=a+b+c$，即 $x+y+z=s$。又 $y+z=a$，所以 $x=s-a$，同理 $y=s-b,\ z=s-c$。</p>
+    <p>同样的方法用于圆外切四边形（四条边都与圆相切）：每个顶点引出两段相等的切线，所以<strong>对边之和相等</strong>，$AB+CD=BC+DA$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　内切圆的切点与外切四边形</b><span class="origin">原创</span></div>
+      <p>(1) $\triangle ABC$ 中 $AB=10,\ BC=12,\ CA=8$，内切圆切 $BC,CA,AB$ 于 $D,E,F$。求 $AF,\ BD,\ CD$ 及内切圆半径 $r$。(2) 四边形 $ABCD$ 的四边都与同一个圆相切，$AB=6,\ BC=7,\ CD=8$，求 $DA$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $a=12,\ b=8,\ c=10$，$s=15$。</li>
+          <li>$AF=s-a=3$，$BD=s-b=7$，$CD=s-c=5$。验算：$BD+CD=12=BC$。</li>
+          <li>$S=\sqrt{15\cdot3\cdot7\cdot5}=15\sqrt7$，所以 $r=\dfrac Ss=\sqrt7$。</li>
+          <li>(2) 对边之和相等：$AB+CD=BC+DA$，$6+8=7+DA$，$DA=7$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $AF=3,\ BD=7,\ CD=5,\ r=\sqrt7$；(2) $DA=7$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $s-a$ 的 $a$ 记错。$s-a$ 是从 $A$ 出发的切线长，$a$ 是 $A$ 的<strong>对边</strong> $BC$。</li>
+        <li>把「外切四边形对边和相等」与「内接四边形对角互补」混用。前者有内切圆，后者有外接圆。</li>
+        <li>从圆内一点谈切线。只有圆外的点才能引两条切线。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>直角三角形的内切圆半径可以直接用 $r=\dfrac{\text{两直角边之和}-\text{斜边}}{2}$，这正是切线长的结果。切线长题常用设未知数 $x,y,z$ 的方式，比背公式更不容易出错。</p>
+      <p><strong>日语术语：</strong><span lang="ja">接線の長さ</span>（<span class="kana" lang="ja">せっせんのながさ</span>）：切线长；<span lang="ja">内接円</span>（<span class="kana" lang="ja">ないせつえん</span>）：内切圆；<span lang="ja">外接する四角形</span>（<span class="kana" lang="ja">がいせつするしかくけい</span>）：外切四边形。</p>
+    </div>
     <h3>接弦定理（弦切角定理）</h3>
     <p>圆的切线与过切点的弦所成的角，等于该角内部的弧所对的圆周角（<span lang="ja">接弦定理</span>）。</p>
+    <p><strong>为什么成立：</strong>设切线在 $A$ 处，$\angle TAB$ 是切线与弦的夹角，$\angle ACB$ 是所对圆周角。作直径 $AA'$，则 $\angle ABA'=90^\circ$，且切线垂直于直径，$\angle TAA'=90^\circ$。所以 $\angle TAB=90^\circ-\angle BAA'=\angle AA'B$。又 $\angle AA'B$ 与 $\angle ACB$ 对同一条弧 $AB$，二者相等（$\angle TAB$ 为锐角时如此，钝角时用补角同样成立）。</p>
+    <p><strong>常见结果：</strong>由弦切角得到的相等角，经常产生相似三角形。例如切线 $PT$ 与割线 $PAB$ 中 $\triangle PTA\sim\triangle PBT$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　弦切角与相似</b><span class="origin">原创</span></div>
+      <p>(1) $\triangle ABC$ 内接于圆，$T$ 是点 $A$ 处切线上的点，$\angle TAB=48^\circ$（该角内部的弧不含 $C$），$\angle BAC=62^\circ$。求 $\angle ACB,\ \angle ABC$。</p>
+      <p>(2) 从圆外一点 $P$ 引切线 $PT$（$T$ 为切点）和割线 $PAB$（$A$ 在 $P,B$ 之间），$PA=4,\ PB=9,\ TA=6$。求 $PT,\ TB$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 接弦定理：$\angle ACB=\angle TAB=48^\circ$。</li>
+          <li>内角和：$\angle ABC=180^\circ-62^\circ-48^\circ=70^\circ$。</li>
+          <li>(2) 接弦定理：$\angle PTA=\angle PBT$；$\angle P$ 公共，所以 $\triangle PTA\sim\triangle PBT$。</li>
+          <li>对应边：$\dfrac{PT}{PB}=\dfrac{PA}{PT}$，所以 $PT^2=4\cdot9=36$，$PT=6$。</li>
+          <li>再由 $\dfrac{TA}{BT}=\dfrac{PT}{PB}$：$\dfrac{6}{TB}=\dfrac69$，所以 $TB=9$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\angle ACB=48^\circ,\ \angle ABC=70^\circ$；(2) $PT=6,\ TB=9$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>找错所对的圆周角。要看角<strong>内部的弧</strong>，再找这段弧对面的圆周角。</li>
+        <li>相似三角形的顶点顺序写错：$\triangle PTA$ 的 $T$ 对应 $\triangle PBT$ 的 $B$，不对应 $T$。</li>
+        <li>把弦切角当成所夹弧的圆心角。它只等于该圆心角的一半。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>看到「切线 + 过切点的弦」，立即标出相等的角。图形里若同时有切线和割线，优先写相似，再由相似得到边长，圆幂定理正好是这一相似的结果。</p>
+      <p><strong>日语术语：</strong><span lang="ja">接弦定理</span>（<span class="kana" lang="ja">せつげんていり</span>）：弦切角定理；<span lang="ja">接線</span>（<span class="kana" lang="ja">せっせん</span>）：切线；<span lang="ja">円周角</span>（<span class="kana" lang="ja">えんしゅうかく</span>）：圆周角。</p>
+    </div>
   </section>
 
   <section id="power">
@@ -361,6 +648,34 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <p>设圆心为 $O$，半径为 $r$，还可以统一写成 $PA\cdot PB=|OP^2-r^2|$。逆定理也成立，可用于判断四点共圆或相切。</p>
     <div class="box warn">
       <p><strong>易错：</strong>$PA,PB$ 都是<strong>从 $P$ 量起</strong>的长度。圆外情形下 $PB=PA+AB$，不要把 $AB$ 直接代入。</p>
+    </div>
+    <p><strong>圆内情形的推导：</strong>两弦 $AB,CD$ 交于圆内点 $P$。$\angle PAC=\angle PDB$（同弧 $CB$），$\angle APC=\angle DPB$（对顶角），所以 $\triangle PAC\sim\triangle PDB$，$\dfrac{PA}{PD}=\dfrac{PC}{PB}$，即 $PA\cdot PB=PC\cdot PD$。</p>
+    <p><strong>$|OP^2-r^2|$ 的来历：</strong>由于乘积与直线方向无关，取过 $P$ 和圆心 $O$ 的直径来算。圆内时两段为 $r-OP$ 和 $r+OP$，乘积 $r^2-OP^2$；圆外时两段为 $OP-r$ 和 $OP+r$，乘积 $OP^2-r^2$。圆外且切线存在时，也可由 $OT\perp PT$ 得 $PT^2=OP^2-r^2$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　三种情形各一次</b><span class="origin">原创</span></div>
+      <p>(1) 从圆外一点 $P$ 引两条割线 $PAB,\ PCD$，$PA=4,\ AB=5,\ PC=3$，求 $CD$。</p>
+      <p>(2) 圆半径为 $7$，圆内点 $P$ 满足 $OP=3$。过 $P$ 的弦 $AB$ 中 $PA=5$，求 $PB$ 和 $AB$。</p>
+      <p>(3) 圆半径为 $5$，$OP=13$，$PT$ 为切线，求 $PT$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $PB=PA+AB=9$。$PC\cdot PD=PA\cdot PB=36$，所以 $PD=12$，$CD=PD-PC=9$。</li>
+          <li>(2) $PA\cdot PB=r^2-OP^2=49-9=40$，所以 $PB=8$。$P$ 在 $A,B$ 之间，$AB=5+8=13$，不超过直径 $14$，合理。</li>
+          <li>(3) $PT^2=OP^2-r^2=169-25=144$，$PT=12$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $CD=9$；(2) $PB=8,\ AB=13$；(3) $PT=12$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $AB$ 代替 $PB$。圆外情形必须先算 $PB=PA+AB$。</li>
+        <li>求出 $PD$ 后没有换算成题目问的 $CD$。</li>
+        <li>圆内情形使用 $OP^2-r^2$，得到负数。圆内应为 $r^2-OP^2$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>圆幂定理的三种图形要一眼认出。求出长度后可用「弦长不超过直径」做一次合理性检查。逆定理常用于证明四点共圆：$PA\cdot PB=PC\cdot PD$ 且 $P$ 与各点的位置关系相符时，$A,B,C,D$ 共圆。</p>
+      <p><strong>日语术语：</strong><span lang="ja">方べきの定理</span>（<span class="kana" lang="ja">ほうべきのていり</span>）：圆幂定理；<span lang="ja">割線</span>（<span class="kana" lang="ja">かっせん</span>）：割线；<span lang="ja">直径</span>（<span class="kana" lang="ja">ちょっけい</span>）：直径；<span lang="ja">対頂角</span>（<span class="kana" lang="ja">たいちょうかく</span>）：对顶角。</p>
     </div>
   </section>
 
@@ -384,6 +699,38 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <div>内公切线：$\sqrt{d^2-(R+r)^2}$</div>
     </div>
     <p>两圆外切时，外公切线上的切点距离化简为 $2\sqrt{Rr}$。</p>
+    <p><strong>为什么成立：</strong>两圆相交时，两圆心和一个交点构成三角形，三边 $R,r,d$ 满足三角形不等式：$R-r&lt;d&lt;R+r$。三角形退化成线段时，交点落在连心线上，就是外切（$d=R+r$）或内切（$d=R-r$）。</p>
+    <p><strong>公切线长：</strong>设切点为 $S,T$，$O_1S,O_2T$ 都垂直于切线，所以互相平行。过 $O_2$ 作切线的平行线，构成直角三角形：外公切线中，两半径在切线同侧，直角边为 $R-r$；内公切线中，两半径在异侧，直角边为 $R+r$。斜边都是 $d$，另一条直角边等于 $ST$。两圆外切时 $d=R+r$，所以 $\sqrt{(R+r)^2-(R-r)^2}=2\sqrt{Rr}$。</p>
+    <p><strong>公共弦：</strong>相交两圆的连心线垂直平分公共弦（由对称性可得），可以在连心线上设未知数，用两次勾股定理求弦长。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　相交两圆的公共弦</b><span class="origin">原创</span></div>
+      <p>(1) 半径为 $15$ 和 $13$ 的两圆，圆心距为 $14$。判断位置关系，并求公共弦长和外公切线上两切点的距离。</p>
+      <p>(2) 半径为 $5$ 和 $r$ 的两圆，圆心距为 $8$。两圆相交时，求 $r$ 的范围。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $15-13=2$，$15+13=28$，$2&lt;14&lt;28$，所以两圆相交。</li>
+          <li>设公共弦中点 $M$ 到大圆圆心的距离为 $x$，半弦长为 $h$：$h^2=225-x^2=169-(14-x)^2$。</li>
+          <li>展开得 $225-x^2=-27+28x-x^2$，$28x=252$，$x=9$，$h=12$，公共弦长为 $24$。</li>
+          <li>外公切线：$\sqrt{14^2-(15-13)^2}=\sqrt{192}=8\sqrt3$。内公切线不存在，因为 $d&lt;R+r$。</li>
+          <li>(2) 不知道哪个圆更大，所以写 $|5-r|&lt;8&lt;5+r$。</li>
+          <li>$8&lt;5+r$ 得 $r&gt;3$；$|5-r|&lt;8$ 得 $-3&lt;r&lt;13$。取公共部分：$3&lt;r&lt;13$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) 相交，公共弦长 $24$，切点距离 $8\sqrt3$；(2) $3&lt;r&lt;13$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把外公切线和内公切线的公式互换。记法：外公切线两圆在切线<strong>同侧</strong>，用半径差。</li>
+        <li>内切和内含只比较 $d$ 与 $R+r$。这两种情况要和 $R-r$ 比较。</li>
+        <li>$r$ 未知时直接写 $5-r&lt;8$，漏掉绝对值。</li>
+        <li>把内切的公切线数说成 $0$。内切时还有 $1$ 条，就是过切点的切线。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>判断位置时先算 $R-r$ 和 $R+r$，把 $d$ 放到数轴上看。切点距离题常要化根式，如 $\sqrt{192}=8\sqrt3$。三圆互切的题可反复使用 $2\sqrt{Rr}$。</p>
+      <p><strong>日语术语：</strong><span lang="ja">中心間の距離</span>（<span class="kana" lang="ja">ちゅうしんかんのきょり</span>）：圆心距；<span lang="ja">共通接線</span>（<span class="kana" lang="ja">きょうつうせっせん</span>）：公切线；<span lang="ja">共通弦</span>（<span class="kana" lang="ja">きょうつうげん</span>）：公共弦；<span lang="ja">2点で交わる</span>（<span class="kana" lang="ja">にてんでまじわる</span>）：交于两点。</p>
+    </div>
   </section>
 
   <section id="solid">
@@ -396,8 +743,64 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <li>两平面：相交（交线为直线）、平行。</li>
     </ul>
     <p>异面直线所成的角：平移其中一条使它们相交后量取的角。</p>
+    <p><strong>为什么这样分类：</strong>两条直线若在同一平面内，只可能相交或平行；若不存在同时包含它们的平面，就是异面。因此判断异面时，确认「不平行」和「不相交」两点即可。不共线的三点、一条直线和线外一点、两条相交直线、两条平行直线都能确定唯一一个平面。</p>
+    <p><strong>异面直线所成角的定义合理吗：</strong>平移不改变方向，所以平移到哪一点都得到同样的角。若算出钝角，取其补角，异面直线所成的角规定在 $0^\circ$ 到 $90^\circ$ 之间。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　长方体中的异面直线</b><span class="origin">原创</span></div>
+      <p>长方体 $ABCD\text{-}EFGH$（$AE,BF,CG,DH$ 为棱）中，$AB=3,\ AD=4,\ AE=4$。(1) 在其余 $11$ 条棱中，与 $AB$ 平行、相交、异面的棱各是哪些？(2) 求异面直线 $AF$ 与 $BD$ 所成角的余弦值。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 平行：$CD,EF,GH$，共 $3$ 条。</li>
+          <li>相交（与 $AB$ 有公共顶点）：$AD,AE,BC,BF$，共 $4$ 条。</li>
+          <li>异面（其余）：$CG,DH,EH,FG$，共 $4$ 条。合计 $3+4+4=11$。</li>
+          <li>(2) $BD\parallel FH$，所以所求角等于 $\angle AFH$（为锐角时）。</li>
+          <li>$AF=\sqrt{3^2+4^2}=5$，$FH=\sqrt{3^2+4^2}=5$，$AH=\sqrt{4^2+4^2}=4\sqrt2$。</li>
+          <li>$\cos\angle AFH=\dfrac{25+25-32}{2\cdot5\cdot5}=\dfrac{9}{25}$，为正，所以这个角就是所求的角。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) 平行 $3$ 条，相交 $4$ 条，异面 $4$ 条；(2) $\dfrac{9}{25}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把不相交的直线都当成平行。空间中还有异面。</li>
+        <li>看到图上线条延长后「好像相交」就判为相交。立体图是投影，要看是否共面。</li>
+        <li>所成角的余弦算成负值后直接作答。异面直线所成的角取锐角或直角，应取绝对值。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>空间题的第一步是平移，把两条异面直线搬到同一个三角形里，再用余弦定理。长方体和立方体里面对角线的平行关系最常用。</p>
+      <p><strong>日语术语：</strong><span lang="ja">ねじれの位置</span>（<span class="kana" lang="ja">ねじれのいち</span>）：异面；<span lang="ja">交わる</span>（<span class="kana" lang="ja">まじわる</span>）：相交；<span lang="ja">平面</span>（<span class="kana" lang="ja">へいめん</span>）：平面；<span lang="ja">直方体</span>（<span class="kana" lang="ja">ちょくほうたい</span>）：长方体。</p>
+    </div>
     <h3>直线与平面垂直</h3>
     <p>直线 $\ell$ 垂直于平面 $\alpha$ 内的<strong>两条相交直线</strong>时，$\ell\perp\alpha$，此时 $\ell$ 与 $\alpha$ 内所有直线都垂直。</p>
+    <p><strong>为什么两条相交直线就够：</strong>设平面内两条相交直线的方向向量为 $\vec u,\vec v$，平面内任意直线的方向都能写成 $\vec m=s\vec u+t\vec v$。若 $\vec\ell\cdot\vec u=\vec\ell\cdot\vec v=0$，则 $\vec\ell\cdot\vec m=0$。一条直线不够，因为一个方向无法表示平面内的所有方向；两条平行直线也不够，因为它们方向相同。</p>
+    <p><strong>直线与平面所成的角：</strong>设斜线 $PC$ 在平面内的投影为 $AC$（$PA\perp\alpha$），所成的角就是 $\angle PCA$，$\sin\angle PCA=\dfrac{PA}{PC}$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由垂直推出垂直</b><span class="origin">原创</span></div>
+      <p>三棱锥 $P\text{-}ABC$ 中，$PA\perp$ 平面 $ABC$，$AB\perp BC$，$PA=3,\ AB=4,\ BC=12$。(1) 说明 $BC\perp PB$。(2) 求 $PB,\ PC$。(3) 求直线 $PC$ 与平面 $ABC$ 所成角 $\theta$ 的正弦值。(4) 求外接球半径。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $PA\perp$ 平面 $ABC$，所以 $BC\perp PA$；又 $BC\perp AB$，且 $PA,AB$ 是平面 $PAB$ 内的相交直线，所以 $BC\perp$ 平面 $PAB$，从而 $BC\perp PB$。</li>
+          <li>(2) $\triangle PAB$ 是直角三角形：$PB=\sqrt{9+16}=5$。由 (1)，$\triangle PBC$ 也是直角三角形：$PC=\sqrt{25+144}=13$。</li>
+          <li>(3) $PC$ 在平面 $ABC$ 上的投影是 $AC$，$\theta=\angle PCA$，$\sin\theta=\dfrac{PA}{PC}=\dfrac{3}{13}$。</li>
+          <li>(4) $\angle PAC=\angle PBC=90^\circ$，所以 $A,B$ 都在以 $PC$ 为直径的球上，$P,C$ 显然也在。半径为 $\dfrac{13}{2}$。</li>
+        </ol>
+        <p><strong>答案：</strong>(2) $PB=5,\ PC=13$；(3) $\dfrac{3}{13}$；(4) $\dfrac{13}{2}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只验证了 $\ell$ 垂直于平面内一条直线，就断言 $\ell\perp\alpha$。</li>
+        <li>两条直线平行时也当成判定条件。必须是<strong>相交</strong>直线。</li>
+        <li>把直线与平面所成的角取成直线与平面内任意一条直线的角。必须用投影。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>立体题中直角常常隐藏起来。遇到「$PA\perp$ 底面」，先把底面内所有过 $A$ 的线都标成与 $PA$ 垂直，再寻找新的直角三角形。发现「两个直角对同一条斜边」时，外接球球心就是斜边中点。</p>
+      <p><strong>日语术语：</strong><span lang="ja">垂直</span>（<span class="kana" lang="ja">すいちょく</span>）：垂直；<span lang="ja">垂線</span>（<span class="kana" lang="ja">すいせん</span>）：垂线；<span lang="ja">斜辺</span>（<span class="kana" lang="ja">しゃへん</span>）：斜边；<span lang="ja">外接球</span>（<span class="kana" lang="ja">がいせつきゅう</span>）：外接球。</p>
+    </div>
     <h3>三垂线定理</h3>
     <p>设 $\ell$ 是平面 $\alpha$ 内的直线，$A$ 是 $\alpha$ 内不在 $\ell$ 上的点，$P$ 是 $\alpha$ 外的点，$H$ 是 $\ell$ 上的点。</p>
     <ul>
@@ -407,6 +810,35 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     </ul>
     <div class="box good">
       <p><strong>解题技巧：</strong>求点到平面的距离时，常用「等体积法」：用两种底面表示同一个四面体的体积，$V=\dfrac13 Sh$，再解出 $h$。棱长为 $a$ 的正四面体，高为 $\dfrac{\sqrt6}{3}a$，体积为 $\dfrac{\sqrt2}{12}a^3$。</p>
+    </div>
+    <p><strong>为什么成立（第一条）：</strong>$PA\perp\alpha$ 且 $\ell\subset\alpha$，所以 $\ell\perp PA$。又 $\ell\perp AH$，$PA,AH$ 是平面 $PAH$ 内的相交直线，所以 $\ell\perp$ 平面 $PAH$，从而 $\ell\perp PH$。</p>
+    <p><strong>第二条：</strong>$\ell\perp PA$、$\ell\perp PH$ 推出 $\ell\perp$ 平面 $PAH$，所以 $\ell\perp AH$。<strong>第三条：</strong>$\ell\perp PH$、$\ell\perp AH$ 推出 $\ell\perp$ 平面 $PAH$，所以 $\ell\perp PA$；再加上 $PA\perp AH$，而 $\ell,AH$ 是 $\alpha$ 内的相交直线（交于 $H$），所以 $PA\perp\alpha$。</p>
+    <p><strong>等体积法：</strong>同一个四面体换一个面作底，体积不变，$\dfrac13S_1h_1=\dfrac13S_2h_2$。所以只要容易算出一组底和高，就能求出另一个面上的高。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　点到直线、点到平面的距离</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 在平面 $\alpha$ 内，$AB=13,\ BC=14,\ CA=15$。$PA\perp\alpha$，$PA=4$。(1) 求 $P$ 到直线 $BC$ 的距离。(2) 求 $\triangle PBC$ 的面积。(3) 求 $A$ 到平面 $PBC$ 的距离。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 海伦公式得 $\triangle ABC=84$。设 $H$ 为 $A$ 到 $BC$ 的垂足，则 $AH=\dfrac{2\cdot84}{14}=12$。</li>
+          <li>由三垂线定理（$PA\perp\alpha,\ AH\perp BC$）得 $PH\perp BC$，所以距离为 $PH=\sqrt{4^2+12^2}=\sqrt{160}=4\sqrt{10}$。</li>
+          <li>(2) $\triangle PBC=\dfrac12\cdot14\cdot4\sqrt{10}=28\sqrt{10}$。</li>
+          <li>(3) 体积 $V=\dfrac13\cdot84\cdot4=112$。设所求距离为 $h$，则 $\dfrac13\cdot28\sqrt{10}\cdot h=112$，$h=\dfrac{12}{\sqrt{10}}=\dfrac{6\sqrt{10}}{5}$。</li>
+          <li>验算：$h$ 也是直角三角形 $PAH$ 斜边上的高，$\dfrac{PA\cdot AH}{PH}=\dfrac{48}{4\sqrt{10}}=\dfrac{6\sqrt{10}}{5}$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $4\sqrt{10}$；(2) $28\sqrt{10}$；(3) $\dfrac{6\sqrt{10}}{5}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $P$ 到 $BC$ 的距离算成 $PB$ 或 $PC$。距离要沿垂线量，先定垂足 $H$。</li>
+        <li>等体积法忘记系数 $\dfrac13$，或两边底面、高配错。</li>
+        <li>结果没有分母有理化：$\dfrac{12}{\sqrt{10}}$ 要写成 $\dfrac{6\sqrt{10}}{5}$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>「点到直线距离」优先考虑三垂线；「点到平面距离」优先考虑等体积。EJU 的小问常按「底面高 → 侧面三角形面积 → 距离」排列，前面的答案通常就是下一问要用的量。</p>
+      <p><strong>日语术语：</strong><span lang="ja">三垂線の定理</span>（<span class="kana" lang="ja">さんすいせんのていり</span>）：三垂线定理；<span lang="ja">距離</span>（<span class="kana" lang="ja">きょり</span>）：距离；<span lang="ja">体積</span>（<span class="kana" lang="ja">たいせき</span>）：体积；<span lang="ja">三角錐</span>（<span class="kana" lang="ja">さんかくすい</span>）：三棱锥。</p>
     </div>
   </section>
 
@@ -428,6 +860,35 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     </table></div>
     <div class="box">
       <p><strong>数棱的技巧：</strong>每条棱恰好被两个面共用，所以 $2e=$（各面边数之和）。例如全由三角形构成时，$3f=2e$。把这个关系和 $v-e+f=2$ 联立，就能由一个量求出其余的量。</p>
+    </div>
+    <p><strong>欧拉定理的直观证明：</strong>去掉一个面，把多面体的表面压平成平面网状图，需要证明此时 $v-e+f=1$。给每个多边形添对角线分成三角形：每加一条对角线，$e$ 和 $f$ 都增加 $1$，值不变。再从外边界逐个去掉三角形：去掉一条边时 $e,f$ 各减 $1$；去掉两条边和一个顶点时 $v$ 减 $1$，$e$ 减 $2$，$f$ 减 $1$，值都不变。最后只剩一个三角形，$3-3+1=1$。把去掉的面加回来，就得到 $2$。</p>
+    <p><strong>为什么正多面体只有 $5$ 种：</strong>设每个面是正 $p$ 边形，每个顶点有 $k$ 个面（$p,k\ge3$）。则 $pf=2e=kv$。代入 $v-e+f=2$ 得 $\dfrac1p+\dfrac1k=\dfrac12+\dfrac1e&gt;\dfrac12$。满足此式的 $(p,k)$ 只有 $(3,3),(4,3),(3,4),(5,3),(3,5)$，恰好对应 $5$ 种正多面体，$e$ 依次为 $6,12,12,30,30$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　切角的正四面体</b><span class="origin">原创</span></div>
+      <p>棱长为 $9$ 的正四面体，在每个顶点处，用过由该顶点出发的三条棱的三等分点（靠近该顶点的一个）的平面切去一个小四面体。求所得多面体的 $v,e,f$、体积，以及它占原四面体体积的几分之几。</p>
+      <div class="ans">
+        <ol>
+          <li>原来的 $4$ 个顶点各变成一个正三角形截面，每个截面有 $3$ 个顶点，所以 $v=4\cdot3=12$。</li>
+          <li>面：$4$ 个新三角形；原来的 $4$ 个面切去三个角后，各变成正六边形。$f=8$。</li>
+          <li>棱：$2e=4\cdot3+4\cdot6=36$，$e=18$。验算：$12-18+8=2$。</li>
+          <li>原四面体体积：$\dfrac{\sqrt2}{12}\cdot9^3=\dfrac{243\sqrt2}{4}$。</li>
+          <li>切去的每个小四面体棱长为 $3$，相似比 $\dfrac13$，体积是原来的 $\dfrac1{27}$，即 $\dfrac{9\sqrt2}{4}$。</li>
+          <li>剩余体积：$\dfrac{243\sqrt2}{4}-4\cdot\dfrac{9\sqrt2}{4}=\dfrac{207\sqrt2}{4}$，占原来的 $1-\dfrac{4}{27}=\dfrac{23}{27}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$v=12,\ e=18,\ f=8$；体积 $\dfrac{207\sqrt2}{4}$；占原体积的 $\dfrac{23}{27}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>数棱时不除以 $2$。每条棱被两个面共用，边数之和是 $2e$。</li>
+        <li>只数新增的面，却忽略原来的面也变了形状：本题中原来的三角形面切角后变成六边形。</li>
+        <li>把 $v-e+f=2$ 用到非凸或带洞的立体上。环形立体不满足这个结果。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>欧拉定理题的关键是列出 $2e=$（面的边数和）或 $2e=$（各顶点的棱数和），再和 $v-e+f=2$ 联立。答案算完后务必代回定理检查。表中 $5$ 种正多面体的 $v,e,f$ 最好背熟，并注意立方体与正八面体、正十二面体与正二十面体的 $v,f$ 互换。</p>
+      <p><strong>日语术语：</strong><span lang="ja">正多面体</span>（<span class="kana" lang="ja">せいためんたい</span>）：正多面体；<span lang="ja">切断面</span>（<span class="kana" lang="ja">せつだんめん</span>）：截面；<span lang="ja">正六角形</span>（<span class="kana" lang="ja">せいろっかくけい</span>）：正六边形；<span lang="ja">頂点</span>（<span class="kana" lang="ja">ちょうてん</span>）：顶点；<span lang="ja">辺</span>（<span class="kana" lang="ja">へん</span>）：棱。</p>
     </div>
   </section>
 
@@ -508,6 +969,37 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <p>(2) $\triangle BDE$ 是边长 $6\sqrt2$ 的正三角形，面积 $=\dfrac{\sqrt3}{4}\cdot72=18\sqrt3$。三棱锥 $A\text{-}BDE$ 的体积 $=\dfrac13\cdot\dfrac12\cdot6\cdot6\cdot6=36$。设距离为 $h$，则 $\dfrac13\cdot18\sqrt3\cdot h=36$，$h=2\sqrt3$。</p>
       </div>
     </article>
+    <p><strong>综合题的思路：</strong>图形性质的大题通常把多个定理串起来：先用比例定理求长度，再用圆的性质产生相似，最后回到已知的比。解题时把前面得到的长度都写在图上，后面的小问几乎都要用到。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　角平分线与外接圆（填空形式）</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中 $AB=8,\ AC=6,\ BC=7$。$\angle A$ 的平分线交边 $BC$ 于 $D$，交外接圆于 $E$（$E\ne A$）。$\triangle ABC$ 的内心为 $I$。</p>
+      <p>(1) $AD=\B{A}$，$DE=\B{B}$，$AE=\B{C}$。</p>
+      <p>(2) $BE=\B{D}$。</p>
+      <p>(3) $AI=\B{E}$，$EI=\B{F}$。</p>
+      <div class="ans">
+        <ul class="keys"><li>A = 6</li><li>B = 2</li><li>C = 8</li><li>D = 4</li><li>E = 4</li><li>F = 4</li></ul>
+        <ol>
+          <li>(1) $BD:DC=8:6=4:3$，所以 $BD=4,\ DC=3$。$AD^2=48-12=36$，$AD=6$。</li>
+          <li>相交弦（圆幂定理）：$AD\cdot DE=BD\cdot DC$，$6\cdot DE=12$，$DE=2$，$AE=8$。</li>
+          <li>(2) $\angle BAE=\angle DAC$，$\angle AEB=\angle ACB$（同弧 $AB$），所以 $\triangle ABE\sim\triangle ADC$。$\dfrac{BE}{DC}=\dfrac{AB}{AD}$，$BE=3\cdot\dfrac86=4$。</li>
+          <li>(3) $AI:ID=(AB+AC):BC=14:7=2:1$，所以 $AI=\dfrac23\cdot6=4$，$ID=2$，$EI=ID+DE=4$。</li>
+          <li>验算：$\angle EBI=\angle EBC+\angle CBI=\dfrac{\angle A}{2}+\dfrac{\angle B}{2}$，$\angle EIB=\angle IAB+\angle IBA=\dfrac{\angle A}{2}+\dfrac{\angle B}{2}$，所以 $EB=EI$，与结果 $4=4$ 一致。</li>
+        </ol>
+        <p><strong>答案：</strong>A = 6，B = 2，C = 8，D = 4，E = 4，F = 4。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>$AD\cdot DE=BD\cdot DC$ 中把 $DE$ 和 $AE$ 混用。圆幂定理的两段都从交点 $D$ 量起。</li>
+        <li>把 $AI:ID$ 写成 $AB:AC$。这个比的后项是对边 $BC$。</li>
+        <li>相似三角形对应边找错：$\triangle ABE$ 的 $BE$ 对应 $\triangle ADC$ 的 $DC$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>填空题常按解题顺序设空，前一空就是下一空的提示。方框中有一位数或两位数的区别，可以用来判断结果大小。若算出的分母不能约简到方框允许的位数，要回头检查。</p>
+      <p><strong>日语术语：</strong><span lang="ja">二等分線</span>（<span class="kana" lang="ja">にとうぶんせん</span>）：平分线；<span lang="ja">外接円</span>（<span class="kana" lang="ja">がいせつえん</span>）：外接圆；<span lang="ja">内心</span>（<span class="kana" lang="ja">ないしん</span>）：内心。</p>
+    </div>
   </section>
 
   <section id="practice">
@@ -581,6 +1073,33 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
       <div class="ans" hidden><p>(1) $60^\circ$：$BG\parallel AH$，而 $AC,CH,HA$ 都是面对角线，$\triangle ACH$ 是正三角形。(2) $5$：设 $H$ 是 $A$ 到 $\ell$ 的垂足，由三垂线定理 $PH\perp\ell$，$PH=\sqrt{9+16}$。</p></div></div>
 
+    <p><strong>练习方法：</strong>先不看解析，把每道题的已知条件画在图上，写出用到的定理名称，再计算。做错时，要分清是定理没想到、比例列错，还是计算错误，后两类多半可以靠验算发现。下面的例题演示完整的立体题流程，放在 16 道练习之后，作为综合收尾。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　正四棱锥的外接球与内切球</b><span class="origin">原创</span></div>
+      <p>正四棱锥 $O\text{-}ABCD$ 的底面是边长为 $6$ 的正方形，侧棱长为 $3\sqrt6$。求高 $h$、体积 $V$、外接球半径 $R$ 和内切球半径 $r$。</p>
+      <div class="ans">
+        <ol>
+          <li>设底面中心为 $M$。对角线长 $6\sqrt2$，$AM=3\sqrt2$。$OM\perp$ 底面，$h=\sqrt{(3\sqrt6)^2-(3\sqrt2)^2}=\sqrt{54-18}=6$。</li>
+          <li>$V=\dfrac13\cdot36\cdot6=72$。</li>
+          <li>外接球球心在 $OM$ 上。设半径为 $R$，球心到 $M$ 的距离为 $6-R$，对 $A$ 用勾股定理：$(6-R)^2+18=R^2$，$54-12R=0$，$R=\dfrac92$。</li>
+          <li>侧面三角形的高（斜高）：$\sqrt{6^2+3^2}=3\sqrt5$，四个侧面面积和 $=4\cdot\dfrac12\cdot6\cdot3\sqrt5=36\sqrt5$，表面积 $S=36+36\sqrt5$。</li>
+          <li>把棱锥按内切球球心分成 $5$ 个小棱锥，高都是 $r$：$V=\dfrac13Sr$。所以 $r=\dfrac{3V}{S}=\dfrac{216}{36(1+\sqrt5)}=\dfrac{6}{1+\sqrt5}=\dfrac{3(\sqrt5-1)}{2}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$h=6,\ V=72,\ R=\dfrac92,\ r=\dfrac{3(\sqrt5-1)}{2}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把斜高和侧棱混淆：斜高要算到底边中点，侧棱要算到底面顶点。</li>
+        <li>用底面边长的一半代替 $AM$。$AM$ 是对角线的一半。</li>
+        <li>内切球公式中漏掉底面积，$S$ 是<strong>全表面积</strong>。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>做练习时要模拟考试节奏，每道中等题控制在几分钟内。把结果写成考试要求的形式（最简根式、最简分数、有理化分母）。「求球半径」的题，外接球列勾股方程，内切球用 $V=\dfrac13Sr$。</p>
+      <p><strong>日语术语：</strong><span lang="ja">正四角錐</span>（<span class="kana" lang="ja">せいしかくすい</span>）：正四棱锥；<span lang="ja">内接球</span>（<span class="kana" lang="ja">ないせつきゅう</span>）：内切球；<span lang="ja">表面積</span>（<span class="kana" lang="ja">ひょうめんせき</span>）：表面积；<span lang="ja">有理化</span>（<span class="kana" lang="ja">ゆうりか</span>）：有理化。</p>
+    </div>
   </section>
 
   <section id="terms">
@@ -593,6 +1112,33 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
       <tbody></tbody>
     </table></div>
+    <p><strong>读题要点：</strong>EJU 考试可以选择日语或英语试卷，选日语时，图形题的难点常常在于读懂位置描述。「辺 $BC$ 上の点」是线段上的点；「直線 $BC$ 上の点」可能在延长线上。「〜と〜の交点を $D$ とする」意为「设……与……的交点为 $D$」。「内接する」用于四边形内接于圆，也用于两圆内切，要结合对象判断。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　日语题干阅读</b><span class="origin">原创</span></div>
+      <p><span lang="ja">$\triangle ABC$ において，$AB=6,\ BC=6,\ CA=3$ とする。$\angle A$ の二等分線と辺 $BC$ の交点を $D$ とするとき，線分 $BD$ の長さと線分 $AD$ の長さを求めよ。</span></p>
+      <div class="ans">
+        <ol>
+          <li>译文：在 $\triangle ABC$ 中，$AB=6,\ BC=6,\ CA=3$。设 $\angle A$ 的平分线与边 $BC$ 的交点为 $D$，求线段 $BD$ 和 $AD$ 的长。</li>
+          <li>关键词：<span lang="ja">において</span>（在……中）、<span lang="ja">二等分線</span>（平分线）、<span lang="ja">交点</span>（交点）、<span lang="ja">求めよ</span>（求）。</li>
+          <li>$BD:DC=AB:AC=6:3=2:1$，又 $BC=6$，所以 $BD=4,\ DC=2$。</li>
+          <li>$AD^2=AB\cdot AC-BD\cdot DC=18-8=10$，所以 $AD=\sqrt{10}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$BD=4,\ AD=\sqrt{10}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把「内接円」理解成圆内接四边形的「外接圆」：<span lang="ja">内接円</span>是三角形内部的内切圆。</li>
+        <li>把「外接する」一律理解为圆外切四边形。两圆「外接する」指两圆外切。</li>
+        <li>把「辺」只理解为三角形的边：在多面体里，<span lang="ja">辺</span>就是中文的「棱」。</li>
+        <li>混淆「<span lang="ja">垂線</span>」（垂线）与「<span lang="ja">垂直二等分線</span>」（垂直平分线）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>考前把本表当作单词卡，遮住中文读日语。最少要做到看到「内心・外心・接線・方べき・ねじれの位置」时能立即反应，这样可以省下读题时间。可用表格上方的搜索框查找中文、日文或假名。</p>
+      <p><strong>日语术语：</strong><span lang="ja">において</span>（<span class="kana" lang="ja">において</span>）：在……中；<span lang="ja">交点</span>（<span class="kana" lang="ja">こうてん</span>）：交点；<span lang="ja">求めよ</span>（<span class="kana" lang="ja">もとめよ</span>）：求；<span lang="ja">とする</span>（<span class="kana" lang="ja">とする</span>）：设为。</p>
+    </div>
   </section>
 
   <footer>
@@ -629,6 +1175,16 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       ['三角錐', 'さんかくすい', '三棱锥'], ['多面体', 'ためんたい', '多面体'], ['凸多面体', 'とつためんたい', '凸多面体'],
       ['正多面体', 'せいためんたい', '正多面体'], ['頂点', 'ちょうてん', '顶点'], ['辺', 'へん', '边、棱'],
       ['面', 'めん', '面'], ['オイラーの多面体定理', 'オイラーのためんたいていり', '欧拉多面体定理'], ['立方体', 'りっぽうたい', '立方体']
+    ]],
+    ['补充术语', [
+      ['平行線', 'へいこうせん', '平行线'], ['線分', 'せんぶん', '线段'], ['相似', 'そうじ', '相似'],
+      ['相似比', 'そうじひ', '相似比'], ['面積比', 'めんせきひ', '面积比'], ['延長', 'えんちょう', '延长（线）'],
+      ['ヘロンの公式', 'ヘロンのこうしき', '海伦公式'], ['余弦定理', 'よげんていり', '余弦定理'], ['正弦定理', 'せいげんていり', '正弦定理'],
+      ['オイラー線', 'オイラーせん', '欧拉线'], ['逆', 'ぎゃく', '逆命题、逆定理'], ['一直線上にある', 'いっちょくせんじょうにある', '共线'],
+      ['共有点', 'きょうゆうてん', '公共点'], ['割線', 'かっせん', '割线'], ['対頂角', 'たいちょうかく', '对顶角'],
+      ['共通弦', 'きょうつうげん', '公共弦'], ['斜辺', 'しゃへん', '斜边'], ['外接球', 'がいせつきゅう', '外接球'],
+      ['内接球', 'ないせつきゅう', '内切球'], ['直方体', 'ちょくほうたい', '长方体'], ['正四角錐', 'せいしかくすい', '正四棱锥'],
+      ['切断面', 'せつだんめん', '截面'], ['表面積', 'ひょうめんせき', '表面积'], ['トレミーの定理', 'トレミーのていり', '托勒密定理']
     ]]
   ];
 
