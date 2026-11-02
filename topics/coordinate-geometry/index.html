@@ -237,6 +237,7 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
         <li><a href="#examples">8 原创例题</a></li>
         <li><a href="#practice">9 练习题</a></li>
         <li><a href="#terms">10 术语对照</a></li>
+        <li><a href="#eju-style">真题风格练习</a></li>
       </ol>
     </div>
     <button class="chip theme-btn" id="theme" type="button">深色</button>
@@ -739,6 +740,20 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
       <p><strong>日语术语：</strong><span lang="ja">平行移動</span>（<span class="kana" lang="ja">へいこういどう</span>）：平移；<span lang="ja">定数</span>（<span class="kana" lang="ja">ていすう</span>）：常数（题中的参数）。</p>
     </div>
 
+    <h3>补充：切线长与三角形的内切圆</h3>
+    <p><strong>切线长：</strong>从圆外一点 $\mathrm{P}$ 向圆心 $\mathrm{C}$、半径 $r$ 的圆作切线，切点为 $\mathrm{T}$。因为 $\mathrm{CT}\perp\mathrm{PT}$，由勾股定理 $\mathrm{PT}=\sqrt{\mathrm{PC}^2-r^2}$。所以“切线长最短”就是“$\mathrm{PC}$ 最短”。两条切线互相垂直时，$\mathrm{P}$、两个切点和 $\mathrm{C}$ 构成正方形，$\mathrm{PC}=\sqrt2\,r$。</p>
+    <p><strong>三角形的内切圆：</strong>内心到三边所在直线的距离都等于内切圆半径 $r$，可以用点到直线距离公式列方程；也可以用面积 $S=\dfrac12r(a+b+c)$ 求 $r$。直角三角形（斜边 $c$）有 $r=\dfrac{a+b-c}{2}$。</p>
+    <div class="box good">
+      <p><strong>补充例题：</strong>(1) 求从点 $(5,4)$ 向圆 $(x-1)^2+(y-1)^2=4$ 所作切线的长。(2) 求以 $(0,0)$、$(6,0)$、$(0,8)$ 为顶点的三角形的内切圆。</p>
+      <ol>
+        <li>(1) $\mathrm{PC}^2=4^2+3^2=25$，切线长 $=\sqrt{25-4}=\sqrt{21}$。</li>
+        <li>(2) 斜边 $10$，$r=\dfrac{6+8-10}{2}=2$。内心在 $x\ge0,y\ge0$ 一侧且到两轴距离为 $2$，所以是 $(2,2)$；验算到 $4x+3y-24=0$ 的距离 $\dfrac{|8+6-24|}{5}=2$。内切圆为 $(x-2)^2+(y-2)^2=4$。</li>
+      </ol>
+    </div>
+    <div class="box">
+      <p><strong>日语术语：</strong><span lang="ja">接線の長さ</span>（<span class="kana" lang="ja">せっせんのながさ</span>）：切线长；<span lang="ja">内接円</span>（<span class="kana" lang="ja">ないせつえん</span>）：内切圆；<span lang="ja">内心</span>（<span class="kana" lang="ja">ないしん</span>）：内心；<span lang="ja">外接円</span>（<span class="kana" lang="ja">がいせつえん</span>）：外接圆。</p>
+    </div>
+
     <h3>两圆的位置关系</h3>
     <p>设圆心距为 $D$，两圆半径为 $r_1,r_2$（$r_1\ge r_2$）：</p>
     <div class="tw"><table>
@@ -1177,6 +1192,172 @@ svg .region { fill: var(--shade); stroke: var(--c1); stroke-width: 1.6; }
       <p><strong>EJU 应试提示：</strong>题尾常见的动词要熟悉：<span lang="ja">求めよ</span>（求）、<span lang="ja">示せ</span>（证明）。EJU 的题面还常写 <span lang="ja">次の文中の … にあてはまる数を答えなさい</span>（填入适合的数）。</p>
       <p><strong>日语术语：</strong><span lang="ja">求める</span>（<span class="kana" lang="ja">もとめる</span>）：求；<span lang="ja">定数</span>（<span class="kana" lang="ja">ていすう</span>）：常数；<span lang="ja">値</span>（<span class="kana" lang="ja">あたい</span>）：值；<span lang="ja">座標</span>（<span class="kana" lang="ja">ざひょう</span>）：坐标。</p>
     </div>
+  </section>
+
+  <section id="eju-style">
+    <h2>真题风格练习（EJU 题库对照）</h2>
+    <p>本节对照《EJU 数学2 知识点分类题库 2005–2025》中「解析几何」类的 9 个题目归纳出题规律，并配有<strong>原创</strong>练习题（数字和设定均为原创，并非真题）。</p>
+    <div class="box good">
+      <p><strong>题库出题规律</strong></p>
+      <ul>
+        <li><strong>圆与直线的位置关系：</strong>含参数直线与圆的交点个数（比较 $d$ 与 $r$）、弦长 $2\sqrt{r^2-d^2}$，以及圆关于直线对称后与另一直线相切（2021年第2回、2023年第2回）。</li>
+        <li><strong>由条件定圆，再问角度、弧或点：</strong>三点（常含原点）确定圆，再用圆周角、弧的关系求点的坐标或角度（2009年第1回、2012年第1回）。</li>
+        <li><strong>三角形与圆：</strong>等腰三角形或区域三角形的内切圆半径、顶点坐标，圆形区域与三角形区域的包含关系（2009年第2回、2017年第2回）。</li>
+        <li><strong>含参数的直线与轨迹：</strong>两条含参数直线各过定点且互相垂直，交点在圆上（注意除外点），再求比值（斜率）的范围（2006年第1回）。</li>
+        <li><strong>动点的最值：</strong>平行直线上的动点在直角条件下的距离或面积最小值、纵轴上一点到圆的切线长最小值与两切线垂直的条件（2010年第1回、2018年第2回）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>填写方式：</strong>每个方框（如 $\boxed{\text{ア}}$）填一位数字或符号 $-$；两个字母相连（如 $\boxed{\text{オカ}}$）表示两位数。分数约到最简，根号内的数尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 1　三角形区域与圆形区域的包含关系</b><span class="origin">原创 · 对应题型：圆形区域与三角区域的包含关系</span></div>
+      <p>设不等式组 $x\ge0,\ y\ge0,\ 3x+4y\le24$ 表示的三角形区域为 $T$。</p>
+      <p>(1) $T$ 的内切圆半径为 $\boxed{\text{ア}}$，圆心为 $(\boxed{\text{イ}},\boxed{\text{イ}})$。</p>
+      <p>(2) 圆形区域 $(x-a)^2+(y-1)^2\le1$ 包含在 $T$ 中的条件是 $\boxed{\text{ウ}}\le a\le\boxed{\text{エ}}$。</p>
+      <p>(3) 圆形区域 $(x-2)^2+(y-2)^2\le r^2$（$r&gt;0$）包含 $T$ 的条件是 $r\ge\boxed{\text{オ}}\sqrt{\boxed{\text{カキ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $T$ 的顶点为 $(0,0),(8,0),(0,6)$，斜边 $10$。直角三角形 $r=\dfrac{8+6-10}{2}=2$，圆心 $(2,2)$（验算：到 $3x+4y-24=0$ 的距离 $\dfrac{|6+8-24|}{5}=2$）。</li>
+        <li>(2) 圆心 $(a,1)$、半径 $1$ 的圆在 $T$ 内 $\iff$ 圆心在 $T$ 内且到三条边所在直线的距离都 $\ge1$。到 $x$ 轴的距离为 $1$，满足；到 $y$ 轴：$a\ge1$；到斜边：$\dfrac{24-3a-4}{5}\ge1$，即 $a\le5$。所以 $1\le a\le5$。</li>
+        <li>(3) 圆形区域是凸的，包含 $T$ $\iff$ 包含三个顶点。到 $(2,2)$ 的距离：$(0,0)$ 为 $\sqrt8$，$(8,0)$ 为 $\sqrt{40}$，$(0,6)$ 为 $\sqrt{20}$。最大为 $\sqrt{40}=2\sqrt{10}$，所以 $r\ge2\sqrt{10}$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 2，ウ = 1，エ = 5，オ = 2，カキ = 10</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 2　平行直线上的动点与直角条件</b><span class="origin">原创 · 对应题型：两条平行直线上的动点在直角约束下的最值</span></div>
+      <p>$\mathrm{O}$ 为原点。点 $\mathrm{P}(p,2)$ 在直线 $y=2$ 上，点 $\mathrm{Q}(q,-3)$ 在直线 $y=-3$ 上，且 $\angle\mathrm{POQ}=90^\circ$，$p&gt;0$。</p>
+      <p>(1) $pq=\boxed{\text{ア}}$。</p>
+      <p>(2) 线段 $\mathrm{PQ}$ 的长的最小值为 $\boxed{\text{イ}}$，此时 $p=\sqrt{\boxed{\text{ウ}}}$。</p>
+      <p>(3) $\triangle\mathrm{OPQ}$ 面积的最小值为 $\boxed{\text{エ}}$，此时 $p=\boxed{\text{オ}}$，$q=\boxed{\text{カ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $\overrightarrow{\mathrm{OP}}\cdot\overrightarrow{\mathrm{OQ}}=pq-6=0$，所以 $pq=6$（于是 $q&gt;0$）。</li>
+        <li>(2) $\mathrm{PQ}^2=(p-q)^2+5^2\ge25$，等号在 $p=q$ 时成立：$p^2=6$，$p=\sqrt6$。最小值 $5$。</li>
+        <li>(3) 面积 $=\dfrac12|p\cdot(-3)-q\cdot2|=\dfrac12(3p+2q)$。由算术–几何平均不等式 $3p+2q\ge2\sqrt{6pq}=12$，面积 $\ge6$，等号在 $3p=2q$ 且 $pq=6$ 时成立：$p=2$，$q=3$。</li>
+        <li>另解：面积 $=\dfrac12\mathrm{OP}\cdot\mathrm{OQ}$，$\mathrm{OP}^2\mathrm{OQ}^2=(p^2+4)\Bigl(\dfrac{36}{p^2}+9\Bigr)=72+9p^2+\dfrac{144}{p^2}\ge144$，同样得到最小值 $6$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 6，イ = 5，ウ = 6，エ = 6，オ = 2，カ = 3</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 3　两条含参数直线的交点轨迹与比值范围</b><span class="origin">原创 · 对应题型：两条参数直线的交点轨迹及比值范围</span></div>
+      <p>$t$ 为实数。两条直线 $\ell_1:\ tx-y+t=0$，$\ell_2:\ x+ty-3=0$ 的交点为 $\mathrm{P}(x,y)$。</p>
+      <p>(1) 不论 $t$ 取何值，$\ell_1$ 都经过点 $(-\boxed{\text{ア}},0)$，$\ell_2$ 都经过点 $(\boxed{\text{イ}},0)$，并且 $\ell_1$ 与 $\ell_2$ 互相垂直。</p>
+      <p>(2) $t$ 取遍所有实数时，点 $\mathrm{P}$ 在圆 $(x-\boxed{\text{ウ}})^2+y^2=\boxed{\text{エ}}$ 上运动，但不经过该圆上的点 $(-\boxed{\text{オ}},0)$。</p>
+      <p>(3) $k=\dfrac{y}{x+3}$ 的取值范围是 $-\dfrac{\sqrt{\boxed{\text{カ}}}}{\boxed{\text{キ}}}\le k\le\dfrac{\sqrt{\boxed{\text{カ}}}}{\boxed{\text{キ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $\ell_1:\ t(x+1)-y=0$，$x=-1,y=0$ 时对任意 $t$ 成立；$\ell_2$ 中 $x=3,y=0$ 对任意 $t$ 成立。法向量 $(t,-1)\cdot(1,t)=0$，所以垂直。</li>
+        <li>(2) 记 $\mathrm{A}(-1,0)$、$\mathrm{B}(3,0)$，$\angle\mathrm{APB}=90^\circ$，$\mathrm{P}$ 在以 $\mathrm{AB}$ 为直径的圆 $(x-1)^2+y^2=4$ 上。具体地，联立得 $x=\dfrac{3-t^2}{1+t^2}$，$y=\dfrac{4t}{1+t^2}$。若 $\mathrm{P}=(-1,0)$，则 $y=0$ 推出 $t=0$，而此时 $x=3$，矛盾；所以点 $(-1,0)$ 取不到（$\ell_1$ 永远不是竖直线 $x=-1$）。其余点都能取到。</li>
+        <li>(3) $k$ 是点 $\mathrm{P}$ 与 $(-3,0)$ 连线的斜率。从 $(-3,0)$ 向圆作切线：圆心距 $4$、半径 $2$，切线与 $x$ 轴夹角 $\alpha$ 满足 $\sin\alpha=\dfrac12$，$\alpha=30^\circ$，斜率 $\pm\dfrac{\sqrt3}{3}$。两切点不是除外点 $(-1,0)$，而 $k=0$ 在 $\mathrm{P}=(3,0)$ 处取到，所以 $-\dfrac{\sqrt3}{3}\le k\le\dfrac{\sqrt3}{3}$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 1，イ = 3，ウ = 1，エ = 4，オ = 1，カ = 3，キ = 3</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 4　经过原点的外接圆、圆周角与弧的中点</b><span class="origin">原创 · 对应题型：三点确定圆与弧长关系、经过原点的外接圆与角度</span></div>
+      <p>$\mathrm{O}$ 为原点，$\mathrm{A}(6,0)$，$\mathrm{B}(2,4)$。</p>
+      <p>(1) $\triangle\mathrm{OAB}$ 的外接圆方程为 $x^2+y^2-\boxed{\text{ア}}x-\boxed{\text{イ}}y=0$，圆心 $(\boxed{\text{ウ}},\boxed{\text{エ}})$，半径 $\sqrt{\boxed{\text{オカ}}}$。</p>
+      <p>(2) $\tan\angle\mathrm{AOB}=\boxed{\text{キ}}$，$\mathrm{AB}=\boxed{\text{ク}}\sqrt{\boxed{\text{ケ}}}$。</p>
+      <p>(3) 点 $\mathrm{P}$ 在外接圆上不含 $\mathrm{B}$ 的弧 $\mathrm{OA}$ 上，且弧 $\mathrm{OP}$ 与弧 $\mathrm{PA}$ 的长相等。则 $\mathrm{P}(\boxed{\text{コ}},\ \boxed{\text{サ}}-\sqrt{\boxed{\text{シス}}})$，$\cos\angle\mathrm{OPA}=-\dfrac{\sqrt{\boxed{\text{セソ}}}}{\boxed{\text{タチ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 过原点，设 $x^2+y^2+Dx+Ey=0$。代入 $\mathrm{A}$：$36+6D=0$，$D=-6$；代入 $\mathrm{B}$：$20-12+4E=0$，$E=-2$。配方 $(x-3)^2+(y-1)^2=10$。</li>
+        <li>(2) $\mathrm{OA}$ 在 $x$ 轴上，$\mathrm{OB}$ 的斜率为 $2$，所以 $\tan\angle\mathrm{AOB}=2$，$\sin\angle\mathrm{AOB}=\dfrac{2}{\sqrt5}$。$\mathrm{AB}=\sqrt{16+16}=4\sqrt2$；用正弦定理验算：$2R\sin\angle\mathrm{AOB}=2\sqrt{10}\cdot\dfrac{2}{\sqrt5}=4\sqrt2$。</li>
+        <li>(3) 弧 $\mathrm{OP}$＝弧 $\mathrm{PA}$ $\iff$ $\mathrm{PO}=\mathrm{PA}$，$\mathrm{P}$ 在弦 $\mathrm{OA}$ 的垂直平分线 $x=3$ 上。代入圆：$(y-1)^2=10$，$y=1\pm\sqrt{10}$。$\mathrm{B}$ 在 $x$ 轴上方，不含 $\mathrm{B}$ 的弧在下方，取 $y=1-\sqrt{10}$。</li>
+        <li>$\mathrm{O},\mathrm{P},\mathrm{A},\mathrm{B}$ 四点共圆且 $\mathrm{P}$、$\mathrm{B}$ 在 $\mathrm{OA}$ 两侧，$\angle\mathrm{OPA}=180^\circ-\angle\mathrm{OBA}$。$\overrightarrow{\mathrm{BO}}=(-2,-4)$，$\overrightarrow{\mathrm{BA}}=(4,-4)$，$\cos\angle\mathrm{OBA}=\dfrac{8}{\sqrt{20}\cdot\sqrt{32}}=\dfrac{1}{\sqrt{10}}$，所以 $\cos\angle\mathrm{OPA}=-\dfrac{\sqrt{10}}{10}$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 6，イ = 2，ウ = 3，エ = 1，オカ = 10，キ = 2，ク = 4，ケ = 2，コ = 3，サ = 1，シス = 10，セソ = 10，タチ = 10</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 5　纵轴上一点的切线长与两切线垂直</b><span class="origin">原创 · 对应题型：纵轴上一点引圆切线的最短长度与垂直条件</span></div>
+      <p>圆 $C:\ x^2+y^2-6x-2y+5=0$，点 $\mathrm{P}(0,t)$ 在 $y$ 轴上。</p>
+      <p>(1) 从 $\mathrm{P}$ 向 $C$ 所作切线的长 $L$ 满足 $L^2=t^2-\boxed{\text{ア}}t+\boxed{\text{イ}}$。$L$ 的最小值为 $\boxed{\text{ウ}}$，此时 $t=\boxed{\text{エ}}$。</p>
+      <p>(2) 从 $\mathrm{P}$ 所作的两条切线互相垂直的条件是 $t=\boxed{\text{オ}}$ 或 $t=\boxed{\text{カ}}$（$\boxed{\text{オ}}&lt;\boxed{\text{カ}}$）。</p>
+      <p>(3) $t=\boxed{\text{カ}}$ 时，两条切线的斜率为 $-\boxed{\text{キ}}$ 和 $\dfrac{\boxed{\text{ク}}}{\boxed{\text{ケ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>配方：$(x-3)^2+(y-1)^2=5$，圆心 $\mathrm{C}(3,1)$，$r=\sqrt5$。圆心到 $y$ 轴的距离 $3&gt;\sqrt5$，$\mathrm{P}$ 总在圆外。</li>
+        <li>(1) $L^2=\mathrm{PC}^2-r^2=9+(t-1)^2-5=t^2-2t+5=(t-1)^2+4$。$t=1$ 时最小，$L=2$。</li>
+        <li>(2) 两切线垂直 $\iff$ $\mathrm{P}$、两切点、$\mathrm{C}$ 构成正方形 $\iff\mathrm{PC}^2=2r^2=10$：$9+(t-1)^2=10$，$t=0,2$。</li>
+        <li>(3) $t=2$：切线 $y=mx+2$，即 $mx-y+2=0$。$\dfrac{|3m-1+2|}{\sqrt{m^2+1}}=\sqrt5$，平方得 $9m^2+6m+1=5m^2+5$，$2m^2+3m-2=0$，$m=-2,\ \dfrac12$。积为 $-1$，确实垂直。（竖直线 $x=0$ 到圆心距离 $3\ne\sqrt5$，不是切线。）</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 5，ウ = 2，エ = 1，オ = 0，カ = 2，キ = 2，ク = 1，ケ = 2</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 6　含参数直线与圆的交点个数和弦长</b><span class="origin">原创 · 对应题型：参数直线与圆的交点数和弦长</span></div>
+      <p>$k$ 为实数。圆 $C:\ x^2+y^2=5$ 与直线 $\ell:\ y=kx+5$。</p>
+      <p>(1) $C$ 与 $\ell$ 有两个不同交点的条件是 $k&lt;-\boxed{\text{ア}}$ 或 $\boxed{\text{ア}}&lt;k$。</p>
+      <p>(2) $k=3$ 时，弦长为 $\sqrt{\boxed{\text{イウ}}}$，弦的中点为 $\Bigl(-\dfrac{\boxed{\text{エ}}}{\boxed{\text{オ}}},\ \dfrac{1}{\boxed{\text{カ}}}\Bigr)$。</p>
+      <p>(3) 弦长为 $2$ 时，$k=\pm\dfrac{\sqrt{\boxed{\text{キク}}}}{\boxed{\text{ケ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 圆心到 $\ell:\ kx-y+5=0$ 的距离 $d=\dfrac{5}{\sqrt{k^2+1}}$。$d&lt;\sqrt5\iff k^2+1&gt;5\iff k^2&gt;4$，即 $k&lt;-2$ 或 $k&gt;2$。</li>
+        <li>(2) $k=3$：$d^2=\dfrac{25}{10}=\dfrac52$，弦长 $=2\sqrt{5-\dfrac52}=2\sqrt{\dfrac52}=\sqrt{10}$。中点是从原点向 $\ell$ 作垂线的垂足：沿法向量 $(3,-1)$，$\Bigl(-\dfrac{15}{10},\dfrac{5}{10}\Bigr)=\Bigl(-\dfrac32,\dfrac12\Bigr)$（验算：$3\cdot(-\tfrac32)+5=\tfrac12$）。</li>
+        <li>(3) 弦长 $2$ $\iff$ 半弦 $1$ $\iff d^2=5-1=4$：$\dfrac{25}{k^2+1}=4$，$k^2=\dfrac{21}{4}$，$k=\pm\dfrac{\sqrt{21}}{2}$（满足 (1) 的条件）。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イウ = 10，エ = 3，オ = 2，カ = 2，キク = 21，ケ = 2</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 7　圆关于直线对称后与另一直线相切</b><span class="origin">原创 · 对应题型：圆关于直线对称后与另一条直线相切</span></div>
+      <p>圆 $C$ 的圆心为 $(5,1)$、半径为 $r$。$C$ 关于直线 $\ell:\ x+2y-2=0$ 对称的圆记为 $C'$。</p>
+      <p>(1) $C'$ 的圆心为 $(\boxed{\text{ア}},\ -\boxed{\text{イ}})$。</p>
+      <p>(2) $C'$ 与直线 $m:\ 3x+4y-12=0$ 相切时，$r=\boxed{\text{ウ}}$，此时 $C$ 的方程为 $x^2+y^2-10x-2y+\boxed{\text{エオ}}=0$。</p>
+      <p>(3) 此时 $C'$ 与 $m$ 的切点为 $\Bigl(\dfrac{\boxed{\text{カキ}}}{\boxed{\text{ク}}},\ -\dfrac{\boxed{\text{ケ}}}{\boxed{\text{コ}}}\Bigr)$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 设对称点 $(a,b)$。垂直：$(a-5,b-1)$ 平行于法向量 $(1,2)$，$b-1=2(a-5)$；中点在 $\ell$ 上：$\dfrac{a+5}{2}+(b+1)-2=0$。解得 $(a,b)=(3,-3)$。（对称不改变半径。）</li>
+        <li>(2) $(3,-3)$ 到 $m$ 的距离 $\dfrac{|9-12-12|}{5}=3$，所以 $r=3$。$C:\ (x-5)^2+(y-1)^2=9$，展开常数项 $25+1-9=17$。</li>
+        <li>(3) 切点是 $C'$ 的圆心向 $m$ 作垂线的垂足。$3\cdot3+4\cdot(-3)-12=-15&lt;0$，要沿 $(3,4)$ 方向移动距离 $3$：$(3,-3)+\dfrac35(3,4)=\Bigl(\dfrac{24}{5},-\dfrac35\Bigr)$。验算：$3\cdot\dfrac{24}{5}+4\cdot\Bigl(-\dfrac35\Bigr)=12$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 3，イ = 3，ウ = 3，エオ = 17，カキ = 24，ク = 5，ケ = 3，コ = 5</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 8　过两定点的等腰三角形的内切圆与外接圆</b><span class="origin">原创 · 对应题型：过指定两点的等腰三角形内切圆半径与顶点</span></div>
+      <p>$\mathrm{A}(-6,0)$，$\mathrm{B}(6,0)$。点 $\mathrm{C}$ 满足 $\mathrm{CA}=\mathrm{CB}$，且在 $x$ 轴上方，记 $\mathrm{C}(0,h)$（$h&gt;0$）。</p>
+      <p>(1) $h=8$ 时，$\triangle\mathrm{ABC}$ 的内切圆半径为 $\boxed{\text{ア}}$，内心为 $(0,\boxed{\text{イ}})$。</p>
+      <p>(2) 内切圆半径为 $2$ 时，$\mathrm{C}\Bigl(0,\dfrac{\boxed{\text{ウ}}}{\boxed{\text{エ}}}\Bigr)$。</p>
+      <p>(3) $h=8$ 时，$\triangle\mathrm{ABC}$ 的外接圆半径为 $\dfrac{\boxed{\text{オカ}}}{\boxed{\text{キ}}}$，外心为 $\Bigl(0,\dfrac{\boxed{\text{ク}}}{\boxed{\text{ケ}}}\Bigr)$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>$\mathrm{CA}=\mathrm{CB}$，所以 $\mathrm{C}$ 在 $\mathrm{AB}$ 的垂直平分线 $x=0$ 上，内心、外心也都在 $y$ 轴上。</li>
+        <li>(1) $\mathrm{CA}=\sqrt{36+64}=10$，面积 $S=\dfrac12\cdot12\cdot8=48$，$r=\dfrac{2S}{10+10+12}=3$。内心到 $x$ 轴距离为 $r$，所以是 $(0,3)$。验算：到 $\mathrm{AC}:\ 4x-3y+24=0$ 的距离 $\dfrac{|-9+24|}{5}=3$。</li>
+        <li>(2) 内心 $\mathrm{I}(0,2)$。$\mathrm{AI}$ 平分 $\angle\mathrm{A}$，$\tan\dfrac{A}{2}=\dfrac26=\dfrac13$，$\tan A=\dfrac{2\cdot\frac13}{1-\frac19}=\dfrac34$。$h=6\tan A=\dfrac92$。</li>
+        <li>(3) 外心 $(0,c)$ 满足 $c^2+36=(8-c)^2$，$16c=28$，$c=\dfrac74$，半径 $8-\dfrac74=\dfrac{25}{4}$。验算：$R=\dfrac{abc}{4S}=\dfrac{10\cdot10\cdot12}{4\cdot48}=\dfrac{25}{4}$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 3，イ = 3，ウ = 9，エ = 2，オカ = 25，キ = 4，ク = 7，ケ = 4</p>
+      </div>
+      </details>
+    </article>
   </section>
 
   <footer>

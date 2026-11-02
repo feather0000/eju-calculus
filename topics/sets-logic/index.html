@@ -262,6 +262,7 @@ nav.toc { top: 38px; padding-top: 24px; }
         <li><a href="#examples">7 原创例题</a></li>
         <li><a href="#practice">8 练习题</a></li>
         <li><a href="#terms">9 术语对照</a></li>
+        <li><a href="#eju-style">真题风格练习</a></li>
       </ol>
     </div>
     <button class="chip theme-btn" id="theme" type="button">深色</button>
@@ -535,6 +536,11 @@ nav.toc { top: 38px; padding-top: 24px; }
     <div class="box">
       <p><strong>EJU 应试提示：</strong>应用题要先把文字翻译成集合记号。常见说法有：「$A$ だけ」（只属于 $A$）对应 $A\cap\overline{B}$，「どちらも〜ない」（都不）对应 $\overline{A}\cap\overline{B}$，「少なくとも一方」（至少一个）对应 $A\cup B$。</p>
       <p>日语术语：<span lang="ja">だけ（只）；どちらも／どちらも（两者都）；少なくとも一方／すくなくともいっぽう（至少一方）</span></p>
+    </div>
+    <h3>补充：区间的交集与其中的整数</h3>
+    <p>由不等式定义的数集在数轴上是区间。求 $A\cap B$ 中的整数个数时，先把 $A,B$ 都化成区间，画在数轴上取公共部分，再<strong>逐段</strong>数整数，重点看端点是否包含：$-2&lt;x\le 1$ 中的整数是 $-1,0,1$，共 $3$ 个；$4\le x&lt;9$ 中的整数是 $4,5,\dots,8$，共 $5$ 个。一般地，$m\le x\le n$（$m,n$ 为整数）中的整数共有 $n-m+1$ 个，每有一个端点不包含就减去 $1$。</p>
+    <div class="box warn">
+      <p><strong>易错点：</strong>$|2x-5|\ge 3$ 的解是 $x\le 1$ 或 $x\ge 4$，是两段；与另一个区间求交集后可能得到两段，两段要分别数。</p>
     </div>
   </section>
 
@@ -1166,6 +1172,176 @@ nav.toc { top: 38px; padding-top: 24px; }
     <div class="box">
       <p><strong>EJU 应试提示：</strong>汉字相同不代表意思相同：「十分」「裏」「対偶」「全体」都与中文的习惯用法不完全一致。考前把这几个词和对应的数学含义再过一遍，读题时就不容易把方向或含义弄反。</p>
       <p>日语术语：<span lang="ja">当てはまる／あてはまる（适合、符合）；選べ／えらべ（选出）；ならば／ならば（如果…就）；であるための／であるための（是…的［条件］）</span></p>
+    </div>
+  </section>
+
+  <section id="eju-style">
+    <h2>真题风格练习（EJU 题库对照）</h2>
+    <p>本节对照《EJU 数学2 知识点分类题库 2005–2025》中「集合与命题」类的 10 个题目归纳出题规律，并配有<strong>原创</strong>练习题（数字和设定均为原创，并非真题）。</p>
+    <div class="box good">
+      <p><strong>题库出题规律</strong></p>
+      <ul>
+        <li><strong>实数命题的条件判定（选 ⓪～③）：</strong>等式、不等式、“かつ／または”组合成的命题，判断必要・充分关系，常用反例和平方和 $\ge0$（2005年第1回、2005年第2回、2006年第2回）。</li>
+        <li><strong>和・积・平方和之间的关系：</strong>$x+y$、$xy$、$x^2+y^2$ 互相换算，并据此判定条件关系；$x^2+y^2=0\iff x=y=0$ 型的平方和等式是常考点（2010年第1回、2013年第2回）。</li>
+        <li><strong>区间的交集与整数计数：</strong>把二次不等式、绝对值不等式化为区间，取交集后数整数（2006年第1回、2014年第2回）。</li>
+        <li><strong>含参数的区间：非空、包含、充分・必要：</strong>由 $A\cap B\ne\varnothing$、$A\subset B$ 或“$p$ 是 $q$ 的充分条件”比较端点，求参数范围，端点的等号是关键（2007年第1回、2007年第2回）。</li>
+        <li><strong>由运算结果反求端点：</strong>已知 $A\cap B$、$A\cup B$ 的形状，反推另一个集合的端点或系数（2013年第1回）。</li>
+        <li><strong>倍数集合：</strong>“$n$ 是 $a$ 的倍数”之间的条件关系，以及有限范围内倍数个数的容斥计算（2014年第2回）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>填写方式：</strong>每个方框（如 $\boxed{\text{ア}}$）填一位数字；两个及以上字母相连（如 $\boxed{\text{イウ}}$）表示多位数，负号已印在框外。选择题填选项编号。</p>
+      <p>本节选择题统一使用以下选项：⓪ 充要条件　① 必要但不充分的条件　② 充分但不必要的条件　③ 既不充分也不必要的条件</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 1　实数命题的条件判定</b><span class="origin">原创 · 对应题型：等式与不等式命题的条件关系、平方和型等式</span></div>
+      <p>$x,y$ 为实数。从 ⓪～③ 中选出适合的一项。</p>
+      <p>(1) $(x-1)^2+(y+2)^2=0$ 是“$x=1$ 且 $y=-2$”的 $\boxed{\text{ア}}$。</p>
+      <p>(2) $(x-1)(y+2)=0$ 是“$x=1$ 且 $y=-2$”的 $\boxed{\text{イ}}$。</p>
+      <p>(3) “$x+y=4$ 且 $xy=3$”是“$x=1$ 或 $x=3$”的 $\boxed{\text{ウ}}$。</p>
+      <p>(4) $xy&gt;1$ 是 $x+y&gt;2$ 的 $\boxed{\text{エ}}$。</p>
+      <p>(5) $x+y&gt;2$ 是 $x^2+y^2&gt;2$ 的 $\boxed{\text{オ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+          <li>(1) 实数的平方 $\ge0$，两个平方之和为 $0$ 当且仅当两项都为 $0$，即 $x=1$ 且 $y=-2$。两个方向都成立，选 ⓪。</li>
+          <li>(2) $(x-1)(y+2)=0\iff x=1$ 或 $y=-2$。“且”$\Rightarrow$“或”为真，反方向假（反例 $x=1,\ y=0$）。所以 $p$ 是必要不充分条件，选 ①。</li>
+          <li>(3) $x,y$ 是 $t^2-4t+3=0$ 的两根，$\{x,y\}=\{1,3\}$，所以 $x=1$ 或 $x=3$，充分性成立。反方向假（反例 $x=1,\ y=0$）。选 ②。</li>
+          <li>(4) $x=y=-2$：$xy=4&gt;1$，但 $x+y=-4$，不充分；$x=3,\ y=\dfrac{1}{10}$：$x+y&gt;2$，但 $xy=\dfrac{3}{10}$，不必要。选 ③。</li>
+          <li>(5) $2(x^2+y^2)-(x+y)^2=(x-y)^2\ge0$，所以 $x+y&gt;2\Rightarrow x^2+y^2\ge\dfrac{(x+y)^2}{2}&gt;2$。反方向假（反例 $x=y=-2$）。选 ②。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 0，イ = 1，ウ = 2，エ = 3，オ = 2</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 2　两个数集的交集与整数个数</b><span class="origin">原创 · 对应题型：数集交集中的整数个数、数集运算</span></div>
+      <p>对实数 $x$，设 $A=\{x\mid x^2-7x-18&lt;0\}$，$B=\{x\mid |2x-5|\ge 3\}$。</p>
+      <p>(1) $A=\{x\mid -\boxed{\text{ア}}&lt;x&lt;\boxed{\text{イ}}\}$。</p>
+      <p>(2) $B=\{x\mid x\le\boxed{\text{ウ}}\ \text{或}\ x\ge\boxed{\text{エ}}\}$。</p>
+      <p>(3) $A\cap B$ 中的整数共有 $\boxed{\text{オ}}$ 个；$A\cap\overline{B}=\{x\mid\boxed{\text{カ}}&lt;x&lt;\boxed{\text{キ}}\}$。</p>
+      <p>(4) $A\cap B$ 中所有整数的和为 $\boxed{\text{クケ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+          <li>(1) $(x+2)(x-9)&lt;0$，得 $-2&lt;x&lt;9$。</li>
+          <li>(2) $2x-5\le-3$ 或 $2x-5\ge3$，即 $x\le1$ 或 $x\ge4$。</li>
+          <li>(3) $A\cap B$ 为 $-2&lt;x\le1$ 或 $4\le x&lt;9$。整数为 $-1,0,1$ 和 $4,5,6,7,8$，共 $3+5=8$ 个。$\overline{B}=\{x\mid 1&lt;x&lt;4\}$，它整个含于 $A$，所以 $A\cap\overline{B}=\{x\mid 1&lt;x&lt;4\}$。</li>
+          <li>(4) $(-1+0+1)+(4+5+6+7+8)=0+30=30$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 9，ウ = 1，エ = 4，オ = 8，カ = 1，キ = 4，クケ = 30</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 3　由非空与包含关系求参数范围</b><span class="origin">原创 · 对应题型：数集非空、包含关系与参数范围</span></div>
+      <p>$a$ 为实数。设 $A=\{x\mid |x-a|\le 2\}$，$B=\{x\mid x^2-2x-8&lt;0\}$，$C=\{x\mid x^2-2ax+4a-3&lt;0\}$。</p>
+      <p>(1) $A\cap B\ne\varnothing$ 的充要条件是 $-\boxed{\text{ア}}&lt;a&lt;\boxed{\text{イ}}$。</p>
+      <p>(2) $A\subset B$ 的充要条件是 $\boxed{\text{ウ}}&lt;a&lt;\boxed{\text{エ}}$。</p>
+      <p>(3) $C\ne\varnothing$ 的充要条件是 $a&lt;1$ 或 $a&gt;3$。因此 $A\subset B$ 且 $C\ne\varnothing$ 的充要条件是 $\boxed{\text{オ}}&lt;a&lt;\boxed{\text{カ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+          <li>$A=\{x\mid a-2\le x\le a+2\}$（闭区间），$B$：$(x+2)(x-4)&lt;0$，即 $-2&lt;x&lt;4$（开区间）。</li>
+          <li>(1) 考虑反面：$A\cap B=\varnothing\iff a+2\le-2$ 或 $a-2\ge4\iff a\le-4$ 或 $a\ge6$。取补得 $-4&lt;a&lt;6$。$a=-4$ 时 $A$ 的右端点 $-2$ 不属于 $B$，等号不能取。</li>
+          <li>(2) 需 $-2&lt;a-2$ 且 $a+2&lt;4$，即 $0&lt;a&lt;2$。$A$ 含端点而 $B$ 不含，所以不等号是严格的。</li>
+          <li>(3) $C\ne\varnothing\iff$ 判别式 $\dfrac{D}{4}=a^2-(4a-3)=(a-1)(a-3)&gt;0$，即 $a&lt;1$ 或 $a&gt;3$。与 $0&lt;a&lt;2$ 取公共部分得 $0&lt;a&lt;1$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 4，イ = 6，ウ = 0，エ = 2，オ = 0，カ = 1</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 4　含参数不等式的必要条件与充分条件</b><span class="origin">原创 · 对应题型：含参数不等式的必要与充分条件</span></div>
+      <p>$a,b$ 为实数。关于实数 $x$ 的条件 $p,q,r$ 为</p>
+      <p>$p:\ |x-1|&lt;2,\qquad q:\ x^2-2ax+a^2-1\le 0,\qquad r:\ x&gt;b$。</p>
+      <p>(1) $q$ 是 $p$ 的充分条件的充要条件是 $\boxed{\text{ア}}&lt;a&lt;\boxed{\text{イ}}$。（另外，不论 $a$ 取何值，$p$ 都不是 $q$ 的充分条件。）</p>
+      <p>(2) $r$ 是 $p$ 的必要条件的充要条件是 $b\le-\boxed{\text{ウ}}$。</p>
+      <p>(3) $a$ 为整数时，存在同时满足 $p$ 和 $q$ 的 $x$ 的 $a$ 共有 $\boxed{\text{エ}}$ 个。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+          <li>真值集合：$P=\{x\mid -1&lt;x&lt;3\}$；$q$ 即 $(x-a)^2\le1$，$Q=\{x\mid a-1\le x\le a+1\}$；$R=\{x\mid x&gt;b\}$。</li>
+          <li>(1) $q\Rightarrow p\iff Q\subset P\iff -1&lt;a-1$ 且 $a+1&lt;3\iff 0&lt;a&lt;2$。$P$ 的长度为 $4$、$Q$ 的长度为 $2$，$P\subset Q$ 不可能，所以 $p$ 不会是 $q$ 的充分条件。</li>
+          <li>(2) “$r$ 是 $p$ 的必要条件”即 $p\Rightarrow r$，$P\subset R$。需 $b\le-1$（$b=-1$ 时 $R=\{x\mid x&gt;-1\}$ 仍包含 $P$）。</li>
+          <li>(3) $P\cap Q\ne\varnothing\iff a-1&lt;3$ 且 $a+1&gt;-1\iff -2&lt;a&lt;4$。整数 $a=-1,0,1,2,3$，共 $5$ 个。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 0，イ = 2，ウ = 1，エ = 5</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 5　和・积・平方和之间的条件关系</b><span class="origin">原创 · 对应题型：两变量和、积、平方和之间的条件关系</span></div>
+      <p>$x,y$ 为实数。</p>
+      <p>(1) $x+y=3$，$xy=1$ 时，$x^2+y^2=\boxed{\text{ア}}$，$x^3+y^3=\boxed{\text{イウ}}$。</p>
+      <p>从 ⓪～③ 中选出适合的一项填入 (2)～(4)。</p>
+      <p>(2) “$x+y=3$ 且 $xy=1$”是“$x+y=3$ 且 $x^2+y^2=7$”的 $\boxed{\text{エ}}$。</p>
+      <p>(3) “$x^2+y^2=7$ 且 $xy=1$”是 $x+y=3$ 的 $\boxed{\text{オ}}$。</p>
+      <p>(4) “$x+y=3$ 且 $xy=1$”是 $x^2+y^2=7$ 的 $\boxed{\text{カ}}$。</p>
+      <p>(5) $x+y=3$ 时，$x^2+y^2$ 的最小值为 $\dfrac{\boxed{\text{キ}}}{\boxed{\text{ク}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+          <li>(1) $x^2+y^2=(x+y)^2-2xy=9-2=7$；$x^3+y^3=(x+y)^3-3xy(x+y)=27-9=18$。</li>
+          <li>(2) 在 $x+y=3$ 之下，$x^2+y^2=7\iff 9-2xy=7\iff xy=1$。两者等价，选 ⓪。</li>
+          <li>(3) 由 $x^2+y^2=7,\ xy=1$ 得 $(x+y)^2=9$，$x+y=\pm3$，可能是 $-3$，不充分；$x=0,\ y=3$ 满足 $x+y=3$ 但 $xy=0$，不必要。选 ③。</li>
+          <li>(4) 由 (1) 充分性成立；反方向假（反例 $x=\sqrt7,\ y=0$）。选 ②。</li>
+          <li>(5) $y=3-x$，$x^2+y^2=2x^2-6x+9=2\Bigl(x-\dfrac32\Bigr)^2+\dfrac92$，在 $x=y=\dfrac32$ 时取最小值 $\dfrac92$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 7，イウ = 18，エ = 0，オ = 3，カ = 2，キ = 9，ク = 2</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 6　由集合运算的结果确定端点</b><span class="origin">原创 · 对应题型：根据集合运算结果确定区间端点</span></div>
+      <p>对实数 $x$，设 $A=\{x\mid |x-2|\le 4\}$，$B=\{x\mid x^2+px+q&gt;0\}$（$p,q$ 为实数）。已知</p>
+      <p>$A\cap B=\{x\mid -2\le x&lt;1\ \text{或}\ 4&lt;x\le 6\}$，$A\cup B$ 为全体实数。</p>
+      <p>(1) $p=-\boxed{\text{ア}}$，$q=\boxed{\text{イ}}$。</p>
+      <p>(2) $k$ 为实数，$C=\{x\mid k\le x\le k+3\}$。$\overline{B}\subset C$ 成立时 $k=\boxed{\text{ウ}}$。</p>
+      <p>(3) $d$ 为实数，$D=\{x\mid x&gt;d\}$。$A\cap B\cap D=\{x\mid 4&lt;x\le 6\}$ 的充要条件是 $\boxed{\text{エ}}\le d\le\boxed{\text{オ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+          <li>(1) $A=\{x\mid -2\le x\le 6\}$。$A\cap B$ 在 $A$ 中缺少的部分是 $1\le x\le 4$，而 $A\cup B$ 为全体实数说明 $A$ 以外的点都属于 $B$，所以 $\overline{B}=\{x\mid 1\le x\le 4\}$，$B=\{x\mid x&lt;1\ \text{或}\ x&gt;4\}$。于是 $x^2+px+q=(x-1)(x-4)=x^2-5x+4$，$p=-5,\ q=4$。</li>
+          <li>(2) $\overline{B}=[1,4]$ 长度为 $3$，与 $C$ 的长度相同，所以 $\overline{B}\subset C$ 只能是 $C=\overline{B}$，$k=1$。</li>
+          <li>(3) $D$ 要排除 $-2\le x&lt;1$ 并保留 $4&lt;x\le 6$：前者需 $d\ge 1$（$d=1$ 时 $x&lt;1$ 的点都不满足 $x&gt;1$），后者需 $d\le 4$。所以 $1\le d\le 4$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 5，イ = 4，ウ = 1，エ = 1，オ = 4</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 7　倍数集合的条件关系与有限范围内的计数</b><span class="origin">原创 · 对应题型：倍数集合的条件关系、有限区间元素计数</span></div>
+      <p>$n$ 为自然数。从 ⓪～③ 中选出适合的一项填入 (1)(2)。</p>
+      <p>(1) “$n$ 是 $24$ 的倍数”是“$n$ 是 $4$ 的倍数且是 $6$ 的倍数”的 $\boxed{\text{ア}}$。</p>
+      <p>(2) “$n^2$ 是 $12$ 的倍数”是“$n$ 是 $12$ 的倍数”的 $\boxed{\text{イ}}$。</p>
+      <p>(3) 设 $U=\{n\mid n\text{ 是 }100\le n\le 300\text{ 的整数}\}$，$A,B$ 分别为 $U$ 中 $4$ 的倍数、$6$ 的倍数的集合。则 $n(A\cup B)=\boxed{\text{ウエ}}$，$n(\overline{A}\cap\overline{B})=\boxed{\text{オカキ}}$，$n(A\cap\overline{B})=\boxed{\text{クケ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+          <li>(1) “$4$ 的倍数且 $6$ 的倍数”$\iff$“$12$ 的倍数”。$24$ 的倍数一定是 $12$ 的倍数；反方向假（反例 $n=12$）。选 ②。</li>
+          <li>(2) $12=2^2\cdot3$。$n^2$ 是 $12$ 的倍数 $\iff n$ 含因数 $2$ 和 $3$ $\iff n$ 是 $6$ 的倍数。$12$ 的倍数 $\Rightarrow$ $6$ 的倍数为真，反方向假（反例 $n=6$，$n^2=36$）。所以“$n^2$ 是 $12$ 的倍数”是必要不充分条件，选 ①。</li>
+          <li>(3) $U$ 共 $201$ 个元素。$1\sim N$ 中 $k$ 的倍数有 $\Bigl[\dfrac{N}{k}\Bigr]$ 个，用“到 $300$ 的个数减去到 $99$ 的个数”：$n(A)=75-24=51$，$n(B)=50-16=34$，$n(A\cap B)$（$12$ 的倍数）$=25-8=17$。</li>
+          <li>$n(A\cup B)=51+34-17=68$；$n(\overline{A}\cap\overline{B})=201-68=133$；$n(A\cap\overline{B})=51-17=34$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 1，ウエ = 68，オカキ = 133，クケ = 34</p>
+      </div>
+      </details>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>开区间与闭区间比较端点时一律加或一律不加等号。要分别检查端点值是否真的满足包含或非空条件。</li>
+        <li>在有限范围 $m\le n\le N$ 内数倍数时直接用 $\Bigl[\dfrac{N}{k}\Bigr]$，忘记减去 $m$ 之前的个数。</li>
+        <li>“$p$ 是 $q$ 的必要条件”写成 $p\Rightarrow q$。正确的是 $q\Rightarrow p$。</li>
+      </ul>
     </div>
   </section>
 

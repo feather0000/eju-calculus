@@ -240,6 +240,7 @@ html { scroll-padding-top: 100px; }
         <li><a href="#examples">6 原创例题</a></li>
         <li><a href="#practice">7 练习题</a></li>
         <li><a href="#terms">8 术语对照</a></li>
+        <li><a href="#eju-style">真题风格练习</a></li>
       </ol>
     </div>
     <button class="chip theme-btn" id="theme" type="button">深色</button>
@@ -515,6 +516,12 @@ html { scroll-padding-top: 100px; }
       <p><strong>EJU 应试提示：</strong>看到 $4^x$ 与 $2^x$、$9^x$ 与 $3^x$ 同时出现，几乎一定要换元。答案若要填 $x$ 的值，换元后别停在 $t$ 的值上，记得换回去。</p>
       <p><strong>日语术语：</strong><span lang="ja">指数方程式</span>（<span class="kana" lang="ja">しすうほうていしき</span>）：指数方程；<span lang="ja">指数不等式</span>（<span class="kana" lang="ja">しすうふとうしき</span>）：指数不等式；<span lang="ja">置き換え</span>（<span class="kana" lang="ja">おきかえ</span>）：换元；<span lang="ja">不等号の向き</span>（<span class="kana" lang="ja">ふとうごうのむき</span>）：不等号的方向。</p>
     </div>
+    <h3>2.3 含参数的指数方程：实数解的个数</h3>
+    <p>形如 $4^x-p\cdot2^x+k=0$ 的方程，令 $t=2^x$ 后化为 $t$ 的二次方程。因为 $t=2^x$ 是一一对应（每个 $t&gt;0$ 恰对应一个 $x$），所以<strong>$x$ 的实数解个数 $=$ 满足 $t&gt;0$ 的 $t$ 的解个数</strong>。把方程写成 $-k=t^2-pt$（参数分离，<span lang="ja">定数分離</span>），就变成“抛物线 $y=t^2-pt\ (t&gt;0)$ 与水平线 $y=-k$ 的交点个数”。</p>
+    <div class="box warn">
+      <p><strong>易错：</strong>抛物线只画 $t&gt;0$ 的部分，端点 $t=0$ 取不到（画空心点）；若 $x$ 另有范围（如 $x\ge1$），$t$ 的范围也随之变为 $t\ge2$，端点能否取到要重新判断。</p>
+    </div>
+    <p><strong>日语术语：</strong><span lang="ja">実数解の個数</span>（<span class="kana" lang="ja">じっすうかいのこすう</span>）：实数解的个数；<span lang="ja">定数分離</span>（<span class="kana" lang="ja">ていすうぶんり</span>）：参数分离。</p>
   </section>
 
   <section id="logprop">
@@ -805,6 +812,14 @@ html { scroll-padding-top: 100px; }
       <p><strong>EJU 应试提示：</strong>中间值怎么选？先粗略估计两个对数：$2^1&lt;3&lt;2^2$，$3^1&lt;5&lt;3^2$，都在 $1$ 与 $2$ 之间，于是试 $\dfrac32$。$0,\ 1,\ \dfrac12,\ \dfrac32$ 是最常用的中间值。</p>
       <p><strong>日语术语：</strong><span lang="ja">大小比較</span>（<span class="kana" lang="ja">だいしょうひかく</span>）：大小比较；<span lang="ja">底をそろえる</span>（<span class="kana" lang="ja">ていをそろえる</span>）：化成同底。</p>
     </div>
+    <h3>4.3 双变量的对数条件：换成 $X,Y$ 看图形</h3>
+    <p>条件中同时出现 $\log_a x$ 与 $\log_a y$ 时，令 $X=\log_a x$，$Y=\log_a y$。$x,y&gt;0$ 时 $X,Y$ 可取任意实数，条件就变成 $XY$ 平面上的直线、圆或区域。要求的量也随之转换：</p>
+    <ul>
+      <li>乘积：$xy=a^{X+Y}$，求 $xy$ 的范围 $\iff$ 求 $X+Y$ 的范围（直线 $X+Y=k$ 与图形有公共点的条件）；</li>
+      <li>比值：$\dfrac yx=a^{Y-X}$，或直接令 $t=\dfrac yx$ 化为 $t$ 的不等式；</li>
+      <li>$\log_a x\cdot\log_a y=XY$：$X+Y$ 一定时用配方求最值；联立方程“有正实数解”$\iff$ $X,Y$ 为实数（判别式 $\ge0$），若还要求 $x,y&gt;1$，则要 $X,Y&gt;0$。</li>
+    </ul>
+    <p><strong>日语术语：</strong><span lang="ja">正の実数解</span>（<span class="kana" lang="ja">せいのじっすうかい</span>）：正实数解；<span lang="ja">積</span>（<span class="kana" lang="ja">せき</span>）：乘积；<span lang="ja">比</span>（<span class="kana" lang="ja">ひ</span>）：比。</p>
   </section>
 
   <section id="common">
@@ -1336,6 +1351,179 @@ html { scroll-padding-top: 100px; }
     <div class="box">
       <p><strong>EJU 应试提示：</strong>题尾的动词决定答案形式：<span lang="ja">求めよ</span>（求出）、<span lang="ja">何桁の数か</span>（几位数）、<span lang="ja">個数を求めよ</span>（求个数）。先看清要回答什么，再动笔。</p>
       <p><strong>日语术语：</strong><span lang="ja">満たす</span>（<span class="kana" lang="ja">みたす</span>）：满足；<span lang="ja">個数</span>（<span class="kana" lang="ja">こすう</span>）：个数；<span lang="ja">求めよ</span>（<span class="kana" lang="ja">もとめよ</span>）：求（题目用语）；<span lang="ja">以下</span>（<span class="kana" lang="ja">いか</span>）：小于等于。</p>
+    </div>
+  </section>
+
+  <section id="eju-style">
+    <h2>真题风格练习（EJU 题库对照）</h2>
+    <p>本节对照《EJU 数学2 知识点分类题库 2005–2025》中「指数与对数」类的 8 个题目归纳出题规律，并配有<strong>原创</strong>练习题（数字和设定均为原创，并非真题）。</p>
+    <div class="box good">
+      <p><strong>题库出题规律</strong></p>
+      <ul>
+        <li><strong>换元后化为二次函数求最值：</strong>对数里套着 $\sin x$ 等有界的量，令 $t=\sin x$ 后配方，注意 $t$ 的范围（2005年第2回）；对数约束下求乘积或 $\log x\cdot\log y$ 的最大值（2012年第2回）。</li>
+        <li><strong>对数运算与换底：</strong>用给定的对数 $a,b$ 表示其他对数，关键是统一成同一个底（2006年第2回）。</li>
+        <li><strong>双变量对数条件化为图形：</strong>令 $X=\log x,\ Y=\log y$，把等式化成圆等平面曲线，求 $xy$ 的范围；或把不等式化为比值 $\dfrac yx$ 的二次不等式（2007年第1回、2007年第2回）。见 4.3 节。</li>
+        <li><strong>含参数方程的解的个数与有解条件：</strong>指数方程换元后用“$t&gt;0$ 的部分”数交点（2008年第2回）；联立对数方程有正实数解 $\iff$ 判别式条件（2011年第1回）。见 2.3 节。</li>
+        <li><strong>与二次方程的根与系数关系结合：</strong>二次方程的两根由对数给出，再转回指数方程，求参数的最值（2014年第2回）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>填写方式：</strong>每个方框（如 $\boxed{\text{ア}}$）填一位数字或符号 $-$；两个字母相连（如 $\boxed{\text{ウエ}}$）表示两位数。分数约到最简，根号内的数尽量小。同一字母再次出现时填相同的数。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 1　含 $\sin x$ 的对数式的最值</b><span class="origin">原创 · 对应题型：含 sin x 的对数式的最大值与最小值</span></div>
+      <p>设 $0\le x&lt;2\pi$，$f(x)=\log_2(3+\sin x)+\log_2(5-\sin x)$。</p>
+      <p>(1) 令 $t=\sin x$，则 $-\boxed{\text{ア}}\le t\le\boxed{\text{イ}}$，且 $f(x)=\log_2\bigl\{\boxed{\text{ウエ}}-(t-\boxed{\text{オ}})^2\bigr\}$。</p>
+      <p>(2) $f(x)$ 在 $x=\dfrac{\pi}{\boxed{\text{キ}}}$ 时取最大值 $\boxed{\text{カ}}$，在 $x=\dfrac{\boxed{\text{コ}}}{\boxed{\text{サ}}}\pi$ 时取最小值 $\boxed{\text{ク}}+\log_2\boxed{\text{ケ}}$。</p>
+      <p>(3) 满足 $f(x)=\log_2 15$ 的 $x$ 共有 $\boxed{\text{シ}}$ 个。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $-1\le\sin x\le1$。真数 $3+t&gt;0$、$5-t&gt;0$ 恒成立，所以 $f(x)=\log_2(3+t)(5-t)=\log_2(15+2t-t^2)=\log_2\{16-(t-1)^2\}$。</li>
+        <li>(2) 底 $2&gt;1$，$f$ 随真数增大而增大。$g(t)=16-(t-1)^2$ 在 $-1\le t\le1$ 上递增：$t=1$ 时最大 $16$，$t=-1$ 时最小 $12$。</li>
+        <li>最大值 $\log_2 16=4$，此时 $\sin x=1$，$x=\dfrac{\pi}{2}$；最小值 $\log_2 12=2+\log_2 3$，此时 $\sin x=-1$，$x=\dfrac32\pi$。</li>
+        <li>(3) $16-(t-1)^2=15\iff(t-1)^2=1\iff t=0$ 或 $t=2$。$t=2$ 超出范围舍去；$\sin x=0$ 在 $0\le x&lt;2\pi$ 中有 $x=0,\ \pi$ 两个解。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 1，イ = 1，ウエ = 16，オ = 1，カ = 4，キ = 2，ク = 2，ケ = 3，コ = 3，サ = 2，シ = 2</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 2　用已知对数表示其他对数</b><span class="origin">原创 · 对应题型：用已知对数表示目标对数</span></div>
+      <p>设 $a=\log_2 3$，$b=\log_3 7$。</p>
+      <p>(1) $\log_{42}56=\dfrac{ab+\boxed{\text{ア}}}{ab+a+\boxed{\text{イ}}}$。</p>
+      <p>(2) $\log_{12}63=\dfrac{a\,(b+\boxed{\text{ウ}})}{a+\boxed{\text{エ}}}$。</p>
+      <p>(3) $\log_6 72=\dfrac{\boxed{\text{オ}}+\boxed{\text{カ}}\,a}{1+a}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>统一成底 $2$：$\log_2 7=\log_2 3\cdot\log_3 7=ab$（换底公式）。</li>
+        <li>(1) $\log_2 56=\log_2(2^3\cdot7)=3+ab$，$\log_2 42=\log_2(2\cdot3\cdot7)=1+a+ab$，所以 $\log_{42}56=\dfrac{ab+3}{ab+a+1}$。</li>
+        <li>(2) $\log_2 63=\log_2(3^2\cdot7)=2a+ab=a(b+2)$，$\log_2 12=\log_2(2^2\cdot3)=2+a$，所以 $\log_{12}63=\dfrac{a(b+2)}{a+2}$。</li>
+        <li>(3) $\log_2 72=\log_2(2^3\cdot3^2)=3+2a$，$\log_2 6=1+a$，所以 $\log_6 72=\dfrac{3+2a}{1+a}$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 3，イ = 1，ウ = 2，エ = 2，オ = 3，カ = 2</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 3　对数等式化为圆，求乘积的范围</b><span class="origin">原创 · 对应题型：将对数等式化为平面曲线求乘积范围</span></div>
+      <p>正数 $x,y$ 满足 $(\log_2 x)^2+(\log_2 y)^2=\log_2 x^2+\log_2 y^4$。令 $X=\log_2 x$，$Y=\log_2 y$。</p>
+      <p>(1) 点 $(X,Y)$ 在圆 $(X-\boxed{\text{ア}})^2+(Y-\boxed{\text{イ}})^2=\boxed{\text{ウ}}$ 上。</p>
+      <p>(2) $X+Y$ 的取值范围是 $\boxed{\text{エ}}-\sqrt{\boxed{\text{オカ}}}\le X+Y\le\boxed{\text{エ}}+\sqrt{\boxed{\text{オカ}}}$。</p>
+      <p>(3) $xy$ 的最大值是 $2^{\boxed{\text{エ}}+\sqrt{\boxed{\text{オカ}}}}$，此时 $x=2^{\boxed{\text{キ}}+\frac{\sqrt{10}}{\boxed{\text{ク}}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $\log_2 x^2=2X$，$\log_2 y^4=4Y$，条件为 $X^2+Y^2=2X+4Y$，配方得 $(X-1)^2+(Y-2)^2=5$。$x,y&gt;0$ 时 $X,Y$ 可取任意实数，所以 $(X,Y)$ 取遍整个圆。</li>
+        <li>(2) 设 $X+Y=k$。直线 $X+Y-k=0$ 与圆有公共点 $\iff$ 圆心 $(1,2)$ 到直线的距离 $\le\sqrt5$：$\dfrac{|3-k|}{\sqrt2}\le\sqrt5$，$|k-3|\le\sqrt{10}$，即 $3-\sqrt{10}\le k\le3+\sqrt{10}$。</li>
+        <li>(3) $xy=2^{X+Y}$，底 $2&gt;1$，所以 $X+Y$ 最大时 $xy$ 最大，最大值 $2^{3+\sqrt{10}}$。此时切点为圆心沿方向 $\dfrac{1}{\sqrt2}(1,1)$ 移动 $\sqrt5$：$X=1+\sqrt5\cdot\dfrac{1}{\sqrt2}=1+\dfrac{\sqrt{10}}{2}$，故 $x=2^{1+\frac{\sqrt{10}}{2}}$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 1，イ = 2，ウ = 5，エ = 3，オカ = 10，キ = 1，ク = 2</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 4　由对数不等式求比值的范围</b><span class="origin">原创 · 对应题型：由对数不等式求两变量比值范围</span></div>
+      <p>正数 $x,y$ 满足 $\log_2 x+\log_2 y\ge2\log_2(x+y)-4$。</p>
+      <p>(1) 令 $t=\dfrac yx$，条件化为 $t^2-\boxed{\text{アイ}}\,t+1\le0$，所以 $\boxed{\text{ウ}}-\boxed{\text{エ}}\sqrt{\boxed{\text{オ}}}\le\dfrac yx\le\boxed{\text{ウ}}+\boxed{\text{エ}}\sqrt{\boxed{\text{オ}}}$。</p>
+      <p>(2) 再加上条件 $x+y=8$ 时，$y$ 的最大值为 $\boxed{\text{カ}}+\boxed{\text{キ}}\sqrt{\boxed{\text{ク}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 两边都是底 $2$：$\log_2 xy\ge\log_2\dfrac{(x+y)^2}{16}$，底 $2&gt;1$，方向不变：$16xy\ge(x+y)^2$。</li>
+        <li>两边除以 $x^2&gt;0$，代入 $y=tx$：$16t\ge(1+t)^2$，即 $t^2-14t+1\le0$。两根 $t=7\pm\sqrt{48}=7\pm4\sqrt3$，所以 $7-4\sqrt3\le t\le7+4\sqrt3$。</li>
+        <li>(2) $x+y=8$ 时 $y=\dfrac{8t}{1+t}=8-\dfrac{8}{1+t}$，随 $t$ 递增。$t=7+4\sqrt3$ 时最大：$y=\dfrac{8(7+4\sqrt3)}{8+4\sqrt3}=\dfrac{2(7+4\sqrt3)}{2+\sqrt3}=2(7+4\sqrt3)(2-\sqrt3)=2(2+\sqrt3)=4+2\sqrt3$。</li>
+        <li>检验：此时 $x=4-2\sqrt3&gt;0$，$xy=16-12=4$，$16xy=64=(x+y)^2$，等号成立。</li>
+        </ol>
+        <p><strong>各格答案：</strong>アイ = 14，ウ = 7，エ = 4，オ = 3，カ = 4，キ = 2，ク = 3</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 5　含参数指数方程的实数解个数</b><span class="origin">原创 · 对应题型：含参数指数方程的实数解个数</span></div>
+      <p>设 $k$ 为实数，考虑关于 $x$ 的方程 $4^x-3\cdot2^{x+1}+k=0$ …①。</p>
+      <p>(1) 令 $t=2^x$，① 化为 $t^2-\boxed{\text{ア}}\,t+k=0$，其中 $t&gt;0$。函数 $y=t^2-\boxed{\text{ア}}\,t\ (t&gt;0)$ 在 $t=\boxed{\text{ウ}}$ 时取最小值 $-\boxed{\text{イ}}$。</p>
+      <p>(2) ① 有两个不同实数解的条件是 $\boxed{\text{エ}}&lt;k&lt;\boxed{\text{オ}}$。特别地，$k=8$ 时的解为 $x=\boxed{\text{カ}},\ \boxed{\text{キ}}$（$\boxed{\text{カ}}&lt;\boxed{\text{キ}}$）。</p>
+      <p>(3) ① 在 $x\ge1$ 的范围内有两个不同实数解的条件是 $\boxed{\text{ク}}\le k&lt;\boxed{\text{ケ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $4^x=t^2$，$3\cdot2^{x+1}=6t$，得 $t^2-6t+k=0$。$y=t^2-6t=(t-3)^2-9$，最小值 $-9$（$t=3$）。</li>
+        <li>(2) ① 化为 $-k=t^2-6t$。$t\mapsto x$ 一一对应，所以 $x$ 的解个数 $=$ 抛物线 $y=t^2-6t\ (t&gt;0)$ 与直线 $y=-k$ 的交点个数。抛物线在 $t\to0$ 时趋向 $0$（取不到），最低点 $(3,-9)$。</li>
+        <li>两个交点 $\iff-9&lt;-k&lt;0\iff0&lt;k&lt;9$。（$k=9$ 或 $k\le0$ 时一个，$k&gt;9$ 时无解。）</li>
+        <li>$k=8$：$(t-2)(t-4)=0$，$t=2,4$，$x=1,2$。</li>
+        <li>(3) $x\ge1\iff t\ge2$。$t=2$ 时 $y=-8$（可以取到）。在 $t\ge2$ 上两个交点 $\iff-9&lt;-k\le-8\iff8\le k&lt;9$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 6，イ = 9，ウ = 3，エ = 0，オ = 9，カ = 1，キ = 2，ク = 8，ケ = 9</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 6　联立对数方程有正实数解的条件</b><span class="origin">原创 · 对应题型：联立对数方程有正实数解的参数范围</span></div>
+      <p>设 $a$ 为实数，考虑联立方程 $\log_2(xy)=3$，$\log_2 x\cdot\log_4 y=a$。令 $X=\log_2 x$，$Y=\log_2 y$。</p>
+      <p>(1) $X+Y=\boxed{\text{ア}}$，$XY=\boxed{\text{イ}}\,a$。</p>
+      <p>(2) 方程组有正实数解 $(x,y)$ 的条件是 $a\le\dfrac{\boxed{\text{ウ}}}{\boxed{\text{エ}}}$。</p>
+      <p>(3) 有满足 $x&gt;1,\ y&gt;1$ 的解的条件是 $\boxed{\text{オ}}&lt;a\le\dfrac{\boxed{\text{ウ}}}{\boxed{\text{エ}}}$。</p>
+      <p>(4) $a=1$ 时，满足 $x&lt;y$ 的解为 $x=\boxed{\text{カ}}$，$y=\boxed{\text{キ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 真数条件 $x,y&gt;0$。$\log_2 xy=X+Y=3$；$\log_4 y=\dfrac{Y}{2}$，所以 $\dfrac{XY}{2}=a$，$XY=2a$。</li>
+        <li>(2) $x,y&gt;0$ 与实数 $X,Y$ 一一对应，所以“有正实数解”$\iff$ $X,Y$ 是实数 $\iff$ $u^2-3u+2a=0$ 有实数解 $\iff$ 判别式 $9-8a\ge0\iff a\le\dfrac98$。</li>
+        <li>(3) $x&gt;1,\ y&gt;1\iff X&gt;0,\ Y&gt;0$。两根都为正：判别式 $\ge0$，和 $3&gt;0$，积 $2a&gt;0$。所以 $0&lt;a\le\dfrac98$。</li>
+        <li>(4) $a=1$：$u^2-3u+2=0$，$u=1,2$。$x&lt;y$ 即 $X&lt;Y$，$X=1,\ Y=2$，$x=2,\ y=4$。检验：$\log_2 8=3$，$\log_2 2\cdot\log_4 4=1$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 3，イ = 2，ウ = 9，エ = 8，オ = 0，カ = 2，キ = 4</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 7　对数约束下的最大值</b><span class="origin">原创 · 对应题型：对数约束下乘积的最大值</span></div>
+      <p>实数 $x,y$ 满足 $x\ge1$，$y\ge1$，$xy^2=64$。令 $X=\log_2 x$，$Y=\log_2 y$。</p>
+      <p>(1) $X+2Y=\boxed{\text{ア}}$，且 $0\le Y\le\boxed{\text{イ}}$。</p>
+      <p>(2) $\log_2 x\cdot\log_2 y$ 的最大值为 $\dfrac{\boxed{\text{ウ}}}{\boxed{\text{エ}}}$，此时 $x=\boxed{\text{オ}}$，$y=\boxed{\text{カ}}\sqrt{\boxed{\text{キ}}}$。</p>
+      <p>(3) $xy$ 的最大值为 $\boxed{\text{クケ}}$，最小值为 $\boxed{\text{コ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 两边取以 $2$ 为底的对数：$X+2Y=6$。$x\ge1\iff X\ge0\iff6-2Y\ge0\iff Y\le3$；$y\ge1\iff Y\ge0$。</li>
+        <li>(2) $XY=(6-2Y)Y=-2\Bigl(Y-\dfrac32\Bigr)^2+\dfrac92$，$Y=\dfrac32$ 在 $[0,3]$ 内，最大值 $\dfrac92$。此时 $X=3$，$x=8$，$y=2^{\frac32}=2\sqrt2$。</li>
+        <li>(3) $xy=2^{X+Y}=2^{6-Y}$，$Y$ 越小越大：$Y=0$ 时最大 $2^6=64$（$x=64,\ y=1$），$Y=3$ 时最小 $2^3=8$（$x=1,\ y=8$）。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 6，イ = 3，ウ = 9，エ = 2，オ = 8，カ = 2，キ = 2，クケ = 64，コ = 8</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 8　对数给出二次方程的两根，求指数方程参数的最值</b><span class="origin">原创 · 对应题型：由对数给定二次方程两根求指数方程参数最值</span></div>
+      <p>正数 $a,b$ 使得关于 $x$ 的二次方程 $x^2-5x+k=0$ 的两个解为 $\log_2 a,\ \log_2 b$（$k$ 为实数）。令 $s=a+b$。</p>
+      <p>(1) $ab=\boxed{\text{アイ}}$。因此 $x=\log_2 a,\ \log_2 b$ 也是指数方程 $4^x-s\cdot2^x+\boxed{\text{アイ}}=0$ 的解。</p>
+      <p>(2) $s=12$ 时，$k=\boxed{\text{ウ}}$。</p>
+      <p>(3) $s$ 的最小值为 $\boxed{\text{エ}}\sqrt{\boxed{\text{オ}}}$，此时 $\log_2 a=\dfrac{\boxed{\text{カ}}}{\boxed{\text{キ}}}$，$k=\dfrac{\boxed{\text{クケ}}}{\boxed{\text{コ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 根与系数关系：$\log_2 a+\log_2 b=5$，即 $\log_2 ab=5$，$ab=32$。于是 $a,b$ 是 $u^2-su+32=0$ 的两根；令 $u=2^x$，$x=\log_2 a,\ \log_2 b$ 满足 $4^x-s\cdot2^x+32=0$。</li>
+        <li>(2) $u^2-12u+32=0$，$(u-4)(u-8)=0$，$\{a,b\}=\{4,8\}$，$\log_2 a,\ \log_2 b$ 为 $2,3$，$k=2\cdot3=6$。</li>
+        <li>(3) 由算术—几何平均不等式 $s=a+b\ge2\sqrt{ab}=2\sqrt{32}=8\sqrt2$，等号当 $a=b=\sqrt{32}=2^{\frac52}$ 时成立（此时二次方程有重根）。</li>
+        <li>此时 $\log_2 a=\dfrac52$，$k=\log_2 a\cdot\log_2 b=\dfrac{25}{4}$。（另解：令 $X=\log_2 a$，$s=2^X+2^{5-X}$，$k=X(5-X)$，两者都在 $X=\dfrac52$ 处取最值。）</li>
+        </ol>
+        <p><strong>各格答案：</strong>アイ = 32，ウ = 6，エ = 8，オ = 2，カ = 5，キ = 2，クケ = 25，コ = 4</p>
+      </div>
+      </details>
+    </article>
+
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>这类题几乎都按“换元（$t=a^x$ 或 $X=\log_a x$）→ 写新变量的范围 → 化为二次函数、二次方程或平面图形”的顺序展开。前面小问的结果常是后面的提示；填空格数也能帮你检查答案的形式。</p>
     </div>
   </section>
 
