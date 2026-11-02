@@ -237,6 +237,7 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <li><a href="#examples">7 原创例题</a></li>
         <li><a href="#practice">8 练习题</a></li>
         <li><a href="#terms">9 术语对照</a></li>
+        <li><a href="#eju-style">真题风格练习</a></li>
       </ol>
     </div>
     <button class="chip theme-btn" id="theme" type="button">深色</button>
@@ -855,6 +856,22 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="box tip">
       <p><strong>EJU 应试提示：</strong>题干如 <span lang="ja">点 $w$ はどのような図形を描くか</span>（点 $w$ 描出什么图形）。求出方程后取一两个特殊的 $z$ 代入检验，几秒钟就能发现错误。答案是圆时，把圆心和半径都按要求的形式写好。</p>
     </div>
+    <h3>补充：抛物线型轨迹与关于直线的对称点</h3>
+    <p><strong>抛物线型轨迹：</strong>$|z-a|$ 是到定点 $a$ 的距离，而 $\mathrm{Re}\,z+k$（$z=x+yi$ 时为 $x+k$）在 $x\ge-k$ 时是点 $z$ 到直线 $x=-k$ 的距离。所以 $|z-a|=\mathrm{Re}\,z+k$ 表示“到定点与到定直线距离相等”的点，即抛物线。设 $z=x+yi$ 两边平方即可求出方程，注意右边必须 $\ge0$。</p>
+    <p><strong>关于直线的对称点：</strong>直线 $\ell$ 经过 $\mathrm{A}(\alpha)$、$\mathrm{B}(\beta)$。点 $\mathrm{P}(z)$ 关于 $\ell$ 的对称点 $\mathrm{P'}(z')$ 满足“$z-\alpha$ 与 $z'-\alpha$ 的长度相等、关于 $\ell$ 的方向对称”，可以写成</p>
+    $$z'=\alpha+\frac{\beta-\alpha}{\overline{\beta-\alpha}}\,\overline{(z-\alpha)}.$$
+    <p>特别地，$\ell$ 经过原点、方向为 $\beta$ 时，$z'=\dfrac{\beta}{\overline{\beta}}\,\overline{z}$；$\ell$ 为实轴时就是 $z'=\overline{z}$。</p>
+    <div class="box good">
+      <p><strong>补充例题 6-5：</strong>(1) 求满足 $|z-1|=\mathrm{Re}\,z+1$ 的点 $z$ 的轨迹。(2) 求点 $3i$ 关于直线 $y=x$ 的对称点。</p>
+      <ol>
+        <li>(1) 设 $z=x+yi$，右边 $x+1\ge0$。平方：$(x-1)^2+y^2=(x+1)^2$，整理得 $y^2=4x$（此时自动有 $x\ge0$）。焦点 $1$、准线 $x=-1$ 的抛物线。</li>
+        <li>(2) 直线 $y=x$ 经过原点、方向 $1+i$，$\dfrac{1+i}{1-i}=i$，所以 $z'=i\cdot\overline{3i}=i\cdot(-3i)=3$。</li>
+      </ol>
+      <p>答：(1) 抛物线 $y^2=4x$；(2) $3$。</p>
+    </div>
+    <div class="box">
+      <p><strong>日语术语：</strong><span lang="ja">放物線</span>（<span class="kana" lang="ja">ほうぶつせん</span>）：抛物线；<span lang="ja">焦点</span>（<span class="kana" lang="ja">しょうてん</span>）：焦点；<span lang="ja">準線</span>（<span class="kana" lang="ja">じゅんせん</span>）：准线；<span lang="ja">対称な点</span>（<span class="kana" lang="ja">たいしょうなてん</span>）：对称点。</p>
+    </div>
   </section>
 
   <section id="examples">
@@ -1104,6 +1121,177 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="box tip">
       <p><strong>EJU 应试提示：</strong>用上面的搜索框按中文、日文或假名查词。记术语时连同题干句型一起记，例如“<span lang="ja">偏角を求めよ</span>”。考前至少用日语题干做一遍例题，熟悉读题速度。</p>
     </div>
+  </section>
+
+  <section id="eju-style">
+    <h2>真题风格练习（EJU 题库对照）</h2>
+    <p>本节对照《EJU 数学2 知识点分类题库 2005–2025》中「复数与复平面」类的 12 个题目归纳出题规律，并配有<strong>原创</strong>练习题（数字和设定均为原创，并非真题）。</p>
+    <div class="box good">
+      <p><strong>题库出题规律</strong></p>
+      <ul>
+        <li><strong>由复数的商判断三角形的形状：</strong>求 $\dfrac{\gamma-\alpha}{\beta-\alpha}$ 的绝对值与辐角，得到夹角、边长比、直角或等腰条件，再求面积（2017年第1回、2019年第1回、2021年第1回、2023年第1回）。</li>
+        <li><strong>旋转与对称：</strong>绕点旋转（含连续两次旋转）、关于直线的对称点、以重心为原点表示三角形，并由商为纯虚数判断垂直（2021年第1回、2022年第1回、2022年第2回、2024年）。</li>
+        <li><strong>方程的根与偏角：</strong>$z^n=c$ 型高次方程的根按辐角排序，两组根之间的距离最值（2015年第2回、2020年第2回）。</li>
+        <li><strong>轨迹（直线、圆、抛物线）：</strong>“$z^3$ 为实数”给出过原点的直线组，复数不等式给出圆域，$|z-a|=\mathrm{Re}\,z+k$ 给出抛物线，再问交点个数、模长或辐角的范围（2015年第1回、2016年第1回、2025年）。</li>
+        <li><strong>最值靠画图：</strong>圆上（圆域内）点到定点的距离最值用“圆心距 $\pm$ 半径”，辐角范围用切线（2015年第2回、2016年第1回、2025年）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>填写方式：</strong>每个方框（如 $\boxed{\text{ア}}$）填一位数字或符号 $-$；两个字母相连（如 $\boxed{\text{クケ}}$）表示两位数。分数约到最简，根号内的数尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 1　$z^3$ 为正实数的轨迹与唯一公共点</b><span class="origin">原创 · 对应题型：立方为实数的轨迹、唯一交点条件</span></div>
+      <p>设 $z=x+yi$（$x,y$ 为实数，$z\ne0$）。</p>
+      <p>(1) $z^3$ 的虚部为 $y\,(\boxed{\text{ア}}x^2-y^2)$。$z^3$ 为正实数的点 $z$ 构成从原点出发（不含原点）的三条半直线，它们的方向角为 $0,\ \dfrac{\boxed{\text{イ}}}{\boxed{\text{ウ}}}\pi,\ \dfrac{\boxed{\text{エ}}}{\boxed{\text{ウ}}}\pi$。记这个图形为 $F$。</p>
+      <p>(2) 设 $m$ 为实数，$m\ne0$。经过点 $2$、斜率为 $m$ 的直线 $\ell:\ y=m(x-2)$ 与 $F$ 只有一个公共点的条件是 $m\le-\sqrt{\boxed{\text{オ}}}$ 或 $\sqrt{\boxed{\text{カ}}}\le m$。</p>
+      <p>(3) $m=-1$ 时，$\ell$ 与 $F$ 除点 $2$ 以外的公共点 $z$ 满足 $|z|=\boxed{\text{キ}}+\boxed{\text{ク}}\sqrt{\boxed{\text{ケ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $z^3=(x^3-3xy^2)+(3x^2y-y^3)i$，虚部 $=y(3x^2-y^2)$。设 $z=r(\cos\theta+i\sin\theta)$，$z^3=r^3(\cos3\theta+i\sin3\theta)$ 为正实数 $\iff3\theta=2k\pi$，$\theta=0,\ \dfrac23\pi,\ \dfrac43\pi$。</li>
+        <li>(2) 点 $2$ 在方向角 $0$ 的半直线上，所以 $\ell$ 总经过它。方向角 $\dfrac23\pi$ 的半直线上的点为 $\Bigl(-\dfrac t2,\dfrac{\sqrt3}{2}t\Bigr)$（$t&gt;0$），代入 $\ell$：$\dfrac{\sqrt3}{2}t=m\Bigl(-\dfrac t2-2\Bigr)$，$t=\dfrac{-4m}{m+\sqrt3}$，$t&gt;0\iff-\sqrt3&lt;m&lt;0$。</li>
+        <li>方向角 $\dfrac43\pi$ 的半直线 $\Bigl(-\dfrac t2,-\dfrac{\sqrt3}{2}t\Bigr)$：$t=\dfrac{4m}{\sqrt3-m}$，$t&gt;0\iff0&lt;m&lt;\sqrt3$。</li>
+        <li>两者都不发生 $\iff m\le-\sqrt3$ 或 $m\ge\sqrt3$（$m=\pm\sqrt3$ 时 $\ell$ 与其中一条半直线平行）。</li>
+        <li>(3) $m=-1$ 在 $(-\sqrt3,0)$ 内，交点在方向角 $\dfrac23\pi$ 的半直线上，$|z|=t=\dfrac{4}{\sqrt3-1}=2(\sqrt3+1)=2+2\sqrt3$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 3，イ = 2，ウ = 3，エ = 4，オ = 3，カ = 3，キ = 2，ク = 2，ケ = 3</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 2　高次方程的根、辐角顺序与距离最值</b><span class="origin">原创 · 对应题型：方程的根与偏角顺序、两组根的距离最值</span></div>
+      <p>方程 $z^6=-64$ 的 6 个解按辐角 $\theta$（$0\le\theta&lt;2\pi$）从小到大记为 $z_1,z_2,\dots,z_6$。</p>
+      <p>(1) $|z_k|=\boxed{\text{ア}}$，$z_k$ 的辐角为 $\dfrac{\pi}{\boxed{\text{イ}}}+\dfrac{(k-1)\pi}{\boxed{\text{ウ}}}$。</p>
+      <p>(2) $z_1+z_2+z_3=\boxed{\text{エ}}\,i$，$z_1z_4=-\boxed{\text{オ}}-\boxed{\text{カ}}\sqrt{\boxed{\text{キ}}}\,i$。</p>
+      <p>(3) 方程 $w^2-6w+12=0$ 的解为 $w=\boxed{\text{ク}}\pm\sqrt{\boxed{\text{ケ}}}\,i$。$z$ 取 $z_1,\dots,z_6$ 中任一个、$w$ 取这两个解中任一个时，$|z-w|$ 的最小值为 $\boxed{\text{コ}}\sqrt{\boxed{\text{サ}}}-\boxed{\text{シ}}$，最大值为 $\boxed{\text{ス}}\sqrt{\boxed{\text{セ}}}+\boxed{\text{ソ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $-64=64(\cos\pi+i\sin\pi)$，$r^6=64$，$6\theta=\pi+2k\pi$，所以 $r=2$，$\theta=\dfrac{\pi}{6}+\dfrac{k\pi}{3}$。</li>
+        <li>(2) $z_1=\sqrt3+i,\ z_2=2i,\ z_3=-\sqrt3+i$，和为 $4i$。$z_4=-\sqrt3-i=-z_1$，所以 $z_1z_4=-(\sqrt3+i)^2=-(2+2\sqrt3\,i)=-2-2\sqrt3\,i$。</li>
+        <li>(3) $w=3\pm\sqrt3\,i$，$|w|=2\sqrt3$，辐角为 $\pm\dfrac{\pi}{6}$，与 $z_1$、$z_6$ 的辐角相同。</li>
+        <li>所有 $z_k$ 在半径 $2$ 的圆上，$|z-w|$ 的最小值在与 $w$ 同方向的 $z$ 处取得：$2\sqrt3-2$；最大值在相反方向（$z_4$ 或 $z_3$）处取得：$2\sqrt3+2$。这些点恰好是 6 个解中的点，所以能取到。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 6，ウ = 3，エ = 4，オ = 2，カ = 2，キ = 3，ク = 3，ケ = 3，コ = 2，サ = 3，シ = 2，ス = 2，セ = 3，ソ = 2</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 3　圆域内的模长与辐角范围</b><span class="origin">原创 · 对应题型：复数不等式表示的圆域、直线上的模长最值</span></div>
+      <p>复数 $z$ 满足 $|z-4-2i|\le2$，这样的点构成的区域记为 $D$。</p>
+      <p>(1) $z$ 在 $D$ 内变化时，$|z|$ 的最大值为 $\boxed{\text{ア}}\sqrt{\boxed{\text{イ}}}+\boxed{\text{ウ}}$，最小值为 $\boxed{\text{エ}}\sqrt{\boxed{\text{オ}}}-\boxed{\text{カ}}$。</p>
+      <p>(2) $z$ 在 $D$ 内且满足 $\mathrm{Im}\,z=\mathrm{Re}\,z$ 时，令 $z=t+ti$，则 $\boxed{\text{キ}}\le t\le\boxed{\text{ク}}$，$|z|$ 的最小值为 $\boxed{\text{ケ}}\sqrt{\boxed{\text{コ}}}$，最大值为 $\boxed{\text{サ}}\sqrt{\boxed{\text{シ}}}$。</p>
+      <p>(3) $z$ 在 $D$ 内（$z\ne0$），辐角取 $-\pi&lt;\arg z\le\pi$。$\arg z$ 的最小值为 $\boxed{\text{ス}}$，最大值 $\theta_0$ 满足 $\tan\theta_0=\dfrac{\boxed{\text{セ}}}{\boxed{\text{ソ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $D$ 是圆心 $\mathrm{C}(4+2i)$、半径 $2$ 的圆域（含边界）。$\mathrm{OC}=\sqrt{20}=2\sqrt5&gt;2$，原点在圆外，所以最大值 $2\sqrt5+2$，最小值 $2\sqrt5-2$。</li>
+        <li>(2) $(t-4)^2+(t-2)^2\le4$，整理得 $t^2-6t+8\le0$，$2\le t\le4$。$|z|=\sqrt2\,t$，最小值 $2\sqrt2$，最大值 $4\sqrt2$。</li>
+        <li>(3) 从原点作圆的两条切线。$\mathrm{OC}$ 的方向角 $\varphi$ 满足 $\tan\varphi=\dfrac12$；切线与 $\mathrm{OC}$ 的夹角 $\delta$ 满足 $\sin\delta=\dfrac{2}{2\sqrt5}$，即 $\tan\delta=\dfrac12$，所以 $\delta=\varphi$。</li>
+        <li>最小值 $\varphi-\delta=0$（切点是 $z=4$，圆与实轴相切）；最大值 $\theta_0=2\varphi$，$\tan\theta_0=\dfrac{2\cdot\frac12}{1-\frac14}=\dfrac43$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 5，ウ = 2，エ = 2，オ = 5，カ = 2，キ = 2，ク = 4，ケ = 2，コ = 2，サ = 4，シ = 2，ス = 0，セ = 4，ソ = 3</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 4　由复数的商确定三角形</b><span class="origin">原创 · 对应题型：夹角与面积、直角条件、伸缩平移、等腰条件</span></div>
+      <p>复数平面上 $\mathrm{A}(1+i)$，$\mathrm{B}(3+2i)$，点 $\mathrm{C}(\gamma)$ 满足 $\dfrac{\gamma-(1+i)}{(3+2i)-(1+i)}=1+\sqrt3\,i$。</p>
+      <p>(1) $\angle\mathrm{BAC}=\dfrac{\pi}{\boxed{\text{ア}}}$，$\dfrac{\mathrm{AC}}{\mathrm{AB}}=\boxed{\text{イ}}$。</p>
+      <p>(2) $\angle\mathrm{ABC}=\dfrac{\pi}{\boxed{\text{ウ}}}$，$\triangle\mathrm{ABC}$ 的面积为 $\dfrac{\boxed{\text{エ}}\sqrt{\boxed{\text{オ}}}}{\boxed{\text{カ}}}$。</p>
+      <p>(3) 用 $w=(1+i)z+3$ 把 $\mathrm{A},\mathrm{B},\mathrm{C}$ 分别移到 $\mathrm{A'},\mathrm{B'},\mathrm{C'}$，$\triangle\mathrm{A'B'C'}$ 的面积为 $\boxed{\text{キ}}\sqrt{\boxed{\text{ク}}}$。</p>
+      <p>(4) 线段 $\mathrm{AC}$ 上的点 $\mathrm{D}$ 表示为 $\delta=(1+i)+s\{\gamma-(1+i)\}$。$\mathrm{DA}=\mathrm{DB}$ 时 $s=\dfrac{\boxed{\text{ケ}}}{\boxed{\text{コ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $1+\sqrt3\,i=2\Bigl(\cos\dfrac{\pi}{3}+i\sin\dfrac{\pi}{3}\Bigr)$，所以 $\overrightarrow{\mathrm{AC}}$ 是把 $\overrightarrow{\mathrm{AB}}$ 旋转 $\dfrac{\pi}{3}$ 并放大 $2$ 倍：$\angle\mathrm{BAC}=\dfrac{\pi}{3}$，$\mathrm{AC}=2\mathrm{AB}$。</li>
+        <li>(2) 设 $\mathrm{AB}=a$，则 $\mathrm{AC}=2a$，余弦定理 $\mathrm{BC}^2=a^2+4a^2-2\cdot a\cdot2a\cdot\dfrac12=3a^2$，于是 $\mathrm{AB}^2+\mathrm{BC}^2=\mathrm{AC}^2$，$\angle\mathrm{ABC}=\dfrac{\pi}{2}$。</li>
+        <li>$a=|2+i|=\sqrt5$，$\mathrm{BC}=\sqrt{15}$，面积 $=\dfrac12\cdot\sqrt5\cdot\sqrt{15}=\dfrac{5\sqrt3}{2}$。</li>
+        <li>(3) $w=(1+i)z+3$ 是旋转 $\dfrac{\pi}{4}$、放大 $|1+i|=\sqrt2$ 倍再平移，面积变为 $(\sqrt2)^2=2$ 倍：$5\sqrt3$。</li>
+        <li>(4) $\mathrm{DA}=\mathrm{DB}$ 且 $\angle\mathrm{DAB}=\dfrac{\pi}{3}$，所以 $\triangle\mathrm{ABD}$ 是正三角形，$\mathrm{AD}=\mathrm{AB}=\dfrac12\mathrm{AC}$，$s=\dfrac12$（$\mathrm{D}$ 是斜边中点，即外心）。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 3，イ = 2，ウ = 2，エ = 5，オ = 3，カ = 2，キ = 5，ク = 3，ケ = 1，コ = 2</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 5　关于直线的对称点</b><span class="origin">原创 · 对应题型：复数关系确定的三角形与关于直线的对称点</span></div>
+      <p>直线 $\ell$ 经过 $\mathrm{A}(1+i)$ 和 $\mathrm{B}(3+2i)$。点 $\mathrm{P}(z)$ 关于 $\ell$ 的对称点为 $\mathrm{P'}(z')$。</p>
+      <p>(1) $z'=(1+i)+\dfrac{\boxed{\text{ア}}+\boxed{\text{イ}}i}{\boxed{\text{ウ}}}\,\overline{\{z-(1+i)\}}$。</p>
+      <p>(2) 点 $\mathrm{P}(1+6i)$ 的对称点为 $\mathrm{Q}(\boxed{\text{エ}}-\boxed{\text{オ}}i)$。</p>
+      <p>(3) $\cos\angle\mathrm{PAQ}=-\dfrac{\boxed{\text{カ}}}{\boxed{\text{キ}}}$，$\triangle\mathrm{APQ}$ 的面积为 $\boxed{\text{クケ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $\beta-\alpha=2+i$，$\dfrac{2+i}{2-i}=\dfrac{(2+i)^2}{5}=\dfrac{3+4i}{5}$。代入公式 $z'=\alpha+\dfrac{\beta-\alpha}{\overline{\beta-\alpha}}\,\overline{(z-\alpha)}$。</li>
+        <li>(2) $z-\alpha=5i$，$\overline{5i}=-5i$，$\dfrac{3+4i}{5}\cdot(-5i)=4-3i$，所以 $\mathrm{Q}=5-2i$。检验：$\mathrm{PQ}$ 的中点 $3+2i$ 在 $\ell$ 上，$\dfrac{(5-2i)-(1+6i)}{2+i}=\dfrac{4-8i}{2+i}=-4i$ 为纯虚数，即 $\mathrm{PQ}\perp\ell$。</li>
+        <li>(3) $\dfrac{4-3i}{5i}=\dfrac{-3-4i}{5}$，绝对值 $1$，所以 $\mathrm{AP}=\mathrm{AQ}=5$，$\cos\angle\mathrm{PAQ}=-\dfrac35$，$\sin\angle\mathrm{PAQ}=\dfrac45$。面积 $=\dfrac12\cdot5\cdot5\cdot\dfrac45=10$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 3，イ = 4，ウ = 5，エ = 5，オ = 2，カ = 3，キ = 5，クケ = 10</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 6　以重心为原点的直角等腰三角形</b><span class="origin">原创 · 对应题型：以重心为原点表示直角三角形、旋转与模长比例</span></div>
+      <p>$\triangle\mathrm{ABC}$ 的顶点 $\mathrm{A}(\alpha),\mathrm{B}(\beta),\mathrm{C}(\gamma)$ 按逆时针排列，重心是原点 $\mathrm{O}$，且 $\angle\mathrm{A}=\dfrac{\pi}{2}$，$\mathrm{AB}=\mathrm{AC}$（$\alpha\ne0$）。</p>
+      <p>(1) $\gamma-\alpha=(\beta-\alpha)\Bigl(\cos\dfrac{\pi}{\boxed{\text{ア}}}+i\sin\dfrac{\pi}{\boxed{\text{ア}}}\Bigr)$。</p>
+      <p>(2) $\beta=\dfrac{-\boxed{\text{イ}}+\boxed{\text{ウ}}i}{\boxed{\text{エ}}}\,\alpha$，$\gamma=\dfrac{-\boxed{\text{オ}}-\boxed{\text{カ}}i}{\boxed{\text{キ}}}\,\alpha$。</p>
+      <p>(3) $\dfrac{\mathrm{OB}}{\mathrm{OA}}=\dfrac{\sqrt{\boxed{\text{クケ}}}}{\boxed{\text{コ}}}$，$\dfrac{\mathrm{BC}}{\mathrm{OA}}=\boxed{\text{サ}}$。</p>
+      <p>(4) $\alpha=2$ 时，$\triangle\mathrm{ABC}$ 的面积为 $\boxed{\text{シ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 逆时针排列、$\mathrm{AB}=\mathrm{AC}$、夹角 $\dfrac{\pi}{2}$，所以 $\gamma-\alpha=i(\beta-\alpha)$。</li>
+        <li>(2) 代入 $\alpha+\beta+\gamma=0$：$2\alpha+\beta+i\beta-i\alpha=0$，$\beta(1+i)=-\alpha(2-i)$，$\beta=-\dfrac{(2-i)(1-i)}{2}\alpha=\dfrac{-1+3i}{2}\alpha$。$\gamma=-\alpha-\beta=\dfrac{-1-3i}{2}\alpha$。</li>
+        <li>(3) $\mathrm{OB}=\Bigl|\dfrac{-1+3i}{2}\Bigr|\mathrm{OA}=\dfrac{\sqrt{10}}{2}\mathrm{OA}$。$\gamma-\beta=-3i\alpha$，$\mathrm{BC}=3\,\mathrm{OA}$。</li>
+        <li>(4) $\alpha=2$：$\mathrm{BC}=6$，直角等腰三角形的直角边为 $\dfrac{6}{\sqrt2}=3\sqrt2$，面积 $=\dfrac12\cdot18=9$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 1，ウ = 3，エ = 2，オ = 1，カ = 3，キ = 2，クケ = 10，コ = 2，サ = 3，シ = 9</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 7　两次旋转与垂直条件</b><span class="origin">原创 · 对应题型：两次复平面旋转、两直线垂直条件</span></div>
+      <p>对点 $\mathrm{P}(z)$（$z\ne0$），把 $\mathrm{P}$ 绕原点 $\mathrm{O}$ 逆时针旋转 $\dfrac{\pi}{2}$ 得到 $\mathrm{Q}$，再把 $\mathrm{Q}$ 绕点 $\mathrm{A}(2)$ 逆时针旋转 $\dfrac{\pi}{2}$ 得到 $\mathrm{R}$。</p>
+      <p>(1) $\mathrm{R}$ 表示的复数为 $\boxed{\text{ア}}-\boxed{\text{イ}}i-z$，所以 $\mathrm{R}$ 是 $\mathrm{P}$ 关于点 $\boxed{\text{ウ}}-\boxed{\text{エ}}i$ 的对称点。</p>
+      <p>(2) $\mathrm{OP}\perp\mathrm{PR}$ 成立时，点 $\mathrm{P}$ 在圆心 $\dfrac{\boxed{\text{オ}}-\boxed{\text{カ}}i}{\boxed{\text{キ}}}$、半径 $\dfrac{\sqrt{\boxed{\text{ク}}}}{\boxed{\text{ケ}}}$ 的圆上，但要除去 $0$ 和 $\boxed{\text{コ}}-\boxed{\text{サ}}i$ 两点。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $\mathrm{Q}=iz$，$\mathrm{R}=2+i(iz-2)=2-2i-z$。$\dfrac{z+\mathrm{R}}{2}=1-i$，所以两次旋转合成为关于点 $1-i$ 的点对称（旋转 $\pi$）。</li>
+        <li>(2) $\mathrm{OP}\perp\mathrm{PR}\iff\dfrac{\mathrm{R}-z}{z-0}$ 为纯虚数（必须 $\ne0$）。$\dfrac{\mathrm{R}-z}{z}=\dfrac{2-2i-2z}{z}$ 的实部为 $0$，等价于 $(2-2i-2z)\overline{z}$ 的实部为 $0$。</li>
+        <li>设 $z=x+yi$：$\mathrm{Re}\{(2-2i)\overline{z}\}-2|z|^2=2x-2y-2(x^2+y^2)=0$，即 $\Bigl(x-\dfrac12\Bigr)^2+\Bigl(y+\dfrac12\Bigr)^2=\dfrac12$。</li>
+        <li>圆心 $\dfrac{1-i}{2}$，半径 $\dfrac{\sqrt2}{2}$。$z=0$ 不允许；$z=1-i$ 时 $\mathrm{R}=\mathrm{P}$，直线 $\mathrm{PR}$ 不存在（商为 $0$，不是纯虚数），也要除去。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 2，ウ = 1，エ = 1，オ = 1，カ = 1，キ = 2，ク = 2，ケ = 2，コ = 1，サ = 1</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 8　复数等式表示的抛物线与辐角范围</b><span class="origin">原创 · 对应题型：复数等式表示的抛物线、偏角范围</span></div>
+      <p>复数 $z=x+yi$ 满足 $|z-2|=\mathrm{Re}\,z+2$。</p>
+      <p>(1) 点 $z$ 的轨迹是抛物线 $y^2=\boxed{\text{ア}}x$。</p>
+      <p>(2) 轨迹上满足 $\arg z=\dfrac{\pi}{4}$ 的点为 $z=\boxed{\text{イ}}+\boxed{\text{ウ}}i$，此时 $|z-2|=\boxed{\text{エオ}}$。</p>
+      <p>(3) 轨迹上满足 $\dfrac{\pi}{4}\le\arg z\le\dfrac{\pi}{3}$ 的点 $z$ 中，$|z|$ 的取值范围是 $\dfrac{\boxed{\text{カキ}}}{\boxed{\text{ク}}}\le|z|\le\boxed{\text{ケ}}\sqrt{\boxed{\text{コ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 右边 $x+2\ge0$。平方：$(x-2)^2+y^2=(x+2)^2$，整理得 $y^2=8x$。即焦点 $2$、准线 $x=-2$ 的抛物线。</li>
+        <li>(2) $\arg z=\dfrac{\pi}{4}$：$y=x&gt;0$，$x^2=8x$，$x=8$，$z=8+8i$。$|z-2|=\mathrm{Re}\,z+2=10$（直接算 $|6+8i|=10$ 也一致）。</li>
+        <li>(3) $\arg z=\dfrac{\pi}{3}$：$y=\sqrt3x$，$3x^2=8x$，$x=\dfrac83$，$|z|=2x=\dfrac{16}{3}$。在抛物线的上半部分，$\arg z$ 随 $x$ 增大而减小，而 $|z|^2=x^2+8x$ 随 $x$ 增大而增大，所以 $\dfrac83\le x\le8$ 对应 $\dfrac{16}{3}\le|z|\le8\sqrt2$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 8，イ = 8，ウ = 8，エオ = 10，カキ = 16，ク = 3，ケ = 8，コ = 2</p>
+      </div>
+      </details>
+    </article>
   </section>
 
   <footer>本页例题与练习均为原创，答案已用 Python（SymPy）验算。</footer>
