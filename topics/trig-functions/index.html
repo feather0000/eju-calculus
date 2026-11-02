@@ -202,6 +202,11 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
 @media (max-width: 900px) {
   nav.toc { top: 34px; }
 }
+details { margin-top: 10px; }
+details > summary { display: inline-block; cursor: pointer; font-size: 14.5px; min-height: 36px; padding: 4px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary:hover { background: var(--accent-soft); }
+details[open] > summary { background: var(--accent); color: var(--surface); }
 </style>
 </head>
 <body>
@@ -237,6 +242,7 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <li><a href="#examples">7 原创例题</a></li>
         <li><a href="#practice">8 练习题</a></li>
         <li><a href="#terms">9 术语对照</a></li>
+        <li><a href="#bank">真题风格练习</a></li>
       </ol>
     </div>
     <button class="chip theme-btn" id="theme" type="button">深色</button>
@@ -1118,6 +1124,10 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       </ul>
     </div>
 
+    <h3>应用：二次约束的参数表示与方程的公共解</h3>
+    <p><strong>二次约束 $\to$ 三角参数：</strong>条件为 $x^2+y^2=r^2$ 时，令 $x=r\cos\theta,\ y=r\sin\theta$；条件为椭圆 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ 时，令 $x=a\cos\theta,\ y=b\sin\theta$（$0\le\theta&lt;2\pi$）。这样，$x^2,\ xy,\ y^2$ 组成的二次式就变成 $\cos^2\theta,\ \sin\theta\cos\theta,\ \sin^2\theta$ 的式子，再按「降次 $\to$ 合成」求最值。例如 $x^2+y^2=1$ 时，$xy=\sin\theta\cos\theta=\dfrac12\sin2\theta$，最大值为 $\dfrac12$。</p>
+    <p><strong>两个方程的公共解（<span lang="ja">共通解</span>）：</strong>先完整解出不含参数（或容易解）的那个方程，把它的每个解代入另一个方程，就得到参数的候选值；最后还要回头数一数，每个参数值对应几个公共解。</p>
+
     <div class="box tip">
       <p><strong>EJU 应试提示：</strong>题目要求合成为余弦形式时，用 $r\cos(\theta-\beta)$，其中 $r\cos\beta=b,\ r\sin\beta=a$，例如 $\sqrt3\sin\theta+\cos\theta=2\cos\Bigl(\theta-\dfrac{\pi}{3}\Bigr)$。先看题面印好的形式，再决定 $\alpha$ 的取法。</p>
     </div>
@@ -1435,6 +1445,177 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <p><strong>EJU 应试提示：</strong>实际题面多用汉字和符号，假名读音在阅读时不是必需的，但听日语讲解或看日本教材时会用到。优先掌握表中「题面常用语」和「公式与应用」两组。用上方搜索框可以按中文、日文或假名查找。</p>
     </div>
 
+  </section>
+
+  <section id="bank">
+    <h2>真题风格练习（EJU 题库对照）</h2>
+    <p class="jp-sub" lang="ja">過去問の傾向に沿った練習（オリジナル）</p>
+    <p>以下 7 道题均为本讲义<strong>原创</strong>，只模仿 EJU 课程2的填空形式，数字与设定均非真题。所有答案已用 Python（SymPy）逐格验算。</p>
+
+    <div class="box good">
+      <p><strong>题库出题规律（「三角函数」类 7 题，2005–2025）：</strong></p>
+      <ol>
+        <li><strong>统一成一种三角函数的多项式求最值</strong>：用倍角、3 倍角公式把式子化成 $\cos x$（或 $\sin x$）的多项式，再在 $[-1,1]$ 上用二次函数或微分求最值。例：2005年第1回。</li>
+        <li><strong>限定角度范围的最值</strong>：降次 $\to$ 合成为 $r\sin(\theta+\alpha)$，关键是先算出 $\theta+\alpha$ 的范围。例：2006年第2回；二次约束（圆、椭圆）下二次式的最大值也属此类，例：2013年第1回。</li>
+        <li><strong>换元 $t=\sin x+\cos x$</strong>：$\sin x\cos x=\dfrac{t^2-1}{2}$，化为 $t$ 的二次函数，注意 $-\sqrt2\le t\le\sqrt2$。例：2013年第2回。</li>
+        <li><strong>图形中的三角函数</strong>：动点构成的三角形面积用 $\theta$ 表示后求最值，例：2010年第2回；直角三角形中相切的圆用半角求半径，例：2011年第2回。</li>
+        <li><strong>含参数三角方程</strong>：两个方程的公共解、解的个数与参数的关系。例：2014年第1回。</li>
+      </ol>
+      <p>本类 7 题都出自 2005–2014 年；近年的三角函数更多以「微分求最值」「积分」的素材出现，上面的技巧仍是基础。</p>
+    </div>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框 $\B{ア}$、$\B{イ}$、… 填<strong>一位</strong>数字（$0$–$9$）；两位数用两个方框，例如 $\B{ウ}\B{エ}$。负号已写在方框外。分数约到最简，根号内的数尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>练习 1　化为 $\cos x$ 的三次式</b><span class="origin">原创</span><span>对应规律 1</span></div>
+      <p>设 $f(x)=2\cos3x-3\cos2x-6\cos x\ \ (0\le x\le\pi)$，令 $c=\cos x$。</p>
+      <p>(1) $f(x)=\B{ア}c^3-\B{イ}c^2-\B{ウ}\B{エ}c+\B{オ}$。</p>
+      <p>(2) $f(x)$ 的最大值为 $\dfrac{\B{カ}\B{キ}}{\B{ク}}$，此时 $x=\dfrac{\B{ケ}}{\B{コ}}\pi$；最小值为 $-\B{サ}$，此时 $x=\B{シ}$。</p>
+      <p>(3) 关于 $x$ 的方程 $f(x)=k$ 在 $0\le x\le\pi$ 中恰有 $2$ 个解的条件是 $\B{ス}\le k&lt;\dfrac{\B{セ}\B{ソ}}{\B{タ}}$。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) $\cos3x=4c^3-3c$，$\cos2x=2c^2-1$，所以</p>
+          $$f=2(4c^3-3c)-3(2c^2-1)-6c=8c^3-6c^2-12c+3.$$
+          <p>(2) 记 $g(c)=8c^3-6c^2-12c+3\ (-1\le c\le1)$。$g'(c)=24c^2-12c-12=12(2c+1)(c-1)$。</p>
+          <div class="tw"><table class="sign">
+            <thead><tr><th>$c$</th><th>$-1$</th><th>$\cdots$</th><th>$-\frac12$</th><th>$\cdots$</th><th>$1$</th></tr></thead>
+            <tbody>
+              <tr><td>$g'(c)$</td><td></td><td>$+$</td><td>$0$</td><td>$-$</td><td>$0$</td></tr>
+              <tr><td>$g(c)$</td><td>$1$</td><td>$\nearrow$</td><td>$\frac{13}{2}$</td><td>$\searrow$</td><td>$-7$</td></tr>
+            </tbody>
+          </table></div>
+          <p>最大值 $\dfrac{13}{2}$（$\cos x=-\dfrac12$，即 $x=\dfrac{2}{3}\pi$）；最小值 $-7$（$\cos x=1$，即 $x=0$）。</p>
+          <p>(3) 在 $0\le x\le\pi$ 上 $c=\cos x$ 与 $x$ 一一对应，所以只需数 $g(c)=k$ 在 $-1\le c\le1$ 中的解。由上表，$g$ 在 $[-1,-\frac12]$ 上从 $1$ 增到 $\frac{13}{2}$，在 $[-\frac12,1]$ 上从 $\frac{13}{2}$ 减到 $-7$。水平线 $y=k$ 与图像有 $2$ 个交点 $\Leftrightarrow 1\le k&lt;\dfrac{13}{2}$（$k=1$ 时 $c=-1$ 也是解；$k=\frac{13}{2}$ 时只有 $1$ 个解）。</p>
+          <ul class="keys"><li>ア = 8</li><li>イ = 6</li><li>ウ = 1</li><li>エ = 2</li><li>オ = 3</li><li>カ = 1</li><li>キ = 3</li><li>ク = 2</li><li>ケ = 2</li><li>コ = 3</li><li>サ = 7</li><li>シ = 0</li><li>ス = 1</li><li>セ = 1</li><li>ソ = 3</li><li>タ = 2</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 2　限定范围的最值与解的个数</b><span class="origin">原创</span><span>对应规律 2</span></div>
+      <p>设 $y=4\sin x\sin\Bigl(x+\dfrac{\pi}{3}\Bigr)\ \ \Bigl(0\le x\le\dfrac{\pi}{2}\Bigr)$。</p>
+      <p>(1) $y=\B{ア}+\B{イ}\sin\Bigl(2x-\dfrac{\pi}{\B{ウ}}\Bigr)$。</p>
+      <p>(2) $y$ 的最大值为 $\B{エ}$，此时 $x=\dfrac{\pi}{\B{オ}}$；最小值为 $\B{カ}$，此时 $x=\B{キ}$。</p>
+      <p>(3) 方程 $y=k$ 恰有 $2$ 个解的条件是 $\B{ク}\le k&lt;\B{ケ}$。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) 用加法定理展开：$y=4\sin x\Bigl(\dfrac12\sin x+\dfrac{\sqrt3}{2}\cos x\Bigr)=2\sin^2x+2\sqrt3\sin x\cos x$。降次：</p>
+          $$y=(1-\cos2x)+\sqrt3\sin2x=1+2\sin\Bigl(2x-\frac{\pi}{6}\Bigr).$$
+          <p>(2) 令 $u=2x-\dfrac{\pi}{6}$，则 $-\dfrac{\pi}{6}\le u\le\dfrac{5\pi}{6}$，$-\dfrac12\le\sin u\le1$。$u=\dfrac{\pi}{2}$，即 $x=\dfrac{\pi}{3}$ 时最大值 $3$；$u=-\dfrac{\pi}{6}$，即 $x=0$ 时最小值 $1+2\cdot\bigl(-\frac12\bigr)=0$。</p>
+          <p>(3) $u$ 与 $x$ 一一对应。$\sin u=\dfrac{k-1}{2}$ 在 $-\dfrac{\pi}{6}\le u\le\dfrac{5\pi}{6}$ 中有 $2$ 个解 $\Leftrightarrow \dfrac12\le\sin u&lt;1$（$\sin u=\frac12$ 时 $u=\frac{\pi}{6},\frac{5\pi}{6}$ 两端都在范围内；$-\frac12\le\sin u&lt;\frac12$ 时只有 $1$ 个）。所以 $\dfrac12\le\dfrac{k-1}{2}&lt;1$，即 $2\le k&lt;3$。</p>
+          <ul class="keys"><li>ア = 1</li><li>イ = 2</li><li>ウ = 6</li><li>エ = 3</li><li>オ = 3</li><li>カ = 0</li><li>キ = 0</li><li>ク = 2</li><li>ケ = 3</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 3　动点与三角形面积</b><span class="origin">原创</span><span>对应规律 4</span></div>
+      <p>坐标平面上有 $\mathrm{A}(6,\,0)$，$\mathrm{B}(0,\,8)$，点 $\mathrm{P}(2\cos\theta,\,2\sin\theta)\ (0\le\theta&lt;2\pi)$ 在圆 $x^2+y^2=4$ 上运动。设 $\triangle\mathrm{PAB}$ 的面积为 $S$。</p>
+      <p>(1) $S=\B{ア}\B{イ}-\B{ウ}\cos\theta-\B{エ}\sin\theta$。</p>
+      <p>(2) 取角 $\alpha$ 使 $\sin\alpha=\dfrac45,\ \cos\alpha=\dfrac35$，则 $S=\B{ア}\B{イ}-\B{オ}\B{カ}\sin(\theta+\alpha)$。</p>
+      <p>(3) $S$ 的最小值为 $\B{キ}\B{ク}$，此时 $\mathrm{P}\Bigl(\dfrac{\B{ケ}}{\B{コ}},\,\dfrac{\B{サ}}{\B{シ}}\Bigr)$；$S$ 的最大值为 $\B{ス}\B{セ}$。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) 直线 $\mathrm{AB}$：$\dfrac{x}{6}+\dfrac{y}{8}=1$，即 $4x+3y-24=0$，$\mathrm{AB}=10$。$\mathrm{P}$ 到 $\mathrm{AB}$ 的距离为 $\dfrac{|8\cos\theta+6\sin\theta-24|}{5}$。因为 $8\cos\theta+6\sin\theta\le10&lt;24$，绝对值内恒为负，所以</p>
+          $$S=\frac12\cdot10\cdot\frac{24-8\cos\theta-6\sin\theta}{5}=24-8\cos\theta-6\sin\theta.$$
+          <p>(2) $8\cos\theta+6\sin\theta=10\Bigl(\sin\theta\cdot\dfrac35+\cos\theta\cdot\dfrac45\Bigr)=10\sin(\theta+\alpha)$，所以 $S=24-10\sin(\theta+\alpha)$。</p>
+          <p>(3) $\theta+\alpha$ 取遍一整周，$\sin(\theta+\alpha)=1$ 时 $S$ 最小为 $14$。此时 $\theta=\dfrac{\pi}{2}-\alpha$，$\cos\theta=\sin\alpha=\dfrac45$，$\sin\theta=\cos\alpha=\dfrac35$，所以 $\mathrm{P}\Bigl(\dfrac85,\dfrac65\Bigr)$（即从原点向 $\mathrm{AB}$ 作垂线的方向上的点）。$\sin(\theta+\alpha)=-1$ 时 $S$ 最大为 $34$。</p>
+          <ul class="keys"><li>ア = 2</li><li>イ = 4</li><li>ウ = 8</li><li>エ = 6</li><li>オ = 1</li><li>カ = 0</li><li>キ = 1</li><li>ク = 4</li><li>ケ = 8</li><li>コ = 5</li><li>サ = 6</li><li>シ = 5</li><li>ス = 3</li><li>セ = 4</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 4　直角三角形中相切的两个圆</b><span class="origin">原创</span><span>对应规律 4</span></div>
+      <p>$\triangle\mathrm{ABC}$ 中 $\angle\mathrm{C}=90^\circ$，$\mathrm{BC}=6$，$\mathrm{CA}=8$，$\mathrm{AB}=10$。设内切圆 $O_1$ 的圆心为 $\mathrm{I}$、半径为 $r$。圆 $O_2$ 与边 $\mathrm{AB}$、$\mathrm{BC}$ 都相切，与 $O_1$ 外切，并且位于 $O_1$ 和顶点 $\mathrm{B}$ 之间。设 $\angle\mathrm{B}=\beta$。</p>
+      <p>(1) $r=\B{ア}$。</p>
+      <p>(2) $\tan\dfrac{\beta}{2}=\dfrac{\B{イ}}{\B{ウ}}$，$\sin\dfrac{\beta}{2}=\dfrac{\sqrt{\B{エ}}}{\B{オ}}$。</p>
+      <p>(3) $\mathrm{BI}=\B{カ}\sqrt{\B{キ}}$。</p>
+      <p>(4) 圆 $O_2$ 的半径为 $\B{ク}-\sqrt{\B{ケ}}$。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) 直角三角形的内切圆半径 $r=\dfrac{\mathrm{BC}+\mathrm{CA}-\mathrm{AB}}{2}=\dfrac{6+8-10}{2}=2$。</p>
+          <p>(2) $\cos\beta=\dfrac{6}{10}=\dfrac35$，$\sin\beta=\dfrac45$。$\tan\dfrac{\beta}{2}=\dfrac{\sin\beta}{1+\cos\beta}=\dfrac{4/5}{8/5}=\dfrac12$。半角公式：$\sin^2\dfrac{\beta}{2}=\dfrac{1-\cos\beta}{2}=\dfrac15$，$\dfrac{\beta}{2}$ 是锐角，所以 $\sin\dfrac{\beta}{2}=\dfrac{1}{\sqrt5}=\dfrac{\sqrt5}{5}$。</p>
+          <p>(3) 与角的两边都相切的圆，圆心在角平分线上。$\mathrm{I}$ 到 $\mathrm{BC}$ 的距离为 $r$，所以 $\mathrm{BI}=\dfrac{r}{\sin\frac{\beta}{2}}=2\sqrt5$。</p>
+          <p>(4) 设 $O_2$ 的圆心为 $\mathrm{J}$、半径为 $s$，同理 $\mathrm{J}$ 在 $\mathrm{BI}$ 上，$\mathrm{BJ}=\dfrac{s}{\sin\frac{\beta}{2}}=\sqrt5\,s$。两圆外切：$\mathrm{IJ}=r+s$，而 $\mathrm{IJ}=\mathrm{BI}-\mathrm{BJ}$，所以</p>
+          $$2\sqrt5-\sqrt5\,s=2+s\ \Longrightarrow\ s=\frac{2(\sqrt5-1)}{\sqrt5+1}=\frac{2(\sqrt5-1)^2}{4}=3-\sqrt5.$$
+          <ul class="keys"><li>ア = 2</li><li>イ = 1</li><li>ウ = 2</li><li>エ = 5</li><li>オ = 5</li><li>カ = 2</li><li>キ = 5</li><li>ク = 3</li><li>ケ = 5</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 5　椭圆约束下二次式的最值</b><span class="origin">原创</span><span>对应规律 2</span></div>
+      <p>实数 $x,y$ 满足 $x^2+4y^2=4$。设 $F=x^2+4\sqrt3\,xy-4y^2$。</p>
+      <p>(1) 可以令 $x=\B{ア}\cos\theta$，$y=\sin\theta\ (0\le\theta&lt;2\pi)$。</p>
+      <p>(2) $F=\B{イ}\sin\Bigl(2\theta+\dfrac{\pi}{\B{ウ}}\Bigr)$。</p>
+      <p>(3) $F$ 的最大值为 $\B{エ}$，取最大值且 $x&gt;0$ 时 $(x,y)=\Bigl(\sqrt{\B{オ}},\,\dfrac{\B{カ}}{\B{キ}}\Bigr)$；$F$ 的最小值为 $-\B{ク}$。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) 条件即 $\Bigl(\dfrac{x}{2}\Bigr)^2+y^2=1$，所以令 $\dfrac{x}{2}=\cos\theta,\ y=\sin\theta$，$x=2\cos\theta$。</p>
+          <p>(2) 代入：</p>
+          $$F=4\cos^2\theta+8\sqrt3\sin\theta\cos\theta-4\sin^2\theta=4\cos2\theta+4\sqrt3\sin2\theta=8\sin\Bigl(2\theta+\frac{\pi}{6}\Bigr).$$
+          <p>(3) $2\theta+\dfrac{\pi}{6}$ 取遍至少一整周，所以 $-8\le F\le8$。最大值 $8$：$2\theta+\dfrac{\pi}{6}=\dfrac{\pi}{2}$ 或 $\dfrac{5\pi}{2}$，即 $\theta=\dfrac{\pi}{6}$ 或 $\dfrac{7\pi}{6}$；$x&gt;0$ 的是 $\theta=\dfrac{\pi}{6}$，$(x,y)=\Bigl(\sqrt3,\dfrac12\Bigr)$。检验：$3+4\sqrt3\cdot\sqrt3\cdot\dfrac12-4\cdot\dfrac14=3+6-1=8$。最小值 $-8$（如 $\theta=\dfrac{2\pi}{3}$）。</p>
+          <ul class="keys"><li>ア = 2</li><li>イ = 8</li><li>ウ = 6</li><li>エ = 8</li><li>オ = 3</li><li>カ = 1</li><li>キ = 2</li><li>ク = 8</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 6　换元 $t=\sin x+\cos x$ 与参数</b><span class="origin">原创</span><span>对应规律 3</span></div>
+      <p>设 $a$ 为常数，$f(x)=\sin2x+a(\sin x+\cos x)\ \ (0\le x&lt;2\pi)$，令 $t=\sin x+\cos x$。</p>
+      <p>(1) $t$ 的取值范围是 $-\sqrt{\B{ア}}\le t\le\sqrt{\B{イ}}$，并且 $f(x)=t^2+at-\B{ウ}$。</p>
+      <p>(2) $a=2$ 时，$f(x)$ 的最小值为 $-\B{エ}$，此时 $x=\pi,\ \dfrac{\B{オ}}{\B{カ}}\pi$。</p>
+      <p>(3) $a=4$ 时，$f(x)$ 的最小值为 $\B{キ}-\B{ク}\sqrt{\B{ケ}}$，此时 $x=\dfrac{\B{コ}}{\B{サ}}\pi$。</p>
+      <p>(4) $a&gt;0$ 且 $f(x)$ 的最小值为 $-5$ 时，$a=\B{シ}\sqrt{\B{ス}}$。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) $t=\sqrt2\sin\Bigl(x+\dfrac{\pi}{4}\Bigr)$，所以 $-\sqrt2\le t\le\sqrt2$。$t^2=1+2\sin x\cos x=1+\sin2x$，所以 $\sin2x=t^2-1$，$f=t^2+at-1$。记 $g(t)=\Bigl(t+\dfrac a2\Bigr)^2-1-\dfrac{a^2}{4}$。</p>
+          <p>(2) $a=2$：$g(t)=(t+1)^2-2$，顶点 $t=-1$ 在范围内，最小值 $-2$。$\sin\Bigl(x+\dfrac{\pi}{4}\Bigr)=-\dfrac{1}{\sqrt2}$，$x+\dfrac{\pi}{4}=\dfrac{5\pi}{4},\dfrac{7\pi}{4}$，即 $x=\pi,\ \dfrac32\pi$。</p>
+          <p>(3) $a=4$：$g(t)=(t+2)^2-5$，顶点 $t=-2&lt;-\sqrt2$，在范围内 $g$ 递增，最小值在 $t=-\sqrt2$：$g(-\sqrt2)=2-4\sqrt2-1=1-4\sqrt2$。此时 $x+\dfrac{\pi}{4}=\dfrac{3\pi}{2}$，$x=\dfrac54\pi$。</p>
+          <p>(4) 分情况（$a&gt;0$）：</p>
+          <ul>
+            <li>$0&lt;a\le2\sqrt2$（顶点 $-\frac a2$ 在范围内）：最小值 $-1-\dfrac{a^2}{4}=-5$，得 $a=4$，但 $4&gt;2\sqrt2$，不符合。</li>
+            <li>$a&gt;2\sqrt2$：最小值 $g(-\sqrt2)=1-\sqrt2\,a=-5$，得 $a=3\sqrt2$，满足 $3\sqrt2&gt;2\sqrt2$。</li>
+          </ul>
+          <p>所以 $a=3\sqrt2$。</p>
+          <ul class="keys"><li>ア = 2</li><li>イ = 2</li><li>ウ = 1</li><li>エ = 2</li><li>オ = 3</li><li>カ = 2</li><li>キ = 1</li><li>ク = 4</li><li>ケ = 2</li><li>コ = 5</li><li>サ = 4</li><li>シ = 3</li><li>ス = 2</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 7　两个三角方程的公共解</b><span class="origin">原创</span><span>对应规律 5</span></div>
+      <p>在 $0\le x&lt;2\pi$ 中考虑两个方程：</p>
+      $$\text{①}\ \ 2\cos^2x-\sin x-1=0,\qquad \text{②}\ \ \sin x+\sqrt3\cos x=a\ \ (a\text{ 为常数}).$$
+      <p>(1) ① 化为 $(2\sin x-1)(\sin x+1)=0$，所以 $\sin x=\dfrac{\B{ア}}{\B{イ}}$ 或 $\sin x=-\B{ウ}$，① 的解为 $x=\dfrac{\pi}{\B{エ}},\ \dfrac{\B{オ}}{\B{カ}}\pi,\ \dfrac{\B{キ}}{\B{ク}}\pi$。</p>
+      <p>(2) ② 的左边 $=2\sin\Bigl(x+\dfrac{\pi}{\B{ケ}}\Bigr)$。</p>
+      <p>(3) ① 与 ② 有公共解的条件是 $a=\B{コ}$ 或 $a=-\B{サ}$。</p>
+      <p>(4) $a=-\B{サ}$ 时，公共解有 $\B{シ}$ 个，它们的和为 $\dfrac{\B{ス}}{\B{セ}}\pi$。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) $2(1-\sin^2x)-\sin x-1=-(2\sin^2x+\sin x-1)=-(2\sin x-1)(\sin x+1)$。$\sin x=\dfrac12$ 得 $x=\dfrac{\pi}{6},\dfrac56\pi$；$\sin x=-1$ 得 $x=\dfrac32\pi$。</p>
+          <p>(2) $\sin x+\sqrt3\cos x=2\Bigl(\sin x\cdot\dfrac12+\cos x\cdot\dfrac{\sqrt3}{2}\Bigr)=2\sin\Bigl(x+\dfrac{\pi}{3}\Bigr)$。</p>
+          <p>(3) 公共解必是 ① 的解，逐个代入 ② 的左边：</p>
+          <ul>
+            <li>$x=\dfrac{\pi}{6}$：$2\sin\dfrac{\pi}{2}=2$；</li>
+            <li>$x=\dfrac56\pi$：$2\sin\dfrac{7\pi}{6}=-1$；</li>
+            <li>$x=\dfrac32\pi$：$2\sin\dfrac{11\pi}{6}=-1$。</li>
+          </ul>
+          <p>所以 $a=2$ 或 $a=-1$。</p>
+          <p>(4) $a=-1$ 时 $x=\dfrac56\pi,\ \dfrac32\pi$ 都是公共解，共 $2$ 个，和为 $\dfrac56\pi+\dfrac32\pi=\dfrac73\pi$。（$a=2$ 时只有 $x=\dfrac{\pi}{6}$ 一个。）</p>
+          <ul class="keys"><li>ア = 1</li><li>イ = 2</li><li>ウ = 1</li><li>エ = 6</li><li>オ = 5</li><li>カ = 6</li><li>キ = 3</li><li>ク = 2</li><li>ケ = 3</li><li>コ = 2</li><li>サ = 1</li><li>シ = 2</li><li>ス = 7</li><li>セ = 3</li></ul>
+        </div>
+      </details>
+    </article>
   </section>
 
   <footer>

@@ -244,6 +244,7 @@ svg circle.sm { fill: none; opacity: .55; }
         <li><a href="#examples">9 原创例题</a></li>
         <li><a href="#practice">10 练习题</a></li>
         <li><a href="#terms">11 术语对照</a></li>
+        <li><a href="#eju-bank">真题风格练习</a></li>
       </ol>
     </div>
     <button class="chip theme-btn" id="theme" type="button">深色</button>
@@ -610,6 +611,28 @@ svg circle.sm { fill: none; opacity: .55; }
     </div>
     <div class="box tip">
       <p><strong>EJU 应试提示：</strong>题目给出“定点、定直线、距离比”时，不必先判断类型，列式平方即可，最后再用 $e$ 检验结果。术语：<span lang="ja">離心率</span><span class="kana">（りしんりつ）</span>、<span lang="ja">距離の比</span><span class="kana">（きょりのひ）</span>。</p>
+    </div>
+
+    <h3>4.4 含参数的二次曲线：按参数分类</h3>
+    <p>方程 $\dfrac{x^2}{p}+\dfrac{y^2}{q}=1$ 中 $p,q$ 含参数时，先看两个分母的符号，再比较大小：</p>
+    <div class="tw"><table>
+      <thead><tr><th>条件</th><th>曲线</th><th>焦点</th></tr></thead>
+      <tbody>
+        <tr><td>$p&gt;q&gt;0$</td><td>横长椭圆</td><td>$(\pm\sqrt{p-q},\,0)$</td></tr>
+        <tr><td>$q&gt;p&gt;0$</td><td>纵长椭圆</td><td>$(0,\,\pm\sqrt{q-p})$</td></tr>
+        <tr><td>$p=q&gt;0$</td><td>圆</td><td>（无焦点，可看作 $c=0$）</td></tr>
+        <tr><td>$p&gt;0&gt;q$</td><td>双曲线（与 $x$ 轴相交）</td><td>$(\pm\sqrt{p+|q|},\,0)$</td></tr>
+        <tr><td>$q&gt;0&gt;p$</td><td>双曲线（与 $y$ 轴相交）</td><td>$(0,\,\pm\sqrt{q+|p|})$</td></tr>
+        <tr><td>$p,q&lt;0$</td><td>没有图形</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+    <p>一般式含参数时，先配方求出<strong>中心</strong>（中心通常随参数移动），把方程化成上表的形式后，再把焦点平移回去。</p>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只讨论“椭圆或双曲线”，漏掉圆（$p=q$）和分母为 $0$ 的情形。</li>
+        <li>双曲线写成 $c^2=p-q$ 时忘了此时 $q&lt;0$，其实就是 $c^2=p+|q|$。</li>
+      </ul>
     </div>
   </section>
 
@@ -1353,6 +1376,174 @@ svg circle.sm { fill: none; opacity: .55; }
     </div>
     <div class="box tip">
       <p><strong>EJU 应试提示：</strong>EJU 数学试卷可选日语或英语，如果选日语，请优先熟悉题干中的固定说法。用上面的搜索框按中文或假名查词，并把常用词连同公式一起记，例如 <span lang="ja">離心率</span> 与 $e=\dfrac{c}{a}$。</p>
+    </div>
+  </section>
+
+  <section id="eju-bank">
+    <h2>真题风格练习（EJU 题库对照）</h2>
+    <p>本节对照《EJU 数学2 知识点分类题库 2005–2025》（36 份试卷）中「二次曲线」类的题目归纳出题规律，并配有<strong>原创</strong>练习题（数字和设定均为原创，并非真题）。</p>
+    <div class="box good">
+      <p><strong>题库出题规律</strong></p>
+      <ul>
+        <li><strong>出题频率低：</strong>本类在 36 份试卷中只出现 1 题（2005年第2回），但所考的配方、焦点公式是整章的基础。</li>
+        <li><strong>含参数标准形的类型判别：</strong>按分母的符号和大小，把参数范围分成椭圆、圆、双曲线、无图形几种情况（2005年第2回）。</li>
+        <li><strong>焦点位置随参数切换：</strong>焦点在 $x$ 轴还是 $y$ 轴上取决于参数，$c^2$ 的表达式要分段写（2005年第2回）。</li>
+        <li><strong>一般式配方求中心与焦点：</strong>先配方求中心，在标准位置求焦点，再平移回去（2005年第2回）。</li>
+      </ul>
+      <p class="kana">题库中本类只有 1 题，所以第 3–7 题是围绕“中心与焦点”的延伸练习（抛物线族、离心率、共焦曲线、由定义求轨迹），用来巩固，不代表题库中的高频题型。</p>
+    </div>
+    <div class="box">
+      <p><strong>填写方式：</strong>每个方框（如 $\boxed{\text{ア}}$）填一位数字或符号 $-$；两个字母相连（如 $\boxed{\text{アイ}}$）表示两位数或“负号+一位数”。分数约到最简，根号内的数尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 1　含参数标准形的类型</b><span class="origin">原创 · 对应题型：含参数二次曲线的类型、焦点</span></div>
+      <p>设 $k$ 为常数（$k\ne2,\ k\ne6$），考虑曲线 $C:\ \dfrac{x^2}{k-2}+\dfrac{y^2}{6-k}=1$。</p>
+      <p>(1) $C$ 为椭圆的条件是 $\boxed{\text{ア}}&lt;k&lt;\boxed{\text{イ}}$ 且 $k\ne\boxed{\text{ウ}}$（$k=\boxed{\text{ウ}}$ 时 $C$ 是圆）。</p>
+      <p>(2) $C$ 为与 $x$ 轴相交的双曲线的条件是 $k&gt;\boxed{\text{エ}}$；为与 $y$ 轴相交的双曲线的条件是 $k&lt;\boxed{\text{オ}}$。</p>
+      <p>(3) $k&gt;4$（$k\ne6$）时，无论 $C$ 是椭圆还是双曲线，焦点都是 $\left(\pm\sqrt{\boxed{\text{カ}}k-\boxed{\text{キ}}},\ 0\right)$。</p>
+      <p>(4) $C$ 的焦点为 $(\pm3,0)$ 时，$k=\dfrac{\boxed{\text{クケ}}}{\boxed{\text{コ}}}$，此时 $C$ 是 $\boxed{\text{サ}}$（① 椭圆　② 双曲线）。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 两个分母都为正：$k-2&gt;0$ 且 $6-k&gt;0$，即 $2&lt;k&lt;6$。分母相等时 $k-2=6-k$，$k=4$，此时 $C:\ x^2+y^2=2$ 是圆。</li>
+        <li>(2) $k-2&gt;0&gt;6-k$ 即 $k&gt;6$ 时，$x^2$ 项为正，是与 $x$ 轴相交的双曲线；$6-k&gt;0&gt;k-2$ 即 $k&lt;2$ 时，是与 $y$ 轴相交的双曲线。</li>
+        <li>(3) $4&lt;k&lt;6$：横长椭圆，$c^2=(k-2)-(6-k)=2k-8$。$k&gt;6$：双曲线，$c^2=(k-2)+(k-6)=2k-8$。两种情况的焦点都是 $(\pm\sqrt{2k-8},\,0)$。</li>
+        <li>(4) 焦点在 $x$ 轴上，所以 $k&gt;4$，$2k-8=9$，$k=\dfrac{17}{2}$。因为 $\dfrac{17}{2}&gt;6$，$C$ 是双曲线 $\dfrac{2x^2}{13}-\dfrac{2y^2}{5}=1$。</li>
+        </ol>
+        <ul class="keys"><li>ア = 2</li><li>イ = 6</li><li>ウ = 4</li><li>エ = 6</li><li>オ = 2</li><li>カ = 2</li><li>キ = 8</li><li>クケ = 17</li><li>コ = 2</li><li>サ = 2</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 2　含参数一般式：配方求中心与焦点</b><span class="origin">原创 · 对应题型：中心与焦点、按参数分类</span></div>
+      <p>设 $k\ne0$，考虑曲线 $C:\ x^2+ky^2-4x-2ky+4-3k=0$。</p>
+      <p>(1) 配方可知，$C$ 的中心是 $(\boxed{\text{ア}},\ \boxed{\text{イ}})$，与 $k$ 无关。</p>
+      <p>(2) $k=3$ 时 $C$ 是椭圆，焦点是 $\left(\boxed{\text{ウ}}\pm\boxed{\text{エ}}\sqrt{\boxed{\text{オ}}},\ \boxed{\text{カ}}\right)$。</p>
+      <p>(3) $k=-2$ 时 $C$ 是双曲线，焦点是 $\left(\boxed{\text{キ}},\ \boxed{\text{ク}}\pm\boxed{\text{ケ}}\sqrt{\boxed{\text{コ}}}\right)$，渐近线是 $y-1=\pm\dfrac{\sqrt{\boxed{\text{サ}}}}{\boxed{\text{シ}}}(x-2)$。</p>
+      <p>(4) $C$ 的两个焦点之间的距离为 $8$ 时，$k=\boxed{\text{ス}}$ 或 $k=\boxed{\text{セソ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $(x^2-4x+4)+k(y^2-2y+1)-k+4-3k-4=0$，即 $(x-2)^2+k(y-1)^2=4k$，两边除以 $4k$：$$\frac{(x-2)^2}{4k}+\frac{(y-1)^2}{4}=1.$$中心为 $(2,1)$。（$k=0$ 时方程变成 $(x-2)^2=0$，是直线 $x=2$，已排除。）</li>
+        <li>(2) $k=3$：$\dfrac{(x-2)^2}{12}+\dfrac{(y-1)^2}{4}=1$，$c=\sqrt{12-4}=2\sqrt2$，长轴平行于 $x$ 轴，焦点 $(2\pm2\sqrt2,\ 1)$。</li>
+        <li>(3) $k=-2$：$\dfrac{(y-1)^2}{4}-\dfrac{(x-2)^2}{8}=1$，$c=\sqrt{4+8}=2\sqrt3$，焦点在直线 $x=2$ 上：$(2,\ 1\pm2\sqrt3)$。渐近线斜率 $\pm\dfrac{2}{\sqrt8}=\pm\dfrac{\sqrt2}{2}$。</li>
+        <li>(4) 需要 $c=4$，$c^2=16$。
+          <ul>
+          <li>$k&gt;1$：横长椭圆，$c^2=4k-4=16$，$k=5$（符合）。</li>
+          <li>$0&lt;k&lt;1$：纵长椭圆，$c^2=4-4k=16$，$k=-3$（不符合）；$k=1$ 是圆，无焦点。</li>
+          <li>$k&lt;0$：双曲线，$c^2=4+(-4k)=16$，$k=-3$（符合）。</li>
+          </ul>
+        所以 $k=5$ 或 $k=-3$。</li>
+        </ol>
+        <ul class="keys"><li>ア = 2</li><li>イ = 1</li><li>ウ = 2</li><li>エ = 2</li><li>オ = 2</li><li>カ = 1</li><li>キ = 2</li><li>ク = 1</li><li>ケ = 2</li><li>コ = 3</li><li>サ = 2</li><li>シ = 2</li><li>ス = 5</li><li>セソ = −3</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 3　抛物线族的顶点与焦点</b><span class="origin">原创 · 延伸：焦点随参数移动</span></div>
+      <p>设 $a$ 为实数，考虑抛物线 $C_a:\ y^2-2ay-4x+a^2+4a=0$。</p>
+      <p>(1) $C_a$ 的方程可化为 $(y-a)^2=\boxed{\text{ア}}(x-a)$，顶点为 $(a,a)$。</p>
+      <p>(2) $C_a$ 的焦点是 $(a+\boxed{\text{イ}},\ a)$，准线是 $x=a-\boxed{\text{ウ}}$。</p>
+      <p>(3) $a$ 变化时，焦点在直线 $y=x-\boxed{\text{エ}}$ 上移动。</p>
+      <p>(4) $C_a$ 过点 $(6,3)$ 时，$a=\boxed{\text{オ}}$ 或 $a=\boxed{\text{カキ}}$。$a=\boxed{\text{オ}}$ 时，点 $(6,3)$ 到 $C_a$ 的焦点的距离是 $\boxed{\text{ク}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $y^2-2ay+a^2=4x-4a$，即 $(y-a)^2=4(x-a)$。</li>
+        <li>(2) 它是 $y^2=4x$（$p=1$，焦点 $(1,0)$，准线 $x=-1$）平移 $(a,a)$ 所得，焦点 $(a+1,\ a)$，准线 $x=a-1$。</li>
+        <li>(3) 焦点 $X=a+1,\ Y=a$，消去 $a$ 得 $Y=X-1$。</li>
+        <li>(4) 代入 $(6,3)$：$(3-a)^2=4(6-a)$，$a^2-2a-15=0$，$(a-5)(a+3)=0$，$a=5$ 或 $a=-3$。$a=5$ 时焦点 $(6,5)$，距离为 $|5-3|=2$。也可以用定义：等于到准线 $x=4$ 的距离 $6-4=2$。</li>
+        </ol>
+        <ul class="keys"><li>ア = 4</li><li>イ = 1</li><li>ウ = 1</li><li>エ = 1</li><li>オ = 5</li><li>カキ = −3</li><li>ク = 2</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 4　含参数双曲线的离心率</b><span class="origin">原创 · 延伸：离心率、渐近线、焦半径</span></div>
+      <p>设 $m&gt;0$，考虑双曲线 $C:\ \dfrac{x^2}{4}-\dfrac{y^2}{m}=1$。</p>
+      <p>(1) $C$ 的离心率为 $\sqrt3$ 时，$m=\boxed{\text{ア}}$。</p>
+      <p>(2) $C$ 的两条渐近线互相垂直时，$m=\boxed{\text{イ}}$，离心率为 $\sqrt{\boxed{\text{ウ}}}$。</p>
+      <p>以下设 $m=8$，$F$ 为 $x$ 坐标为正的焦点，$F'$ 为另一个焦点。</p>
+      <p>(3) $F$ 的坐标是 $\left(\boxed{\text{エ}}\sqrt{\boxed{\text{オ}}},\ 0\right)$，$F$ 到渐近线的距离是 $\boxed{\text{カ}}\sqrt{\boxed{\text{キ}}}$。</p>
+      <p>(4) $C$ 上的点 $P$ 满足 $PF=5$ 时，$PF'=\boxed{\text{ク}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $a=2,\ c=\sqrt{4+m}$，$e=\dfrac{\sqrt{4+m}}{2}=\sqrt3$，$4+m=12$，$m=8$。</li>
+        <li>(2) 渐近线斜率 $\pm\dfrac{\sqrt m}{2}$，垂直要求 $\dfrac{m}{4}=1$，$m=4$。此时 $c=2\sqrt2$，$e=\sqrt2$。</li>
+        <li>(3) $c=\sqrt{4+8}=2\sqrt3$。渐近线 $\sqrt8\,x-2y=0$，距离 $\dfrac{|\sqrt8\cdot2\sqrt3|}{\sqrt{8+4}}=\sqrt8=2\sqrt2$（一般地等于 $b$）。</li>
+        <li>(4) 由定义 $|PF-PF'|=2a=4$，所以 $PF'=9$ 或 $1$。但左支上的点满足 $PF\ge a+c=2+2\sqrt3&gt;5$，所以 $P$ 在右支，$PF'=PF+4=9$。（右支上 $PF=ex-a$，由 $\sqrt3x-2=5$ 得 $x=\dfrac{7\sqrt3}{3}$，确实存在。）</li>
+        </ol>
+        <ul class="keys"><li>ア = 8</li><li>イ = 4</li><li>ウ = 2</li><li>エ = 2</li><li>オ = 3</li><li>カ = 2</li><li>キ = 2</li><li>ク = 9</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 5　共焦的椭圆与双曲线</b><span class="origin">原创 · 对应题型：按参数分类、焦点</span></div>
+      <p>设 $t$ 为常数（$t\ne6,\ t\ne10$），考虑曲线 $C_t:\ \dfrac{x^2}{10-t}+\dfrac{y^2}{6-t}=1$。</p>
+      <p>(1) $t&lt;\boxed{\text{ア}}$ 时 $C_t$ 是椭圆，$\boxed{\text{ア}}&lt;t&lt;\boxed{\text{イウ}}$ 时 $C_t$ 是双曲线，两种情况的焦点都是 $(\pm\boxed{\text{エ}},\ 0)$。</p>
+      <p>(2) 过点 $(2,3)$ 的 $C_t$ 有两条：$t=\boxed{\text{オカ}}$ 时为椭圆 $\dfrac{x^2}{\boxed{\text{キク}}}+\dfrac{y^2}{\boxed{\text{ケコ}}}=1$，$t=\boxed{\text{サ}}$ 时为双曲线 $x^2-\dfrac{y^2}{\boxed{\text{シ}}}=1$。</p>
+      <p>(3) 在点 $(2,3)$ 处，(2) 中椭圆的切线斜率为 $-\dfrac{\boxed{\text{ス}}}{\boxed{\text{セ}}}$，双曲线的切线斜率为 $\boxed{\text{ソ}}$，两条切线的夹角为 $\boxed{\text{タチ}}^\circ$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $t&lt;6$：两分母均正，且 $10-t&gt;6-t$，是横长椭圆，$c^2=(10-t)-(6-t)=4$。$6&lt;t&lt;10$：$10-t&gt;0&gt;6-t$，是双曲线，$c^2=(10-t)+(t-6)=4$。焦点都是 $(\pm2,0)$。（$t&gt;10$ 时无图形。）</li>
+        <li>(2) 令 $u=10-t$，代入 $(2,3)$：$\dfrac4u+\dfrac{9}{u-4}=1$，$u^2-17u+16=0$，$u=16$ 或 $1$，即 $t=-6$ 或 $9$。$t=-6$：$\dfrac{x^2}{16}+\dfrac{y^2}{12}=1$；$t=9$：$x^2-\dfrac{y^2}{3}=1$。</li>
+        <li>(3) 椭圆切线 $\dfrac{2x}{16}+\dfrac{3y}{12}=1$，即 $y=-\dfrac12x+4$，斜率 $-\dfrac12$；双曲线切线 $2x-\dfrac{3y}{3}=1$，即 $y=2x-1$，斜率 $2$。斜率之积 $-1$，所以两切线垂直，夹角 $90^\circ$。共焦的椭圆与双曲线总是这样正交。</li>
+        </ol>
+        <ul class="keys"><li>ア = 6</li><li>イウ = 10</li><li>エ = 2</li><li>オカ = −6</li><li>キク = 16</li><li>ケコ = 12</li><li>サ = 9</li><li>シ = 3</li><li>ス = 1</li><li>セ = 2</li><li>ソ = 2</li><li>タチ = 90</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 6　由距离比求二次曲线</b><span class="origin">原创 · 延伸：离心率决定类型</span></div>
+      <p>设 $F(1,0)$，直线 $\ell:\ x=4$。点 $P$ 到 $\ell$ 的距离为 $d$，常数 $e&gt;0$，满足 $PF=e\,d$ 的点 $P$ 的轨迹为 $C_e$。</p>
+      <p>(1) $e=\dfrac12$ 时，$C_e:\ \dfrac{x^2}{\boxed{\text{ア}}}+\dfrac{y^2}{\boxed{\text{イ}}}=1$。</p>
+      <p>(2) $e=1$ 时，$C_e:\ y^2=-\boxed{\text{ウ}}\left(x-\dfrac{\boxed{\text{エ}}}{\boxed{\text{オ}}}\right)$。</p>
+      <p>(3) $e=2$ 时，$C_e:\ \dfrac{(x-\boxed{\text{カ}})^2}{\boxed{\text{キ}}}-\dfrac{y^2}{\boxed{\text{クケ}}}=1$，它的另一个焦点是 $(\boxed{\text{コ}},\ 0)$。</p>
+      <p>(4) 一般地，$C_e$ 的方程中 $x^2$ 的系数是 $1-e^2$。因此 $0&lt;e&lt;1$ 时 $C_e$ 是 $\boxed{\text{サ}}$，$e&gt;1$ 时 $C_e$ 是 $\boxed{\text{シ}}$（① 椭圆　② 抛物线　③ 双曲线）。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>两边平方：$(x-1)^2+y^2=e^2(x-4)^2$，整理得 $$(1-e^2)x^2+y^2+(8e^2-2)x+1-16e^2=0.$$</li>
+        <li>(1) $e=\dfrac12$：$4(x-1)^2+4y^2=(x-4)^2$，$3x^2+4y^2=12$，即 $\dfrac{x^2}{4}+\dfrac{y^2}{3}=1$。检验：$c=1$，$e=\dfrac{c}{a}=\dfrac12$。</li>
+        <li>(2) $e=1$：$x^2$ 项消去，$y^2=-6x+15=-6\left(x-\dfrac52\right)$，顶点 $\left(\dfrac52,0\right)$ 恰为 $F$ 与 $\ell$ 的中点。</li>
+        <li>(3) $e=2$：$-3x^2+y^2+30x-63=0$，即 $3(x-5)^2-y^2=12$，$\dfrac{(x-5)^2}{4}-\dfrac{y^2}{12}=1$。中心 $(5,0)$，$c=\sqrt{4+12}=4$，焦点 $(1,0)$ 与 $(9,0)$。检验 $e=\dfrac{c}{a}=2$。</li>
+        <li>(4) $0&lt;e&lt;1$ 时 $x^2,\ y^2$ 系数同号，是椭圆；$e&gt;1$ 时异号，是双曲线。</li>
+        </ol>
+        <ul class="keys"><li>ア = 4</li><li>イ = 3</li><li>ウ = 6</li><li>エ = 5</li><li>オ = 2</li><li>カ = 5</li><li>キ = 4</li><li>クケ = 12</li><li>コ = 9</li><li>サ = 1</li><li>シ = 3</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 7　中心移动的双曲线族</b><span class="origin">原创 · 对应题型：中心与焦点（综合）</span></div>
+      <p>设 $t$ 为实数，考虑曲线 $C_t:\ x^2-2y^2-2tx+4ty+4=0$。</p>
+      <p>(1) 配方得 $2(y-t)^2-(x-t)^2=t^2+\boxed{\text{ア}}$，所以 $C_t$ 总是双曲线，其中心在直线 $y=\boxed{\text{イ}}x$ 上。</p>
+      <p>(2) $C_t$ 的焦点在直线 $x=t$ 上，中心到焦点的距离是 $\sqrt{\dfrac{\boxed{\text{ウ}}(t^2+\boxed{\text{エ}})}{\boxed{\text{オ}}}}$。</p>
+      <p>(3) $C_t$ 的渐近线斜率是 $\pm\dfrac{\sqrt{\boxed{\text{カ}}}}{\boxed{\text{キ}}}$，与 $t$ 无关。</p>
+      <p>(4) 两焦点间的距离在 $t=\boxed{\text{ク}}$ 时最小，最小值为 $\boxed{\text{ケ}}\sqrt{\boxed{\text{コ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $(x-t)^2-t^2-2\{(y-t)^2-t^2\}+4=0$，即 $2(y-t)^2-(x-t)^2=t^2+4$。右边恒为正，所以 $$\frac{(y-t)^2}{\frac{t^2+4}{2}}-\frac{(x-t)^2}{t^2+4}=1$$ 总是与竖直方向相交的双曲线，中心 $(t,t)$ 在 $y=x$ 上。</li>
+        <li>(2) $c^2=\dfrac{t^2+4}{2}+(t^2+4)=\dfrac{3(t^2+4)}{2}$，焦点 $\left(t,\ t\pm\sqrt{\dfrac{3(t^2+4)}{2}}\right)$。</li>
+        <li>(3) 斜率 $\pm\sqrt{\dfrac{(t^2+4)/2}{t^2+4}}=\pm\dfrac{1}{\sqrt2}=\pm\dfrac{\sqrt2}{2}$。</li>
+        <li>(4) 焦距 $2c=2\sqrt{\dfrac{3(t^2+4)}{2}}$，$t=0$ 时最小，为 $2\sqrt6$。</li>
+        </ol>
+        <ul class="keys"><li>ア = 4</li><li>イ = 1</li><li>ウ = 3</li><li>エ = 4</li><li>オ = 2</li><li>カ = 2</li><li>キ = 2</li><li>ク = 0</li><li>ケ = 2</li><li>コ = 6</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <div class="box tip">
+      <p><strong>EJU 应试提示：</strong>含参数的二次曲线题，先写出“分母的符号表”把参数范围切开，再在每一段内求 $c^2$，最后回头检查解是否落在该段内（如真题风格 2 (4) 中 $k=-3$ 只在双曲线段成立）。术语：<span lang="ja">定数</span><span class="kana">（ていすう）</span>、<span lang="ja">場合分け</span><span class="kana">（ばあいわけ）</span>。</p>
     </div>
   </section>
 

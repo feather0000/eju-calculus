@@ -241,6 +241,7 @@ html { scroll-padding-top: 100px; }
         <li><a href="#examples">6 原创例题</a></li>
         <li><a href="#practice">7 练习题</a></li>
         <li><a href="#terms">8 术语对照</a></li>
+        <li><a href="#eju-style">真题风格练习</a></li>
       </ol>
     </div>
     <button class="chip theme-btn" id="theme" type="button">深色</button>
@@ -545,6 +546,10 @@ html { scroll-padding-top: 100px; }
       <p><strong>EJU 应试提示：</strong>看到“実数解の個数”或“異なる2つの共有点”，第一反应是分离出一个固定图像和一组移动的直线。平行移动的直线看截距，绕定点旋转的直线看斜率。</p>
       <p><strong>日语术语：</strong><span lang="ja">実数解の個数</span>（<span class="kana" lang="ja">じっすうかいのこすう</span>）：实数解的个数；<span lang="ja">異なる2つの共有点</span>（<span class="kana" lang="ja">ことなるふたつのきょうゆうてん</span>）：两个不同的公共点；<span lang="ja">傾き</span>（<span class="kana" lang="ja">かたむき</span>）：斜率；<span lang="ja">切片</span>（<span class="kana" lang="ja">せっぺん</span>）：截距；<span lang="ja">重解</span>（<span class="kana" lang="ja">じゅうかい</span>）：重根。</p>
     </div>
+    <h3>应用：二次约束的参数表示与方程的公共解</h3>
+    <p><strong>二次约束 $\to$ 三角参数：</strong>条件为 $x^2+y^2=r^2$ 时，令 $x=r\cos\theta,\ y=r\sin\theta$；条件为椭圆 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ 时，令 $x=a\cos\theta,\ y=b\sin\theta$（$0\le\theta&lt;2\pi$）。这样，$x^2,\ xy,\ y^2$ 组成的二次式就变成 $\cos^2\theta,\ \sin\theta\cos\theta,\ \sin^2\theta$ 的式子，再按「降次 $\to$ 合成」求最值。例如 $x^2+y^2=1$ 时，$xy=\sin\theta\cos\theta=\dfrac12\sin2\theta$，最大值为 $\dfrac12$。</p>
+    <p><strong>两个方程的公共解（<span lang="ja">共通解</span>）：</strong>先完整解出不含参数（或容易解）的那个方程，把它的每个解代入另一个方程，就得到参数的候选值；最后还要回头数一数，每个参数值对应几个公共解。</p>
+
 
   </section>
 
@@ -1133,6 +1138,148 @@ html { scroll-padding-top: 100px; }
       <p><strong>EJU 应试提示：</strong>EJU 数学可选日语或英语试卷，选日语时要能迅速读懂题干。不需要逐字翻译，先圈出函数式和“$\square$ を求めよ”，再回头确认条件（$\ge,\ &gt;$ 和 “$\square$ のとき”）。</p>
       <p><strong>日语术语：</strong><span lang="ja">求めよ</span>（<span class="kana" lang="ja">もとめよ</span>）：求；<span lang="ja">ただし</span>（<span class="kana" lang="ja">ただし</span>）：但是（附加条件）；<span lang="ja">のとき</span>（<span class="kana" lang="ja">のとき</span>）：当……时；<span lang="ja">すべての</span>（<span class="kana" lang="ja">すべての</span>）：所有的。</p>
     </div>
+  </section>
+
+  <section id="eju-style">
+    <h2>真题风格练习（EJU 题库对照）</h2>
+    <p>本节对照《EJU 数学2 知识点分类题库 2005–2025》中「函数与图像」类归纳出题规律，并配有<strong>原创</strong>练习题（数字和设定均为原创，并非真题）。这一类在 36 份试卷中只出现过 $1$ 题，样本很少，所以下面的规律按那道题的结构拆开来写。“图像 + 移动的直线”这一思路与本页第 2 节“含参数的实数解个数”相同。</p>
+    <div class="box good">
+      <p><strong>题库出题规律</strong></p>
+      <ul>
+        <li><strong>含绝对值的分段函数作图：</strong>按绝对值内部的符号分段，写出每一段的式子，画成折线或翻折后的抛物线，并读出最小值、折点（2006年第1回）。</li>
+        <li><strong>与直线的交点个数：</strong>直线含参数（平行移动或绕定点旋转），要数出它与图像的公共点个数（2006年第1回）。</li>
+        <li><strong>由个数反求参数范围：</strong>临界位置是“过折点”“与某一段平行”“与翻折部分相切”，要特别注意范围端点取不取等号（2006年第1回）。</li>
+        <li><strong>延伸方向（本页补充）：</strong>同样的看图方法也可用来处理 $x|x-p|$ 型函数、二重绝对值 $\bigl||x-p|-q\bigr|$、“对所有 $x$ 恒成立”的不等式，下面的练习也覆盖这些变形。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>填写方式：</strong>每个方框（如 $\boxed{\text{ア}}$）填一位数字或符号 $-$；两个字母相连（如 $\boxed{\text{ウエ}}$）表示两位数。分数约到最简，根号内的数尽量小。同一字母再次出现时填相同的数。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 1　折线与绕原点旋转的直线</b><span class="origin">原创 · 对应题型：分段绝对值函数、交点个数与参数范围</span></div>
+      <p>设 $f(x)=|x+1|+|x-3|$。</p>
+      <p>(1) $f(x)$ 的最小值为 $\boxed{\text{ア}}$，取最小值的 $x$ 的范围是 $-\boxed{\text{イ}}\le x\le\boxed{\text{ウ}}$。</p>
+      <p>(2) 直线 $y=mx$ 与 $y=f(x)$ 的图像有两个不同公共点的条件是 $\dfrac{\boxed{\text{エ}}}{\boxed{\text{オ}}}&lt;m&lt;\boxed{\text{カ}}$。</p>
+      <p>(3) 公共点恰有一个的条件是 $m&lt;-\boxed{\text{キ}}$，或 $m=\dfrac{\boxed{\text{エ}}}{\boxed{\text{オ}}}$，或 $m\ge\boxed{\text{ク}}$。</p>
+      <p>(4) $m=\dfrac32$ 时，两个公共点的 $x$ 坐标为 $\dfrac{\boxed{\text{ケ}}}{\boxed{\text{コ}}}$ 和 $\boxed{\text{サ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 分段：$x&lt;-1$ 时 $f(x)=-2x+2$；$-1\le x\le3$ 时 $f(x)=4$；$x&gt;3$ 时 $f(x)=2x-2$。所以最小值为 $4$，在 $-1\le x\le3$ 上取到。</li>
+        <li>(2) 逐段求交点。右段：$2x-2=mx$，$x=\dfrac{2}{2-m}$，要求 $x&gt;3$，即 $0&lt;2-m&lt;\dfrac23$，得 $\dfrac43&lt;m&lt;2$。</li>
+        <li>中间段：$4=mx$，$x=\dfrac4m$，要求 $-1\le\dfrac4m\le3$，得 $m\ge\dfrac43$ 或 $m\le-4$。</li>
+        <li>左段：$-2x+2=mx$，$x=\dfrac{2}{m+2}$，要求 $x&lt;-1$，即 $-2&lt;m+2&lt;0$，得 $-4&lt;m&lt;-2$。</li>
+        <li>合并：$m&gt;0$ 时只有中间段和右段可能相交，两者同时成立 $\iff\dfrac43&lt;m&lt;2$，此时有两个公共点。$m&lt;0$ 时中间段（$m\le-4$）与左段（$-4&lt;m&lt;-2$）的条件互不重叠，最多一个公共点。</li>
+        <li>(3) 恰一个：$m\ge2$（只交中间段）；$m=\dfrac43$（交于折点 $(3,4)$）；$m\le-4$ 或 $-4&lt;m&lt;-2$，合起来为 $m&lt;-2$。$-2\le m&lt;\dfrac43$ 时没有公共点。</li>
+        <li>(4) $m=\dfrac32$：中间段 $x=\dfrac{4}{3/2}=\dfrac83$，右段 $x=\dfrac{2}{1/2}=4$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 4，イ = 1，ウ = 3，エ = 4，オ = 3，カ = 2，キ = 2，ク = 2，ケ = 8，コ = 3，サ = 4</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 2　翻折的抛物线与平行移动的直线</b><span class="origin">原创 · 对应题型：$|g(x)|$ 的图像、相切与过折点</span></div>
+      <p>设 $f(x)=|x^2-2x-3|$。</p>
+      <p>(1) 直线 $y=k$ 与 $y=f(x)$ 有 $4$ 个公共点的条件是 $0&lt;k&lt;\boxed{\text{ア}}$；$k=\boxed{\text{ア}}$ 时公共点有 $\boxed{\text{イ}}$ 个。</p>
+      <p>(2) 直线 $y=x+a$ 与曲线 $y=-x^2+2x+3\ (-1&lt;x&lt;3)$ 相切时，$a=\dfrac{\boxed{\text{ウエ}}}{\boxed{\text{オ}}}$，切点的 $x$ 坐标为 $\dfrac{\boxed{\text{カ}}}{\boxed{\text{キ}}}$。</p>
+      <p>(3) $y=x+a$ 与 $y=f(x)$ 有 $4$ 个公共点的条件是 $\boxed{\text{ク}}&lt;a&lt;\dfrac{\boxed{\text{ウエ}}}{\boxed{\text{オ}}}$。又，$a=-\boxed{\text{ケ}}$ 时公共点恰有一个。</p>
+      <p>(4) $a=\boxed{\text{ク}}$ 时，各公共点的 $x$ 坐标之和为 $\boxed{\text{コ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $x^2-2x-3=(x+1)(x-3)$。$x\le-1$ 或 $x\ge3$ 时 $f(x)=x^2-2x-3$；$-1&lt;x&lt;3$ 时翻上来，$f(x)=-(x-1)^2+4$，顶点 $(1,4)$。所以 $0&lt;k&lt;4$ 时有 $4$ 个公共点，$k=4$ 时为 $3$ 个（顶点处 $1$ 个，外侧 $2$ 个）。</li>
+        <li>(2) $-x^2+2x+3=x+a$，即 $x^2-x+(a-3)=0$。判别式 $1-4(a-3)=13-4a=0$，$a=\dfrac{13}{4}$，切点 $x=\dfrac12$（在 $-1&lt;x&lt;3$ 内）。</li>
+        <li>(3) 斜率为 $1$ 的直线向上平移时，临界位置为：过 $(3,0)$ 的 $a=-3$；过 $(-1,0)$ 的 $a=1$；相切的 $a=\dfrac{13}{4}$。逐段检查得：$a&lt;-3$ 时 $0$ 个，$a=-3$ 时 $1$ 个，$-3&lt;a&lt;1$ 时 $2$ 个，$a=1$ 时 $3$ 个，$1&lt;a&lt;\dfrac{13}{4}$ 时 $4$ 个，$a=\dfrac{13}{4}$ 时 $3$ 个，$a&gt;\dfrac{13}{4}$ 时 $2$ 个。</li>
+        <li>注意 $a&lt;-3$ 时外侧右段的斜率比 $1$ 大，直线整个在图像下方，所以没有公共点。</li>
+        <li>(4) $a=1$：翻折部分 $x^2-x-2=0$，$x=-1,\ 2$；外侧部分 $x^2-2x-3=x+1$，$x^2-3x-4=0$，$x=-1,\ 4$。不同的公共点为 $x=-1,\ 2,\ 4$，和为 $5$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 4，イ = 3，ウエ = 13，オ = 4，カ = 1，キ = 2，ク = 1，ケ = 3，コ = 5</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 3　$x|x-2|$ 的图像与实数解个数</b><span class="origin">原创 · 对应题型：分段函数、水平线与旋转直线</span></div>
+      <p>设 $f(x)=x|x-2|$。</p>
+      <p>(1) 在 $x&lt;2$ 的范围内，$f(x)$ 的极大值为 $\boxed{\text{ア}}$，此时 $x=\boxed{\text{イ}}$。</p>
+      <p>(2) 方程 $f(x)=k$ 有 $3$ 个不同实数解的条件是 $\boxed{\text{ウ}}&lt;k&lt;\boxed{\text{エ}}$。</p>
+      <p>(3) $k=\boxed{\text{エ}}$ 时，方程的解为 $x=\boxed{\text{オ}}$ 和 $x=\boxed{\text{カ}}+\sqrt{\boxed{\text{キ}}}$。</p>
+      <p>(4) 直线 $y=mx$ 与 $y=f(x)$ 恰有两个公共点的 $m$ 的值为 $m=\boxed{\text{ク}}$ 和 $m=\boxed{\text{ケ}}$（$\boxed{\text{ク}}&lt;\boxed{\text{ケ}}$）。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $x&lt;2$ 时 $f(x)=-x^2+2x=-(x-1)^2+1$，$x\ge2$ 时 $f(x)=x^2-2x=(x-1)^2-1$。所以在 $x=1$ 处取极大值 $1$；$x\to-\infty$ 时 $f(x)\to-\infty$，$x\ge2$ 部分从 $0$ 单调增加。</li>
+        <li>(2) 水平线 $y=k$：$k&lt;0$ 时 $1$ 个，$k=0$ 时 $2$ 个（$x=0,2$），$0&lt;k&lt;1$ 时 $3$ 个，$k=1$ 时 $2$ 个，$k&gt;1$ 时 $1$ 个。</li>
+        <li>(3) $k=1$：$x&lt;2$ 部分 $(x-1)^2=0$，$x=1$；$x\ge2$ 部分 $x^2-2x-1=0$，$x=1\pm\sqrt2$，取 $x\ge2$ 的 $x=1+\sqrt2$。</li>
+        <li>(4) $x|x-2|=mx\iff x=0$ 或 $|x-2|=m$。$m&lt;0$ 时只有 $x=0$；$m=0$ 时 $x=0,2$，两个；$m&gt;0$ 时 $x=2\pm m$，再加上 $x=0$ 共 $3$ 个，但 $m=2$ 时 $2-m=0$ 与 $x=0$ 重合，只剩 $x=0,4$ 两个。所以 $m=0,\ 2$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 1，イ = 1，ウ = 0，エ = 1，オ = 1，カ = 1，キ = 2，ク = 0，ケ = 2</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 4　恒成立的不等式与直线的斜率</b><span class="origin">原创 · 对应题型：折线与过原点直线的位置关系</span></div>
+      <p>设 $f(x)=|x-1|+|x-4|$。</p>
+      <p>(1) $f(x)$ 的最小值为 $\boxed{\text{ア}}$。</p>
+      <p>(2) 对所有实数 $x$，不等式 $f(x)\ge ax$ 都成立的 $a$ 的范围是 $-\boxed{\text{イ}}\le a\le\dfrac{\boxed{\text{ウ}}}{\boxed{\text{エ}}}$。</p>
+      <p>(3) $a=\dfrac{\boxed{\text{ウ}}}{\boxed{\text{エ}}}$ 时，使等号成立的 $x$ 为 $x=\boxed{\text{オ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $x&lt;1$ 时 $f(x)=-2x+5$；$1\le x\le4$ 时 $f(x)=3$；$x&gt;4$ 时 $f(x)=2x-5$。最小值为 $3$。</li>
+        <li>(2) 题意是“直线 $y=ax$ 始终不在折线上方”。$x&gt;0$ 时条件为 $a\le\dfrac{f(x)}{x}$：在 $0&lt;x&lt;1$ 上 $\dfrac{f(x)}{x}=\dfrac5x-2&gt;3$；在 $1\le x\le4$ 上 $\dfrac3x\ge\dfrac34$；在 $x&gt;4$ 上 $2-\dfrac5x&gt;\dfrac34$。最小值是 $x=4$ 时的 $\dfrac34$，所以 $a\le\dfrac34$。</li>
+        <li>$x&lt;0$ 时 $f(x)-ax=(-2-a)x+5$。若 $-2-a&gt;0$，$x\to-\infty$ 时它趋于 $-\infty$，不成立；若 $-2-a\le0$，它恒大于 $0$。所以 $a\ge-2$（$a=-2$ 时直线与左段平行）。$x=0$ 时 $f(0)=5\ge0$ 总成立。</li>
+        <li>合并得 $-2\le a\le\dfrac34$。图像上，$\dfrac34$ 是过原点和折点 $(4,3)$ 的直线的斜率。</li>
+        <li>(3) $a=\dfrac34$ 时直线经过折点 $(4,3)$，等号只在 $x=4$ 成立。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 3，イ = 2，ウ = 3，エ = 4，オ = 4</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 5　二重绝对值的 W 形图像</b><span class="origin">原创 · 对应题型：分段作图、交点个数、围成的面积</span></div>
+      <p>设 $g(x)=\bigl||x-2|-1\bigr|$。</p>
+      <p>(1) 方程 $g(x)=k$ 有 $4$ 个不同实数解的条件是 $\boxed{\text{ア}}&lt;k&lt;\boxed{\text{イ}}$；$k=\boxed{\text{イ}}$ 时实数解有 $\boxed{\text{ウ}}$ 个。</p>
+      <p>(2) 方程 $g(x)=\dfrac x2$ 的解为 $x=\dfrac{\boxed{\text{エ}}}{\boxed{\text{オ}}},\ \boxed{\text{カ}},\ \boxed{\text{キ}}$（$\boxed{\text{カ}}&lt;\boxed{\text{キ}}$）。</p>
+      <p>(3) $y=g(x)$ 的图像与直线 $y=1$ 所围成部分的面积之和为 $\boxed{\text{ク}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>分段：$x\le1$ 时 $g(x)=1-x$；$1\le x\le2$ 时 $g(x)=x-1$；$2\le x\le3$ 时 $g(x)=3-x$；$x\ge3$ 时 $g(x)=x-3$。图像是 W 形：零点 $x=1,3$，中间的峰为 $(2,1)$。</li>
+        <li>(1) $0&lt;k&lt;1$ 时与 W 的四条边各交一次，共 $4$ 个；$k=1$ 时为 $x=0,\ 2,\ 4$，共 $3$ 个。</li>
+        <li>(2) 逐段解：$1-x=\dfrac x2$ 得 $x=\dfrac23$（满足 $x\le1$）；$x-1=\dfrac x2$ 得 $x=2$；$3-x=\dfrac x2$ 也得 $x=2$；$x-3=\dfrac x2$ 得 $x=6$（满足 $x\ge3$）。所以解为 $\dfrac23,\ 2,\ 6$。</li>
+        <li>(3) $g(x)\le1\iff0\le x\le4$。围成的部分是两个三角形：顶点 $(0,1),(1,0),(2,1)$ 与 $(2,1),(3,0),(4,1)$，各自底 $2$、高 $1$，面积各为 $1$，合计 $2$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 0，イ = 1，ウ = 3，エ = 2，オ = 3，カ = 2，キ = 6，ク = 2</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 6　过定点的直线与 $|x^2-4|$</b><span class="origin">原创 · 对应题型：旋转直线、因式分解找交点、参数范围</span></div>
+      <p>设 $f(x)=|x^2-4|$，直线 $\ell:\ y=k(x-2)$。</p>
+      <p>(1) 不论 $k$ 取何值，$\ell$ 都经过点 $(\boxed{\text{ア}},\ \boxed{\text{イ}})$。</p>
+      <p>(2) $\ell$ 与 $y=f(x)$ 有 $3$ 个不同公共点的条件是 $-\boxed{\text{ウ}}&lt;k&lt;\boxed{\text{エ}}$。</p>
+      <p>(3) $0&lt;k\le4$ 时公共点有 $\boxed{\text{オ}}$ 个，$k&gt;4$ 时有 $\boxed{\text{カ}}$ 个。</p>
+      <p>(4) $k=-1$ 时，公共点的 $x$ 坐标为 $-\boxed{\text{キ}},\ -\boxed{\text{ク}},\ \boxed{\text{ケ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $x=2$ 时 $y=0$，所以 $\ell$ 恒过 $(2,0)$，它也是图像的折点。</li>
+        <li>(2) $|x|\ge2$ 部分：$x^2-4=k(x-2)\iff(x-2)(x+2-k)=0$，除 $x=2$ 外还有 $x=k-2$，需 $|k-2|\ge2$，即 $k\le0$ 或 $k\ge4$。</li>
+        <li>$|x|&lt;2$ 部分：$-(x^2-4)=k(x-2)\iff(x-2)(x+2+k)=0$，得 $x=-2-k$，需 $-2&lt;-2-k&lt;2$，即 $-4&lt;k&lt;0$。</li>
+        <li>合并：$-4&lt;k&lt;0$ 时 $x=2,\ k-2,\ -2-k$ 三个互不相同，共 $3$ 个；$k\le-4$ 时 $2$ 个；$k=0$ 时 $x=\pm2$，$2$ 个。</li>
+        <li>(3) $0&lt;k&lt;4$ 时只有 $x=2$；$k=4$ 时 $k-2=2$ 与 $x=2$ 重合，仍是 $1$ 个；$k&gt;4$ 时 $x=2,\ k-2$，共 $2$ 个。</li>
+        <li>(4) $k=-1$：$x=k-2=-3$，$x=-2-k=-1$，以及 $x=2$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 0，ウ = 4，エ = 0，オ = 1，カ = 2，キ = 3，ク = 1，ケ = 2</p>
+      </div>
+      </details>
+    </article>
   </section>
 
   <footer>
