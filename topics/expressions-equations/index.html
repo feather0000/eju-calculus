@@ -255,6 +255,8 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <p>多项式 $A$ 除以多项式 $B$（<span lang="ja">商</span> $Q$、<span lang="ja">余り</span> $R$）时，下面的等式对所有 $x$ 成立：</p>
     $$A=BQ+R\qquad(R\text{ 的次数}&lt;B\text{ 的次数，或 }R=0)$$
     <p>做法和整数竖式一样：<strong>按降幂排列，每一步消去最高次项</strong>。缺项要留空位（或补 $0$），否则容易错位。</p>
+    <p><strong>为什么每一步都消最高次项？</strong>设被除式当前的最高次项是 $px^m$，除式 $B$ 的最高次项是 $qx^n$（$m\ge n$）。减去 $\dfrac pq x^{m-n}\cdot B$ 后，$x^m$ 项抵消，次数至少下降 $1$。次数不能无限下降，所以有限步后一定得到次数小于 $B$ 的余式 $R$，把每一步的倍数加起来就是商 $Q$。</p>
+    <p><strong>商和余式为什么唯一？</strong>假设 $A=BQ_1+R_1=BQ_2+R_2$，则 $B(Q_1-Q_2)=R_2-R_1$。若 $Q_1\ne Q_2$，左边次数不小于 $B$ 的次数，而右边次数小于 $B$ 的次数，矛盾。所以 $Q_1=Q_2$，$R_1=R_2$。正因为唯一，后面才可以“设出余式，再比较系数”。</p>
     <h3>例：$(2x^3+x^2-5x+3)\div(x^2+x-1)$</h3>
     $$\begin{aligned}
     2x^3+x^2-5x+3-2x(x^2+x-1)&amp;=-x^2-3x+3\\
@@ -264,6 +266,49 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     $$2x^3+x^2-5x+3=(x^2+x-1)(2x-1)-2x+2$$
     <div class="box good">
       <p><strong>考点提示：</strong>除以二次式时，余式最多一次，可直接设为 $ax+b$；除以三次式时，可设为 $ax^2+bx+c$。这一点在第 8 节会反复用到。</p>
+    </div>
+    <p><strong>解题步骤小结：</strong>① 两式都按降幂排列（<span lang="ja">降べきの順</span>），缺项补 $0$；② 用最高次项相除得到商的一项；③ 乘回去相减，注意每一项都要变号；④ 重复，直到余式次数小于除式次数；⑤ 用 $A=BQ+R$ 代入一个简单的 $x$ 值验算。</p>
+    <p>对上面的例子代入 $x=1$ 验算：左边 $2+1-5+3=1$，右边 $(1+1-1)(2-1)-2+2=1$，一致。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　被除式有缺项</b><span class="origin">原创</span></div>
+      <p>求 $x^4+3x^2-2x+5$ 除以 $x^2-x+1$ 的商和余式。</p>
+      <div class="ans">
+        <ol>
+          <li>补缺项：被除式写成 $x^4+0x^3+3x^2-2x+5$。</li>
+          <li>消 $x^4$：减去 $x^2(x^2-x+1)=x^4-x^3+x^2$，得 $x^3+2x^2-2x+5$。</li>
+          <li>消 $x^3$：减去 $x(x^2-x+1)=x^3-x^2+x$，得 $3x^2-3x+5$。</li>
+          <li>消 $x^2$：减去 $3(x^2-x+1)=3x^2-3x+3$，得 $2$。次数 $0&lt;2$，停止。</li>
+          <li>验算：代入 $x=1$，左边 $1+3-2+5=7$，右边 $1\cdot(1+1+3)+2=7$。</li>
+        </ol>
+        <p><strong>答案：</strong>商 $x^2+x+3$，余式 $2$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由整除条件求系数</b><span class="origin">原创</span></div>
+      <p>$3x^3+ax^2+bx-4$ 能被 $x^2+x-2$ 整除，求常数 $a,b$ 和商。</p>
+      <div class="ans">
+        <ol>
+          <li>消 $x^3$：减去 $3x(x^2+x-2)$，得 $(a-3)x^2+(b+6)x-4$。</li>
+          <li>消 $x^2$：减去 $(a-3)(x^2+x-2)$，得余式 $(b-a+9)x+(2a-10)$。</li>
+          <li>整除即余式恒为 $0$：$b-a+9=0$，$2a-10=0$，解得 $a=5,\ b=-4$。</li>
+          <li>商为 $3x+(a-3)=3x+2$。</li>
+          <li>验算：$(x^2+x-2)(3x+2)=3x^3+5x^2-4x-4$，与原式一致。</li>
+        </ol>
+        <p><strong>答案：</strong>$a=5,\ b=-4$，商为 $3x+2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>缺项不补 $0$，导致同次项错位。</li>
+        <li>相减时只给第一项变号。减去 $x^3-x^2+x$ 时，后两项也要变号。</li>
+        <li>余式次数还不小于除式次数就停止，或者已经小于了还继续除。</li>
+        <li>余式可能含 $x$，写答案时不要只写常数。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>计算题做完后，用 $x=1$ 或 $x=0$ 代入 $A=BQ+R$ 验算，只需几秒钟。除式是一次式时，直接用第 8 节的组立除法更快。</p>
+      <p><strong>日语术语：</strong><span lang="ja">整式</span>（<span class="kana" lang="ja">せいしき</span>）：整式；<span lang="ja">降べきの順</span>（<span class="kana" lang="ja">こうべきのじゅん</span>）：降幂排列；<span lang="ja">割り切れる</span>（<span class="kana" lang="ja">わりきれる</span>）：整除。</p>
     </div>
   </section>
 
@@ -283,6 +328,60 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="box warn">
       <p><strong>注意：</strong>分母不能为 $0$。约分会让式子“看起来”在更多点有定义，例如上面的约分结果在 $x=2$ 处有值，但原式在 $x=2$ 处没有定义。</p>
     </div>
+    <p><strong>为什么只能约因式？</strong>约分的依据是 $\dfrac{AC}{BC}=\dfrac AB$（$C\ne0$），$C$ 必须是分子、分母整体的公因式。所以 $\dfrac{x^2+2}{x+2}$ 不能把 $2$ 或 $x$ 约掉。这也是要先因式分解的原因：分解后才看得出公因式。</p>
+    <p><strong>裂项为什么成立？</strong>把右边通分：$\dfrac1x-\dfrac1{x+a}=\dfrac{(x+a)-x}{x(x+a)}=\dfrac{a}{x(x+a)}$，所以</p>
+    $$\frac{1}{x(x+a)}=\frac1a\Bigl(\frac1x-\frac1{x+a}\Bigr)$$
+    <p><strong>分子次数不低于分母时</strong>，可以先做第 1 节的除法再拆开。由 $x^2+3x+5=(x+1)(x+2)+3$ 得 $\dfrac{x^2+3x+5}{x+1}=x+2+\dfrac{3}{x+1}$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　先分解再约分</b><span class="origin">原创</span></div>
+      <p>化简 $\dfrac{x^2-x-2}{x^2+4x+3}\cdot\dfrac{x^2+2x-3}{x^2-4x+4}$。</p>
+      <div class="ans">
+        <ol>
+          <li>分别分解：$x^2-x-2=(x-2)(x+1)$，$x^2+4x+3=(x+1)(x+3)$，$x^2+2x-3=(x+3)(x-1)$，$x^2-4x+4=(x-2)^2$。</li>
+          <li>合并：原式 $=\dfrac{(x-2)(x+1)(x+3)(x-1)}{(x+1)(x+3)(x-2)^2}$。</li>
+          <li>约去 $(x+1)$、$(x+3)$、$(x-2)$，得 $\dfrac{x-1}{x-2}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\dfrac{x-1}{x-2}$（$x\ne-1,\ -3,\ 2$）。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　两两通分</b><span class="origin">原创</span></div>
+      <p>计算 $\dfrac1{x-1}-\dfrac1{x+1}-\dfrac2{x^2+1}$。</p>
+      <div class="ans">
+        <ol>
+          <li>先算前两项：$\dfrac1{x-1}-\dfrac1{x+1}=\dfrac{2}{x^2-1}$。</li>
+          <li>再与第三项通分：$\dfrac{2}{x^2-1}-\dfrac{2}{x^2+1}=\dfrac{2(x^2+1)-2(x^2-1)}{(x^2-1)(x^2+1)}$。</li>
+          <li>分子 $=4$，分母 $=x^4-1$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\dfrac{4}{x^4-1}$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　多层繁分式</b><span class="origin">原创</span></div>
+      <p>化简 $\dfrac{1}{1-\dfrac{1}{1-\dfrac1x}}$。</p>
+      <div class="ans">
+        <ol>
+          <li>从最内层开始：$1-\dfrac1x=\dfrac{x-1}{x}$。</li>
+          <li>取倒数：$\dfrac{1}{1-\frac1x}=\dfrac{x}{x-1}$。</li>
+          <li>外一层：$1-\dfrac{x}{x-1}=\dfrac{(x-1)-x}{x-1}=-\dfrac{1}{x-1}$。</li>
+          <li>再取倒数：$-(x-1)=1-x$。</li>
+        </ol>
+        <p><strong>答案：</strong>$1-x$（$x\ne0,\ 1$，因为这两个值使中间的分母为 $0$）。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>拆分母：$\dfrac{1}{a+b}\ne\dfrac1a+\dfrac1b$。只有分子可以拆：$\dfrac{a+b}{c}=\dfrac ac+\dfrac bc$。</li>
+        <li>减法漏括号：$\dfrac{1}{x-1}-\dfrac{1}{x+1}$ 的分子是 $(x+1)-(x-1)=2$，不是 $x+1-x-1=0$。</li>
+        <li>约掉单独的项，例如把 $\dfrac{x+3}{x+2}$ 写成 $\dfrac32$。</li>
+        <li>裂项时漏掉系数 $\dfrac1a$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>分母项数较多时不要一次全部通分，两两合并可以让分子保持简单。看到连续相乘的分母，优先想裂项，中间的项会成对抵消。</p>
+      <p><strong>日语术语：</strong><span lang="ja">繁分数式</span>（<span class="kana" lang="ja">はんぶんすうしき</span>）：繁分式；<span lang="ja">部分分数分解</span>（<span class="kana" lang="ja">ぶぶんぶんすうぶんかい</span>）：裂项（部分分式分解）。</p>
+    </div>
   </section>
 
   <section id="binomial">
@@ -294,16 +393,137 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <div>$(2x+1)^5$ 的 $x^3$ 项：一般项 ${}_{5}\mathrm{C}_{r}(2x)^{5-r}$，令 $5-r=3$，$r=2$，系数 $10\cdot 2^3=80$。</div>
       <div>$\Bigl(x^2-\dfrac1x\Bigr)^6$ 的常数项：$x$ 的指数 $12-3r=0$，$r=4$，值为 ${}_{6}\mathrm{C}_{4}(-1)^4=15$。</div>
     </div>
+    <p><strong>为什么系数是组合数？</strong>$(a+b)^n$ 是 $n$ 个括号相乘。展开时每个括号选 $a$ 或 $b$ 中的一个。要得到 $a^{n-r}b^r$，就要从 $n$ 个括号中选 $r$ 个取 $b$，选法有 ${}_{n}\mathrm{C}_{r}$ 种，所以这一项的系数是 ${}_{n}\mathrm{C}_{r}$。</p>
+    <p>由此也能看出 ${}_{n}\mathrm{C}_{r}={}_{n-1}\mathrm{C}_{r-1}+{}_{n-1}\mathrm{C}_{r}$：按第 $n$ 个括号取不取 $b$ 分成两类。这就是帕斯卡三角形（<span lang="ja">パスカルの三角形</span>）的构造规则。</p>
+    <p><strong>解题步骤：</strong>① 写一般项，负号和系数都放进括号；② 把 $x$ 的指数整理成关于 $r$ 的式子；③ 令其等于目标指数，解出 $r$（必须是 $0\le r\le n$ 的整数）；④ 代回算系数。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　含负指数的一般项</b><span class="origin">原创</span></div>
+      <p>求 $\Bigl(x^2+\dfrac2x\Bigr)^6$ 展开式中 $x^3$ 的系数。</p>
+      <div class="ans">
+        <ol>
+          <li>一般项：${}_{6}\mathrm{C}_{r}(x^2)^{6-r}\Bigl(\dfrac2x\Bigr)^r={}_{6}\mathrm{C}_{r}\,2^r\,x^{12-3r}$。</li>
+          <li>令 $12-3r=3$，得 $r=3$。</li>
+          <li>系数为 ${}_{6}\mathrm{C}_{3}\cdot2^3=20\cdot8=160$。</li>
+        </ol>
+        <p><strong>答案：</strong>$160$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　乘积的展开式</b><span class="origin">原创</span></div>
+      <p>求 $(x+2)(x-1)^5$ 展开式中 $x^3$ 的系数。</p>
+      <div class="ans">
+        <ol>
+          <li>$x^3$ 有两个来源：$x\cdot(x^2\text{ 项})$ 与 $2\cdot(x^3\text{ 项})$。</li>
+          <li>$(x-1)^5$ 的一般项为 ${}_{5}\mathrm{C}_{r}x^{5-r}(-1)^r$。$x^2$ 项 $r=3$，系数 $-10$；$x^3$ 项 $r=2$，系数 $10$。</li>
+          <li>合计：$1\cdot(-10)+2\cdot10=10$。</li>
+        </ol>
+        <p><strong>答案：</strong>$10$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $(2x)^{5-r}$ 中的 $2^{5-r}$ 或 $(-1)^r$ 漏掉。</li>
+        <li>把 $r$ 当成项的序号。$r=2$ 对应的是第 $3$ 项。</li>
+        <li>解出的 $r$ 不是整数时硬算。这种情况说明该项不存在，系数为 $0$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目问“系数”时答案包含符号和数字因子，不含 $x$。填空的 “$-$” 常已印好，要留意方框前的符号。</p>
+      <p><strong>日语术语：</strong><span lang="ja">係数</span>（<span class="kana" lang="ja">けいすう</span>）：系数；<span lang="ja">定数項</span>（<span class="kana" lang="ja">ていすうこう</span>）：常数项；<span lang="ja">展開式</span>（<span class="kana" lang="ja">てんかいしき</span>）：展开式。</p>
+    </div>
     <h3>系数的性质</h3>
     <p>在 $(1+x)^n=\sum {}_{n}\mathrm{C}_{r}x^r$ 中代入特殊值：</p>
     <div class="formula-grid">
       <div>$x=1$：${}_{n}\mathrm{C}_{0}+{}_{n}\mathrm{C}_{1}+\cdots+{}_{n}\mathrm{C}_{n}=2^n$</div>
       <div>$x=-1$：$\displaystyle\sum_{r=0}^{n}(-1)^r{}_{n}\mathrm{C}_{r}=0$</div>
     </div>
+    <p><strong>为什么要代特殊值？</strong>展开式是恒等式，对任何 $x$ 都成立，所以代入什么值都可以。代入 $x=1$ 时每个 $x^r$ 都变成 $1$，留下的正是系数之和。把 $x=1$ 与 $x=-1$ 的两式相加、相减，还可以分离偶次项和奇次项：</p>
+    $${}_{n}\mathrm{C}_{0}+{}_{n}\mathrm{C}_{2}+{}_{n}\mathrm{C}_{4}+\cdots={}_{n}\mathrm{C}_{1}+{}_{n}\mathrm{C}_{3}+{}_{n}\mathrm{C}_{5}+\cdots=2^{n-1}$$
+    <p>例如 $n=10$ 时，${}_{10}\mathrm{C}_{0}+{}_{10}\mathrm{C}_{2}+\cdots+{}_{10}\mathrm{C}_{10}=2^9=512$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　偶次项与奇次项的系数和</b><span class="origin">原创</span></div>
+      <p>设 $(2x-1)^6=c_6x^6+c_5x^5+\cdots+c_1x+c_0$。求 (1) 全部系数之和；(2) $c_0+c_2+c_4+c_6$；(3) $c_1+c_3+c_5$。</p>
+      <div class="ans">
+        <ol>
+          <li>令 $f(x)=(2x-1)^6$。$f(1)=1$ 就是全部系数之和。</li>
+          <li>$f(-1)=(-3)^6=729$，它等于（偶次项系数和）$-$（奇次项系数和）。</li>
+          <li>两式相加除以 $2$：偶次项系数和 $=\dfrac{1+729}{2}=365$。</li>
+          <li>两式相减除以 $2$：奇次项系数和 $=\dfrac{1-729}{2}=-364$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $1$；(2) $365$；(3) $-364$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用二项定理求末尾数字</b><span class="origin">原创</span></div>
+      <p>求 $11^{10}$ 的末两位数。</p>
+      <div class="ans">
+        <ol>
+          <li>写成 $11^{10}=(1+10)^{10}=1+{}_{10}\mathrm{C}_{1}\cdot10+{}_{10}\mathrm{C}_{2}\cdot10^2+\cdots$。</li>
+          <li>从 ${}_{10}\mathrm{C}_{2}\cdot10^2$ 起，每一项都是 $100$ 的倍数，不影响末两位。</li>
+          <li>剩下 $1+10\cdot10=101$，末两位是 $01$。</li>
+        </ol>
+        <p><strong>答案：</strong>$01$（实际上 $11^{10}=25937424601$）。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把“系数和”算成 $2^n$。只有 $(1+x)^n$ 才是 $2^n$；一般要把 $x=1$ 代入原式。</li>
+        <li>分离奇偶项时忘记除以 $2$。</li>
+        <li>把 $x=-1$ 的结果误当作全部系数之和。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>看到 $\sum {}_{n}\mathrm{C}_{r}\,p^r$ 的形式，先把它还原成 $(1+p)^n$。求大数的余数时，把底数写成“除数的倍数 $+$ 小数”再展开。</p>
+      <p><strong>日语术语：</strong><span lang="ja">二項係数</span>（<span class="kana" lang="ja">にこうけいすう</span>）：二项式系数；<span lang="ja">係数の和</span>（<span class="kana" lang="ja">けいすうのわ</span>）：系数和。</p>
+    </div>
     <h3>三项的展开（多项定理）</h3>
     <p>$(a+b+c)^n$ 中 $a^pb^qc^r\ (p+q+r=n)$ 的系数为</p>
     $$\frac{n!}{p!\,q!\,r!}$$
     <p>例如 $(x+y+z)^6$ 中 $x^3y^2z$ 的系数为 $\dfrac{6!}{3!\,2!\,1!}=60$。</p>
+    <p><strong>公式从哪里来？</strong>$n$ 个括号中，$p$ 个取 $a$、$q$ 个取 $b$、$r$ 个取 $c$。先选取 $a$ 的括号，再从剩下的选取 $b$ 的括号，选法数为</p>
+    $${}_{n}\mathrm{C}_{p}\cdot{}_{n-p}\mathrm{C}_{q}=\frac{n!}{p!\,(n-p)!}\cdot\frac{(n-p)!}{q!\,(n-p-q)!}=\frac{n!}{p!\,q!\,r!}$$
+    <p>这和“$n$ 个物品中有 $p,q,r$ 个相同时的排列数”是同一个式子。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　带系数和负号的三项式</b><span class="origin">原创</span></div>
+      <p>求 $(x+2y-z)^7$ 展开式中 $x^2y^3z^2$ 的系数。</p>
+      <div class="ans">
+        <ol>
+          <li>一般项为 $\dfrac{7!}{p!\,q!\,r!}x^p(2y)^q(-z)^r$。这里 $p=2,\ q=3,\ r=2$，和为 $7$。</li>
+          <li>排列数：$\dfrac{7!}{2!\,3!\,2!}=210$。</li>
+          <li>数字因子：$2^3\cdot(-1)^2=8$。</li>
+          <li>系数：$210\cdot8=1680$。</li>
+        </ol>
+        <p><strong>答案：</strong>$1680$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　同一文字出现在多项中</b><span class="origin">原创</span></div>
+      <p>求 $(1+x+x^2)^5$ 展开式中 $x^3$ 的系数。</p>
+      <div class="ans">
+        <ol>
+          <li>一般项为 $\dfrac{5!}{p!\,q!\,r!}\cdot1^p\,x^q\,(x^2)^r$，$x$ 的指数为 $q+2r$。</li>
+          <li>列条件：$p+q+r=5$，$q+2r=3$。</li>
+          <li>$r=0$ 时 $(p,q,r)=(2,3,0)$，值为 $\dfrac{5!}{2!\,3!}=10$。</li>
+          <li>$r=1$ 时 $(p,q,r)=(3,1,1)$，值为 $\dfrac{5!}{3!\,1!\,1!}=20$。</li>
+          <li>$r\ge2$ 时 $q+2r\ge4$，不符合。合计 $10+20=30$。</li>
+        </ol>
+        <p><strong>答案：</strong>$30$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只算 $\dfrac{n!}{p!\,q!\,r!}$，漏乘各项自带的系数和符号。</li>
+        <li>第二类题只找到一组 $(p,q,r)$。要按 $r$ 从小到大枚举，不能漏。</li>
+        <li>忘记 $0!=1$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>写出 $p+q+r=n$ 和指数条件两个方程后再枚举，比直接展开快得多。解出后先确认三个指数之和等于 $n$。</p>
+      <p><strong>日语术语：</strong><span lang="ja">多項定理</span>（<span class="kana" lang="ja">たこうていり</span>）：多项式定理；<span lang="ja">階乗</span>（<span class="kana" lang="ja">かいじょう</span>）：阶乘。</p>
+    </div>
   </section>
 
   <section id="identity">
@@ -320,10 +540,91 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <h3>例：$2x^2-x+3=a(x-1)(x-2)+b(x-1)+c$</h3>
     <p>代入 $x=1$：$c=4$；代入 $x=2$：$9=b+4$，$b=5$；比较 $x^2$ 系数：$a=2$。</p>
     <p>验证：代入 $x=0$，左边 $3$，右边 $2\cdot2+5\cdot(-1)+4=3$，一致。（二次多项式在三个不同的点相等，就恒等。）</p>
+    <p><strong>为什么系数比较是对的？</strong>若 $n$ 次以下的多项式 $f(x)$ 有 $n+1$ 个不同的零点，则由因式定理可知它必须是零多项式，否则因式的次数会超过 $n$。因此，两个多项式恒等 $\iff$ 同次项系数全部相等 $\iff$（次数不超过 $n$ 时）在 $n+1$ 个不同的点取值相等。</p>
+    <p><strong>数值代入法的步骤：</strong>① 选让某些括号变成 $0$ 的值，逐个求出待定系数；② 再用一个没用过的值或最高次系数检验。若代入的不同点已达 $n+1$ 个，那么条件也是充分的。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　轮换形式的待定系数</b><span class="origin">原创</span></div>
+      <p>$3x^2-5x+4=a(x-1)(x-2)+b(x-2)(x-3)+c(x-3)(x-1)$ 是关于 $x$ 的恒等式，求 $a,b,c$。</p>
+      <div class="ans">
+        <ol>
+          <li>代入 $x=1$：左边 $2$，右边只剩 $b(-1)(-2)=2b$，所以 $b=1$。</li>
+          <li>代入 $x=2$：左边 $6$，右边只剩 $c(-1)(1)=-c$，所以 $c=-6$。</li>
+          <li>代入 $x=3$：左边 $16$，右边只剩 $a(2)(1)=2a$，所以 $a=8$。</li>
+          <li>验证：$x^2$ 的系数 $a+b+c=3$，与左边一致。两边都是二次以下的多项式，且在 $3$ 个不同点相等，所以确实恒等。</li>
+        </ol>
+        <p><strong>答案：</strong>$a=8,\ b=1,\ c=-6$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　分母含平方的分式恒等式</b><span class="origin">原创</span></div>
+      <p>$\dfrac{x+3}{x(x+1)^2}=\dfrac ax+\dfrac b{x+1}+\dfrac c{(x+1)^2}$ 是恒等式，求 $a,b,c$。</p>
+      <div class="ans">
+        <ol>
+          <li>去分母：$x+3=a(x+1)^2+bx(x+1)+cx$。这是多项式等式。</li>
+          <li>代入 $x=0$：$3=a$。</li>
+          <li>代入 $x=-1$：$2=-c$，所以 $c=-2$。</li>
+          <li>比较 $x^2$ 的系数：$0=a+b$，所以 $b=-3$。</li>
+          <li>验证 $x$ 的系数：左边 $1$，右边 $2a+b+c=6-3-2=1$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>$a=3,\ b=-3,\ c=-2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>用数值代入法求出答案后不验证。代入点不够多时，得到的只是必要条件。</li>
+        <li>分母有 $(x+1)^2$ 时只设 $\dfrac{c}{(x+1)^2}$，漏掉 $\dfrac{b}{x+1}$。</li>
+        <li>分式恒等式不能代入使分母为 $0$ 的值，但去分母后的多项式等式可以：两个多项式在无穷多点相等，就是恒等。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>括号形式的右边优先用数值代入，已展开的形式优先比较系数。两者结合最快：先代入求出大部分系数，再用最高次系数求最后一个。</p>
+      <p><strong>日语术语：</strong><span lang="ja">未定係数法</span>（<span class="kana" lang="ja">みていけいすうほう</span>）：待定系数法；<span lang="ja">必要十分条件</span>（<span class="kana" lang="ja">ひつようじゅうぶんじょうけん</span>）：充要条件。</p>
+    </div>
     <h3>“对任意 $k$ 成立”也是恒等式</h3>
     <p>把式子按 $k$ 整理，让 $k$ 的系数和常数部分都为 $0$。例如直线 $(2k+1)x+(k-1)y-3k=0$ 可改写为</p>
     $$k(2x+y-3)+(x-y)=0$$
     <p>由 $2x+y-3=0,\ x-y=0$ 得 $x=y=1$，所以不论 $k$ 取何值，这条直线都过定点 $(1,1)$。</p>
+    <p><strong>为什么系数和常数部分都必须为 $0$？</strong>$pk+q=0$ 对所有 $k$ 成立时，取 $k=0$ 得 $q=0$，再取 $k=1$ 得 $p=0$。反过来，$p=q=0$ 时等式显然成立。</p>
+    <p><strong>带条件的恒等式：</strong>“满足 $x-y=1$ 的所有 $x,y$ 都成立”时，先用条件消去一个文字，得到关于剩下文字的恒等式，再比较系数。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　带条件的恒等式</b><span class="origin">原创</span></div>
+      <p>对满足 $x-y=1$ 的所有实数 $x,y$，等式 $ax^2+bxy+cy^2=1$ 都成立。求常数 $a,b,c$。</p>
+      <div class="ans">
+        <ol>
+          <li>消去 $y$：$y=x-1$，代入得 $ax^2+bx(x-1)+c(x-1)^2=1$。</li>
+          <li>整理：$(a+b+c)x^2-(b+2c)x+c=1$，它对所有 $x$ 成立。</li>
+          <li>比较系数：$a+b+c=0$，$b+2c=0$，$c=1$。</li>
+          <li>解得 $c=1,\ b=-2,\ a=1$。</li>
+          <li>验证：左边 $=x^2-2xy+y^2=(x-y)^2=1$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a=1,\ b=-2,\ c=1$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　曲线族的定点</b><span class="origin">原创</span></div>
+      <p>抛物线 $y=x^2+kx-2k+1$ 不论实数 $k$ 取何值，都经过一个定点。求这个定点。</p>
+      <div class="ans">
+        <ol>
+          <li>按 $k$ 整理：$k(x-2)+(x^2+1-y)=0$。</li>
+          <li>对任意 $k$ 成立，所以 $x-2=0$ 且 $x^2+1-y=0$。</li>
+          <li>解得 $x=2,\ y=5$。</li>
+          <li>验证：代入 $x=2$，$y=4+2k-2k+1=5$，与 $k$ 无关。</li>
+        </ol>
+        <p><strong>答案：</strong>$(2,\ 5)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>按 $x$ 整理而不是按 $k$ 整理。“对任意谁成立”，就按谁整理。</li>
+        <li>带条件的题直接比较 $x^2,xy,y^2$ 的系数。$x,y$ 不独立，必须先消元。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题面出现“$k$ の値にかかわらず”“すべての実数 $x$ について”，就是恒等式的信号。求出定点后代回原式，看 $k$ 是否确实消失。</p>
+      <p><strong>日语术语：</strong><span lang="ja">定点</span>（<span class="kana" lang="ja">ていてん</span>）：定点；<span lang="ja">値にかかわらず</span>（<span class="kana" lang="ja">あたいにかかわらず</span>）：不论取何值。</p>
+    </div>
   </section>
 
   <section id="proof">
@@ -335,6 +636,42 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <li><strong>条件等式：</strong>由条件消去一个文字。例如 $a+b+c=0$ 时，由 $a^3+b^3+c^3-3abc=(a+b+c)(a^2+b^2+c^2-ab-bc-ca)$ 得 $a^3+b^3+c^3=3abc$。</li>
       <li><strong>比例式：</strong>设 $\dfrac ab=\dfrac cd=k$，则 $a=bk,\ c=dk$，代入即可。</li>
     </ul>
+    <p><strong>为什么可以证“左边 − 右边 $=0$”？</strong>两个式子相等，等价于它们的差为 $0$。差的形式常能因式分解，而因式中往往恰好含有条件式。条件等式的关键是减少独立的文字，所以通常用条件消元。</p>
+    <p>比例式设 $k$ 的好处是：原来分散的三四个文字，都变成用较少的文字和 $k$ 表示。注意条件中的分母不能为 $0$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　条件等式</b><span class="origin">原创</span></div>
+      <p>$a+b+c=0$ 时，证明 $(a+b)(b+c)(c+a)+abc=0$。</p>
+      <div class="ans">
+        <ol>
+          <li>由条件得 $a+b=-c$，$b+c=-a$，$c+a=-b$。</li>
+          <li>代入：$(a+b)(b+c)(c+a)=(-c)(-a)(-b)=-abc$。</li>
+          <li>所以左边 $=-abc+abc=0$。证毕。</li>
+        </ol>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　比例式的证明</b><span class="origin">原创</span></div>
+      <p>$\dfrac ab=\dfrac cd$（$b,d\ne0$）时，证明 $\dfrac{a^2+c^2}{b^2+d^2}=\dfrac{ac}{bd}$。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $\dfrac ab=\dfrac cd=k$，则 $a=bk,\ c=dk$。</li>
+          <li>左边 $=\dfrac{b^2k^2+d^2k^2}{b^2+d^2}=k^2$。</li>
+          <li>右边 $=\dfrac{bk\cdot dk}{bd}=k^2$。</li>
+          <li>两边都等于 $k^2$。证毕。</li>
+        </ol>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>从要证的结论出发写推导，最后得到恒成立的式子就结束。这样写要说明每一步可逆；更稳妥的写法是从一边推到另一边。</li>
+        <li>两边同时约去可能为 $0$ 的式子。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>EJU 是填空形式，不用写完整证明，但要能看懂变形方向。比例式题可以设 $k$ 后直接算值；条件等式题可以代入满足条件的简单数值，先预判结果。</p>
+      <p><strong>日语术语：</strong><span lang="ja">左辺</span>（<span class="kana" lang="ja">さへん</span>）：左边；<span lang="ja">右辺</span>（<span class="kana" lang="ja">うへん</span>）：右边；<span lang="ja">消去する</span>（<span class="kana" lang="ja">しょうきょする</span>）：消去。</p>
+    </div>
     <h3>不等式的证明</h3>
     <p>基本思路是证明“左边 − 右边 $\ge 0$”，常把它配成平方和：</p>
     <div class="formula-grid">
@@ -344,6 +681,44 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <div>$|a|+|b|\ge|a+b|$，两边非负，平方后比较</div>
     </div>
     <p>含根号或绝对值时，确认两边非负，再比较平方：$A\ge0,\ B\ge0$ 时，$A\ge B\iff A^2\ge B^2$。</p>
+    <p><strong>为什么“平方后比较”需要两边非负？</strong>$A^2-B^2=(A-B)(A+B)$。当 $A,B\ge0$ 且不全为 $0$ 时，$A+B&gt;0$，所以 $A^2-B^2$ 与 $A-B$ 同号。如果有负数，这个结论就不成立：$-3&gt;-4$，但 $9&lt;16$。</p>
+    <p><strong>配方的步骤：</strong>① 作差；② 按某个文字整理或乘以 $2$ 凑完全平方；③ 写成平方和；④ 由“每个平方都为 $0$”写出等号条件。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　配成平方和</b><span class="origin">原创</span></div>
+      <p>证明对所有实数 $a,b$，有 $a^2+b^2+1\ge ab+a+b$，并求等号成立的条件。</p>
+      <div class="ans">
+        <ol>
+          <li>作差并乘 $2$：$2(a^2+b^2+1-ab-a-b)=(a^2-2ab+b^2)+(a^2-2a+1)+(b^2-2b+1)$。</li>
+          <li>配方：差 $=\dfrac12\{(a-b)^2+(a-1)^2+(b-1)^2\}\ge0$。</li>
+          <li>等号要求三个平方同时为 $0$：$a=b$，$a=1$，$b=1$。</li>
+        </ol>
+        <p><strong>答案：</strong>不等式成立，等号当且仅当 $a=b=1$ 时成立。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　含根号的不等式</b><span class="origin">原创</span></div>
+      <p>$a&gt;0,\ b&gt;0$ 时，证明 $\sqrt{2(a+b)}\ge\sqrt a+\sqrt b$。</p>
+      <div class="ans">
+        <ol>
+          <li>两边都为正，比较平方。</li>
+          <li>差：$2(a+b)-(\sqrt a+\sqrt b)^2=2a+2b-a-b-2\sqrt{ab}=a+b-2\sqrt{ab}$。</li>
+          <li>配方：差 $=(\sqrt a-\sqrt b)^2\ge0$。</li>
+          <li>所以原不等式成立，等号当且仅当 $a=b$ 时成立。</li>
+        </ol>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>不确认符号就两边平方。</li>
+        <li>配方时漏写系数 $\dfrac12$。</li>
+        <li>等号条件只写其中一个，例如只写 $a=b$，而实际还要求 $a=b=1$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>记住 $a^2+b^2+c^2\ge ab+bc+ca$ 的平方和形式，可以省去凑配时间。填空题常紧接着问“等号成立的条件”，证明后要顺手写下。</p>
+      <p><strong>日语术语：</strong><span lang="ja">平方完成</span>（<span class="kana" lang="ja">へいほうかんせい</span>）：配方；<span lang="ja">等号が成り立つ</span>（<span class="kana" lang="ja">とうごうがなりたつ</span>）：等号成立。</p>
+    </div>
     <h3>相加平均与相乘平均（<span lang="ja">相加平均と相乗平均</span>）</h3>
     <p>$a&gt;0,\ b&gt;0$ 时，</p>
     $$\frac{a+b}{2}\ge\sqrt{ab}\qquad\text{即}\qquad a+b\ge 2\sqrt{ab}\quad(\text{等号当且仅当 }a=b)$$
@@ -351,6 +726,45 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <p>典型用法：<strong>积为定值时，和有最小值</strong>。例如 $x&gt;0$ 时，$x+\dfrac9x\ge2\sqrt{9}=6$，等号在 $x=3$ 时成立。</p>
     <div class="box warn">
       <p><strong>三个检查：</strong>① 两数都为正；② 不等式右边是定值；③ 等号确实取得到。连续用两次相加相乘时，两个等号条件必须能同时成立（见例题 4）。</p>
+    </div>
+    <p><strong>几何平均为什么不超过算术平均？</strong>长为 $a+b$ 的线段作直径画半圆，在两段的分点作垂线，由相似三角形可知垂线长为 $\sqrt{ab}$。半径是 $\dfrac{a+b}2$，而半圆内的垂线不会超过半径，当分点是圆心（$a=b$）时两者相等。</p>
+    <p><strong>应用步骤：</strong>① 变形，使两项之积为定值；② 确认两项都为正；③ 应用不等式；④ 解出等号成立时的 $x$，确认它在定义范围内。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　先换元再用相加相乘</b><span class="origin">原创</span></div>
+      <p>$x&gt;-1$ 时，求 $\dfrac{x^2+x+4}{x+1}$ 的最小值及此时 $x$ 的值。</p>
+      <div class="ans">
+        <ol>
+          <li>令 $t=x+1&gt;0$，则 $x=t-1$，分子 $=(t-1)^2+(t-1)+4=t^2-t+4$。</li>
+          <li>原式 $=t+\dfrac4t-1$。</li>
+          <li>$t&gt;0$，所以 $t+\dfrac4t\ge2\sqrt4=4$，原式 $\ge3$。</li>
+          <li>等号条件：$t=\dfrac4t$，$t=2$，即 $x=1$。此时原式 $=\dfrac62=3$。</li>
+        </ol>
+        <p><strong>答案：</strong>最小值 $3$（$x=1$）。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　取倒数求最大值</b><span class="origin">原创</span></div>
+      <p>$x&gt;0$ 时，求 $\dfrac{x}{x^2+4}$ 的最大值及此时 $x$ 的值。</p>
+      <div class="ans">
+        <ol>
+          <li>分子分母同除以 $x$：原式 $=\dfrac{1}{x+\frac4x}$。</li>
+          <li>$x+\dfrac4x\ge2\sqrt4=4$，分母最小时分数最大。</li>
+          <li>所以原式 $\le\dfrac14$，等号在 $x=\dfrac4x$，即 $x=2$ 时成立。</li>
+        </ol>
+        <p><strong>答案：</strong>最大值 $\dfrac14$（$x=2$）。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>忽略正数条件：$x=-1$ 时 $x+\dfrac1x=-2$，并不满足“$\ge2$”。</li>
+        <li>等号取不到：由 $t=\sqrt{x^2+4}$ 写 $t+\dfrac1t\ge2$ 是对的，但等号要求 $t=1$，而 $t\ge2$，所以最小值不是 $2$。实际最小值在 $x=0$ 时取得，为 $\dfrac52$。</li>
+        <li>右边不是定值：$x+x\ge2\sqrt{x^2}=2x$ 正确但没有用，它不能给出最小值。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>分式的分子次数较高时，先除法或换元，化成 $t+\dfrac{m}{t}+$ 常数。填空中常先问最小值，再问“このとき $x=$”，算出等号条件就能同时答出。</p>
+      <p><strong>日语术语：</strong><span lang="ja">最小値</span>（<span class="kana" lang="ja">さいしょうち</span>）：最小值；<span lang="ja">最大値</span>（<span class="kana" lang="ja">さいだいち</span>）：最大值；<span lang="ja">相加平均と相乗平均の大小関係</span>（<span class="kana" lang="ja">そうかへいきんとそうじょうへいきんのだいしょうかんけい</span>）：均值不等式。</p>
     </div>
   </section>
 
@@ -371,6 +785,47 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="box warn">
       <p><strong>陷阱：</strong>$\sqrt{-2}\sqrt{-3}=\sqrt2i\cdot\sqrt3i=-\sqrt6$，不等于 $\sqrt{(-2)(-3)}=\sqrt6$。必须先化成含 $i$ 的形式再计算。</p>
     </div>
+    <p><strong>除法为什么乘共轭？</strong>$(c+di)(c-di)=c^2+d^2$ 是实数，这样分母就没有 $i$ 了，这和分母有理化的想法一样。</p>
+    <p><strong>相等条件为什么成立？</strong>若 $a+bi=c+di$，则 $(a-c)=(d-b)i$。如果 $d\ne b$，就有 $i=\dfrac{a-c}{d-b}$ 是实数，这与 $i^2=-1$ 矛盾。所以 $b=d$，进而 $a=c$。</p>
+    <p><strong>$i$ 的幂有周期 $4$：</strong>$i^1=i,\ i^2=-1,\ i^3=-i,\ i^4=1$，所以只需看指数除以 $4$ 的余数。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　除法与 $i$ 的高次幂</b><span class="origin">原创</span></div>
+      <p>令 $z=\dfrac{2+i}{1-2i}$，求 $z$ 和 $z^{2026}$。</p>
+      <div class="ans">
+        <ol>
+          <li>分子分母同乘 $1+2i$：分母 $=1+4=5$。</li>
+          <li>分子 $=(2+i)(1+2i)=2+4i+i+2i^2=5i$，所以 $z=i$。</li>
+          <li>$2026=4\cdot506+2$，所以 $z^{2026}=i^2=-1$。</li>
+        </ol>
+        <p><strong>答案：</strong>$z=i$，$z^{2026}=-1$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　求复数的平方根</b><span class="origin">原创</span></div>
+      <p>求满足 $(x+yi)^2=3+4i$ 的实数 $x,y$。</p>
+      <div class="ans">
+        <ol>
+          <li>展开：$(x^2-y^2)+2xyi=3+4i$。$x,y$ 为实数，所以比较实部和虚部。</li>
+          <li>$x^2-y^2=3$，$xy=2$。</li>
+          <li>代入 $y=\dfrac2x$：$x^4-3x^2-4=0$，即 $(x^2-4)(x^2+1)=0$。</li>
+          <li>$x$ 为实数，所以 $x^2=4$，$x=\pm2$，对应 $y=\pm1$（同号）。</li>
+          <li>验算：$(2+i)^2=3+4i$。</li>
+        </ol>
+        <p><strong>答案：</strong>$(x,y)=(2,1),\ (-2,-1)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>没有确认 $a,b,c,d$ 是实数就比较实部和虚部。</li>
+        <li>把 $a+bi$ 的虚部写成 $bi$。虚部是实数 $b$。</li>
+        <li>复数之间比较大小。虚数没有大小关系。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>答案通常要整理成 $a+bi$。遇到较高次幂时，先算 $z^2$ 或 $z^3$，常能得到实数或 $\pm i$，再利用周期。</p>
+      <p><strong>日语术语：</strong><span lang="ja">純虚数</span>（<span class="kana" lang="ja">じゅんきょすう</span>）：纯虚数；<span lang="ja">実部</span>（<span class="kana" lang="ja">じつぶ</span>）：实部；<span lang="ja">虚部</span>（<span class="kana" lang="ja">きょぶ</span>）：虚部。</p>
+    </div>
     <h3>二次方程与判别式</h3>
     <p>$ax^2+bx+c=0$（$a,b,c$ 为实数）的解为 $x=\dfrac{-b\pm\sqrt{D}}{2a}$，其中 $D=b^2-4ac$（<span lang="ja">判別式</span>）。</p>
     <div class="tw"><table>
@@ -382,6 +837,49 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       </tbody>
     </table></div>
     <p>例如 $x^2-2x+5=0$：$\dfrac D4=1-5=-4&lt;0$，解为 $x=1\pm2i$。</p>
+    <p><strong>求根公式的推导：</strong>两边除以 $a$ 后配方：</p>
+    $$\Bigl(x+\frac{b}{2a}\Bigr)^2=\frac{b^2-4ac}{4a^2}$$
+    <p>开方即得公式。右边分母 $4a^2&gt;0$，所以平方根的性质完全由 $D=b^2-4ac$ 决定，这就是判别式能判断解的情况的原因。</p>
+    <p><strong>一次项系数为偶数时</strong>，设 $b=2b'$，可用 $\dfrac D4=b'^2-ac$，解为 $x=\dfrac{-b'\pm\sqrt{b'^2-ac}}{a}$，计算量更小。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　重解条件</b><span class="origin">原创</span></div>
+      <p>关于 $x$ 的方程 $x^2-2kx+k+6=0$ 有重解。求实数 $k$ 和此时的重解。</p>
+      <div class="ans">
+        <ol>
+          <li>$\dfrac D4=k^2-(k+6)=(k-3)(k+2)$。</li>
+          <li>重解条件 $D=0$：$k=3$ 或 $k=-2$。</li>
+          <li>重解为 $x=-\dfrac{b}{2a}=k$。</li>
+          <li>验算：$k=3$ 时方程为 $(x-3)^2=0$；$k=-2$ 时方程为 $(x+2)^2=0$。</li>
+        </ol>
+        <p><strong>答案：</strong>$k=3$ 时重解 $x=3$；$k=-2$ 时重解 $x=-2$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　虚数系数方程的实数解</b><span class="origin">原创</span></div>
+      <p>$k$ 为实数，方程 $x^2+(k+i)x+2+2i=0$ 有实数解。求 $k$ 和这个实数解。</p>
+      <div class="ans">
+        <ol>
+          <li>设实数解为 $x$，按实部和虚部整理：$(x^2+kx+2)+(x+2)i=0$。</li>
+          <li>因为 $x,k$ 是实数，所以 $x+2=0$ 且 $x^2+kx+2=0$。</li>
+          <li>由第一式 $x=-2$，代入第二式：$4-2k+2=0$，$k=3$。</li>
+          <li>验算：$4+(3+i)(-2)+2+2i=4-6-2i+2+2i=0$。</li>
+        </ol>
+        <p><strong>答案：</strong>$k=3$，实数解 $x=-2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>对虚数系数的方程用判别式。上题 $k=3$ 时 $D=(3+i)^2-4(2+2i)=-2i$，没有正负可言。判别式的结论只适用于实系数方程。</li>
+        <li>用 $\dfrac D4$ 时仍按 $\dfrac{-b\pm\sqrt D}{2a}$ 写解，导致结果差一倍。</li>
+        <li>题目说“有实数解”时写成 $D&gt;0$。重解也是实数解，应为 $D\ge0$。</li>
+        <li>$x^2$ 的系数含文字时，忘记讨论它为 $0$ 的情形。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>留意题面用词：「異なる2つの実数解」对应 $D&gt;0$，「実数解をもつ」对应 $D\ge0$，「虚数解をもつ」对应 $D&lt;0$。一次项系数是偶数时一律用 $\dfrac D4$。</p>
+      <p><strong>日语术语：</strong><span lang="ja">解の公式</span>（<span class="kana" lang="ja">かいのこうしき</span>）：求根公式；<span lang="ja">異なる</span>（<span class="kana" lang="ja">ことなる</span>）：不同的；<span lang="ja">実数解</span>（<span class="kana" lang="ja">じっすうかい</span>）：实数解；<span lang="ja">虚数解</span>（<span class="kana" lang="ja">きょすうかい</span>）：虚数解。</p>
+    </div>
   </section>
 
   <section id="vieta">
@@ -389,6 +887,34 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <p class="jp-sub" lang="ja">解と係数の関係</p>
     <p>$ax^2+bx+c=0$ 的两个解为 $\alpha,\beta$ 时（虚数解也成立）：</p>
     $$\alpha+\beta=-\frac ba,\qquad \alpha\beta=\frac ca,\qquad ax^2+bx+c=a(x-\alpha)(x-\beta)$$
+    <p><strong>为什么成立？</strong>由因式定理，$ax^2+bx+c=a(x-\alpha)(x-\beta)$。右边展开为 $ax^2-a(\alpha+\beta)x+a\alpha\beta$，比较系数得 $-a(\alpha+\beta)=b$，$a\alpha\beta=c$。这个推导没有用到解是实数，所以虚数解同样成立。</p>
+    <p><strong>应用：复数范围内的因式分解。</strong>$2x^2-4x+3=0$ 的解为 $x=1\pm\dfrac{\sqrt2}{2}i$，所以</p>
+    $$2x^2-4x+3=2\Bigl(x-1-\frac{\sqrt2}{2}i\Bigr)\Bigl(x-1+\frac{\sqrt2}{2}i\Bigr)$$
+    <article class="q">
+      <div class="q-head"><b>补充例题　已知两解之比</b><span class="origin">原创</span></div>
+      <p>方程 $x^2-6x+k=0$ 的一个解是另一个解的 $2$ 倍。求 $k$ 和两个解。</p>
+      <div class="ans">
+        <ol>
+          <li>设两解为 $\alpha,\ 2\alpha$。</li>
+          <li>和：$3\alpha=6$，所以 $\alpha=2$。</li>
+          <li>积：$k=\alpha\cdot2\alpha=2\alpha^2=8$。</li>
+          <li>验算：$x^2-6x+8=(x-2)(x-4)$。</li>
+        </ol>
+        <p><strong>答案：</strong>$k=8$，两解为 $2,\ 4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>和的符号写错：$\alpha+\beta=-\dfrac ba$，有负号；积 $\dfrac ca$ 没有负号。</li>
+        <li>首项系数不是 $1$ 时，忘记除以 $a$。</li>
+        <li>分解时漏掉最前面的 $a$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目给出两解的关系（比、差、$\alpha$ 与 $\alpha+1$ 等）时，用一个未知数表示两解，再代入和与积，不必解方程。</p>
+      <p><strong>日语术语：</strong><span lang="ja">和</span>（<span class="kana" lang="ja">わ</span>）：和；<span lang="ja">積</span>（<span class="kana" lang="ja">せき</span>）：积；<span lang="ja">複素数の範囲で因数分解する</span>（<span class="kana" lang="ja">ふくそすうのはんいでいんすうぶんかいする</span>）：在复数范围内因式分解。</p>
+    </div>
     <h3>对称式都能用和与积表示</h3>
     <div class="formula-grid">
       <div>$\alpha^2+\beta^2=(\alpha+\beta)^2-2\alpha\beta$</div>
@@ -397,8 +923,59 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <div>$(\alpha-\beta)^2=(\alpha+\beta)^2-4\alpha\beta$</div>
     </div>
     <p>例：$x^2-3x+5=0$ 的解 $\alpha,\beta$ 满足 $\alpha+\beta=3,\ \alpha\beta=5$，于是 $\alpha^2+\beta^2=9-10=-1$，$\alpha^3+\beta^3=27-45=-18$，$\dfrac1\alpha+\dfrac1\beta=\dfrac35$。</p>
+    <p><strong>为什么对称式都能化成和与积？</strong>交换 $\alpha,\beta$ 后不变的多项式叫对称式（<span lang="ja">対称式</span>），它总能写成 $\alpha+\beta$ 和 $\alpha\beta$ 的多项式。$\alpha^3+\beta^3$ 的公式来自 $(\alpha+\beta)^3=\alpha^3+\beta^3+3\alpha\beta(\alpha+\beta)$，移项即得。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　四个对称式</b><span class="origin">原创</span></div>
+      <p>$2x^2-3x+4=0$ 的两解为 $\alpha,\beta$。求 $\alpha^2+\beta^2$、$\alpha^3+\beta^3$、$\dfrac\beta\alpha+\dfrac\alpha\beta$、$(\alpha-\beta)^2$。</p>
+      <div class="ans">
+        <ol>
+          <li>和与积：$\alpha+\beta=\dfrac32$，$\alpha\beta=2$。</li>
+          <li>$\alpha^2+\beta^2=\dfrac94-4=-\dfrac74$。</li>
+          <li>$\alpha^3+\beta^3=\dfrac{27}8-3\cdot2\cdot\dfrac32=\dfrac{27}8-9=-\dfrac{45}8$。</li>
+          <li>$\dfrac\beta\alpha+\dfrac\alpha\beta=\dfrac{\alpha^2+\beta^2}{\alpha\beta}=-\dfrac78$。</li>
+          <li>$(\alpha-\beta)^2=\dfrac94-8=-\dfrac{23}4$。</li>
+        </ol>
+        <p><strong>答案：</strong>依次为 $-\dfrac74,\ -\dfrac{45}8,\ -\dfrac78,\ -\dfrac{23}4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>看到 $\alpha^2+\beta^2&lt;0$ 就以为算错。$\alpha,\beta$ 是虚数时，这完全可能。</li>
+        <li>把 $\alpha^3+\beta^3$ 公式中的 $3\alpha\beta(\alpha+\beta)$ 漏乘 $(\alpha+\beta)$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>绝大多数对称式题不需要解出 $\alpha,\beta$。解出虚数后再代入既慢又容易错。</p>
+      <p><strong>日语术语：</strong><span lang="ja">対称式</span>（<span class="kana" lang="ja">たいしょうしき</span>）：对称式；<span lang="ja">基本対称式</span>（<span class="kana" lang="ja">きほんたいしょうしき</span>）：基本对称式。</p>
+    </div>
     <h3>由两解作方程</h3>
     <p>以 $p,q$ 为解的二次方程（之一）是 $x^2-(p+q)x+pq=0$。</p>
+    <p><strong>为什么成立？</strong>$(x-p)(x-q)$ 展开就是 $x^2-(p+q)x+pq$，代入 $x=p$ 或 $x=q$ 都为 $0$。任何非零常数倍的方程解都相同，所以题目通常要求系数为整数时，再乘以分母的公倍数。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由旧解作新方程</b><span class="origin">原创</span></div>
+      <p>$x^2-4x+2=0$ 的两解为 $\alpha,\beta$。求以 $\alpha+\dfrac1\beta,\ \beta+\dfrac1\alpha$ 为解、系数为整数且首项系数为 $2$ 的二次方程。</p>
+      <div class="ans">
+        <ol>
+          <li>已知 $\alpha+\beta=4,\ \alpha\beta=2$。</li>
+          <li>新解之和：$(\alpha+\beta)+\dfrac{\alpha+\beta}{\alpha\beta}=4+2=6$。</li>
+          <li>新解之积：$\alpha\beta+1+1+\dfrac1{\alpha\beta}=2+2+\dfrac12=\dfrac92$。</li>
+          <li>方程：$x^2-6x+\dfrac92=0$，两边乘 $2$。</li>
+        </ol>
+        <p><strong>答案：</strong>$2x^2-12x+9=0$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>一次项符号写错：应为 $-(p+q)x$。</li>
+        <li>新解之积展开时漏掉交叉项，例如把上题的积写成 $\alpha\beta+\dfrac1{\alpha\beta}$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>这类题固定两步：先求新解的和，再求新解的积，直接对照填空的形式。</p>
+      <p><strong>日语术语：</strong><span lang="ja">2数を解とする2次方程式</span>（<span class="kana" lang="ja">にすうをかいとするにじほうていしき</span>）：以两数为解的二次方程。</p>
+    </div>
     <h3>实数解的符号</h3>
     <div class="tw"><table>
       <thead><tr><th>情况</th><th>条件</th></tr></thead>
@@ -408,10 +985,65 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <tr><td>一正一负</td><td>$\alpha\beta&lt;0$（此时 $D&gt;0$ 自动成立）</td></tr>
       </tbody>
     </table></div>
+    <p><strong>为什么需要 $D\ge0$？</strong>和与积只有在两解都是实数时才能判断正负。例如 $x^2-2x+5=0$ 的和 $2&gt;0$、积 $5&gt;0$，但解是虚数。一正一负时不用 $D$：$\alpha\beta=\dfrac ca&lt;0$ 说明 $a,c$ 异号，于是 $D=b^2-4ac&gt;0$ 自动成立。</p>
+    <p><strong>与 $0$ 以外的数比较：</strong>令 $\alpha'=\alpha-m,\ \beta'=\beta-m$，把“都大于 $m$”转化为“$\alpha',\beta'$ 都为正”。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　两解都大于 $1$</b><span class="origin">原创</span></div>
+      <p>方程 $x^2-2kx+k+2=0$ 的两解都是大于 $1$ 的实数（可为重解）。求实数 $k$ 的范围。</p>
+      <div class="ans">
+        <ol>
+          <li>实数解：$\dfrac D4=k^2-k-2=(k-2)(k+1)\ge0$，即 $k\le-1$ 或 $k\ge2$。</li>
+          <li>$\alpha+\beta=2k$，$\alpha\beta=k+2$。条件等价于 $(\alpha-1)+(\beta-1)&gt;0$ 且 $(\alpha-1)(\beta-1)&gt;0$。</li>
+          <li>和：$2k-2&gt;0$，即 $k&gt;1$。</li>
+          <li>积：$\alpha\beta-(\alpha+\beta)+1=k+2-2k+1=3-k&gt;0$，即 $k&lt;3$。</li>
+          <li>取共同部分：$2\le k&lt;3$。</li>
+        </ol>
+        <p><strong>答案：</strong>$2\le k&lt;3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>漏掉 $D\ge0$。</li>
+        <li>把“都大于 $1$”写成 $\alpha+\beta&gt;2$ 且 $\alpha\beta&gt;1$。反例：$\alpha=\dfrac12,\ \beta=3$ 满足这两个不等式，但 $\alpha&lt;1$。</li>
+        <li>“都为正”的条件只写积大于 $0$，这样两解可能都为负。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>也可以用二次函数的图像：看判别式、对称轴和 $f(1)$ 的符号，三个条件与这里的结果相同。注意区间端点能否取到，这是填空题的常见考点。</p>
+      <p><strong>日语术语：</strong><span lang="ja">正の解</span>（<span class="kana" lang="ja">せいのかい</span>）：正数解；<span lang="ja">負の解</span>（<span class="kana" lang="ja">ふのかい</span>）：负数解；<span lang="ja">異符号</span>（<span class="kana" lang="ja">いふごう</span>）：异号；<span lang="ja">同符号</span>（<span class="kana" lang="ja">どうふごう</span>）：同号。</p>
+    </div>
     <h3>三次方程的情形</h3>
     <p>$ax^3+bx^2+cx+d=0$ 的三个解 $\alpha,\beta,\gamma$ 满足</p>
     $$\alpha+\beta+\gamma=-\frac ba,\quad \alpha\beta+\beta\gamma+\gamma\alpha=\frac ca,\quad \alpha\beta\gamma=-\frac da$$
     <p>例：$x^3-2x^2+3x-4=0$ 中，和为 $2$，两两积之和为 $3$，积为 $4$，所以 $\alpha^2+\beta^2+\gamma^2=2^2-2\cdot3=-2$。</p>
+    <p><strong>推导：</strong>$ax^3+bx^2+cx+d=a(x-\alpha)(x-\beta)(x-\gamma)$。展开右边：$a\{x^3-(\alpha+\beta+\gamma)x^2+(\alpha\beta+\beta\gamma+\gamma\alpha)x-\alpha\beta\gamma\}$，比较系数即得三个关系。符号按 $-,+,-$ 交替。</p>
+    <p><strong>一个实用结果：</strong>$a=1$ 时 $P(m)=(m-\alpha)(m-\beta)(m-\gamma)$，所以形如 $(m-\alpha)(m-\beta)(m-\gamma)$ 的式子可以直接代入求值。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　三次方程的对称式</b><span class="origin">原创</span></div>
+      <p>$x^3-3x^2+4x-5=0$ 的三个解为 $\alpha,\beta,\gamma$。求 (1) $\alpha^2+\beta^2+\gamma^2$；(2) $\dfrac1\alpha+\dfrac1\beta+\dfrac1\gamma$；(3) $(1-\alpha)(1-\beta)(1-\gamma)$；(4) $\alpha^3+\beta^3+\gamma^3$。</p>
+      <div class="ans">
+        <ol>
+          <li>和 $=3$，两两积之和 $=4$，积 $=5$。</li>
+          <li>(1) $3^2-2\cdot4=1$。</li>
+          <li>(2) $\dfrac{\beta\gamma+\gamma\alpha+\alpha\beta}{\alpha\beta\gamma}=\dfrac45$。</li>
+          <li>(3) 令 $P(x)=x^3-3x^2+4x-5$，所求为 $P(1)=1-3+4-5=-3$。</li>
+          <li>(4) 由 $\alpha^3+\beta^3+\gamma^3-3\alpha\beta\gamma=(\alpha+\beta+\gamma)(\alpha^2+\beta^2+\gamma^2-\alpha\beta-\beta\gamma-\gamma\alpha)$ 得：所求 $=3\cdot5+3\cdot(1-4)=6$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $1$；(2) $\dfrac45$；(3) $-3$；(4) $6$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>积的符号写错：三次方程的积是 $-\dfrac da$。</li>
+        <li>把 $(1-\alpha)(1-\beta)(1-\gamma)$ 算成 $-P(1)$。这里括号顺序正好是 $(m-\alpha)$，不用变号；若是 $(\alpha-1)(\beta-1)(\gamma-1)$，才是 $-P(1)$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>先在草稿纸上写下三个值：和、两两积之和、积，后面的小题几乎都由它们算出。$n$ 次方程的和与积也有相同的规律，符号交替变化。</p>
+      <p><strong>日语术语：</strong><span lang="ja">3次方程式の解と係数の関係</span>（<span class="kana" lang="ja">さんじほうていしきのかいとけいすうのかんけい</span>）：三次方程的根与系数关系。</p>
+    </div>
   </section>
 
   <section id="remainder">
@@ -423,9 +1055,75 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     </div>
     <p>证明只需一行：由 $P(x)=(x-a)Q(x)+R$ 代入 $x=a$，得 $R=P(a)$。</p>
     <p>例：$P(x)=x^3-2x^2+3$ 除以 $x-2$ 的余数为 $P(2)=3$，除以 $2x+1$ 的余数为 $P\Bigl(-\dfrac12\Bigr)=\dfrac{19}{8}$。</p>
+    <p><strong>因式定理的两个方向：</strong>由 $P(x)=(x-a)Q(x)+R$ 且 $R=P(a)$，若 $P(a)=0$，则 $P(x)=(x-a)Q(x)$，即有因式 $x-a$；反过来，若 $P(x)=(x-a)Q(x)$，代入 $x=a$ 得 $P(a)=0$。</p>
+    <p><strong>除以 $ax+b$ 的情形：</strong>$P(x)=(ax+b)Q(x)+R$，代入使 $ax+b=0$ 的 $x=-\dfrac ba$，得 $R=P\Bigl(-\dfrac ba\Bigr)$。除式次数为 $1$，所以余数是常数。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　除以 $2x-1$ 的余数</b><span class="origin">原创</span></div>
+      <p>$P(x)=2x^3+ax^2+x-3$ 除以 $2x-1$ 的余数为 $-1$，求 $a$。</p>
+      <div class="ans">
+        <ol>
+          <li>令 $2x-1=0$，得 $x=\dfrac12$，所以 $P\Bigl(\dfrac12\Bigr)=-1$。</li>
+          <li>计算：$\dfrac14+\dfrac a4+\dfrac12-3=-1$。</li>
+          <li>两边乘 $4$：$1+a+2-12=-4$，所以 $a=5$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a=5$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>除以 $x+2$ 时代入 $x=2$。应代入 $x=-2$。</li>
+        <li>除以 $2x-1$ 时代入 $x=1$ 或 $x=2$。应代入 $x=\dfrac12$。</li>
+        <li>分不清“$x-a$ 是因式”和“$x=-a$ 是解”的符号关系。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>只问余数时不用做除法，直接代入。题目有两个未知系数时，通常给两个条件，列两个方程联立。</p>
+      <p><strong>日语术语：</strong><span lang="ja">剰余</span>（<span class="kana" lang="ja">じょうよ</span>）：余数；<span lang="ja">割る</span>（<span class="kana" lang="ja">わる</span>）：除；<span lang="ja">因数をもつ</span>（<span class="kana" lang="ja">いんすうをもつ</span>）：含有因式。</p>
+    </div>
     <h3>除以二次式的余式</h3>
     <p>设余式为 $ax+b$，再用余数定理列方程。</p>
     <p>例：$P(x)$ 除以 $x-1$ 余 $3$，除以 $x+2$ 余 $-3$。设 $P(x)=(x-1)(x+2)Q(x)+ax+b$，则 $a+b=3,\ -2a+b=-3$，解得 $a=2,\ b=1$，余式为 $2x+1$。</p>
+    <p><strong>为什么可以这样设？</strong>除以二次式时，商 $Q(x)$ 虽然未知，但在代入 $x=1$、$x=-2$ 时，含 $Q(x)$ 的项都变成 $0$，所以不需要知道 $Q(x)$。</p>
+    <p>除式有重因式 $(x-a)^2$ 时，代入 $x=a$ 只能得到一个方程。此时可以令 $u=x-a$ 展开，或者把余式写成 $p(x-a)+q$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　高次式除以 $x^2-1$</b><span class="origin">原创</span></div>
+      <p>求 $x^{21}+2x^{10}+3$ 除以 $x^2-1$ 的余式。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $P(x)=(x-1)(x+1)Q(x)+ax+b$。</li>
+          <li>代入 $x=1$：$P(1)=1+2+3=6$，即 $a+b=6$。</li>
+          <li>代入 $x=-1$：$P(-1)=-1+2+3=4$，即 $-a+b=4$。</li>
+          <li>解得 $a=1,\ b=5$。</li>
+        </ol>
+        <p><strong>答案：</strong>$x+5$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　除式有重因式</b><span class="origin">原创</span></div>
+      <p>求 $x^5$ 除以 $(x-1)^2$ 的余式。</p>
+      <div class="ans">
+        <ol>
+          <li>令 $u=x-1$，则 $x^5=(u+1)^5$。</li>
+          <li>二项展开：$(u+1)^5=u^5+5u^4+10u^3+10u^2+5u+1$。</li>
+          <li>$u^2$ 及以上的项都是 $u^2=(x-1)^2$ 的倍数，余下 $5u+1$。</li>
+          <li>换回 $x$：$5(x-1)+1=5x-4$。</li>
+        </ol>
+        <p><strong>答案：</strong>$5x-4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把除以二次式的余式设成常数 $R$。除以二次式时余式最多一次，应设 $ax+b$。</li>
+        <li>除式有重因式时，只代入 $x=a$ 就以为条件够了。</li>
+        <li>除以三次式时仍设 $ax+b$。应设 $ax^2+bx+c$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>指数很大的题基本不能真的做除法，这正是余数定理或换元的信号。$x=\pm1$ 时幂很好算，所以这类题常以 $x^2-1$ 或 $(x-1)^2$ 为除式。</p>
+      <p><strong>日语术语：</strong><span lang="ja">余りを求めよ</span>（<span class="kana" lang="ja">あまりをもとめよ</span>）：求余式；<span lang="ja">1次式</span>（<span class="kana" lang="ja">いちじしき</span>）：一次式；<span lang="ja">2次式</span>（<span class="kana" lang="ja">にじしき</span>）：二次式。</p>
+    </div>
     <h3>组立除法（<span lang="ja">組立除法</span>）</h3>
     <p>除以 $x-a$ 时可以只写系数：把上一格的结果乘 $a$，加到下一列。以 $(x^3-4x^2+x+6)\div(x-2)$ 为例：</p>
     <div class="tw"><table class="sign">
@@ -436,6 +1134,50 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       </tbody>
     </table></div>
     <p>所以商为 $x^2-2x-3$，余数为 $0$，于是 $x^3-4x^2+x+6=(x-2)(x-3)(x+1)$。</p>
+    <p><strong>组立除法为什么成立？</strong>设 $(px^3+qx^2+rx+s)=(x-a)(bx^2+cx+d)+R$。展开右边并比较系数：$b=p$，$c=q+ab$，$d=r+ac$，$R=s+ad$。这正是“上一格乘 $a$，加到下一列”。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　有缺项的组立除法</b><span class="origin">原创</span></div>
+      <p>用组立除法求 $(2x^4-5x^2+3x-7)\div(x+2)$ 的商和余数。</p>
+      <div class="ans">
+        <p>除以 $x+2=x-(-2)$，所以 $a=-2$。$x^3$ 的系数要补 $0$：</p>
+        <div class="tw"><table class="sign">
+          <tbody>
+            <tr><td>系数</td><td>$2$</td><td>$0$</td><td>$-5$</td><td>$3$</td><td>$-7$</td></tr>
+            <tr><td>上一格 $\times(-2)$</td><td></td><td>$-4$</td><td>$8$</td><td>$-6$</td><td>$6$</td></tr>
+            <tr><td>相加</td><td>$2$</td><td>$-4$</td><td>$3$</td><td>$-3$</td><td>$-1$（余数）</td></tr>
+          </tbody>
+        </table></div>
+        <p><strong>答案：</strong>商 $2x^3-4x^2+3x-3$，余数 $-1$。由余数定理检验：$P(-2)=32-20-6-7=-1$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　除式的首项系数不是 $1$</b><span class="origin">原创</span></div>
+      <p>求 $(2x^3+x^2-4x+5)\div(2x-1)$ 的商和余数。</p>
+      <div class="ans">
+        <p>先对 $x-\dfrac12$ 做组立除法，$a=\dfrac12$：</p>
+        <div class="tw"><table class="sign">
+          <tbody>
+            <tr><td>系数</td><td>$2$</td><td>$1$</td><td>$-4$</td><td>$5$</td></tr>
+            <tr><td>上一格 $\times\dfrac12$</td><td></td><td>$1$</td><td>$1$</td><td>$-\dfrac32$</td></tr>
+            <tr><td>相加</td><td>$2$</td><td>$2$</td><td>$-3$</td><td>$\dfrac72$（余数）</td></tr>
+          </tbody>
+        </table></div>
+        <p>所以 $P(x)=\Bigl(x-\dfrac12\Bigr)(2x^2+2x-3)+\dfrac72=(2x-1)\Bigl(x^2+x-\dfrac32\Bigr)+\dfrac72$。</p>
+        <p><strong>答案：</strong>商 $x^2+x-\dfrac32$，余数 $\dfrac72$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>除以 $x+2$ 时用 $a=2$。</li>
+        <li>除以 $2x-1$ 时把 $x-\dfrac12$ 的商直接当答案。商要再除以 $2$，余数不变。</li>
+        <li>缺项不写 $0$，导致列数不对。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>因式分解三次式时，找到一个解后立即用组立除法求商，比竖式快。最后一格必须为 $0$，这本身就是一次验算。</p>
+      <p><strong>日语术语：</strong><span lang="ja">組立除法</span>（<span class="kana" lang="ja">くみたてじょほう</span>）：综合除法；<span lang="ja">最高次の係数</span>（<span class="kana" lang="ja">さいこうじのけいすう</span>）：最高次项系数。</p>
+    </div>
   </section>
 
   <section id="higher">
@@ -452,13 +1194,116 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       </tbody>
     </table></div>
     <p>例：$x^4+x^3-4x^2+x+1=0$。$x=0$ 不是解，两边除以 $x^2$ 得 $\Bigl(x^2+\dfrac1{x^2}\Bigr)+\Bigl(x+\dfrac1x\Bigr)-4=0$。令 $t=x+\dfrac1x$，则 $x^2+\dfrac1{x^2}=t^2-2$，所以 $t^2+t-6=0$，$t=2,-3$。由 $t=2$ 得 $x=1$（重解），由 $t=-3$ 得 $x^2+3x+1=0$，$x=\dfrac{-3\pm\sqrt5}{2}$。</p>
+    <p><strong>有理数解的候选为什么是这样？</strong>设既约分数 $\dfrac qp$ 是整系数方程 $a_nx^n+\cdots+a_0=0$ 的解。代入并乘 $p^n$，可知 $q$ 整除 $a_0p^n$、$p$ 整除 $a_nq^n$。由于 $p,q$ 互素，$q$ 是常数项的因数，$p$ 是首项系数的因数。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　首项系数不为 $1$ 的三次方程</b><span class="origin">原创</span></div>
+      <p>解方程 $2x^3-3x^2-8x-3=0$。</p>
+      <div class="ans">
+        <ol>
+          <li>候选：$\pm1,\ \pm3,\ \pm\dfrac12,\ \pm\dfrac32$。</li>
+          <li>试值：$x=-1$ 时 $-2-3+8-3=0$，所以有因式 $x+1$。</li>
+          <li>组立除法（$a=-1$）：系数 $2,-3,-8,-3$ 得商 $2x^2-5x-3$，余数 $0$。</li>
+          <li>继续分解：$2x^2-5x-3=(2x+1)(x-3)$。</li>
+        </ol>
+        <p><strong>答案：</strong>$x=-1,\ -\dfrac12,\ 3$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　配对后换元</b><span class="origin">原创</span></div>
+      <p>解方程 $(x+1)(x+2)(x+3)(x+4)-24=0$。</p>
+      <div class="ans">
+        <ol>
+          <li>配对使一次项相同：$(x+1)(x+4)=x^2+5x+4$，$(x+2)(x+3)=x^2+5x+6$。</li>
+          <li>令 $t=x^2+5x$：$(t+4)(t+6)=24$，即 $t^2+10t=0$，$t=0$ 或 $t=-10$。</li>
+          <li>$t=0$：$x(x+5)=0$，$x=0,\ -5$。</li>
+          <li>$t=-10$：$x^2+5x+10=0$，$x=\dfrac{-5\pm\sqrt{15}\,i}{2}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$x=0,\ -5,\ \dfrac{-5\pm\sqrt{15}\,i}{2}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>两边除以含 $x$ 的式子而丢解：$x^3=x$ 除以 $x$ 会丢掉 $x=0$，正确答案是 $x=0,\ \pm1$。应移项后分解。</li>
+        <li>只试整数，漏掉 $\pm\dfrac12$ 这样的分数候选。</li>
+        <li>换元后只求出 $t$ 就结束，忘记换回 $x$。</li>
+        <li>四次方程只写实数解。题目没有限定时，要在复数范围内给出全部解。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>先试 $x=\pm1$，这两个值最常见。若题目是“实数解”，虚数解要舍去，注意看清题面的条件。</p>
+      <p><strong>日语术语：</strong><span lang="ja">有理数解</span>（<span class="kana" lang="ja">ゆうりすうかい</span>）：有理数解；<span lang="ja">因数分解する</span>（<span class="kana" lang="ja">いんすうぶんかいする</span>）：因式分解；<span lang="ja">相反方程式</span>（<span class="kana" lang="ja">そうはんほうていしき</span>）：倒数方程。</p>
+    </div>
     <h3>实系数方程的虚数解成对出现</h3>
     <p>若实系数方程有虚数解 $p+qi$，则共轭复数 $p-qi$ 也是解。此时 $\{x-(p+qi)\}\{x-(p-qi)\}=x^2-2px+p^2+q^2$ 是实系数因式。</p>
+    <p><strong>为什么成对？</strong>共轭运算保持加法和乘法：$\overline{u+v}=\bar u+\bar v$，$\overline{uv}=\bar u\,\bar v$，而实数的共轭是它自身。若 $P(z)=0$ 且系数都为实数，对等式两边取共轭，得 $P(\bar z)=\overline{P(z)}=0$，所以 $\bar z$ 也是解。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由虚数解求系数</b><span class="origin">原创</span></div>
+      <p>实系数方程 $x^3+ax^2+bx+8=0$ 有一个解 $1-i$。求 $a,b$ 和其他的解。</p>
+      <div class="ans">
+        <ol>
+          <li>共轭 $1+i$ 也是解。两解的和为 $2$，积为 $2$，对应因式 $x^2-2x+2$。</li>
+          <li>比较常数项：$2\cdot m=8$，$m=4$，所以第三个因式为 $x+4$。</li>
+          <li>展开：$(x^2-2x+2)(x+4)=x^3+2x^2-6x+8$。</li>
+          <li>比较系数得 $a=2,\ b=-6$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a=2,\ b=-6$；其他的解为 $1+i,\ -4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>对虚数系数的方程也用“成对”：方程 $x-i=0$ 有解 $i$，但 $-i$ 不是解。</li>
+        <li>忘记第三个解一定是实数：虚数解成对，三次方程只剩一个位置。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>不要把 $1-i$ 直接代入后展开立方，用实系数二次因式更快，也不容易错。直接代入法可以作为备用方法，比较实部和虚部即可。</p>
+      <p><strong>日语术语：</strong><span lang="ja">実数係数</span>（<span class="kana" lang="ja">じっすうけいすう</span>）：实系数；<span lang="ja">共役</span>（<span class="kana" lang="ja">きょうやく</span>）：共轭；<span lang="ja">他の解</span>（<span class="kana" lang="ja">ほかのかい</span>）：其他的解。</p>
+    </div>
     <h3>$1$ 的立方根 $\omega$</h3>
     <p>$x^3=1$ 的虚数解之一记为 $\omega$（<span lang="ja">オメガ</span>）。由 $x^3-1=(x-1)(x^2+x+1)$ 得</p>
     $$\omega^3=1,\qquad \omega^2+\omega+1=0$$
     <p>高次幂可以按指数除以 $3$ 的余数降次：$\omega^{3k+1}=\omega$，$\omega^{3k+2}=\omega^2$。</p>
 
+    <p><strong>$\omega$ 的具体值：</strong>解 $x^2+x+1=0$ 得 $x=\dfrac{-1\pm\sqrt3\,i}{2}$。它们互为共轭，并且 $\omega^2$ 就是另一个虚数解，所以 $\bar\omega=\omega^2$。常用变形：$1+\omega=-\omega^2$，$1+\omega^2=-\omega$，$\omega+\omega^2=-1$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　$\omega$ 的计算</b><span class="origin">原创</span></div>
+      <p>$\omega$ 为 $x^3=1$ 的一个虚数解。求 (1) $\dfrac{\omega}{1+\omega^2}+\dfrac{\omega^2}{1+\omega}$；(2) $(1-\omega)(1-\omega^2)$；(3) $(1+\omega)^6$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 用 $1+\omega^2=-\omega$，$1+\omega=-\omega^2$：原式 $=\dfrac{\omega}{-\omega}+\dfrac{\omega^2}{-\omega^2}=-2$。</li>
+          <li>(2) 展开：$1-\omega-\omega^2+\omega^3=1-(\omega+\omega^2)+1=1+1+1=3$。</li>
+          <li>(3) $(1+\omega)^6=(-\omega^2)^6=\omega^{12}=(\omega^3)^4=1$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $-2$；(2) $3$；(3) $1$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　用 $\omega$ 求余式</b><span class="origin">原创</span></div>
+      <p>求 $x^{10}+x+1$ 除以 $x^2+x+1$ 的余式。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $x^{10}+x+1=(x^2+x+1)Q(x)+ax+b$（$a,b$ 为实数）。</li>
+          <li>代入 $x=\omega$：$\omega^2+\omega+1=0$，所以 $\omega^{10}+\omega+1=a\omega+b$。</li>
+          <li>$\omega^{10}=\omega$，所以 $2\omega+1=a\omega+b$，即 $(a-2)\omega+(b-1)=0$。</li>
+          <li>$\omega$ 不是实数，而 $a-2,\ b-1$ 是实数，所以两者都为 $0$。</li>
+        </ol>
+        <p><strong>答案：</strong>$2x+1$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $\omega$ 当作 $1$。$\omega$ 是虚数解，不是 $x=1$。</li>
+        <li>写成 $\omega^2+\omega=1$。正确的是 $\omega^2+\omega=-1$。</li>
+        <li>降次时直接把指数除以 $3$。应取除以 $3$ 的余数。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>有 $\omega$ 的题基本不要代入具体值，只用 $\omega^3=1$ 和 $\omega^2+\omega+1=0$ 两个等式。除以 $x^2+x+1$ 的余式题也可以用这个方法。</p>
+      <p><strong>日语术语：</strong><span lang="ja">1の3乗根</span>（<span class="kana" lang="ja">いちのさんじょうこん</span>）：$1$ 的立方根；<span lang="ja">3乗</span>（<span class="kana" lang="ja">さんじょう</span>）：立方；<span lang="ja">次数を下げる</span>（<span class="kana" lang="ja">じすうをさげる</span>）：降次。</p>
+    </div>
     <div class="explorer" id="cubic-explorer">
       <h3 style="margin:0 0 10px">三次方程探索器</h3>
       <p style="margin-top:0">调节 $P(x)=x^3+ax^2+bx+c$ 的系数，观察虚数解如何成对出现。移动 $t$ 时，组立除法的余数恰好是曲线在 $x=t$ 处的高度；当它为 $0$ 时，$x-t$ 就是因式。</p>
@@ -473,6 +1318,31 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       </div>
       <div class="read" id="cx-read"></div>
       <div class="status" id="cx-status" aria-live="polite"></div>
+    </div>
+    <p><strong>探索器的使用：</strong>滑杆改变系数时，曲线上下或左右变化，解也随之移动。两个实数解靠近、碰到一起（重解）后，会变成一对共轭虚数解。下面的例题可以直接在探索器上操作。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　在探索器上核对余数定理</b><span class="origin">原创</span></div>
+      <p>$P(x)=x^3-x^2-4x+4$（设 $a=-1,\ b=-4,\ c=4$）。求除以 $x-2$、$x$ 的商和余数，并解方程 $P(x)=0$。</p>
+      <div class="ans">
+        <ol>
+          <li>$t=2$：组立除法得 $1,\ 1,\ -2,\ 0$，商 $x^2+x-2$，余数 $0$，所以 $x-2$ 是因式。</li>
+          <li>$t=0$：直接除以 $x$，商 $x^2-x-4$，余数 $4=P(0)$，对应曲线与 $y$ 轴的交点高度。</li>
+          <li>继续分解：$x^2+x-2=(x-1)(x+2)$，所以解为 $x=-2,\ 1,\ 2$。</li>
+          <li>核对：解之和 $=1=-a$；解之积 $=-4=-c$。</li>
+        </ol>
+        <p><strong>答案：</strong>除以 $x-2$：商 $x^2+x-2$，余数 $0$；除以 $x$：商 $x^2-x-4$，余数 $4$；解为 $x=-2,\ 1,\ 2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>看到图像只和 $x$ 轴有一个交点，就认为方程只有一个解。另外两个是虚数解，图像上看不到。</li>
+        <li>把“余数”和“商在 $t$ 处的值”混淆。余数等于 $P(t)$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>实数解就是曲线与 $x$ 轴的交点的 $x$ 坐标。切点对应重解，这一点在二次函数和微分的题目中也经常用到。</p>
+      <p><strong>日语术语：</strong><span lang="ja">グラフ</span>（<span class="kana" lang="ja">ぐらふ</span>）：图像；<span lang="ja">共有点</span>（<span class="kana" lang="ja">きょうゆうてん</span>）：公共点；<span lang="ja">接する</span>（<span class="kana" lang="ja">せっする</span>）：相切。</p>
     </div>
   </section>
 
@@ -559,6 +1429,36 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <p><strong>补充：</strong>$k=-5$ 时解为 $x=1$（重解）和 $4$；$k=\pm4$ 时二次因式有重解。这三种情况都只有两个不同的实数解。</p>
       </div>
     </article>
+    <p><strong>做综合题的步骤：</strong>① 先看方框的个数和位置，判断答案的形式；② 把条件翻译成方程（余数定理、恒等式）；③ 前一小题的结果通常就是下一小题的工具，不要跳过。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　余式・因式分解・高次方程</b><span class="origin">原创</span></div>
+      <p>三次多项式 $P(x)=x^3+ax^2+bx+c$ 除以 $x^2-1$ 的余式为 $3x+3$，且 $P(2)=27$。</p>
+      <p>(1) $P(x)=(x^2-1)(x+\B{A})+3x+3$，所以 $a=\B{B}$，$b=\B{C}$，$c=-\B{D}$。</p>
+      <p>(2) $P(x)=(x+\B{E})(x^2+\B{F}x-\B{G})$。</p>
+      <p>(3) 方程 $P(x)=0$ 的解为 $x=-1,\ \dfrac{-\B{H}\pm\sqrt{\B{IJ}}}{\B{K}}$。</p>
+      <div class="ans">
+        <ul class="keys"><li>A = 4</li><li>B = 4</li><li>C = 2</li><li>D = 1</li><li>E = 1</li><li>F = 3</li><li>G = 1</li><li>H = 3</li><li>I = 1</li><li>J = 3</li><li>K = 2</li></ul>
+        <ol>
+          <li>$P(x)$ 首项系数为 $1$，商是一次式，可设为 $x+d$。</li>
+          <li>代入 $x=2$：$3(2+d)+9=27$，得 $d=4$。</li>
+          <li>展开：$(x^2-1)(x+4)+3x+3=x^3+4x^2+2x-1$。</li>
+          <li>余式 $3x+3=3(x+1)$ 与 $x^2-1$ 都含 $x+1$，所以提出公因式：$P(x)=(x+1)\{(x-1)(x+4)+3\}=(x+1)(x^2+3x-1)$。</li>
+          <li>由 $x^2+3x-1=0$ 得 $x=\dfrac{-3\pm\sqrt{13}}{2}$。</li>
+        </ol>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把两位数方框 $\B{IJ}$ 只当作一个数字来填。</li>
+        <li>根号内和分数没有化到最简，导致方框个数对不上。</li>
+        <li>把商设成 $ax+b$，多出未知数。首项系数已知时可以直接确定。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>方框的个数就是提示：若答案写出来和方框个数不符，多半是计算错误或没有化简。遇到卡住的小题，可以先做后面相对独立的小题。</p>
+      <p><strong>日语术语：</strong><span lang="ja">解答欄</span>（<span class="kana" lang="ja">かいとうらん</span>）：答题栏；<span lang="ja">既約分数</span>（<span class="kana" lang="ja">きやくぶんすう</span>）：最简分数；<span lang="ja">整数</span>（<span class="kana" lang="ja">せいすう</span>）：整数。</p>
+    </div>
   </section>
 
   <section id="practice">
@@ -667,6 +1567,31 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <p>解方程 $(x^2+x)^2-8(x^2+x)+12=0$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
       <div class="ans" hidden><p>令 $t=x^2+x$：$(t-2)(t-6)=0$。$x^2+x-2=0$ 给出 $x=1,\ -2$；$x^2+x-6=0$ 给出 $x=2,\ -3$。</p></div></div>
+    <p><strong>怎样使用练习题：</strong>每题都先按“写条件、选方法、算、验算”四步完成，再展开答案。错题要回到对应小节，看常见错误框中有没有同一类问题。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　倒数和的连锁计算</b><span class="origin">原创</span></div>
+      <p>$a&gt;0$，$a+\dfrac1a=3$。求 (1) $a^2+\dfrac1{a^2}$；(2) $a^3+\dfrac1{a^3}$；(3) $\sqrt a+\dfrac1{\sqrt a}$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 两边平方：$a^2+2+\dfrac1{a^2}=9$，所以值为 $7$。</li>
+          <li>(2) 立方公式：$\Bigl(a+\dfrac1a\Bigr)^3-3\cdot a\cdot\dfrac1a\Bigl(a+\dfrac1a\Bigr)=27-9=18$。</li>
+          <li>(3) 平方：$\Bigl(\sqrt a+\dfrac1{\sqrt a}\Bigr)^2=a+2+\dfrac1a=5$。因为它是正数，所以值为 $\sqrt5$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $7$；(2) $18$；(3) $\sqrt5$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>平方时漏掉中间项 $2$。</li>
+        <li>最后开方时不看符号，写成 $\pm\sqrt5$。</li>
+        <li>看了答案就算会了，没有自己重新算一遍。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>练习时限时完成，并记录每题用时。考试时间紧张，常规题要练到能快速写出第一步。</p>
+      <p><strong>日语术语：</strong><span lang="ja">次の値を求めよ</span>（<span class="kana" lang="ja">つぎのあたいをもとめよ</span>）：求下列的值；<span lang="ja">計算せよ</span>（<span class="kana" lang="ja">けいさんせよ</span>）：计算。</p>
+    </div>
   </section>
 
   <section id="terms">
@@ -679,6 +1604,42 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
       <tbody></tbody>
     </table></div>
+    <h3>题面常见日语句型</h3>
+    <div class="tw"><table>
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody>
+        <tr><td lang="ja">$A$ を $B$ で割ると余りが $R$</td><td class="kana" lang="ja">A を B でわるとあまりが R</td><td>$A$ 除以 $B$ 余 $R$</td></tr>
+        <tr><td lang="ja">すべての実数 $x$ について成り立つ</td><td class="kana" lang="ja">すべてのじっすう x についてなりたつ</td><td>对所有实数 $x$ 成立</td></tr>
+        <tr><td lang="ja">異なる2つの実数解をもつ</td><td class="kana" lang="ja">ことなるふたつのじっすうかいをもつ</td><td>有两个不同的实数解</td></tr>
+        <tr><td lang="ja">定数 $k$ の値の範囲を求めよ</td><td class="kana" lang="ja">ていすう k のあたいのはんいをもとめよ</td><td>求常数 $k$ 的取值范围</td></tr>
+        <tr><td lang="ja">このとき</td><td class="kana" lang="ja">このとき</td><td>此时</td></tr>
+      </tbody>
+    </table></div>
+    <article class="q">
+      <div class="q-head"><b>补充例题　读懂日语题面</b><span class="origin">原创</span></div>
+      <p lang="ja">整式 $P(x)$ を $x-1$ で割ると余りは $2$，$x+3$ で割ると余りは $-6$ である。$P(x)$ を $(x-1)(x+3)$ で割ったときの余りを求めよ。</p>
+      <div class="ans">
+        <ol>
+          <li>翻译：整式 $P(x)$ 除以 $x-1$ 余 $2$，除以 $x+3$ 余 $-6$。求 $P(x)$ 除以 $(x-1)(x+3)$ 的余式。</li>
+          <li>设 $P(x)=(x-1)(x+3)Q(x)+ax+b$。</li>
+          <li>由余数定理：$P(1)=a+b=2$，$P(-3)=-3a+b=-6$。</li>
+          <li>相减：$4a=8$，所以 $a=2,\ b=0$。</li>
+        </ol>
+        <p><strong>答案：</strong>$2x$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $A$ を $B$ で割る的方向弄反。助词「を」前面是被除式，「で」前面是除式。</li>
+        <li>把<span lang="ja">重解</span>读成「じゅうげ」。正确读音是「じゅうかい」。</li>
+        <li>把日语的<span lang="ja">因数</span>和中文“因数”完全等同。在多项式中，它对应中文的“因式”。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>EJU 数学可以选择日语或英语试卷，选择日语试卷时，要能直接读懂这些句型。按章节成组记忆术语，比单个背更有效；上面的搜索框可以用中文、日文或假名查询。</p>
+      <p><strong>日语术语：</strong><span lang="ja">整式</span>（<span class="kana" lang="ja">せいしき</span>）：整式；<span lang="ja">求めよ</span>（<span class="kana" lang="ja">もとめよ</span>）：求；<span lang="ja">範囲</span>（<span class="kana" lang="ja">はんい</span>）：范围。</p>
+    </div>
   </section>
 
   <footer>
@@ -698,12 +1659,14 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       ['多項式', 'たこうしき', '多项式'], ['整式', 'せいしき', '整式'], ['除法', 'じょほう', '除法'],
       ['商', 'しょう', '商'], ['余り', 'あまり', '余数、余式'], ['割り切れる', 'わりきれる', '整除'],
       ['組立除法', 'くみたてじょほう', '综合除法'], ['分数式', 'ぶんすうしき', '分式'], ['約分', 'やくぶん', '约分'],
-      ['通分', 'つうぶん', '通分'], ['分母', 'ぶんぼ', '分母'], ['分子', 'ぶんし', '分子']
+      ['通分', 'つうぶん', '通分'], ['分母', 'ぶんぼ', '分母'], ['分子', 'ぶんし', '分子'],
+      ['降べきの順', 'こうべきのじゅん', '降幂排列'], ['繁分数式', 'はんぶんすうしき', '繁分式'], ['部分分数分解', 'ぶぶんぶんすうぶんかい', '裂项（部分分式分解）']
     ]],
     ['二项定理与恒等式', [
       ['二項定理', 'にこうていり', '二项式定理'], ['二項係数', 'にこうけいすう', '二项式系数'], ['一般項', 'いっぱんこう', '一般项、通项'],
       ['パスカルの三角形', 'パスカルのさんかくけい', '杨辉三角'], ['展開式', 'てんかいしき', '展开式'], ['定数項', 'ていすうこう', '常数项'],
-      ['恒等式', 'こうとうしき', '恒等式'], ['係数比較法', 'けいすうひかくほう', '系数比较法'], ['数値代入法', 'すうちだいにゅうほう', '数值代入法']
+      ['恒等式', 'こうとうしき', '恒等式'], ['係数比較法', 'けいすうひかくほう', '系数比较法'], ['数値代入法', 'すうちだいにゅうほう', '数值代入法'],
+      ['多項定理', 'たこうていり', '多项式定理'], ['未定係数法', 'みていけいすうほう', '待定系数法'], ['定点', 'ていてん', '定点']
     ]],
     ['证明', [
       ['証明', 'しょうめい', '证明'], ['不等式', 'ふとうしき', '不等式'], ['条件式', 'じょうけんしき', '条件式'],
@@ -719,7 +1682,8 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     ['余数定理与高次方程', [
       ['剰余の定理', 'じょうよのていり', '余数定理'], ['因数定理', 'いんすうていり', '因式定理'], ['因数', 'いんすう', '因式'],
       ['因数分解', 'いんすうぶんかい', '因式分解'], ['高次方程式', 'こうじほうていしき', '高次方程'], ['3次方程式', 'さんじほうていしき', '三次方程'],
-      ['立方根', 'りっぽうこん', '立方根'], ['置き換え', 'おきかえ', '换元']
+      ['立方根', 'りっぽうこん', '立方根'], ['置き換え', 'おきかえ', '换元'],
+      ['相反方程式', 'そうはんほうていしき', '倒数方程'], ['対称式', 'たいしょうしき', '对称式'], ['純虚数', 'じゅんきょすう', '纯虚数']
     ]]
   ];
 

@@ -271,6 +271,33 @@ svg .probe-no.fillp { fill: var(--c2); }
       <p><strong>注意“着眼于某个文字”：</strong>$3ax^2+2x-a$ 关于 $x$ 是 2 次式，$x^2$ 的系数是 $3a$，常数项是 $-a$；关于 $a$ 则是 1 次式。日语题目常写「<span lang="ja">$x$ について</span>」（关于 $x$）。按次数从高到低排列叫<span lang="ja">降べきの順</span>。</p>
     </div>
 
+    <p><strong>次数怎么定：</strong>单项式的次数是所有文字指数之和，如 $-3x^2y$ 是 $2+1=3$ 次；多项式的次数取各项次数的最大值。指定“着眼的文字”后，其他文字都当作常数，所以同一个式子的次数、系数和常数项都会随之改变。这个视角不是咬文嚼字：后面按某个文字整理来分解因式，靠的就是它。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　换着文字看同一个整式</b><span class="origin">原创</span></div>
+      <p>设 $P=3ax^2y-2x^3+a^2y-4$。求：(1) 把所有文字都算上时的次数；(2) 关于 $x$ 的次数、$x^2$ 的系数和常数项；(3) 关于 $y$ 的次数、$y$ 的系数和常数项；(4) 按 $a$ 的降幂排列。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 各项次数依次为 $1+2+1=4,\ 3,\ 2+1=3,\ 0$，最大值是 $4$，所以是 $4$ 次式。</li>
+          <li>(2) 把 $a,y$ 当作常数：最高次项是 $-2x^3$，所以是 $3$ 次；$x^2$ 的系数是 $3ay$；不含 $x$ 的项合起来是 $a^2y-4$。</li>
+          <li>(3) 把 $a,x$ 当作常数：含 $y$ 的项是 $3ax^2y$ 和 $a^2y$，所以是 $1$ 次，系数为 $3ax^2+a^2$；不含 $y$ 的项是 $-2x^3-4$。</li>
+          <li>(4) 按 $a^2,\ a,\ a^0$ 分组：$P=y\,a^2+3x^2y\,a+(-2x^3-4)$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $4$ 次；(2) $3$ 次，系数 $3ay$，常数项 $a^2y-4$；(3) $1$ 次，系数 $3ax^2+a^2$，常数项 $-2x^3-4$；(4) $ya^2+3x^2ya-2x^3-4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把系数写成只含数字的部分。着眼于 $x$ 时，$3ax^2$ 中 $x^2$ 的系数是 $3a$，不是 $3$。</li>
+        <li>常数项只找纯数字。着眼于 $x$ 时，$-a$ 这样不含 $x$ 的项也属于常数项。</li>
+        <li>把多项式的次数算成各项次数之和。应取最大值，不是相加。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目出现「$x$ について」时，先在草稿上把式子按 $x$ 的降幂重排，把同次项括在一起，再读系数和常数项。</p>
+      <p><strong>日语术语：</strong><span lang="ja">文字</span>（<span class="kana" lang="ja">もじ</span>）：文字、字母；<span lang="ja">$x$ について整理する</span>（<span class="kana" lang="ja">エックスについてせいりする</span>）：按 $x$ 整理；<span lang="ja">最高次の項</span>（<span class="kana" lang="ja">さいこうじのこう</span>）：最高次项。</p>
+    </div>
+
     <h3>加减与指数法则</h3>
     <p>加减就是合并<strong>同类项</strong>（<span lang="ja">同類項</span>）。例如 $A=2x^2-3x+1,\ B=x^2+x-4$ 时，$A-2B=-5x+9$。去括号时注意减号要作用到每一项。</p>
     <p>对正整数 $m,n$，指数法则（<span lang="ja">指数法則</span>）如下：</p>
@@ -281,9 +308,66 @@ svg .probe-no.fillp { fill: var(--c2); }
     </div>
     <p>例：$(2x^2y)^3=8x^6y^3$，$(-3a^2b)(2ab^3)=-6a^3b^4$。</p>
 
+    <p><strong>指数法则为什么成立：</strong>$a^m$ 表示 $m$ 个 $a$ 相乘。$a^m\cdot a^n$ 一共有 $m+n$ 个 $a$，所以指数相加；$(a^m)^n$ 是 $n$ 组、每组 $m$ 个，共 $mn$ 个，所以指数相乘；$(ab)^n$ 中的 $n$ 个 $a$ 和 $n$ 个 $b$ 可以交换顺序后分开，所以等于 $a^nb^n$。</p>
+    <p><strong>为什么只能合并同类项：</strong>$2x^2+3x^2=(2+3)x^2$ 是分配律的逆用，要求文字部分完全相同；$x^2$ 和 $x$ 没有公共的文字部分，不能合并。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　先化简再代入，含负号的乘方</b><span class="origin">原创</span></div>
+      <p>设 $A=x^2-2xy+3y^2,\ B=2x^2+xy-y^2$。(1) 计算 $3A-2(A-B)$；(2) 计算 $(-2x^2y)^3(3xy^2)^2$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 先化简字母式，不急着代入：$3A-2(A-B)=3A-2A+2B=A+2B$。</li>
+          <li>代入：$A+2B=(x^2-2xy+3y^2)+(4x^2+2xy-2y^2)$。</li>
+          <li>合并同类项：$x^2$ 项 $1+4=5$，$xy$ 项 $-2+2=0$，$y^2$ 项 $3-2=1$，得 $5x^2+y^2$。</li>
+          <li>(2) 分别乘方：$(-2x^2y)^3=(-2)^3x^6y^3=-8x^6y^3$，$(3xy^2)^2=9x^2y^4$。</li>
+          <li>相乘，同底指数相加：$-8\cdot9\cdot x^{6+2}y^{3+4}=-72x^8y^7$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $5x^2+y^2$；(2) $-72x^8y^7$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $(a^2)^3$ 算成 $a^5$，或把 $a^2\cdot a^3$ 算成 $a^6$。前者指数相乘，后者指数相加。</li>
+        <li>把 $(-2x)^2$ 写成 $-4x^2$。负号在括号内，也要一起乘方，结果是 $4x^2$。</li>
+        <li>去括号时漏变号：$A-(B-C)=A-B+C$，最后一项是加号。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>遇到 $A,B$ 的组合式，先把 $A,B$ 当作文字化简，再代入多项式，计算量通常会明显减少。</p>
+      <p><strong>日语术语：</strong><span lang="ja">同類項をまとめる</span>（<span class="kana" lang="ja">どうるいこうをまとめる</span>）：合并同类项；<span lang="ja">括弧をはずす</span>（<span class="kana" lang="ja">かっこをはずす</span>）：去括号；<span lang="ja">累乗</span>（<span class="kana" lang="ja">るいじょう</span>）：乘方。</p>
+    </div>
+
     <h3>乘法</h3>
     <p>用分配律逐项相乘，再合并同类项：</p>
     $$(2x-1)(x^2+3x-2)=2x^3+6x^2-4x-x^2-3x+2=2x^3+5x^2-7x+2.$$
+
+    <p><strong>为什么逐项相乘不会漏：</strong>分配律使 $m$ 项式乘 $n$ 项式在合并前恰好有 $mn$ 项，可以用这个数字核对是否漏项。另外，乘积对所有 $x$ 都成立，代入 $x=1$ 这样的简单值就能快速检验。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　逐项相乘并用代入值验算</b><span class="origin">原创</span></div>
+      <p>展开 $(x^2-2x+3)(3x^2+x-1)$，并用 $x=1$ 验算。</p>
+      <div class="ans">
+        <ol>
+          <li>合并前共有 $3\times3=9$ 项。$x^2$ 乘第二个括号：$3x^4+x^3-x^2$。</li>
+          <li>$-2x$ 乘第二个括号：$-6x^3-2x^2+2x$。</li>
+          <li>$3$ 乘第二个括号：$9x^2+3x-3$。</li>
+          <li>按次数合并：$3x^4+(1-6)x^3+(-1-2+9)x^2+(2+3)x-3=3x^4-5x^3+6x^2+5x-3$。</li>
+          <li>验算：$x=1$ 时原式 $=2\times3=6$，结果 $=3-5+6+5-3=6$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>$3x^4-5x^3+6x^2+5x-3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>漏乘常数项或负号，例如把 $-2x\cdot(-1)$ 写成 $-2x$。</li>
+        <li>合并时看错次数。按次数上下对齐书写，可以减少这类错误。</li>
+        <li>代入验算一致并不能完全证明正确，但不一致就一定算错了。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>只问某一项的系数时，不必全部展开，只挑出次数能凑成目标的组合；需要完整结果时，用 $x=1$ 花几秒钟验算。</p>
+      <p><strong>日语术语：</strong><span lang="ja">分配法則</span>（<span class="kana" lang="ja">ぶんぱいほうそく</span>）：分配律；<span lang="ja">展開式</span>（<span class="kana" lang="ja">てんかいしき</span>）：展开式；<span lang="ja">代入する</span>（<span class="kana" lang="ja">だいにゅうする</span>）：代入。</p>
+    </div>
 
     <h3>除法</h3>
     <p>整式 $A$ 除以整式 $B$，得商（<span lang="ja">商</span>）$Q$ 和余式（<span lang="ja">余り</span>）$R$：</p>
@@ -298,6 +382,34 @@ svg .probe-no.fillp { fill: var(--c2); }
       </tbody>
     </table></div>
     <p>所以商为 $2x^2+x+6$，余式为 $7$，即 $2x^3-3x^2+4x-5=(x-2)(2x^2+x+6)+7$。</p>
+    <p><strong>为什么每步只看最高次项：</strong>每一步的目标是消去当前的最高次项。减去 $B$ 的适当倍式后，被除式的次数至少下降 $1$，所以有限步后余式的次数一定低于 $B$，这时停止。满足 $A=BQ+R$ 且 $R$ 次数较低的 $Q,R$ 是唯一的，所以无论怎么算，结果都相同。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　有缺项的除法</b><span class="origin">原创</span></div>
+      <p>求 $2x^3-5x+6$ 除以 $x^2+x-1$ 的商和余式。</p>
+      <div class="ans">
+        <ol>
+          <li>缺 $x^2$ 项，先补位写成 $2x^3+0x^2-5x+6$。</li>
+          <li>$2x^3\div x^2=2x$。减去 $2x(x^2+x-1)=2x^3+2x^2-2x$，剩余 $-2x^2-3x+6$。</li>
+          <li>$-2x^2\div x^2=-2$。减去 $-2(x^2+x-1)=-2x^2-2x+2$，剩余 $-x+4$。</li>
+          <li>$-x+4$ 是 $1$ 次，低于除式的 $2$ 次，停止。</li>
+          <li>验算：$(x^2+x-1)(2x-2)=2x^3-4x+2$，加上 $-x+4$ 得 $2x^3-5x+6$，与原式一致。</li>
+        </ol>
+        <p><strong>答案：</strong>商 $2x-2$，余式 $-x+4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>不给缺项留位置，导致后面的同类项错位。</li>
+        <li>减法时只变第一项的符号。整个倍式的每一项都要变号。</li>
+        <li>余式次数还不低于除式就停止，或余式已经够低还继续除。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>常见的逆向问法是“$A$ 除以 $B$ 商为 $Q$、余式为 $R$，求 $A$”或“求 $B$”。直接从 $A=BQ+R$ 出发，不必重做除法。</p>
+      <p><strong>日语术语：</strong><span lang="ja">割り算</span>（<span class="kana" lang="ja">わりざん</span>）：除法；<span lang="ja">割り切れる</span>（<span class="kana" lang="ja">わりきれる</span>）：整除；<span lang="ja">検算</span>（<span class="kana" lang="ja">けんざん</span>）：验算。</p>
+    </div>
+
   </section>
 
   <section id="expand">
@@ -316,6 +428,36 @@ svg .probe-no.fillp { fill: var(--c2); }
     </div>
     <p>例：$(2x+3)^3=8x^3+36x^2+54x+27$，$(x-2)(x^2+2x+4)=x^3-8$。</p>
 
+    <p><strong>公式从哪里来：</strong>全部来自分配律。例如 $(a+b)^3=(a+b)(a^2+2ab+b^2)=a^3+3a^2b+3ab^2+b^3$。也可以这样理解：三个括号各选 $a$ 或 $b$，选出 $2$ 个 $a$、$1$ 个 $b$ 的方式有 $3$ 种，所以 $a^2b$ 的系数是 $3$。</p>
+    <p><strong>立方和为什么只剩两项：</strong>$(a+b)(a^2-ab+b^2)=a^3-a^2b+ab^2+a^2b-ab^2+b^3$，中间四项两两抵消，只剩 $a^3+b^3$。$(a+b+c)^2$ 同理：每个文字的平方各出现一次，每对不同文字的积出现两次。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　识别公式并代入</b><span class="origin">原创</span></div>
+      <p>展开：(1) $(3x-2y)^3$；(2) $(2x+y)(4x^2-2xy+y^2)$；(3) $(x-2y+3)^2$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 取 $a=3x,\ b=2y$，代入差的立方：$(3x)^3-3(3x)^2(2y)+3(3x)(2y)^2-(2y)^3$。</li>
+          <li>逐项计算：$27x^3-54x^2y+36xy^2-8y^3$。</li>
+          <li>(2) 取 $a=2x,\ b=y$，则 $4x^2-2xy+y^2=a^2-ab+b^2$，符合立方和公式，结果是 $(2x)^3+y^3=8x^3+y^3$。</li>
+          <li>(3) 取 $a=x,\ b=-2y,\ c=3$，平方项为 $x^2+4y^2+9$。</li>
+          <li>两两之积的二倍：$2ab=-4xy,\ 2bc=-12y,\ 2ca=6x$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $27x^3-54x^2y+36xy^2-8y^3$；(2) $8x^3+y^3$；(3) $x^2+4y^2+9-4xy-12y+6x$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>写成 $(a+b)^2=a^2+b^2$，漏掉 $2ab$。</li>
+        <li>$(a-b)^3$ 的符号应为 $+,-,+,-$ 交替，不是只有最后一项为负。</li>
+        <li>把 $(a+b)(a^2+ab+b^2)$ 当作立方和。立方和的中间项必须是 $-ab$。</li>
+        <li>代入 $a=3x$ 时忘记给系数乘方：$(3x)^3=27x^3$，不是 $3x^3$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>看到形如 $A^2\mp AB+B^2$ 的三项式，先确认它的两端是不是平方、中间是不是两者之积，确认后一步就能写出结果。</p>
+      <p><strong>日语术语：</strong><span lang="ja">2乗</span>（<span class="kana" lang="ja">にじょう</span>）：平方；<span lang="ja">3乗</span>（<span class="kana" lang="ja">さんじょう</span>）：立方；<span lang="ja">和の3乗</span>（<span class="kana" lang="ja">わのさんじょう</span>）：和的立方；<span lang="ja">差の3乗</span>（<span class="kana" lang="ja">さのさんじょう</span>）：差的立方。</p>
+    </div>
+
     <h3>展开的技巧</h3>
     <ul>
       <li><strong>视为一个整体：</strong>$(x+y+1)(x+y-1)=(x+y)^2-1$。</li>
@@ -325,6 +467,34 @@ svg .probe-no.fillp { fill: var(--c2); }
     <div class="box good">
       <p><strong>只求某一项的系数时不必全部展开。</strong>只挑出相乘后能得到目标次数的组合，又快又不易错（见练习 2）。</p>
     </div>
+    <p><strong>配对为什么有效：</strong>$(x+p)(x+q)=x^2+(p+q)x+pq$ 的一次项只取决于 $p+q$。让两组的 $p+q$ 相同，$x^2+(p+q)x$ 就成了公共部分，可以换成一个新文字，四个因式的乘法就降为两个一次式的乘法。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　配对换元与只求系数</b><span class="origin">原创</span></div>
+      <p>(1) 展开 $(x-1)(x-2)(x+3)(x+4)$；(2) 求 $(x^2+3x-2)(2x^2-x+4)$ 展开式中 $x^2$ 的系数。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 常数之和：$-1+3=2,\ -2+4=2$，所以让 $(x-1)$ 与 $(x+3)$、$(x-2)$ 与 $(x+4)$ 配对。</li>
+          <li>得 $(x^2+2x-3)(x^2+2x-8)$。令 $t=x^2+2x$，则原式 $=(t-3)(t-8)=t^2-11t+24$。</li>
+          <li>代回：$t^2=x^4+4x^3+4x^2$，所以原式 $=x^4+4x^3+4x^2-11x^2-22x+24=x^4+4x^3-7x^2-22x+24$。</li>
+          <li>(2) 能得到 $x^2$ 的组合只有三种：$x^2\cdot4$，$3x\cdot(-x)$，$(-2)\cdot2x^2$。</li>
+          <li>系数相加：$4-3-4=-3$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $x^4+4x^3-7x^2-22x+24$；(2) $-3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>按原来的顺序配对，算出两个一次项不同的二次式，换元就用不上了。</li>
+        <li>换元后停在含 $t$ 的结果上，忘记代回。</li>
+        <li>求系数时漏组合。应按第一个括号的每一项逐一寻找对应项。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>四个一次因式相乘时，先看常数两两之和有没有相等的组合。这个结构在因式分解题中也常反向出现。</p>
+      <p><strong>日语术语：</strong><span lang="ja">置き換える</span>（<span class="kana" lang="ja">おきかえる</span>）：换元；<span lang="ja">組み合わせ</span>（<span class="kana" lang="ja">くみあわせ</span>）：组合；<span lang="ja">$x^2$ の係数</span>（<span class="kana" lang="ja">エックスにじょうのけいすう</span>）：$x^2$ 的系数。</p>
+    </div>
+
   </section>
 
   <section id="factor">
@@ -332,6 +502,33 @@ svg .probe-no.fillp { fill: var(--c2); }
     <p class="jp-sub" lang="ja">因数分解 — 共通因数・公式・たすきがけ</p>
     <p>因式分解是展开的逆过程。除乘法公式的逆用外，还要记住下面这条：</p>
     $$a^3+b^3+c^3-3abc=(a+b+c)(a^2+b^2+c^2-ab-bc-ca).$$
+    <p><strong>三元三次公式的推导：</strong>由 $a^3+b^3=(a+b)^3-3ab(a+b)$，令 $s=a+b$，得 $a^3+b^3+c^3-3abc=s^3+c^3-3abs-3abc=(s+c)(s^2-sc+c^2)-3ab(s+c)$。提出 $s+c=a+b+c$，再把 $s=a+b$ 代回，就得到上面的公式。</p>
+    <p><strong>有用的推论：</strong>第二个因式等于 $\dfrac12\{(a-b)^2+(b-c)^2+(c-a)^2\}$，所以 $a+b+c=0$ 时 $a^3+b^3+c^3=3abc$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　辨认三元三次公式</b><span class="origin">原创</span></div>
+      <p>分解 $x^3-8y^3+27+18xy$。</p>
+      <div class="ans">
+        <ol>
+          <li>把三个立方写出来：$x^3+(-2y)^3+3^3$，所以取 $a=x,\ b=-2y,\ c=3$。</li>
+          <li>检查最后一项：$-3abc=-3\cdot x\cdot(-2y)\cdot3=18xy$，与题目一致。</li>
+          <li>第一个因式：$a+b+c=x-2y+3$。</li>
+          <li>第二个因式：$a^2+b^2+c^2=x^2+4y^2+9$；$-ab=2xy,\ -bc=6y,\ -ca=-3x$。</li>
+        </ol>
+        <p><strong>答案：</strong>$(x-2y+3)(x^2+4y^2+9+2xy+6y-3x)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $b=-2y$ 的负号丢掉，导致 $-ab,\ -bc$ 的符号全错。</li>
+        <li>不检查 $-3abc$ 就套公式。这一项对不上时，公式不能直接用。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>式子有三个立方项和一个三文字乘积项时，就要想到这个公式。先写出 $a,b,c$ 并核对 $-3abc$，再写结果。</p>
+      <p><strong>日语术语：</strong><span lang="ja">因数</span>（<span class="kana" lang="ja">いんすう</span>）：因式；<span lang="ja">恒等式</span>（<span class="kana" lang="ja">こうとうしき</span>）：恒等式。</p>
+    </div>
+
     <h3>解题顺序</h3>
     <div class="tw"><table>
       <thead><tr><th>方法</th><th>例子</th></tr></thead>
@@ -346,6 +543,35 @@ svg .probe-no.fillp { fill: var(--c2); }
       </tbody>
     </table></div>
 
+    <p><strong>为什么按这个顺序：</strong>提公因式后数字和次数都变小，后面的方法更容易看出来，所以永远第一步做。公式和十字相乘只适用于特定形状，形状不符时再考虑分组或换元。若含多个文字，选次数最低的文字整理，因为次数越低，结构越简单。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　按顺序尝试三类方法</b><span class="origin">原创</span></div>
+      <p>分解：(1) $2x^3-16$；(2) $x^3+x^2y-4x-4y$；(3) $x^4-3x^2+1$（有理数系数范围内）。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 先提公因式：$2(x^3-8)$。再用立方差：$2(x-2)(x^2+2x+4)$。</li>
+          <li>(2) 两两分组：$x^2(x+y)-4(x+y)=(x+y)(x^2-4)$。</li>
+          <li>$x^2-4$ 还能继续分解，得 $(x+y)(x-2)(x+2)$。</li>
+          <li>(3) 令 $t=x^2$，$t^2-3t+1$ 不能用整数十字相乘，改用添项：$x^4-3x^2+1=(x^4-2x^2+1)-x^2$。</li>
+          <li>得 $(x^2-1)^2-x^2=(x^2+x-1)(x^2-x-1)$。这两个二次式没有有理数系数的一次因式，分解结束。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $2(x-2)(x^2+2x+4)$；(2) $(x+y)(x-2)(x+2)$；(3) $(x^2+x-1)(x^2-x-1)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>第一步忘记提公因式，后面的数字变大，甚至看不出结构。</li>
+        <li>把 $x^2+4$ 分解成 $(x+2)(x-2)$。平方和在实数范围内不能这样分解。</li>
+        <li>立方差写成 $(x-2)(x^2-2x+4)$。立方差的中间项是正号。</li>
+        <li>写完一步就停止，不检查每个因式能否继续分解。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>填空题的括号形状会提示分解方向，例如给出四个一次因式时，说明必须分解到底。完成后可代入一个简单的值核对。</p>
+      <p><strong>日语术语：</strong><span lang="ja">平方の差</span>（<span class="kana" lang="ja">へいほうのさ</span>）：平方差；<span lang="ja">2項ずつ組にする</span>（<span class="kana" lang="ja">にこうずつくみにする</span>）：两项一组分组；<span lang="ja">これ以上因数分解できない</span>（<span class="kana" lang="ja">これいじょういんすうぶんかいできない</span>）：不能再分解。</p>
+    </div>
+
     <h3>十字相乘的写法</h3>
     <p>分解 $6x^2+x-2$：把 $6$ 拆成 $2\times3$，把 $-2$ 拆成 $(-1)\times2$，交叉相乘后的和要等于一次项系数 $1$：</p>
     <div class="tw"><table class="sign">
@@ -359,6 +585,35 @@ svg .probe-no.fillp { fill: var(--c2); }
     <div class="box warn">
       <p><strong>易错：</strong>分解要进行到底。$x^4-5x^2+4=(x^2-1)(x^2-4)$ 还没有结束，$x^2-1$ 与 $x^2-4$ 都还能继续分解。</p>
     </div>
+    <p><strong>原理：</strong>$(ax+b)(cx+d)=acx^2+(ad+bc)x+bd$。对照系数，就是要把二次项系数拆成 $ac$，常数项拆成 $bd$，并让交叉积之和 $ad+bc$ 等于一次项系数，这正是十字表的来历。</p>
+    <p><strong>缩小尝试范围：</strong>若原式各系数没有公因数，那么每个一次因式的系数也不会有公因数。例如分解 $6x^2-7x-3$ 时，不必尝试 $2x+6$、$3x+3$ 这类含公因数的因式。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　数字系数与两文字的十字相乘</b><span class="origin">原创</span></div>
+      <p>分解：(1) $6x^2-7x-3$；(2) $3x^2+5xy-2y^2-5x+4y-2$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 把 $6$ 拆成 $2\times3$，$-3$ 拆成 $(-3)\times1$，交叉和为 $2\cdot1+(-3)\cdot3=-7$，符合。得 $(2x-3)(3x+1)$。</li>
+          <li>(2) 按 $x$ 整理：$3x^2+(5y-5)x-(2y^2-4y+2)=3x^2+5(y-1)x-2(y-1)^2$。</li>
+          <li>把 $y-1$ 看成一个整体，记为 $u$，分解 $3x^2+5ux-2u^2=(3x-u)(x+2u)$。</li>
+          <li>代回 $u=y-1$：$(3x-y+1)(x+2y-2)$。</li>
+          <li>检验常数项：$1\times(-2)=-2$，与原式一致。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $(2x-3)(3x+1)$；(2) $(3x-y+1)(x+2y-2)$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把同列相乘当成交叉相乘。同列之积给出 $x^2$ 系数和常数，交叉积之和才是一次项系数。</li>
+        <li>交叉和只差一个符号时就放弃。此时交换两个常数的正负号即可。</li>
+        <li>整理两文字式时，没有给常数部分的所有项加上括号，导致符号错误。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>含两个文字的二次式，先按一个文字降幂整理；常数部分通常本身也能分解，分解后再做十字相乘。</p>
+      <p><strong>日语术语：</strong><span lang="ja">たすきがけ</span>（<span class="kana" lang="ja">たすきがけ</span>）：十字相乘；<span lang="ja">$x$ の2次式</span>（<span class="kana" lang="ja">エックスのにじしき</span>）：关于 $x$ 的二次式；<span lang="ja">係数を比較する</span>（<span class="kana" lang="ja">けいすうをひかくする</span>）：比较系数。</p>
+    </div>
+
   </section>
 
   <section id="real">
@@ -377,6 +632,36 @@ svg .probe-no.fillp { fill: var(--c2); }
     </table></div>
     <p>循环小数化分数：设 $x=0.\dot{1}\dot{2}$，则 $100x=12.\dot{1}\dot{2}$，相减得 $99x=12$。日本教材用数字上方的点表示循环节的起止。</p>
 
+    <p><strong>为什么有限小数和循环小数都是有理数：</strong>有限小数可以直接写成分母为 $10^k$ 的分数；循环小数乘以适当的 $10^k$ 后相减，循环部分被消去，得到分数。反过来，$\dfrac mn$ 做除法时余数只有有限种，余数一旦重复，商就开始循环。</p>
+    <p><strong>为什么 $\sqrt2$ 是无理数：</strong>用<span lang="ja">背理法</span>（反证法）。假设 $\sqrt2=\dfrac mn$（$m,n$ 互质），则 $m^2=2n^2$，$m$ 是偶数；令 $m=2k$，得 $n^2=2k^2$，$n$ 也是偶数，与互质矛盾。</p>
+    <p><strong>运算规律：</strong>有理数与无理数的和一定是无理数；两个无理数的和却可能是有理数，如 $(1+\sqrt2)+(1-\sqrt2)=2$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　循环节不从第一位开始</b><span class="origin">原创</span></div>
+      <p>(1) 把 $0.1\dot{2}\dot{3}$（即 $0.1232323\cdots$）化为最简分数；(2) 判断 $\sqrt9,\ \sqrt8,\ \dfrac{22}{7},\ \pi-1,\ 0.\dot3$ 是有理数还是无理数。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 设 $x=0.1232323\cdots$。不循环的部分有 $1$ 位，循环节有 $2$ 位，所以取 $10x$ 和 $1000x$。</li>
+          <li>$1000x=123.2323\cdots,\ 10x=1.2323\cdots$，相减得 $990x=122$。</li>
+          <li>$x=\dfrac{122}{990}=\dfrac{61}{495}$。</li>
+          <li>(2) $\sqrt9=3$、$\dfrac{22}{7}$、$0.\dot3=\dfrac13$ 都能写成分数，是有理数。</li>
+          <li>$\sqrt8=2\sqrt2$，$\pi-1$ 是有理数与无理数的和，都是无理数。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $\dfrac{61}{495}$；(2) 有理数：$\sqrt9,\ \dfrac{22}{7},\ 0.\dot3$；无理数：$\sqrt8,\ \pi-1$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>看到根号就认定是无理数。$\sqrt9=3$ 是有理数，要先化简。</li>
+        <li>把 $\dfrac{22}{7}$ 当作 $\pi$。它只是近似值，本身是有理数。</li>
+        <li>循环节不从第一位开始时，直接除以 $99$，得到错误的分母。应让相减的两个数小数部分完全相同。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目要求最简分数时，先约分再填空。循环小数的点标记要看清：点在哪两个数字上，循环节就是这两个数字及其之间的部分。</p>
+      <p><strong>日语术语：</strong><span lang="ja">背理法</span>（<span class="kana" lang="ja">はいりほう</span>）：反证法；<span lang="ja">循環節</span>（<span class="kana" lang="ja">じゅんかんせつ</span>）：循环节；<span lang="ja">既約分数</span>（<span class="kana" lang="ja">きやくぶんすう</span>）：最简分数。</p>
+    </div>
+
     <h3>平方根</h3>
     <p>$a&gt;0$ 时，$a$ 的<strong>平方根</strong>（<span lang="ja">平方根</span>）有 $\pm\sqrt a$ 两个；根号 $\sqrt{\ }$ 称为<span lang="ja">根号</span>，$\sqrt a$ 只表示非负的那一个。</p>
     <div class="box warn">
@@ -390,9 +675,66 @@ svg .probe-no.fillp { fill: var(--c2); }
     </div>
     <p>例：$\sqrt{12}+\sqrt{27}-\sqrt{48}=2\sqrt3+3\sqrt3-4\sqrt3=\sqrt3$；$(\sqrt3+\sqrt2)^2=5+2\sqrt6$。</p>
 
+    <p><strong>$\sqrt a\sqrt b=\sqrt{ab}$ 为什么成立：</strong>$a,b&gt;0$ 时，左右两边都是正数，并且平方后都等于 $ab$。平方相等的两个正数必定相等，所以等式成立。$\sqrt{\dfrac ab}$ 的公式同理。</p>
+    <p><strong>$\sqrt{a^2}=|a|$ 为什么成立：</strong>$\sqrt{a^2}$ 是平方等于 $a^2$ 的非负数，满足这个条件的正是 $|a|$。所以去根号时，必须先判断内部的符号。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　根式运算与按符号去根号</b><span class="origin">原创</span></div>
+      <p>(1) 化简 $\sqrt{18}-\sqrt{50}+\sqrt{32}$；(2) 计算 $(2\sqrt3-\sqrt2)^2$；(3) $x&lt;-1$ 时，化简 $\sqrt{x^2+2x+1}-\sqrt{x^2-4x+4}$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 提出平方因子：$3\sqrt2-5\sqrt2+4\sqrt2=2\sqrt2$。</li>
+          <li>(2) $(2\sqrt3)^2-2\cdot2\sqrt3\cdot\sqrt2+(\sqrt2)^2=12-4\sqrt6+2=14-4\sqrt6$。</li>
+          <li>(3) 根号内配方：原式 $=\sqrt{(x+1)^2}-\sqrt{(x-2)^2}=|x+1|-|x-2|$。</li>
+          <li>$x&lt;-1$ 时 $x+1&lt;0,\ x-2&lt;0$，所以 $|x+1|=-x-1,\ |x-2|=2-x$。</li>
+          <li>原式 $=(-x-1)-(2-x)=-3$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $2\sqrt2$；(2) $14-4\sqrt6$；(3) $-3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>写成 $\sqrt{a+b}=\sqrt a+\sqrt b$。例如 $\sqrt{9+16}=5$，而 $\sqrt9+\sqrt{16}=7$。</li>
+        <li>混淆“$4$ 的平方根”和“$\sqrt4$”：前者是 $\pm2$，后者只是 $2$。</li>
+        <li>直接把 $\sqrt{(x-2)^2}$ 写成 $x-2$，不看 $x$ 的范围。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目给出 $x$ 的范围，通常就是在提示要去绝对值。最后结果常是常数，这可以作为结果是否合理的参考，但不是必然。</p>
+      <p><strong>日语术语：</strong><span lang="ja">平方因数</span>（<span class="kana" lang="ja">へいほういんすう</span>）：平方因数；<span lang="ja">根号をはずす</span>（<span class="kana" lang="ja">こんごうをはずす</span>）：去根号；<span lang="ja">正の平方根</span>（<span class="kana" lang="ja">せいのへいほうこん</span>）：正的平方根。</p>
+    </div>
+
     <h3>分母有理化</h3>
     <p><span lang="ja">分母の有理化</span>：分子分母同乘共轭式，利用平方差消去根号。</p>
     $$\frac{1}{\sqrt3-\sqrt2}=\frac{\sqrt3+\sqrt2}{(\sqrt3-\sqrt2)(\sqrt3+\sqrt2)}=\sqrt3+\sqrt2.$$
+
+    <p><strong>为什么乘共轭式：</strong>$(\sqrt a-\sqrt b)(\sqrt a+\sqrt b)=a-b$，两个根号都被平方，乘积中不再含根号，而分子分母同乘一个非零数不改变分数的值。注意共轭式必须非零，即 $a\ne b$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　分子含根号与两分数相加</b><span class="origin">原创</span></div>
+      <p>计算：(1) $\dfrac{2+\sqrt3}{2-\sqrt3}$；(2) $\dfrac{1}{\sqrt5+\sqrt3}+\dfrac{1}{\sqrt5-\sqrt3}$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 分子分母同乘 $2+\sqrt3$，分母为 $4-3=1$。</li>
+          <li>分子为 $(2+\sqrt3)^2=4+4\sqrt3+3=7+4\sqrt3$，所以结果是 $7+4\sqrt3$。</li>
+          <li>(2) 第一个分数同乘 $\sqrt5-\sqrt3$，得 $\dfrac{\sqrt5-\sqrt3}{2}$。</li>
+          <li>第二个分数同乘 $\sqrt5+\sqrt3$，得 $\dfrac{\sqrt5+\sqrt3}{2}$。</li>
+          <li>相加，$\sqrt3$ 抵消：$\dfrac{2\sqrt5}{2}=\sqrt5$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $7+4\sqrt3$；(2) $\sqrt5$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只给分母乘共轭式，分子没有乘。</li>
+        <li>分母算反导致符号错误：$(2-\sqrt5)(2+\sqrt5)=4-5=-1$，结果是负数。</li>
+        <li>分子分母同乘原分母，这样分母仍然含根号。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>$\dfrac{1}{\sqrt{n+1}+\sqrt n}=\sqrt{n+1}-\sqrt n$ 这种形式很常见，连加时中间项会依次抵消，看到多个相邻根号的分数就可以往这里想。</p>
+      <p><strong>日语术语：</strong><span lang="ja">共役な式</span>（<span class="kana" lang="ja">きょうやくなしき</span>）：共轭式；<span lang="ja">分母を有理化する</span>（<span class="kana" lang="ja">ぶんぼをゆうりかする</span>）：将分母有理化；<span lang="ja">分子</span>（<span class="kana" lang="ja">ぶんし</span>）：分子；<span lang="ja">分母</span>（<span class="kana" lang="ja">ぶんぼ</span>）：分母。</p>
+    </div>
 
     <h3>二重根号</h3>
     <p><span lang="ja">二重根号</span>的化简：找 $a&gt;b&gt;0$，使 $a+b=p,\ ab=q$，则</p>
@@ -403,6 +745,35 @@ svg .probe-no.fillp { fill: var(--c2); }
       <li>$\sqrt{4-\sqrt{15}}=\sqrt{\dfrac{8-2\sqrt{15}}{2}}=\dfrac{\sqrt5-\sqrt3}{\sqrt2}=\dfrac{\sqrt{10}-\sqrt6}{2}$。</li>
     </ul>
 
+    <p><strong>公式来源：</strong>$a,b&gt;0$ 时，$(\sqrt a+\sqrt b)^2=a+b+2\sqrt{ab}$，两边开方就得 $\sqrt{a+b+2\sqrt{ab}}=\sqrt a+\sqrt b$。减号时 $(\sqrt a-\sqrt b)^2$ 同样展开，但开方结果必须非负，所以要求 $a&gt;b$。</p>
+    <p><strong>不一定都能化简：</strong>只有存在合适的 $a,b$（在 $a,b$ 为有理数的意义下）时才能去掉外层根号，如 $\sqrt{3+2\sqrt5}$ 就找不到正有理数 $a,b$ 满足 $a+b=3,\ ab=5$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　减号型与内层系数不是 2 的情况</b><span class="origin">原创</span></div>
+      <p>化简：(1) $\sqrt{11-6\sqrt2}$；(2) $\sqrt{6+\sqrt{35}}$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 凑 $2\sqrt{\ }$：$6\sqrt2=2\cdot3\sqrt2=2\sqrt{18}$。</li>
+          <li>找和为 $11$、积为 $18$ 的两数：$9$ 和 $2$。大的写在前面：$\sqrt9-\sqrt2=3-\sqrt2$。</li>
+          <li>(2) 内层前没有系数 $2$，分子分母同乘 $2$：$\sqrt{6+\sqrt{35}}=\sqrt{\dfrac{12+2\sqrt{35}}{2}}$。</li>
+          <li>和为 $12$、积为 $35$ 的两数是 $7$ 和 $5$，所以分子开方为 $\sqrt7+\sqrt5$，原式 $=\dfrac{\sqrt7+\sqrt5}{\sqrt2}$。</li>
+          <li>有理化：$\dfrac{\sqrt{14}+\sqrt{10}}{2}$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $3-\sqrt2$；(2) $\dfrac{\sqrt{14}+\sqrt{10}}{2}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>减号时把小数写在前面，例如写成 $\sqrt2-3$，结果为负，而根号的值不可能为负。</li>
+        <li>没有凑成 $2\sqrt{\ }$ 就找两数，例如直接在 $\sqrt{11-6\sqrt2}$ 中找积为 $2$ 或 $72$ 的数。</li>
+        <li>把 $6\sqrt2$ 中的 $6$ 全部移入根号后才提 $2$，算成 $2\sqrt{72}$。正确的是 $2\sqrt{18}$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>做完后可以用近似值核对：$\sqrt{11-6\sqrt2}\approx1.59$，$3-\sqrt2\approx1.59$。这一步只需几秒钟，能发现大小写反的错误。</p>
+      <p><strong>日语术语：</strong><span lang="ja">二重根号をはずす</span>（<span class="kana" lang="ja">にじゅうこんごうをはずす</span>）：化去二重根号；<span lang="ja">和</span>（<span class="kana" lang="ja">わ</span>）：和；<span lang="ja">積</span>（<span class="kana" lang="ja">せき</span>）：积；<span lang="ja">近似値</span>（<span class="kana" lang="ja">きんじち</span>）：近似值。</p>
+    </div>
+
     <h3>对称式与整数、小数部分</h3>
     <p>$x,y$ 互换后不变的式子是<strong>对称式</strong>（<span lang="ja">対称式</span>），都能用 $x+y$ 和 $xy$ 表示：</p>
     <div class="formula-grid">
@@ -410,6 +781,36 @@ svg .probe-no.fillp { fill: var(--c2); }
       <div>$x^3+y^3=(x+y)^3-3xy(x+y)$</div>
     </div>
     <p>整数部分是不超过该数的最大整数，<strong>小数部分 = 原数 − 整数部分</strong>。例如 $2&lt;\sqrt7&lt;3$，所以 $\sqrt7$ 的整数部分为 $2$，小数部分为 $\sqrt7-2$。</p>
+    <p><strong>对称式为什么都能用和与积表示：</strong>$x+y$ 和 $xy$ 叫<strong>基本对称式</strong>。$x^2+y^2$ 由 $(x+y)^2$ 减去多出的 $2xy$ 而来；$x^3+y^3$ 由 $(x+y)^3$ 减去 $3x^2y+3xy^2=3xy(x+y)$ 而来。根式题中 $x,y$ 单独计算很繁，而和与积往往是简单的有理数，所以这样算更快。</p>
+    <p><strong>小数部分为什么写成根式：</strong>无理数的小数部分是无限不循环小数，不能写完，只能写成“原数减整数部分”。负数也要按定义：$-\sqrt2$ 介于 $-2$ 和 $-1$ 之间，整数部分是 $-2$，小数部分是 $2-\sqrt2$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　有理化后用和与积</b><span class="origin">原创</span></div>
+      <p>设 $x=\dfrac{\sqrt3+1}{\sqrt3-1},\ y=\dfrac{\sqrt3-1}{\sqrt3+1}$。(1) 求 $x+y,\ xy,\ x^2+y^2,\ x^3+y^3,\ \dfrac xy+\dfrac yx$；(2) 设 $x$ 的整数部分为 $a$，小数部分为 $b$，求 $a$ 和 $b^2+2b$ 的值。</p>
+      <div class="ans">
+        <ol>
+          <li>有理化：$x=\dfrac{(\sqrt3+1)^2}{2}=\dfrac{4+2\sqrt3}{2}=2+\sqrt3$；同理 $y=2-\sqrt3$。</li>
+          <li>(1) $x+y=4,\ xy=4-3=1$。</li>
+          <li>$x^2+y^2=4^2-2\cdot1=14$；$x^3+y^3=4^3-3\cdot1\cdot4=52$。</li>
+          <li>$\dfrac xy+\dfrac yx=\dfrac{x^2+y^2}{xy}=14$。</li>
+          <li>(2) $1&lt;\sqrt3&lt;2$，所以 $3&lt;x&lt;4$，$a=3$，$b=x-3=\sqrt3-1$。</li>
+          <li>$b+1=\sqrt3$，所以 $b^2+2b=(b+1)^2-1=3-1=2$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $4,\ 1,\ 14,\ 52,\ 14$；(2) $a=3$，$b^2+2b=2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $x^3+y^3$ 写成 $(x+y)^3$，漏减 $3xy(x+y)$。</li>
+        <li>把小数部分写成近似值 $0.732$。题目要的是精确值 $\sqrt3-1$。</li>
+        <li>估算 $5-\sqrt3$ 时直接取 $5-1=4$。应由 $1&lt;\sqrt3&lt;2$ 得 $3&lt;5-\sqrt3&lt;4$，所以整数部分是 $3$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>求 $b$ 的多项式值时不必硬代入。把 $b$ 的表达式变形成 $b+k=\sqrt{\ }$，再平方，根号消失，常能一步得到结果。</p>
+      <p><strong>日语术语：</strong><span lang="ja">基本対称式</span>（<span class="kana" lang="ja">きほんたいしょうしき</span>）：基本对称式；<span lang="ja">整数部分</span>（<span class="kana" lang="ja">せいすうぶぶん</span>）：整数部分；<span lang="ja">小数部分</span>（<span class="kana" lang="ja">しょうすうぶぶん</span>）：小数部分。</p>
+    </div>
+
   </section>
 
   <section id="abs">
@@ -424,6 +825,34 @@ svg .probe-no.fillp { fill: var(--c2); }
       <div>$|ab|=|a||b|$</div>
       <div>$\left|\dfrac ab\right|=\dfrac{|a|}{|b|}\ (b\ne0)$</div>
     </div>
+    <p><strong>定义为什么分两种情况：</strong>距离不能为负。$a\ge0$ 时距离就是 $a$；$a&lt;0$ 时要加负号才能变成正数，所以 $-a$ 在此时是正数。不要把 $-a$ 看成“负的”，它的符号取决于 $a$。</p>
+    <p><strong>性质的推导：</strong>$|ab|$ 和 $|a||b|$ 都非负，平方后都等于 $a^2b^2$，所以相等；$|a|^2=a^2$ 则由 $|a|=\pm a$ 直接得到。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　判断内部符号后去绝对值</b><span class="origin">原创</span></div>
+      <p>(1) 化简 $|\sqrt5-3|+|\sqrt5-2|$；(2) 写出 $|3-\pi|$ 不含绝对值的形式；(3) 求数轴上点 $-2$ 和点 $5$ 的距离；(4) $x&lt;-1$ 时，化简 $|x+1|-|x-3|$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $2&lt;\sqrt5&lt;3$，所以 $\sqrt5-3&lt;0,\ \sqrt5-2&gt;0$。原式 $=(3-\sqrt5)+(\sqrt5-2)=1$。</li>
+          <li>(2) $\pi&gt;3$，所以 $3-\pi&lt;0$，$|3-\pi|=\pi-3$。</li>
+          <li>(3) 距离 $=|5-(-2)|=7$。</li>
+          <li>(4) $x&lt;-1$ 时 $x+1&lt;0,\ x-3&lt;0$，所以原式 $=-(x+1)-(3-x)=-4$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $1$；(2) $\pi-3$；(3) $7$；(4) $-4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>认为 $|a|$ 总等于 $a$，或认为 $|-x|$ 一定等于 $x$。正确的是 $|-x|=|x|$。</li>
+        <li>去绝对值后只给第一项变号：$|x-3|$ 在 $x&lt;3$ 时是 $3-x$，两项都要变号。</li>
+        <li>第二个绝对值前有减号时，去绝对值后忘记加括号。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>先判断内部的符号，再动笔去绝对值。$|x-a|$ 可以直接读成“$x$ 到 $a$ 的距离”，很多题不用分段就能看出答案。</p>
+      <p><strong>日语术语：</strong><span lang="ja">絶対値記号</span>（<span class="kana" lang="ja">ぜったいちきごう</span>）：绝对值符号；<span lang="ja">負の数</span>（<span class="kana" lang="ja">ふのすう</span>）：负数；<span lang="ja">正の数</span>（<span class="kana" lang="ja">せいのすう</span>）：正数；<span lang="ja">原点</span>（<span class="kana" lang="ja">げんてん</span>）：原点。</p>
+    </div>
+
     <h3>含绝对值的方程</h3>
     <p>$c&gt;0$ 时，$|X|=c\iff X=\pm c$。例：$|2x-1|=5$ 得 $2x-1=\pm5$，即 $x=3,\ -2$。</p>
     <p>右边含未知数时要<strong>分情况讨论</strong>（<span lang="ja">場合分け</span>），并检查解是否落在所设范围内。解 $|x-1|=2x$：</p>
@@ -432,6 +861,36 @@ svg .probe-no.fillp { fill: var(--c2); }
       <li>$x&lt;1$ 时，$1-x=2x$，得 $x=\dfrac13$，满足 $x&lt;1$。</li>
     </ul>
     <p>所以 $x=\dfrac13$。</p>
+    <p><strong>为什么是 $\pm c$：</strong>$|X|=c$ 表示 $X$ 到原点的距离为 $c$，这样的点在原点两侧各有一个。$c=0$ 时只有 $X=0$；$c&lt;0$ 时无解，因为距离不可能为负。</p>
+    <p><strong>为什么要检查范围：</strong>分情况后，每一段的方程只在该段内与原方程等价。解出来的值如果落在段外，它满足的是去绝对值后的方程，不是原方程，必须舍去。</p>
+    <p><strong>两边都是绝对值时：</strong>$|A|=|B|$ 等价于 $A=\pm B$，因为两数的距离相同，只有相等或互为相反数两种可能，不必分多段。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　三种类型的绝对值方程</b><span class="origin">原创</span></div>
+      <p>解方程：(1) $|x+2|=3x-4$；(2) $|x-1|=|2x+3|$；(3) $|x|+|x-4|=6$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) $x\ge-2$ 时：$x+2=3x-4$，得 $x=3$，符合。$x&lt;-2$ 时：$-x-2=3x-4$，得 $x=\dfrac12$，不符合，舍去。</li>
+          <li>(2) $x-1=2x+3$ 得 $x=-4$；$x-1=-(2x+3)$ 得 $3x=-2$，$x=-\dfrac23$。</li>
+          <li>(3) 分点为 $0,\ 4$。$x&lt;0$ 时 $-2x+4=6$，得 $x=-1$，符合。</li>
+          <li>$0\le x&lt;4$ 时左边恒为 $4\ne6$，无解。$x\ge4$ 时 $2x-4=6$，得 $x=5$，符合。</li>
+          <li>几何检验：$(3)$ 的左边是 $x$ 到 $0$ 和 $4$ 的距离之和。$-1$ 和 $5$ 到两点的距离和都是 $6$，一致。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $x=3$；(2) $x=-4,\ -\dfrac23$；(3) $x=-1,\ 5$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>右边含 $x$ 时仍直接写 $X=\pm(3x-4)$，又不检验，把多余的解也留下了。</li>
+        <li>分段时分点归属不一致。分点放入哪一段都可以，但不能漏掉，也不必重复。</li>
+        <li>解出值后不和该段范围比较。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>答案中的解通常只有一两个，每段解完立刻写上“适する／不適”，能避免把舍去的解填进去。</p>
+      <p><strong>日语术语：</strong><span lang="ja">適する</span>（<span class="kana" lang="ja">てきする</span>）：符合条件；<span lang="ja">不適</span>（<span class="kana" lang="ja">ふてき</span>）：不符合、舍去；<span lang="ja">分点</span>（<span class="kana" lang="ja">ぶんてん</span>）：分点。</p>
+    </div>
+
   </section>
 
   <section id="ineq">
@@ -448,6 +907,34 @@ svg .probe-no.fillp { fill: var(--c2); }
       <p><strong>核心：</strong>两边乘或除以<strong>负数</strong>时，不等号方向反转。系数含字母时，必须分正、负、零讨论（见练习 15）。</p>
     </div>
 
+    <p><strong>反转的原因：</strong>$A&lt;B$ 等价于 $B-A&gt;0$。当 $C&lt;0$ 时，正数乘负数得负数，$C(B-A)&lt;0$，即 $CB&lt;CA$，也就是 $AC&gt;BC$。从数轴上看，乘 $-1$ 相当于关于原点翻转，原来的左右顺序对调。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由已知范围求式子的范围</b><span class="origin">原创</span></div>
+      <p>设 $-2\le x&lt;3,\ -1&lt;y&lt;2$。求 (1) $-3x+1$ 的范围；(2) $x-y$ 的范围。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 乘 $-3$，不等号反转：$-2\le x&lt;3$ 变为 $-9&lt;-3x\le6$。</li>
+          <li>各部分加 $1$：$-8&lt;-3x+1\le7$。</li>
+          <li>(2) 先写出 $-y$ 的范围：由 $-1&lt;y&lt;2$ 得 $-2&lt;-y&lt;1$。</li>
+          <li>再与 $-2\le x&lt;3$ 相加：下限 $-2+(-2)=-4$，上限 $3+1=4$。</li>
+          <li>两个端点都取不到：下限处 $-y&gt;-2$ 取不到；上限处 $x&lt;3$ 取不到。所以 $-4&lt;x-y&lt;4$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $-8&lt;-3x+1\le7$；(2) $-4&lt;x-y&lt;4$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>两边乘负数时只变数字不变方向，或只变一个不等号。</li>
+        <li>求 $x-y$ 时把上下限分别相减，得 $-1&lt;x-y&lt;1$。必须先化成 $x+(-y)$，再相加。</li>
+        <li>不注意端点是否取到。相加时只要有一端取不到，结果的这一端就取不到。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>范围题的等号是常见得分点，每一步都单独判断。结果端点是否取到，可以代入具体值核对。</p>
+      <p><strong>日语术语：</strong><span lang="ja">範囲</span>（<span class="kana" lang="ja">はんい</span>）：范围；<span lang="ja">不等号の向き</span>（<span class="kana" lang="ja">ふとうごうのむき</span>）：不等号方向；<span lang="ja">両辺</span>（<span class="kana" lang="ja">りょうへん</span>）：两边。</p>
+    </div>
+
     <h3>解法</h3>
     <p>移项（<span lang="ja">移項</span>）、合并，整理成 $ax&lt;b$ 的形式，再除以 $a$。</p>
     <ul>
@@ -455,12 +942,70 @@ svg .probe-no.fillp { fill: var(--c2); }
       <li>$\dfrac x2-\dfrac{x-1}{3}\ge1$：两边乘 $6$，得 $3x-2(x-1)\ge6$，所以 $x\ge4$。</li>
     </ul>
 
+    <p><strong>为什么可以移项和去分母：</strong>移项就是两边同加一个数，乘正数方向不变，这些变形都可逆，所以解集不变。先乘分母的最小公倍数，可以把分数系数变成整数，减少计算错误。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　分数系数与小数系数</b><span class="origin">原创</span></div>
+      <p>(1) 解 $\dfrac{x-1}{2}-\dfrac{2x+1}{3}\ge\dfrac16$；(2) 解 $0.3(x-4)&lt;0.5x+0.4$，并求满足的最小整数。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 两边乘 $6$：$3(x-1)-2(2x+1)\ge1$。</li>
+          <li>展开：$3x-3-4x-2\ge1$，即 $-x\ge6$，方向反转得 $x\le-6$。</li>
+          <li>(2) 两边乘 $10$：$3(x-4)&lt;5x+4$，即 $3x-12&lt;5x+4$。</li>
+          <li>移项：$-2x&lt;16$，除以 $-2$ 并反转方向：$x&gt;-8$。</li>
+          <li>$x$ 必须大于 $-8$，所以最小整数是 $-7$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $x\le-6$；(2) $x&gt;-8$，最小整数为 $-7$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>乘分母时漏乘不含分母的项，例如常数项没有乘 $6$。</li>
+        <li>分子有多项时不加括号，把 $-\dfrac{2x+1}{3}$ 写成 $-2x+1$，后一项符号错误。</li>
+        <li>“最小整数”误取端点 $-8$。严格不等号时端点本身不满足。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目常问“满足条件的最大或最小整数”。解出后在数轴上标出端点，判断端点是否包含，再确定整数。</p>
+      <p><strong>日语术语：</strong><span lang="ja">両辺に $6$ を掛ける</span>（<span class="kana" lang="ja">りょうへんにろくをかける</span>）：两边乘 $6$；<span lang="ja">最大の整数</span>（<span class="kana" lang="ja">さいだいのせいすう</span>）：最大的整数；<span lang="ja">最小の整数</span>（<span class="kana" lang="ja">さいしょうのせいすう</span>）：最小的整数。</p>
+    </div>
+
     <h3>联立不等式</h3>
     <p><span lang="ja">連立不等式</span>分别求解，再在数轴上取公共部分。</p>
     <ul>
       <li>$\begin{cases}2x-1&lt;5\\3x+2\ge-4\end{cases}$：得 $x&lt;3$ 且 $x\ge-2$，即 $-2\le x&lt;3$。</li>
       <li>连写形式 $3\le2x+1&lt;7$：各部分同时减 $1$ 再除以 $2$，得 $1\le x&lt;3$。</li>
     </ul>
+
+    <p><strong>为什么取公共部分：</strong>“联立”要求所有不等式同时成立，每个 $x$ 必须同时属于各个解集，所以是交集。一个不等式的解集就是它的条件范围，所以不要取并集。</p>
+    <p><strong>连写式的含义：</strong>$A&lt;B\le C$ 就是 $A&lt;B$ 且 $B\le C$。中间含 $x$ 而两端也含 $x$ 时，不能同时对三部分移项，必须拆成两个不等式。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　联立不等式与连写形式</b><span class="origin">原创</span></div>
+      <p>(1) 解 $\begin{cases}3x-4\le x+2\\[2pt] \dfrac{x+5}{2}&gt;1-x\end{cases}$，并求满足的整数个数；(2) 解 $2x-1&lt;3x+2\le x+8$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 第一式：$2x\le6$，所以 $x\le3$。</li>
+          <li>第二式乘 $2$：$x+5&gt;2-2x$，$3x&gt;-3$，所以 $x&gt;-1$。</li>
+          <li>公共部分为 $-1&lt;x\le3$，整数为 $0,1,2,3$，共 $4$ 个。</li>
+          <li>(2) 拆成两式：$2x-1&lt;3x+2$ 得 $x&gt;-3$；$3x+2\le x+8$ 得 $x\le3$。</li>
+          <li>公共部分为 $-3&lt;x\le3$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $-1&lt;x\le3$，整数 $4$ 个；(2) $-3&lt;x\le3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把联立不等式的解集取并集。</li>
+        <li>$x&lt;1$ 且 $x&gt;3$ 没有公共部分，应写无解，不能写成 $3&lt;x&lt;1$。</li>
+        <li>$x\le2$ 且 $x\ge2$ 的解是 $x=2$，不是无解。</li>
+        <li>两端都含 $x$ 的连写式，也像常数连写式一样同时操作。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>联立题常接着问整数个数或参数范围。把两个解集画在数轴上，用实心或空心圆标出端点，等号是否可取就容易判断了。</p>
+      <p><strong>日语术语：</strong><span lang="ja">共通範囲</span>（<span class="kana" lang="ja">きょうつうはんい</span>）：公共部分；<span lang="ja">解なし</span>（<span class="kana" lang="ja">かいなし</span>）：无解；<span lang="ja">同時に満たす</span>（<span class="kana" lang="ja">どうじにみたす</span>）：同时满足。</p>
+    </div>
 
     <h3>含绝对值的不等式</h3>
     <p>对 $c&gt;0$：</p>
@@ -482,6 +1027,36 @@ svg .probe-no.fillp { fill: var(--c2); }
 
     <div class="box">
       <p><strong>读懂日语范围表达：</strong><span lang="ja">以上</span> 是 $\ge$，<span lang="ja">以下</span> 是 $\le$（都<strong>包含</strong>该数）；<span lang="ja">より大きい</span> 是 $&gt;$，<span lang="ja">未満</span> 是 $&lt;$（都<strong>不含</strong>该数）。</p>
+    </div>
+
+    <p><strong>从距离理解公式：</strong>$|X|&lt;c$ 表示 $X$ 到原点的距离小于 $c$，所以 $X$ 夹在 $-c$ 和 $c$ 之间；$|X|&gt;c$ 表示距离大于 $c$，$X$ 在两侧，解集分成两段，用“或”连接。</p>
+    <p><strong>特殊情况：</strong>$c&lt;0$ 时，$|X|&lt;c$ 无解，$|X|&gt;c$ 对所有实数都成立。$c=0$ 时，$|X|&lt;0$ 无解，$|X|\le0$ 只有 $X=0$，$|X|&gt;0$ 为 $X\ne0$。</p>
+    <p><strong>分段讨论的依据：</strong>在两个相邻分点之间，每个绝对值内部的符号都不变，式子就成了普通的一次式，所以每段内部可以按一次不等式求解，最后取并集。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　大于型与系数不同的多重绝对值</b><span class="origin">原创</span></div>
+      <p>解：(1) $|2x+1|\ge3$；(2) $|x+2|+2|x-1|\le6$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 由公式：$2x+1\le-3$ 或 $2x+1\ge3$，即 $x\le-2$ 或 $x\ge1$。</li>
+          <li>(2) 分点为 $-2,\ 1$。$x&lt;-2$ 时：$-(x+2)-2(x-1)=-3x\le6$，得 $x\ge-2$，与范围无公共部分。</li>
+          <li>$-2\le x&lt;1$ 时：$(x+2)-2(x-1)=4-x\le6$，得 $x\ge-2$，所以 $-2\le x&lt;1$。</li>
+          <li>$x\ge1$ 时：$(x+2)+2(x-1)=3x\le6$，得 $x\le2$，所以 $1\le x\le2$。</li>
+          <li>三段取并集：$-2\le x\le2$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $x\le-2$ 或 $x\ge1$；(2) $-2\le x\le2$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $|X|&gt;c$ 写成 $-c&gt;X&gt;c$。这样的连写没有意义，必须写成两段。</li>
+        <li>分段后忘记与本段范围取公共部分。</li>
+        <li>各段结果之间应取并集，而每段内部才取交集，二者不要混淆。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>形如 $|x-p|+|x-q|$ 的式子，最小值是 $|p-q|$，在 $p,q$ 之间取到。右边小于这个值时可以马上判断无解。</p>
+      <p><strong>日语术语：</strong><span lang="ja">または</span>（<span class="kana" lang="ja">または</span>）：或；<span lang="ja">かつ</span>（<span class="kana" lang="ja">かつ</span>）：且；<span lang="ja">距離の和</span>（<span class="kana" lang="ja">きょりのわ</span>）：距离之和。</p>
     </div>
 
     <h3>解集数轴演示</h3>
@@ -517,6 +1092,34 @@ svg .probe-no.fillp { fill: var(--c2); }
       </div>
       <div class="status" id="lab-note" aria-live="polite"></div>
     </div>
+    <p><strong>怎样用这个演示：</strong>先自己写出解集，再用滑块核对。重点看三件事：端点是实心还是空心；$b$ 变成 $0$ 或负数时，解集怎样突然变化；$p$ 变为负数时，不等号方向是否反转。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由数轴解集反推绝对值不等式</b><span class="origin">原创</span></div>
+      <p>数轴上的解集为 $x\le-3$ 或 $x\ge7$，端点都是实心圆。把它写成 $|x-a|\ge b$ 的形式，并用上方演示核对。</p>
+      <div class="ans">
+        <ol>
+          <li>解集在两个端点外侧，并且包含端点，所以不等号是 $\ge$。</li>
+          <li>中心 $a$ 是两端点的中点：$a=\dfrac{-3+7}{2}=2$。</li>
+          <li>半径 $b$ 是端点到中心的距离：$b=\dfrac{7-(-3)}{2}=5$。</li>
+          <li>反向验证：$|x-2|\ge5$ 即 $x-2\le-5$ 或 $x-2\ge5$，得 $x\le-3$ 或 $x\ge7$。</li>
+          <li>在演示中选“绝对值不等式”和 $\ge$，把 $a$ 调到 $2$，$b$ 调到 $5$，即可看到相同的解集。</li>
+        </ol>
+        <p><strong>答案：</strong>$|x-2|\ge5$（$a=2,\ b=5$）。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把实心圆和空心圆弄反：实心含端点，对应 $\le,\ \ge$；空心不含端点，对应 $&lt;,\ &gt;$。</li>
+        <li>把 $b$ 写成两端点的距离 $10$。$b$ 应为一半。</li>
+        <li>解集在外侧却写成 $&lt;$ 或 $\le$。“内侧”才对应小于。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>绝对值不等式的解集总是关于 $x=a$ 对称。选项中如果两端点的中点不是 $a$，可以马上排除。</p>
+      <p><strong>日语术语：</strong><span lang="ja">中点</span>（<span class="kana" lang="ja">ちゅうてん</span>）：中点；<span lang="ja">端点</span>（<span class="kana" lang="ja">たんてん</span>）：端点；<span lang="ja">解の範囲</span>（<span class="kana" lang="ja">かいのはんい</span>）：解的范围。</p>
+    </div>
+
   </section>
 
   <section id="examples">
@@ -591,6 +1194,35 @@ svg .probe-no.fillp { fill: var(--c2); }
         <p>(4) 无解即 $a+1\ge11$，所以 $a\ge10$。$a+1=11$ 时 $x&gt;11$ 与 $x\le11$ 没有公共部分，可以取等号。</p>
       </div>
     </article>
+    <p><strong>填空题的做题思路：</strong>EJU 的大题是逐步引导的，前一问的结果通常就是后一问的工具，所以遇到困难时要回头看前面已经算出的量。方框的个数也是信息：$\B{AB}$ 说明答案是两位数，如果算出一位数，就要回头检查。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　EJU 风格综合填空</b><span class="origin">原创</span></div>
+      <p>设 $x=\dfrac{\sqrt7+\sqrt3}{\sqrt7-\sqrt3},\ y=\dfrac{\sqrt7-\sqrt3}{\sqrt7+\sqrt3}$。<br>(1) $x+y=\B{A}$，$xy=\B{B}$，$x^2+y^2=\B{CD}$。<br>(2) $x$ 的整数部分为 $\B{E}$。<br>(3) 不等式 $|t-3|\le4$ 的解为 $-\B{F}\le t\le\B{G}$，满足它的整数 $t$ 共有 $\B{H}$ 个。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ol>
+          <li>(1) 分母 $(\sqrt7-\sqrt3)(\sqrt7+\sqrt3)=4$，所以 $x=\dfrac{(\sqrt7+\sqrt3)^2}{4}=\dfrac{10+2\sqrt{21}}{4}=\dfrac{5+\sqrt{21}}{2}$，同理 $y=\dfrac{5-\sqrt{21}}{2}$。</li>
+          <li>$x+y=5$，$xy=\dfrac{25-21}{4}=1$，$x^2+y^2=5^2-2=23$。</li>
+          <li>(2) $4&lt;\sqrt{21}&lt;5$，所以 $\dfrac92&lt;x&lt;5$，整数部分为 $4$。</li>
+          <li>(3) $-4\le t-3\le4$，所以 $-1\le t\le7$。</li>
+          <li>整数个数：$7-(-1)+1=9$。</li>
+        </ol>
+        <p><strong>答案：</strong>A = 5，B = 1，C = 2，D = 3，E = 4，F = 1，G = 7，H = 9。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>算出的位数和方框不一致时不检查，直接填写。</li>
+        <li>分数没有约到最简，或根号内的数没有化到最小。</li>
+        <li>数整数个数时写成 $7-(-1)=8$，漏加 $1$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>不要跳过前面的小问。如果某一问实在算不出，先用它后面不依赖该结果的小问得分。负号等书写规则以当次试卷的说明为准。</p>
+      <p><strong>日语术语：</strong><span lang="ja">空欄</span>（<span class="kana" lang="ja">くうらん</span>）：空格；<span lang="ja">約分する</span>（<span class="kana" lang="ja">やくぶんする</span>）：约分；<span lang="ja">解答上の注意</span>（<span class="kana" lang="ja">かいとうじょうのちゅうい</span>）：答题注意事项。</p>
+    </div>
+
   </section>
 
   <section id="practice">
@@ -679,6 +1311,34 @@ svg .probe-no.fillp { fill: var(--c2); }
       <p>求满足 $\dfrac{x+2}{3}-\dfrac{x-1}{2}&gt;-1$ 的最大整数 $x$。</p>
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
       <div class="ans" hidden><p>两边乘 $6$：$2x+4-3x+3&gt;-6$，得 $-x&gt;-13$，即 $x&lt;13$。最大整数为 $\mathbf{12}$。</p></div></div>
+    <p><strong>练习方法：</strong>第一遍不看答案，把每道题的步骤写完整；第二遍只看错题，判断错在公式、符号、分情况还是计算。这样比重复做已经会的题更有效。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　根式与绝对值的综合</b><span class="origin">原创</span></div>
+      <p>设 $a=\dfrac{1}{2-\sqrt3}$，化简并求 $\sqrt{a^2-2a+1}-\sqrt{a^2-8a+16}$ 的值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ol>
+          <li>有理化：$a=\dfrac{2+\sqrt3}{(2-\sqrt3)(2+\sqrt3)}=2+\sqrt3$。</li>
+          <li>配方：原式 $=\sqrt{(a-1)^2}-\sqrt{(a-4)^2}=|a-1|-|a-4|$。</li>
+          <li>估值：$1&lt;\sqrt3&lt;2$，所以 $3&lt;a&lt;4$，从而 $a-1&gt;0,\ a-4&lt;0$。</li>
+          <li>去绝对值：$(a-1)-(4-a)=2a-5$。</li>
+          <li>代入：$2(2+\sqrt3)-5=2\sqrt3-1$。</li>
+        </ol>
+        <p><strong>答案：</strong>$2\sqrt3-1$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>不判断 $a-4$ 的符号，直接写成 $a-4$，结果变成常数 $3$。</li>
+        <li>直接把 $a=2+\sqrt3$ 代入根号内展开，计算量大且容易错。应先配方。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>综合题先化简已知条件，再整理目标式，最后才代入。整理时能用字母就先用字母，代入越晚，计算越少。</p>
+      <p><strong>日语术语：</strong><span lang="ja">簡単にする</span>（<span class="kana" lang="ja">かんたんにする</span>）：化简；<span lang="ja">値を求める</span>（<span class="kana" lang="ja">あたいをもとめる</span>）：求值；<span lang="ja">平方完成</span>（<span class="kana" lang="ja">へいほうかんせい</span>）：配方。</p>
+    </div>
+
   </section>
 
   <section id="terms">
@@ -691,6 +1351,34 @@ svg .probe-no.fillp { fill: var(--c2); }
       <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
       <tbody></tbody>
     </table></div>
+    <p><strong>读题时的重点：</strong>日语数学题的结构比较固定。「〜を $a$ とする」是在设定条件，「〜を満たす」是限定对象，句末的「求めよ」或「〜である」告诉你要做什么。把范围词和对象词读准，题意就基本清楚了。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　读懂日语题面</b><span class="origin">原创</span></div>
+      <p><span lang="ja">$a$ を定数とする。不等式 $2x-a&lt;5$ を満たす最大の整数が $3$ となるような $a$ の値の範囲を求めよ。</span><br>（设 $a$ 为常数。求使满足不等式 $2x-a&lt;5$ 的最大整数为 $3$ 的 $a$ 的取值范围。）</p>
+      <div class="ans">
+        <ol>
+          <li>解不等式：$2x&lt;a+5$，所以 $x&lt;\dfrac{a+5}{2}$。</li>
+          <li>最大整数为 $3$，说明 $3$ 满足不等式，而 $4$ 不满足。</li>
+          <li>$3$ 满足：$3&lt;\dfrac{a+5}{2}$，即 $a&gt;1$。</li>
+          <li>$4$ 不满足：$4\ge\dfrac{a+5}{2}$，即 $a\le3$。这里能取等号：$a=3$ 时解为 $x&lt;4$，$4$ 恰好不满足。</li>
+          <li>所以 $1&lt;a\le3$。$a=1$ 时解为 $x&lt;3$，$3$ 不满足，左端不能取等号。</li>
+        </ol>
+        <p><strong>答案：</strong>$1&lt;a\le3$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>混淆<span lang="ja">以下</span>（含该数）和<span lang="ja">未満</span>（不含该数）。</li>
+        <li>把<span lang="ja">自然数</span>当作包含 $0$。日本高中数学中的自然数从 $1$ 开始。</li>
+        <li>把<span lang="ja">定数</span>（常数）读成未知数，或者把<span lang="ja">整数</span>当作只有正整数。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>EJU 数学题面可选日语或英语，用日语作答时读题速度很重要，术语表要连读音一起记。先记句型「〜を満たす」「〜の値の範囲を求めよ」，再用搜索框查漏补缺。</p>
+      <p><strong>日语术语：</strong><span lang="ja">満たす</span>（<span class="kana" lang="ja">みたす</span>）：满足；<span lang="ja">値の範囲</span>（<span class="kana" lang="ja">あたいのはんい</span>）：取值范围；<span lang="ja">求めよ</span>（<span class="kana" lang="ja">もとめよ</span>）：求……；<span lang="ja">$a$ を定数とする</span>（<span class="kana" lang="ja">エーをていすうとする</span>）：设 $a$ 为常数。</p>
+    </div>
+
   </section>
 
   <footer>
@@ -735,6 +1423,15 @@ svg .probe-no.fillp { fill: var(--c2); }
       ['未満', 'みまん', '小于（<）']
     ]]
   ];
+
+  TERMS.push(['本页补充术语', [
+    ['背理法', 'はいりほう', '反证法'], ['循環節', 'じゅんかんせつ', '循环节'], ['既約分数', 'きやくぶんすう', '最简分数'],
+    ['割り切れる', 'わりきれる', '整除'], ['検算', 'けんざん', '验算'], ['分配法則', 'ぶんぱいほうそく', '分配律'],
+    ['共役な式', 'きょうやくなしき', '共轭式'], ['基本対称式', 'きほんたいしょうしき', '基本对称式'], ['平方完成', 'へいほうかんせい', '配方'],
+    ['適する', 'てきする', '符合条件'], ['不適', 'ふてき', '不符合、舍去'], ['範囲', 'はんい', '范围'],
+    ['共通範囲', 'きょうつうはんい', '公共部分'], ['解なし', 'かいなし', '无解'], ['満たす', 'みたす', '满足'],
+    ['または', 'または', '或'], ['かつ', 'かつ', '且'], ['求めよ', 'もとめよ', '求……']
+  ]]);
 
   var termBody = document.querySelector('#term-table tbody');
   TERMS.forEach(function (g) {
