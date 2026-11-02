@@ -261,6 +261,50 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <p><strong>常见题型：和的最大值。</strong>首项 $100$、公差 $-7$ 的数列，$a_n=107-7n$。由 $a_n&lt;0$ 得 $n&gt;15.2\cdots$，所以第 $16$ 项首次为负。正项加到第 $15$ 项时和最大：$a_{15}=2$，$S_{15}=\dfrac{15(100+2)}{2}=765$。</p>
     </div>
     <p>判断依据：$a_n$ 是 $n$ 的一次式（$d\ne0$ 时）；$S_n$ 是 $n$ 的二次式且没有常数项。</p>
+    <p><strong>通项为什么是 $n-1$ 个 $d$？</strong>从第 $1$ 项走到第 $n$ 项要跨 $n-1$ 步，每步加 $d$，所以 $a_n=a+(n-1)d$。同理，任意两项之间有 $a_n=a_m+(n-m)d$，已知中间两项时不必先求首项。</p>
+    <p><strong>和的公式从哪来？</strong>把和正着写一遍、倒着写一遍，再上下相加（倒序相加）：</p>
+    $$\begin{aligned}S_n&amp;=a+(a+d)+\cdots+l\\ S_n&amp;=l+(l-d)+\cdots+a\end{aligned}$$
+    <p>每一列的和都等于 $a+l$，共 $n$ 列，所以 $2S_n=n(a+l)$。再代入 $l=a+(n-1)d$，就得到第二个公式。</p>
+    <p><strong>等差中项：</strong>$a,b,c$ 成等差，就是 $b-a=c-b$，移项即 $2b=a+c$。</p>
+    <p><strong>“判断依据”的来历：</strong>展开得 $a_n=dn+(a-d)$，$S_n=\dfrac d2n^2+\Bigl(a-\dfrac d2\Bigr)n$。所以 $S_n$ 没有常数项；可以直接设 $S_n=An^2+Bn$，这时公差 $d=2A$，首项 $a=A+B$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 1-1（由两个和求数列）</b><span class="origin">原创</span></div>
+      <p>等差数列 $\{a_n\}$ 满足 $S_{10}=155$，$S_{20}=610$。求首项 $a$、公差 $d$、通项 $a_n$ 与 $S_{30}$。</p>
+      <div class="ans">
+        <ol>
+          <li>代入 $S_n=\dfrac{n\{2a+(n-1)d\}}{2}$：$5(2a+9d)=155$，$10(2a+19d)=610$。</li>
+          <li>化简为 $2a+9d=31$，$2a+19d=61$。</li>
+          <li>两式相减：$10d=30$，$d=3$；代回得 $2a=4$，$a=2$。</li>
+          <li>$a_n=2+3(n-1)=3n-1$。</li>
+          <li>$S_{30}=\dfrac{30(2\cdot2+29\cdot3)}{2}=15\cdot91=1365$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a=2,\ d=3,\ a_n=3n-1,\ S_{30}=1365$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 1-2（先数项数）</b><span class="origin">原创</span></div>
+      <p>求 $100$ 到 $300$ 之间，除以 $7$ 余 $3$ 的所有整数的和。</p>
+      <div class="ans">
+        <ol>
+          <li>这些数可写成 $7m+3$（$m$ 为整数），相邻两个相差 $7$，构成等差数列。</li>
+          <li>由 $100\le7m+3\le300$ 得 $13.8\cdots\le m\le42.4\cdots$，所以 $m=14,15,\dots,42$。</li>
+          <li>项数为 $42-14+1=29$，首项 $7\cdot14+3=101$，末项 $7\cdot42+3=297$。</li>
+          <li>和 $=\dfrac{29(101+297)}{2}=29\cdot199=5771$。</li>
+        </ol>
+        <p><strong>答案：</strong>$5771$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把第 $n$ 项写成 $a+nd$，多走了一步。</li>
+        <li>项数算成 $42-14=28$。从第 $m$ 个数到第 $n$ 个数共有 $n-m+1$ 个。</li>
+        <li>求 $S_n$ 最大值时只看 $a_n$ 的值，却没有比较相邻两项的符号：应找“最后一个非负项”。若恰有一项为 $0$，则加不加它和都相同，最大值在两个 $n$ 处取到。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题面常说“<span lang="ja">初項から第 $n$ 項までの和</span><span class="kana">（しょこうからだいえぬこうまでのわ）</span>”，就是 $S_n$。求和最大值时找符号改变处（<span lang="ja">初めて負になる項</span><span class="kana">（はじめてふになるこう）</span>）通常最快。两个条件都是和时，设 $S_n=An^2+Bn$ 解方程组也能节省时间。</p>
+    </div>
   </section>
 
   <section id="geom">
@@ -279,9 +323,75 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="box good">
       <p><strong>小例子：</strong>数列 $2,6,18,\dots$ 中 $a_n=2\cdot3^{n-1}$。由 $3^5=243&lt;500&lt;729=3^6$，首次超过 $1000$ 的是第 $7$ 项；前 $5$ 项和 $S_5=\dfrac{2(3^5-1)}{3-1}=242$。</p>
     </div>
+    <p><strong>通项：</strong>从首项到第 $n$ 项要乘 $n-1$ 次 $r$，所以指数是 $n-1$。</p>
+    <p><strong>和的公式（错开相减）：</strong>写出 $S_n=a+ar+\cdots+ar^{n-1}$ 与 $rS_n=ar+ar^2+\cdots+ar^n$，中间的项完全相同，相减只剩两端：$(1-r)S_n=a(1-r^n)$。只有 $r\ne1$ 时才能两边除以 $1-r$；$r=1$ 时各项都是 $a$，和为 $na$，所以要分开讨论。</p>
+    <p><strong>等比中项：</strong>$a,b,c$ 都不为 $0$ 且成等比时，$\dfrac ba=\dfrac cb$，交叉相乘得 $b^2=ac$。三个数成等比时，设成 $\dfrac xr,\ x,\ xr$，三数之积正好是 $x^3$，$r$ 被消去。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 2-1（对称设法）</b><span class="origin">原创</span></div>
+      <p>三个实数成等比数列，和为 $14$，积为 $64$。求这三个数。</p>
+      <div class="ans">
+        <ol>
+          <li>设三数为 $\dfrac xr,\ x,\ xr$（$r\ne0$）。积为 $x^3=64$，所以实数 $x=4$。</li>
+          <li>和的条件：$\dfrac4r+4+4r=14$。两边乘 $r$ 并整理：$2r^2-5r+2=0$。</li>
+          <li>因式分解：$(2r-1)(r-2)=0$，$r=\dfrac12$ 或 $r=2$。</li>
+          <li>两个 $r$ 给出的是同一组数，只是顺序相反。验算：$2+4+8=14$，$2\cdot4\cdot8=64$。</li>
+        </ol>
+        <p><strong>答案：</strong>$2,\ 4,\ 8$（或倒序 $8,\ 4,\ 2$）。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 2-2（公比两解）</b><span class="origin">原创</span></div>
+      <p>实数等比数列 $\{a_n\}$ 满足 $S_2=3$，$S_4=15$。求首项 $a$ 与公比 $r$，并求 $S_6$。</p>
+      <div class="ans">
+        <ol>
+          <li>先排除 $r=1$：此时 $S_2=2a=3$，$a=\dfrac32$，则 $S_4=6\ne15$，不合题意。</li>
+          <li>注意 $S_4=(a_1+a_2)+r^2(a_1+a_2)=(1+r^2)S_2$，所以 $3(1+r^2)=15$，$r^2=4$，$r=\pm2$。</li>
+          <li>$r=2$ 时 $a(1+2)=3$，$a=1$；$r=-2$ 时 $a(1-2)=3$，$a=-3$。</li>
+          <li>同样 $S_6=(1+r^2+r^4)S_2=(1+4+16)\cdot3=63$，两种情况相同。</li>
+        </ol>
+        <p><strong>答案：</strong>$(a,r)=(1,2)$ 或 $(-3,-2)$；$S_6=63$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>$a_n$ 写成 $ar^n$，或把 $ar^{n-1}$ 当作 $(ar)^{n-1}$。</li>
+        <li>由 $r^2=4$ 只取 $r=2$，漏掉负公比；而题目写明“正の数”时才能舍去。</li>
+        <li>公比含字母时直接套公式，漏掉 $r=1$；用 $b^2=ac$ 求 $b$ 时只取正根。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>关注 <span lang="ja">公比</span><span class="kana">（こうひ）</span> 是否为“<span lang="ja">実数</span><span class="kana">（じっすう）</span>”或“<span lang="ja">正の数</span><span class="kana">（せいのかず）</span>”，这决定保留几个解。“<span lang="ja">初めて〜を超える</span><span class="kana">（はじめて〜をこえる）</span>”类题常用 $2^{10}=1024$ 估算，或用 $\log_{10}2\approx0.3010$、$\log_{10}3\approx0.4771$ 取对数。</p>
+    </div>
     <h3>应用：复利与定期存款</h3>
     <p>年利率 $r$、按复利（<span lang="ja">複利</span>）计算，每年年初存入 $a$，第 $n$ 年年末的本息合计（<span lang="ja">元利合計</span>）是一个等比数列的和：</p>
     $$a(1+r)+a(1+r)^2+\cdots+a(1+r)^n=\frac{a(1+r)\{(1+r)^n-1\}}{r}.$$
+    <p><strong>为什么是这个公式？</strong>第 $k$ 年年初存入的 $a$，到第 $n$ 年年末共计息 $n-k+1$ 年，变成 $a(1+r)^{n-k+1}$。$k=1$ 对应最大指数 $n$，$k=n$ 对应最小指数 $1$，所以合计是首项 $a(1+r)$、公比 $1+r$、共 $n$ 项的等比数列之和，公比减 $1$ 正好是 $r$，公式的分母由此而来。</p>
+    <p><strong>年末存入：</strong>如果每年年末存入，最后一笔还没有计息，指数从 $0$ 到 $n-1$，合计为 $\dfrac{a\{(1+r)^n-1\}}{r}$，比年初存入少一个因子 $1+r$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 2-3（年初积存）</b><span class="origin">原创</span></div>
+      <p>每年年初存入 $10$ 万日元，年利率 $5\%$，按复利计算。求第 $5$ 年年末的本息合计（万日元，保留两位小数）。已知 $1.05^5\approx1.27628$。若改为每年年末存入，结果又是多少？</p>
+      <div class="ans">
+        <ol>
+          <li>$a=10$，$r=0.05$，$n=5$。五笔钱分别计息 $5,4,3,2,1$ 年。</li>
+          <li>合计 $=10(1.05+1.05^2+\cdots+1.05^5)=\dfrac{10\cdot1.05(1.05^5-1)}{0.05}$。</li>
+          <li>代入：$\dfrac{10.5\times0.27628}{0.05}=58.0188$，约为 $58.02$。</li>
+          <li>年末存入时五笔钱分别计息 $4,3,2,1,0$ 年，合计为 $\dfrac{10(1.05^5-1)}{0.05}=55.256$，约为 $55.26$。这个结果乘 $1.05$ 正好约等于上面的结果。</li>
+        </ol>
+        <p><strong>答案：</strong>年初存入约 $58.02$ 万日元；年末存入约 $55.26$ 万日元。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>不区分年初与年末，指数整体差一。可以只看第一笔和最后一笔各计息几年来判断。</li>
+        <li>把复利当单利：单利每年利息固定，构成等差数列；复利才是等比数列。</li>
+        <li>分母误写成 $1+r$。等比求和的分母是“公比 $-1$”，这里是 $(1+r)-1=r$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong><span lang="ja">複利</span><span class="kana">（ふくり）</span> 题要看清 <span lang="ja">年初</span><span class="kana">（ねんしょ）</span>、<span lang="ja">年末</span><span class="kana">（ねんまつ）</span>、<span lang="ja">預金</span><span class="kana">（よきん）</span>、<span lang="ja">利率</span><span class="kana">（りりつ）</span> 等词。题目会给 $1.05^5$ 这样的近似值，直接代入即可，不必手算乘方。</p>
+    </div>
   </section>
 
   <section id="diff">
@@ -298,12 +408,82 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <p>$n=1$ 时值为 $1$，也成立。</p>
     </div>
     <p>看到一个数列规律不明显时，先写出相邻项的差：差是等差或等比数列，就能用上面的公式。差还看不出规律，再取一次差。</p>
+    <p><strong>推导：</strong>把差依次相加，中间项全部抵消：</p>
+    $$(a_2-a_1)+(a_3-a_2)+\cdots+(a_n-a_{n-1})=a_n-a_1.$$
+    <p>左边正好是 $b_1+b_2+\cdots+b_{n-1}$。这里有 $n-1$ 个差，所以 $\Sigma$ 的上限是 $n-1$。</p>
+    <p><strong>为什么要分 $n\ge2$？</strong>$n=1$ 时上限变成 $0$，这个和没有实际的项。求得的式子只是在 $n\ge2$ 时推出的，所以要代 $n=1$ 再核对一次。</p>
+    <p><strong>用 $n-1$ 代公式：</strong>$\displaystyle\sum_{k=1}^{n-1}k^2$ 就是把 $\dfrac{n(n+1)(2n+1)}{6}$ 中的 $n$ 全换成 $n-1$，得 $\dfrac{(n-1)n(2n-1)}{6}$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 3-1（差是平方数）</b><span class="origin">原创</span></div>
+      <p>数列 $2,3,7,16,32,57,\dots$ 的阶差依次为 $1,4,9,16,25,\dots$。求通项 $a_n$ 与 $a_{10}$。</p>
+      <div class="ans">
+        <ol>
+          <li>观察得 $b_k=k^2$。</li>
+          <li>$n\ge2$ 时，$a_n=2+\displaystyle\sum_{k=1}^{n-1}k^2=2+\frac{(n-1)n(2n-1)}{6}$。</li>
+          <li>检查 $n=1$：式子给出 $2+0=2=a_1$，成立。</li>
+          <li>$a_{10}=2+\dfrac{9\cdot10\cdot19}{6}=2+285=287$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a_n=2+\dfrac{(n-1)n(2n-1)}{6}$，$a_{10}=287$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 3-2（取两次差）</b><span class="origin">原创</span></div>
+      <p>数列 $1,2,5,12,25,46,\dots$ 的阶差数列的阶差数列是等差数列。求通项 $a_n$ 与 $a_{10}$。</p>
+      <div class="ans">
+        <ol>
+          <li>第一次差：$b_n$ 为 $1,3,7,13,21,\dots$；第二次差：$2,4,6,8,\dots$，第 $k$ 个为 $2k$。</li>
+          <li>$n\ge2$ 时 $b_n=1+\displaystyle\sum_{k=1}^{n-1}2k=1+n(n-1)=n^2-n+1$，$n=1$ 时也成立。</li>
+          <li>$n\ge2$ 时 $a_n=1+\displaystyle\sum_{k=1}^{n-1}(k^2-k+1)=1+\frac{(n-1)n(2n-1)}{6}-\frac{n(n-1)}{2}+(n-1)$。</li>
+          <li>通分整理：$a_n=\dfrac{2n^3-6n^2+10n}{6}=\dfrac{n^3-3n^2+5n}{3}$。</li>
+          <li>检查：$n=1$ 时为 $1$，$n=3$ 时为 $5$，$n=6$ 时为 $46$，都吻合。$a_{10}=\dfrac{1000-300+50}{3}=250$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a_n=\dfrac{n^3-3n^2+5n}{3}$，$a_{10}=250$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把上限写成 $n$，结果其实是 $a_{n+1}$。</li>
+        <li>$\Sigma$ 公式里 $n$ 没有全部换成 $n-1$，例如写成 $\dfrac{(n-1)n(2n+1)}{6}$。</li>
+        <li>忘记写“$n=1$ 时也成立”。填空题不写也不扣分，但这一步能查出计算错误；写证明或解答过程时不能省略。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong><span lang="ja">階差数列</span><span class="kana">（かいさすうれつ）</span> 题中常出现“<span lang="ja">$n\ge2$ のとき</span><span class="kana">（えぬだいなりイコールにのとき）</span>”。选项是 $n$ 的二次式时，代 $n=1,2,3$ 比较往往比完整推导更快，也可用于检查结果。一般地，$a_n$ 是 $n$ 的 $m$ 次多项式时，取 $m$ 次差后变为常数。</p>
+    </div>
   </section>
 
   <section id="sigma">
     <h2>4 各种数列与 Σ</h2>
     <p class="jp-sub" lang="ja">いろいろな数列 — 和の記号 Σ</p>
     <p>$\displaystyle\sum_{k=1}^{n}a_k=a_1+a_2+\cdots+a_n$，$\Sigma$ 可以按项拆开，常数可以提出：$\displaystyle\sum_{k=1}^{n}(pa_k+qb_k)=p\sum_{k=1}^{n}a_k+q\sum_{k=1}^{n}b_k$。注意乘积不能拆：$\sum a_kb_k\ne\sum a_k\sum b_k$。</p>
+    <p><strong>$\Sigma$ 只是加法的简写。</strong>$\displaystyle\sum_{k=1}^{n}(a_k+b_k)=\sum_{k=1}^{n}a_k+\sum_{k=1}^{n}b_k$ 成立，因为加法可以任意重排；常数 $p$ 可提出，因为可以用分配律。$k$ 只是占位的记号（<span lang="ja">添え字</span><span class="kana">（そえじ）</span>），换成 $j$ 结果也一样。</p>
+    <p><strong>乘积为什么不能拆？</strong>取 $n=2$：$a_1b_1+a_2b_2$ 与 $(a_1+a_2)(b_1+b_2)$ 相比，后者多了 $a_1b_2+a_2b_1$。</p>
+    <p><strong>项数：</strong>$\displaystyle\sum_{k=p}^{q}$ 共有 $q-p+1$ 项。下限不是 $1$ 时，用 $\displaystyle\sum_{k=p}^{q}=\sum_{k=1}^{q}-\sum_{k=1}^{p-1}$，减去的上限是 $p-1$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 4-1（下限不是 1）</b><span class="origin">原创</span></div>
+      <p>求 $\displaystyle\sum_{k=5}^{12}(2k+1)$。</p>
+      <div class="ans">
+        <ol>
+          <li>$\displaystyle\sum_{k=1}^{m}(2k+1)=2\cdot\frac{m(m+1)}{2}+m=m^2+2m$。</li>
+          <li>$m=12$ 时为 $168$；要减去的是到 $k=4$ 的和，$m=4$ 时为 $24$。</li>
+          <li>所求为 $168-24=144$。</li>
+          <li>验算：这是首项 $11$、末项 $25$、共 $12-5+1=8$ 项的等差数列，和为 $\dfrac{8(11+25)}{2}=144$。</li>
+        </ol>
+        <p><strong>答案：</strong>$144$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>减去 $\displaystyle\sum_{k=1}^{5}$，把第 $5$ 项多减了一次。</li>
+        <li>$\displaystyle\sum_{k=1}^{n}c$ 写成 $c$，正确结果是 $nc$。</li>
+        <li>把 $\displaystyle\sum k^2$ 算成 $\Bigl(\displaystyle\sum k\Bigr)^2$；后者等于 $\displaystyle\sum k^3$，不是 $\displaystyle\sum k^2$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>$\Sigma$ 读作 <span lang="ja">シグマ</span>，题面常写“<span lang="ja">和を求めよ</span><span class="kana">（わをもとめよ）</span>”或“<span lang="ja">$n$ の式で表せ</span><span class="kana">（えぬのしきであらわせ）</span>”。求出通式后，代 $n=1$ 或 $n=2$ 与直接相加对比，几秒就能验算。</p>
+    </div>
     <h3>必背公式</h3>
     <div class="formula-grid">
       <div>$\displaystyle\sum_{k=1}^{n}c=nc$</div>
@@ -315,6 +495,35 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     </div>
     <p>例：$\displaystyle\sum_{k=1}^{n}(3k^2-k)=\frac{n(n+1)(2n+1)}{2}-\frac{n(n+1)}{2}=n^2(n+1)$。</p>
 
+    <p><strong>公式从哪来？</strong>用恒等式 $(k+1)^3-k^3=3k^2+3k+1$，对 $k=1,\dots,n$ 求和。左边相消，只剩 $(n+1)^3-1$：</p>
+    $$(n+1)^3-1=3\sum_{k=1}^{n}k^2+3\cdot\frac{n(n+1)}{2}+n.$$
+    <p>解出 $\displaystyle\sum k^2$ 并整理，就得到 $\dfrac{n(n+1)(2n+1)}{6}$。$\displaystyle\sum k$ 可由倒序相加得到，或者用 $(k+1)^2-k^2=2k+1$ 同样推出。</p>
+    <p><strong>立方和：</strong>令 $T_k=\dfrac{k(k+1)}{2}$，则 $T_k^2-T_{k-1}^2=\dfrac{k^2\{(k+1)^2-(k-1)^2\}}{4}=k^3$。求和相消，得 $\displaystyle\sum_{k=1}^{n}k^3=T_n^2$，这就是公式呈平方形状的原因。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 4-2（展开后用公式）</b><span class="origin">原创</span></div>
+      <p>求 $\displaystyle\sum_{k=1}^{n}(2k-1)^2$ 的因式分解形式，并求 $n=10$ 时的值。</p>
+      <div class="ans">
+        <ol>
+          <li>展开：$(2k-1)^2=4k^2-4k+1$。</li>
+          <li>逐项求和：$4\cdot\dfrac{n(n+1)(2n+1)}{6}-4\cdot\dfrac{n(n+1)}{2}+n=\dfrac{2n(n+1)(2n+1)}{3}-2n(n+1)+n$。</li>
+          <li>提出 $\dfrac n3$：$\dfrac n3\{2(2n^2+3n+1)-6n-6+3\}=\dfrac n3(4n^2-1)$。</li>
+          <li>因式分解：$\dfrac{n(2n-1)(2n+1)}{3}$。$n=1$ 时为 $1$，正确。</li>
+          <li>$n=10$：$\dfrac{10\cdot19\cdot21}{3}=1330$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\dfrac{n(2n-1)(2n+1)}{3}$；$n=10$ 时为 $1330$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>分别展开所有分式后才合并，运算量大也易错。应先提出公因式 $n$ 或 $n(n+1)$。</li>
+        <li>把 $\displaystyle\sum_{k=1}^{n-1}k^2$ 的公式直接写成上限为 $n$ 的结果。</li>
+        <li>把 $\dfrac{n(n+1)(2n+1)}{6}$ 记成 $\dfrac{n(n+1)(2n-1)}{6}$。代 $n=1$（应为 $1$）即可发现。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>EJU 填空的空格形状常提示因式分解形式，例如 $\dfrac{n(n+\B{A})(\B{B}n+\B{C})}{\B{D}}$。应先提公因式，不要完全展开。术语：<span lang="ja">因数分解</span><span class="kana">（いんすうぶんかい）</span>、<span lang="ja">展開</span><span class="kana">（てんかい）</span>。</p>
+    </div>
     <h3>裂项相消（部分分数分解）</h3>
     <p>把通项写成“差”的形式，中间项全部抵消（<span lang="ja">部分分数分解</span>）：</p>
     <div class="tw"><table>
@@ -326,19 +535,170 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       </tbody>
     </table></div>
 
+    <p><strong>为什么能这样拆？</strong>把右边通分来验证：$\dfrac1k-\dfrac1{k+1}=\dfrac{(k+1)-k}{k(k+1)}=\dfrac1{k(k+1)}$。一般地，$a\ne b$ 时</p>
+    $$\frac{1}{(k+a)(k+b)}=\frac{1}{b-a}\Bigl(\frac{1}{k+a}-\frac{1}{k+b}\Bigr),$$
+    <p>前面的系数用来抵消通分后分子上的 $b-a$。两因式相差 $2$ 时，系数就是 $\dfrac12$。</p>
+    <p><strong>哪些项会留下？</strong>相差 $1$ 时前面留 $1$ 项、后面留 $1$ 项；相差 $2$ 时前后各留 $2$ 项。把前几项和后几项写出来，就能看清。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 4-3（前后各留两项）</b><span class="origin">原创</span></div>
+      <p>求 $\displaystyle\sum_{k=1}^{n}\frac{1}{k(k+2)}$，并求 $n=10$ 时的值。</p>
+      <div class="ans">
+        <ol>
+          <li>裂项：$\dfrac1{k(k+2)}=\dfrac12\Bigl(\dfrac1k-\dfrac1{k+2}\Bigr)$。</li>
+          <li>写开：$\dfrac12\Bigl\{\Bigl(1-\dfrac13\Bigr)+\Bigl(\dfrac12-\dfrac14\Bigr)+\Bigl(\dfrac13-\dfrac15\Bigr)+\cdots+\Bigl(\dfrac1{n-1}-\dfrac1{n+1}\Bigr)+\Bigl(\dfrac1n-\dfrac1{n+2}\Bigr)\Bigr\}$。</li>
+          <li>留下的是 $1,\ \dfrac12,\ -\dfrac1{n+1},\ -\dfrac1{n+2}$，所以和为 $\dfrac12\Bigl(\dfrac32-\dfrac1{n+1}-\dfrac1{n+2}\Bigr)$。</li>
+          <li>通分：$\dfrac{3(n+1)(n+2)-2(n+2)-2(n+1)}{4(n+1)(n+2)}=\dfrac{n(3n+5)}{4(n+1)(n+2)}$。</li>
+          <li>验算 $n=1$：结果 $\dfrac{8}{24}=\dfrac13$，与 $\dfrac1{1\cdot3}$ 一致。$n=10$：$\dfrac{10\cdot35}{4\cdot11\cdot12}=\dfrac{175}{264}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\dfrac{n(3n+5)}{4(n+1)(n+2)}$；$n=10$ 时为 $\dfrac{175}{264}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>漏掉系数 $\dfrac12$。裂项后先通分验算一次。</li>
+        <li>相差 $2$ 时仍只留首尾各一项，漏掉 $\dfrac12$ 和 $-\dfrac1{n+1}$。</li>
+        <li>根式有理化时分子分母乘错：$\dfrac1{\sqrt{k+1}+\sqrt k}$ 应乘 $\sqrt{k+1}-\sqrt k$，分母变成 $1$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong><span lang="ja">部分分数に分解する</span><span class="kana">（ぶぶんぶんすうにぶんかいする）</span> 是这类题的关键句；根式型则说 <span lang="ja">分母を有理化する</span><span class="kana">（ぶんぼをゆうりかする）</span>。根式型常问“和等于某整数时的 $n$”：如 $\sqrt{n+1}-1=9$，得 $n=99$。</p>
+    </div>
     <h3>错位相减：（等差）×（等比）</h3>
     <p>求 $S=\displaystyle\sum_{k=1}^{n}k\cdot2^{k-1}$：写出 $S$ 与 $2S$，错开一位相减。</p>
     $$\begin{aligned}S&amp;=1+2\cdot2+3\cdot2^2+\cdots+n\cdot2^{n-1}\\ 2S&amp;=\phantom{1+{}}1\cdot2+2\cdot2^2+\cdots+(n-1)2^{n-1}+n\cdot2^n\end{aligned}$$
     $$-S=(1+2+\cdots+2^{n-1})-n\cdot2^n=2^n-1-n\cdot2^n\ \Longrightarrow\ S=(n-1)2^n+1.$$
 
+    <p><strong>为什么要乘公比？</strong>$S$ 与 $rS$ 错开一位后，相同的等比因子 $r^k$ 对齐，系数之差是等差数列的公差，也就是常数。这样“等差 × 等比”就变成“常数 × 等比”，可以直接求和。</p>
+    <p><strong>标准步骤：</strong>① 写 $S$；② 写 $rS$，并错开一位对齐；③ 相减，注意最后一项是减号；④ 中间部分用等比求和；⑤ 除以 $1-r$。公比为 $1$ 时不能用，也不需要用这个方法。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 4-4（公比为分数）</b><span class="origin">原创</span></div>
+      <p>求 $S_n=\displaystyle\sum_{k=1}^{n}\frac{2k-1}{2^k}$。</p>
+      <div class="ans">
+        <ol>
+          <li>$S_n=\dfrac12+\dfrac3{2^2}+\dfrac5{2^3}+\cdots+\dfrac{2n-1}{2^n}$。</li>
+          <li>$\dfrac12S_n=\dfrac1{2^2}+\dfrac3{2^3}+\cdots+\dfrac{2n-3}{2^n}+\dfrac{2n-1}{2^{n+1}}$。</li>
+          <li>相减：$\dfrac12S_n=\dfrac12+2\Bigl(\dfrac1{2^2}+\dfrac1{2^3}+\cdots+\dfrac1{2^n}\Bigr)-\dfrac{2n-1}{2^{n+1}}$。</li>
+          <li>括号内的和为 $\dfrac12-\dfrac1{2^n}$，所以 $\dfrac12S_n=\dfrac32-\dfrac{2}{2^n}-\dfrac{2n-1}{2^{n+1}}=\dfrac32-\dfrac{2n+3}{2^{n+1}}$。</li>
+          <li>两边乘 $2$：$S_n=3-\dfrac{2n+3}{2^n}$。</li>
+          <li>验算：$n=2$ 时直接相加为 $\dfrac12+\dfrac34=\dfrac54$，公式给出 $3-\dfrac74=\dfrac54$。</li>
+        </ol>
+        <p><strong>答案：</strong>$S_n=3-\dfrac{2n+3}{2^n}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>相减后最后一项忘记变号，或漏掉这一项。</li>
+        <li>括号内的等比和项数数错：上例括号内从 $2^{-2}$ 到 $2^{-n}$，共 $n-1$ 项。</li>
+        <li>最后没有除以 $1-r$；当 $1-r$ 为负时符号容易出错（如 $r=2$ 时左边为 $-S$）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>结果可以用 $n=1,2$ 迅速检查，这一步几乎必做。错位相减的日语没有统一的专名，题面通常写“<span lang="ja">$S-rS$ を計算する</span><span class="kana">（えすマイナスアールえすをけいさんする）</span>”，看到（等差）×（等比）的通项即可认出。</p>
+    </div>
     <h3>由和求通项</h3>
     <p>已知 $S_n$ 时，$a_1=S_1$，且 $a_n=S_n-S_{n-1}\ (n\ge2)$。例：$S_n=n^2+n$ 时 $a_n=2n$，$n=1$ 也成立。若 $S_n$ 带非零常数项，$a_1$ 就与 $n\ge2$ 的式子不一致（见练习 8）。</p>
 
+    <p><strong>为什么 $a_1$ 要单独算？</strong>$a_n=S_n-S_{n-1}$ 要用到 $S_{n-1}$，$n=1$ 时需要 $S_0$，而前 $0$ 项的和实际应为 $0$。所以 $S_n$ 的式子代 $n=0$ 时：若等于 $0$，统一的通项对 $n=1$ 成立；若不等于 $0$，通项必须分开写。这就是“非零常数项”导致不一致的原因。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 4-5（由等比条件定常数）</b><span class="origin">原创</span></div>
+      <p>数列 $\{a_n\}$ 的前 $n$ 项和为 $S_n=3^n+c$（$c$ 为常数）。若 $\{a_n\}$ 从第 $1$ 项起是等比数列，求 $c$ 与 $a_n$。</p>
+      <div class="ans">
+        <ol>
+          <li>$n\ge2$ 时：$a_n=(3^n+c)-(3^{n-1}+c)=3^{n-1}(3-1)=2\cdot3^{n-1}$。所以 $a_2=6$，公比为 $3$。</li>
+          <li>$n=1$ 时：$a_1=S_1=3+c$。</li>
+          <li>等比要求 $\dfrac{a_2}{a_1}=3$，即 $a_1=2$，所以 $3+c=2$，$c=-1$。</li>
+          <li>检验：这时 $S_0=3^0-1=0$，与上面的说明一致，$a_n=2\cdot3^{n-1}$ 对所有 $n$ 成立。</li>
+        </ol>
+        <p><strong>答案：</strong>$c=-1$，$a_n=2\cdot3^{n-1}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只算 $S_n-S_{n-1}$，不单独检查 $a_1$。</li>
+        <li>把 $S_{n-1}$ 算错，比如 $(n-1)^2$ 展开时符号错误，或指数没有减 $1$。</li>
+        <li>通项不一致时强行合并成一个式子。应写成“$a_1=\cdots$；$n\ge2$ 时 $a_n=\cdots$”。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>看到“<span lang="ja">初項から第 $n$ 項までの和が</span><span class="kana">（しょこうからだいえぬこうまでのわが）</span> $S_n=\cdots$”立刻用这个方法。选择题中若 $S_n$ 带常数项，正确答案往往要分开写，<span lang="ja">定数項</span><span class="kana">（ていすうこう）</span>就是信号。</p>
+    </div>
     <h3>群数列</h3>
     <p>把数列按规则分组（<span lang="ja">群数列</span>），比如 $1\mid2,3\mid4,5,6\mid\cdots$，第 $m$ 组有 $m$ 个数。关键是算出“第 $m$ 组之前共有多少项”：$1+2+\cdots+(m-1)=\dfrac{m(m-1)}{2}$，于是第 $m$ 组首项的序号为 $\dfrac{m(m-1)}{2}+1$。</p>
 
+    <p><strong>解题三步：</strong>① 写出第 $m$ 组的项数；② 求到第 $m$ 组结束时累计的项数 $\dfrac{m(m+1)}{2}$；③ 将“序号”和“数值”互相换算。</p>
+    <p><strong>如何判断某项在第几组？</strong>序号 $N$ 在第 $m$ 组，等价于前 $m-1$ 组放不下、前 $m$ 组放得下：$\dfrac{m(m-1)}{2}&lt;N\le\dfrac{m(m+1)}{2}$。用估算 $m\approx\sqrt{2N}$ 找起点，再验证。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 4-6（奇数分组）</b><span class="origin">原创</span></div>
+      <p>正奇数分组为 $1\mid3,5\mid7,9,11\mid\cdots$，第 $m$ 组有 $m$ 个数。(1) 求第 $m$ 组的首项和所有数之和。(2) $501$ 是第几组的第几个数？</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 第 $m$ 组首项的序号为 $\dfrac{m(m-1)}{2}+1$。第 $N$ 个正奇数是 $2N-1$，所以首项为 $m(m-1)+2-1=m^2-m+1$。</li>
+          <li>这一组是公差 $2$、$m$ 项的等差数列，末项 $m^2-m+1+2(m-1)=m^2+m-1$。</li>
+          <li>和 $=\dfrac{m\{(m^2-m+1)+(m^2+m-1)\}}{2}=m^3$。如第 $10$ 组的和是 $1000$。</li>
+          <li>(2) $501=2N-1$，得序号 $N=251$。</li>
+          <li>$\sqrt{502}\approx22.4$，试 $m=22$：$\dfrac{22\cdot21}{2}=231&lt;251\le253=\dfrac{22\cdot23}{2}$，所以在第 $22$ 组。</li>
+          <li>在组内的位置为 $251-231=20$。验算：第 $22$ 组首项 $463$，$463+2\cdot19=501$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) 首项 $m^2-m+1$，和 $m^3$；(2) 第 $22$ 组第 $20$ 个。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把“序号”和“数值”混用。本题分组的是奇数，所以 $501$ 的序号不是 $501$。</li>
+        <li>第 $m$ 组之前的项数写成 $\dfrac{m(m+1)}{2}$，把第 $m$ 组自己也算进去了。</li>
+        <li>组内位置忘记做差，或首项位置多减一个 $1$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong><span lang="ja">第 $m$ 群</span><span class="kana">（だいえむぐん）</span> 指第 $m$ 组，<span lang="ja">$k$ 番目</span><span class="kana">（けーばんめ）</span> 指第 $k$ 个。先写出前四组，把题目给的式子代入检验，可以避免差一错误。</p>
+    </div>
     <h3>通项本身是和</h3>
     <p>$1,\ 1+2,\ 1+2+3,\dots$ 的通项为 $a_k=\dfrac{k(k+1)}{2}$，前 $n$ 项和为 $\dfrac{n(n+1)(n+2)}{6}$。先求通项，再用 $\Sigma$，这是固定步骤。</p>
+    <p><strong>为什么要先求通项？</strong>$\Sigma$ 公式只能处理以 $k$ 的表达式给出的通项。“$1,\ 1+2,\ 1+2+3,\dots$”的第 $k$ 项是一个和，先把它求出来，整个问题才变成单层求和。</p>
+    <p><strong>$n$ 也出现在通项里时：</strong>$\displaystyle\sum_{k=1}^{n}k(n+1-k)$ 对 $k$ 求和时，$n$ 是常数，可以提到 $\Sigma$ 外面。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 4-7（通项是等比和）</b><span class="origin">原创</span></div>
+      <p>求数列 $1,\ 1+3,\ 1+3+9,\ 1+3+9+27,\ \dots$ 的前 $n$ 项和。</p>
+      <div class="ans">
+        <ol>
+          <li>第 $k$ 项：$a_k=\dfrac{3^k-1}{3-1}=\dfrac{3^k-1}{2}$。</li>
+          <li>求和：$S_n=\dfrac12\displaystyle\sum_{k=1}^{n}3^k-\frac12\sum_{k=1}^{n}1$。</li>
+          <li>$\displaystyle\sum_{k=1}^{n}3^k=\frac{3(3^n-1)}{2}$，$\displaystyle\sum_{k=1}^{n}1=n$。</li>
+          <li>所以 $S_n=\dfrac{3^{n+1}-3}{4}-\dfrac n2=\dfrac{3^{n+1}-2n-3}{4}$。</li>
+          <li>验算：$n=3$ 时 $1+4+13=18$，公式给出 $\dfrac{81-6-3}{4}=18$。</li>
+        </ol>
+        <p><strong>答案：</strong>$S_n=\dfrac{3^{n+1}-2n-3}{4}$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 4-8（$n$ 作为常数）</b><span class="origin">原创</span></div>
+      <p>求 $1\cdot n+2(n-1)+3(n-2)+\cdots+n\cdot1$，并求 $n=20$ 时的值。</p>
+      <div class="ans">
+        <ol>
+          <li>第 $k$ 项的两个因子分别为 $k$ 和 $n+1-k$（两者之和恒为 $n+1$）。</li>
+          <li>$\displaystyle\sum_{k=1}^{n}k(n+1-k)=(n+1)\sum_{k=1}^{n}k-\sum_{k=1}^{n}k^2$。</li>
+          <li>代入公式：$\dfrac{n(n+1)^2}{2}-\dfrac{n(n+1)(2n+1)}{6}=\dfrac{n(n+1)}{6}\{3(n+1)-(2n+1)\}$。</li>
+          <li>括号内为 $n+2$，所以和为 $\dfrac{n(n+1)(n+2)}{6}$。</li>
+          <li>$n=20$：$\dfrac{20\cdot21\cdot22}{6}=1540$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\dfrac{n(n+1)(n+2)}{6}$；$n=20$ 时为 $1540$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把第 $n$ 项当成第 $k$ 项代入，$\Sigma$ 内混用 $n$ 与 $k$。</li>
+        <li>把 $\displaystyle\sum_{k=1}^{n}3^k$ 当作首项为 $1$ 的和，正确首项是 $3$。</li>
+        <li>常数项求和漏乘 $n$，如 $\displaystyle\sum_{k=1}^{n}\frac12$ 写成 $\dfrac12$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>第一步永远是写出“第 $k$ 项”（<span lang="ja">第 $k$ 項</span><span class="kana">（だいけーこう）</span>）。复杂的数列先写出 $k=1,2,3$ 的具体式子，再概括规律。</p>
+    </div>
   </section>
 
   <section id="recur">
@@ -361,10 +721,64 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       </tbody>
     </table></div>
 
+    <p><strong>统一思路：</strong>递推式告诉我们“如何由上一项算下一项”；首项加递推式，就唯一确定整个数列。求通项，就是找到一个新数列（如 $a_n-\alpha$、$\dfrac{1}{a_n}$、$\dfrac{a_n}{2^n}$），使它变成已知的等差或等比数列。</p>
+    <p><strong>表中做法的理由：</strong>分式型取倒数后，$\dfrac1{a_{n+1}}=p+\dfrac{q}{a_n}$ 变成一次型（需各项不为 $0$）；乘方型取对数后，指数变为系数，$\log a_{n+1}=\log c+2\log a_n$ 也是一次型；含 $S_n$ 型作差后 $S_n$ 消失，只剩 $a_n$ 的递推。</p>
+    <p><strong>解完先验算：</strong>用递推式算出 $a_2,a_3$，与通项的结果比较。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 5-1（阶差型）</b><span class="origin">原创</span></div>
+      <p>$a_1=1,\ a_{n+1}=a_n+3^n$。求通项 $a_n$ 与 $a_5$。</p>
+      <div class="ans">
+        <ol>
+          <li>$a_{n+1}-a_n=3^n$，所以阶差 $b_k=3^k$。</li>
+          <li>$n\ge2$ 时 $a_n=1+\displaystyle\sum_{k=1}^{n-1}3^k=1+\frac{3(3^{n-1}-1)}{2}=\frac{3^n-1}{2}$。</li>
+          <li>$n=1$ 时值为 $1$，成立。</li>
+          <li>验算：递推给出 $a_2=1+3=4$，公式给出 $\dfrac{9-1}{2}=4$。$a_5=\dfrac{243-1}{2}=121$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a_n=\dfrac{3^n-1}{2}$，$a_5=121$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $a_{n+1}=a_n+3^n$ 当成公比 $3$ 的等比数列。系数是 $1$，所以属于阶差型。</li>
+        <li>分式型直接取倒数时，没有确认 $a_n\ne0$。</li>
+        <li>只写了变形，没把新数列换回 $a_n$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong><span lang="ja">漸化式</span><span class="kana">（ぜんかしき）</span> 题常分步引导，比如“<span lang="ja">$b_n=a_n+3$ とおくと</span><span class="kana">（びーえぬイコールえーえぬプラスさんとおくと）</span>”。按题面设的新数列做就行，不必用自己的方法。先把递推式与表中的类型对照一次，选对方法就解决了大半。</p>
+    </div>
     <h3>一次型（最高频）</h3>
     <p>$a_1=1,\ a_{n+1}=2a_n+3$：由 $\alpha=2\alpha+3$（<span lang="ja">特性方程式</span>）得 $\alpha=-3$，所以 $a_{n+1}+3=2(a_n+3)$。$\{a_n+3\}$ 是首项 $4$、公比 $2$ 的等比数列：</p>
     $$a_n+3=4\cdot2^{n-1}\ \Longrightarrow\ a_n=2^{n+1}-3.$$
 
+    <p><strong>为什么用 $\alpha=p\alpha+q$？</strong>把 $a_{n+1}=pa_n+q$ 和 $\alpha=p\alpha+q$ 相减，常数 $q$ 被消去：$a_{n+1}-\alpha=p(a_n-\alpha)$。所以 $\alpha$ 是一个“如果 $a_n=\alpha$，下一项还是 $\alpha$”的值，也叫不动点（<span lang="ja">不動点</span><span class="kana">（ふどうてん）</span>）。$p=1$ 时方程无解（$q\ne0$），这时数列本身就是等差数列。</p>
+    <p><strong>通项的固定形式：</strong>$a_n=\alpha+(a_1-\alpha)p^{n-1}$。指数是 $n-1$，首项是 $a_1-\alpha$，而不是 $a_1$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 5-2（通项与和）</b><span class="origin">原创</span></div>
+      <p>$a_1=5,\ a_{n+1}=\dfrac12a_n+1$。求通项 $a_n$ 与前 $n$ 项和 $S_n$。</p>
+      <div class="ans">
+        <ol>
+          <li>解 $\alpha=\dfrac12\alpha+1$，得 $\alpha=2$，所以 $a_{n+1}-2=\dfrac12(a_n-2)$。</li>
+          <li>$\{a_n-2\}$ 是首项 $5-2=3$、公比 $\dfrac12$ 的等比数列：$a_n-2=3\Bigl(\dfrac12\Bigr)^{n-1}$。</li>
+          <li>$a_n=2+3\Bigl(\dfrac12\Bigr)^{n-1}$。验算：递推给出 $a_2=\dfrac72$，公式给出 $2+\dfrac32=\dfrac72$。</li>
+          <li>$S_n=2n+3\cdot\dfrac{1-(1/2)^n}{1-1/2}=2n+6\Bigl\{1-\Bigl(\dfrac12\Bigr)^n\Bigr\}$。</li>
+          <li>验算：$S_2=5+\dfrac72=\dfrac{17}{2}$，公式给出 $4+6\cdot\dfrac34=\dfrac{17}{2}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a_n=2+3\Bigl(\dfrac12\Bigr)^{n-1}$，$S_n=2n+6\Bigl\{1-\Bigl(\dfrac12\Bigr)^n\Bigr\}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $\alpha$ 的符号写反：$\alpha=-3$ 时应写 $a_{n+1}+3=2(a_n+3)$。</li>
+        <li>用 $a_1$ 而不是 $a_1-\alpha$ 作为新数列的首项。</li>
+        <li>把 $2\cdot3^{n-1}$ 这类式子错误地合并成 $6^{n-1}$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>这是最常考的题型，通常一开始就给出 $a_{n+1}-\B{A}=\B{B}(a_n-\B{A})$ 的形式。<span lang="ja">特性方程式</span><span class="kana">（とくせいほうていしき）</span> 只是草稿中的工具，真正要写出或填入的是变形后的式子 $a_{n+1}-\alpha=p(a_n-\alpha)$。</p>
+    </div>
     <h3>其他类型的小例子</h3>
     <ul>
       <li><strong>一次式项型：</strong>$a_1=1,\ a_{n+1}=2a_n+n$。可凑成 $a_{n+1}+(n+1)+1=2(a_n+n+1)$，所以 $a_n+n+1=3\cdot2^{n-1}$，$a_n=3\cdot2^{n-1}-n-1$。</li>
@@ -373,6 +787,59 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <li><strong>特征方程有重根：</strong>解为 $\alpha$（重根）时，由 $a_{n+1}-\alpha a_n$ 成公比 $\alpha$ 的等比数列继续求解。如 $a_1=3,\ a_2=8,\ a_{n+2}=4a_{n+1}-4a_n$，可得 $a_n=(n+2)2^{n-1}$。</li>
     </ul>
 
+    <p><strong>指数项型的思路：</strong>$a_{n+1}=pa_n+q^n$ 中，$q^n$ 随 $n$ 变化。两边除以 $p^{n+1}$，令 $c_n=\dfrac{a_n}{p^n}$，$a_n$ 的系数变成 $1$，就成了阶差型；若 $p=q$，右边的项还会变成常数，直接得到等差数列。</p>
+    <p><strong>凑系数的思路：</strong>对 $a_{n+1}=pa_n+un+v$，设 $a_{n+1}+s(n+1)+t=p(a_n+sn+t)$，展开并比较 $n$ 的系数和常数项，确定 $s,t$。</p>
+    <p><strong>三项型的思路：</strong>设 $a_{n+2}-\alpha a_{n+1}=\beta(a_{n+1}-\alpha a_n)$，展开得 $a_{n+2}-(\alpha+\beta)a_{n+1}+\alpha\beta a_n=0$。由根与系数的关系，$\alpha,\beta$ 正好是特征方程的两根。两根不同时，交换 $\alpha,\beta$ 得到第二个式子，相减就消去 $a_{n+1}$。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 5-3（指数项，$p=q$ 情形）</b><span class="origin">原创</span></div>
+      <p>$a_1=2,\ a_{n+1}=2a_n+2^{n+1}$。求通项 $a_n$。</p>
+      <div class="ans">
+        <ol>
+          <li>两边除以 $2^{n+1}$：$\dfrac{a_{n+1}}{2^{n+1}}=\dfrac{a_n}{2^n}+1$。</li>
+          <li>令 $c_n=\dfrac{a_n}{2^n}$，则 $c_{n+1}=c_n+1$，$c_1=1$，是公差 $1$ 的等差数列，$c_n=n$。</li>
+          <li>所以 $a_n=n\cdot2^n$。验算：递推给出 $a_2=4+4=8$，公式给出 $2\cdot4=8$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a_n=n\cdot2^n$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 5-4（一次式项）</b><span class="origin">原创</span></div>
+      <p>$a_1=2,\ a_{n+1}=3a_n-2n+1$。求通项 $a_n$。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $a_{n+1}+s(n+1)+t=3(a_n+sn+t)$，展开得 $a_{n+1}=3a_n+2sn+2t-s$。</li>
+          <li>与原式比较：$2s=-2$，$2t-s=1$，解得 $s=-1,\ t=0$。</li>
+          <li>所以 $a_{n+1}-(n+1)=3(a_n-n)$，$\{a_n-n\}$ 是首项 $1$、公比 $3$ 的等比数列。</li>
+          <li>$a_n-n=3^{n-1}$，$a_n=3^{n-1}+n$。验算：递推给出 $a_2=6-2+1=5$，公式给出 $3+2=5$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a_n=3^{n-1}+n$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 5-5（三项型，两根不同）</b><span class="origin">原创</span></div>
+      <p>$a_1=2,\ a_2=5,\ a_{n+2}=a_{n+1}+2a_n$。求通项 $a_n$。</p>
+      <div class="ans">
+        <ol>
+          <li>特征方程 $x^2-x-2=0$，解得 $x=2,-1$。</li>
+          <li>用 $(\alpha,\beta)=(-1,2)$：$a_{n+2}+a_{n+1}=2(a_{n+1}+a_n)$，所以 $a_{n+1}+a_n=(5+2)2^{n-1}=7\cdot2^{n-1}$。</li>
+          <li>用 $(\alpha,\beta)=(2,-1)$：$a_{n+2}-2a_{n+1}=-(a_{n+1}-2a_n)$，所以 $a_{n+1}-2a_n=(5-4)(-1)^{n-1}=(-1)^{n-1}$。</li>
+          <li>前式减后式，$a_{n+1}$ 消去：$3a_n=7\cdot2^{n-1}-(-1)^{n-1}$。</li>
+          <li>验算：$a_1=\dfrac{7-1}{3}=2$，$a_2=\dfrac{14+1}{3}=5$，$a_3=\dfrac{28-1}{3}=9=5+2\cdot2$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a_n=\dfrac{7\cdot2^{n-1}-(-1)^{n-1}}{3}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>三项型的特征方程符号错：$a_{n+2}=a_{n+1}+2a_n$ 要先移项，方程是 $x^2-x-2=0$。</li>
+        <li>两个等比式的首项都写成 $a_2-a_1$；首项应随 $\alpha$ 变化，是 $a_2-\alpha a_1$。</li>
+        <li>指数项型除错了幂：除以 $2^{n+1}$ 才能让左边是 $\dfrac{a_{n+1}}{2^{n+1}}$，右边是 $\dfrac{a_n}{2^n}$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong><span lang="ja">隣接3項間漸化式</span><span class="kana">（りんせつさんこうかんぜんかしき）</span> 通常分步提问，先给 $a_{n+1}-\alpha a_n$ 的形式。两边除以幂时题面常说“<span lang="ja">両辺を $2^{n+1}$ で割る</span><span class="kana">（りょうへんをにのえぬプラスいちじょうでわる）</span>”。特征方程的根有 $1$ 时（如 $1,2$），其中一式就是阶差型，可以直接相加。</p>
+    </div>
     <div class="explorer" id="rec-box">
       <h3 style="margin-top:0">一次型递推探索器：$a_{n+1}=pa_n+q$</h3>
       <div class="ex-head" id="rec-presets" role="group" aria-label="预设"></div>
@@ -392,6 +859,31 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       </div>
       <div class="status" id="r-status" aria-live="polite"></div>
     </div>
+    <p><strong>怎样读探索器：</strong>由 $a_n-\alpha=(a_1-\alpha)p^{n-1}$，项与不动点的距离每步乘 $|p|$。$|p|&lt;1$ 时距离不断缩小，所以各项靠近 $\alpha$；$|p|&gt;1$ 时距离放大；$p&lt;0$ 时 $a_n-\alpha$ 的符号交替，所以各项在 $\alpha$ 两侧跳动；$a_1=\alpha$ 时距离恒为 $0$，是常数列。可以点击预设，对照图像验证这些结论。极限的严格讲解在项目 18，这里只需要有直观的理解。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 5-6（对照“振荡收敛”预设）</b><span class="origin">原创</span></div>
+      <p>在探索器中选“振荡收敛”：$a_1=6,\ a_{n+1}=-\dfrac12a_n+3$。(1) 求通项，并写出前 $5$ 项。(2) 满足 $|a_n-\alpha|&lt;0.1$ 的最小正整数 $n$ 是多少？</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 解 $\alpha=-\dfrac12\alpha+3$，得 $\alpha=2$。$a_n-2=(6-2)\Bigl(-\dfrac12\Bigr)^{n-1}$，所以 $a_n=2+4\Bigl(-\dfrac12\Bigr)^{n-1}$。</li>
+          <li>前 $5$ 项：$6,\ 0,\ 3,\ \dfrac32,\ \dfrac94$，确实在 $2$ 的两侧交替。</li>
+          <li>(2) $|a_n-2|=4\Bigl(\dfrac12\Bigr)^{n-1}&lt;0.1$，即 $2^{n-1}&gt;40$。</li>
+          <li>$2^5=32&lt;40&lt;64=2^6$，所以 $n-1\ge6$，$n\ge7$。验算：$a_7=2+\dfrac4{64}=\dfrac{33}{16}$，距离 $0.0625&lt;0.1$。</li>
+        </ol>
+        <p><strong>答案：</strong>(1) $a_n=2+4\Bigl(-\dfrac12\Bigr)^{n-1}$；(2) $n=7$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把 $\Bigl(-\dfrac12\Bigr)^{n-1}$ 的负号提到幂外面，写成 $-\Bigl(\dfrac12\Bigr)^{n-1}$。负号只在 $n$ 为偶数时出现。</li>
+        <li>以为 $|p|&lt;1$ 时数列一定单调。$p&lt;0$ 时会跳动。</li>
+        <li>$p=0$ 或 $p=1$ 时仍套不动点公式：$p=0$ 时从第 $2$ 项起恒为 $q$；$p=1$ 时是等差数列。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>探索器描述的现象对应的日语：<span lang="ja">収束</span><span class="kana">（しゅうそく）</span>（收敛）、<span lang="ja">発散</span><span class="kana">（はっさん）</span>（发散）、<span lang="ja">振動</span><span class="kana">（しんどう）</span>（振荡）。不等式求最小 $n$ 时，先化成 $2^{n-1}&gt;40$ 这样的形式，再用具体的幂夹住。</p>
+    </div>
   </section>
 
   <section id="induct">
@@ -407,6 +899,35 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       $$1+3+\cdots+(2k-1)+(2k+1)=k^2+2k+1=(k+1)^2,$$
       <p>所以 $n=k+1$ 时也成立。因此对所有正整数 $n$ 成立。</p>
     </div>
+    <p><strong>为什么两步就够？</strong>可以把它想成多米诺骨牌：第一步推倒第 $1$ 块；第二步保证“第 $k$ 块倒下一定能推倒第 $k+1$ 块”。对于任何指定的 $n$，从 $P(1)$ 出发连用 $n-1$ 次第二步，就能到达 $P(n)$。</p>
+    <p><strong>这不是循环论证。</strong>我们假设的只是某一个 $k$ 时成立，要证的是“$P(k)\Rightarrow P(k+1)$”这个推出关系，而不是一上来就假设结论对所有 $n$ 都成立。</p>
+    <p><strong>等式证明的固定路线：</strong>写出 $n=k+1$ 的左边 $\Rightarrow$ 拆成“前 $k$ 项 + 第 $k+1$ 项” $\Rightarrow$ 用假设替换前 $k$ 项 $\Rightarrow$ 化成 $n=k+1$ 的右边。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 6-1（证明和式）</b><span class="origin">原创</span></div>
+      <p>用数学归纳法证明：$\displaystyle\sum_{j=1}^{n}j\cdot2^{j-1}=(n-1)2^n+1$。</p>
+      <div class="ans">
+        <ol>
+          <li>$n=1$：左边 $=1$，右边 $=0+1=1$，成立。</li>
+          <li>假设 $n=k$ 时成立：$\displaystyle\sum_{j=1}^{k}j\cdot2^{j-1}=(k-1)2^k+1$。</li>
+          <li>$n=k+1$ 时，左边 $=(k-1)2^k+1+(k+1)2^k$，其中最后一项是第 $k+1$ 项。</li>
+          <li>合并：$(k-1+k+1)2^k+1=2k\cdot2^k+1=k\cdot2^{k+1}+1$。</li>
+          <li>这正是右边把 $n$ 换成 $k+1$ 的结果 $\{(k+1)-1\}2^{k+1}+1$，所以 $n=k+1$ 时也成立。</li>
+          <li>由以上两步，对所有正整数 $n$ 成立。</li>
+        </ol>
+        <p><strong>答案：</strong>得证。（与第 4 节错位相减的结果一致。）</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只做了 $n=k+1$ 的计算，漏写 $n=1$ 的验证，或漏写结论句。</li>
+        <li>把第 $k+1$ 项写成 $k\cdot2^k$，没有把 $k$ 全部换成 $k+1$（应为 $(k+1)2^k$）。</li>
+        <li>把要证的 $P(k+1)$ 当已知，两边一起变形。应从一边推到另一边。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>论述句式：“<span lang="ja">[1] $n=1$ のとき</span><span class="kana">（えぬイコールいちのとき）</span>”，“<span lang="ja">[2] $n=k$ のとき成り立つと仮定すると</span><span class="kana">（えぬイコールけーのときなりたつとかていすると）</span>”，“<span lang="ja">よって，すべての自然数 $n$ について成り立つ</span><span class="kana">（よって，すべてのしぜんすう えぬ についてなりたつ）</span>”。EJU 是填空（マーク）形式，通常只需把假设代入并填写系数；这些句式帮助你读懂题面的流程。</p>
+    </div>
     <h3>三种常见变形</h3>
     <ul>
       <li><strong>整除：</strong>把假设写成 $f(k)=mq$（$q$ 为整数），代入 $f(k+1)$ 后提出公因数，见例题 5。</li>
@@ -415,6 +936,60 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     </ul>
     <div class="box warn">
       <p><strong>易错：</strong>两步缺一不可，而且递推步骤必须真正用到假设。答卷中“假设 $n=k$ 时成立”这句不能省略。</p>
+    </div>
+    <p><strong>整除型的关键：</strong>把 $f(k+1)$ 中的乘方部分用 $f(k)$ 表示，也就是凑出 $f(k+1)=c\cdot f(k)+(\text{明显是倍数的部分})$。</p>
+    <p><strong>不等式型的关键：</strong>先由假设放缩，把目标化为两个多项式的比较，最后用 $k$ 的范围证明差为正。起点要选到不等式开始成立的最小值。</p>
+    <p><strong>两步假设型：</strong>$a_{k+2}$ 由 $a_{k+1},a_k$ 决定，要同时假设两个，所以起点要验证 $n=1,2$，否则递推无法启动。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 6-2（整除）</b><span class="origin">原创</span></div>
+      <p>证明：对所有正整数 $n$，$f(n)=3^{2n+1}+2^{n+2}$ 是 $7$ 的倍数。</p>
+      <div class="ans">
+        <ol>
+          <li>$n=1$：$f(1)=27+8=35=7\cdot5$，成立。</li>
+          <li>假设 $f(k)=7m$（$m$ 为整数），即 $3^{2k+1}=7m-2^{k+2}$。</li>
+          <li>$f(k+1)=3^{2k+3}+2^{k+3}=9\cdot3^{2k+1}+2\cdot2^{k+2}$。</li>
+          <li>代入：$9(7m-2^{k+2})+2\cdot2^{k+2}=63m-7\cdot2^{k+2}=7(9m-2^{k+2})$。</li>
+          <li>$9m-2^{k+2}$ 是整数，所以 $n=k+1$ 时也成立，得证。</li>
+        </ol>
+        <p><strong>答案：</strong>得证，且 $f(k+1)=9f(k)-7\cdot2^{k+2}$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 6-3（不等式）</b><span class="origin">原创</span></div>
+      <p>证明：$n\ge3$ 的整数都满足 $2^n&gt;2n+1$。</p>
+      <div class="ans">
+        <ol>
+          <li>$n=3$：$8&gt;7$，成立。（$n=2$ 时 $4&lt;5$，所以起点必须是 $3$。）</li>
+          <li>假设 $k\ge3$ 时 $2^k&gt;2k+1$，两边乘 $2$：$2^{k+1}&gt;4k+2$。</li>
+          <li>目标是 $2^{k+1}&gt;2(k+1)+1=2k+3$。作差：$(4k+2)-(2k+3)=2k-1&gt;0$（因为 $k\ge3$）。</li>
+          <li>所以 $2^{k+1}&gt;4k+2&gt;2k+3$，$n=k+1$ 时也成立，得证。</li>
+        </ol>
+        <p><strong>答案：</strong>得证。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题 6-4（两步假设）</b><span class="origin">原创</span></div>
+      <p>$a_1=1,\ a_2=5,\ a_{n+2}=5a_{n+1}-6a_n$。用归纳法证明 $a_n=3^n-2^n$。</p>
+      <div class="ans">
+        <ol>
+          <li>$n=1$：$3-2=1$；$n=2$：$9-4=5$。两个起点都成立。</li>
+          <li>假设 $n=k,\ k+1$ 时都成立：$a_k=3^k-2^k$，$a_{k+1}=3^{k+1}-2^{k+1}$。</li>
+          <li>$a_{k+2}=5(3^{k+1}-2^{k+1})-6(3^k-2^k)=(15-6)3^k-(10-6)2^k$。</li>
+          <li>$=9\cdot3^k-4\cdot2^k=3^{k+2}-2^{k+2}$，所以 $n=k+2$ 时也成立，得证。</li>
+        </ol>
+        <p><strong>答案：</strong>得证。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>整除证明中没有说明括号内是整数。</li>
+        <li>不等式放缩后方向错误，或者最后的“差为正”没有用上 $k$ 的范围。</li>
+        <li>两步假设的问题只验证了 $n=1$。没有 $n=2$，由 $n=1$ 无法推到 $n=3$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong><span lang="ja">倍数であることを示せ</span><span class="kana">（ばいすうであることをしめせ）</span> 是整除型，<span lang="ja">不等式を証明せよ</span><span class="kana">（ふとうしきをしょうめいせよ）</span> 是不等式型。填空形式中，空格常放在“$f(k+1)=\B{A}f(k)+\cdots$”的系数上：这个系数就是乘方的底数（如上面的 $9$）。</p>
     </div>
   </section>
 
@@ -505,6 +1080,47 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <p>所以 $n=k+1$ 时也成立。</p>
       </div>
     </article>
+    <p><strong>解题流程：</strong>① 先看空格的形状（几位数、是否有负号、分数或幂），判断结果的形式；② 按小题顺序做，前一问的结果常是后一问的入口；③ 用 $n=1,2$ 验算；④ 不要在一个空上停留太久，先往后看提示。</p>
+    <div class="tw"><table>
+      <thead><tr><th>例题</th><th>易被忽略的细节</th></tr></thead>
+      <tbody>
+        <tr><td>例题 1 (3)</td><td>也可以用 $\sum|a_k|=2S_7-S_{20}=154+170=324$：正项算两次，抵消总和中的负值。</td></tr>
+        <tr><td>例题 2 (1)</td><td>$a_4+a_5+a_6=r^3(a_1+a_2+a_3)$，所以两式相除即得 $r^3$，不必解 $a,r$ 的方程组。</td></tr>
+        <tr><td>例题 3 (4)</td><td>$b_kb_{k+1}=(2k-1)(2k+1)$，因式相差 $2$，裂项系数是 $\dfrac12$，然后才得到 $\dfrac n{2n+1}$。</td></tr>
+        <tr><td>例题 4 (3)</td><td>作差时 $c_{n+1}=S_{n+1}-S_n$ 中要写全 $-(n+1)+n=-1$，然后才移项得 $c_{n+1}=2c_n+1$。</td></tr>
+        <tr><td>例题 5 (1)</td><td>凑 $4f(k)$：因为 $4^{k+1}$ 是 $4^k$ 的 $4$ 倍，再把多余部分写成 $9$ 的倍数。</td></tr>
+      </tbody>
+    </table></div>
+    <article class="q">
+      <div class="q-head"><b>补充例题 7-1　递推、和与裂项的综合</b><span class="origin">原创</span></div>
+      <p>数列 $\{a_n\}$ 满足 $a_1=3,\ a_{n+1}=2a_n-1$。</p>
+      <p>(1) $a_n=\B{A}^n+\B{B}$。</p>
+      <p>(2) $a_n$ 首次超过 $1000$ 时，$n=\B{CD}$。</p>
+      <p>(3) $\displaystyle\sum_{k=1}^{n}a_k=2^{n+\B{E}}+n-\B{F}$。</p>
+      <p>(4) $\displaystyle\sum_{k=1}^{n}\frac{2^k}{a_ka_{k+1}}=\frac{1}{\B{G}}-\frac{1}{2^{n+1}+\B{H}}$。</p>
+      <div class="ans">
+        <ul class="keys"><li>A = 2</li><li>B = 1</li><li>CD = 10</li><li>E = 1</li><li>F = 2</li><li>G = 3</li><li>H = 1</li></ul>
+        <ol>
+          <li>(1) 解 $\alpha=2\alpha-1$，得 $\alpha=1$。$a_{n+1}-1=2(a_n-1)$，首项 $a_1-1=2$，所以 $a_n-1=2\cdot2^{n-1}=2^n$，$a_n=2^n+1$。</li>
+          <li>(2) $a_9=513$，$a_{10}=1025$，所以 $n=10$。</li>
+          <li>(3) $\displaystyle\sum_{k=1}^{n}(2^k+1)=\frac{2(2^n-1)}{2-1}+n=2^{n+1}+n-2$。</li>
+          <li>(4) 关键观察：$a_{k+1}-a_k=2^k$，分子正好是分母两因子之差。所以 $\dfrac{2^k}{a_ka_{k+1}}=\dfrac{a_{k+1}-a_k}{a_ka_{k+1}}=\dfrac1{a_k}-\dfrac1{a_{k+1}}$。</li>
+          <li>相消后只剩 $\dfrac1{a_1}-\dfrac1{a_{n+1}}=\dfrac13-\dfrac1{2^{n+1}+1}$。</li>
+          <li>验算 (4)：$n=1$ 时左边 $\dfrac{2}{3\cdot5}=\dfrac2{15}$，右边 $\dfrac13-\dfrac15=\dfrac2{15}$。</li>
+        </ol>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>(3) 中 $\displaystyle\sum_{k=1}^{n}2^k$ 的首项是 $2$，而不是 $1$，否则结果差一倍。</li>
+        <li>看到 (4) 的分子是幂就想错位相减。分母是相邻两项之积时，先试分子是否等于两项之差。</li>
+        <li>(2) 只算一个值就下结论。“首次超过”要同时算相邻两项 $a_9,a_{10}$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong><span lang="ja">空欄</span><span class="kana">（くうらん）</span> 里每个字母只代表一位数字。答案不是整数或位数不符时，说明前面算错了；这也是 EJU 填空形式附带的检查。建议先做小题 (1)(2) 稳住分数，再看后面。</p>
+    </div>
   </section>
 
   <section id="practice">
@@ -582,6 +1198,45 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
       <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
       <div class="ans" hidden><p><strong>证明要点：</strong>$n=4$ 时 $16=16$，成立。假设 $k\ge4$ 时 $2^k\ge k^2$，则 $2^{k+1}\ge2k^2$。而 $2k^2-(k+1)^2=k^2-2k-1=(k-1)^2-2&gt;0$（因为 $k\ge4$），所以 $2^{k+1}\ge(k+1)^2$。注意 $n=3$ 时 $8&lt;9$，不成立，所以起点必须是 $4$。</p></div>
     </article>
+    <p><strong>怎样用这些练习：</strong>先盖住答案独立写，再对照。练习 1–3 对应第 1、2 节，练习 4–5 与 8、11 对应第 4 节，练习 6 对应第 3 节，练习 7、9、10 对应第 5 节，练习 12 对应第 6 节。</p>
+    <p><strong>部分练习的步骤补充：</strong>练习 3 用容斥原理（$3$ 或 $5$ 的倍数 $=$ $3$ 的倍数 $+$ $5$ 的倍数 $-$ $15$ 的倍数），因为 $15$ 的倍数被算了两次。练习 5 中由 $-2S_n=\dfrac{3^n-1}{2}-n3^n$ 两边除以 $-2$，得 $S_n=\dfrac{n3^n}{2}-\dfrac{3^n-1}{4}=\dfrac{(2n-1)3^n+1}{4}$。练习 10 中 $(a_{n+1}-2a_n)-(a_{n+1}-3a_n)=a_n$，所以两式相减正好得到 $a_n$。</p>
+    <article class="q"><div class="q-head"><b>补充例题 8-1</b><span>通项是和 + 裂项</span></div>
+      <p>求 $1+\dfrac{1}{1+2}+\dfrac{1}{1+2+3}+\cdots+\dfrac{1}{1+2+\cdots+n}$，并求 $n=99$ 时的值。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ol>
+          <li>第 $k$ 项的分母为 $\dfrac{k(k+1)}{2}$，所以第 $k$ 项为 $\dfrac{2}{k(k+1)}=2\Bigl(\dfrac1k-\dfrac1{k+1}\Bigr)$。</li>
+          <li>相消：和 $=2\Bigl(1-\dfrac1{n+1}\Bigr)=\dfrac{2n}{n+1}$。</li>
+          <li>$n=99$：$\dfrac{198}{100}=\dfrac{99}{50}$。</li>
+        </ol>
+        <p><strong>答案：$\dfrac{2n}{n+1}$；$\dfrac{99}{50}$。</strong></p>
+      </div>
+    </article>
+
+    <article class="q"><div class="q-head"><b>补充例题 8-2</b><span>等差与等比的联立</span></div>
+      <p>互不相同的三个实数 $a,b,c$ 满足：$a,b,c$ 依次成等差数列，$b,a,c$ 依次成等比数列，且 $a+b+c=6$。求 $a,b,c$。</p>
+      <button class="toggle-ans" type="button" aria-expanded="false">显示答案</button>
+      <div class="ans" hidden>
+        <ol>
+          <li>等差：$2b=a+c$；与 $a+b+c=6$ 联立，得 $3b=6$，$b=2$，且 $a+c=4$。</li>
+          <li>等比：$a^2=bc=2c$。把 $c=4-a$ 代入：$a^2=8-2a$，即 $(a+4)(a-2)=0$。</li>
+          <li>$a=2$ 时 $c=2$，三数相同，不合题意；$a=-4$ 时 $c=8$。</li>
+          <li>验算：$-4,2,8$ 公差为 $6$；$2,-4,8$ 公比为 $-2$。</li>
+        </ol>
+        <p><strong>答案：$a=-4,\ b=2,\ c=8$。</strong></p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>看完答案觉得“懂了”就跳过。过几天不看解答重做一次，才算掌握。</li>
+        <li>8-2 中忽略“互不相同”，把 $a=b=c=2$ 也写入答案；此外要注意等比中项是中间的 $a$，不是 $b$。</li>
+        <li>只记答案，不记方法。每道题都要能说出类型名称和第一步的动作。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>考试时间有限，建议对每道练习题限时：基础题 $3$ 分钟内完成，综合题 $6$ 分钟内。注意题面的顺序条件：“依次”对应日语的 <span lang="ja">この順に</span><span class="kana">（このじゅんに）</span>。</p>
+    </div>
   </section>
 
   <section id="terms">
@@ -629,8 +1284,69 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <tr><td lang="ja">仮定する</td><td class="kana" lang="ja">かていする</td><td>假设</td></tr>
         <tr><td lang="ja">成り立つ</td><td class="kana" lang="ja">なりたつ</td><td>成立</td></tr>
         <tr><td lang="ja">倍数</td><td class="kana" lang="ja">ばいすう</td><td>倍数</td></tr>
+        <tr class="group"><td colspan="3">应试常用表达</td></tr>
+        <tr><td lang="ja">第 n 項</td><td class="kana" lang="ja">だいえぬこう</td><td>第 n 项</td></tr>
+        <tr><td lang="ja">n 番目</td><td class="kana" lang="ja">えぬばんめ</td><td>第 n 个</td></tr>
+        <tr><td lang="ja">第 m 群</td><td class="kana" lang="ja">だいえむぐん</td><td>第 m 组</td></tr>
+        <tr><td lang="ja">定数項</td><td class="kana" lang="ja">ていすうこう</td><td>常数项</td></tr>
+        <tr><td lang="ja">添え字</td><td class="kana" lang="ja">そえじ</td><td>下标（如 Σ 中的 k）</td></tr>
+        <tr><td lang="ja">実数</td><td class="kana" lang="ja">じっすう</td><td>实数</td></tr>
+        <tr><td lang="ja">正の数</td><td class="kana" lang="ja">せいのかず</td><td>正数</td></tr>
+        <tr><td lang="ja">整数</td><td class="kana" lang="ja">せいすう</td><td>整数</td></tr>
+        <tr><td lang="ja">因数分解</td><td class="kana" lang="ja">いんすうぶんかい</td><td>因式分解</td></tr>
+        <tr><td lang="ja">展開</td><td class="kana" lang="ja">てんかい</td><td>展开</td></tr>
+        <tr><td lang="ja">有理化</td><td class="kana" lang="ja">ゆうりか</td><td>有理化</td></tr>
+        <tr><td lang="ja">通分</td><td class="kana" lang="ja">つうぶん</td><td>通分</td></tr>
+        <tr><td lang="ja">両辺</td><td class="kana" lang="ja">りょうへん</td><td>两边</td></tr>
+        <tr><td lang="ja">不動点</td><td class="kana" lang="ja">ふどうてん</td><td>不动点</td></tr>
+        <tr><td lang="ja">重解</td><td class="kana" lang="ja">じゅうかい</td><td>重根</td></tr>
+        <tr><td lang="ja">収束</td><td class="kana" lang="ja">しゅうそく</td><td>收敛</td></tr>
+        <tr><td lang="ja">発散</td><td class="kana" lang="ja">はっさん</td><td>发散</td></tr>
+        <tr><td lang="ja">振動</td><td class="kana" lang="ja">しんどう</td><td>振荡</td></tr>
+        <tr><td lang="ja">利率</td><td class="kana" lang="ja">りりつ</td><td>利率</td></tr>
+        <tr><td lang="ja">預金</td><td class="kana" lang="ja">よきん</td><td>存款</td></tr>
+        <tr><td lang="ja">年初</td><td class="kana" lang="ja">ねんしょ</td><td>年初</td></tr>
+        <tr><td lang="ja">年末</td><td class="kana" lang="ja">ねんまつ</td><td>年末</td></tr>
+        <tr><td lang="ja">不等式</td><td class="kana" lang="ja">ふとうしき</td><td>不等式</td></tr>
+        <tr><td lang="ja">空欄</td><td class="kana" lang="ja">くうらん</td><td>填空的空格</td></tr>
+        <tr><td lang="ja">この順に</td><td class="kana" lang="ja">このじゅんに</td><td>依次</td></tr>
+        <tr><td lang="ja">初めて〜を超える</td><td class="kana" lang="ja">はじめて〜をこえる</td><td>首次超过……</td></tr>
+        <tr><td lang="ja">最小の自然数</td><td class="kana" lang="ja">さいしょうのしぜんすう</td><td>最小的正整数</td></tr>
+        <tr><td lang="ja">以上</td><td class="kana" lang="ja">いじょう</td><td>……以上（含本身）</td></tr>
+        <tr><td lang="ja">より大きい</td><td class="kana" lang="ja">よりおおきい</td><td>大于（不含本身）</td></tr>
+        <tr><td lang="ja">〜とおく</td><td class="kana" lang="ja">〜とおく</td><td>设……</td></tr>
+        <tr><td lang="ja">〜を満たす</td><td class="kana" lang="ja">〜をみたす</td><td>满足……</td></tr>
+        <tr><td lang="ja">〜を求めよ</td><td class="kana" lang="ja">〜をもとめよ</td><td>求……</td></tr>
+        <tr><td lang="ja">〜を示せ</td><td class="kana" lang="ja">〜をしめせ</td><td>证明……</td></tr>
+        <tr><td lang="ja">〜で表せ</td><td class="kana" lang="ja">〜であらわせ</td><td>用……表示</td></tr>
+        <tr><td lang="ja">ただし</td><td class="kana" lang="ja">ただし</td><td>但是（限制条件）</td></tr>
       </tbody>
     </table></div>
+    <p><strong>怎样使用这张表：</strong>EJU 数学可选日语或英语作答，这里按日语题面整理。先掌握“条件词”（<span lang="ja">初項</span><span class="kana">（しょこう）</span>、<span lang="ja">公差</span><span class="kana">（こうさ）</span>）和“动作词”（<span lang="ja">求めよ</span><span class="kana">（もとめよ）</span>、<span lang="ja">示せ</span><span class="kana">（しめせ）</span>），题目就基本能读懂。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题 9-1（读日语题面）</b><span class="origin">原创</span></div>
+      <p><span lang="ja">初項が $3$，公差が $4$ である等差数列 $\{a_n\}$ について，第 $10$ 項および初項から第 $10$ 項までの和を求めよ。また，$a_n&gt;100$ となる最小の自然数 $n$ を求めよ。</span></p>
+      <div class="ans">
+        <ol>
+          <li>翻译：首项为 $3$、公差为 $4$ 的等差数列 $\{a_n\}$，求第 $10$ 项，以及首项到第 $10$ 项的和。再求使 $a_n&gt;100$ 成立的最小正整数 $n$。</li>
+          <li>$a_n=3+4(n-1)=4n-1$，所以 $a_{10}=39$。</li>
+          <li>$S_{10}=\dfrac{10(3+39)}{2}=210$。</li>
+          <li>$4n-1&gt;100$，得 $n&gt;25.25$，所以最小的 $n$ 是 $26$。验算：$a_{25}=99$，$a_{26}=103$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a_{10}=39$，$S_{10}=210$，$n=26$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>“<span lang="ja">第 $10$ 項</span><span class="kana">（だいじゅうこう）</span>”指一项，“<span lang="ja">第 $10$ 項までの和</span><span class="kana">（だいじゅうこうまでのわ）</span>”指前 $10$ 项的和，要看清有没有“まで”“和”。</li>
+        <li>把<span lang="ja">自然数</span><span class="kana">（しぜんすう）</span>理解成含 $0$。在日本高中数学中，自然数指正整数。</li>
+        <li>混淆<span lang="ja">公差</span><span class="kana">（こうさ）</span>与<span lang="ja">公比</span><span class="kana">（こうひ）</span>，或<span lang="ja">以上</span><span class="kana">（いじょう）</span>（含本身）与<span lang="ja">より大きい</span><span class="kana">（よりおおきい）</span>（不含本身）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>“<span lang="ja">〜を満たす</span><span class="kana">（〜をみたす）</span>”是“满足”，“<span lang="ja">〜とおく</span><span class="kana">（〜とおく）</span>”是“设”，“<span lang="ja">〜で表す</span><span class="kana">（〜であらわす）</span>”是“用……表示”，“<span lang="ja">ただし</span><span class="kana">（ただし）</span>”后面是限制条件。用上方搜索框可以按日语、读音或中文查找术语。</p>
+    </div>
   </section>
 
   <footer>本页例题与练习均为原创，答案已用 Python（sympy）计算验证。题目为学习用途，并非 EJU 真题。</footer>
