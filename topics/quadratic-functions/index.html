@@ -243,6 +243,7 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <li><a href="#examples">7 原创例题</a></li>
         <li><a href="#practice">8 练习题</a></li>
         <li><a href="#terms">9 术语对照</a></li>
+        <li><a href="#eju-bank">10 真题风格练习</a></li>
       </ol>
     </div>
     <button class="chip theme-btn" id="theme" type="button">深色</button>
@@ -470,6 +471,12 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="box tip">
       <p><strong>EJU 应试提示：</strong>题面的 “$x^2+2x=t$ とおく” 就是提示你换元，紧接的空格几乎总是问 $t$ 的范围，例如 “$t\ge-\square$”。这个空不要跳过，它决定了后面的结果。</p>
     </div>
+    <h3>补充：在给定区间上单调的条件</h3>
+    <p>题面 “$\alpha\le x\le\beta$ で $x$ の増加とともに $y$ も増加する” 等价于“区间全在轴的一侧”。开口向上 $(a&gt;0)$、轴为 $x=p$ 时：在区间上单调增加 $\Leftrightarrow p\le\alpha$；单调减少 $\Leftrightarrow p\ge\beta$。开口向下时结论相反。</p>
+    <div class="box good">
+      <p><strong>补充例题 2-7：</strong>$y=x^2-2kx+1$ 在 $1\le x\le3$ 上单调增加，求 $k$ 的范围。</p>
+      <p>轴为 $x=k$，开口向上，需轴不在区间左端点的右侧：$k\le1$。答：$\boldsymbol{k\le1}$。</p>
+    </div>
   </section>
 
   <section id="determine">
@@ -666,6 +673,14 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     </div>
     <div class="box tip">
       <p><strong>EJU 应试提示：</strong>“$x$ 軸から切り取る線分の長さ”就是截得的线段长。轴是两交点的中点，所以也可以用“轴 $\pm$ 线段长的一半”写出两个交点：补充例题 5-4 中轴为 $x=1$，交点为 $1\pm2$。</p>
+    </div>
+
+    <h3>补充：水平弦长与两函数之差</h3>
+    <p><strong>水平弦长：</strong>$y=a(x-p)^2+q$ 与直线 $y=k$ 的交点为 $x=p\pm\sqrt{\dfrac{k-q}{a}}$，所以弦长为 $2\sqrt{\dfrac{k-q}{a}}$。两条水平弦长已知时，可列出关于 $a,q$ 的两个方程。截 $x$ 轴的线段长就是 $k=0$ 的特例。</p>
+    <p><strong>两函数之差：</strong>求“两图像在竖直方向上的距离”时，令 $g(x)=f_2(x)-f_1(x)$。$g(x)$ 仍是二次（或一次）函数，所以照常配方、看区间求最值；$g(x)=0$ 的解就是两图像交点的 $x$ 坐标。</p>
+    <div class="box good">
+      <p><strong>补充例题 5-7：</strong>$y=x^2-4x+1$ 被直线 $y=k$ 截得的弦长为 $6$，求 $k$。</p>
+      <p>$y=(x-2)^2-3$，弦长 $2\sqrt{k+3}=6$，$k+3=9$。答：$\boldsymbol{k=6}$（检验：$x=-1,\ 5$）。</p>
     </div>
 
     <h3>抛物线与直线</h3>
@@ -1139,6 +1154,156 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     </div>
     <div class="box tip">
       <p><strong>EJU 应试提示：</strong>EJU 可以选用日语或英语试卷，选日语时要能迅速读懂题面。优先掌握“求めよ”“範囲”“接する”“共有点”“定義域”这些高频词。题目中的 “$a$ は定数とする” 表示“设 $a$ 为常数”。</p>
+    </div>
+  </section>
+
+  <section id="eju-bank">
+    <h2>真题风格练习（EJU 题库对照）</h2>
+    <p class="jp-sub">对照《EJU数学2知识点分类题库 2005–2025》中“二次函数与二次方程”类的 34 个题目归纳题型；下面的练习题均为<strong>原创</strong>，数字与设定都不同于真题。</p>
+    <div class="box tip">
+      <p><strong>题库出题规律：</strong></p>
+      <ul>
+        <li><strong>由区间最值反求系数（最高频）：</strong>已知闭区间上的最大值、最小值，反求 $a,b$ 或参数；常要求对开口方向分类。例：2006年第2回、2008年第2回、2021年第2回、2024年、2025年。</li>
+        <li><strong>平移・对称后的抛物线：</strong>平移后过某点、与 $x$ 轴相切，或关于原点对称，追踪顶点求平移量或系数。例：2006年第1回、2007年第2回、2012年第1回、2012年第2回、2013年第2回。</li>
+        <li><strong>含参数的区间与最值的变化：</strong>区间或轴含参数，分类讨论最小值・最大值、递增条件。例：2007年第1回、2013年第1回、2015年第2回、2018年第2回、2023年第2回。</li>
+        <li><strong>两条抛物线（或抛物线与直线）的交点及“函数之差”的最值：</strong>例：2011年第2回、2014年第2回、2017年第1回、2021年第1回、2023年第1回。</li>
+        <li><strong>含参数抛物线的顶点轨迹・固定点・与 $x$ 轴相切：</strong>例：2009年第1回、2010年第2回、2016年第1回、2022年第1回。</li>
+        <li><strong>弦长与条件式：</strong>水平弦长确定抛物线（2020年第2回、2022年第2回）；线性约束下的二元最值或由函数值约束求范围（2011年第1回、2017年第2回、2019年第1回）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框 $\boxed{\text{ア}}$ 填一位数字（$0$–$9$）；相邻的两个方框如 $\boxed{\text{ア}}\boxed{\text{イ}}$ 表示两位数。负号已印在题面上。同一片假名在同一题中重复出现时值相同。分数约到最简，根号内尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>练习 1　由区间最值确定二次函数</b><span class="origin">原创</span><span>对应：2006年第2回、2021年第2回、2024年</span></div>
+      <p>设 $a\ne0$，$f(x)=ax^2-4ax+b$。已知在 $0\le x\le3$ 上，$f(x)$ 的最大值为 $9$，最小值为 $-7$。</p>
+      <p>(1) $a&gt;0$ 时，$a=\boxed{\text{ア}}$，$b=\boxed{\text{イ}}$。</p>
+      <p>(2) $a&lt;0$ 时，$a=-\boxed{\text{ウ}}$，$b=-\boxed{\text{エ}}$。</p>
+      <p>(3) 在 (1) 的情况下，方程 $f(x)=0$ 的解为 $x=\dfrac{\boxed{\text{オ}}\pm\sqrt{\boxed{\text{カ}}}}{\boxed{\text{キ}}}$。</p>
+      <details><summary>解答</summary>
+        <p>$f(x)=a(x-2)^2+b-4a$，轴 $x=2$ 在区间内。区间端点中 $x=0$ 离轴较远（距离 $2$），$x=3$ 较近（距离 $1$）。</p>
+        <p>(1) $a&gt;0$：最小值是顶点值 $f(2)=b-4a=-7$，最大值是 $f(0)=b=9$。所以 $b=9$，$a=4$。检验：$f(3)=-3$，介于两者之间。</p>
+        <p>(2) $a&lt;0$：最大值 $f(2)=b-4a=9$，最小值 $f(0)=b=-7$。所以 $b=-7$，$a=-4$。检验：$f(3)=5$。</p>
+        <p>(3) $4x^2-16x+9=0$，$x=\dfrac{8\pm\sqrt{64-36}}{4}=\dfrac{8\pm2\sqrt7}{4}=\dfrac{4\pm\sqrt7}{2}$。</p>
+        <ul class="keys"><li>ア = 4</li><li>イ = 9</li><li>ウ = 4</li><li>エ = 7</li><li>オ = 4</li><li>カ = 7</li><li>キ = 2</li></ul>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 2　平移、对称与相切</b><span class="origin">原创</span><span>对应：2006年第1回、2012年第1回、2012年第2回</span></div>
+      <p>抛物线 $C:\ y=x^2-6x+c$。把 $C$ 沿 $x$ 轴方向平移 $2$、沿 $y$ 轴方向平移 $-3$ 后，所得抛物线经过点 $(6,\,2)$。</p>
+      <p>(1) $c=\boxed{\text{ア}}\boxed{\text{イ}}$。</p>
+      <p>(2) 与 $C$ 关于原点对称的抛物线为 $y=-x^2-\boxed{\text{ウ}}\,x-\boxed{\text{エ}}\boxed{\text{オ}}$。</p>
+      <p>(3) 把 $C$ 沿 $x$ 轴方向平移 $p$、沿 $y$ 轴方向平移 $q$，使所得抛物线与 $x$ 轴相切且经过点 $(1,\,9)$，则 $q=-\boxed{\text{カ}}$，$p=\boxed{\text{キ}}$ 或 $p=-\boxed{\text{ク}}$。</p>
+      <details><summary>解答</summary>
+        <p>(1) $C:\ y=(x-3)^2+c-9$，顶点 $(3,\,c-9)$。平移后顶点为 $(5,\,c-12)$，方程 $y=(x-5)^2+c-12$。代入 $(6,2)$：$1+c-12=2$，$c=13$。于是 $C:\ y=(x-3)^2+4$。</p>
+        <p>(2) 关于原点对称：把 $x\to-x$，$y\to-y$。$-y=x^2+6x+13$，即 $y=-x^2-6x-13$。</p>
+        <p>(3) 平移后 $y=(x-3-p)^2+4+q$。与 $x$ 轴相切 $\Leftrightarrow$ 顶点的 $y$ 坐标为 $0$：$q=-4$。再代入 $(1,9)$：$(-2-p)^2=9$，$p+2=\pm3$，$p=1$ 或 $p=-5$。</p>
+        <ul class="keys"><li>アイ = 13</li><li>ウ = 6</li><li>エオ = 13</li><li>カ = 4</li><li>キ = 1</li><li>ク = 5</li></ul>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 3　线性约束下的二元最值</b><span class="origin">原创</span><span>对应：2011年第1回</span></div>
+      <p>实数 $x,y$ 满足 $2x+y=6$，$x\ge1$，$y\ge0$。</p>
+      <p>(1) $xy$ 的最大值为 $\dfrac{\boxed{\text{ア}}}{\boxed{\text{イ}}}$（此时 $x=\dfrac{\boxed{\text{ウ}}}{\boxed{\text{エ}}}$），最小值为 $\boxed{\text{オ}}$。</p>
+      <p>(2) $x^2+y^2$ 的最小值为 $\dfrac{\boxed{\text{カ}}\boxed{\text{キ}}}{\boxed{\text{ク}}}$，最大值为 $\boxed{\text{ケ}}\boxed{\text{コ}}$。</p>
+      <details><summary>解答</summary>
+        <p>由 $y=6-2x\ge0$ 得 $x\le3$，所以 $1\le x\le3$（这个范围必须先写出）。</p>
+        <p>(1) $xy=x(6-2x)=-2\Bigl(x-\dfrac32\Bigr)^2+\dfrac92$。轴 $x=\dfrac32$ 在区间内，最大值 $\dfrac92$（此时 $y=3$）。端点 $f(1)=4$，$f(3)=0$，最小值 $0$（$x=3,\ y=0$）。</p>
+        <p>(2) $x^2+y^2=x^2+(6-2x)^2=5x^2-24x+36=5\Bigl(x-\dfrac{12}5\Bigr)^2+\dfrac{36}5$。轴 $x=\dfrac{12}5$ 在区间内，最小值 $\dfrac{36}5$（$x=\dfrac{12}5,\ y=\dfrac65$）。端点：$x=1$ 时 $1+16=17$，$x=3$ 时 $9$，最大值 $17$。</p>
+        <ul class="keys"><li>ア = 9</li><li>イ = 2</li><li>ウ = 3</li><li>エ = 2</li><li>オ = 0</li><li>カキ = 36</li><li>ク = 5</li><li>ケコ = 17</li></ul>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 4　含参数抛物线的定点与顶点</b><span class="origin">原创</span><span>对应：2009年第1回、2016年第1回、2022年第1回</span></div>
+      <p>设 $a$ 为实数，抛物线 $C:\ y=x^2-2ax+4a-3$。</p>
+      <p>(1) 无论 $a$ 取何值，$C$ 都经过定点 $(\boxed{\text{ア}},\ \boxed{\text{イ}})$。</p>
+      <p>(2) $C$ 的顶点坐标为 $(a,\ -a^2+\boxed{\text{ウ}}\,a-\boxed{\text{エ}})$。</p>
+      <p>(3) $C$ 与 $x$ 轴相切时，$a=\boxed{\text{オ}}$ 或 $a=\boxed{\text{カ}}$（$\boxed{\text{オ}}&lt;\boxed{\text{カ}}$）。</p>
+      <p>(4) 设 $P(0,-3)$，$Q(2,-1)$。$C$ 的顶点在线段 $PQ$ 上（含端点）的条件是 $a=\boxed{\text{キ}}$。</p>
+      <details><summary>解答</summary>
+        <p>(1) 按 $a$ 整理：$y=x^2-3+a(4-2x)$。令 $4-2x=0$，得 $x=2$，此时 $y=1$，与 $a$ 无关。定点 $(2,1)$。</p>
+        <p>(2) $y=(x-a)^2-a^2+4a-3$，顶点 $(a,\ -a^2+4a-3)$。</p>
+        <p>(3) 顶点的 $y$ 坐标为 $0$：$a^2-4a+3=(a-1)(a-3)=0$，$a=1,\ 3$。</p>
+        <p>(4) 直线 $PQ$：$y=x-3$，线段上要求 $0\le x\le2$。顶点在直线上：$-a^2+4a-3=a-3$，$a(a-3)=0$，$a=0$ 或 $3$。但 $a=3$ 时顶点 $x$ 坐标为 $3&gt;2$，在线段之外，舍去。所以 $a=0$。</p>
+        <ul class="keys"><li>ア = 2</li><li>イ = 1</li><li>ウ = 4</li><li>エ = 3</li><li>オ = 1</li><li>カ = 3</li><li>キ = 0</li></ul>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 5　两条抛物线与函数之差</b><span class="origin">原创</span><span>对应：2011年第2回、2021年第1回、2014年第2回</span></div>
+      <p>$C_1:\ y=x^2-2x-1$，$C_2:\ y=-x^2+4x+7$。</p>
+      <p>(1) $C_1$ 与 $C_2$ 的交点为 $(-\boxed{\text{ア}},\ \boxed{\text{イ}})$ 和 $(\boxed{\text{ウ}},\ \boxed{\text{エ}})$，过这两点的直线为 $y=x+\boxed{\text{オ}}$。</p>
+      <p>(2) 在 $-\boxed{\text{ア}}\le x\le\boxed{\text{ウ}}$ 上，$C_2$ 与 $C_1$ 的 $y$ 坐标之差在 $x=\dfrac{\boxed{\text{カ}}}{\boxed{\text{キ}}}$ 时取最大值 $\dfrac{\boxed{\text{ク}}\boxed{\text{ケ}}}{\boxed{\text{コ}}}$。</p>
+      <p>(3) 把 $C_1$ 沿 $y$ 轴方向平移 $k$，使它与 $C_2$ 只有一个公共点，则 $k=\dfrac{\boxed{\text{サ}}\boxed{\text{シ}}}{\boxed{\text{ス}}}$。</p>
+      <details><summary>解答</summary>
+        <p>(1) $x^2-2x-1=-x^2+4x+7$，$2x^2-6x-8=0$，$(x+1)(x-4)=0$，$x=-1,\ 4$。代入 $C_1$：$(-1,2)$，$(4,7)$。斜率 $\dfrac{7-2}{4-(-1)}=1$，直线 $y=x+3$。</p>
+        <p>(2) $g(x)=(-x^2+4x+7)-(x^2-2x-1)=-2x^2+6x+8=-2\Bigl(x-\dfrac32\Bigr)^2+\dfrac{25}2$。轴在区间内，最大值 $\dfrac{25}2$（$x=\dfrac32$）。</p>
+        <p>(3) $x^2-2x-1+k=-x^2+4x+7$，即 $2x^2-6x+k-8=0$。重根条件 $\dfrac D4=9-2(k-8)=0$，$k=\dfrac{25}2$。这正好等于 (2) 的最大值：把 $C_1$ 上移到“差”的最大值时，两图像恰好相切。</p>
+        <ul class="keys"><li>ア = 1</li><li>イ = 2</li><li>ウ = 4</li><li>エ = 7</li><li>オ = 3</li><li>カ = 3</li><li>キ = 2</li><li>クケ = 25</li><li>コ = 2</li><li>サシ = 25</li><li>ス = 2</li></ul>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 6　由水平弦长确定抛物线</b><span class="origin">原创</span><span>对应：2020年第2回、2022年第2回</span></div>
+      <p>抛物线 $C:\ y=a(x-3)^2+q$（$a&gt;0$）被直线 $y=1$ 截得的线段长为 $2$，被直线 $y=7$ 截得的线段长为 $4$。</p>
+      <p>(1) $a=\boxed{\text{ア}}$，$q=-\boxed{\text{イ}}$，即 $C:\ y=\boxed{\text{ア}}\,x^2-\boxed{\text{ウ}}\boxed{\text{エ}}\,x+\boxed{\text{オ}}\boxed{\text{カ}}$。</p>
+      <p>(2) 直线 $y=t$ 被 $C$ 截得的线段长为 $6$ 时，$t=\boxed{\text{キ}}\boxed{\text{ク}}$。</p>
+      <p>(3) $C$ 在 $x$ 轴上截得的线段长为 $\sqrt{\boxed{\text{ケ}}}$。</p>
+      <details><summary>解答</summary>
+        <p>$a(x-3)^2+q=k$ 的解为 $x=3\pm\sqrt{\dfrac{k-q}{a}}$，所以直线 $y=k$ 截得的弦长为 $2\sqrt{\dfrac{k-q}{a}}$。</p>
+        <p>(1) $\dfrac{1-q}{a}=1$，$\dfrac{7-q}{a}=4$。相减：$\dfrac6a=3$，$a=2$，$q=-1$。$y=2(x-3)^2-1=2x^2-12x+17$。</p>
+        <p>(2) $2\sqrt{\dfrac{t+1}{2}}=6$，$\dfrac{t+1}2=9$，$t=17$。检验：$y=17$ 时 $x=0,\ 6$，长 $6$。</p>
+        <p>(3) $k=0$：$2\sqrt{\dfrac12}=\sqrt2$。</p>
+        <ul class="keys"><li>ア = 2</li><li>イ = 1</li><li>ウエ = 12</li><li>オカ = 17</li><li>キク = 17</li><li>ケ = 2</li></ul>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 7　由函数值约束求最小值的范围</b><span class="origin">原创</span><span>对应：2017年第2回、2019年第1回</span></div>
+      <p>$f(x)=x^2+bx+c$ 满足 $f(1)=0$，$0\le f(3)\le6$。</p>
+      <p>(1) $c=-b-\boxed{\text{ア}}$，$f(x)$ 的最小值 $m$ 可表示为 $m=-\dfrac{(b+\boxed{\text{イ}})^2}{\boxed{\text{ウ}}}$。</p>
+      <p>(2) $b$ 的范围是 $-\boxed{\text{エ}}\le b\le-\boxed{\text{オ}}$。</p>
+      <p>(3) $m$ 的范围是 $-\boxed{\text{カ}}\le m\le\boxed{\text{キ}}$。$m$ 取最小值时，$f(x)=x^2-\boxed{\text{ク}}\,x+\boxed{\text{ケ}}$。</p>
+      <details><summary>解答</summary>
+        <p>(1) $f(1)=1+b+c=0$，$c=-b-1$。$f(x)=\Bigl(x+\dfrac b2\Bigr)^2-\dfrac{b^2}4-b-1$，所以 $m=-\dfrac{b^2+4b+4}{4}=-\dfrac{(b+2)^2}4$。</p>
+        <p>(2) $f(3)=9+3b-b-1=2b+8$。$0\le2b+8\le6$，得 $-4\le b\le-1$。</p>
+        <p>(3) $m$ 是 $b$ 的二次函数，轴 $b=-2$ 在区间内：$b=-2$ 时最大 $0$；端点 $b=-4$ 时 $-1$，$b=-1$ 时 $-\dfrac14$，所以最小值 $-1$。范围 $-1\le m\le0$。$m=-1$ 时 $b=-4$，$c=3$，$f(x)=x^2-4x+3$。</p>
+        <ul class="keys"><li>ア = 1</li><li>イ = 2</li><li>ウ = 4</li><li>エ = 4</li><li>オ = 1</li><li>カ = 1</li><li>キ = 0</li><li>ク = 4</li><li>ケ = 3</li></ul>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 8　区间含参数时最值的变化</b><span class="origin">原创</span><span>对应：2013年第1回、2015年第2回、2018年第2回</span></div>
+      <p>$f(x)=x^2-6x+5$，设 $t$ 为实数，考虑区间 $t\le x\le t+2$。</p>
+      <p>(1) $f(x)$ 在此区间上单调增加的条件是 $t\ge\boxed{\text{ア}}$。</p>
+      <p>(2) 区间上的最小值 $m$：$t&lt;\boxed{\text{イ}}$ 时 $m=t^2-\boxed{\text{ウ}}\,t-\boxed{\text{エ}}$；$\boxed{\text{イ}}\le t\le\boxed{\text{ア}}$ 时 $m=-\boxed{\text{オ}}$。</p>
+      <p>(3) 设区间上的最大值为 $M$。$M-m=3$ 的条件是 $t=\boxed{\text{カ}}-\sqrt{\boxed{\text{キ}}}$ 或 $t=\boxed{\text{ク}}+\sqrt{\boxed{\text{ケ}}}$。</p>
+      <details><summary>解答</summary>
+        <p>$f(x)=(x-3)^2-4$，轴 $x=3$，开口向上。</p>
+        <p>(1) 区间全在轴的右侧（含轴）：$t\ge3$。</p>
+        <p>(2) 轴在区间右侧，即 $t+2&lt;3$（$t&lt;1$）：$m=f(t+2)=(t-1)^2-4=t^2-2t-3$。轴在区间内（$1\le t\le3$）：$m=-4$。（$t&gt;3$ 时 $m=f(t)=t^2-6t+5$。）</p>
+        <p>(3) 最大值看区间中点 $t+1$ 与轴的位置：$t\le2$ 时 $M=f(t)$，$t\ge2$ 时 $M=f(t+2)$。分四段：</p>
+        <ul>
+          <li>$t&lt;1$：$M-m=f(t)-f(t+2)=8-4t=3$，$t=\dfrac54$，不在范围内。</li>
+          <li>$1\le t\le2$：$M-m=(t-3)^2=3$，$t=3-\sqrt3\ (\approx1.27)$，符合。</li>
+          <li>$2\le t\le3$：$M-m=(t-1)^2=3$，$t=1+\sqrt3\ (\approx2.73)$，符合。</li>
+          <li>$t&gt;3$：$M-m=4t-8=3$，$t=\dfrac{11}4$，不在范围内。</li>
+        </ul>
+        <p>所以 $t=3-\sqrt3$ 或 $t=1+\sqrt3$。</p>
+        <ul class="keys"><li>ア = 3</li><li>イ = 1</li><li>ウ = 2</li><li>エ = 3</li><li>オ = 4</li><li>カ = 3</li><li>キ = 3</li><li>ク = 1</li><li>ケ = 3</li></ul>
+      </details>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>由最值反求系数时只考虑 $a&gt;0$，漏掉开口向下的情况（练习 1）。</li>
+        <li>分类后解出的值不与该类的范围对照（练习 4 的 $a=3$、练习 8 的 $t=\dfrac54$）。</li>
+        <li>消元后忘记写出剩余变量的范围（练习 3 的 $1\le x\le3$）。</li>
+      </ul>
     </div>
   </section>
 

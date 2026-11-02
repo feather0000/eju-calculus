@@ -236,6 +236,7 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <li><a href="#examples">7 原创例题</a></li>
         <li><a href="#practice">8 练习题</a></li>
         <li><a href="#terms">9 术语对照</a></li>
+        <li><a href="#eju-style">真题风格练习</a></li>
       </ol>
     </div>
     <button class="chip theme-btn" id="theme" type="button">深色</button>
@@ -294,6 +295,8 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
         <p><strong>答案：</strong>$5771$。</p>
       </div>
     </article>
+    <h3>两个等差数列的公共项</h3>
+    <p>两个等差数列的公共项本身也构成等差数列，公差是两个公差的<strong>最小公倍数</strong>。先找出最小的公共项，再加上最小公倍数。例：$3n-1$（$2,5,8,11,\dots$）与 $4n-1$（$3,7,11,\dots$）的公共项是 $11,23,35,\dots$，公差为 $12$，通项为 $12n-1$。若再与等比数列取公共项，就看等比数列的各项除以这个公差的余数，余数通常会周期性重复。</p>
     <div class="box warn">
       <p><strong>常见错误：</strong></p>
       <ul>
@@ -363,6 +366,10 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="box">
       <p><strong>EJU 应试提示：</strong>关注 <span lang="ja">公比</span><span class="kana">（こうひ）</span> 是否为“<span lang="ja">実数</span><span class="kana">（じっすう）</span>”或“<span lang="ja">正の数</span><span class="kana">（せいのかず）</span>”，这决定保留几个解。“<span lang="ja">初めて〜を超える</span><span class="kana">（はじめて〜をこえる）</span>”类题常用 $2^{10}=1024$ 估算，或用 $\log_{10}2\approx0.3010$、$\log_{10}3\approx0.4771$ 取对数。</p>
     </div>
+    <h3>无穷等比级数</h3>
+    <p>首项 $a$、公比 $r$ 的等比数列，前 $n$ 项和 $S_n=\dfrac{a(1-r^n)}{1-r}$。当 $|r|&lt;1$ 时 $r^n\to0$，于是</p>
+    $$\sum_{n=1}^{\infty}ar^{n-1}=\lim_{n\to\infty}S_n=\frac{a}{1-r}\qquad(|r|&lt;1).$$
+    <p>收敛条件是“$a=0$ 或 $|r|&lt;1$”。例：$3+\dfrac65+\dfrac{12}{25}+\cdots=\dfrac{3}{1-\frac25}=5$；循环小数 $0.\dot2\dot7=\dfrac{0.27}{1-0.01}=\dfrac{3}{11}$。公比含参数时，先写出收敛范围，再在这个范围内求和的最值。术语：<span lang="ja">無限等比級数</span><span class="kana">（むげんとうひきゅうすう）</span>、<span lang="ja">収束する</span><span class="kana">（しゅうそくする）</span>、<span lang="ja">極限</span><span class="kana">（きょくげん）</span>。</p>
     <h3>应用：复利与定期存款</h3>
     <p>年利率 $r$、按复利（<span lang="ja">複利</span>）计算，每年年初存入 $a$，第 $n$ 年年末的本息合计（<span lang="ja">元利合計</span>）是一个等比数列的和：</p>
     $$a(1+r)+a(1+r)^2+\cdots+a(1+r)^n=\frac{a(1+r)\{(1+r)^n-1\}}{r}.$$
@@ -1347,6 +1354,188 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
     <div class="box">
       <p><strong>EJU 应试提示：</strong>“<span lang="ja">〜を満たす</span><span class="kana">（〜をみたす）</span>”是“满足”，“<span lang="ja">〜とおく</span><span class="kana">（〜とおく）</span>”是“设”，“<span lang="ja">〜で表す</span><span class="kana">（〜であらわす）</span>”是“用……表示”，“<span lang="ja">ただし</span><span class="kana">（ただし）</span>”后面是限制条件。用上方搜索框可以按日语、读音或中文查找术语。</p>
     </div>
+  </section>
+
+  <section id="eju-style">
+    <h2>真题风格练习（EJU 题库对照）</h2>
+    <p>本节对照《EJU 数学2 知识点分类题库 2005–2025》中「数列」类的 16 个题目归纳出题规律，并配有<strong>原创</strong>练习题（数字和设定均为原创，并非真题）。</p>
+    <div class="box good">
+      <p><strong>题库出题规律</strong></p>
+      <ul>
+        <li><strong>由 $S_n$ 求通项，再求组合数列的和：</strong>$a_n=S_n-S_{n-1}$ 后，对 $a_{2k}$、$\dfrac1{a_ka_{k+1}}$ 等新数列求和或求极限（2006年第1回、2012年第1回）。</li>
+        <li><strong>等差数列的基本量与和：</strong>由指定项求公差、首项，再求和、和的最值或参数范围（2006年第2回、2007年第2回）。</li>
+        <li><strong>等差 → 指数型 / 等比 / 无穷级数：</strong>以等差数列的项为指数构成等比数列求和，或构成无穷等比级数，在收敛范围内求最小值（2008年第1回、2013年第2回）。</li>
+        <li><strong>等比数列与对数：</strong>由通常和与交错和确定首项和公比；取对数求“首次超过”的项数、位数（2008年第2回、2011年第1回）。</li>
+        <li><strong>递推式求通项：</strong>含指数项 $a_{n+1}=pa_n+q^n$ 的一阶递推，求通项后再求无穷级数（2017年第2回、2018年第2回）。</li>
+        <li><strong>整数性质与数列结合：</strong>余数条件、倍数项的计数与求和、公共项、根式和中的有理项，以及由和式生成新数列求部分和最小值（2007年第1回、2009年第1回、2009年第2回、2020年第2回、2022年第2回、2025年）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>填写方式：</strong>每个方框（如 $\boxed{\text{ア}}$）填一位数字或符号 $-$；几个字母相连（如 $\boxed{\text{イウ}}$）表示多位数，每个字母一位。分数约到最简。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 1　由前 $n$ 项和求通项与分数和的极限</b><span class="origin">原创 · 对应题型：由 $S_n$ 求通项、组合数列求和</span></div>
+      <p>数列 $\{a_n\}$ 的前 $n$ 项和为 $S_n=2n^2+5n$。</p>
+      <p>(1) $a_n=\boxed{\text{ア}}\,n+\boxed{\text{イ}}$（$n\ge1$）。</p>
+      <p>(2) $\displaystyle\sum_{k=1}^{10}a_{2k}=\boxed{\text{ウエオ}}$。</p>
+      <p>(3) $\displaystyle\sum_{k=1}^{n}\frac{1}{a_ka_{k+1}}=\frac{n}{\boxed{\text{カキ}}\,n+\boxed{\text{クケ}}}$，所以 $\displaystyle\lim_{n\to\infty}\sum_{k=1}^{n}\frac{1}{a_ka_{k+1}}=\frac{\boxed{\text{コ}}}{\boxed{\text{サシ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $n\ge2$ 时 $a_n=S_n-S_{n-1}=2n^2+5n-\{2(n-1)^2+5(n-1)\}=4n+3$。$a_1=S_1=7$，与 $4\cdot1+3$ 一致，所以 $a_n=4n+3$（$S_n$ 无常数项，$n=1$ 也成立）。</li>
+        <li>(2) $a_{2k}=8k+3$，$\displaystyle\sum_{k=1}^{10}(8k+3)=8\cdot55+30=470$。</li>
+        <li>(3) 裂项：$\dfrac{1}{(4k+3)(4k+7)}=\dfrac14\Bigl(\dfrac{1}{4k+3}-\dfrac{1}{4k+7}\Bigr)$。</li>
+        <li>相加后中间项抵消：$\dfrac14\Bigl(\dfrac17-\dfrac{1}{4n+7}\Bigr)=\dfrac14\cdot\dfrac{4n}{7(4n+7)}=\dfrac{n}{28n+49}$。</li>
+        <li>$n\to\infty$：$\dfrac{n}{28n+49}=\dfrac{1}{28+\frac{49}{n}}\to\dfrac1{28}$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 4，イ = 3，ウエオ = 470，カキ = 28，クケ = 49，コ = 1，サシ = 28</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 2　由指定项求等差数列与绝对值之和</b><span class="origin">原创 · 对应题型：由指定项求公差、和的最值</span></div>
+      <p>等差数列 $\{a_n\}$ 满足 $a_4=23,\ a_9=8$。</p>
+      <p>(1) 公差为 $-\boxed{\text{ア}}$，首项为 $\boxed{\text{イウ}}$。</p>
+      <p>(2) 前 $n$ 项和 $S_n$ 在 $n=\boxed{\text{エオ}}$ 时取最大值 $\boxed{\text{カキク}}$。</p>
+      <p>(3) $\displaystyle\sum_{k=1}^{20}|a_k|=\boxed{\text{ケコサ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $a_9-a_4=5d=8-23=-15$，$d=-3$；$a_1=a_4-3d=23+9=32$。所以 $a_n=35-3n$。</li>
+        <li>(2) $a_n&gt;0\iff n&lt;\dfrac{35}{3}=11.6\cdots$。$a_{11}=2&gt;0$，$a_{12}=-1&lt;0$，所以加到第 $11$ 项时和最大：$S_{11}=\dfrac{11(32+2)}{2}=187$。</li>
+        <li>(3) 前 $11$ 项为正，第 $12$ 到 $20$ 项为负。$S_{20}=\dfrac{20\{32+(35-60)\}}{2}=70$。</li>
+        <li>$\displaystyle\sum_{k=1}^{20}|a_k|=S_{11}-(S_{20}-S_{11})=2S_{11}-S_{20}=374-70=304$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 3，イウ = 32，エオ = 11，カキク = 187，ケコサ = 304</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 3　等差数列作指数与无穷等比级数的最小值</b><span class="origin">原创 · 对应题型：由等差数列构成指数型数列、无穷等比级数</span></div>
+      <p>等差数列 $\{a_n\}$ 满足 $a_2=5,\ a_5=14$。</p>
+      <p>(1) $a_n=\boxed{\text{ア}}\,n-\boxed{\text{イ}}$。令 $b_n=2^{a_n}$，则 $\{b_n\}$ 是公比 $\boxed{\text{ウ}}$ 的等比数列，且 $\displaystyle\sum_{k=1}^{n}b_k=\frac{\boxed{\text{エ}}}{\boxed{\text{オ}}}\bigl(8^n-1\bigr)$。</p>
+      <p>(2) $\displaystyle\sum_{n=1}^{\infty}\Bigl(\frac12\Bigr)^{a_n}=\frac{\boxed{\text{カ}}}{\boxed{\text{キ}}}$。</p>
+      <p>(3) 实数 $x$ 使首项 $x^2+9$、公比 $1-\dfrac x4$ 的无穷等比级数收敛的范围是 $\boxed{\text{ク}}&lt;x&lt;\boxed{\text{ケ}}$。在此范围内，级数的和在 $x=\boxed{\text{コ}}$ 时取最小值 $\boxed{\text{サシ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $3d=14-5=9$，$d=3$，$a_1=2$，$a_n=3n-1$。$\dfrac{b_{n+1}}{b_n}=2^{a_{n+1}-a_n}=2^3=8$，$b_1=2^2=4$。</li>
+        <li>$\displaystyle\sum_{k=1}^{n}b_k=\frac{4(8^n-1)}{8-1}=\frac47(8^n-1)$。</li>
+        <li>(2) $\Bigl(\dfrac12\Bigr)^{a_n}$ 首项 $\dfrac14$、公比 $\dfrac18$，$|r|&lt;1$ 收敛：$\dfrac{1/4}{1-1/8}=\dfrac14\cdot\dfrac87=\dfrac27$。</li>
+        <li>(3) 首项 $x^2+9&gt;0$ 不为 $0$，所以收敛条件为 $\Bigl|1-\dfrac x4\Bigr|&lt;1$，即 $0&lt;x&lt;8$。</li>
+        <li>和 $=\dfrac{x^2+9}{1-\left(1-\frac x4\right)}=\dfrac{4(x^2+9)}{x}=4\Bigl(x+\dfrac9x\Bigr)$。</li>
+        <li>$x&gt;0$，由相加相乘平均：$x+\dfrac9x\ge2\sqrt9=6$，等号在 $x=3$（在 $0&lt;x&lt;8$ 内）时成立。最小值 $4\cdot6=24$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 3，イ = 1，ウ = 8，エ = 4，オ = 7，カ = 2，キ = 7，ク = 0，ケ = 8，コ = 3，サシ = 24</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 4　通常和与交错和、取对数求项数</b><span class="origin">原创 · 对应题型：由通常和与交错和求等比数列、取对数</span></div>
+      <p>首项 $a$、公比 $r$（均为实数）的等比数列 $\{a_n\}$ 满足</p>
+      $$a_1+a_2+a_3+a_4=80,\qquad a_1-a_2+a_3-a_4=-40.$$
+      <p>(1) $r=\boxed{\text{ア}}$，$a=\boxed{\text{イ}}$。</p>
+      <p>(2) $\displaystyle\sum_{k=1}^{n}a_k=\boxed{\text{ウ}}^{\,n}-\boxed{\text{エ}}$，$\displaystyle\sum_{k=1}^{n}(-1)^{k-1}a_k=\frac{\boxed{\text{オ}}-(-\boxed{\text{カ}})^n}{\boxed{\text{キ}}}$。</p>
+      <p>(3) 设 $\log_{10}2=0.3010,\ \log_{10}3=0.4771$。使 $\displaystyle\sum_{k=1}^{n}a_k&gt;10^6$ 的最小自然数 $n$ 是 $\boxed{\text{クケ}}$；$a_{20}$ 是 $\boxed{\text{コサ}}$ 位数。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 两式分别因式分解：$a(1+r)(1+r^2)=80$，$a(1-r)(1+r^2)=-40$。</li>
+        <li>相除：$\dfrac{1+r}{1-r}=-2$，$1+r=-2+2r$，$r=3$。代回：$a\cdot4\cdot10=80$，$a=2$。</li>
+        <li>(2) $\displaystyle\sum_{k=1}^{n}2\cdot3^{k-1}=\frac{2(3^n-1)}{3-1}=3^n-1$。</li>
+        <li>$(-1)^{k-1}a_k=2(-3)^{k-1}$ 是首项 $2$、公比 $-3$ 的等比数列，和为 $\dfrac{2\{1-(-3)^n\}}{1-(-3)}=\dfrac{1-(-3)^n}{2}$。</li>
+        <li>(3) $3^n-1&gt;10^6$ 等价于 $3^n&gt;10^6+1$。取对数 $n\cdot0.4771&gt;6$ 得 $n&gt;12.57\cdots$；而 $3^{12}=531441&lt;10^6$，$3^{13}=1594323&gt;10^6+1$，所以最小 $n=13$。</li>
+        <li>$a_{20}=2\cdot3^{19}$，$\log_{10}a_{20}=0.3010+19\times0.4771=9.3659$，$10^9\le a_{20}&lt;10^{10}$，是 $10$ 位数。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 3，イ = 2，ウ = 3，エ = 1，オ = 1，カ = 3，キ = 2，クケ = 13，コサ = 10</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 5　含指数项的递推式与无穷级数</b><span class="origin">原创 · 对应题型：含指数项的一阶递推、无穷级数求和</span></div>
+      <p>数列 $\{a_n\}$ 满足 $a_1=1,\ a_{n+1}=3a_n+2^n\ (n=1,2,3,\dots)$。</p>
+      <p>(1) 递推式可变形为 $a_{n+1}+\boxed{\text{ア}}^{\,n+1}=\boxed{\text{イ}}\bigl(a_n+\boxed{\text{ア}}^{\,n}\bigr)$。</p>
+      <p>(2) $a_n=\boxed{\text{ウ}}^{\,n}-\boxed{\text{エ}}^{\,n}$，$a_4=\boxed{\text{オカ}}$。</p>
+      <p>(3) $\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{5^n}=\frac{\boxed{\text{キ}}}{\boxed{\text{ク}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 设 $a_{n+1}+c\cdot2^{n+1}=3(a_n+c\cdot2^n)$，展开得 $a_{n+1}=3a_n+c\cdot2^n$（因 $3c\cdot2^n-2c\cdot2^n=c\cdot2^n$）。与原式比较 $c=1$，即 $a_{n+1}+2^{n+1}=3(a_n+2^n)$。</li>
+        <li>(2) $\{a_n+2^n\}$ 是首项 $a_1+2=3$、公比 $3$ 的等比数列：$a_n+2^n=3\cdot3^{n-1}=3^n$，$a_n=3^n-2^n$。$a_4=81-16=65$。<br>（另解：两边除以 $3^{n+1}$ 化为阶差型，结果相同。）</li>
+        <li>(3) $\dfrac{a_n}{5^n}=\Bigl(\dfrac35\Bigr)^n-\Bigl(\dfrac25\Bigr)^n$，两个公比都小于 $1$，分别收敛：</li>
+        <li>$\displaystyle\sum_{n=1}^{\infty}\Bigl(\frac35\Bigr)^n=\frac{3/5}{2/5}=\frac32$，$\displaystyle\sum_{n=1}^{\infty}\Bigl(\frac25\Bigr)^n=\frac{2/5}{3/5}=\frac23$，相减得 $\dfrac32-\dfrac23=\dfrac56$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 3，ウ = 3，エ = 2，オカ = 65，キ = 5，ク = 6</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 6　由和式生成数列与部分和的最小值</b><span class="origin">原创 · 对应题型：由和式生成数列、新数列部分和最小值</span></div>
+      <p>令 $a_n=\displaystyle\sum_{k=1}^{n}(3k-2)$，$c_n=a_n-15n$，$U_n=\displaystyle\sum_{k=1}^{n}c_k$。</p>
+      <p>(1) $a_n=\dfrac{n(\boxed{\text{ア}}\,n-\boxed{\text{イ}})}{\boxed{\text{ウ}}}$。</p>
+      <p>(2) $c_n$ 在 $n=\boxed{\text{エ}}$ 时取最小值 $-\boxed{\text{オカ}}$。</p>
+      <p>(3) $U_n$ 在 $n=\boxed{\text{キク}}$ 时取最小值 $-\boxed{\text{ケコサ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $a_n=3\cdot\dfrac{n(n+1)}{2}-2n=\dfrac{3n^2-n}{2}=\dfrac{n(3n-1)}{2}$。</li>
+        <li>(2) $c_n=\dfrac{3n^2-31n}{2}=\dfrac32\Bigl(n-\dfrac{31}{6}\Bigr)^2-\dfrac{961}{24}$。轴 $\dfrac{31}{6}=5.16\cdots$ 最接近的整数是 $5$：$c_5=\dfrac{75-155}{2}=-40$，$c_6=\dfrac{108-186}{2}=-39$。最小值 $-40$（$n=5$）。</li>
+        <li>(3) $U_n$ 增加 $c_n$ 时，$c_n&lt;0$ 则减小。$c_n&lt;0\iff 0&lt;n&lt;\dfrac{31}{3}=10.3\cdots$，所以 $c_1,\dots,c_{10}&lt;0$，$c_{11}=\dfrac{363-341}{2}=11&gt;0$。$U_n$ 在 $n=10$ 时最小。</li>
+        <li>$U_{10}=\dfrac12\Bigl(3\displaystyle\sum_{k=1}^{10}k^2-31\sum_{k=1}^{10}k\Bigr)=\dfrac12(3\cdot385-31\cdot55)=\dfrac{1155-1705}{2}=-275$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 3，イ = 1，ウ = 2，エ = 5，オカ = 40，キク = 10，ケコサ = 275</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 7　公共项与 $5$ 的倍数项</b><span class="origin">原创 · 对应题型：公共项、余数条件、倍数项计数与求和</span></div>
+      <p>[A] 设 $a_n=4n-1,\ b_n=6n+1$，等比数列 $g_n=7^n$。</p>
+      <p>(1) $\{a_n\}$ 与 $\{b_n\}$ 的公共项按从小到大排列得 $\{c_n\}$，则 $c_n=\boxed{\text{アイ}}\,n-\boxed{\text{ウ}}$。</p>
+      <p>(2) $\{c_n\}$ 与 $\{g_n\}$ 的公共项按从小到大排列得 $\{e_n\}$，则 $e_n=\boxed{\text{エ}}\cdot\boxed{\text{オカ}}^{\,n-1}$。</p>
+      <p>[B] 设 $p_n=n^2+n+3$。</p>
+      <p>(3) $p_n$ 是 $5$ 的倍数，当且仅当 $n$ 除以 $5$ 余 $\boxed{\text{キ}}$ 或 $\boxed{\text{ク}}$（キ &lt; ク）。</p>
+      <p>(4) $1\le n\le50$ 中满足 (3) 的 $n$ 有 $\boxed{\text{ケコ}}$ 个，对应的 $p_n$ 之和为 $\boxed{\text{サシスセソ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 公共项 $x$ 满足 $x\equiv3\pmod 4$ 且 $x\equiv1\pmod 6$。$b_n$：$7,13,19,\dots$，其中 $7=4\cdot2-1$ 是最小公共项。公差为 $\mathrm{lcm}(4,6)=12$，所以 $c_n=7+12(n-1)=12n-5$。</li>
+        <li>(2) $7^n$ 除以 $12$ 的余数：$7^1\equiv7$，$7^2=49\equiv1$，之后 $7,1,7,1,\dots$ 交替。$c_n\equiv7\pmod{12}$，所以只有奇数次方 $7^{2m-1}$ 是公共项：$7,\ 343,\ \dots$，即 $e_n=7^{2n-1}=7\cdot49^{n-1}$。</li>
+        <li>(3) 按 $n$ 除以 $5$ 的余数 $0,1,2,3,4$ 计算 $p_n$ 的余数：$3,\ 0,\ 4,\ 0,\ 3$。所以余数为 $1$ 或 $3$。</li>
+        <li>(4) $n=5m-4$ 与 $n=5m-2$（$m=1,\dots,10$），共 $20$ 个。</li>
+        <li>$p_{5m-4}=25m^2-35m+15$，$p_{5m-2}=25m^2-15m+5$，两者之和 $50m^2-50m+20$。</li>
+        <li>$\displaystyle\sum_{m=1}^{10}(50m^2-50m+20)=50\cdot385-50\cdot55+200=16700$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>アイ = 12，ウ = 5，エ = 7，オカ = 49，キ = 1，ク = 3，ケコ = 20，サシスセソ = 16700</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 8　含根式的和与有理数的项</b><span class="origin">原创 · 对应题型：含根式的和式、有理项之和</span></div>
+      <p>令 $S_n=\displaystyle\sum_{k=1}^{n}\frac{1}{\sqrt{2k-1}+\sqrt{2k+1}}$。</p>
+      <p>(1) $S_n=\dfrac{\sqrt{\boxed{\text{ア}}\,n+\boxed{\text{イ}}}-\boxed{\text{ウ}}}{\boxed{\text{エ}}}$。</p>
+      <p>(2) $S_n\ge5$ 的最小自然数 $n$ 是 $\boxed{\text{オカ}}$。</p>
+      <p>(3) $1\le n\le100$ 中，$S_n$ 为有理数的 $n$ 有 $\boxed{\text{キ}}$ 个，这些 $S_n$ 之和为 $\boxed{\text{クケ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 分母有理化：$\dfrac{1}{\sqrt{2k-1}+\sqrt{2k+1}}=\dfrac{\sqrt{2k+1}-\sqrt{2k-1}}{(2k+1)-(2k-1)}=\dfrac{\sqrt{2k+1}-\sqrt{2k-1}}{2}$。</li>
+        <li>相加后中间项抵消：$S_n=\dfrac{\sqrt{2n+1}-1}{2}$。</li>
+        <li>(2) $\dfrac{\sqrt{2n+1}-1}{2}\ge5\iff\sqrt{2n+1}\ge11\iff2n+1\ge121\iff n\ge60$。</li>
+        <li>(3) $S_n$ 有理 $\iff 2n+1$ 是平方数。$3\le2n+1\le201$ 且为奇数，所以 $2n+1=3^2,5^2,7^2,9^2,11^2,13^2$（$15^2=225&gt;201$），共 $6$ 个（$n=4,12,24,40,60,84$）。</li>
+        <li>$2n+1=s^2$ 时 $S_n=\dfrac{s-1}{2}$，所以和为 $1+2+3+4+5+6=21$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 1，ウ = 1，エ = 2，オカ = 60，キ = 6，クケ = 21</p>
+      </div>
+      </details>
+    </article>
   </section>
 
   <footer>本页例题与练习均为原创，答案已用 Python（sympy）计算验证。题目为学习用途，并非 EJU 真题。</footer>

@@ -255,6 +255,7 @@ svg .probe-no.fillp { fill: var(--c2); }
         <li><a href="#examples">7 原创例题</a></li>
         <li><a href="#practice">8 练习题</a></li>
         <li><a href="#terms">9 术语对照</a></li>
+        <li><a href="#eju-bank">真题风格练习</a></li>
       </ol>
     </div>
     <button class="chip theme-btn" id="theme" type="button">深色</button>
@@ -809,6 +810,14 @@ svg .probe-no.fillp { fill: var(--c2); }
     <div class="box">
       <p><strong>EJU 应试提示：</strong>求 $b$ 的多项式值时不必硬代入。把 $b$ 的表达式变形成 $b+k=\sqrt{\ }$，再平方，根号消失，常能一步得到结果。</p>
       <p><strong>日语术语：</strong><span lang="ja">基本対称式</span>（<span class="kana" lang="ja">きほんたいしょうしき</span>）：基本对称式；<span lang="ja">整数部分</span>（<span class="kana" lang="ja">せいすうぶぶん</span>）：整数部分；<span lang="ja">小数部分</span>（<span class="kana" lang="ja">しょうすうぶぶん</span>）：小数部分。</p>
+    </div>
+
+    <h3>补充：连比与整数条件</h3>
+    <p><strong>连比：</strong>遇到 $\dfrac{x+y}{3}=\dfrac{y+z}{4}=\dfrac{z+x}{5}$ 这种“几个分式相等”的条件，令公共值为 $k\ (k\ne0)$，把每个分式写成一次式 $x+y=3k$ 等，解出 $x,y,z$ 都是 $k$ 的倍数，再求比 $x:y:z$。分子分母次数相同的分式（如 $\dfrac{xy+yz+zx}{x^2+y^2+z^2}$）代入后 $k$ 会约掉，所以值是确定的。</p>
+    <p><strong>整数的余数：</strong>$n^3-n=(n-1)n(n+1)$ 是连续三个整数之积，其中必有偶数和 $3$ 的倍数，所以总能被 $6$ 整除，即 $n^3$ 与 $n$ 除以 $6$ 的余数相同。判断“$n^3$ 除以某数的余数”时，先把 $n$ 按余数分类（如 $n=6q+r$），再展开看余数。</p>
+    <p><strong>取素数值：</strong>要求整式 $f(n)$ 的值为素数时，先因式分解成 $f(n)=g(n)h(n)$。素数只能写成 $1\times p$ 或 $(-1)\times(-p)$，所以必有一个因式等于 $\pm1$，逐一代入检验即可。类似地，“$\sqrt{n^2+c}$ 为整数”可化为 $m^2-n^2=c$，即 $(m-n)(m+n)=c$，按因数对讨论。</p>
+    <div class="box">
+      <p><strong>日语术语：</strong><span lang="ja">連比</span>（<span class="kana" lang="ja">れんぴ</span>）：连比；<span lang="ja">余り</span>（<span class="kana" lang="ja">あまり</span>）：余数；<span lang="ja">素数</span>（<span class="kana" lang="ja">そすう</span>）：素数；<span lang="ja">連続する3つの整数</span>（<span class="kana" lang="ja">れんぞくするみっつのせいすう</span>）：连续三个整数。</p>
     </div>
 
   </section>
@@ -1379,6 +1388,186 @@ svg .probe-no.fillp { fill: var(--c2); }
       <p><strong>日语术语：</strong><span lang="ja">満たす</span>（<span class="kana" lang="ja">みたす</span>）：满足；<span lang="ja">値の範囲</span>（<span class="kana" lang="ja">あたいのはんい</span>）：取值范围；<span lang="ja">求めよ</span>（<span class="kana" lang="ja">もとめよ</span>）：求……；<span lang="ja">$a$ を定数とする</span>（<span class="kana" lang="ja">エーをていすうとする</span>）：设 $a$ 为常数。</p>
     </div>
 
+  </section>
+
+  <section id="eju-bank">
+    <h2>真题风格练习（EJU 题库对照）</h2>
+    <p>本节对照《EJU 数学2 知识点分类题库 2005–2025》中「数与式」类的 18 个题目归纳出题规律，并配有<strong>原创</strong>练习题（数字和设定均为原创，并非真题）。</p>
+    <div class="box good">
+      <p><strong>题库出题规律</strong></p>
+      <ul>
+        <li><strong>根式的整数部分、小数部分与对称式：</strong>有理化后用和与积求值，或由共轭根式之和为整数求小数部分（2005年第2回、2009年第2回、2011年第1回）。</li>
+        <li><strong>换元与分组的因式分解：</strong>四个一次因式之积、复合整式、双变量二次式的分解，再代入根式求值或求整数解（2008年第1回、2008年第2回、2009年第1回、2014年第1回）。</li>
+        <li><strong>含绝对值的方程：</strong>按绝对值内部符号分段或看图像，讨论解的个数、最小根所在区间、正整数解（2010年第1回、2010年第2回、2012年第2回）。</li>
+        <li><strong>整式除法与恒等式：</strong>三次式除以二次式求商、余式和参数，比较系数、代数恒等变形（2005年第1回、2007年第1回）。</li>
+        <li><strong>有理数与无理数的性质：</strong>$p+q\sqrt{d}$ 中有理系数的比较，整式取有理值、素数值的条件（2005年第1回、2012年第1回）。</li>
+        <li><strong>整数与方程的综合：</strong>立方数的余数、连比求值、由三次方程求 $a+b$（2006年第2回、2007年第2回、2011年第2回）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>填写方式：</strong>每个方框（如 $\boxed{\text{ア}}$）填一位数字或符号 $-$；两个字母相连（如 $\boxed{\text{アイ}}$）表示两位数或“负号+一位数”。分数约到最简，根号内的数尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 1　三次式除以二次式</b><span class="origin">原创 · 对应题型：商、余式及参数</span></div>
+      <p>设 $a,b$ 为常数，$P(x)=2x^3-x^2+ax+b$。</p>
+      <p>(1) $P(x)$ 除以 $x^2-x-1$ 的商为 $2x+\boxed{\text{ア}}$，余式为 $(a+\boxed{\text{イ}})x+b+\boxed{\text{ウ}}$。</p>
+      <p>(2) $P(x)$ 能被 $x^2-x-1$ 整除时，$a=\boxed{\text{エオ}}$，$b=\boxed{\text{カキ}}$。</p>
+      <p>(3) $a=5,\ b=2$ 时，余式为 $\boxed{\text{ク}}x+\boxed{\text{ケ}}$，因此 $x=\dfrac{1+\sqrt5}{2}$ 时 $P(x)=\boxed{\text{コ}}+\boxed{\text{サ}}\sqrt{\boxed{\text{シ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $2x^3\div x^2=2x$，减去 $2x(x^2-x-1)=2x^3-2x^2-2x$，剩余 $x^2+(a+2)x+b$。再商 $1$，减去 $x^2-x-1$，剩余 $(a+3)x+(b+1)$。所以商为 $2x+1$，余式为 $(a+3)x+(b+1)$。</li>
+        <li>(2) 整除即余式恒为 $0$：$a+3=0,\ b+1=0$，所以 $a=-3,\ b=-1$。</li>
+        <li>(3) 余式 $=(5+3)x+(2+1)=8x+3$，即 $P(x)=(x^2-x-1)(2x+1)+8x+3$。</li>
+        <li>$x=\dfrac{1+\sqrt5}{2}$ 满足 $(2x-1)^2=5$，即 $x^2-x-1=0$，所以 $P(x)=8x+3=4(1+\sqrt5)+3=7+4\sqrt5$。</li>
+        </ol>
+        <ul class="keys"><li>ア = 1</li><li>イ = 3</li><li>ウ = 1</li><li>エオ = −3</li><li>カキ = −1</li><li>ク = 8</li><li>ケ = 3</li><li>コ = 7</li><li>サ = 4</li><li>シ = 5</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 2　根式中的有理系数</b><span class="origin">原创 · 对应题型：有理数系数与直线关系</span></div>
+      <p>(1) 有理数 $a,b$ 满足 $(a+b\sqrt3)(2-\sqrt3)=1+4\sqrt3$，则 $a=\boxed{\text{アイ}}$，$b=\boxed{\text{ウ}}$。</p>
+      <p>(2) 有理数 $m,n$ 使 $m(2+\sqrt3)+n(1-\sqrt3)$ 写成“有理数 $+2\sqrt3$”的形式。这样的点 $(m,n)$ 全部在直线 $n=m-\boxed{\text{エ}}$ 上，且此时 $m(2+\sqrt3)+n(1-\sqrt3)=(\boxed{\text{オ}}m-\boxed{\text{カ}})+2\sqrt3$。</p>
+      <p>(3) 进一步要求 $m(2+\sqrt3)+n(1-\sqrt3)=7+2\sqrt3$，则 $m=\boxed{\text{キ}}$，$n=\boxed{\text{ク}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $(2-\sqrt3)(2+\sqrt3)=1$，所以 $a+b\sqrt3=(1+4\sqrt3)(2+\sqrt3)=2+\sqrt3+8\sqrt3+12=14+9\sqrt3$。$a,b$ 有理、$\sqrt3$ 无理，所以 $a=14,\ b=9$。</li>
+        <li>(2) 展开：$m(2+\sqrt3)+n(1-\sqrt3)=(2m+n)+(m-n)\sqrt3$。$2m+n$ 与 $m-n$ 都是有理数，所以 $\sqrt3$ 的系数必须相等：$m-n=2$，即 $n=m-2$。此时有理部分 $2m+n=2m+(m-2)=3m-2$。</li>
+        <li>(3) $3m-2=7$，所以 $m=3,\ n=1$。</li>
+        </ol>
+        <ul class="keys"><li>アイ = 14</li><li>ウ = 9</li><li>エ = 2</li><li>オ = 3</li><li>カ = 2</li><li>キ = 3</li><li>ク = 1</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 3　共轭根式与小数部分</b><span class="origin">原创 · 对应题型：整数、小数部分及代数求值</span></div>
+      <p>设 $x=\dfrac{1}{3-\sqrt7},\ y=\dfrac{1}{3+\sqrt7}$。</p>
+      <p>(1) $x=\dfrac{\boxed{\text{ア}}+\sqrt{\boxed{\text{イ}}}}{\boxed{\text{ウ}}}$，$x+y=\boxed{\text{エ}}$，$xy=\dfrac{\boxed{\text{オ}}}{\boxed{\text{カ}}}$，$x^2+y^2=\boxed{\text{キ}}$。</p>
+      <p>(2) $x$ 的整数部分为 $\boxed{\text{ク}}$。设 $x$ 的小数部分为 $b$，则 $b=\dfrac{\sqrt{\boxed{\text{ケ}}}-\boxed{\text{コ}}}{\boxed{\text{サ}}}$，$b^2+b=\dfrac{\boxed{\text{シ}}}{\boxed{\text{ス}}}$。</p>
+      <p>(3) $x^2$ 的整数部分为 $\boxed{\text{セ}}$，小数部分为 $\dfrac{\boxed{\text{ソ}}\sqrt{\boxed{\text{タ}}}-\boxed{\text{チ}}}{\boxed{\text{ツ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $(3-\sqrt7)(3+\sqrt7)=2$，所以 $x=\dfrac{3+\sqrt7}{2},\ y=\dfrac{3-\sqrt7}{2}$。$x+y=3$，$xy=\dfrac{9-7}{4}=\dfrac12$，$x^2+y^2=3^2-2\cdot\dfrac12=8$。</li>
+        <li>(2) $2&lt;\sqrt7&lt;3$，所以 $\dfrac52&lt;x&lt;3$，整数部分为 $2$，$b=x-2=\dfrac{\sqrt7-1}{2}$。</li>
+        <li>$2b+1=\sqrt7$，平方得 $4b^2+4b+1=7$，所以 $b^2+b=\dfrac{6}{4}=\dfrac32$。</li>
+        <li>(3) $0&lt;y=\dfrac{3-\sqrt7}{2}&lt;1$，所以 $0&lt;y^2&lt;1$。由 $x^2=8-y^2$ 得 $7&lt;x^2&lt;8$，整数部分为 $7$。</li>
+        <li>小数部分 $=x^2-7=1-y^2$。$y^2=\dfrac{16-6\sqrt7}{4}=4-\dfrac32\sqrt7$，所以 $1-y^2=\dfrac32\sqrt7-3=\dfrac{3\sqrt7-6}{2}$。</li>
+        </ol>
+        <ul class="keys"><li>ア = 3</li><li>イ = 7</li><li>ウ = 2</li><li>エ = 3</li><li>オ = 1</li><li>カ = 2</li><li>キ = 8</li><li>ク = 2</li><li>ケ = 7</li><li>コ = 1</li><li>サ = 2</li><li>シ = 3</li><li>ス = 2</li><li>セ = 7</li><li>ソ = 3</li><li>タ = 7</li><li>チ = 6</li><li>ツ = 2</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 4　连比与对称分式</b><span class="origin">原创 · 对应题型：连比、代数恒等变形</span></div>
+      <p>非零实数 $x,y,z$ 满足 $\dfrac{x+y}{3}=\dfrac{y+z}{4}=\dfrac{z+x}{5}$。</p>
+      <p>(1) $x:y:z=\boxed{\text{ア}}:\boxed{\text{イ}}:\boxed{\text{ウ}}$。</p>
+      <p>(2) $\dfrac{xy+yz+zx}{x^2+y^2+z^2}=\dfrac{\boxed{\text{エオ}}}{\boxed{\text{カキ}}}$。</p>
+      <p>(3) $\dfrac{(x+y+z)^2}{xy+yz+zx}=\dfrac{\boxed{\text{クケ}}}{\boxed{\text{コサ}}}$。</p>
+      <p>(4) $\dfrac{x^3+y^3+z^3-3xyz}{xyz}=\boxed{\text{シ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 令公共值为 $k$，则 $x+y=3k,\ y+z=4k,\ z+x=5k$。三式相加得 $x+y+z=6k$，分别相减得 $z=3k,\ x=2k,\ y=k$。$x,y,z\ne0$ 故 $k\ne0$，$x:y:z=2:1:3$。</li>
+        <li>(2) 以 $x=2k,y=k,z=3k$ 代入：$xy+yz+zx=(2+3+6)k^2=11k^2$，$x^2+y^2+z^2=(4+1+9)k^2=14k^2$，比值 $\dfrac{11}{14}$。</li>
+        <li>(3) $(x+y+z)^2=36k^2$，所以比值为 $\dfrac{36}{11}$。</li>
+        <li>(4) 利用 $x^3+y^3+z^3-3xyz=(x+y+z)\{(x^2+y^2+z^2)-(xy+yz+zx)\}=6k\cdot3k^2=18k^3$，$xyz=6k^3$，比值为 $3$。</li>
+        </ol>
+        <ul class="keys"><li>ア = 2</li><li>イ = 1</li><li>ウ = 3</li><li>エオ = 11</li><li>カキ = 14</li><li>クケ = 36</li><li>コサ = 11</li><li>シ = 3</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 5　含绝对值的方程</b><span class="origin">原创 · 对应题型：解的个数、最小根所在区间</span></div>
+      <p>考虑关于 $x$ 的方程 $|x^2-2x-3|=a$（$a$ 为实数常数）。</p>
+      <p>(1) $a=4$ 时，实数解共有 $\boxed{\text{ア}}$ 个。</p>
+      <p>(2) 实数解恰有 $4$ 个时，$a$ 的取值范围是 $\boxed{\text{イ}}&lt;a&lt;\boxed{\text{ウ}}$。</p>
+      <p>(3) $a=3$ 时，最小的解为 $\boxed{\text{エ}}-\sqrt{\boxed{\text{オ}}}$，它满足 $\boxed{\text{カキ}}&lt;x&lt;\boxed{\text{クケ}}$。</p>
+      <p>(4) 方程 $|x^2-2x-3|=x+1$ 的实数解共有 $\boxed{\text{コ}}$ 个，其中最大的为 $x=\boxed{\text{サ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>$y=x^2-2x-3=(x-1)^2-4$ 与 $x$ 轴交于 $x=-1,3$。$y=|x^2-2x-3|$ 的图像是把 $-1&lt;x&lt;3$ 部分翻到上方，形成一个顶点为 $(1,4)$ 的“山”。解的个数 = 该图像与水平线 $y=a$ 的交点个数。</li>
+        <li>(1) $a=4$：水平线经过山顶 $(1,4)$（$1$ 个）且与两侧外支各交 $1$ 个，共 $3$ 个。</li>
+        <li>(2) $0&lt;a&lt;4$ 时，水平线与山交 $2$ 点、与外支交 $2$ 点，共 $4$ 个；$a=0$ 时 $2$ 个，$a&gt;4$ 时 $2$ 个。所以 $0&lt;a&lt;4$。</li>
+        <li>(3) $x^2-2x-3=3$ 得 $x=1\pm\sqrt7$；$x^2-2x-3=-3$ 得 $x=0,2$。最小解为 $1-\sqrt7$。由 $2&lt;\sqrt7&lt;3$ 得 $-2&lt;1-\sqrt7&lt;-1$。</li>
+        <li>(4) 左边 $=|x-3||x+1|\ge0$，所以需 $x+1\ge0$。$x=-1$ 时两边为 $0$，是解。$x&gt;-1$ 时两边除以 $x+1&gt;0$：$|x-3|=1$，$x=2$ 或 $4$。解为 $-1,2,4$，共 $3$ 个，最大为 $4$。</li>
+        </ol>
+        <ul class="keys"><li>ア = 3</li><li>イ = 0</li><li>ウ = 4</li><li>エ = 1</li><li>オ = 7</li><li>カキ = −2</li><li>クケ = −1</li><li>コ = 3</li><li>サ = 4</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 6　四因子乘积与双变量分解</b><span class="origin">原创 · 对应题型：换元分解、整数解</span></div>
+      <p>(1) $(x+1)(x+2)(x+4)(x+5)-10=(x^2+\boxed{\text{ア}}x+\boxed{\text{イ}})(x^2+\boxed{\text{ウ}}x+\boxed{\text{エオ}})$。</p>
+      <p>(2) $x=-3+\sqrt5$ 时，(1) 的式子的值为 $\boxed{\text{カキ}}$。</p>
+      <p>(3) $x^2+xy-2y^2+2x+7y-3=(x+\boxed{\text{ク}}y-\boxed{\text{ケ}})(x-y+\boxed{\text{コ}})$。</p>
+      <p>(4) 满足 $x^2+xy-2y^2+2x+7y-3=5$ 的整数对 $(x,y)$ 共有 $\boxed{\text{サ}}$ 组，它们是 $(\boxed{\text{シス}},\ \boxed{\text{セ}})$ 和 $(\boxed{\text{ソ}},\ \boxed{\text{タ}})$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 常数项之和相等的两组配对：$(x+1)(x+5)=x^2+6x+5$，$(x+2)(x+4)=x^2+6x+8$。令 $t=x^2+6x$：$(t+5)(t+8)-10=t^2+13t+30=(t+3)(t+10)$，所以原式 $=(x^2+6x+3)(x^2+6x+10)$。</li>
+        <li>(2) $x+3=\sqrt5$，所以 $t=x^2+6x=(x+3)^2-9=-4$。值为 $(-4+3)(-4+10)=-6$。</li>
+        <li>(3) 二次部分 $x^2+xy-2y^2=(x+2y)(x-y)$。设原式 $=(x+2y+p)(x-y+q)$，比较 $x$ 的系数 $p+q=2$，$y$ 的系数 $2q-p=7$，得 $q=3,\ p=-1$，常数 $pq=-3$ 一致。所以 $=(x+2y-1)(x-y+3)$。</li>
+        <li>(4) 令 $u=x+2y-1,\ v=x-y+3$（均为整数），$uv=5$。$u-v=3y-4$，所以 $y=\dfrac{u-v+4}{3}$ 必须是整数。</li>
+        <li>$(u,v)=(1,5)$：$y=0,\ x=2$；$(5,1)$：$y=\dfrac83$ ✗；$(-1,-5)$：$y=\dfrac83$ ✗；$(-5,-1)$：$y=0,\ x=-4$。共 $2$ 组：$(-4,0),\ (2,0)$。</li>
+        </ol>
+        <ul class="keys"><li>ア = 6</li><li>イ = 3</li><li>ウ = 6</li><li>エオ = 10</li><li>カキ = −6</li><li>ク = 2</li><li>ケ = 1</li><li>コ = 3</li><li>サ = 2</li><li>シス = −4</li><li>セ = 0</li><li>ソ = 2</li><li>タ = 0</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 7　由三次方程求两数之和</b><span class="origin">原创 · 对应题型：利用三次方程求和</span></div>
+      <p>设 $a=\sqrt[3]{10+6\sqrt3},\ b=\sqrt[3]{10-6\sqrt3}$（都是实数），$s=a+b$。</p>
+      <p>(1) $ab=\boxed{\text{アイ}}$，$a^3+b^3=\boxed{\text{ウエ}}$。</p>
+      <p>(2) $s$ 满足三次方程 $s^3+\boxed{\text{オ}}s-\boxed{\text{カキ}}=0$。</p>
+      <p>(3) 左边可分解为 $(s-\boxed{\text{ク}})(s^2+\boxed{\text{ケ}}s+\boxed{\text{コサ}})$，所以 $s=\boxed{\text{シ}}$。</p>
+      <p>(4) $a^2+b^2=\boxed{\text{ス}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $(ab)^3=(10+6\sqrt3)(10-6\sqrt3)=100-108=-8$，实数立方根唯一，$ab=-2$。$a^3+b^3=20$。</li>
+        <li>(2) $s^3=a^3+b^3+3ab(a+b)=20-6s$，所以 $s^3+6s-20=0$。</li>
+        <li>(3) $s=2$ 代入 $8+12-20=0$，用除法得 $s^3+6s-20=(s-2)(s^2+2s+10)$。$s^2+2s+10=(s+1)^2+9&gt;0$，没有实数根，而 $s$ 是实数，所以 $s=2$。</li>
+        <li>(4) $a^2+b^2=s^2-2ab=4+4=8$。</li>
+        </ol>
+        <ul class="keys"><li>アイ = −2</li><li>ウエ = 20</li><li>オ = 6</li><li>カキ = 20</li><li>ク = 2</li><li>ケ = 2</li><li>コサ = 10</li><li>シ = 2</li><li>ス = 8</li></ul>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 8　整数的余数与素数值</b><span class="origin">原创 · 对应题型：立方数的余数、取素数值的条件</span></div>
+      <p>设 $n$ 为整数。</p>
+      <p>(1) $n^3-n=(n-\boxed{\text{ア}})n(n+\boxed{\text{イ}})$，所以 $n^3-n$ 对任意整数 $n$ 都能被 $\boxed{\text{ウ}}$ 整除（填满足此条件的最大正整数）。</p>
+      <p>(2) $2027^3$ 除以 $6$ 的余数为 $\boxed{\text{エ}}$。</p>
+      <p>(3) $n^2-2n-3$ 的值为素数的整数 $n$ 是 $n=\boxed{\text{オカ}},\ \boxed{\text{キ}}$，此时该素数为 $\boxed{\text{ク}}$。</p>
+      <p>(4) 使 $\sqrt{n^2+20}$ 为整数的正整数 $n$ 只有 $n=\boxed{\text{ケ}}$，此时 $\sqrt{n^2+20}=\boxed{\text{コ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $n^3-n=n(n^2-1)=(n-1)n(n+1)$，是连续三个整数之积，含偶数和 $3$ 的倍数，所以被 $6$ 整除。$n=2$ 时值为 $6$，所以不能保证被大于 $6$ 的数整除，最大为 $6$。</li>
+        <li>(2) 由 (1)，$2027^3$ 与 $2027$ 除以 $6$ 的余数相同。$2027=6\times337+5$，余数为 $5$。</li>
+        <li>(3) $n^2-2n-3=(n-3)(n+1)$。素数 $p$ 只能是 $1\cdot p$ 或 $(-1)(-p)$，所以某个因式为 $\pm1$：
+          $n-3=1\Rightarrow n=4$，值 $1\cdot5=5$ ✓；$n-3=-1\Rightarrow n=2$，值 $-3$ ✗；$n+1=1\Rightarrow n=0$，值 $-3$ ✗；$n+1=-1\Rightarrow n=-2$，值 $(-5)(-1)=5$ ✓。所以 $n=-2,4$，素数为 $5$。</li>
+        <li>(4) 设 $\sqrt{n^2+20}=m$（正整数），则 $(m-n)(m+n)=20$，且 $m-n,\ m+n$ 同奇偶、$0&lt;m-n&lt;m+n$。只能 $(m-n,m+n)=(2,10)$，得 $m=6,\ n=4$。</li>
+        </ol>
+        <ul class="keys"><li>ア = 1</li><li>イ = 1</li><li>ウ = 6</li><li>エ = 5</li><li>オカ = −2</li><li>キ = 4</li><li>ク = 5</li><li>ケ = 4</li><li>コ = 6</li></ul>
+      </div>
+      </details>
+    </article>
+    <div class="box">
+      <p><strong>日语术语：</strong><span lang="ja">商</span>（<span class="kana" lang="ja">しょう</span>）：商；<span lang="ja">割り切れる</span>（<span class="kana" lang="ja">わりきれる</span>）：整除；<span lang="ja">実数解</span>（<span class="kana" lang="ja">じっすうかい</span>）：实数解；<span lang="ja">整数の組</span>（<span class="kana" lang="ja">せいすうのくみ</span>）：整数对；<span lang="ja">3次方程式</span>（<span class="kana" lang="ja">さんじほうていしき</span>）：三次方程。</p>
+    </div>
   </section>
 
   <footer>

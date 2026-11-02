@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 20 积分（面积・体积・积分方程）</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：定积分的计算、面积、旋转体体积、积分方程与变上限积分、定积分与极限，含典型解法、常见错误、日语术语和按 2005–2025 题库规律编写的原创填空练习。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#ex-svg { touch-action: pan-y; cursor: ew-resize; user-select: none; -webkit-user-select: none; background: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+.back { display: inline-block; color: #c5d3ef; text-decoration: none; font-size: 15px; margin-bottom: 18px; }
+.back:hover { text-decoration: underline; }
+details { margin-top: 10px; }
+details > summary { display: inline-block; cursor: pointer; font-size: 14.5px; min-height: 38px; line-height: 30px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary:hover { background: var(--accent-soft); }
+details[open] > summary { background: var(--accent); color: var(--surface); }
+@media print { details > div { display: block; } details > summary { display: none; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <a class="back" href="../../">← 目录</a>
+      <p class="eyebrow">EJU 数学コース2 · 出题项目 20 · 積分法の応用</p>
+      <h1>积分（面积・体积・积分方程）</h1>
+      <p class="lead">从定积分的计算技巧出发，讲面积、旋转体体积、积分方程与变上限积分、定积分与数列极限。每个知识点都配例子、典型解法、常见错误和应试提示，文末是按 2005–2025 年题库出题规律编写的原创填空练习。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$S=\int_a^b\{f(x)-g(x)\}\,dx$$
+      $$V=\pi\int_a^b\{f(x)\}^2\,dx$$
+      $$\frac{d}{dx}\int_a^x f(t)\,dt=f(x)$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#calc">1 定积分的计算</a></li>
+        <li><a href="#area">2 面积</a></li>
+        <li><a href="#volume">3 体积</a></li>
+        <li><a href="#equation">4 积分方程</a></li>
+        <li><a href="#limit">5 积分与极限</a></li>
+        <li><a href="#practice">6 真题风格练习</a></li>
+        <li><a href="#terms">7 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box warn" style="margin-top:28px">
+    <p><strong>符号提醒：</strong>日本教材和 EJU 中，$\log x$ 通常就是自然对数（底为 $e$），相当于中文教材的 $\ln x$。本讲义统一按日本写法使用 $\log x$。积分常数写作 $C$（<span lang="ja">積分定数</span>）；三角函数的角一律用弧度。</p>
+  </div>
+
+  <section id="calc">
+    <h2>1 定积分的计算</h2>
+    <p class="jp-sub" lang="ja">定積分 — 置換積分法・部分積分法・偶関数と奇関数</p>
+
+    <h3>基本公式</h3>
+    <p>若 $F'(x)=f(x)$，则 $\displaystyle\int_a^b f(x)\,dx=\Bigl[F(x)\Bigr]_a^b=F(b)-F(a)$。$F(x)$ 称为<strong>原函数</strong>（<span lang="ja">原始関数</span>），求原函数叫<strong>不定积分</strong>（<span lang="ja">不定積分</span>）。数学2 范围内必须熟记的原函数：</p>
+    <div class="formula-grid">
+      <div>$\displaystyle\int x^\alpha dx=\frac{x^{\alpha+1}}{\alpha+1}+C\ (\alpha\ne-1)$</div>
+      <div>$\displaystyle\int\frac1x\,dx=\log|x|+C$</div>
+      <div>$\displaystyle\int e^x dx=e^x+C$</div>
+      <div>$\displaystyle\int a^x dx=\frac{a^x}{\log a}+C$</div>
+      <div>$\displaystyle\int\sin x\,dx=-\cos x+C$</div>
+      <div>$\displaystyle\int\cos x\,dx=\sin x+C$</div>
+      <div>$\displaystyle\int\frac{1}{\cos^2x}\,dx=\tan x+C$</div>
+      <div>$\displaystyle\int\log x\,dx=x\log x-x+C$</div>
+      <div>$\displaystyle\int\frac{f'(x)}{f(x)}\,dx=\log|f(x)|+C$</div>
+      <div>$\displaystyle\int f(ax+b)\,dx=\frac1aF(ax+b)+C$</div>
+    </div>
+    <p><strong>为什么 $\displaystyle\int\frac1x\,dx$ 要加绝对值？</strong>$x&lt;0$ 时 $\{\log(-x)\}'=\dfrac{-1}{-x}=\dfrac1x$，所以 $\log|x|$ 在 $x&gt;0$ 和 $x&lt;0$ 两侧都是原函数。积分区间不能跨过 $x=0$。</p>
+
+    <h3>三角函数的降次与积化和差</h3>
+    <p>$\sin^2x$、$\cos^2x$、$\sin mx\cos nx$ 不能直接积分，先用公式化成一次式：</p>
+    <div class="formula-grid">
+      <div>$\sin^2x=\dfrac{1-\cos2x}{2}$</div>
+      <div>$\cos^2x=\dfrac{1+\cos2x}{2}$</div>
+      <div>$\sin x\cos x=\dfrac12\sin2x$</div>
+      <div>$\sin mx\cos nx=\dfrac12\{\sin(m+n)x+\sin(m-n)x\}$</div>
+    </div>
+
+    <h3>置换积分与分部积分</h3>
+    <p><strong>置换积分</strong>（<span lang="ja">置換積分法</span>）：令 $x=g(t)$，则 $\displaystyle\int_a^b f(x)\,dx=\int_\alpha^\beta f(g(t))\,g'(t)\,dt$，其中 $a=g(\alpha),\ b=g(\beta)$。<strong>换元必换限</strong>。常用的换元：</p>
+    <div class="tw"><table>
+      <thead><tr><th>被积函数中出现</th><th>换元</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>$\sqrt{ax+b}$</td><td>$t=\sqrt{ax+b}$</td><td>$x=\dfrac{t^2-b}{a},\ dx=\dfrac{2t}{a}dt$，根号消失（2011年第2回 就是这种）</td></tr>
+        <tr><td>$\sqrt{a^2-x^2}$</td><td>$x=a\sin\theta$</td><td>$\sqrt{a^2-x^2}=a\cos\theta$（取 $-\frac\pi2\le\theta\le\frac\pi2$）</td></tr>
+        <tr><td>$\dfrac{1}{a^2+x^2}$</td><td>$x=a\tan\theta$</td><td>$dx=\dfrac{a}{\cos^2\theta}d\theta$，结果是 $\dfrac{\theta}{a}$</td></tr>
+        <tr><td>$f(g(x))g'(x)$</td><td>$t=g(x)$</td><td>如 $\sin^3x\cos x$、$xe^{x^2}$、$\dfrac{\log x}{x}$</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>分部积分</strong>（<span lang="ja">部分積分法</span>）：$\displaystyle\int_a^b f(x)g'(x)\,dx=\Bigl[f(x)g(x)\Bigr]_a^b-\int_a^b f'(x)g(x)\,dx$。选 $f$ 时按「对数 → 多项式 → 三角・指数」的顺序优先让前者求导。</p>
+    <p><strong>为什么这个顺序有效？</strong>$\log x$ 求导变成 $\dfrac1x$，多项式求导次数降低，而 $e^x$、$\sin x$ 求导或积分都不变复杂。让「求导后变简单」的一方去求导，积分才会越来越容易。</p>
+
+    <article class="q">
+      <div class="q-head"><b>例题　根式换元</b><span class="origin">原创</span></div>
+      <p>求 $\displaystyle\int_0^4\frac{x}{\sqrt{2x+1}}\,dx$。</p>
+      <div class="ans">
+        <ol>
+          <li>令 $t=\sqrt{2x+1}$，则 $x=\dfrac{t^2-1}{2}$，$dx=t\,dt$。$x:0\to4$ 对应 $t:1\to3$。</li>
+          <li>原式 $\displaystyle=\int_1^3\frac{(t^2-1)/2}{t}\cdot t\,dt=\frac12\int_1^3(t^2-1)\,dt=\frac12\Bigl[\frac{t^3}{3}-t\Bigr]_1^3$。</li>
+          <li>$=\dfrac12\Bigl\{(9-3)-\Bigl(\dfrac13-1\Bigr)\Bigr\}=\dfrac12\cdot\dfrac{20}{3}=\dfrac{10}{3}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\dfrac{10}{3}$。</p>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>例题　分部积分两次</b><span class="origin">原创</span></div>
+      <p>求 $\displaystyle\int_0^{\pi}e^x\sin x\,dx$。</p>
+      <div class="ans">
+        <ol>
+          <li>设 $I=\displaystyle\int_0^\pi e^x\sin x\,dx$。分部积分：$I=\Bigl[e^x\sin x\Bigr]_0^\pi-\displaystyle\int_0^\pi e^x\cos x\,dx=-\int_0^\pi e^x\cos x\,dx$。</li>
+          <li>再分部积分：$\displaystyle\int_0^\pi e^x\cos x\,dx=\Bigl[e^x\cos x\Bigr]_0^\pi+\int_0^\pi e^x\sin x\,dx=(-e^\pi-1)+I$。</li>
+          <li>所以 $I=e^\pi+1-I$，$I=\dfrac{e^\pi+1}{2}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\dfrac{e^\pi+1}{2}$。这种「绕一圈回到 $I$」的方法在「指数乘三角函数」的题中（2011年第2回）很常用。</p>
+      </div>
+    </article>
+
+    <h3>偶函数・奇函数与绝对值</h3>
+    <p>$f$ 为偶函数（<span lang="ja">偶関数</span>）时 $\displaystyle\int_{-a}^a f\,dx=2\int_0^a f\,dx$；奇函数（<span lang="ja">奇関数</span>）时 $\displaystyle\int_{-a}^a f\,dx=0$。含<strong>绝对值</strong>的积分，先求被积函数的零点，再<strong>分段</strong>去掉绝对值：</p>
+    $$\int_0^\pi|\cos x|\,dx=\int_0^{\frac\pi2}\cos x\,dx-\int_{\frac\pi2}^{\pi}\cos x\,dx=1+1=2.$$
+
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>换元后忘记换积分上下限，或换了限又把 $t$ 代回 $x$，重复处理。</li>
+        <li>$\displaystyle\int\cos2x\,dx$ 写成 $\sin2x$，漏掉系数 $\dfrac12$；$\displaystyle\int e^{-x}dx$ 漏掉负号。</li>
+        <li>$\displaystyle\int_0^\pi|\cos x|\,dx$ 直接算成 $\Bigl[\sin x\Bigr]_0^\pi=0$。绝对值必须先分段。</li>
+        <li>分部积分时 $\Bigl[f g\Bigr]_a^b$ 项忘记代入上下限。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>EJU 的积分大题前一两个空通常是「把积分算出来」，后面的空都依赖它。算完后用一个简单值（如参数取 $0$ 或 $1$）快速检查结果，能避免整题连锁出错。</p>
+      <p><strong>日语术语：</strong><span lang="ja">定積分</span>（<span class="kana" lang="ja">ていせきぶん</span>）：定积分；<span lang="ja">置換積分法</span>（<span class="kana" lang="ja">ちかんせきぶんほう</span>）：换元积分法；<span lang="ja">部分積分法</span>（<span class="kana" lang="ja">ぶぶんせきぶんほう</span>）：分部积分法；<span lang="ja">被積分関数</span>（<span class="kana" lang="ja">ひせきぶんかんすう</span>）：被积函数。</p>
+    </div>
+  </section>
+
+  <section id="area">
+    <h2>2 面积</h2>
+    <p class="jp-sub" lang="ja">面積 — 2曲線間の面積・接線と曲線・面積の最大最小</p>
+
+    <h3>基本原则：上减下</h3>
+    <p>在 $a\le x\le b$ 上 $f(x)\ge g(x)$ 时，两曲线之间的面积为 $\displaystyle S=\int_a^b\{f(x)-g(x)\}\,dx$。若上下关系在区间内交换，就在交点处分段，即 $\displaystyle S=\int_a^b|f(x)-g(x)|\,dx$。曲线在 $x$ 轴下方时，与 $x$ 轴围成的面积是 $\displaystyle-\int_a^b f(x)\,dx$。</p>
+    <p>有时按 $y$ 积分更简单：区域由 $x=p(y)$（右）和 $x=q(y)$（左）在 $c\le y\le d$ 间夹成时，$\displaystyle S=\int_c^d\{p(y)-q(y)\}\,dy$。例如 $y=\log x$ 与 $y$ 轴之间的面积，用 $x=e^y$ 积分可以避免算 $\int\log x\,dx$。</p>
+
+    <h3>典型解法：曲线与切线围成的面积</h3>
+    <p>这是题库中出现次数最多的题型。流程固定：</p>
+    <ol>
+      <li><strong>求切线：</strong>$x=t$ 处的切线 $y=f'(t)(x-t)+f(t)$。「过某定点的切线」把定点代入，解出切点 $t$。</li>
+      <li><strong>求交点：</strong>切线与曲线联立。多项式时，切点是<strong>重根</strong>，可以直接因式分解。</li>
+      <li><strong>判断上下：</strong>凸性（<span lang="ja">凹凸</span>）决定曲线在切线上方还是下方；不确定时代入一个中间值。</li>
+      <li><strong>积分：</strong>多项式时可用下面的公式。</li>
+    </ol>
+    <div class="formula-grid">
+      <div>$\displaystyle\int_\alpha^\beta(x-\alpha)(x-\beta)\,dx=-\frac{(\beta-\alpha)^3}{6}$</div>
+      <div>$\displaystyle\int_\alpha^\beta(x-\alpha)^2(x-\beta)\,dx=-\frac{(\beta-\alpha)^4}{12}$</div>
+    </div>
+    <p><strong>为什么有这些公式？</strong>令 $x=\alpha+s$，$h=\beta-\alpha$，第一式变成 $\displaystyle\int_0^h s(s-h)\,ds=\frac{h^3}{3}-\frac{h^3}{2}=-\frac{h^3}{6}$。第二式同理是 $\displaystyle\int_0^h s^2(s-h)\,ds=\frac{h^4}{4}-\frac{h^4}{3}=-\frac{h^4}{12}$。三次曲线与切线相交时，差 $f(x)-(\text{切线})=a(x-\alpha)^2(x-\beta)$，正好用第二式。</p>
+    <figure class="plot">
+      <svg class="chart" viewBox="0 0 420 300" role="img" aria-label="三次曲线 y=x(x-2)^2 与原点处切线 y=4x 围成的区域">
+        <line class="grid" x1="40" x2="406" y1="143.0" y2="143.0"/><line class="grid" x1="40" x2="406" y1="28.3" y2="28.3"/>
+        <line class="grid" x1="219.1" x2="219.1" y1="14" y2="272"/><line class="grid" x1="374.9" x2="374.9" y1="14" y2="272"/>
+        <path class="fillc" d="M63.4,257.7 L374.9,28.3 L374.9,28.3 L372.3,37.8 L369.7,46.9 L367.1,55.9 L364.5,64.6 L361.9,73.0 L359.3,81.2 L356.7,89.2 L354.1,96.9 L351.5,104.4 L348.9,111.7 L346.3,118.7 L343.7,125.6 L341.1,132.2 L338.5,138.6 L335.9,144.8 L333.3,150.8 L330.7,156.6 L328.1,162.1 L325.5,167.5 L322.9,172.7 L320.3,177.7 L317.7,182.5 L315.1,187.2 L312.6,191.6 L310.0,195.9 L307.4,200.0 L304.8,203.9 L302.2,207.7 L299.6,211.2 L297.0,214.7 L294.4,217.9 L291.8,221.0 L289.2,224.0 L286.6,226.8 L284.0,229.5 L281.4,232.0 L278.8,234.4 L276.2,236.6 L273.6,238.7 L271.0,240.7 L268.4,242.5 L265.8,244.3 L263.2,245.9 L260.6,247.3 L258.0,248.7 L255.4,250.0 L252.9,251.1 L250.3,252.2 L247.7,253.1 L245.1,254.0 L242.5,254.7 L239.9,255.4 L237.3,255.9 L234.7,256.4 L232.1,256.8 L229.5,257.1 L226.9,257.4 L224.3,257.5 L221.7,257.6 L219.1,257.7 L216.5,257.6 L213.9,257.5 L211.3,257.4 L208.7,257.2 L206.1,256.9 L203.5,256.6 L200.9,256.3 L198.3,255.9 L195.7,255.5 L193.1,255.0 L190.6,254.5 L188.0,254.0 L185.4,253.5 L182.8,252.9 L180.2,252.3 L177.6,251.7 L175.0,251.1 L172.4,250.4 L169.8,249.8 L167.2,249.2 L164.6,248.5 L162.0,247.9 L159.4,247.3 L156.8,246.7 L154.2,246.1 L151.6,245.5 L149.0,244.9 L146.4,244.3 L143.8,243.8 L141.2,243.3 L138.6,242.9 L136.0,242.4 L133.4,242.1 L130.9,241.7 L128.3,241.4 L125.7,241.2 L123.1,241.0 L120.5,240.8 L117.9,240.7 L115.3,240.7 L112.7,240.7 L110.1,240.8 L107.5,241.0 L104.9,241.2 L102.3,241.5 L99.7,241.9 L97.1,242.4 L94.5,243.0 L91.9,243.6 L89.3,244.4 L86.7,245.2 L84.1,246.2 L81.5,247.2 L78.9,248.4 L76.3,249.6 L73.7,251.0 L71.1,252.5 L68.6,254.1 L66.0,255.8 L63.4,257.7 Z"/>
+        <path d="M63.4,257.7 L65.3,256.3 L67.3,254.9 L69.2,253.7 L71.1,252.5 L73.1,251.4 L75.0,250.3 L77.0,249.3 L78.9,248.4 L80.9,247.5 L82.8,246.7 L84.8,245.9 L86.7,245.2 L88.7,244.6 L90.6,244.0 L92.6,243.5 L94.5,243.0 L96.5,242.6 L98.4,242.2 L100.4,241.8 L102.3,241.5 L104.2,241.3 L106.2,241.1 L108.1,240.9 L110.1,240.8 L112.0,240.7 L114.0,240.7 L115.9,240.7 L117.9,240.7 L119.8,240.8 L121.8,240.9 L123.7,241.0 L125.7,241.2 L127.6,241.3 L129.6,241.6 L131.5,241.8 L133.4,242.1 L135.4,242.3 L137.3,242.7 L139.3,243.0 L141.2,243.3 L143.2,243.7 L145.1,244.1 L147.1,244.5 L149.0,244.9 L151.0,245.3 L152.9,245.8 L154.9,246.2 L156.8,246.7 L158.8,247.1 L160.7,247.6 L162.6,248.1 L164.6,248.5 L166.5,249.0 L168.5,249.5 L170.4,250.0 L172.4,250.4 L174.3,250.9 L176.3,251.4 L178.2,251.8 L180.2,252.3 L182.1,252.7 L184.1,253.2 L186.0,253.6 L188.0,254.0 L189.9,254.4 L191.9,254.8 L193.8,255.1 L195.7,255.5 L197.7,255.8 L199.6,256.1 L201.6,256.4 L203.5,256.6 L205.5,256.9 L207.4,257.1 L209.4,257.2 L211.3,257.4 L213.3,257.5 L215.2,257.6 L217.2,257.6 L219.1,257.7 Z" style="fill:var(--c2);opacity:.25"/>
+        <line class="axis" x1="40" x2="406" y1="257.7" y2="257.7"/><line class="axis" x1="63.4" x2="63.4" y1="14" y2="272"/>
+        <path class="s1" d="M63.4,257.7 L65.0,256.5 L66.7,255.3 L68.4,254.2 L70.1,253.2 L71.7,252.1 L73.4,251.2 L75.1,250.3 L76.8,249.4 L78.4,248.6 L80.1,247.8 L81.8,247.1 L83.5,246.4 L85.1,245.8 L86.8,245.2 L88.5,244.7 L90.1,244.1 L91.8,243.7 L93.5,243.2 L95.2,242.8 L96.8,242.5 L98.5,242.1 L100.2,241.9 L101.9,241.6 L103.5,241.4 L105.2,241.2 L106.9,241.0 L108.6,240.9 L110.2,240.8 L111.9,240.7 L113.6,240.7 L115.3,240.7 L116.9,240.7 L118.6,240.7 L120.3,240.8 L122.0,240.9 L123.6,241.0 L125.3,241.1 L127.0,241.3 L128.7,241.5 L130.3,241.6 L132.0,241.9 L133.7,242.1 L135.4,242.3 L137.0,242.6 L138.7,242.9 L140.4,243.2 L142.1,243.5 L143.7,243.8 L145.4,244.1 L147.1,244.5 L148.7,244.8 L150.4,245.2 L152.1,245.6 L153.8,246.0 L155.4,246.3 L157.1,246.7 L158.8,247.1 L160.5,247.5 L162.1,247.9 L163.8,248.3 L165.5,248.8 L167.2,249.2 L168.8,249.6 L170.5,250.0 L172.2,250.4 L173.9,250.8 L175.5,251.2 L177.2,251.6 L178.9,252.0 L180.6,252.4 L182.2,252.8 L183.9,253.1 L185.6,253.5 L187.3,253.9 L188.9,254.2 L190.6,254.5 L192.3,254.9 L194.0,255.2 L195.6,255.5 L197.3,255.7 L199.0,256.0 L200.7,256.2 L202.3,256.5 L204.0,256.7 L205.7,256.9 L207.3,257.1 L209.0,257.2 L210.7,257.4 L212.4,257.5 L214.0,257.5 L215.7,257.6 L217.4,257.7 L219.1,257.7 L220.7,257.7 L222.4,257.6 L224.1,257.5 L225.8,257.4 L227.4,257.3 L229.1,257.2 L230.8,257.0 L232.5,256.8 L234.1,256.5 L235.8,256.2 L237.5,255.9 L239.2,255.5 L240.8,255.1 L242.5,254.7 L244.2,254.2 L245.9,253.7 L247.5,253.2 L249.2,252.6 L250.9,251.9 L252.6,251.2 L254.2,250.5 L255.9,249.8 L257.6,248.9 L259.2,248.1 L260.9,247.2 L262.6,246.2 L264.3,245.2 L265.9,244.2 L267.6,243.1 L269.3,241.9 L271.0,240.7 L272.6,239.5 L274.3,238.1 L276.0,236.8 L277.7,235.4 L279.3,233.9 L281.0,232.3 L282.7,230.8 L284.4,229.1 L286.0,227.4 L287.7,225.6 L289.4,223.8 L291.1,221.9 L292.7,219.9 L294.4,217.9 L296.1,215.8 L297.8,213.7 L299.4,211.4 L301.1,209.1 L302.8,206.8 L304.5,204.4 L306.1,201.9 L307.8,199.3 L309.5,196.7 L311.2,193.9 L312.8,191.2 L314.5,188.3 L316.2,185.4 L317.8,182.4 L319.5,179.3 L321.2,176.1 L322.9,172.9 L324.5,169.5 L326.2,166.1 L327.9,162.6 L329.6,159.1 L331.2,155.4 L332.9,151.7 L334.6,147.9 L336.3,144.0 L337.9,140.0 L339.6,135.9 L341.3,131.7 L343.0,127.5 L344.6,123.1 L346.3,118.7 L348.0,114.2 L349.7,109.6 L351.3,104.8 L353.0,100.0 L354.7,95.1 L356.4,90.1 L358.0,85.0 L359.7,79.9 L361.4,74.6 L363.1,69.2 L364.7,63.7 L366.4,58.1 L368.1,52.4 L369.8,46.6 L371.4,40.7 L373.1,34.7 L374.8,28.6 L376.4,22.4 L378.1,16.1"/>
+        <line class="s2" x1="63.4" y1="257.7" x2="390.4" y2="16.9"/>
+        <text class="tick" x="219.1" y="290" text-anchor="middle">2</text><text class="tick" x="374.9" y="290" text-anchor="middle">4</text>
+        <text class="tick" x="34" y="147.0" text-anchor="end">8</text><text class="tick" x="34" y="32.3" text-anchor="end">16</text>
+        <text class="lbl" x="304.8" y="226.1">C</text><text class="lbl" x="265.8" y="78.5">y=4x</text>
+        <text class="lbl" x="238.6" y="180.3">S₁</text><text class="lbl" x="129.6" y="254.1">S₂</text>
+        <circle class="dot2" cx="374.9" cy="28.3" r="5"/><circle class="dot" cx="63.4" cy="257.7" r="4.5"/>
+      </svg>
+      <figcaption>三次曲线 $C:y=x(x-2)^2$ 在原点的切线 $y=4x$ 与 $C$ 再交于 $x=4$。蓝色区域 $S_1$ 是切线与曲线之间，红色区域 $S_2$ 是曲线与 $x$ 轴之间（见练习 1）。</figcaption>
+    </figure>
+
+    <article class="q">
+      <div class="q-head"><b>例题　两条抛物线与公切线</b><span class="origin">原创</span></div>
+      <p>抛物线 $C_1:y=x^2$ 与 $C_2:y=x^2-4x+8$ 有一条公切线 $\ell$。求 $\ell$ 的方程，以及 $C_1$、$C_2$、$\ell$ 围成的面积。</p>
+      <div class="ans">
+        <ol>
+          <li>$C_1$ 在 $x=s$ 的切线 $y=2sx-s^2$。与 $C_2$ 联立：$x^2-4x+8=2sx-s^2$，即 $x^2-(2s+4)x+s^2+8=0$。</li>
+          <li>相切 ⇔ 判别式为 $0$：$(s+2)^2-(s^2+8)=4s-4=0$，$s=1$。所以 $\ell:y=2x-1$，与 $C_2$ 切于 $x=s+2=3$。</li>
+          <li>两抛物线交点：$x^2=x^2-4x+8$，$x=2$。区域在 $\ell$ 上方：$[1,2]$ 上的上边界是 $C_1$，$[2,3]$ 上是 $C_2$。</li>
+          <li>$\displaystyle S=\int_1^2(x-1)^2dx+\int_2^3(x-3)^2dx=\frac13+\frac13=\frac23$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\ell:y=2x-1$，面积 $\dfrac23$。两条形状相同的抛物线与公切线围成的图形，交点恰在两切点中点。</p>
+      </div>
+    </article>
+
+    <h3>面积的最大・最小</h3>
+    <p>面积依赖参数 $a$ 时，先把 $S(a)$ 写成显式，再用微分求最值（2013年第2回、2016年第1回、2019年第1回）。如果交点 $\alpha$ 无法用 $a$ 简单表示，就<strong>以 $\alpha$ 为变量</strong>，利用交点关系式（如 $\sin\alpha=\dfrac a2$）把 $a$ 消去。</p>
+    <article class="q">
+      <div class="q-head"><b>例题　面积的最小值</b><span class="origin">原创</span></div>
+      <p>$0&lt;a&lt;1$。设 $y=e^x$ 与直线 $y=e^a$、$y$ 轴及直线 $x=1$ 围成两块图形，面积和为 $S(a)$。求 $S(a)$ 的最小值。</p>
+      <div class="ans">
+        <ol>
+          <li>$0\le x\le a$ 时直线在上，$a\le x\le1$ 时曲线在上。$\displaystyle S(a)=\int_0^a(e^a-e^x)dx+\int_a^1(e^x-e^a)dx$。</li>
+          <li>$=ae^a-(e^a-1)+(e-e^a)-(1-a)e^a=(2a-3)e^a+e+1$。</li>
+          <li>$S'(a)=2e^a+(2a-3)e^a=(2a-1)e^a$，$a=\dfrac12$ 时由负变正，取最小值。</li>
+          <li>$S\Bigl(\dfrac12\Bigr)=-2\sqrt e+e+1=(\sqrt e-1)^2$。</li>
+        </ol>
+        <p><strong>答案：</strong>$a=\dfrac12$ 时最小，最小值 $(\sqrt e-1)^2$。最小点恰是区间中点，这对单调函数的「两侧面积和」普遍成立：$S'(a)=f'(a)\{a-0\}-f'(a)\{1-a\}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>没有判断上下关系就写 $\int(f-g)$，得到负数或两块相互抵消。</li>
+        <li>曲线在 $x$ 轴下方的部分直接积分，把面积算成负值。</li>
+        <li>求「过点 $(p,q)$ 的切线」时把 $(p,q)$ 当成切点。只有点在曲线上时它才可能是切点。</li>
+        <li>三角曲线之间的面积漏掉一个交点，例如 $\sin2x=\cos x$ 除了 $\sin x=\dfrac12$ 还有 $\cos x=0$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>先画草图，标出交点和切点，用「上减下」列式。三角曲线的面积题（2010年第1回、2021年第1回、2022年第1回 等）通常分成左右两块，常问「两块面积之差（或比）与参数无关」，建议用交点关系式把三角值换成参数，计算量会小很多。</p>
+      <p><strong>日语术语：</strong><span lang="ja">面積</span>（<span class="kana" lang="ja">めんせき</span>）：面积；<span lang="ja">囲まれた部分</span>（<span class="kana" lang="ja">かこまれたぶぶん</span>）：围成的部分；<span lang="ja">接線</span>（<span class="kana" lang="ja">せっせん</span>）：切线；<span lang="ja">共通接線</span>（<span class="kana" lang="ja">きょうつうせっせん</span>）：公切线；<span lang="ja">接点</span>（<span class="kana" lang="ja">せってん</span>）：切点。</p>
+    </div>
+  </section>
+
+  <section id="volume">
+    <h2>3 体积</h2>
+    <p class="jp-sub" lang="ja">体積 — 断面積の積分・回転体の体積</p>
+    <h3>断面积与旋转体</h3>
+    <p>立体被垂直于 $x$ 轴的平面所截，截面积为 $S(x)$，则体积 $\displaystyle V=\int_a^b S(x)\,dx$。绕 $x$ 轴旋转时截面是圆，$S(x)=\pi\{f(x)\}^2$：</p>
+    $$V_x=\pi\int_a^b\{f(x)\}^2\,dx,\qquad V_y=\pi\int_c^d\{g(y)\}^2\,dy\quad(x=g(y)).$$
+    <p>两曲线之间的区域（$f\ge g\ge0$）绕 $x$ 轴旋转，截面是<strong>圆环</strong>：$\displaystyle V=\pi\int_a^b\bigl[\{f(x)\}^2-\{g(x)\}^2\bigr]dx$，<strong>不是</strong> $\pi\int(f-g)^2dx$。</p>
+    <p><strong>为什么圆环不能写成 $(f-g)^2$？</strong>圆环面积是大圆减小圆：$\pi f^2-\pi g^2=\pi(f-g)(f+g)$。$(f-g)^2$ 相当于把区域平移到贴着轴再旋转，体积会变小。</p>
+    <h3>典型解法：绕 $y$ 轴旋转</h3>
+    <p>绕 $y$ 轴旋转时，先把曲线写成 $x=g(y)$，按 $y$ 积分。若反解困难，可用置换 $y=f(x)$，$dy=f'(x)\,dx$：$\displaystyle V_y=\pi\int x^2\,dy=\pi\int x^2f'(x)\,dx$，上下限换成对应的 $x$。</p>
+    <article class="q">
+      <div class="q-head"><b>例题　圆环型旋转体</b><span class="origin">原创</span></div>
+      <p>曲线 $y=\sqrt x$ 与直线 $y=\dfrac x2$ 围成的区域绕 $x$ 轴旋转一周，求体积 $V$。</p>
+      <div class="ans">
+        <ol>
+          <li>交点：$\sqrt x=\dfrac x2\Rightarrow x=0,4$。$0\le x\le4$ 上 $\sqrt x\ge\dfrac x2$。</li>
+          <li>$\displaystyle V=\pi\int_0^4\Bigl(x-\frac{x^2}{4}\Bigr)dx=\pi\Bigl(8-\frac{16}{3}\Bigr)=\frac{8\pi}{3}$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\dfrac{8\pi}{3}$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>忘记乘 $\pi$；或把面积公式和体积公式混用，漏掉平方。</li>
+        <li>区域跨过旋转轴（如部分在 $x$ 轴下方）时，上下两部分旋转后重叠，不能简单相加，要取离轴更远的那条边界。</li>
+        <li>绕 $y$ 轴旋转仍按 $dx$ 积分 $\pi\int y^2dx$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>旋转体题常与「函数的增减・最小值」组合（2010年第2回），或问「绕 $x$ 轴与绕 $y$ 轴的体积相等的条件」（2014年第1回）。把两个体积都写成参数的单项式，再列方程即可。</p>
+      <p><strong>日语术语：</strong><span lang="ja">体積</span>（<span class="kana" lang="ja">たいせき</span>）：体积；<span lang="ja">回転体</span>（<span class="kana" lang="ja">かいてんたい</span>）：旋转体；<span lang="ja">$x$ 軸の周りに1回転</span>（<span class="kana" lang="ja">エックスじくのまわりにいっかいてん</span>）：绕 $x$ 轴旋转一周；<span lang="ja">断面積</span>（<span class="kana" lang="ja">だんめんせき</span>）：截面积。</p>
+    </div>
+  </section>
+
+  <section id="equation">
+    <h2>4 积分方程与变上限积分</h2>
+    <p class="jp-sub" lang="ja">積分方程式 — 定数とおく・微分して解く</p>
+    <h3>两种基本类型</h3>
+    <div class="tw"><table>
+      <thead><tr><th>类型</th><th>特征</th><th>解法</th></tr></thead>
+      <tbody>
+        <tr><td>上下限为常数</td><td>$f(x)=x^2+\displaystyle\int_0^1 f(t)\,dt$</td><td>积分是<strong>常数</strong>，令 $A=\displaystyle\int_0^1f(t)\,dt$，代回求 $A$</td></tr>
+        <tr><td>上限含 $x$</td><td>$\displaystyle\int_a^x f(t)\,dt=g(x)$</td><td>两边对 $x$ 求导得 $f(x)=g'(x)$；令 $x=a$ 得 $g(a)=0$</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>微积分基本定理：</strong>$\displaystyle\frac{d}{dx}\int_a^x f(t)\,dt=f(x)$。更一般地，$\displaystyle\frac{d}{dx}\int_{u(x)}^{v(x)}f(t)\,dt=f(v(x))v'(x)-f(u(x))u'(x)$。这是「移动区间上的积分」（2023年第1回）的基础：$\displaystyle F(t)=\int_t^{t+1}f(x)\,dx$ 的导数为 $f(t+1)-f(t)$。</p>
+    <p><strong>被积函数中同时含 $x$ 和 $t$ 时</strong>，先把 $x$ 提到积分号外：$\displaystyle\int_0^x(x-t)f(t)\,dt=x\int_0^xf(t)\,dt-\int_0^xtf(t)\,dt$，再用乘积的求导法则。</p>
+    <article class="q">
+      <div class="q-head"><b>例题　含 $x$ 的积分号</b><span class="origin">原创</span></div>
+      <p>函数 $f(x)$ 满足 $\displaystyle\int_0^x(x-t)f(t)\,dt=x^4-2x^3$。求 $f(x)$。</p>
+      <div class="ans">
+        <ol>
+          <li>左边 $\displaystyle=x\int_0^xf(t)\,dt-\int_0^xtf(t)\,dt$。</li>
+          <li>求导：$\displaystyle\int_0^xf(t)\,dt+xf(x)-xf(x)=\int_0^xf(t)\,dt=4x^3-6x^2$。</li>
+          <li>再求导：$f(x)=12x^2-12x$。</li>
+        </ol>
+        <p><strong>答案：</strong>$f(x)=12x^2-12x$。注意第 2 步中 $xf(x)$ 恰好抵消。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>对 $\displaystyle\int_0^x(x-t)f(t)\,dt$ 直接求导写成 $(x-x)f(x)=0$。$x$ 在积分号内时要先提出来。</li>
+        <li>由 $\displaystyle\int_a^xf(t)\,dt=g(x)$ 求出 $f$ 后，忘记用 $g(a)=0$ 确定 $a$。</li>
+        <li>常数型方程中把 $\displaystyle\int_0^1f(t)\,dt$ 当作 $x$ 的函数去求导。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>积分方程在题库中多次出现（2005年第2回、2009年第2回、2013年第1回）。设出常数 $A,B$ 后，答案格通常就是 $A,B$ 的值或 $f(x)$ 的系数，可以把求出的 $f$ 代回原式验算一遍。</p>
+      <p><strong>日语术语：</strong><span lang="ja">積分方程式</span>（<span class="kana" lang="ja">せきぶんほうていしき</span>）：积分方程；<span lang="ja">定数</span>（<span class="kana" lang="ja">ていすう</span>）：常数；<span lang="ja">上端</span>（<span class="kana" lang="ja">じょうたん</span>）：上限；<span lang="ja">下端</span>（<span class="kana" lang="ja">かたん</span>）：下限。</p>
+    </div>
+  </section>
+
+  <section id="limit">
+    <h2>5 定积分与数列・极限</h2>
+    <p class="jp-sub" lang="ja">区分求積法・積分で定義された数列・積分と不等式</p>
+    <h3>区分求积法</h3>
+    <p>把 $[0,1]$ 分成 $n$ 等份，用长方形面积之和逼近曲线下的面积：</p>
+    $$\lim_{n\to\infty}\frac1n\sum_{k=1}^{n}f\Bigl(\frac kn\Bigr)=\int_0^1f(x)\,dx.$$
+    <p><strong>识别方法：</strong>把和式中的每一项写成 $\dfrac1n\times(\text{只含 }\dfrac kn\text{ 的式子})$。例如 $\displaystyle\sum_{k=1}^n\frac{1}{n+k}=\frac1n\sum_{k=1}^n\frac{1}{1+\frac kn}\to\int_0^1\frac{dx}{1+x}=\log2$。</p>
+    <h3>积分定义的数列</h3>
+    <p>$I_n=\displaystyle\int x^n(\dots)\,dx$ 一类的数列，常用分部积分建立<strong>递推式</strong>（<span lang="ja">漸化式</span>），再用<strong>夹逼</strong>（<span lang="ja">はさみうち</span>）求极限。关键不等式：在区间上 $f(x)\le g(x)$ ⇒ $\displaystyle\int f\le\int g$。例如 $1\le x\le e$ 时 $0\le\log x\le1$，所以 $(\log x)^{n+1}\le(\log x)^n$，数列单调递减。</p>
+    <article class="q">
+      <div class="q-head"><b>例题　用积分夹逼和式</b><span class="origin">原创</span></div>
+      <p>证明 $\displaystyle\log(n+1)&lt;\sum_{k=1}^n\frac1k$，并说明 $\displaystyle\sum_{k=1}^{\infty}\frac1k$ 发散。</p>
+      <div class="ans">
+        <ol>
+          <li>$k\le x\le k+1$ 时 $\dfrac1x\le\dfrac1k$（等号只在 $x=k$），所以 $\displaystyle\int_k^{k+1}\frac{dx}{x}&lt;\frac1k$。</li>
+          <li>对 $k=1,\dots,n$ 求和：$\displaystyle\int_1^{n+1}\frac{dx}{x}=\log(n+1)&lt;\sum_{k=1}^n\frac1k$。</li>
+          <li>$\log(n+1)\to\infty$，所以部分和也趋于 $\infty$，级数发散。</li>
+        </ol>
+        <p><strong>答案：</strong>如上。这是「用积分比较」的标准写法（2013年第1回）。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>区分求积法中 $\dfrac1n$ 没有提出来，或积分区间写错：$\displaystyle\frac1n\sum_{k=1}^{2n}f\Bigl(\frac kn\Bigr)\to\int_0^2f(x)\,dx$，不是 $\int_0^1$。</li>
+        <li>由递推式 $I_{n+1}=e-(n+1)I_n$ 求 $\lim nI_n$ 时，没有先证明 $I_n\to0$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>看到 $\displaystyle\lim_{n\to\infty}\sum$ 而无法直接求和时，优先考虑区分求积法；看到 $\displaystyle\lim\int$ 时，优先考虑不等式夹逼。第 18 项「极限」的技巧在这里会再次用到。</p>
+      <p><strong>日语术语：</strong><span lang="ja">区分求積法</span>（<span class="kana" lang="ja">くぶんきゅうせきほう</span>）：区分求积法（黎曼和）；<span lang="ja">漸化式</span>（<span class="kana" lang="ja">ぜんかしき</span>）：递推式；<span lang="ja">不等式</span>（<span class="kana" lang="ja">ふとうしき</span>）：不等式；<span lang="ja">道のり</span>（<span class="kana" lang="ja">みちのり</span>）：路程。</p>
+    </div>
+    <p><strong>补充：速度与路程。</strong>点 $P(x(t),y(t))$ 运动时，从 $t=a$ 到 $t=b$ 的路程为 $\displaystyle\int_a^b\sqrt{\Bigl(\frac{dx}{dt}\Bigr)^2+\Bigl(\frac{dy}{dt}\Bigr)^2}\,dt$；直线运动时为 $\displaystyle\int_a^b|v(t)|\,dt$（位移是 $\int v\,dt$，不加绝对值）。这类题在题库中出现于 2015年第2回。</p>
+  </section>
+
+  <section id="practice">
+    <h2>6 真题风格练习</h2>
+    <p class="jp-sub">以下题目均为本讲义<strong>原创</strong>，模仿 EJU 数学コース2 的填空形式，数字和设定均非真题。</p>
+    <div class="box good">
+      <p><strong>题库出题规律（2005–2025，积分类共 43 题）</strong></p>
+      <ol>
+        <li><strong>曲线与切线・公切线围成的面积</strong>：最高频。三次曲线与切线的面积比、过原点的切线、两条曲线的公切线。例：2008年第1回、2009年第1回、2014年第2回、2017年第1回、2018年第2回、2021年第2回。</li>
+        <li><strong>三角曲线之间的面积</strong>：先求交点和极值，再分左右两块算面积，常问面积差为常数或比值。例：2010年第1回、2015年第1回、2021年第1回、2022年第1回、2024年。</li>
+        <li><strong>含参数（绝对值）定积分或面积的最小・最大值</strong>：分段去绝对值，写成参数的函数后微分。例：2006年第1回、2007年第1回、2013年第2回、2016年第1回、2023年第2回。</li>
+        <li><strong>积分方程・变上限积分的求导</strong>：令常数、两边求导，或移动区间上的积分最值。例：2005年第2回、2009年第2回、2011年第1回、2013年第1回、2023年第1回。</li>
+        <li><strong>定积分与数列・极限</strong>：积分定义的数列、递推式、区分求积法、夹逼。例：2012年第1回、2012年第2回、2013年第1回、2014年第2回、2019年第1回。</li>
+        <li><strong>旋转体体积</strong>：绕 $x$ 轴的体积，或绕两轴体积相等的条件。例：2010年第2回、2014年第1回。</li>
+      </ol>
+    </div>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框（$\B{ア}$、$\B{イ}$、…）填一个数字 $0$–$9$，连续的方框如 $\B{ウ}\B{エ}$ 表示两位数；分数约到最简，根号内的数尽量小。每题重新从 ア 开始编号。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>练习 1　三次曲线与切线的面积比</b><span class="origin">原创</span><span>对应规律 1</span></div>
+      <p>曲线 $C:y=x(x-2)^2$ 在原点 $O$ 处的切线为 $\ell$。</p>
+      <p>(1) $\ell$ 的方程为 $y=\B{ア}x$，$\ell$ 与 $C$ 除 $O$ 外的交点的 $x$ 坐标为 $\B{イ}$。</p>
+      <p>(2) $C$ 与 $\ell$ 围成的图形面积 $S_1=\dfrac{\B{ウ}\B{エ}}{\B{オ}}$，$C$ 与 $x$ 轴围成的图形面积 $S_2=\dfrac{\B{カ}}{\B{キ}}$。</p>
+      <p>(3) $\dfrac{S_1}{S_2}=\B{ク}\B{ケ}$。</p>
+      <details><summary>解答</summary>
+        <div class="ans">
+          <p>(1) $y=x^3-4x^2+4x$，$y'=3x^2-8x+4$，$y'(0)=4$，所以 $\ell:y=4x$。联立 $x^3-4x^2+4x=4x$，即 $x^2(x-4)=0$，原点是切点（重根），另一交点 $x=4$。</p>
+          <p>(2) $0\le x\le4$ 上 $4x-(x^3-4x^2+4x)=x^2(4-x)\ge0$，切线在上方：</p>
+          $$S_1=\int_0^4(4x^2-x^3)\,dx=\frac{256}{3}-64=\frac{64}{3}.$$
+          <p>也可用公式：$\displaystyle\int_0^4x^2(x-4)\,dx=-\frac{4^4}{12}=-\frac{64}{3}$。$C$ 在 $0\le x\le2$ 上位于 $x$ 轴上方，且在 $x=2$ 与 $x$ 轴相切：</p>
+          $$S_2=\int_0^2x(x-2)^2\,dx=\frac{2^4}{12}=\frac43.$$
+          <p>（令 $x=2-s$ 即得 $\displaystyle\int_0^2(2-s)s^2ds=\frac{16}{3}-4=\frac43$。）</p>
+          <p>(3) $\dfrac{64/3}{4/3}=16$。</p>
+          <ul class="keys"><li>ア = 4</li><li>イ = 4</li><li>ウエ = 64</li><li>オ = 3</li><li>カ = 4</li><li>キ = 3</li><li>クケ = 16</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 2　对数曲线、过原点的切线与旋转体</b><span class="origin">原创</span><span>对应规律 1・6</span></div>
+      <p>考虑曲线 $C:y=\log2x\ (x&gt;0)$。从原点向 $C$ 引切线 $\ell$。</p>
+      <p>(1) 切点的 $x$ 坐标为 $\dfrac{e}{\B{ア}}$，$\ell$ 的方程为 $y=\dfrac{\B{イ}}{e}x$。</p>
+      <p>(2) $\displaystyle\int_{\frac12}^{\frac e2}\log2x\,dx=\frac{\B{ウ}}{\B{エ}}$。因此 $C$、$\ell$ 与 $x$ 轴围成的图形面积为 $\dfrac{e-\B{オ}}{\B{カ}}$。</p>
+      <p>(3) 把 (2) 中的图形绕 $x$ 轴旋转一周，所得立体的体积为 $\dfrac{(\B{キ}-e)\pi}{\B{ク}}$。</p>
+      <details><summary>解答</summary>
+        <div class="ans">
+          <p>(1) 切点 $(t,\log2t)$ 处切线 $y=\dfrac1t(x-t)+\log2t$。过原点：$0=-1+\log2t$，$2t=e$，$t=\dfrac e2$。斜率 $\dfrac1t=\dfrac2e$，所以 $\ell:y=\dfrac2ex$。</p>
+          <p>(2) 令 $u=2x$：$\displaystyle\int_{\frac12}^{\frac e2}\log2x\,dx=\frac12\int_1^e\log u\,du=\frac12\Bigl[u\log u-u\Bigr]_1^e=\frac12\{0-(-1)\}=\frac12$。</p>
+          <p>图形 = 直角三角形（底 $\dfrac e2$、高 $1$）减去曲线下方的部分（曲线与 $x$ 轴交于 $x=\dfrac12$）：$S=\dfrac12\cdot\dfrac e2\cdot1-\dfrac12=\dfrac{e-2}{4}$。</p>
+          <p>(3) 圆锥减去曲线绕轴所得部分：</p>
+          $$V=\pi\int_0^{\frac e2}\frac{4x^2}{e^2}dx-\pi\int_{\frac12}^{\frac e2}(\log2x)^2dx.$$
+          <p>第一项 $=\dfrac{4\pi}{e^2}\cdot\dfrac{e^3}{24}=\dfrac{e\pi}{6}$。第二项令 $u=2x$：$\dfrac\pi2\displaystyle\int_1^e(\log u)^2du$，而 $\displaystyle\int_1^e(\log u)^2du=\Bigl[u(\log u)^2\Bigr]_1^e-2\int_1^e\log u\,du=e-2$，所以第二项 $=\dfrac{(e-2)\pi}{2}$。</p>
+          <p>$V=\dfrac{e\pi}{6}-\dfrac{(e-2)\pi}{2}=\dfrac{(3-e)\pi}{3}$（$e&lt;3$，确实为正）。</p>
+          <ul class="keys"><li>ア = 2</li><li>イ = 2</li><li>ウ = 1</li><li>エ = 2</li><li>オ = 2</li><li>カ = 4</li><li>キ = 3</li><li>ク = 3</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 3　含指数绝对值的定积分的最小值</b><span class="origin">原创</span><span>对应规律 3</span></div>
+      <p>对 $1\le a\le e^2$，令 $\displaystyle F(a)=\int_0^2\bigl|e^x-a\bigr|\,dx$。</p>
+      <p>(1) $F(a)=\B{ア}a\log a-\B{イ}a+e^{\B{ウ}}+\B{エ}$。</p>
+      <p>(2) $F(1)=e^{\B{オ}}-\B{カ}$。</p>
+      <p>(3) $F'(a)=\B{キ}\log a-\B{ク}$，所以 $F(a)$ 在 $a=e$ 时取最小值 $(e-\B{ケ})^{\B{コ}}$。</p>
+      <details><summary>解答</summary>
+        <div class="ans">
+          <p>(1) $e^x=a$ ⇔ $x=\log a$，且 $0\le\log a\le2$。分段：</p>
+          $$F(a)=\int_0^{\log a}(a-e^x)\,dx+\int_{\log a}^2(e^x-a)\,dx.$$
+          <p>前者 $=a\log a-(a-1)$，后者 $=(e^2-a)-a(2-\log a)$。相加得 $F(a)=2a\log a-4a+e^2+1$。</p>
+          <p>(2) $F(1)=0-4+e^2+1=e^2-3$（也可直接算 $\displaystyle\int_0^2(e^x-1)dx=e^2-3$ 验证）。</p>
+          <p>(3) $F'(a)=2\log a+2-4=2\log a-2$。$a&lt;e$ 时 $F'&lt;0$，$a&gt;e$ 时 $F'&gt;0$，所以 $a=e$ 时最小，$F(e)=2e-4e+e^2+1=(e-1)^2$。</p>
+          <p><strong>观察：</strong>最小点 $\log a=1$ 恰是区间 $[0,2]$ 的中点，这与 2 节例题的结论一致。</p>
+          <ul class="keys"><li>ア = 2</li><li>イ = 4</li><li>ウ = 2</li><li>エ = 1</li><li>オ = 2</li><li>カ = 3</li><li>キ = 2</li><li>ク = 2</li><li>ケ = 1</li><li>コ = 2</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 4　积分方程与变上限积分</b><span class="origin">原创</span><span>对应规律 4</span></div>
+      <p>(1) 函数 $g(x)$ 与常数 $a$ 满足 $\displaystyle\int_a^xg(t)\,dt=x^2-5x+6$。则 $g(x)=\B{ア}x-\B{イ}$，$a=\B{ウ}$ 或 $a=\B{エ}$（$\B{ウ}&lt;\B{エ}$）。</p>
+      <p>(2) 函数 $f(x)$ 满足 $\displaystyle f(x)=6x^2-2x\int_0^1f(t)\,dt+\int_0^1tf(t)\,dt$。则 $f(x)=\B{オ}x^2-\B{カ}x+\B{キ}$，$\displaystyle\int_0^1f(t)\,dt=\frac{\B{ク}}{\B{ケ}}$。</p>
+      <p>(3) 对 (2) 中的 $f(x)$，令 $\displaystyle h(x)=\int_0^x(x-t)f(t)\,dt$，则 $h'(2)=\B{コ}\B{サ}$，$h''(1)=\B{シ}$。</p>
+      <details><summary>解答</summary>
+        <div class="ans">
+          <p>(1) 两边求导：$g(x)=2x-5$。令 $x=a$：左边 $0$，所以 $a^2-5a+6=0$，$a=2,3$。</p>
+          <p>(2) 令 $A=\displaystyle\int_0^1f(t)\,dt$，$B=\displaystyle\int_0^1tf(t)\,dt$（都是常数），则 $f(x)=6x^2-2Ax+B$。</p>
+          <p>$A=\displaystyle\int_0^1(6t^2-2At+B)\,dt=2-A+B$，$B=\displaystyle\int_0^1(6t^3-2At^2+Bt)\,dt=\frac32-\frac{2A}{3}+\frac B2$。</p>
+          <p>整理：$2A-B=2$，$4A+3B=9$。解得 $A=\dfrac32$，$B=1$。所以 $f(x)=6x^2-3x+1$，$\displaystyle\int_0^1f=\frac32$。</p>
+          <p>(3) $h(x)=x\displaystyle\int_0^xf(t)\,dt-\int_0^xtf(t)\,dt$，$h'(x)=\displaystyle\int_0^xf(t)\,dt$，$h''(x)=f(x)$。</p>
+          <p>$h'(2)=\Bigl[2t^3-\dfrac32t^2+t\Bigr]_0^2=16-6+2=12$；$h''(1)=f(1)=6-3+1=4$。</p>
+          <ul class="keys"><li>ア = 2</li><li>イ = 5</li><li>ウ = 2</li><li>エ = 3</li><li>オ = 6</li><li>カ = 3</li><li>キ = 1</li><li>ク = 3</li><li>ケ = 2</li><li>コサ = 12</li><li>シ = 4</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 5　三角曲线分出的两块面积</b><span class="origin">原创</span><span>对应规律 2・3</span></div>
+      <p>设 $0&lt;a&lt;2$。在 $0\le x\le\dfrac\pi2$ 上考虑曲线 $C_1:y=a\cos x$ 与 $C_2:y=\sin2x$。两曲线在 $0&lt;x&lt;\dfrac\pi2$ 内的交点的 $x$ 坐标为 $\alpha$，$x=\dfrac\pi2$ 处也相交。</p>
+      <p>(1) $\sin\alpha=\dfrac{a}{\B{ア}}$。</p>
+      <p>(2) $0\le x\le\alpha$ 部分中 $C_1$、$C_2$ 与 $y$ 轴围成的面积为 $S_1=\dfrac{a^2}{\B{イ}}$；$\alpha\le x\le\dfrac\pi2$ 部分中两曲线围成的面积为 $S_2=\Bigl(\B{ウ}-\dfrac{a}{\B{エ}}\Bigr)^2$。</p>
+      <p>(3) $S_1=S_2$ 时 $a=\B{オ}$。$S_1+S_2$ 的最小值为 $\dfrac{\B{カ}}{\B{キ}}$，此时 $\alpha=\dfrac{\pi}{\B{ク}}$。</p>
+      <details><summary>解答</summary>
+        <div class="ans">
+          <p>(1) $a\cos x=2\sin x\cos x$ ⇔ $\cos x(2\sin x-a)=0$。$0&lt;x&lt;\dfrac\pi2$ 时 $\cos x\ne0$，所以 $\sin\alpha=\dfrac a2$。</p>
+          <p>(2) $0\le x\le\alpha$ 时 $\sin x\le\dfrac a2$，$a\cos x-\sin2x=\cos x(a-2\sin x)\ge0$，$C_1$ 在上：</p>
+          $$S_1=\Bigl[a\sin x+\frac{\cos2x}{2}\Bigr]_0^\alpha=a\sin\alpha+\frac{\cos2\alpha-1}{2}=a\sin\alpha-\sin^2\alpha=\frac{a^2}{2}-\frac{a^2}{4}=\frac{a^2}{4}.$$
+          <p>$\alpha\le x\le\dfrac\pi2$ 时 $C_2$ 在上：</p>
+          $$S_2=\Bigl[-\frac{\cos2x}{2}-a\sin x\Bigr]_\alpha^{\frac\pi2}=\Bigl(\frac12-a\Bigr)+\frac{1-2\sin^2\alpha}{2}+a\sin\alpha=1-a+\frac{a^2}{4}=\Bigl(1-\frac a2\Bigr)^2.$$
+          <p>这里用 $\sin\alpha=\dfrac a2$ 把三角值换成 $a$，避免求 $\alpha$ 本身。</p>
+          <p>(3) $\dfrac{a^2}{4}=\Bigl(1-\dfrac a2\Bigr)^2$，$0&lt;a&lt;2$ 时两边底数都正，$\dfrac a2=1-\dfrac a2$，$a=1$。</p>
+          <p>$S_1+S_2=\dfrac{a^2}{2}-a+1=\dfrac12(a-1)^2+\dfrac12$，$a=1$ 时最小值 $\dfrac12$，此时 $\sin\alpha=\dfrac12$，$\alpha=\dfrac\pi6$。</p>
+          <ul class="keys"><li>ア = 2</li><li>イ = 4</li><li>ウ = 1</li><li>エ = 2</li><li>オ = 1</li><li>カ = 1</li><li>キ = 2</li><li>ク = 6</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 6　绕两轴旋转的体积</b><span class="origin">原创</span><span>对应规律 6</span></div>
+      <p>抛物线 $y=x^2$ 与直线 $y=2x$ 围成的图形记为 $D$。</p>
+      <p>(1) $D$ 的面积为 $\dfrac{\B{ア}}{\B{イ}}$。</p>
+      <p>(2) $D$ 绕 $x$ 轴旋转一周的体积为 $\dfrac{\B{ウ}\B{エ}}{\B{オ}\B{カ}}\pi$，绕 $y$ 轴旋转一周的体积为 $\dfrac{\B{キ}}{\B{ク}}\pi$。</p>
+      <p>(3) 把直线换成 $y=kx\ (k&gt;0)$，围成的图形绕 $x$ 轴、$y$ 轴旋转的体积分别为 $\dfrac{\B{ケ}}{\B{コ}\B{サ}}\pi k^5$、$\dfrac{1}{\B{シ}}\pi k^4$。两者相等时 $k=\dfrac{\B{ス}}{\B{セ}}$。</p>
+      <details><summary>解答</summary>
+        <div class="ans">
+          <p>(1) 交点 $x=0,2$。$\displaystyle S=\int_0^2(2x-x^2)\,dx=4-\frac83=\frac43$（或用公式 $\dfrac{2^3}{6}$）。</p>
+          <p>(2) 绕 $x$ 轴是圆环：$\displaystyle V_x=\pi\int_0^2(4x^2-x^4)\,dx=\pi\Bigl(\frac{32}{3}-\frac{32}{5}\Bigr)=\frac{64}{15}\pi$。</p>
+          <p>绕 $y$ 轴：$0\le y\le4$，外半径 $\sqrt y$（抛物线），内半径 $\dfrac y2$（直线）：$\displaystyle V_y=\pi\int_0^4\Bigl(y-\frac{y^2}{4}\Bigr)dy=\pi\Bigl(8-\frac{16}{3}\Bigr)=\frac83\pi$。</p>
+          <p>(3) 交点 $x=k$，$y=k^2$。$\displaystyle V_x=\pi\int_0^k(k^2x^2-x^4)\,dx=\pi\Bigl(\frac{k^5}{3}-\frac{k^5}{5}\Bigr)=\frac{2}{15}\pi k^5$。</p>
+          <p>$\displaystyle V_y=\pi\int_0^{k^2}\Bigl(y-\frac{y^2}{k^2}\Bigr)dy=\pi\Bigl(\frac{k^4}{2}-\frac{k^4}{3}\Bigr)=\frac16\pi k^4$。</p>
+          <p>相等：$\dfrac{2k}{15}=\dfrac16$，$k=\dfrac54$。（检查：$k=2$ 时与 (2) 一致。）</p>
+          <ul class="keys"><li>ア = 4</li><li>イ = 3</li><li>ウエ = 64</li><li>オカ = 15</li><li>キ = 8</li><li>ク = 3</li><li>ケ = 2</li><li>コサ = 15</li><li>シ = 6</li><li>ス = 5</li><li>セ = 4</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 7　区分求积法与积分定义的数列</b><span class="origin">原创</span><span>对应规律 5</span></div>
+      <p>(1) $\displaystyle\lim_{n\to\infty}\sum_{k=1}^{n}\frac{k}{n^2+k^2}=\frac{1}{\B{ア}}\log\B{イ}$。</p>
+      <p>(2) 对 $n=0,1,2,\dots$，令 $\displaystyle I_n=\int_1^e(\log x)^n\,dx$（$I_0=e-1$）。分部积分得 $I_{n+1}=e-(n+\B{ウ})I_n$，所以 $I_1=\B{エ}$，$I_2=e-\B{オ}$，$I_3=\B{カ}-\B{キ}e$。</p>
+      <p>(3) $\displaystyle\lim_{n\to\infty}nI_n=\B{ク}$。$\B{ク}$ 从下面选出：</p>
+      <p>⓪ $0$　① $1$　② $e$　③ $e-1$　④ $+\infty$</p>
+      <details><summary>解答</summary>
+        <div class="ans">
+          <p>(1) $\dfrac{k}{n^2+k^2}=\dfrac1n\cdot\dfrac{k/n}{1+(k/n)^2}$，所以极限 $\displaystyle=\int_0^1\frac{x}{1+x^2}dx=\Bigl[\frac12\log(1+x^2)\Bigr]_0^1=\frac12\log2$。</p>
+          <p>(2) $\displaystyle I_{n+1}=\Bigl[x(\log x)^{n+1}\Bigr]_1^e-\int_1^ex\cdot(n+1)(\log x)^n\cdot\frac1x\,dx=e-(n+1)I_n$。</p>
+          <p>$I_1=e-I_0=1$，$I_2=e-2I_1=e-2$，$I_3=e-3(e-2)=6-2e$。</p>
+          <p>(3) $1\le x\le e$ 时 $0\le\log x\le1$，所以 $I_n\ge0$（$n\ge1$ 时 $&gt;0$）。由递推式 $(n+1)I_n=e-I_{n+1}\le e$，得 $0\le I_n\le\dfrac{e}{n+1}\to0$。</p>
+          <p>于是 $nI_n=(n+1)I_n-I_n=e-I_{n+1}-I_n\to e$。选 ②。</p>
+          <ul class="keys"><li>ア = 2</li><li>イ = 2</li><li>ウ = 1</li><li>エ = 1</li><li>オ = 2</li><li>カ = 6</li><li>キ = 2</li><li>ク = 2</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 8　分段函数在移动区间上的积分最大值</b><span class="origin">原创</span><span>对应规律 4</span></div>
+      <p>定义 $f(x)=\begin{cases}x^2&amp;(0\le x\le1)\\2-x&amp;(1&lt;x\le2)\end{cases}$，对 $0\le t\le1$ 令 $\displaystyle F(t)=\int_t^{t+1}f(x)\,dx$。</p>
+      <p>(1) $F(t)=\dfrac{\B{ア}}{\B{イ}}+t-\dfrac{t^2}{\B{ウ}}-\dfrac{t^3}{\B{エ}}$。</p>
+      <p>(2) $F(t)$ 在 $t=\dfrac{\sqrt{\B{オ}}-\B{カ}}{\B{キ}}$ 时取最大值。</p>
+      <p>(3) $F(t)$ 的最大值为 $\dfrac{\B{ク}\sqrt{\B{ケ}}-\B{コ}}{\B{サ}\B{シ}}$。</p>
+      <details><summary>解答</summary>
+        <div class="ans">
+          <p>(1) $t\le1\le t+1$，在 $x=1$ 处分段：</p>
+          $$F(t)=\int_t^1x^2dx+\int_1^{t+1}(2-x)\,dx=\frac{1-t^3}{3}+\Bigl[2x-\frac{x^2}{2}\Bigr]_1^{t+1}=\frac{1-t^3}{3}+2t-\frac{t^2+2t}{2}.$$
+          <p>整理得 $F(t)=\dfrac13+t-\dfrac{t^2}{2}-\dfrac{t^3}{3}$。</p>
+          <p>(2) $F'(t)=1-t-t^2$（也可由 $F'(t)=f(t+1)-f(t)=(1-t)-t^2$ 直接得到）。$F'(t)=0$ 的正根 $t_0=\dfrac{\sqrt5-1}{2}\approx0.618$，在 $[0,1]$ 内；$t&lt;t_0$ 时 $F'&gt;0$，$t&gt;t_0$ 时 $F'&lt;0$，故 $t_0$ 处最大。</p>
+          <p>(3) 用 $t_0^2=1-t_0$ 降次：$t_0^3=t_0-t_0^2=2t_0-1$。</p>
+          $$F(t_0)=\frac13+t_0-\frac{1-t_0}{2}-\frac{2t_0-1}{3}=\frac16+\frac56t_0=\frac16+\frac{5(\sqrt5-1)}{12}=\frac{5\sqrt5-3}{12}.$$
+          <p>（约 $0.682$，大于端点值 $F(0)=\dfrac13$、$F(1)=\dfrac12$。）</p>
+          <ul class="keys"><li>ア = 1</li><li>イ = 3</li><li>ウ = 2</li><li>エ = 3</li><li>オ = 5</li><li>カ = 1</li><li>キ = 2</li><li>ク = 5</li><li>ケ = 5</li><li>コ = 3</li><li>サシ = 12</li></ul>
+        </div>
+      </details>
+    </article>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>做完后对照题库规律回顾：练习 1・2 练「切线 + 面积」，练习 5 练「三角曲线 + 交点关系式」，练习 3・8 练「参数函数的最值」，练习 4 练「积分方程」，练习 7 练「积分与极限」，练习 6 练「旋转体」。考试时间紧，面积题优先使用 $\dfrac{(\beta-\alpha)^3}{6}$、$\dfrac{(\beta-\alpha)^4}{12}$ 公式。</p>
+    </div>
+  </section>
+
+  <section id="terms">
+    <h2>7 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <p>积分题面中的常用句式：</p>
+    <div class="tw"><table>
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody>
+        <tr><td lang="ja">曲線 $C$ と直線 $\ell$ で囲まれた部分の面積を $S$ とする</td><td class="kana" lang="ja">きょくせん $C$ とちょくせん $\ell$ でかこまれたぶぶんのめんせきを $S$ とする</td><td>设曲线 $C$ 与直线 $\ell$ 围成部分的面积为 $S$</td></tr>
+        <tr><td lang="ja">$x$ 軸の周りに1回転してできる立体の体積</td><td class="kana" lang="ja">エックスじくのまわりにいっかいてんしてできるりったいのたいせき</td><td>绕 $x$ 轴旋转一周所得立体的体积</td></tr>
+        <tr><td lang="ja">原点から曲線に引いた接線</td><td class="kana" lang="ja">げんてんからきょくせんにひいたせっせん</td><td>从原点向曲线引的切线</td></tr>
+        <tr><td lang="ja">等式を満たす関数 $f(x)$ を求めよ</td><td class="kana" lang="ja">とうしきをみたすかんすう $f(x)$ をもとめよ</td><td>求满足等式的函数 $f(x)$</td></tr>
+        <tr><td lang="ja">$a$ に無関係な定数である</td><td class="kana" lang="ja">$a$ にむかんけいなていすうである</td><td>是与 $a$ 无关的常数</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>建议遮住中文一栏自测。<span lang="ja">囲まれた</span>、<span lang="ja">回転</span>、<span lang="ja">接線</span>、<span lang="ja">最小値</span>是积分大题题干中最常见的词。</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>本页依据 JASSO 2026 年度起适用的数学シラバス中「積分法とその応用」相关内容组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。所有例题和练习题均为原创，答案已用 SymPy 计算验证。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  function $(id) { return document.getElementById(id); }
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['定积分的计算', [
+      ['積分', 'せきぶん', '积分'], ['不定積分', 'ふていせきぶん', '不定积分'], ['定積分', 'ていせきぶん', '定积分'],
+      ['原始関数', 'げんしかんすう', '原函数'], ['積分定数', 'せきぶんていすう', '积分常数'], ['被積分関数', 'ひせきぶんかんすう', '被积函数'],
+      ['置換積分法', 'ちかんせきぶんほう', '换元积分法'], ['部分積分法', 'ぶぶんせきぶんほう', '分部积分法'], ['偶関数', 'ぐうかんすう', '偶函数'],
+      ['奇関数', 'きかんすう', '奇函数'], ['絶対値', 'ぜったいち', '绝对值'], ['自然対数', 'しぜんたいすう', '自然对数']
+    ]],
+    ['面积与体积', [
+      ['面積', 'めんせき', '面积'], ['体積', 'たいせき', '体积'], ['回転体', 'かいてんたい', '旋转体'],
+      ['断面積', 'だんめんせき', '截面积'], ['接線', 'せっせん', '切线'], ['共通接線', 'きょうつうせっせん', '公切线'],
+      ['接点', 'せってん', '切点'], ['交点', 'こうてん', '交点'], ['囲まれた部分', 'かこまれたぶぶん', '围成的部分'],
+      ['凹凸', 'おうとつ', '凹凸性'], ['放物線', 'ほうぶつせん', '抛物线'], ['双曲線', 'そうきょくせん', '双曲线']
+    ]],
+    ['积分方程与极限', [
+      ['積分方程式', 'せきぶんほうていしき', '积分方程'], ['定数', 'ていすう', '常数'], ['上端', 'じょうたん', '（积分）上限'],
+      ['下端', 'かたん', '（积分）下限'], ['区分求積法', 'くぶんきゅうせきほう', '区分求积法'], ['漸化式', 'ぜんかしき', '递推式'],
+      ['はさみうちの原理', 'はさみうちのげんり', '夹逼定理'], ['極限', 'きょくげん', '极限'], ['速度', 'そくど', '速度'],
+      ['道のり', 'みちのり', '路程']
+    ]],
+    ['题面常用语', [
+      ['求めよ', 'もとめよ', '求'], ['満たす', 'みたす', '满足'], ['最大値', 'さいだいち', '最大值'],
+      ['最小値', 'さいしょうち', '最小值'], ['極値', 'きょくち', '极值'], ['増減表', 'ぞうげんひょう', '增减表'],
+      ['無関係', 'むかんけい', '无关'], ['場合分け', 'ばあいわけ', '分类讨论']
+    ]]
+  ];
+
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja"><strong>' + t[0] + '</strong></td><td class="kana" lang="ja">' + t[1] + '</td><td>' + t[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = $('term-count');
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('on', on);
+          if (on && a.parentNode.parentNode.scrollWidth > a.parentNode.parentNode.clientWidth) {
+            var ol = a.parentNode.parentNode;
+            ol.scrollLeft = a.offsetLeft - ol.offsetLeft - 20;
+          }
+        });
+      });
+    }, { rootMargin: '-25% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\text{#1}}' },
+      throwOnError: false
+    });
+  }
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

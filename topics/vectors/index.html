@@ -254,6 +254,7 @@ svg.fig { max-width: 480px; margin: auto; }
         <li><a href="#examples">11 原创例题</a></li>
         <li><a href="#practice">12 练习题</a></li>
         <li><a href="#terms">13 术语对照</a></li>
+        <li><a href="#eju-style">真题风格练习</a></li>
       </ol>
     </div>
     <button class="chip theme-btn" id="theme" type="button">深色</button>
@@ -818,6 +819,29 @@ svg.fig { max-width: 480px; margin: auto; }
     <div class="box">
       <p><strong>EJU 应试提示：</strong>可以记住结论快速核对：对 $3,4,5$ 这样的系数，面积比就是 $3:4:5$。但题目常要求按步骤填写 $\ov{AP}$，所以改写过程也要熟练。</p>
       <p><strong>日语术语：</strong><span lang="ja">面積比</span>（<span class="kana" lang="ja">めんせきひ</span>）：面积比；<span lang="ja">三角形の内部</span>（<span class="kana" lang="ja">さんかくけいのないぶ</span>）：三角形内部；<span lang="ja">辺</span>（<span class="kana" lang="ja">へん</span>）：边。</p>
+    </div>
+    <h3>⑥ 外心与内积</h3>
+    <p>圆内接三角形的题目常需要外心 $O$ 的向量表示。关键事实：外心在每条边的垂直平分线上，所以 $\ov{AO}$ 在 $\ov{AB}$ 上的正射影恰好是 $AB$ 的一半，即</p>
+    $$\ov{AO}\cdot\ov{AB}=\frac12|\ov{AB}|^2,\qquad \ov{AO}\cdot\ov{AC}=\frac12|\ov{AC}|^2.$$
+    <p>设 $\ov{AO}=x\ov{AB}+y\ov{AC}$，代入这两个等式，就得到关于 $x,y$ 的联立一次方程。外接圆半径为 $R=|\ov{AO}|$，也可用正弦定理 $\dfrac{BC}{\sin A}=2R$ 核对。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　外心的向量表示</b><span class="origin">原创</span></div>
+      <p>$\triangle ABC$ 中 $AB=2,\ AC=3,\ \angle BAC=60^\circ$，外心为 $O$。用 $\vec b=\ov{AB},\ \vec c=\ov{AC}$ 表示 $\ov{AO}$。</p>
+      <div class="ans">
+        <ol>
+        <li>$|\vec b|^2=4,\ |\vec c|^2=9,\ \vec b\cdot\vec c=2\cdot3\cdot\cos60^\circ=3$。设 $\ov{AO}=x\vec b+y\vec c$。</li>
+        <li>$\ov{AO}\cdot\vec b=\dfrac12\cdot4$：$4x+3y=2$。</li>
+        <li>$\ov{AO}\cdot\vec c=\dfrac12\cdot9$：$3x+9y=\dfrac92$。</li>
+        <li>解得 $x=\dfrac16,\ y=\dfrac49$。</li>
+        </ol>
+        <p><strong>答案：</strong>$\ov{AO}=\dfrac16\vec b+\dfrac49\vec c$。</p>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>把 $\ov{AO}\cdot\ov{AB}$ 写成 $|\ov{AB}|^2$，漏掉 $\dfrac12$；或者把外心和重心混淆，直接写成 $\dfrac{\vec b+\vec c}{3}$。</p>
+    </div>
+    <div class="box">
+      <p><strong>日语术语：</strong><span lang="ja">外心</span>（<span class="kana" lang="ja">がいしん</span>）：外心；<span lang="ja">外接円</span>（<span class="kana" lang="ja">がいせつえん</span>）：外接圆；<span lang="ja">垂直二等分線</span>（<span class="kana" lang="ja">すいちょくにとうぶんせん</span>）：垂直平分线。</p>
     </div>
   </section>
 
@@ -1421,6 +1445,180 @@ svg.fig { max-width: 480px; margin: auto; }
       <p><strong>EJU 应试提示：</strong>可以在搜索框输入中文、日语或假名来查询。复习时试着遮住中文列，只看日语说出意思，在考场上就能减少读题时间。</p>
       <p><strong>日语术语：</strong><span lang="ja">求めよ</span>（<span class="kana" lang="ja">もとめよ</span>）：求……；<span lang="ja">〜とする</span>（<span class="kana" lang="ja">とする</span>）：设为……；<span lang="ja">実数</span>（<span class="kana" lang="ja">じっすう</span>）：实数；<span lang="ja">値</span>（<span class="kana" lang="ja">あたい</span>）：值。</p>
     </div>
+  </section>
+
+  <section id="eju-style">
+    <h2>真题风格练习（EJU 题库对照）</h2>
+    <p>本节对照《EJU 数学2 知识点分类题库 2005–2025》中「向量」类的 25 个题目归纳出题规律，并配有<strong>原创</strong>练习题（数字和设定均为原创，并非真题）。</p>
+    <div class="box good">
+      <p><strong>题库出题规律</strong></p>
+      <ul>
+        <li><strong>平面图形中“两条路径求交点”：</strong>平行四边形、三角形、长方形、四边形中两条线段的交点用两种方式表示，比较系数求比（2006年第1回、2010年第1回、2017年第1回、2023年第1回、2023年第2回）。</li>
+        <li><strong>向量等式定位与存在范围：</strong>由向量等式求点的位置、交点比例，或求点在三角形内部的参数条件（2006年第2回、2007年第2回、2022年第1回）。</li>
+        <li><strong>圆内接三角形 / 外心：</strong>利用外心与边的内积关系、分点距离、切线条件（2012年第2回、2014年第2回）。</li>
+        <li><strong>四面体与立方体：</strong>空间向量求高、体积、截面与交点，正交半径的球面四面体（2005年第2回、2010年第2回、2013年第1回、2019年第1回、2021年第2回、2024年）。</li>
+        <li><strong>动点的最值与范围：</strong>线段上的动点、同比例分点，化为二次函数求最短距离或夹角余弦的范围（2011年第2回、2014年第1回、2015年第2回、2021年第1回）。</li>
+        <li><strong>与其他单元结合：</strong>三角函数作系数、夹角确定参数、等分点内积和的极限（2007年第2回、2015年第1回、2016年第1回）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>填写方式：</strong>每个方框（如 $\boxed{\text{ア}}$）填一位数字或符号 $-$；两个字母相连（如 $\boxed{\text{クケ}}$）表示两位数。分数约到最简，根号内的数尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 1　平行四边形中的交点与垂直条件</b><span class="origin">原创 · 对应题型：平面图形中的交点、垂直条件</span></div>
+      <p>平行四边形 $ABCD$ 中，$AB=3,\ AD=2,\ \angle BAD=60^\circ$。令 $\vec b=\ov{AB},\ \vec d=\ov{AD}$。点 $E$ 把边 $DC$ 内分为 $1:2$，$F$ 为边 $BC$ 的中点。</p>
+      <p>(1) 线段 $AF$ 与 $BE$ 的交点为 $P$，则 $\ov{AP}=\dfrac{\boxed{\text{ア}}}{\boxed{\text{イ}}}\vec b+\dfrac{\boxed{\text{ウ}}}{\boxed{\text{エ}}}\vec d$，$BP:PE=\boxed{\text{オ}}:\boxed{\text{カ}}$。</p>
+      <p>(2) $|\ov{AP}|=\dfrac{\boxed{\text{キ}}\sqrt{\boxed{\text{クケ}}}}{\boxed{\text{コ}}}$。</p>
+      <p>(3) 边 $DC$ 上的点 $Q$ 满足 $AQ\perp BD$，则 $DQ:QC=\boxed{\text{サ}}:\boxed{\text{シ}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>$|\vec b|^2=9,\ |\vec d|^2=4,\ \vec b\cdot\vec d=3\cdot2\cdot\cos60^\circ=3$。$\ov{AE}=\vec d+\dfrac13\vec b$，$\ov{AF}=\vec b+\dfrac12\vec d$。</li>
+        <li>(1) $P$ 在 $AF$ 上：$\ov{AP}=s\vec b+\dfrac s2\vec d$。$P$ 在 $BE$ 上：$\ov{AP}=(1-t)\vec b+t\ov{AE}=\Bigl(1-\dfrac{2t}{3}\Bigr)\vec b+t\vec d$。</li>
+        <li>$\vec b,\vec d$ 一次独立，比较系数：$s=1-\dfrac{2t}{3},\ \dfrac s2=t$，解得 $s=\dfrac34,\ t=\dfrac38$。所以 $\ov{AP}=\dfrac34\vec b+\dfrac38\vec d$，$BP:PE=t:(1-t)=3:5$。</li>
+        <li>(2) $|\ov{AP}|^2=\dfrac{9}{16}\cdot9+2\cdot\dfrac34\cdot\dfrac38\cdot3+\dfrac{9}{64}\cdot4=\dfrac{81+27+9}{16}=\dfrac{117}{16}$，所以 $|\ov{AP}|=\dfrac{3\sqrt{13}}{4}$。</li>
+        <li>(3) 设 $\ov{DQ}=k\vec b\ (0\le k\le1)$，则 $\ov{AQ}=\vec d+k\vec b$，$\ov{BD}=\vec d-\vec b$。</li>
+        <li>$\ov{AQ}\cdot\ov{BD}=|\vec d|^2-\vec b\cdot\vec d+k(\vec b\cdot\vec d-|\vec b|^2)=4-3+k(3-9)=1-6k=0$，$k=\dfrac16$，所以 $DQ:QC=1:5$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 3，イ = 4，ウ = 3，エ = 8，オ = 3，カ = 5，キ = 3，クケ = 13，コ = 4，サ = 1，シ = 5</p>
+      </div>
+      </details>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>真题风格 2　由向量等式确定点的位置</b><span class="origin">原创 · 对应题型：向量等式与点的存在范围</span></div>
+      <p>$\triangle ABC$ 与实数 $k$ 给定，点 $P$ 满足 $\ov{PA}+2\ov{PB}+3\ov{PC}=k\ov{AB}$。令 $\vec b=\ov{AB},\ \vec c=\ov{AC}$。</p>
+      <p>(1) $\ov{AP}=\dfrac{\boxed{\text{ア}}-k}{\boxed{\text{イ}}}\vec b+\dfrac{\boxed{\text{ウ}}}{\boxed{\text{エ}}}\vec c$。</p>
+      <p>(2) $P$ 在 $\triangle ABC$ 的内部（不含边界）的条件是 $\boxed{\text{オカ}}&lt;k&lt;\boxed{\text{キ}}$。</p>
+      <p>(3) $k=1$ 时，直线 $AP$ 与边 $BC$ 交于 $D$，则 $BD:DC=\boxed{\text{ク}}:\boxed{\text{ケ}}$，$AP:PD=\boxed{\text{コ}}:\boxed{\text{サ}}$，$\triangle PBC$ 的面积是 $\triangle ABC$ 的 $\dfrac{\boxed{\text{シ}}}{\boxed{\text{ス}}}$ 倍。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 以 $A$ 为起点：$-\ov{AP}+2(\vec b-\ov{AP})+3(\vec c-\ov{AP})=k\vec b$，即 $6\ov{AP}=(2-k)\vec b+3\vec c$。所以 $\ov{AP}=\dfrac{2-k}{6}\vec b+\dfrac12\vec c$。</li>
+        <li>(2) $\ov{AP}=\alpha\vec b+\beta\vec c$ 在三角形内部 $\iff \alpha&gt;0,\ \beta&gt;0,\ \alpha+\beta&lt;1$。$\beta=\dfrac12&gt;0$ 恒成立；$\alpha&gt;0$ 得 $k&lt;2$；$\alpha+\beta=\dfrac{5-k}{6}&lt;1$ 得 $k&gt;-1$。故 $-1&lt;k&lt;2$。</li>
+        <li>(3) $k=1$：$\ov{AP}=\dfrac16\vec b+\dfrac12\vec c=\dfrac23\cdot\dfrac{\vec b+3\vec c}{4}$。所以 $\ov{AD}=\dfrac{\vec b+3\vec c}{4}$，$BD:DC=3:1$；$AP:AD=2:3$，$AP:PD=2:1$。</li>
+        <li>$\triangle PBC$ 与 $\triangle ABC$ 同底 $BC$，高之比为 $PD:AD=1:3$，面积为 $\dfrac13$ 倍。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 6，ウ = 1，エ = 2，オカ = −1，キ = 2，ク = 3，ケ = 1，コ = 2，サ = 1，シ = 1，ス = 3</p>
+      </div>
+      </details>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>真题风格 3　圆内接三角形与外心</b><span class="origin">原创 · 对应题型：圆内接三角形、外心的向量表示</span></div>
+      <p>$\triangle ABC$ 中 $AB=4,\ AC=6,\ \cos\angle BAC=\dfrac14$，外接圆的中心为 $O$。令 $\vec b=\ov{AB},\ \vec c=\ov{AC}$。</p>
+      <p>(1) $\vec b\cdot\vec c=\boxed{\text{ア}}$，$BC=\boxed{\text{イ}}\sqrt{\boxed{\text{ウエ}}}$。</p>
+      <p>(2) $\ov{AO}=\dfrac{\boxed{\text{オ}}}{\boxed{\text{カ}}}\vec b+\dfrac{\boxed{\text{キ}}}{\boxed{\text{ク}}}\vec c$。</p>
+      <p>(3) 直线 $AO$ 与边 $BC$ 交于 $D$，则 $BD:DC=\boxed{\text{ケ}}:\boxed{\text{コ}}$，$AO:OD=\boxed{\text{サ}}:\boxed{\text{シ}}$。</p>
+      <p>(4) 外接圆的半径为 $\dfrac{\boxed{\text{ス}}\sqrt{\boxed{\text{セ}}}}{\boxed{\text{ソ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $\vec b\cdot\vec c=4\cdot6\cdot\dfrac14=6$；$BC^2=16+36-2\cdot6=40$，$BC=2\sqrt{10}$。</li>
+        <li>(2) 设 $\ov{AO}=x\vec b+y\vec c$。外心满足 $\ov{AO}\cdot\vec b=\dfrac12|\vec b|^2=8,\ \ov{AO}\cdot\vec c=\dfrac12|\vec c|^2=18$：$16x+6y=8,\ 6x+36y=18$。解得 $x=\dfrac13,\ y=\dfrac49$。</li>
+        <li>(3) $\ov{AO}=\dfrac79\cdot\dfrac{3\vec b+4\vec c}{7}$，所以 $\ov{AD}=\dfrac{3\vec b+4\vec c}{7}$，$BD:DC=4:3$；$AO:AD=7:9$，$AO:OD=7:2$。</li>
+        <li>(4) $R^2=|\ov{AO}|^2=\ov{AO}\cdot(x\vec b+y\vec c)=8x+18y=\dfrac83+8=\dfrac{32}{3}$，$R=\dfrac{4\sqrt6}{3}$。核对：$\sin\angle BAC=\dfrac{\sqrt{15}}{4}$，$2R=\dfrac{2\sqrt{10}}{\sqrt{15}/4}=\dfrac{8\sqrt6}{3}$，一致。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 6，イ = 2，ウエ = 10，オ = 1，カ = 3，キ = 4，ク = 9，ケ = 4，コ = 3，サ = 7，シ = 2，ス = 4，セ = 6，ソ = 3</p>
+      </div>
+      </details>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>真题风格 4　正四面体中的动点：最短距离与夹角范围</b><span class="origin">原创 · 对应题型：正四面体中的动点、最值与余弦范围</span></div>
+      <p>棱长为 $1$ 的正四面体 $OABC$ 中，令 $\vec a=\ov{OA},\ \vec b=\ov{OB},\ \vec c=\ov{OC}$。点 $P$ 在棱 $OA$ 上，$\ov{OP}=t\vec a\ (0\le t\le1)$；$Q$ 为棱 $BC$ 的中点。</p>
+      <p>(1) $\vec a\cdot\vec b=\dfrac{\boxed{\text{ア}}}{\boxed{\text{イ}}}$。</p>
+      <p>(2) $|\ov{PQ}|^2=t^2-t+\dfrac{\boxed{\text{ウ}}}{\boxed{\text{エ}}}$，$PQ$ 的最小值为 $\dfrac{\sqrt{\boxed{\text{オ}}}}{\boxed{\text{カ}}}$，此时 $t=\dfrac{\boxed{\text{キ}}}{\boxed{\text{ク}}}$。</p>
+      <p>(3) $t$ 在 $0\le t\le1$ 内变化时，$\dfrac{\boxed{\text{ケ}}}{\boxed{\text{コ}}}\le\cos\angle BPC\le\dfrac{\boxed{\text{サ}}}{\boxed{\text{シ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 两条棱夹角为 $60^\circ$：$\vec a\cdot\vec b=\dfrac12$（$\vec b\cdot\vec c,\ \vec c\cdot\vec a$ 同样）。</li>
+        <li>(2) $\ov{PQ}=\dfrac{\vec b+\vec c}{2}-t\vec a$。$\Bigl|\dfrac{\vec b+\vec c}{2}\Bigr|^2=\dfrac{1+1+1}{4}=\dfrac34$，$\vec a\cdot\dfrac{\vec b+\vec c}{2}=\dfrac12$。</li>
+        <li>$|\ov{PQ}|^2=t^2-t+\dfrac34=\Bigl(t-\dfrac12\Bigr)^2+\dfrac12$，$t=\dfrac12$ 时最小值为 $\sqrt{\dfrac12}=\dfrac{\sqrt2}{2}$。</li>
+        <li>(3) $\ov{PB}=\vec b-t\vec a,\ \ov{PC}=\vec c-t\vec a$。$\ov{PB}\cdot\ov{PC}=\dfrac12-t+t^2$，$|\ov{PB}|^2=|\ov{PC}|^2=t^2-t+1$。</li>
+        <li>令 $u=t^2-t+1$，则 $\cos\angle BPC=\dfrac{u-\frac12}{u}=1-\dfrac{1}{2u}$。$0\le t\le1$ 时 $\dfrac34\le u\le1$，$\cos\angle BPC$ 随 $u$ 递增。</li>
+        <li>$u=\dfrac34$（$t=\dfrac12$）时取最小 $\dfrac13$；$u=1$（$t=0,1$）时取最大 $\dfrac12$。所以 $\dfrac13\le\cos\angle BPC\le\dfrac12$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 1，イ = 2，ウ = 3，エ = 4，オ = 2，カ = 2，キ = 1，ク = 2，ケ = 1，コ = 3，サ = 1，シ = 2</p>
+      </div>
+      </details>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>真题风格 5　球面上的点与四面体的高</b><span class="origin">原创 · 对应题型：空间向量求四面体的高、体积</span></div>
+      <p>坐标空间中，以原点 $O$ 为中心、半径为 $3$ 的球面上有三点 $A(1,2,2),\ B(2,1,-2),\ C(0,0,3)$。</p>
+      <p>(1) $\ov{OA}\cdot\ov{OB}=\boxed{\text{ア}}$，$AB=\boxed{\text{イ}}\sqrt{\boxed{\text{ウ}}}$。</p>
+      <p>(2) $\ov{AB}\cdot\ov{AC}=\boxed{\text{エオ}}$，$\triangle ABC$ 的面积为 $\dfrac{\boxed{\text{カ}}\sqrt{\boxed{\text{キク}}}}{\boxed{\text{ケ}}}$。</p>
+      <p>(3) 四面体 $OABC$ 的体积为 $\dfrac{\boxed{\text{コ}}}{\boxed{\text{サ}}}$，从 $O$ 到平面 $ABC$ 的距离为 $\dfrac{\boxed{\text{シ}}\sqrt{\boxed{\text{スセ}}}}{\boxed{\text{ソタ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $\ov{OA}\cdot\ov{OB}=2+2-4=0$（两条半径正交）。$\ov{AB}=(1,-1,-4)$，$AB=\sqrt{18}=3\sqrt2$。</li>
+        <li>(2) $\ov{AC}=(-1,-2,1)$，$\ov{AB}\cdot\ov{AC}=-1+2-4=-3$，$|\ov{AC}|^2=6$。</li>
+        <li>$S=\dfrac12\sqrt{|\ov{AB}|^2|\ov{AC}|^2-(\ov{AB}\cdot\ov{AC})^2}=\dfrac12\sqrt{108-9}=\dfrac{3\sqrt{11}}{2}$。</li>
+        <li>(3) 以 $\triangle OAB$ 为底：$OA\perp OB$，面积 $\dfrac92$。设 $\triangle OAB$ 的法向量 $\vec n=(x,y,z)$：$x+2y+2z=0,\ 2x+y-2z=0$，得 $\vec n=(2,-2,1)$。$C$ 到平面 $OAB$ 的距离 $\dfrac{|\ov{OC}\cdot\vec n|}{|\vec n|}=\dfrac33=1$，所以 $V=\dfrac13\cdot\dfrac92\cdot1=\dfrac32$。</li>
+        <li>设 $O$ 到平面 $ABC$ 的距离为 $h$，则 $\dfrac13\cdot\dfrac{3\sqrt{11}}{2}\cdot h=\dfrac32$，$h=\dfrac{3}{\sqrt{11}}=\dfrac{3\sqrt{11}}{11}$。</li>
+        <li>核对：垂足 $H=\ov{OA}+s\ov{AB}+t\ov{AC}$，由 $\ov{OH}\cdot\ov{AB}=\ov{OH}\cdot\ov{AC}=0$ 得 $s=\dfrac{7}{11},\ t=\dfrac{9}{11}$，$H\Bigl(\dfrac{9}{11},-\dfrac{3}{11},\dfrac{3}{11}\Bigr)$，$|\ov{OH}|=\dfrac{3\sqrt{11}}{11}$，一致。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 0，イ = 3，ウ = 2，エオ = −3，カ = 3，キク = 11，ケ = 2，コ = 3，サ = 2，シ = 3，スセ = 11，ソタ = 11</p>
+      </div>
+      </details>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>真题风格 6　立方体的截面与对角线的交点</b><span class="origin">原创 · 对应题型：立方体中的截面、交点与距离</span></div>
+      <p>棱长为 $6$ 的立方体 $ABCD\text{-}EFGH$（$AB,AD,AE$ 为三条棱），令 $\vec b=\ov{AB},\ \vec d=\ov{AD},\ \vec e=\ov{AE}$。$P$ 为棱 $AB$ 的中点，点 $Q$ 在棱 $AD$ 上且 $AQ=2$。</p>
+      <p>(1) 点 $X$ 满足 $\ov{AX}=x\vec b+y\vec d+z\vec e$。$X$ 在平面 $PQE$ 上的条件是 $\boxed{\text{ア}}x+\boxed{\text{イ}}y+z=\boxed{\text{ウ}}$。</p>
+      <p>(2) 对角线 $AG$ 与平面 $PQE$ 的交点为 $R$，则 $\ov{AR}=\dfrac{\boxed{\text{エ}}}{\boxed{\text{オ}}}\ov{AG}$。</p>
+      <p>(3) $\triangle PQE$ 的面积为 $\boxed{\text{カ}}\sqrt{\boxed{\text{キク}}}$，点 $A$ 到平面 $PQE$ 的距离为 $\dfrac{\boxed{\text{ケ}}\sqrt{\boxed{\text{コサ}}}}{\boxed{\text{シ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $\ov{AP}=\dfrac12\vec b,\ \ov{AQ}=\dfrac13\vec d,\ \ov{AE}=\vec e$。平面上的点：$\ov{AX}=\ov{AP}+s\ov{PQ}+u\ov{PE}=\dfrac{1-s-u}{2}\vec b+\dfrac s3\vec d+u\vec e$。</li>
+        <li>所以 $x=\dfrac{1-s-u}{2},\ y=\dfrac s3,\ z=u$，消去 $s,u$：$2x+3y+z=1$。（即“系数和为 $1$”的共面条件。）</li>
+        <li>(2) $\ov{AG}=\vec b+\vec d+\vec e$，设 $\ov{AR}=k\ov{AG}$，代入 $2k+3k+k=1$，$k=\dfrac16$。</li>
+        <li>(3) 取坐标 $A(0,0,0)$，$P(3,0,0),\ Q(0,2,0),\ E(0,0,6)$。$\ov{PQ}=(-3,2,0),\ \ov{PE}=(-3,0,6)$。$|\ov{PQ}|^2=13,\ |\ov{PE}|^2=45,\ \ov{PQ}\cdot\ov{PE}=9$。</li>
+        <li>$S=\dfrac12\sqrt{13\cdot45-81}=\dfrac12\sqrt{504}=3\sqrt{14}$。</li>
+        <li>四面体 $APQE$ 的体积 $=\dfrac13\cdot\Bigl(\dfrac12\cdot3\cdot2\Bigr)\cdot6=6$。所以距离 $=\dfrac{3\cdot6}{3\sqrt{14}}=\dfrac{6}{\sqrt{14}}=\dfrac{3\sqrt{14}}{7}$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 3，ウ = 1，エ = 1，オ = 6，カ = 3，キク = 14，ケ = 3，コサ = 14，シ = 7</p>
+      </div>
+      </details>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>真题风格 7　两条线段上同比例分点间的最短距离</b><span class="origin">原创 · 对应题型：两线段上动点的最短距离</span></div>
+      <p>坐标空间中 $O(0,0,0),\ A(4,0,0),\ B(0,4,0),\ C(0,0,2)$。对 $0\le t\le1$，点 $P$ 把线段 $OA$ 内分为 $t:(1-t)$，点 $Q$ 把线段 $BC$ 内分为 $t:(1-t)$。</p>
+      <p>(1) $\ov{OA}\cdot\ov{BC}=\boxed{\text{ア}}$，$BC=\boxed{\text{イ}}\sqrt{\boxed{\text{ウ}}}$。</p>
+      <p>(2) $|\ov{PQ}|^2=\boxed{\text{エオ}}t^2-\boxed{\text{カキ}}t+\boxed{\text{クケ}}$。</p>
+      <p>(3) $PQ$ 在 $t=\dfrac{\boxed{\text{コ}}}{\boxed{\text{サ}}}$ 时取最小值 $\dfrac{\boxed{\text{シ}}\sqrt{\boxed{\text{ス}}}}{\boxed{\text{セ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $\ov{BC}=(0,-4,2)$，$\ov{OA}\cdot\ov{BC}=0$；$BC=\sqrt{20}=2\sqrt5$。</li>
+        <li>(2) $\ov{OP}=t\ov{OA}=(4t,0,0)$，$\ov{OQ}=\ov{OB}+t\ov{BC}=(0,\ 4-4t,\ 2t)$。$\ov{PQ}=(-4t,\ 4-4t,\ 2t)$。</li>
+        <li>$|\ov{PQ}|^2=16t^2+16(1-t)^2+4t^2=36t^2-32t+16$。</li>
+        <li>(3) $36t^2-32t+16=36\Bigl(t-\dfrac49\Bigr)^2+\dfrac{80}{9}$，$t=\dfrac49$（在 $0\le t\le1$ 内）时最小，最小值 $\sqrt{\dfrac{80}{9}}=\dfrac{4\sqrt5}{3}$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 0，イ = 2，ウ = 5，エオ = 36，カキ = 32，クケ = 16，コ = 4，サ = 9，シ = 4，ス = 5，セ = 3</p>
+      </div>
+      </details>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>真题风格 8　边上等分点的内积和与极限</b><span class="origin">原创 · 对应题型：等分点向量的和与极限</span></div>
+      <p>$\triangle ABC$ 中 $AB=2,\ AC=3,\ \angle BAC=60^\circ$。把边 $BC$ 分成 $n$ 等份，从 $B$ 起依次记分点为 $P_0(=B),P_1,\dots,P_n(=C)$。令 $x_k=\dfrac kn$。</p>
+      <p>(1) $BC=\sqrt{\boxed{\text{ア}}}$。</p>
+      <p>(2) $|\ov{AP_k}|^2=\boxed{\text{イ}}x_k^2-\boxed{\text{ウ}}x_k+\boxed{\text{エ}}$。</p>
+      <p>(3) $S_n=\dfrac1n\displaystyle\sum_{k=1}^{n}|\ov{AP_k}|^2=\dfrac{\boxed{\text{オカ}}n^2+\boxed{\text{キク}}n+\boxed{\text{ケ}}}{\boxed{\text{コ}}n^2}$，$\displaystyle\lim_{n\to\infty}S_n=\dfrac{\boxed{\text{サシ}}}{\boxed{\text{ス}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 令 $\vec b=\ov{AB},\ \vec c=\ov{AC}$，$\vec b\cdot\vec c=2\cdot3\cdot\dfrac12=3$。$BC^2=4+9-6=7$。</li>
+        <li>(2) $\ov{AP_k}=(1-x_k)\vec b+x_k\vec c$，所以 $|\ov{AP_k}|^2=4(1-x_k)^2+6x_k(1-x_k)+9x_k^2=7x_k^2-2x_k+4$。</li>
+        <li>(3) $\displaystyle\sum_{k=1}^n\Bigl(\frac{7k^2}{n^2}-\frac{2k}{n}+4\Bigr)=\frac{7(n+1)(2n+1)}{6n}-(n+1)+4n$。</li>
+        <li>除以 $n$ 并通分：$S_n=\dfrac{7(2n^2+3n+1)-6(n^2+n)+24n^2}{6n^2}=\dfrac{32n^2+15n+7}{6n^2}$。</li>
+        <li>$n\to\infty$：$S_n\to\dfrac{32}{6}=\dfrac{16}{3}$。（这也等于 $\displaystyle\int_0^1(7x^2-2x+4)\,dx=\frac{16}{3}$，即区分求积法。）</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 7，イ = 7，ウ = 2，エ = 4，オカ = 32，キク = 15，ケ = 7，コ = 6，サシ = 16，ス = 3</p>
+      </div>
+      </details>
+    </article>
   </section>
 
   <footer>

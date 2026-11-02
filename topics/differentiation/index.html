@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EJU 数学コース2 · 19 微分（导数的应用）</title>
+<meta name="description" content="面向 EJU 数学コース2 的中文讲义：导数的计算、切线、增减与极值、最大最小值、导数在方程与不等式中的应用，含按真题出题规律编写的原创填空练习和日语术语对照表。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#ex-svg { touch-action: pan-y; cursor: ew-resize; user-select: none; -webkit-user-select: none; background: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+.back { display: inline-block; color: #c5d3ef; text-decoration: none; font-size: 15px; margin-bottom: 18px; }
+.back:hover { text-decoration: underline; }
+details { margin-top: 10px; }
+details > summary { display: inline-block; cursor: pointer; font-size: 14.5px; min-height: 36px; padding: 4px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary:hover { background: var(--accent-soft); }
+details[open] > summary { background: var(--accent); color: var(--surface); }
+.q-head > span:not(.origin) { font-size: 12.5px; }
+@media print { details > .ans { display: block; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <a class="back" href="../../">← 目录</a>
+      <p class="eyebrow">EJU 数学コース2 · 出题项目 19 · 微分法の応用</p>
+      <h1>微分（导数的应用）</h1>
+      <p class="lead">从导数的计算出发，讲切线、増減表与极值、闭区间最值，再到用导数讨论方程的解数和不等式恒成立。最后按《EJU 数学2 题库 2005–2025》中「微分」类 29 题的出题规律，配 8 道原创 EJU 风格填空练习。</p>
+    </div>
+    <div class="hero-formula" aria-hidden="true">
+      $$y-f(t)=f'(t)(x-t)$$
+      $$f'(x)&gt;0\ \Rightarrow\ f(x)\nearrow$$
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div style="flex:1;min-width:0">
+      <p class="toc-title">目录</p>
+      <ol>
+        <li><a href="#calc">1 导数的计算</a></li>
+        <li><a href="#tangent">2 切线</a></li>
+        <li><a href="#extrema">3 増減与极值</a></li>
+        <li><a href="#maxmin">4 最大值与最小值</a></li>
+        <li><a href="#apply">5 方程与不等式</a></li>
+        <li><a href="#practice">6 真题风格练习</a></li>
+        <li><a href="#terms">7 术语对照</a></li>
+      </ol>
+    </div>
+    <button class="chip theme-btn" id="theme" type="button">深色</button>
+  </nav>
+
+<main id="main">
+  <div class="box warn" style="margin-top:28px">
+    <p><strong>符号提醒：</strong>日本教材和 EJU 中，$\log x$ 通常就是自然对数（底为 $e$），相当于中文教材的 $\ln x$。本讲义统一按日本写法使用 $\log x$。三角函数的导数公式中，角一律用弧度。</p>
+  </div>
+
+  <section id="calc">
+    <h2>1 导数的计算</h2>
+    <p class="jp-sub" lang="ja">導関数の計算 — 積・商・合成関数の微分法、対数微分法</p>
+
+    <h3>基本公式</h3>
+    <p>函数 $f(x)$ 的导数（<span lang="ja">導関数</span>）定义为 $f'(x)=\displaystyle\lim_{h\to0}\frac{f(x+h)-f(x)}{h}$。考试中直接使用下面的公式：</p>
+    <div class="formula-grid">
+      <div>$(x^\alpha)'=\alpha x^{\alpha-1}$</div>
+      <div>$(e^x)'=e^x,\quad (a^x)'=a^x\log a$</div>
+      <div>$(\log x)'=\dfrac1x,\quad (\log|x|)'=\dfrac1x$</div>
+      <div>$(\log_a x)'=\dfrac{1}{x\log a}$</div>
+      <div>$(\sin x)'=\cos x,\quad(\cos x)'=-\sin x$</div>
+      <div>$(\tan x)'=\dfrac{1}{\cos^2x}$</div>
+    </div>
+    <div class="tw"><table>
+      <thead><tr><th>法则</th><th>公式</th><th>日语</th></tr></thead>
+      <tbody>
+        <tr><td>积的导数</td><td>$(fg)'=f'g+fg'$</td><td lang="ja">積の微分法</td></tr>
+        <tr><td>商的导数</td><td>$\Bigl(\dfrac fg\Bigr)'=\dfrac{f'g-fg'}{g^2}$</td><td lang="ja">商の微分法</td></tr>
+        <tr><td>复合函数的导数</td><td>$\{f(g(x))\}'=f'(g(x))\,g'(x)$</td><td lang="ja">合成関数の微分法</td></tr>
+        <tr><td>对数求导法</td><td>两边取 $\log$ 再求导：$\dfrac{y'}{y}=(\log y)'$</td><td lang="ja">対数微分法</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>为什么复合函数要“再乘内层的导数”？</strong>$y=f(u),\ u=g(x)$ 时，$x$ 变化 $\Delta x$ 引起 $u$ 变化 $\Delta u$，再引起 $y$ 变化 $\Delta y$。$\dfrac{\Delta y}{\Delta x}=\dfrac{\Delta y}{\Delta u}\cdot\dfrac{\Delta u}{\Delta x}$，取极限就是 $\dfrac{dy}{dx}=\dfrac{dy}{du}\cdot\dfrac{du}{dx}$。</p>
+    <p><strong>为什么要用对数求导法？</strong>$x^x$ 这种“底和指数都含 $x$”的幂指函数（<span lang="ja">べき指数関数</span>）既不能用 $(x^\alpha)'$，也不能用 $(a^x)'$。取对数后 $\log y=x\log x$，指数被“拿下来”，变成普通的积。</p>
+
+    <article class="q">
+      <div class="q-head"><b>补充例题　各种求导</b><span class="origin">原创</span></div>
+      <p>求导：(1) $y=\log(x^2+1)$；(2) $y=e^{2x}\sin x$；(3) $y=\sin^3 2x$；(4) $y=x^x\ (x&gt;0)$。</p>
+      <div class="ans">
+        <ol>
+          <li>(1) 复合函数：$y'=\dfrac{1}{x^2+1}\cdot 2x=\dfrac{2x}{x^2+1}$。</li>
+          <li>(2) 积的导数：$y'=2e^{2x}\sin x+e^{2x}\cos x=e^{2x}(2\sin x+\cos x)$。</li>
+          <li>(3) 两层复合：$y'=3\sin^2 2x\cdot\cos 2x\cdot 2=6\sin^2 2x\cos 2x$。</li>
+          <li>(4) $\log y=x\log x$，两边对 $x$ 求导：$\dfrac{y'}{y}=\log x+1$，所以 $y'=x^x(\log x+1)$。</li>
+        </ol>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>$(\sin 2x)'$ 写成 $\cos 2x$，漏乘内层导数 $2$。</li>
+        <li>$(x^x)'$ 写成 $x\cdot x^{x-1}=x^x$ 或 $x^x\log x$，都是只套了一半公式。</li>
+        <li>$(2^x)'$ 写成 $x\cdot2^{x-1}$。指数函数的导数是 $2^x\log 2$。</li>
+        <li>商的导数分子顺序写反：是 $f'g-fg'$，不是 $fg'-f'g$。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>EJU 中求导本身很少单独考，而是作为后续小问的第一步，例如「$f'(x)=\dfrac{\B{ア}-\log x}{x^{\B{イ}}}$」。<strong>先把导数化成“因式乘积”或“分子分母分开”的形式</strong>，后面判断符号会轻松很多。</p>
+      <p><strong>日语术语：</strong><span lang="ja">微分する</span>（<span class="kana" lang="ja">びぶんする</span>）：求导；<span lang="ja">導関数</span>（<span class="kana" lang="ja">どうかんすう</span>）：导函数；<span lang="ja">微分係数</span>（<span class="kana" lang="ja">びぶんけいすう</span>）：导数值；<span lang="ja">第2次導関数</span>（<span class="kana" lang="ja">だいにじどうかんすう</span>）：二阶导数。</p>
+    </div>
+  </section>
+
+  <section id="tangent">
+    <h2>2 切线</h2>
+    <p class="jp-sub" lang="ja">接線・法線 — 接点を文字でおく、共通接線</p>
+
+    <h3>切线与法线方程</h3>
+    <p>曲线 $y=f(x)$ 上点 $(t,f(t))$ 处的切线（<span lang="ja">接線</span>）与法线（<span lang="ja">法線</span>）：</p>
+    $$\text{切线：}\ y-f(t)=f'(t)(x-t),\qquad \text{法线：}\ y-f(t)=-\frac{1}{f'(t)}(x-t)\ \ (f'(t)\ne0)$$
+    <p><strong>典型解法：</strong>凡是“过曲线外一点 $(p,q)$ 引切线”的题，都<strong>先把切点设成 $(t,f(t))$</strong>，写出切线方程，再代入 $(p,q)$ 得到关于 $t$ 的方程。这个方程的实数解个数＝切点个数。</p>
+    <p><strong>为什么切点个数就是切线条数？</strong>对于三次函数，不同切点的切线一定不同（三次曲线没有“二重切线”）；对于四次曲线等则可能出现一条切线切于两点的情况，要另外检查。EJU 中以三次曲线为主，可以直接用“$t$ 的解数＝切线条数”。</p>
+
+    <h3>两曲线的公切线与相切</h3>
+    <ul>
+      <li><strong>两曲线在同一点相切</strong>（<span lang="ja">共有点で接する</span>）：$f(t)=g(t)$ 且 $f'(t)=g'(t)$。</li>
+      <li><strong>公切线</strong>（<span lang="ja">共通接線</span>）：分别在 $y=f(x)$ 上设切点 $s$、在 $y=g(x)$ 上设切点 $t$，令两条切线的<strong>斜率相等且截距相等</strong>，得到 $s,t$ 的联立方程。</li>
+      <li><strong>两条切线垂直</strong>：斜率之积 $f'(s)f'(t)=-1$；夹角用 $\tan\theta=\Bigl|\dfrac{m_1-m_2}{1+m_1m_2}\Bigr|$。</li>
+    </ul>
+    <article class="q">
+      <div class="q-head"><b>补充例题　从原点引切线</b><span class="origin">原创</span></div>
+      <p>从原点向曲线 $y=\log x$ 引切线，求切线方程和切点。</p>
+      <div class="ans">
+        <ol>
+          <li>设切点 $(t,\log t)$，$y'=\dfrac1x$，切线：$y=\dfrac1t(x-t)+\log t$。</li>
+          <li>过原点：$0=-1+\log t$，得 $t=e$。</li>
+          <li>切线 $y=\dfrac1e x$，切点 $(e,1)$。</li>
+        </ol>
+      </div>
+    </article>
+    <article class="q">
+      <div class="q-head"><b>补充例题　两曲线相切</b><span class="origin">原创</span></div>
+      <p>曲线 $y=x^2+a$ 与 $y=\log x$ 相切时，求 $a$ 的值。</p>
+      <div class="ans">
+        <ol>
+          <li>设切点横坐标为 $t\ (t&gt;0)$。斜率相等：$2t=\dfrac1t$，得 $t=\dfrac{1}{\sqrt2}$。</li>
+          <li>函数值相等：$t^2+a=\log t$，所以 $a=\log\dfrac1{\sqrt2}-\dfrac12=-\dfrac12\log2-\dfrac12$。</li>
+        </ol>
+      </div>
+    </article>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>把题目给的“曲线外一点”当成切点直接代入 $f'(p)$。点不在曲线上时，它不是切点！</li>
+        <li>求公切线时，在两条曲线上用了同一个切点 $t$。只有“在共有点相切”才是同一点。</li>
+        <li>法线斜率写成 $\dfrac{1}{f'(t)}$，漏了负号。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>「点 $\mathrm{A}$ から曲線 $C$ に3本の接線が引ける」这类题，答案一般是：把关于 $t$ 的方程整理成 $a=g(t)$，再看水平线 $y=a$ 与 $y=g(t)$ 的交点个数（见第 5 节“定数分离”）。三次曲线时，“三条切线”$\Leftrightarrow$ $a$ 在 $g(t)$ 的极小值与极大值之间。</p>
+      <p><strong>日语术语：</strong><span lang="ja">接線</span>（<span class="kana" lang="ja">せっせん</span>）：切线；<span lang="ja">接点</span>（<span class="kana" lang="ja">せってん</span>）：切点；<span lang="ja">法線</span>（<span class="kana" lang="ja">ほうせん</span>）：法线；<span lang="ja">共通接線</span>（<span class="kana" lang="ja">きょうつうせっせん</span>）：公切线；<span lang="ja">傾き</span>（<span class="kana" lang="ja">かたむき</span>）：斜率；<span lang="ja">直交する</span>（<span class="kana" lang="ja">ちょっこうする</span>）：垂直。</p>
+    </div>
+  </section>
+
+  <section id="extrema">
+    <h2>3 増減与极值</h2>
+    <p class="jp-sub" lang="ja">関数の増減と極値 — 増減表、極値をもつ条件</p>
+
+    <h3>単調性与増減表</h3>
+    <p>在区间内 $f'(x)&gt;0$ 则 $f(x)$ 单调递增（<span lang="ja">単調に増加</span>），$f'(x)&lt;0$ 则单调递减。$f'(x)$ 在 $x=a$ 处<strong>由正变负</strong>，$f(a)$ 为极大值（<span lang="ja">極大値</span>）；<strong>由负变正</strong>，$f(a)$ 为极小值（<span lang="ja">極小値</span>）。日本的答案习惯用増減表（<span lang="ja">増減表</span>）整理：</p>
+    <p>例：$f(x)=xe^{-x}$，$f'(x)=(1-x)e^{-x}$。因为 $e^{-x}&gt;0$，符号只由 $1-x$ 决定。</p>
+    <div class="tw"><table class="sign">
+      <thead><tr><th>$x$</th><th>$\cdots$</th><th>$1$</th><th>$\cdots$</th></tr></thead>
+      <tbody>
+        <tr><td>$f'(x)$</td><td>$+$</td><td>$0$</td><td>$-$</td></tr>
+        <tr><td>$f(x)$</td><td>$\nearrow$</td><td>极大 $\dfrac1e$</td><td>$\searrow$</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>为什么只看“会变号的因子”？</strong>$e^{-x}$、$x^2+1$、$\cos^2x+1$ 之类恒为正的因子不影响正负，先把它们剥离出来，剩下的因子才决定増減。这也是第 1 节强调“把导数写成乘积”的原因。</p>
+
+    <h3>极值的必要条件 ≠ 充分条件</h3>
+    <p>$f(x)$ 在 $x=a$ 可导且取极值 $\Rightarrow f'(a)=0$。但<strong>反过来不成立</strong>：$f(x)=x^3$ 有 $f'(0)=0$，但 $f'$ 在 $0$ 两侧都为正，不是极值。所以“由极值条件求参数”时，<strong>求出参数后必须回代检验 $f'$ 确实变号</strong>。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　由极值确定系数</b><span class="origin">原创</span></div>
+      <p>$f(x)=x^3+ax^2+bx$ 在 $x=1$ 处取极小值 $-2$，求 $a,b$。</p>
+      <div class="ans">
+        <ol>
+          <li>必要条件：$f'(1)=3+2a+b=0$，$f(1)=1+a+b=-2$。两式相减得 $a=0$，于是 $b=-3$。</li>
+          <li>检验：$f(x)=x^3-3x$，$f'(x)=3(x+1)(x-1)$，在 $x=1$ 处由负变正，确为极小值，$f(1)=-2$ ✓。</li>
+        </ol>
+        <p><strong>答案：</strong>$a=0,\ b=-3$。</p>
+      </div>
+    </article>
+
+    <h3>“有极值”的条件</h3>
+    <ul>
+      <li><strong>三次函数</strong> $f(x)=x^3+ax^2+bx+c$ 有极值 $\Leftrightarrow$ $f'(x)=3x^2+2ax+b=0$ 有两个不同实根 $\Leftrightarrow$ 判别式 $D/4=a^2-3b&gt;0$。例如 $x^3+ax^2+3x$ 有极值 $\Leftrightarrow a^2-9&gt;0\Leftrightarrow a&lt;-3$ 或 $a&gt;3$。</li>
+      <li><strong>含 $\log x$ 的函数</strong>：定义域是 $x&gt;0$，所以 $f'(x)$ 的分子（常为二次式）要在 $x&gt;0$ 内有两个不同的根才能“同时有极大值和极小值”：判别式 $&gt;0$、两根之和 $&gt;0$、两根之积 $&gt;0$。</li>
+      <li><strong>已知两极值点的关系</strong>（如 $\beta=3\alpha$）：用根与系数的关系（<span lang="ja">解と係数の関係</span>）处理，不必解出根。</li>
+    </ul>
+
+    <h3>二阶导数与凹凸</h3>
+    <p>$f''(x)&gt;0$ 的区间曲线下凸（<span lang="ja">下に凸</span>），$f''(x)&lt;0$ 则上凸（<span lang="ja">上に凸</span>）；$f''$ 变号的点叫拐点（<span lang="ja">変曲点</span>）。若 $f'(a)=0$ 且 $f''(a)&gt;0$，则 $f(a)$ 为极小值（$f''(a)&lt;0$ 则为极大值）——这是检验极值的快捷方法。</p>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>由 $f'(a)=0$ 直接断定极值，忘记检验变号（如三角函数题中 $\sin x=1$ 处常是“驻点但非极值”）。</li>
+        <li>含 $\log x$ 的函数忘记定义域 $x&gt;0$，把负根也算成极值点。</li>
+        <li>三次函数有极值的条件写成 $D\ge0$。$D=0$ 时 $f'$ 不变号，没有极值。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>题目常给出「$f(x)$ が極大値と極小値をもつような $a$ の値の範囲」。先写定义域，再把 $f'(x)$ 的分子提出来变成二次方程的根的分布问题。填空格里出现「$\B{ア}&lt;a&lt;\B{イ}$」时，端点通常取不到。</p>
+      <p><strong>日语术语：</strong><span lang="ja">増減表</span>（<span class="kana" lang="ja">ぞうげんひょう</span>）：增减表；<span lang="ja">極大値</span>（<span class="kana" lang="ja">きょくだいち</span>）：极大值；<span lang="ja">極小値</span>（<span class="kana" lang="ja">きょくしょうち</span>）：极小值；<span lang="ja">極値をもつ</span>（<span class="kana" lang="ja">きょくちをもつ</span>）：有极值；<span lang="ja">変曲点</span>（<span class="kana" lang="ja">へんきょくてん</span>）：拐点。</p>
+    </div>
+  </section>
+
+  <section id="maxmin">
+    <h2>4 最大值与最小值</h2>
+    <p class="jp-sub" lang="ja">最大値・最小値 — 閉区間、場合分け、置き換え</p>
+
+    <h3>闭区间上的最值</h3>
+    <p>连续函数在闭区间 $[a,b]$ 上一定有最大值和最小值，它们只可能出现在<strong>区间内的极值点</strong>或<strong>端点</strong>。所以列出这些候选值比较即可。</p>
+    <article class="q">
+      <div class="q-head"><b>补充例题　闭区间最值</b><span class="origin">原创</span></div>
+      <p>求 $f(x)=x^3-3x^2-9x+2\ (-2\le x\le4)$ 的最大值和最小值。</p>
+      <div class="ans">
+        <ol>
+          <li>$f'(x)=3x^2-6x-9=3(x+1)(x-3)$，区间内的驻点为 $x=-1,3$。</li>
+          <li>候选值：$f(-2)=0$，$f(-1)=7$，$f(3)=-25$，$f(4)=-18$。</li>
+          <li>最大值 $7\ (x=-1)$，最小值 $-25\ (x=3)$。</li>
+        </ol>
+      </div>
+    </article>
+
+    <h3>含参数：按极值点与区间的位置分类</h3>
+    <p>例如 $f(x)=x^3-3ax^2\ (a&gt;0)$ 在 $0\le x\le 2$ 上：$f'(x)=3x(x-2a)$，极小值点 $x=2a$。</p>
+    <ul>
+      <li><strong>求最小值</strong>：看极小值点 $2a$ 在不在区间内——$2a&lt;2$ 与 $2a\ge2$ 分两种情况。</li>
+      <li><strong>求最大值</strong>：候选是两个端点 $f(0)$、$f(2)$，比较它们的大小，分界是 $f(0)=f(2)$。</li>
+    </ul>
+    <p><strong>为什么最大、最小的分界点不同？</strong>最小值由“谷底是否落在区间内”决定；最大值由“两端谁更高”决定。两者是不同的问题，分类的界线自然不同。这是 EJU 高频的陷阱。</p>
+
+    <h3>换元：化成熟悉的函数</h3>
+    <ul>
+      <li>$t=e^x+e^{-x}$（或 $2^x+2^{-x}$）：$t\ge2$，且 $e^{2x}+e^{-2x}=t^2-2$，$e^{3x}+e^{-3x}=t^3-3t$。</li>
+      <li>$t=\sin x+\cos x$：$-\sqrt2\le t\le\sqrt2$，$\sin x\cos x=\dfrac{t^2-1}{2}$。</li>
+      <li>$t=\log x$：$x&gt;0$ 对应 $t$ 取全体实数。</li>
+      <li>约束 $x^2+y^2=r^2$ 下求 $x+y$ 与 $x^3+y^3$ 的关系：令 $t=x+y$，则 $xy=\dfrac{t^2-r^2}{2}$，$x^3+y^3=t^3-3xyt$ 变成 $t$ 的三次函数。</li>
+    </ul>
+    <p><strong>换元后最重要的一步是写出新变量的范围。</strong>例如 $t=e^x+e^{-x}$ 由算术几何平均不等式得 $t\ge2$（等号 $x=0$）。</p>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>只比较极值，忘记端点值。例题中如果漏看端点，会误把 $f(-2)=0$ 漏掉。</li>
+        <li>换元后忘了新变量的范围，把 $t&lt;2$ 处的极值也算进去。</li>
+        <li>含参数时只算了“极小值点在区间内”这一种情况。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>EJU 的填空通常把分类写进题干：「$0&lt;a&lt;\B{ア}$ のとき、最小値は $\B{イ}$」。看到分界值就知道要分类，并可以用分界值反过来检查自己的计算。</p>
+      <p><strong>日语术语：</strong><span lang="ja">最大値</span>（<span class="kana" lang="ja">さいだいち</span>）：最大值；<span lang="ja">最小値</span>（<span class="kana" lang="ja">さいしょうち</span>）：最小值；<span lang="ja">閉区間</span>（<span class="kana" lang="ja">へいくかん</span>）：闭区间；<span lang="ja">場合分け</span>（<span class="kana" lang="ja">ばあいわけ</span>）：分类讨论；<span lang="ja">置き換える</span>（<span class="kana" lang="ja">おきかえる</span>）：换元。</p>
+    </div>
+  </section>
+
+  <section id="apply">
+    <h2>5 方程与不等式的应用</h2>
+    <p class="jp-sub" lang="ja">方程式・不等式への応用 — 定数分離、不等式の証明、大小比較</p>
+
+    <h3>定数分离：数实数解的个数</h3>
+    <p>方程 $F(x,k)=0$ 中参数 $k$ 能单独移到一边时，写成 $k=g(x)$。<strong>实数解的个数＝水平线 $y=k$ 与曲线 $y=g(x)$ 的交点个数。</strong>只需画出 $y=g(x)$ 的増減表与两端的极限。</p>
+    <p>例：$x^3-3x-k=0$ 化为 $k=x^3-3x$。$g(x)=x^3-3x$ 的极大值 $g(-1)=2$，极小值 $g(1)=-2$，所以 $-2&lt;k&lt;2$ 时有 $3$ 个实数解，$k=\pm2$ 时 $2$ 个，$|k|&gt;2$ 时 $1$ 个。</p>
+    <p><strong>为什么要看两端的极限？</strong>像 $g(x)=\dfrac{\log x}{x^2}$ 这类函数，$x\to+0$ 时 $\to-\infty$，$x\to\infty$ 时 $\to0$（但始终为正）。$k$ 很小的正数时交点有几个，完全取决于这些“渐近行为”。</p>
+
+    <h3>不等式恒成立</h3>
+    <ul>
+      <li>证明 $f(x)\ge g(x)$：令 $h(x)=f(x)-g(x)$，证明 $h$ 的最小值 $\ge0$。例：$h(x)=e^x-1-x$，$h'(x)=e^x-1$，最小值 $h(0)=0$，所以 $e^x\ge1+x$。</li>
+      <li>“对所有 $x&gt;0$ 都成立”的参数范围：能分离就分离，变成 $a\le\min g(x)$ 或 $a\ge\max g(x)$；分离时注意<strong>除以的式子的正负</strong>，必要时按 $x$ 的范围分开讨论。</li>
+    </ul>
+
+    <h3>用 $\dfrac{\log x}{x}$ 比较大小</h3>
+    <p>$a^b$ 与 $b^a$（$a,b&gt;0$）的大小 $\Leftrightarrow$ $b\log a$ 与 $a\log b$ $\Leftrightarrow$ $\dfrac{\log a}{a}$ 与 $\dfrac{\log b}{b}$。函数 $\dfrac{\log x}{x}$ 在 $0&lt;x\le e$ 递增、$x\ge e$ 递减，最大值 $\dfrac1e$。所以 $e\le a&lt;b$ 时 $a^b&gt;b^a$。</p>
+
+    <h3>速度与加速度（补充）</h3>
+    <p>数直线上的点位置为 $x(t)$ 时，速度 $v=\dfrac{dx}{dt}$，加速度 $\alpha=\dfrac{dv}{dt}$；“速さ”指 $|v|$。平面运动时速度向量为 $\Bigl(\dfrac{dx}{dt},\dfrac{dy}{dt}\Bigr)$。</p>
+    <div class="box warn">
+      <p><strong>常见错误：</strong></p>
+      <ul>
+        <li>分离参数时两边同除以 $\log x$，没注意 $0&lt;x&lt;1$ 时 $\log x&lt;0$，不等号要反向。</li>
+        <li>忘记 $x\to+0$ 或 $x\to\infty$ 的极限，把“趋近但取不到”的值当成可以取到，导致解数多算一个。</li>
+        <li>比较 $2^5$ 与 $5^2$ 时直接套“$a&lt;b\Rightarrow a^b&gt;b^a$”。这个结论只在 $a\ge e$ 时成立（$2^4=4^2$ 就是反例）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>EJU 应试提示：</strong>解数问题常以「$k$ の値によって、実数解の個数を調べよ」的形式出现，选项里会把 $k=$ 极值、$k=0$ 等边界情况分开。<strong>边界值一律单独检查</strong>，这是失分最多的地方。</p>
+      <p><strong>日语术语：</strong><span lang="ja">実数解の個数</span>（<span class="kana" lang="ja">じっすうかいのこすう</span>）：实数解的个数；<span lang="ja">定数分離</span>（<span class="kana" lang="ja">ていすうぶんり</span>）：分离参数；<span lang="ja">常に成り立つ</span>（<span class="kana" lang="ja">つねになりたつ</span>）：恒成立；<span lang="ja">大小を比較する</span>（<span class="kana" lang="ja">だいしょうをひかくする</span>）：比较大小；<span lang="ja">速度</span>（<span class="kana" lang="ja">そくど</span>）：速度；<span lang="ja">加速度</span>（<span class="kana" lang="ja">かそくど</span>）：加速度。</p>
+    </div>
+  </section>
+
+  <section id="practice">
+    <h2>6 真题风格练习</h2>
+    <p class="jp-sub">以下 8 道题均为本讲义<strong>原创</strong>，仅模仿 EJU 课程2的填空形式，数字与设定均非真题。所有答案已用 Python（SymPy）逐格验算。</p>
+
+    <div class="box good">
+      <p><strong>题库出题规律（「微分」类 29 题，2005–2025）：</strong></p>
+      <ol>
+        <li><strong>从定点引切线的条数 / 公切线</strong>：设切点为 $t$，化为关于 $t$ 的方程的解数。例：2015年第2回、2022年第2回、2025年；公切线与相同斜率见 2007年第1回、2014年第1回、2023年第2回。</li>
+        <li><strong>含参数函数的极值条件与由极值求参数</strong>：多为含 $\log x$ 的函数，用判别式或根与系数的关系。例：2006年第2回、2012年第1回、2022年第2回、2024年。</li>
+        <li><strong>含参数三次函数的区间最值（分类讨论）</strong>：例：2015年第1回、2018年第2回；三角函数在闭区间上的最值见 2008年第2回、2012年第2回。</li>
+        <li><strong>定数分离判断方程实数解个数</strong>：对数、指数、幂方程。例：2007年第2回、2009年第1回、2021年第2回。</li>
+        <li><strong>不等式恒成立与 $\dfrac{\log x}{x}$ 比较大小</strong>：例：2013年第2回、2017年第2回。</li>
+        <li><strong>换元化为三次函数求最值</strong>：$e^x+e^{-x}$、$x+y$ 等对称式。例：2016年第1回、2021年第1回、2022年第1回。</li>
+      </ol>
+    </div>
+    <div class="box">
+      <p><strong>填空规则：</strong>每个方框 $\B{ア}$、$\B{イ}$、… 填<strong>一位</strong>数字（$0$–$9$）；两位数用两个方框，例如 $\B{ウ}\B{エ}$。负号已写在方框外。分数约到最简，根号内的数尽量小。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>练习 1　从定点引切线的条数</b><span class="origin">原创</span><span>对应规律 1</span></div>
+      <p>曲线 $C:\ y=x^3-3x^2$，点 $\mathrm{A}(2,\,a)$。</p>
+      <p>(1) $C$ 上点 $(t,\,t^3-3t^2)$ 处的切线方程为 $y=(\B{ア}t^2-\B{イ}t)x-\B{ウ}t^3+\B{エ}t^2$。</p>
+      <p>(2) 该切线过点 $\mathrm{A}$ 的条件是 $a=g(t)$，其中 $g(t)=-2t^3+9t^2-12t$。$g(t)$ 在 $t=\B{オ}$ 处取极小值 $-\B{カ}$。</p>
+      <p>(3) 从 $\mathrm{A}$ 能向 $C$ 引三条切线的条件是 $-\B{キ}&lt;a&lt;-\B{ク}$。</p>
+      <p>(4) $a=-4$ 时，从 $\mathrm{A}$ 能引的切线有 $\B{ケ}$ 条。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) $y'=3x^2-6x$。切线 $y=(3t^2-6t)(x-t)+t^3-3t^2=(3t^2-6t)x-2t^3+3t^2$。</p>
+          <p>(2) 代入 $(2,a)$：$a=2(3t^2-6t)-2t^3+3t^2=-2t^3+9t^2-12t$。$g'(t)=-6t^2+18t-12=-6(t-1)(t-2)$。</p>
+          <div class="tw"><table class="sign">
+            <thead><tr><th>$t$</th><th>$\cdots$</th><th>$1$</th><th>$\cdots$</th><th>$2$</th><th>$\cdots$</th></tr></thead>
+            <tbody>
+              <tr><td>$g'(t)$</td><td>$-$</td><td>$0$</td><td>$+$</td><td>$0$</td><td>$-$</td></tr>
+              <tr><td>$g(t)$</td><td>$\searrow$</td><td>$-5$</td><td>$\nearrow$</td><td>$-4$</td><td>$\searrow$</td></tr>
+            </tbody>
+          </table></div>
+          <p>所以 $t=1$ 处极小值 $-5$，$t=2$ 处极大值 $-4$。</p>
+          <p>(3) 三次曲线上不同切点的切线互不相同，所以切线条数＝方程 $a=g(t)$ 的实数解个数。水平线 $y=a$ 与 $y=g(t)$ 有三个交点 $\Leftrightarrow -5&lt;a&lt;-4$。</p>
+          <p>(4) $a=-4$ 等于极大值，水平线在 $t=2$ 处与曲线相切，另有一个交点，共 $2$ 个解，即 $2$ 条切线。</p>
+          <ul class="keys"><li>ア = 3</li><li>イ = 6</li><li>ウ = 2</li><li>エ = 3</li><li>オ = 1</li><li>カ = 5</li><li>キ = 5</li><li>ク = 4</li><li>ケ = 2</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 2　含对数的函数同时有极大值和极小值</b><span class="origin">原创</span><span>对应规律 2</span></div>
+      <p>设 $a$ 为常数，$f(x)=x-4\log x-\dfrac{a}{x}\ (x&gt;0)$。</p>
+      <p>(1) $f'(x)=\dfrac{x^2-\B{ア}x+a}{x^2}$。</p>
+      <p>(2) $f(x)$ 同时有极大值和极小值的条件是 $0&lt;a&lt;\B{イ}$。</p>
+      <p>(3) 设极值点为 $\alpha,\beta\ (\alpha&lt;\beta)$。若 $\beta=3\alpha$，则 $a=\B{ウ}$，此时 $f(x)$ 在 $x=\B{エ}$ 处取极大值 $-\B{オ}$，且（极大值）$-$（极小值）$=\B{カ}\log\B{キ}-\B{ク}$。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) $f'(x)=1-\dfrac4x+\dfrac{a}{x^2}=\dfrac{x^2-4x+a}{x^2}$。</p>
+          <p>(2) 分母 $x^2&gt;0$，符号由 $x^2-4x+a$ 决定。它要在 $x&gt;0$ 内有两个不同实根（这样 $f'$ 才会先正、后负、再正）：判别式 $16-4a&gt;0$，两根之和 $4&gt;0$，两根之积 $a&gt;0$。所以 $0&lt;a&lt;4$。</p>
+          <p>(3) 根与系数的关系：$\alpha+\beta=4\alpha=4$，得 $\alpha=1,\ \beta=3$，$a=\alpha\beta=3$。$f'$ 在 $x=1$ 处由正变负，所以 $x=1$ 处取极大值 $f(1)=1-0-3=-2$；极小值 $f(3)=3-4\log3-1=2-4\log3$。</p>
+          <p>差：$-2-(2-4\log3)=4\log3-4$。</p>
+          <ul class="keys"><li>ア = 4</li><li>イ = 4</li><li>ウ = 3</li><li>エ = 1</li><li>オ = 2</li><li>カ = 4</li><li>キ = 3</li><li>ク = 4</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 3　对数方程实数解的个数</b><span class="origin">原创</span><span>对应规律 4</span></div>
+      <p>关于 $x$ 的方程 $\log x=kx^2\ (x&gt;0)$，其中 $k$ 为实常数。</p>
+      <p>(1) 方程化为 $k=g(x)$，$g(x)=\dfrac{\log x}{x^2}$。则 $g'(x)=\dfrac{\B{ア}-\B{イ}\log x}{x^{\B{ウ}}}$。</p>
+      <p>(2) $g(x)$ 在 $x=e^{\frac{\B{エ}}{\B{オ}}}$ 处取最大值 $\dfrac{1}{\B{カ}e}$。</p>
+      <p>(3) $k=\dfrac1{10}$ 时实数解有 $\B{キ}$ 个；$k=\dfrac15$ 时有 $\B{ク}$ 个；$k=-2$ 时有 $\B{ケ}$ 个。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) 商的导数：$g'(x)=\dfrac{\frac1x\cdot x^2-\log x\cdot2x}{x^4}=\dfrac{1-2\log x}{x^3}$。</p>
+          <p>(2) $g'(x)=0\Leftrightarrow\log x=\dfrac12\Leftrightarrow x=e^{\frac12}$，$g'$ 由正变负，最大值 $g(\sqrt e)=\dfrac{1/2}{e}=\dfrac1{2e}$。</p>
+          <p>两端：$x\to+0$ 时 $g(x)\to-\infty$；$x\to\infty$ 时 $g(x)\to0$，且 $x&gt;1$ 时 $g(x)&gt;0$。</p>
+          <p>(3) $\dfrac1{2e}\approx0.184$。</p>
+          <ul>
+            <li>$k=\dfrac1{10}$：$0&lt;k&lt;\dfrac1{2e}$，水平线与曲线在 $1&lt;x&lt;\sqrt e$ 和 $x&gt;\sqrt e$ 各交一次，共 $2$ 个。</li>
+            <li>$k=\dfrac15&gt;\dfrac1{2e}$：没有交点，$0$ 个。</li>
+            <li>$k=-2&lt;0$：只在 $0&lt;x&lt;1$ 交一次（递增部分），$1$ 个。</li>
+          </ul>
+          <ul class="keys"><li>ア = 1</li><li>イ = 2</li><li>ウ = 3</li><li>エ = 1</li><li>オ = 2</li><li>カ = 2</li><li>キ = 2</li><li>ク = 0</li><li>ケ = 1</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 4　含参数三次函数的区间最值</b><span class="origin">原创</span><span>对应规律 3</span></div>
+      <p>设 $a&gt;0$，$f(x)=x^3-3ax^2$，考虑区间 $0\le x\le2$。</p>
+      <p>(1) $f'(x)=\B{ア}x(x-\B{イ}a)$。当 $0&lt;a&lt;1$ 时，$f(x)$ 在该区间上的最小值为 $-\B{ウ}a^{\B{エ}}$。</p>
+      <p>(2) 该区间上的最大值：当 $0&lt;a\le\dfrac{\B{オ}}{\B{カ}}$ 时为 $\B{キ}-\B{ク}\B{ケ}a$，否则为 $0$。</p>
+      <p>(3) 该区间上的最小值等于 $-\dfrac12$ 时，$a=\dfrac{\B{コ}}{\B{サ}}$。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) $f'(x)=3x^2-6ax=3x(x-2a)$。$0&lt;x&lt;2a$ 时递减，$x&gt;2a$ 时递增。$0&lt;a&lt;1$ 时 $2a&lt;2$，极小值点在区间内，最小值 $f(2a)=8a^3-12a^3=-4a^3$。</p>
+          <p>(2) 区间内 $f$ 先减后增（或一直减），所以最大值在端点：$f(0)=0$，$f(2)=8-12a$。$8-12a\ge0\Leftrightarrow a\le\dfrac23$。所以 $0&lt;a\le\dfrac23$ 时最大值 $8-12a$，$a&gt;\dfrac23$ 时最大值 $0$。</p>
+          <p>(3) 最小值 $m(a)$：$0&lt;a&lt;1$ 时 $m=-4a^3$；$a\ge1$ 时极小值点 $2a\ge2$，$f$ 在区间上递减，$m=f(2)=8-12a\le-4$。</p>
+          <ul>
+            <li>$0&lt;a&lt;1$：$-4a^3=-\dfrac12\Rightarrow a^3=\dfrac18\Rightarrow a=\dfrac12$ ✓。</li>
+            <li>$a\ge1$：$m\le-4$，不可能等于 $-\dfrac12$。</li>
+          </ul>
+          <p>注意 (2) 的分界 $\dfrac23$ 和 (3) 的分界 $1$ 不同——最大值与最小值要分开讨论。</p>
+          <ul class="keys"><li>ア = 3</li><li>イ = 2</li><li>ウ = 4</li><li>エ = 3</li><li>オ = 2</li><li>カ = 3</li><li>キ = 8</li><li>ク = 1</li><li>ケ = 2</li><li>コ = 1</li><li>サ = 2</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 5　指数对称式换元成三次函数</b><span class="origin">原创</span><span>对应规律 6</span></div>
+      <p>对实数 $x$，令 $f(x)=8^x+8^{-x}-24(2^x+2^{-x})$，$t=2^x+2^{-x}$。</p>
+      <p>(1) $t$ 的取值范围是 $t\ge\B{ア}$，且 $8^x+8^{-x}=t^3-\B{イ}t$。</p>
+      <p>(2) $f(x)$ 用 $t$ 表示为 $t^3-\B{ウ}\B{エ}t$。</p>
+      <p>(3) $f(x)$ 的最小值为 $-\B{オ}\B{カ}$，此时 $t=\B{キ}$。</p>
+      <p>(4) 取最小值时 $2^x=\dfrac{\B{ク}\pm\sqrt{\B{ケ}}}{\B{コ}}$，取最小值的 $x$ 共有 $\B{サ}$ 个。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) $2^x&gt;0$，由算术几何平均 $t\ge2\sqrt{2^x\cdot2^{-x}}=2$（等号 $x=0$）。$t^3=8^x+8^{-x}+3(2^x+2^{-x})$，所以 $8^x+8^{-x}=t^3-3t$。</p>
+          <p>(2) $f=t^3-3t-24t=t^3-27t$。</p>
+          <p>(3) 令 $G(t)=t^3-27t\ (t\ge2)$，$G'(t)=3(t-3)(t+3)$。$2\le t&lt;3$ 递减，$t&gt;3$ 递增，最小值 $G(3)=27-81=-54$。</p>
+          <p>(4) $2^x+2^{-x}=3$，令 $u=2^x&gt;0$：$u^2-3u+1=0$，$u=\dfrac{3\pm\sqrt5}{2}$，两个都为正，所以 $x=\log_2\dfrac{3\pm\sqrt5}{2}$ 共 $2$ 个。</p>
+          <ul class="keys"><li>ア = 2</li><li>イ = 3</li><li>ウ = 2</li><li>エ = 7</li><li>オ = 5</li><li>カ = 4</li><li>キ = 3</li><li>ク = 3</li><li>ケ = 5</li><li>コ = 2</li><li>サ = 2</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 6　对所有正实数成立的不等式</b><span class="origin">原创</span><span>对应规律 5</span></div>
+      <p>求使不等式 $x^2\ge a\log x$ 对所有 $x&gt;0$ 都成立的实数 $a$ 的范围。</p>
+      <p>(1) $0&lt;x\le1$ 时 $\log x\le0$。若 $a&lt;0$，令 $x\to+0$，右边 $a\log x\to+\infty$，不等式不成立，所以必须 $a\ge0$。此时 $0&lt;x\le1$ 上不等式自然成立。</p>
+      <p>(2) $x&gt;1$ 时不等式等价于 $a\le h(x)$，$h(x)=\dfrac{x^2}{\log x}$。$h'(x)=\dfrac{x(\B{ア}\log x-\B{イ})}{(\log x)^2}$，$h(x)$ 在 $x=e^{\frac{\B{ウ}}{\B{エ}}}$ 处取最小值 $\B{オ}e$。</p>
+      <p>(3) 所求范围是 $\B{カ}\le a\le\B{キ}e$。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) 题干已给出推理：$a&lt;0$ 时 $x\to+0$ 处不成立；$a\ge0$ 时 $0&lt;x\le1$ 上右边 $\le0&lt;x^2$。</p>
+          <p>(2) $x&gt;1$ 时 $\log x&gt;0$，两边除以 $\log x$ 方向不变：$a\le\dfrac{x^2}{\log x}$。$h'(x)=\dfrac{2x\log x-x^2\cdot\frac1x}{(\log x)^2}=\dfrac{x(2\log x-1)}{(\log x)^2}$。$x=e^{\frac12}$ 处由负变正，最小值 $h(\sqrt e)=\dfrac{e}{1/2}=2e$。</p>
+          <p>(3) 需要 $a\le\min h=2e$，结合 $a\ge0$：$0\le a\le2e$。</p>
+          <ul class="keys"><li>ア = 2</li><li>イ = 1</li><li>ウ = 1</li><li>エ = 2</li><li>オ = 2</li><li>カ = 0</li><li>キ = 2</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 7　用 $\dfrac{\log x}{x}$ 比较大小</b><span class="origin">原创</span><span>对应规律 5</span></div>
+      <p>设 $f(x)=\dfrac{\log x}{x}\ (x&gt;0)$。</p>
+      <p>(1) $f'(x)=\dfrac{\B{ア}-\log x}{x^{\B{イ}}}$，所以 $f(x)$ 在 $x=e$ 处取最大值。</p>
+      <p>(2) $7^8$ 与 $8^7$ 的大小关系是 $7^8\ \B{ウ}\ 8^7$。（从下面选择：⓪ $&gt;$　① $&lt;$　② $=$）</p>
+      <p>(3) $2^{\frac12},\ 3^{\frac13},\ 5^{\frac15}$ 中最大的是 $\B{エ}^{\frac1{\B{エ}}}$，最小的是 $\B{オ}^{\frac1{\B{オ}}}$。</p>
+      <p>(4) 满足 $a^b=b^a,\ a&lt;b$ 的正整数组只有 $(a,b)=(\B{カ},\B{キ})$。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) $f'(x)=\dfrac{\frac1x\cdot x-\log x}{x^2}=\dfrac{1-\log x}{x^2}$。$0&lt;x&lt;e$ 递增，$x&gt;e$ 递减。</p>
+          <p>(2) $e&lt;7&lt;8$，所以 $f(7)&gt;f(8)$，即 $\dfrac{\log7}{7}&gt;\dfrac{\log8}{8}$，两边乘 $56$：$8\log7&gt;7\log8$，所以 $7^8&gt;8^7$，选 ⓪。</p>
+          <p>(3) $n^{\frac1n}$ 的大小与 $\log n^{\frac1n}=f(n)$ 一致。$f(2)=\dfrac{\log2}{2}=\dfrac{\log4}{4}=f(4)$。在 $x&gt;e$ 上递减，$3&lt;4&lt;5$，所以 $f(3)&gt;f(4)=f(2)&gt;f(5)$。最大 $3^{\frac13}$，最小 $5^{\frac15}$。</p>
+          <p>(4) $a^b=b^a\Leftrightarrow f(a)=f(b)$。$f$ 在 $(0,e]$ 递增、$[e,\infty)$ 递减，所以 $a&lt;e&lt;b$，即 $a=1$ 或 $2$。$a=1$ 时 $f(1)=0$，而 $x&gt;1$ 时 $f(x)&gt;0$，不行；$a=2$ 时 $f(b)=f(2)=f(4)$，且在 $x&gt;e$ 上 $f$ 单调，所以 $b=4$ 唯一。</p>
+          <ul class="keys"><li>ア = 1</li><li>イ = 2</li><li>ウ = 0</li><li>エ = 3</li><li>オ = 5</li><li>カ = 2</li><li>キ = 4</li></ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>练习 8　三角函数的极值与闭区间最值</b><span class="origin">原创</span><span>对应规律 3</span></div>
+      <p>$f(x)=\sin2x-2\cos x\ (0\le x\le2\pi)$。</p>
+      <p>(1) $f'(x)=-\B{ア}(\B{イ}\sin x+\B{ウ})(\sin x-\B{エ})$。</p>
+      <p>(2) $f(x)$ 在 $0&lt;x&lt;2\pi$ 内的极值点共有 $\B{オ}$ 个。</p>
+      <p>(3) $f(x)$ 的最大值为 $\dfrac{\B{カ}\sqrt{\B{キ}}}{\B{ク}}$，此时 $x=\dfrac{\B{ケ}}{\B{コ}}\pi$；最小值在 $x=\dfrac{\B{サ}\B{シ}}{\B{ス}}\pi$ 处取得。</p>
+      <details>
+        <summary>解答</summary>
+        <div class="ans">
+          <p>(1) $f'(x)=2\cos2x+2\sin x=2(1-2\sin^2x)+2\sin x=-2(2\sin^2x-\sin x-1)=-2(2\sin x+1)(\sin x-1)$。</p>
+          <p>(2) $f'(x)=0$：$\sin x=1$（$x=\dfrac\pi2$）或 $\sin x=-\dfrac12$（$x=\dfrac76\pi,\ \dfrac{11}6\pi$）。因为 $\sin x-1\le0$，$f'$ 的符号与 $2\sin x+1$ 相同：</p>
+          <div class="tw"><table class="sign">
+            <thead><tr><th>$x$</th><th>$0$</th><th>$\cdots$</th><th>$\frac\pi2$</th><th>$\cdots$</th><th>$\frac76\pi$</th><th>$\cdots$</th><th>$\frac{11}6\pi$</th><th>$\cdots$</th><th>$2\pi$</th></tr></thead>
+            <tbody>
+              <tr><td>$f'(x)$</td><td></td><td>$+$</td><td>$0$</td><td>$+$</td><td>$0$</td><td>$-$</td><td>$0$</td><td>$+$</td><td></td></tr>
+              <tr><td>$f(x)$</td><td>$-2$</td><td>$\nearrow$</td><td>$0$</td><td>$\nearrow$</td><td>$\frac{3\sqrt3}2$</td><td>$\searrow$</td><td>$-\frac{3\sqrt3}2$</td><td>$\nearrow$</td><td>$-2$</td></tr>
+            </tbody>
+          </table></div>
+          <p>$x=\dfrac\pi2$ 处 $f'$ 不变号，<strong>不是极值点</strong>。极值点只有 $\dfrac76\pi$（极大）和 $\dfrac{11}6\pi$（极小），共 $2$ 个。</p>
+          <p>(3) $f\Bigl(\dfrac76\pi\Bigr)=\sin\dfrac73\pi-2\cos\dfrac76\pi=\dfrac{\sqrt3}2+\sqrt3=\dfrac{3\sqrt3}2$；$f\Bigl(\dfrac{11}6\pi\Bigr)=-\dfrac{\sqrt3}2-\sqrt3=-\dfrac{3\sqrt3}2$。端点 $f(0)=f(2\pi)=-2$。因为 $\dfrac{3\sqrt3}2\approx2.60&gt;2$，最大值 $\dfrac{3\sqrt3}2\ \bigl(x=\dfrac76\pi\bigr)$，最小值 $-\dfrac{3\sqrt3}2\ \bigl(x=\dfrac{11}6\pi\bigr)$。</p>
+          <ul class="keys"><li>ア = 2</li><li>イ = 2</li><li>ウ = 1</li><li>エ = 1</li><li>オ = 2</li><li>カ = 3</li><li>キ = 3</li><li>ク = 2</li><li>ケ = 7</li><li>コ = 6</li><li>サ = 1</li><li>シ = 1</li><li>ス = 6</li></ul>
+        </div>
+      </details>
+    </article>
+  </section>
+
+  <section id="terms">
+    <h2>7 日语术语对照表</h2>
+    <div class="bar" style="margin:10px 0">
+      <input class="search" id="term-q" type="search" placeholder="搜索中文、日文或假名…" aria-label="搜索术语">
+      <span id="term-count" style="font-size:14px;color:var(--ink-3)" aria-live="polite"></span>
+    </div>
+    <div class="tw"><table id="term-table">
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <p>题面中的常用句式：</p>
+    <div class="tw"><table>
+      <thead><tr><th>日语</th><th>读音</th><th>中文</th></tr></thead>
+      <tbody>
+        <tr><td lang="ja">点 A から曲線 C に3本の接線が引ける</td><td class="kana" lang="ja">てんAからきょくせんCにさんぼんのせっせんがひける</td><td>从点 A 可以向曲线 C 引三条切线</td></tr>
+        <tr><td lang="ja">極大値と極小値をもつ</td><td class="kana" lang="ja">きょくだいちときょくしょうちをもつ</td><td>同时有极大值和极小值</td></tr>
+        <tr><td lang="ja">$x=1$ で極値をとる</td><td class="kana" lang="ja">$x=1$ できょくちをとる</td><td>在 $x=1$ 处取极值</td></tr>
+        <tr><td lang="ja">すべての正の実数 $x$ に対して成り立つ</td><td class="kana" lang="ja">すべてのせいのじっすう $x$ にたいしてなりたつ</td><td>对所有正实数 $x$ 成立</td></tr>
+        <tr><td lang="ja">異なる実数解の個数</td><td class="kana" lang="ja">ことなるじっすうかいのこすう</td><td>不同实数解的个数</td></tr>
+        <tr><td lang="ja">最小値の最大値を求めよ</td><td class="kana" lang="ja">さいしょうちのさいだいちをもとめよ</td><td>求最小值的最大值</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    <p>本页依据 JASSO 数学シラバス中「微分法の応用」相关内容组织，为非官方学习资料，与 JASSO 无关；考试范围请以 JASSO 公布的最新大纲为准。「题库出题规律」仅归纳题型，所有例题和练习题均为原创。</p>
+  </footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  function $(id) { return document.getElementById(id); }
+
+  /* ---------- 术语表 ---------- */
+  var TERMS = [
+    ['导数的计算', [
+      ['微分する', 'びぶんする', '求导'], ['導関数', 'どうかんすう', '导函数'], ['微分係数', 'びぶんけいすう', '导数值'],
+      ['第2次導関数', 'だいにじどうかんすう', '二阶导数'], ['合成関数', 'ごうせいかんすう', '复合函数'], ['積の微分法', 'せきのびぶんほう', '积的求导法则'],
+      ['商の微分法', 'しょうのびぶんほう', '商的求导法则'], ['対数微分法', 'たいすうびぶんほう', '对数求导法'], ['自然対数', 'しぜんたいすう', '自然对数']
+    ]],
+    ['切线', [
+      ['接線', 'せっせん', '切线'], ['接点', 'せってん', '切点'], ['法線', 'ほうせん', '法线'], ['共通接線', 'きょうつうせっせん', '公切线'],
+      ['傾き', 'かたむき', '斜率'], ['直交する', 'ちょっこうする', '垂直相交'], ['なす角', 'なすかく', '夹角'], ['接する', 'せっする', '相切']
+    ]],
+    ['増減与极值', [
+      ['増減表', 'ぞうげんひょう', '增减表'], ['単調に増加', 'たんちょうにぞうか', '单调递增'], ['単調に減少', 'たんちょうにげんしょう', '单调递减'],
+      ['極値', 'きょくち', '极值'], ['極大値', 'きょくだいち', '极大值'], ['極小値', 'きょくしょうち', '极小值'],
+      ['下に凸', 'したにとつ', '下凸'], ['上に凸', 'うえにとつ', '上凸'], ['変曲点', 'へんきょくてん', '拐点'], ['解と係数の関係', 'かいとけいすうのかんけい', '根与系数的关系'], ['判別式', 'はんべつしき', '判别式']
+    ]],
+    ['最值与应用', [
+      ['最大値', 'さいだいち', '最大值'], ['最小値', 'さいしょうち', '最小值'], ['閉区間', 'へいくかん', '闭区间'], ['場合分け', 'ばあいわけ', '分类讨论'],
+      ['置き換え', 'おきかえ', '换元'], ['実数解', 'じっすうかい', '实数解'], ['個数', 'こすう', '个数'], ['定数分離', 'ていすうぶんり', '分离参数'],
+      ['常に成り立つ', 'つねになりたつ', '恒成立'], ['大小を比較する', 'だいしょうをひかくする', '比较大小'], ['相加平均・相乗平均', 'そうかへいきん・そうじょうへいきん', '算术平均・几何平均'],
+      ['速度', 'そくど', '速度'], ['加速度', 'かそくど', '加速度']
+    ]]
+  ];
+
+  var termBody = document.querySelector('#term-table tbody');
+  TERMS.forEach(function (g) {
+    var gr = document.createElement('tr');
+    gr.className = 'group';
+    gr.innerHTML = '<td colspan="3">' + g[0] + '</td>';
+    termBody.appendChild(gr);
+    g[1].forEach(function (t) {
+      var tr = document.createElement('tr');
+      tr.dataset.search = (t[0] + t[1] + t[2]).toLowerCase();
+      tr.innerHTML = '<td lang="ja"><strong>' + t[0] + '</strong></td><td class="kana" lang="ja">' + t[1] + '</td><td>' + t[2] + '</td>';
+      termBody.appendChild(tr);
+    });
+  });
+  var termCount = $('term-count');
+  function filterTerms() {
+    var q = $('term-q').value.trim().toLowerCase(), n = 0, group = null, groupHits = 0;
+    function closeGroup() { if (group) group.hidden = groupHits === 0; }
+    Array.prototype.forEach.call(termBody.rows, function (r) {
+      if (r.className === 'group') { closeGroup(); group = r; groupHits = 0; return; }
+      var hit = !q || r.dataset.search.indexOf(q) >= 0;
+      r.hidden = !hit;
+      if (hit) { n++; groupHits++; }
+    });
+    closeGroup();
+    termCount.textContent = '共 ' + n + ' 条';
+  }
+  $('term-q').addEventListener('input', filterTerms);
+  filterTerms();
+
+  /* ---------- 主题 ---------- */
+  var themeBtn = $('theme');
+  function store(v) { try { if (v) localStorage.setItem('eju-theme', v); return localStorage.getItem('eju-theme'); } catch (e) { return null; } }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? '浅色' : '深色';
+  }
+  setTheme(store() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(t); store(t);
+  });
+
+  /* ---------- 目录高亮 ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('on', on);
+          if (on && a.parentNode.parentNode.scrollWidth > a.parentNode.parentNode.clientWidth) {
+            var ol = a.parentNode.parentNode;
+            ol.scrollLeft = a.offsetLeft - ol.offsetLeft - 20;
+          }
+        });
+      });
+    }, { rootMargin: '-25% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- KaTeX ---------- */
+  function renderMath() {
+    if (!window.renderMathInElement) {
+      $('cdn-note').hidden = false;
+      return;
+    }
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      macros: { '\\B': '\\boxed{\\text{#1}}' },
+      throwOnError: false
+    });
+  }
+  window.addEventListener('load', renderMath);
+})();
+</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>

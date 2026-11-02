@@ -222,6 +222,7 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
         <li><a href="#examples">8 原创例题</a></li>
         <li><a href="#practice">9 练习题</a></li>
         <li><a href="#terms">10 术语对照</a></li>
+        <li><a href="#eju-style">真题风格练习</a></li>
       </ol>
     </div>
     <button class="chip theme-btn" id="theme" type="button">深色</button>
@@ -476,6 +477,17 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
         <li>“不经过 $\mathrm{Q}$”直接从走法中划去路线，容易漏算。用“全部 − 经过”最稳。</li>
         <li>把非负整数解和正整数解的公式混用。非负是 ${}_{n+k-1}\mathrm{C}_{k-1}$，正整数是 ${}_{n-1}\mathrm{C}_{k-1}$（$k$ 个未知数，和为 $n$）。</li>
       </ul>
+    </div>
+    <h3>补充：立体涂色与递推计数</h3>
+    <p class="jp-sub" lang="ja">塗り分け・漸化式で数える</p>
+    <p><strong>立体的涂色（<span lang="ja">塗り分け</span><span class="kana" lang="ja">（ぬりわけ）</span>）：</strong>各面涂不同颜色，旋转后重合的看作同一种。做法是<strong>先固定一个面</strong>消除旋转，再数其余部分。</p>
+    <ul>
+      <li>立方体用 $6$ 种颜色全部涂上：把某一种颜色放在上面，底面有 $5$ 种；侧面 $4$ 个面是圆排列 $(4-1)!=6$。共 $5\times6=30$ 种（也可写成 $\dfrac{6!}{24}=30$，$24$ 是立方体的旋转数）。</li>
+      <li>正四面体用 $4$ 种颜色全部涂上：$\dfrac{4!}{12}=2$ 种（$12$ 是正四面体的旋转数），两种互为镜像。</li>
+    </ul>
+    <p><strong>递推计数：</strong>每次上 $1$ 级或 $2$ 级楼梯（<span lang="ja">階段</span><span class="kana" lang="ja">（かいだん）</span>），上到第 $n$ 级的方法数 $a_n$ 按“最后一步”分类：$a_n=a_{n-1}+a_{n-2}$（$a_1=1,\ a_2=2$）。概率版本同理：若每次上 $1$ 级的概率为 $p$，则恰好踩到第 $n$ 级的概率 $p_n=p\,p_{n-1}+(1-p)\,p_{n-2}$。</p>
+    <div class="box warn">
+      <p><strong>常见错误：</strong>涂色题不固定面就直接 $6!$，把旋转后相同的重复计算了 $24$ 次；格点三角形题只算 ${}_n\mathrm{C}_3$，忘记减去三点共线（含斜线上的共线）的组。</p>
     </div>
     <div class="box tip">
       <p><strong>EJU 应试提示：</strong>看到「<span lang="ja">区別しない</span><span class="kana" lang="ja">（くべつしない）</span>」的组，先按有名字算，再除以重复次数。最短路径题常问“经过”“不经过”“两点都经过”，把路线分段再相乘最快。不定方程注意看清 <span lang="ja">正の整数</span><span class="kana" lang="ja">（せいのせいすう）</span>（正整数）还是 <span lang="ja">0 以上の整数</span><span class="kana" lang="ja">（ゼロいじょうのせいすう）</span>（非负整数）。</p>
@@ -1005,6 +1017,186 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
     <div class="box tip">
       <p><strong>EJU 应试提示：</strong>EJU 也可以选用日语或英语试卷，请按自己选的语言熟悉术语。如果选日语，建议能够从读音认出这些词，并能把题干中的「〜のとき」「〜である確率を求めよ」等句式直接转换成算式。表格支持搜索，可用来快速复习。</p>
     </div>
+  </section>
+
+  <section id="eju-style">
+    <h2>真题风格练习（EJU 题库对照）</h2>
+    <p>本节对照《EJU 数学2 知识点分类题库 2005–2025》中「排列组合与概率」类的 16 个题目归纳出题规律，并配有<strong>原创</strong>练习题（数字和设定均为原创，并非真题）。</p>
+    <div class="box good">
+      <p><strong>题库出题规律</strong></p>
+      <ul>
+        <li><strong>取球、取卡片的颜色与数字条件：</strong>从一个或多个袋（箱）中取出，问颜色、编号、大小或奇偶满足条件的概率，常带条件概率（2015年第1回、2023年第1回、2024年）。</li>
+        <li><strong>骰子点数与式子结合：</strong>几颗骰子的点数满足等式，或作为二次函数、方程的系数，考“和事件”与判别式（2015年第2回、2018年第2回）。</li>
+        <li><strong>纯计数：</strong>格点三角形、卡片放入箱子、球放入编号箱子、立体面的涂色，核心是分类与去重（2016年第1回、2017年第1回、2021年第2回、2023年第2回）。</li>
+        <li><strong>递推与移动：</strong>上楼梯的方法数、骰子控制点的移动，按“最后一步”或“状态”递推（2017年第2回、2020年第2回）。</li>
+        <li><strong>反复试验与停止规则：</strong>重复投掷或抽取直到某事件发生、比赛的胜负平局、交换操作后的概率（2019年第1回、2021年第1回、2022年第1回、2022年第2回、2025年）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p><strong>填写方式：</strong>每个方框（如 $\boxed{\text{ア}}$）填一位数字；两个以上字母相连（如 $\boxed{\text{イウ}}$）表示多位数。分数约到最简。</p>
+    </div>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 1　两个袋中取球</b><span class="origin">原创 · 对应题型：从两个袋中取球的颜色概率</span></div>
+      <p>袋 A 中有红球 $3$ 个、白球 $2$ 个，袋 B 中有红球 $2$ 个、白球 $4$ 个。从袋 A 中同时取出 $2$ 个，从袋 B 中取出 $1$ 个，共 $3$ 个球。</p>
+      <p>(1) $3$ 个都是红球的概率为 $\dfrac{\boxed{\text{ア}}}{\boxed{\text{イウ}}}$。</p>
+      <p>(2) 恰有 $2$ 个红球的概率为 $\dfrac{\boxed{\text{エ}}}{\boxed{\text{オ}}}$。</p>
+      <p>(3) $3$ 个都是白球的概率为 $\dfrac{\boxed{\text{カ}}}{\boxed{\text{キク}}}$；已知 $3$ 个球同色时，它们是红球的条件概率为 $\dfrac{\boxed{\text{ケ}}}{\boxed{\text{コ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>袋 A 取 $2$ 个：${}_5\mathrm{C}_2=10$ 种，其中 $2$ 红 ${}_3\mathrm{C}_2=3$，$1$ 红 $1$ 白 $3\times2=6$，$2$ 白 $1$。袋 B：红 $\dfrac26=\dfrac13$，白 $\dfrac46=\dfrac23$。两袋独立。</li>
+        <li>(1) $\dfrac{3}{10}\times\dfrac13=\dfrac{1}{10}$。</li>
+        <li>(2) A 出 $2$ 红、B 出白：$\dfrac{3}{10}\times\dfrac23=\dfrac15$；A 出 $1$ 红、B 出红：$\dfrac{6}{10}\times\dfrac13=\dfrac15$。合计 $\dfrac25$。</li>
+        <li>(3) 全白：$\dfrac{1}{10}\times\dfrac23=\dfrac{1}{15}$。同色的概率 $\dfrac1{10}+\dfrac1{15}=\dfrac16$，所以条件概率为 $\dfrac{1/10}{1/6}=\dfrac35$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 1，イウ = 10，エ = 2，オ = 5，カ = 1，キク = 15，ケ = 3，コ = 5</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 2　三颗骰子与关系式</b><span class="origin">原创 · 对应题型：骰子点数满足等式的计数与并事件</span></div>
+      <p>依次投掷大、中、小三颗骰子，点数分别为 $a,b,c$。设事件 $A$：$a+b=c$；事件 $B$：$ab=c$。</p>
+      <p>(1) 事件 $A$ 发生的情况有 $\boxed{\text{アイ}}$ 种。</p>
+      <p>(2) 事件 $B$ 发生的情况有 $\boxed{\text{ウエ}}$ 种。</p>
+      <p>(3) $A$ 与 $B$ 同时发生的情况有 $\boxed{\text{オ}}$ 种，因此 $A$ 或 $B$ 发生的概率为 $\dfrac{\boxed{\text{カ}}}{\boxed{\text{キク}}}$。</p>
+      <p>(4) “$a+b=c$ 或 $a,b,c$ 全部相同”的概率为 $\dfrac{\boxed{\text{ケ}}}{\boxed{\text{コサ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>全部情况 $6^3=216$ 种。</li>
+        <li>(1) $c=2,3,4,5,6$ 时，满足 $a+b=c$ 的 $(a,b)$ 分别有 $1,2,3,4,5$ 组，共 $15$ 种。</li>
+        <li>(2) $ab\le6$ 的 $(a,b)$：$a=1$ 时 $6$ 组，$a=2$ 时 $3$ 组，$a=3$ 时 $2$ 组，$a=4,5,6$ 时各 $1$ 组，共 $14$ 种（$c$ 随之确定）。</li>
+        <li>(3) $a+b=ab$ 即 $(a-1)(b-1)=1$，只有 $a=b=2,\ c=4$，$1$ 种。$P(A\cup B)=\dfrac{15+14-1}{216}=\dfrac{28}{216}=\dfrac{7}{54}$。</li>
+        <li>(4) 三颗相同有 $6$ 种；若同时 $a+b=c$ 则 $2a=a$，不可能，所以没有重叠。$\dfrac{15+6}{216}=\dfrac{21}{216}=\dfrac{7}{72}$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>アイ = 15，ウエ = 14，オ = 1，カ = 7，キク = 54，ケ = 7，コサ = 72</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 3　骰子点数作为二次函数的系数</b><span class="origin">原创 · 对应题型：骰子点数作为二次函数系数时的概率</span></div>
+      <p>投掷两次骰子，第 $1$ 次的点数为 $a$，第 $2$ 次的点数为 $b$，令 $f(x)=x^2-ax+b$。</p>
+      <p>(1) 抛物线 $y=f(x)$ 与 $x$ 轴有公共点的概率为 $\dfrac{\boxed{\text{アイ}}}{\boxed{\text{ウエ}}}$。</p>
+      <p>(2) 方程 $f(x)=0$ 的解都是整数的概率为 $\dfrac{\boxed{\text{オ}}}{\boxed{\text{カキ}}}$（重根也算）。</p>
+      <p>(3) $f(1)\lt 0$ 的概率为 $\dfrac{\boxed{\text{ク}}}{\boxed{\text{ケコ}}}$。</p>
+      <p>(4) $f(1)\ge 0$ 且 $f(2)\lt 0$ 的概率为 $\dfrac{\boxed{\text{サ}}}{\boxed{\text{シス}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>全部 $36$ 种。</li>
+        <li>(1) 判别式 $a^2-4b\ge0$，即 $b\le\dfrac{a^2}{4}$：$a=2$ 时 $1$ 种，$a=3$ 时 $2$ 种，$a=4$ 时 $4$ 种，$a=5,6$ 时各 $6$ 种，共 $19$ 种，概率 $\dfrac{19}{36}$。</li>
+        <li>(2) 设两根为整数 $r\le s$，则 $r+s=a,\ rs=b$，且 $r,s$ 都是正整数（$b\gt0,\ a\gt0$）。满足 $r+s\le6,\ rs\le6$ 的有 $(1,1),(1,2),(1,3),(2,2),(1,4),(2,3),(1,5)$，共 $7$ 种，概率 $\dfrac{7}{36}$。</li>
+        <li>(3) $f(1)=1-a+b\lt0$，即 $b\lt a-1$：$a=3,4,5,6$ 时分别 $1,2,3,4$ 种，共 $10$ 种，概率 $\dfrac{10}{36}=\dfrac{5}{18}$。</li>
+        <li>(4) $f(1)\ge0$：$b\ge a-1$；$f(2)=4-2a+b\lt0$：$b\lt 2a-4$。$a\le3$ 时无解；$a=4$：$b=3$；$a=5$：$b=4,5$；$a=6$：$b=5,6$。共 $5$ 种，概率 $\dfrac{5}{36}$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>アイ = 19，ウエ = 36，オ = 7，カキ = 36，ク = 5，ケコ = 18，サ = 5，シス = 36</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 4　格点构成的三角形</b><span class="origin">原创 · 对应题型：格点构成三角形的个数</span></div>
+      <p>坐标平面上取 $x=0,1,2,3$，$y=0,1,2$ 的 $12$ 个格点。</p>
+      <p>(1) 从中选 $3$ 个点的方法有 $\boxed{\text{アイウ}}$ 种。</p>
+      <p>(2) 其中 $3$ 点在同一直线上的有 $\boxed{\text{エオ}}$ 种。</p>
+      <p>(3) 以其中 $3$ 点为顶点的三角形有 $\boxed{\text{カキク}}$ 个。</p>
+      <p>(4) 以原点 $\mathrm{O}(0,0)$ 为一个顶点的三角形有 $\boxed{\text{ケコ}}$ 个。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) ${}_{12}\mathrm{C}_3=220$。</li>
+        <li>(2) 横线 $3$ 条，每条 $4$ 点：$3\times{}_4\mathrm{C}_3=12$；竖线 $4$ 条，每条 $3$ 点：$4$；斜率 $1$ 的线上有 $3$ 点的：$(0,0)\text{-}(2,2)$、$(1,0)\text{-}(3,2)$ 两条；斜率 $-1$ 同样 $2$ 条；其他斜率（如 $\pm\dfrac12,\pm2$）的直线上最多 $2$ 点。合计 $12+4+2+2=20$。</li>
+        <li>(3) $220-20=200$。</li>
+        <li>(4) 另两点从其余 $11$ 点中选：${}_{11}\mathrm{C}_2=55$。与 $\mathrm{O}$ 共线的两点：$x$ 轴上 $3$ 点中选 $2$：$3$；$y$ 轴上 $2$ 点：$1$；直线 $y=x$ 上 $(1,1),(2,2)$：$1$。所以 $55-5=50$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>アイウ = 220，エオ = 20，カキク = 200，ケコ = 50</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 5　三色编号卡片</b><span class="origin">原创 · 对应题型：三色编号卡片的颜色与数字约束</span></div>
+      <p>有红色卡片 $4$ 张（写有 $1,2,3,4$）、白色卡片 $3$ 张（写有 $1,2,3$）、蓝色卡片 $2$ 张（写有 $1,2$），共 $9$ 张。从中同时取出 $3$ 张。</p>
+      <p>(1) $3$ 张颜色各不相同的取法有 $\boxed{\text{アイ}}$ 种。</p>
+      <p>(2) $3$ 张颜色各不相同、且数字也各不相同的取法有 $\boxed{\text{ウ}}$ 种。</p>
+      <p>(3) $3$ 张颜色全部相同或数字全部相同的概率为 $\dfrac{\boxed{\text{エ}}}{\boxed{\text{オカ}}}$。</p>
+      <p>(4) 已知 $3$ 张颜色各不相同时，数字之和为偶数的条件概率为 $\dfrac{\boxed{\text{キ}}}{\boxed{\text{ク}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) $4\times3\times2=24$。</li>
+        <li>(2) 设红、白、蓝的数字为 $r,w,b$。用容斥：$r=w$ 的有 $3\times2=6$，$r=b$ 的有 $2\times3=6$，$w=b$ 的有 $2\times4=8$，三者相等 $r=w=b$ 的有 $2$ 组（且两两相等的交集都是这 $2$ 组）。至少有两张同数：$6+6+8-3\times2+2=16$。所以 $24-16=8$。</li>
+        <li>(3) 全部 ${}_9\mathrm{C}_3=84$。同色：红 ${}_4\mathrm{C}_3=4$，白 $1$，蓝不够，共 $5$；同数：数字 $1$ 和 $2$ 各有红白蓝 $3$ 张，各 $1$ 种，共 $2$（数字 $3$ 只有 $2$ 张）。两者不重叠，$\dfrac{7}{84}=\dfrac{1}{12}$。</li>
+        <li>(4) 按奇偶分：红 奇 $2$ 偶 $2$，白 奇 $2$ 偶 $1$，蓝 奇 $1$ 偶 $1$。和为偶数 ⇔ 奇数张数为 $0$ 或 $2$：偶偶偶 $2\cdot1\cdot1=2$，偶奇奇 $2\cdot2\cdot1=4$，奇偶奇 $2\cdot1\cdot1=2$，奇奇偶 $2\cdot2\cdot1=4$，共 $12$。条件概率 $\dfrac{12}{24}=\dfrac12$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>アイ = 24，ウ = 8，エ = 1，オカ = 12，キ = 1，ク = 2</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 6　彩球放入编号箱子</b><span class="origin">原创 · 对应题型：彩色球放入编号箱子的方案数</span></div>
+      <p>编号 $1$ 到 $7$ 的 $7$ 个箱子排成一列。有红球 $2$ 个、白球 $2$ 个、蓝球 $1$ 个、黄球 $1$ 个，同色球不加区别。</p>
+      <p>(1) 每个箱子至多放 $1$ 个球，把 $6$ 个球全部放入，方法有 $\boxed{\text{アイウエ}}$ 种。</p>
+      <p>(2) 在 (1) 的放法中，$2$ 个红球都放在奇数号箱子里的有 $\boxed{\text{オカキ}}$ 种。</p>
+      <p>(3) 在 (1) 的放法中，$7$ 号箱为空、且相邻编号的箱子里没有同色球的有 $\boxed{\text{クケ}}$ 种。</p>
+      <p>(4) 若每个箱子可以放任意多个球，把 $6$ 个球全部放入的方法有 $\boxed{\text{コサシスセ}}$ 种。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 相当于把 R,R,W,W,B,Y 和“空”排成一列：$\dfrac{7!}{2!\,2!}=1260$。</li>
+        <li>(2) 红球放入奇数号箱 $1,3,5,7$ 中的 $2$ 个：${}_4\mathrm{C}_2=6$；其余 $5$ 个箱放 W,W,B,Y,空：$\dfrac{5!}{2!}=60$。共 $360$。</li>
+        <li>(3) 箱 $1$–$6$ 中排 R,R,W,W,B,Y：全部 $\dfrac{6!}{2!\,2!}=180$。两红相邻：$\dfrac{5!}{2!}=60$；两白相邻：$60$；两者都相邻：$4!=24$。所求 $180-60-60+24=84$。</li>
+        <li>(4) 各色独立：$2$ 个红球放入 $7$ 箱是重复组合 ${}_8\mathrm{C}_2=28$，白球同样 $28$，蓝、黄各 $7$。$28\times28\times7\times7=38416$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>アイウエ = 1260，オカキ = 360，クケ = 84，コサシスセ = 38416</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 7　上楼梯与骰子移动</b><span class="origin">原创 · 对应题型：一步或两步上楼梯、骰子控制移动的概率</span></div>
+      <p>每次上 $1$ 级或 $2$ 级楼梯。</p>
+      <p>(1) 上到第 $8$ 级的方法有 $\boxed{\text{アイ}}$ 种。</p>
+      <p>(2) 其中“上 $2$ 级”不连续出现的方法有 $\boxed{\text{ウエ}}$ 种。</p>
+      <p>以下每次投掷一颗骰子：出 $1$–$4$ 上 $1$ 级，出 $5,6$ 上 $2$ 级。从第 $0$ 级出发。</p>
+      <p>(3) 途中恰好踩到第 $4$ 级的概率为 $\dfrac{\boxed{\text{オカ}}}{\boxed{\text{キク}}}$。</p>
+      <p>(4) 途中恰好踩到第 $5$ 级的概率为 $\dfrac{\boxed{\text{ケコサ}}}{\boxed{\text{シスセ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 设“上 $2$ 级”有 $k$ 次，则共 $8-k$ 步，选出哪几步是 $2$ 级：$\sum_{k=0}^{4}{}_{8-k}\mathrm{C}_k=1+7+15+10+1=34$（也可用 $a_n=a_{n-1}+a_{n-2}$ 递推）。</li>
+        <li>(2) $8-2k$ 个“$1$ 级”之间及两端共 $9-2k$ 个空位，选 $k$ 个放“$2$ 级”：${}_{9-2k}\mathrm{C}_k$。$k=0,1,2,3$ 时分别为 $1,7,10,1$，共 $19$。</li>
+        <li>(3) 设恰好踩到第 $n$ 级的概率为 $p_n$。到第 $n$ 级的最后一步来自 $n-1$（上 $1$ 级）或 $n-2$（上 $2$ 级）：$p_n=\dfrac23p_{n-1}+\dfrac13p_{n-2}$，$p_0=1,\ p_1=\dfrac23$。于是 $p_2=\dfrac79,\ p_3=\dfrac{20}{27},\ p_4=\dfrac23\cdot\dfrac{20}{27}+\dfrac13\cdot\dfrac79=\dfrac{61}{81}$。</li>
+        <li>(4) $p_5=\dfrac23\cdot\dfrac{61}{81}+\dfrac13\cdot\dfrac{20}{27}=\dfrac{122+60}{243}=\dfrac{182}{243}$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>アイ = 34，ウエ = 19，オカ = 61，キク = 81，ケコサ = 182，シスセ = 243</p>
+      </div>
+      </details>
+    </article>
+
+    <article class="q">
+      <div class="q-head"><b>真题风格 8　抽卡直到出现指定数字</b><span class="origin">原创 · 对应题型：反复抽取直到停止的概率</span></div>
+      <p>箱中有写着 $1,2,3,4,5$ 的卡片各 $1$ 张。每次同时抽出 $2$ 张，看完后放回。抽出的 $2$ 张中含有 $5$ 时就停止。</p>
+      <p>(1) 第 $1$ 次就停止的概率为 $\dfrac{\boxed{\text{ア}}}{\boxed{\text{イ}}}$。</p>
+      <p>(2) 恰好在第 $3$ 次停止的概率为 $\dfrac{\boxed{\text{ウエ}}}{\boxed{\text{オカキ}}}$。</p>
+      <p>(3) $3$ 次以内停止的概率为 $\dfrac{\boxed{\text{クケ}}}{\boxed{\text{コサシ}}}$。</p>
+      <p>(4) $3$ 次以内停止、且停止时抽出的 $2$ 张数字之和为偶数的概率为 $\dfrac{\boxed{\text{スセ}}}{\boxed{\text{ソタチ}}}$。</p>
+      <details><summary>解答</summary>
+      <div class="ans">
+        <ol>
+        <li>(1) 每次的抽法 ${}_5\mathrm{C}_2=10$ 种，含 $5$ 的有 $4$ 种，概率 $\dfrac{4}{10}=\dfrac25$。</li>
+        <li>(2) 前两次不含 $5$，第 $3$ 次含 $5$：$\Bigl(\dfrac35\Bigr)^2\cdot\dfrac25=\dfrac{18}{125}$。</li>
+        <li>(3) 余事象是“$3$ 次都不含 $5$”：$1-\Bigl(\dfrac35\Bigr)^3=1-\dfrac{27}{125}=\dfrac{98}{125}$。</li>
+        <li>(4) 一次抽出含 $5$ 且和为偶数，另一张必须是奇数 $1$ 或 $3$：概率 $\dfrac{2}{10}=\dfrac15$。在第 $k$ 次这样停止的概率为 $\Bigl(\dfrac35\Bigr)^{k-1}\cdot\dfrac15$，求和：$\dfrac15\Bigl(1+\dfrac35+\dfrac{9}{25}\Bigr)=\dfrac15\cdot\dfrac{49}{25}=\dfrac{49}{125}$。</li>
+        </ol>
+        <p><strong>各格答案：</strong>ア = 2，イ = 5，ウエ = 18，オカキ = 125，クケ = 98，コサシ = 125，スセ = 49，ソタチ = 125</p>
+      </div>
+      </details>
+    </article>
   </section>
 
   <footer>
