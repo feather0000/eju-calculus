@@ -8,3 +8,8 @@ h+='<a href="'+u+'"'+(cur?' class="cur"':'')+'>'+(t.n==19?'19–20':t.n)+'. '+t.
 h+='</div></details>';n.innerHTML=h;
 var st=document.createElement('style');st.textContent='.eju-site-nav{position:sticky;top:0;z-index:999;background:Canvas;font:14px/1.5 system-ui,sans-serif;padding:6px 12px;border-bottom:1px solid rgba(127,127,127,.3)}.eju-site-nav summary{cursor:pointer;font-weight:600}.eju-nav-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:4px 12px;padding:8px 0;max-height:60vh;overflow:auto}.eju-nav-list a{color:inherit;text-decoration:none;opacity:.85}.eju-nav-list a:hover{text-decoration:underline}.eju-nav-list a.cur{font-weight:700;opacity:1}';
 document.head.appendChild(st);document.body.insertBefore(n,document.body.firstChild);})();
+/* TOC jump: re-check landing after lazy sections render (content-visibility estimates can shift targets) */
+document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('nav.toc a[href^="#"]');if(!a)return;
+var id=decodeURIComponent(a.getAttribute('href').slice(1));
+function fix(n){var e=document.getElementById(id);if(!e)return;var top=e.getBoundingClientRect().top;var want=parseFloat(getComputedStyle(e).scrollMarginTop)||0;if(Math.abs(top-want)>4)e.scrollIntoView({block:'start'});if(n)requestAnimationFrame(function(){requestAnimationFrame(function(){fix(n-1)})});}
+requestAnimationFrame(function(){requestAnimationFrame(function(){fix(2)})});});
