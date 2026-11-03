@@ -15,4 +15,4 @@ function fix(n){var e=document.getElementById(id);if(!e)return;var top=e.getBoun
 requestAnimationFrame(function(){requestAnimationFrame(function(){fix(2)})});});
 
 /* expose real header height for sticky offsets */
-(function(){function u(){var n=document.querySelector('.eju-site-nav');if(n)document.documentElement.style.setProperty('--eju-hdr',(n.querySelector('summary')||n).getBoundingClientRect().height+13+'px')}u();addEventListener('resize',u);addEventListener('load',u)})();
+(function(){function u(){var n=document.querySelector('.eju-site-nav');if(n)document.documentElement.style.setProperty('--eju-hdr',(function(){var d=n.querySelector('details');if(d&&d.open){var o=d.open;d.open=false;var h=n.getBoundingClientRect().height;d.open=o;return h}return n.getBoundingClientRect().height})()+'px')}u();addEventListener('resize',u);addEventListener('load',u)})();
