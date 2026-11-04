@@ -29,7 +29,7 @@ def page(slug, n, zh, ja, lead, hero, sections, desc):
     toc = ''.join(f'<li><a href="#{i}">{k+1} {tt}</a></li>' for k, (i, tt, _, _) in enumerate(sections))
     secs = ''.join(f'<section id="{sid}"><h2>{tt}</h2><p class="jp-sub">{j}</p>{body}</section>' for sid, tt, j, body in sections)
     hero = ''.join(f'$${h}$$' for h in hero)
-    return f'''{head}<style id="extras">{XCSS}</style>
+    return f'''{head}<script>/*TH-INIT*/try{{var _t=localStorage.getItem('eju-theme');if(_t)document.documentElement.setAttribute('data-theme',_t)}}catch(e){{}}</script><style id="extras">{XCSS}</style>
 </head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
