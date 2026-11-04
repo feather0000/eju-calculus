@@ -1,0 +1,30 @@
+<!doctype html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>过去问知识点浏览 · EJU 数学コース2</title>
+<style>:root{--bg:#fafaf7;--fg:#222;--card:#fff;--line:#ddd;--acc:#2b6cb0;--mut:#666}@media(prefers-color-scheme:dark){:root{--bg:#16181d;--fg:#e6e6e6;--card:#1f232a;--line:#333;--acc:#7ab3ff;--mut:#9aa}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,"PingFang SC","Noto Sans CJK SC",sans-serif}main{max-width:900px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-right)) 40px max(16px,env(safe-area-inset-left))}a{color:var(--acc)}
+.f{display:flex;flex-wrap:wrap;gap:8px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:2;border-bottom:1px solid var(--line)}.f select,.f input{font:inherit;min-height:44px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--fg);flex:1 1 160px;min-width:0}
+#cnt{color:var(--mut);font-size:14px;margin:8px 0}.it{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;content-visibility:auto;contain-intrinsic-size:auto 120px}.it h3{margin:0;font-size:16px}.m{color:var(--mut);font-size:13px}
+.sb{display:flex;height:12px;border-radius:6px;overflow:hidden;margin:6px 0;background:var(--line)}.sb span{display:block;height:100%}.lg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;margin:0;padding:0;list-style:none}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}.sp{font-size:12.5px;color:var(--mut);margin-top:4px}#more{height:1px}</style></head>
+<body><main><p><a href="../">← 目录</a></p><h1>过去问知识点浏览</h1><p>《EJU数学2知识点分类题库 2005至2025》233 道题逐题的知识点构成。色条长度 = 该专题在本题中的估计占比（按各小问填空数分配）。<a href="../#freq-rank">→ 加权排行与组合热力图</a></p>
+<div class="f"><select id="t" aria-label="专题"><option value="">全部专题</option></select><select id="y" aria-label="年份"><option value="">全部年份</option></select><select id="r" aria-label="角色"><option value="">主考+辅助</option><option value="m">仅主考点</option><option value="s">仅辅助考点</option></select><input id="q" type="search" placeholder="搜索标题/标签" aria-label="搜索"></div>
+<p id="cnt"></p><div id="list"></div><div id="more"></div></main>
+<script>
+(async()=>{
+const D=await (await fetch('../assets/bank_analysis.json')).json();
+const TN={"numbers-expressions": "数与式", "sets-logic": "集合与命题", "quadratic-functions": "二次函数", "trig-ratios": "图形与计量（三角比）", "counting-probability": "排列组合与概率", "integers": "整数的性质", "plane-solid-geometry": "图形的性质", "expressions-equations": "各种式（式与证明・高次方程式）", "coordinate-geometry": "图形与方程", "exp-log": "指数函数与对数函数", "trig-functions": "三角函数", "sequences": "数列", "probability-distributions": "概率分布", "vectors": "向量", "complex-plane": "复数平面", "curves": "式与曲线", "functions": "函数（分式・无理・反函数）", "limits": "极限", "differentiation": "微分法", "integration": "积分法"};const SP={};D.taxonomy.forEach(x=>SP[x.code]=x.name);
+const keys=Object.keys(TN),col=k=>`hsl(${Math.round(keys.indexOf(k)*360/keys.length*7)%360} 62% 52%)`;
+const $=id=>document.getElementById(id),L=$('list');
+keys.forEach(k=>$('t').add(new Option(TN[k],k)));[...new Set(D.entries.map(e=>e.year))].sort((a,b)=>b-a).forEach(y=>$('y').add(new Option(y+' 年',y)));
+const u=new URLSearchParams(location.search);if(u.get('t'))$('t').value=u.get('t');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let rows=[],n=0;
+function card(e){const ts=Object.entries(e.topics);return `<div class="it"><h3>${esc(e.title)}</h3><div class="m">${e.id} · ${esc(e.sess)} ${esc(e.q)} · 填空 ${e.blanks||'?'} 个 · 题库分类：${esc(e.cat)}</div><div class="sb">${ts.map(([k,v])=>`<span style="width:${v*100}%;background:${col(k)}" title="${esc(TN[k])} ${Math.round(v*100)}%"></span>`).join('')}</div><ul class="lg">${ts.map(([k,v])=>`<li><i style="background:${col(k)}"></i>${esc(TN[k])} ${Math.round(v*100)}%</li>`).join('')}</ul><div class="sp">${Object.entries(e.points).map(([k,v])=>esc(SP[k])+' '+Math.round(v*100)+'%').join(' ／ ')}</div></div>`}
+function more(){if(n>=rows.length)return;L.insertAdjacentHTML('beforeend',rows.slice(n,n+30).map(card).join(''));n+=30}
+function apply(){const t=$('t').value,y=$('y').value,r=$('r').value,q=$('q').value.trim();
+rows=D.entries.filter(e=>(!y||e.year==y)&&(!t||(e.topics[t]&&(!r||(r=='m')==(e.main_topic==t))))&&(!q||(e.title+e.tags.join(' ')+e.cat).includes(q)));
+if(t)rows.sort((a,b)=>b.topics[t]-a.topics[t]||b.year-a.year);
+const w=t?rows.reduce((s,e)=>s+e.topics[t],0):0;
+$('cnt').textContent=`${rows.length} 题`+(t?`，${TN[t]} 加权合计 ${w.toFixed(1)}`:'');L.textContent='';n=0;more();}
+new IntersectionObserver(es=>{if(es[0].isIntersecting)requestAnimationFrame(more)},{rootMargin:'800px'}).observe($('more'));
+let tm;['t','y','r'].forEach(i=>$(i).onchange=apply);$('q').oninput=()=>{clearTimeout(tm);tm=setTimeout(apply,200)};apply();
+})();
+</script></body></html>
