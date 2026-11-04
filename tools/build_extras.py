@@ -2,9 +2,10 @@
 import re, glob, os, json, html as H, sys
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 sys.path.insert(0, 'tools')
-from _x import formula_sections, pitfall_sections, search_sections, plain, CATS
+from _x import formula_sections, pitfall_sections, search_sections, plain, CATS, tips_sections, tip_backsec
+from math_tips import TIPS
 from math_data import F, PF
-EX = ['formulas', 'pitfalls', 'search']
+EX = ['formulas', 'pitfalls', 'search', 'tips']
 # —— 读取现有专题页 ——
 TOP = []
 for f in sorted(glob.glob('topics/*/index.html')):
@@ -46,8 +47,23 @@ window.addEventListener('load',function(){{if(!window.renderMathInElement){{docu
 FS = formula_sections(TOP, F)
 PS = pitfall_sections(TOP, PF)
 SS = search_sections()
+_A = json.load(open('assets/bank_analysis.json')); _w = {}
+for e in _A['entries']:
+    for k, v in e['topics'].items(): _w[k] = _w.get(k, 0) + v
+WT = {k: (v, f'过去问加权 {v:.1f} 题') for k, v in _w.items()}
+TS = tips_sections(TOP, TIPS, WT)
+# —— 专题页反向链接（幂等） ——
+for t in TOP:
+    f = f'topics/{t["slug"]}/index.html'; s0 = re.sub(r'<!--TIPS-BEGIN-->.*?<!--TIPS-END-->', '', open(f).read(), flags=re.S)
+    b = tip_backsec(t['slug'], TIPS)
+    if b:
+        blk = f'<!--TIPS-BEGIN--><section id="tips"><h2>快速解题技巧</h2><p class="jp-sub">速解テクニック</p>{b[3]}</section><!--TIPS-END-->'
+        assert s0.count('<footer') == 1, f; s0 = s0.replace('<footer', blk + '<footer', 1)
+        if '.tip-back' not in s0: s0 = s0.replace('</head>', '<style>.tip-back{padding-left:1.2em}.tip-back li{margin:4px 0}.tip-back a{display:inline-block;min-height:28px}</style></head>', 1)
+    open(f, 'w').write(s0); t['src'] = s0
 PAGES = [('formulas', 21, '公式速查', '公式集', '各专题最常用的公式，和“什么时候能用”的条件放在一起。点每组下面的链接回到对应讲解与练习。', [r'\frac{a}{\sin A}=2R', r'\int_\alpha^\beta(x-\alpha)(x-\beta)dx=-\tfrac{(\beta-\alpha)^3}{6}'], FS, '按专题的核心公式与成立条件'),
          ('pitfalls', 22, '易错点・陷阱', '間違えやすいポイント', '按错误类型整理：成立条件（真数条件、区间、收敛、等号）、符号与方向、概念混淆、读题。每条有简短例子，并链接到相关讲解与练习。', [r'\sqrt{a^2}=|a|', r'a_n=S_n-S_{n-1}\ (n\ge2)'], PS, f'{len(PF)} 个常见错误与例子'),
+         ('tips', 24, '快速解题技巧', '速解テクニック', 'EJU 数学コース2 是マーク式（空格填数字）。这里整理能直接省时间、也能用来验算的方法：空格形状检查、顶点式、韦达、根的分布、切线、1/6 公式、向量系数比较、余事象……专题按过去问加权出题频度排序。', [r'\tfrac{|a|}{6}(\beta-\alpha)^3', r'\alpha^2+\beta^2=(\alpha+\beta)^2-2\alpha\beta'], TS, f'{len(TIPS)} 招 · 按出题频度排序'),
          ('search', 23, '站内搜索', 'サイト内検索', '搜索本站的讲解、练习、公式、易错点和日语术语。中文和日语都可以搜（会自动对应常见的日本汉字写法）。', [], SS, '讲解・练习・公式・术语')]
 for slug, n, zh, ja, lead, hero, secs, sub in PAGES:
     os.makedirs(f'topics/{slug}', exist_ok=True)
@@ -78,8 +94,13 @@ for t in TOP:
                 I.append(['题', f'{t["zh"]} · {plain(hd.group(1)) if hd else tt}', plain(re.sub(r'<div class="q-head">.*?</div>', '', a, count=1, flags=re.S))[:500], u + '#' + sid])
             body = re.sub(r'<article class="q".*?</article>', '', body, flags=re.S)
         I.append(['讲解', f'{t["zh"]} · {tt}', plain(body)[:900], u + '#' + sid])
-for slug, n, zh, ja, lead, hero, secs, sub in PAGES[:2]:
-    kind = '公式' if slug == 'formulas' else '易错'
+for slug, n, zh, ja, lead, hero, secs, sub in PAGES[:3]:
+    kind = {'formulas': '公式', 'pitfalls': '易错', 'tips': '技巧'}[slug]
+    if slug == 'tips':
+        for sid, tt, j, body in secs:
+            for m in re.finditer(r'<article class="q tip" id="(tip\d+)"><div class="q-head"><b>(.*?)</b>(.*?)</article>', body, re.S):
+                I.append([kind, plain(m.group(2)), plain(m.group(3))[:700], f'topics/{slug}/#{m.group(1)}'])
+        continue
     for sid, tt, j, body in secs:
         if slug == 'pitfalls':
             for m in re.finditer(r'<article class="q pit" id="(pit\d+)"><div class="q-head"><b>(.*?)</b>.*?</div>(.*?)</article>', body, re.S):
@@ -95,7 +116,7 @@ nav[0] = '(function(){var T=' + json.dumps(T, ensure_ascii=False) + ';'
 open('assets/nav.js', 'w').write('\n'.join(nav))
 # —— 首页 ——
 ix = open('index.html').read()
-blk = '<!--X-BEGIN--><section class="x-tools" style="margin:28px 0"><h2>速查与工具</h2><p><a href="topics/formulas/">📐 公式速查</a>　<a href="topics/pitfalls/">⚠️ 易错点・陷阱（%d 条）</a>　<a href="topics/search/">🔍 站内搜索</a></p></section><!--X-END-->' % len(PF)
+blk = '<!--X-BEGIN--><section class="x-tools" style="margin:28px 0"><h2>速查与工具</h2><p><a href="topics/formulas/">📐 公式速查</a>　<a href="topics/pitfalls/">⚠️ 易错点・陷阱（%d 条）</a>　<a href="topics/tips/">⚡ 快速解题技巧（%d 招）</a>　<a href="topics/search/">🔍 站内搜索</a></p></section><!--X-END-->' % (len(PF), len(TIPS))
 ix = re.sub(r'<!--X-BEGIN-->.*?<!--X-END-->', '', ix, flags=re.S)
 print('index ok' if '<!--X-ANCHOR-->' in ix else 'NEED ANCHOR')
 ix = ix.replace('<!--X-ANCHOR-->', '<!--X-ANCHOR-->' + blk, 1)
