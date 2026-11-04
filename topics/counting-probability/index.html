@@ -187,7 +187,7 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
 #b-sim { margin-top: 2px; }
 .box.tip { background: var(--surface-2); }
 </style>
-<style id="perf">section{content-visibility:auto;contain-intrinsic-size:auto 1200px}.q,.box,.ex,.example,table{content-visibility:auto;contain-intrinsic-size:auto 320px}svg.chart,canvas{contain:layout paint}.cbox{contain:layout style}html{scroll-behavior:auto!important}</style></head>
+<style id="perf">section{content-visibility:auto;contain-intrinsic-size:auto 1200px}.q,.box,.ex,.example,table{content-visibility:auto;contain-intrinsic-size:auto 320px}svg.chart,canvas{contain:layout paint}.cbox{contain:layout style}html{scroll-behavior:auto!important}</style><style id="mathfreq">.mf-tw{overflow-x:auto;-webkit-overflow-scrolling:touch}.mf-t{border-collapse:collapse;width:100%;min-width:420px;margin:8px 0;font-size:15px}.mf-t th,.mf-t td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left}.mf-t th{color:var(--ink-3);font-weight:600;font-size:13px}.mf-n{text-align:right!important;font-variant-numeric:tabular-nums;white-space:nowrap}.mf-bc{width:34%}.mf-bar{display:block;height:10px;border-radius:5px;background:var(--accent)}.mf-stars{color:var(--warn);letter-spacing:1px}.mf-types li{margin:2px 0}.mf-y{color:var(--ink-3);font-size:13px;margin-left:8px;white-space:nowrap}.mf-note{color:var(--ink-3);font-size:13px}</style></head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
 <div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
@@ -212,7 +212,8 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
     <div style="flex:1;min-width:0">
       <p class="toc-title">目录</p>
       <ol>
-        <li><a href="#counting">1 计数原则</a></li>
+                <li><a href="#freq">出题频度</a></li>
+                <li><a href="#counting">1 计数原则</a></li>
         <li><a href="#perm">2 排列</a></li>
         <li><a href="#comb">3 组合</a></li>
         <li><a href="#prob">4 概率基本性质</a></li>
@@ -232,6 +233,18 @@ svg .simdot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; pointer
   <div class="box warn" style="margin-top:28px">
     <p><strong>符号提醒：</strong>日本教材把排列数、组合数写成 ${}_n\mathrm{P}_r$、${}_n\mathrm{C}_r$（中文教材常写 $A_n^r$、$C_n^r$），本讲义统一用日本写法。条件概率也常写成 $P_A(B)$，与 $P(B\mid A)$ 同义。</p>
   </div>
+
+  
+  <section id="freq" class="mf">
+<h2>出题频度</h2>
+<p class="jp-sub" lang="ja">出題頻度（2005–2025 過去問の統計）</p>
+<p>据《EJU数学2知识点分类题库 2005至2025》统计（共 233 个条目，按独立问归类），本页对应题库分类合计 <b>16</b> 题，约占全部的 <b>6.9%</b>，其中 2021 年以后 8 题；重要度 <b class="mf-stars">★★</b>。</p>
+<div class="mf-tw"><table class="mf-t"><thead><tr><th>题库分类</th><th>题数</th><th>频度排名</th><th></th></tr></thead><tbody><tr><td><b>P</b> 排列组合与概率</td><td class="mf-n">16</td><td class="mf-n">5/17</td><td class="mf-bc"><span class="mf-bar" style="width:37%"></span></td></tr></tbody></table></div>
+<p><strong>高频考点标签</strong>：补事件（5）、组合（4）、骰子（3）、停止时间（3）、组合计数（2）、独立抽取（2）、分类计数（2）、不放回抽样（2）</p>
+<p><strong>常见题型</strong>（题库条目标题，按年份新→旧）：</p><ul class="mf-types"><li>每次抽两张直到出现指定数字的停止概率<span class="mf-y">2025年 场次未注明       I 問2</span></li><li>三色编号卡片抽取的颜色与数字约束概率<span class="mf-y">2024年 场次未注明       I 問2</span></li><li>三箱数字卡片的大小约束及奇偶抽样概率<span class="mf-y">2023年第1回 I 問2</span></li><li>正四面体与立方体面着色的计数<span class="mf-y">2023年第2回 I 問2</span></li><li>两次交换数字卡片后九位数为偶数的概率<span class="mf-y">2022年第1回 I 問2</span></li><li>相邻点数连续出现规则下的结束概率<span class="mf-y">2022年第2回 I 問2</span></li></ul>
+<div class="box"><p><strong>备考重点</strong>　骰子与抽卡题最多：补事件、独立重复试验、“停止时间”型（第 n 次结束）是固定套路。</p></div>
+<p class="mf-note">★★★ ≥25 题，★★ 10–24 题，★ 1–9 题。<a href="../../#freq-rank">→ 全专题排行</a></p>
+</section>
 
   <section id="counting">
     <h2>1 计数的基本原则</h2>

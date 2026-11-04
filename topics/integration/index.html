@@ -207,7 +207,7 @@ details > summary:hover { background: var(--accent-soft); }
 details[open] > summary { background: var(--accent); color: var(--surface); }
 @media print { details > div { display: block; } details > summary { display: none; } }
 </style>
-<style id="perf">section{content-visibility:auto;contain-intrinsic-size:auto 1200px}.q,.box,.ex,.example,table{content-visibility:auto;contain-intrinsic-size:auto 320px}svg.chart,canvas{contain:layout paint}.cbox{contain:layout style}html{scroll-behavior:auto!important}</style></head>
+<style id="perf">section{content-visibility:auto;contain-intrinsic-size:auto 1200px}.q,.box,.ex,.example,table{content-visibility:auto;contain-intrinsic-size:auto 320px}svg.chart,canvas{contain:layout paint}.cbox{contain:layout style}html{scroll-behavior:auto!important}</style><style id="mathfreq">.mf-tw{overflow-x:auto;-webkit-overflow-scrolling:touch}.mf-t{border-collapse:collapse;width:100%;min-width:420px;margin:8px 0;font-size:15px}.mf-t th,.mf-t td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left}.mf-t th{color:var(--ink-3);font-weight:600;font-size:13px}.mf-n{text-align:right!important;font-variant-numeric:tabular-nums;white-space:nowrap}.mf-bc{width:34%}.mf-bar{display:block;height:10px;border-radius:5px;background:var(--accent)}.mf-stars{color:var(--warn);letter-spacing:1px}.mf-types li{margin:2px 0}.mf-y{color:var(--ink-3);font-size:13px;margin-left:8px;white-space:nowrap}.mf-note{color:var(--ink-3);font-size:13px}</style></head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
 <div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
@@ -233,7 +233,8 @@ details[open] > summary { background: var(--accent); color: var(--surface); }
     <div style="flex:1;min-width:0">
       <p class="toc-title">目录</p>
       <ol>
-        <li><a href="#calc">1 定积分的计算</a></li>
+                <li><a href="#freq">出题频度</a></li>
+                <li><a href="#calc">1 定积分的计算</a></li>
         <li><a href="#area">2 面积</a></li>
         <li><a href="#volume">3 体积</a></li>
         <li><a href="#equation">4 积分方程</a></li>
@@ -249,6 +250,18 @@ details[open] > summary { background: var(--accent); color: var(--surface); }
   <div class="box warn" style="margin-top:28px">
     <p><strong>符号提醒：</strong>日本教材和 EJU 中，$\log x$ 通常就是自然对数（底为 $e$），相当于中文教材的 $\ln x$。本讲义统一按日本写法使用 $\log x$。积分常数写作 $C$（<span lang="ja">積分定数</span>）；三角函数的角一律用弧度。</p>
   </div>
+
+  
+  <section id="freq" class="mf">
+<h2>出题频度</h2>
+<p class="jp-sub" lang="ja">出題頻度（2005–2025 過去問の統計）</p>
+<p>据《EJU数学2知识点分类题库 2005至2025》统计（共 233 个条目，按独立问归类），本页对应题库分类合计 <b>43</b> 题，约占全部的 <b>18.5%</b>，其中 2021 年以后 8 题；重要度 <b class="mf-stars">★★★</b>。</p>
+<div class="mf-tw"><table class="mf-t"><thead><tr><th>题库分类</th><th>题数</th><th>频度排名</th><th></th></tr></thead><tbody><tr><td><b>I</b> 积分</td><td class="mf-n">43</td><td class="mf-n">1/17</td><td class="mf-bc"><span class="mf-bar" style="width:100%"></span></td></tr></tbody></table></div>
+<p><strong>高频考点标签</strong>：面积（12）、分部积分（7）、切线（7）、指数函数（6）、三角函数（6）、极限（4）、最小值（4）、曲线面积（3）</p>
+<p><strong>常见题型</strong>（题库条目标题，按年份新→旧）：</p><ul class="mf-types"><li>三角函数商的极值和两极值点间的定积分<span class="mf-y">2025年 场次未注明      IV</span></li><li>正弦与正切曲线的交点 正交切线及围成面积<span class="mf-y">2024年 场次未注明      IV</span></li><li>分段函数在移动区间上的积分最大值<span class="mf-y">2023年第1回 III</span></li><li>积分定义的三角函数的极值 最大值与切线<span class="mf-y">2023年第1回 IV</span></li><li>含指数绝对值的定积分最小化<span class="mf-y">2023年第2回 IV</span></li><li>两条三角曲线的极值与围成面积<span class="mf-y">2022年第1回 IV</span></li></ul>
+<div class="box"><p><strong>备考重点</strong>　全题库第 1 大专题（43 题）：曲线与切线围成的面积、分部积分、积分方程以及与数列极限的结合。</p></div>
+<p class="mf-note">★★★ ≥25 题，★★ 10–24 题，★ 1–9 题。<a href="../../#freq-rank">→ 全专题排行</a></p>
+</section>
 
   <section id="calc">
     <h2>1 定积分的计算</h2>
