@@ -2,7 +2,7 @@
 import re, glob, os, json, html as H, sys
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 sys.path.insert(0, 'tools')
-from _x import formula_sections, pitfall_sections, search_sections, plain, CATS, tips_sections, tip_backsec
+from _x import formula_sections, pitfall_sections, search_sections, plain, CATS, tips_sections, tip_backsec, detex
 from math_tips import TIPS
 from math_data import F, PF
 EX = ['formulas', 'pitfalls', 'search', 'tips']
@@ -99,7 +99,7 @@ for slug, n, zh, ja, lead, hero, secs, sub in PAGES[:3]:
     if slug == 'tips':
         for sid, tt, j, body in secs:
             for m in re.finditer(r'<article class="q tip" id="(tip\d+)"><div class="q-head"><b>(.*?)</b>(.*?)</article>', body, re.S):
-                I.append([kind, plain(m.group(2)), plain(m.group(3))[:700], f'topics/{slug}/#{m.group(1)}'])
+                I.append([kind, detex(plain(m.group(2))), detex(plain(m.group(3)))[:700], f'topics/{slug}/#{m.group(1)}'])
         continue
     for sid, tt, j, body in secs:
         if slug == 'pitfalls':
