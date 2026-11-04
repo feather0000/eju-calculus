@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EJU 数学コース2 · 公式速查</title>
+<meta name="description" content="公式速查：按专题的核心公式与成立条件">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script><script defer src="../../assets/lazy-katex.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#ex-svg { touch-action: pan-y; cursor: ew-resize; user-select: none; -webkit-user-select: none; background: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+.back { display: inline-block; color: #c5d3ef; text-decoration: none; font-size: 15px; margin-bottom: 18px; }
+.back:hover { text-decoration: underline; }
+details { margin-top: 10px; }
+details > summary { display: inline-block; cursor: pointer; font-size: 14.5px; min-height: 36px; padding: 4px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary:hover { background: var(--accent-soft); }
+details[open] > summary { background: var(--accent); color: var(--surface); }
+.q-head > span:not(.origin) { font-size: 12.5px; }
+@media print { details > .ans { display: block; } }
+</style>
+<style id="perf">section{content-visibility:auto;contain-intrinsic-size:auto 1200px}.q,.box,.ex,.example,table{content-visibility:auto;contain-intrinsic-size:auto 320px}svg.chart,canvas{contain:layout paint}.cbox{contain:layout style}html{scroll-behavior:auto!important}</style><style id="mathfreq">.mf-tw{overflow-x:auto;-webkit-overflow-scrolling:touch}.mf-t{border-collapse:collapse;width:100%;min-width:420px;margin:8px 0;font-size:15px}.mf-t th,.mf-t td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left}.mf-t th{color:var(--ink-3);font-weight:600;font-size:13px}.mf-n{text-align:right!important;font-variant-numeric:tabular-nums;white-space:nowrap}.mf-bc{width:34%}.mf-bar{display:block;height:10px;border-radius:5px;background:var(--accent)}.mf-stars{color:var(--warn);letter-spacing:1px}.mf-types li{margin:2px 0}.mf-y{color:var(--ink-3);font-size:13px;margin-left:6px}.mf-note{color:var(--ink-3);font-size:13px}.mf-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:10px 0}.mf-kpi div{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px}.mf-kpi b{display:block;font-size:22px;color:var(--accent);font-variant-numeric:tabular-nums}.mf-kpi span{font-size:13px;color:var(--ink-2)}.mf-split{height:10px;border-radius:5px;background:var(--line);overflow:hidden;margin:6px 0 2px}.mf-sm{display:block;height:100%;background:var(--accent)}#freq a{color:var(--accent)}</style><style id="extras">/* —— 速查・术语・搜索（共用） —— */
+.ftab td:first-child { min-width: 46%; } .ftab td { vertical-align: middle; } .ftab .katex-display { margin: .3em 0; }
+p.more { margin: 6px 0 22px; font-size: 14px; } p.more a { display: inline-flex; align-items: center; min-height: 32px; }
+.pit .tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 1px 8px; border-radius: 10px; margin-right: 4px; }
+.pit .tag.bad { background: var(--warn-soft); color: var(--warn); } .pit .tag.ok { background: var(--good-soft); color: var(--good); }
+.tc-bar { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin: 12px 0; }
+.tc-f { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ink-2); }
+.tc-f select, .tc-f input[type=search], .sx-form input { font: inherit; min-height: 44px; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); max-width: 100%; }
+.tc-chk input { width: 22px; height: 22px; }
+.tc-seg { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+main .chip[aria-pressed=true] { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+.tc-bar .chip, .tc-acts .chip, .sx-seg .chip { min-height: 44px; }
+.tc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 10px; }
+.tc-it { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.tc-it .ja { font-size: 19px; font-weight: 700; color: var(--ink); overflow-wrap: anywhere; } .tc-it .kn { color: var(--ink-3); font-size: 13px; }
+.tc-it .zh { color: var(--accent); overflow-wrap: anywhere; } .tc-it .row { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.tc-it .src { font-size: 12px; color: var(--ink-3); } .tc-it button { min-width: 44px; min-height: 44px; border: 0; background: none; color: var(--accent); font-size: 18px; cursor: pointer; }
+.tc-card { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 20px 16px; text-align: center; min-height: 260px; display: flex; flex-direction: column; justify-content: center; }
+.tc-front { font-size: clamp(26px, 6vw, 40px); font-weight: 700; margin: 6px 0; overflow-wrap: anywhere; } .tc-backm { font-size: 24px; color: var(--accent); margin: 6px 0; overflow-wrap: anywhere; }
+.tc-kana { color: var(--ink-3); margin: 0; } .tc-pos, .tc-src { color: var(--ink-3); font-size: 13px; margin: 0; }
+.tc-acts { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+.chip.ok { border-color: var(--good); color: var(--good); } .chip.bad { border-color: var(--warn); color: var(--warn); }
+.sx-form { display: flex; flex-direction: column; gap: 8px; } .sx-form input { width: 100%; font-size: 18px; }
+.sx-seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.sx-res { list-style: none; padding: 0; margin: 12px 0; } .sx-res li { border-bottom: 1px solid var(--line); padding: 10px 0; }
+.sx-res a { font-weight: 700; display: inline-flex; min-height: 32px; align-items: center; } .sx-res .k { font-size: 12px; padding: 1px 7px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); margin-right: 6px; }
+.sx-res p { margin: 2px 0 0; font-size: 14px; color: var(--ink-2); overflow-wrap: anywhere; } .sx-res mark { background: var(--accent-soft); color: inherit; font-weight: 700; }
+main [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+<header class="hero"><div class="hero-in"><div class="hero-text"><a class="back" href="../../">← 目录</a><p class="eyebrow">EJU 数学コース2 · 速查 · 公式集</p><h1>公式速查</h1><p class="lead">各专题最常用的公式，和“什么时候能用”的条件放在一起。点每组下面的链接回到对应讲解与练习。</p></div><div class="hero-formula" aria-hidden="true">$$\frac{a}{\sin A}=2R$$$$\int_\alpha^\beta(x-\alpha)(x-\beta)dx=-\tfrac{(\beta-\alpha)^3}{6}$$</div></div></header>
+<div class="layout"><nav class="toc" aria-label="目录"><div style="flex:1;min-width:0"><p class="toc-title">目录</p><ol><li><a href="#f-numbers-expressions-expand">1 展开与因式分解</a></li><li><a href="#f-numbers-expressions-real">2 根式</a></li><li><a href="#f-quadratic-functions-graph">3 二次函数</a></li><li><a href="#f-quadratic-functions-discriminant">4 判别式</a></li><li><a href="#f-quadratic-functions-maxmin">5 区间最值</a></li><li><a href="#f-trig-ratios-sine">6 正弦定理</a></li><li><a href="#f-trig-ratios-cosine">7 余弦定理</a></li><li><a href="#f-trig-ratios-area">8 面积</a></li><li><a href="#f-counting-probability-perm">9 排列</a></li><li><a href="#f-counting-probability-comb">10 组合</a></li><li><a href="#f-counting-probability-indep">11 反复试验</a></li><li><a href="#f-counting-probability-cond">12 条件概率</a></li><li><a href="#f-counting-probability-expect">13 期望值</a></li><li><a href="#f-integers-gcd">14 最大公约数・最小公倍数</a></li><li><a href="#f-integers-diophantine">15 一次不定方程</a></li><li><a href="#f-plane-solid-geometry-ceva">16 切恩瓦・梅涅劳斯</a></li><li><a href="#f-plane-solid-geometry-polyhedron">17 欧拉多面体定理</a></li><li><a href="#f-plane-solid-geometry-power">18 圆幂定理</a></li><li><a href="#f-expressions-equations-binomial">19 二项定理</a></li><li><a href="#f-expressions-equations-vieta">20 根与系数的关系</a></li><li><a href="#f-expressions-equations-remainder">21 余数定理</a></li><li><a href="#f-expressions-equations-proof">22 均值不等式</a></li><li><a href="#f-coordinate-geometry-distance">23 点到直线的距离</a></li><li><a href="#f-coordinate-geometry-circle">24 圆</a></li><li><a href="#f-exp-log-logprop">25 对数</a></li><li><a href="#f-exp-log-expfn">26 指数・对数不等式</a></li><li><a href="#f-trig-functions-addition">27 加法定理</a></li><li><a href="#f-trig-functions-double">28 倍角・半角</a></li><li><a href="#f-trig-functions-compose">29 合成</a></li><li><a href="#f-sequences-arith">30 等差・等比数列</a></li><li><a href="#f-sequences-sigma">31 Σ 公式</a></li><li><a href="#f-sequences-diff">32 由和求通项</a></li><li><a href="#f-sequences-recur">33 递推式</a></li><li><a href="#f-vectors-dot">34 内积</a></li><li><a href="#f-vectors-pos">35 分点</a></li><li><a href="#f-complex-plane-polar">36 极形式・棣莫弗</a></li><li><a href="#f-complex-plane-rotation">37 旋转</a></li><li><a href="#f-curves-ellipse">38 二次曲线</a></li><li><a href="#f-functions-inverse">39 反函数</a></li><li><a href="#f-limits-series">40 无穷等比级数</a></li><li><a href="#f-differentiation-calc">41 求导</a></li><li><a href="#f-differentiation-tangent">42 切线</a></li><li><a href="#f-differentiation-extrema">43 极值</a></li><li><a href="#f-integration-calc">44 积分</a></li><li><a href="#f-integration-area">45 面积・体积</a></li><li><a href="#f-integration-equation">46 变上限积分</a></li><li><a href="#f-probability-distributions-moments">47 期望・方差</a></li><li><a href="#f-probability-distributions-cov">48 协方差・相关系数</a></li></ol></div><button class="chip theme-btn" id="theme" type="button">深色</button></nav>
+<main id="main"><section id="f-numbers-expressions-expand"><h2>展开与因式分解</h2><p class="jp-sub">展開・因数分解</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$(a+b)^3=a^3+3a^2b+3ab^2+b^3$$</td><td></td></tr><tr><td>$$a^3+b^3=(a+b)(a^2-ab+b^2)$$</td><td>$a^3-b^3=(a-b)(a^2+ab+b^2)$。</td></tr><tr><td>$$a^2+b^2+c^2-ab-bc-ca=\tfrac12\{(a-b)^2+(b-c)^2+(c-a)^2\}$$</td><td></td></tr></table></div><p class="more"><a href="../numbers-expressions/#expand">→ 1 数与式（数と式）讲解与练习</a></p></section><section id="f-numbers-expressions-real"><h2>根式</h2><p class="jp-sub">平方根</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\sqrt{a^2}=|a|$$</td><td>$a$ 可能为负时不能写成 $a$。</td></tr><tr><td>$$\frac{1}{\sqrt a+\sqrt b}=\frac{\sqrt a-\sqrt b}{a-b}$$</td><td>$a\ne b$，$a,b>0$。</td></tr></table></div><p class="more"><a href="../numbers-expressions/#real">→ 1 数与式（数と式）讲解与练习</a></p></section><section id="f-quadratic-functions-graph"><h2>二次函数</h2><p class="jp-sub">2次関数</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$y=a(x-p)^2+q$$</td><td>顶点 $(p,q)$，轴 $x=p$；$a>0$ 下凸。</td></tr><tr><td>$$y=ax^2+bx+c=a\left(x+\frac{b}{2a}\right)^2-\frac{b^2-4ac}{4a}$$</td><td></td></tr></table></div><p class="more"><a href="../quadratic-functions/#graph">→ 3 二次函数（2次関数）讲解与练习</a></p></section><section id="f-quadratic-functions-discriminant"><h2>判别式</h2><p class="jp-sub">判別式</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$D=b^2-4ac$$</td><td>$D>0$ 两个不同实根，$D=0$ 重根，$D<0$ 无实根（需 $a\ne0$）。</td></tr></table></div><p class="more"><a href="../quadratic-functions/#discriminant">→ 3 二次函数（2次関数）讲解与练习</a></p></section><section id="f-quadratic-functions-maxmin"><h2>区间最值</h2><p class="jp-sub">区間での最大・最小</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\text{比较：轴的位置 vs. 区间（左・内・右）}$$</td><td>含参数时按“轴在区间左侧／内部／右侧”分类讨论；最大值还要比较两端点到轴的距离。</td></tr></table></div><p class="more"><a href="../quadratic-functions/#maxmin">→ 3 二次函数（2次関数）讲解与练习</a></p></section><section id="f-trig-ratios-sine"><h2>正弦定理</h2><p class="jp-sub">正弦定理</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}=2R$$</td><td>$R$ 外接圆半径。</td></tr></table></div><p class="more"><a href="../trig-ratios/#sine">→ 4 图形与计量（三角比）（図形と計量）讲解与练习</a></p></section><section id="f-trig-ratios-cosine"><h2>余弦定理</h2><p class="jp-sub">余弦定理</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$a^2=b^2+c^2-2bc\cos A$$</td><td></td></tr></table></div><p class="more"><a href="../trig-ratios/#cosine">→ 4 图形与计量（三角比）（図形と計量）讲解与练习</a></p></section><section id="f-trig-ratios-area"><h2>面积</h2><p class="jp-sub">面積</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$S=\tfrac12bc\sin A=rs\ \left(s=\tfrac{a+b+c}{2}\right)$$</td><td>$r$ 内切圆半径。</td></tr><tr><td>$$\sin^2\theta+\cos^2\theta=1,\ 1+\tan^2\theta=\frac1{\cos^2\theta}$$</td><td></td></tr></table></div><p class="more"><a href="../trig-ratios/#area">→ 4 图形与计量（三角比）（図形と計量）讲解与练习</a></p></section><section id="f-counting-probability-perm"><h2>排列</h2><p class="jp-sub">順列</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$${}_nP_r=\frac{n!}{(n-r)!},\quad \text{圆排列 }(n-1)!$$</td><td>项链（可翻转）为 $(n-1)!/2$。</td></tr><tr><td>$$\text{同物排列 }\frac{n!}{p!\,q!\,r!}$$</td><td>$p+q+r=n$。</td></tr></table></div><p class="more"><a href="../counting-probability/#perm">→ 5 排列组合与概率（05 場合の数と確率）讲解与练习</a></p></section><section id="f-counting-probability-comb"><h2>组合</h2><p class="jp-sub">組合せ</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$${}_nC_r=\frac{n!}{r!(n-r)!}={}_nC_{n-r}$$</td><td>重复组合 ${}_nH_r={}_{n+r-1}C_r$。</td></tr></table></div><p class="more"><a href="../counting-probability/#comb">→ 5 排列组合与概率（05 場合の数と確率）讲解与练习</a></p></section><section id="f-counting-probability-indep"><h2>反复试验</h2><p class="jp-sub">反復試行</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$${}_nC_r\,p^r(1-p)^{n-r}$$</td><td>每次试验独立、成功概率 $p$ 不变。</td></tr></table></div><p class="more"><a href="../counting-probability/#indep">→ 5 排列组合与概率（05 場合の数と確率）讲解与练习</a></p></section><section id="f-counting-probability-cond"><h2>条件概率</h2><p class="jp-sub">条件付き確率</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$P_A(B)=\frac{P(A\cap B)}{P(A)}$$</td><td>$P(A)>0$。乘法定理 $P(A\cap B)=P(A)P_A(B)$。</td></tr></table></div><p class="more"><a href="../counting-probability/#cond">→ 5 排列组合与概率（05 場合の数と確率）讲解与练习</a></p></section><section id="f-counting-probability-expect"><h2>期望值</h2><p class="jp-sub">期待値</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$E=\sum x_ip_i$$</td><td>$\sum p_i=1$。</td></tr></table></div><p class="more"><a href="../counting-probability/#expect">→ 5 排列组合与概率（05 場合の数と確率）讲解与练习</a></p></section><section id="f-integers-gcd"><h2>最大公约数・最小公倍数</h2><p class="jp-sub">最大公約数・最小公倍数</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$ab=GL$$</td><td>两个正整数 $a,b$ 的最大公约数 $G$、最小公倍数 $L$。</td></tr></table></div><p class="more"><a href="../integers/#gcd">→ 6 整数的性质（整数の性質）讲解与练习</a></p></section><section id="f-integers-diophantine"><h2>一次不定方程</h2><p class="jp-sub">1次不定方程式</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$ax+by=c\ \text{有整数解}\iff \gcd(a,b)\mid c$$</td><td>通解：$x=x_0+\frac{b}{g}k,\ y=y_0-\frac{a}{g}k$（$g=\gcd(a,b)$）。</td></tr></table></div><p class="more"><a href="../integers/#diophantine">→ 6 整数的性质（整数の性質）讲解与练习</a></p></section><section id="f-plane-solid-geometry-ceva"><h2>切恩瓦・梅涅劳斯</h2><p class="jp-sub">チェバ・メネラウス</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\frac{BP}{PC}\cdot\frac{CQ}{QA}\cdot\frac{AR}{RB}=1$$</td><td>两定理的式子形式相同，按“顶点→分点→顶点”的顺序绕一圈。</td></tr></table></div><p class="more"><a href="../plane-solid-geometry/#ceva">→ 7 图形的性质（図形の性質）讲解与练习</a></p></section><section id="f-plane-solid-geometry-polyhedron"><h2>欧拉多面体定理</h2><p class="jp-sub">オイラーの多面体定理</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$v-e+f=2$$</td><td>凸多面体：顶点数 $v$、棱数 $e$、面数 $f$。</td></tr></table></div><p class="more"><a href="../plane-solid-geometry/#polyhedron">→ 7 图形的性质（図形の性質）讲解与练习</a></p></section><section id="f-plane-solid-geometry-power"><h2>圆幂定理</h2><p class="jp-sub">方べきの定理</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$PA\cdot PB=PC\cdot PD=PT^2$$</td><td>$PT$ 为切线长（$P$ 在圆外时）。</td></tr></table></div><p class="more"><a href="../plane-solid-geometry/#power">→ 7 图形的性质（図形の性質）讲解与练习</a></p></section><section id="f-expressions-equations-binomial"><h2>二项定理</h2><p class="jp-sub">二項定理</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$(a+b)^n=\sum_{r=0}^{n}{}_nC_r\,a^{n-r}b^r$$</td><td>一般项 ${}_nC_r a^{n-r}b^r$。</td></tr></table></div><p class="more"><a href="../expressions-equations/#binomial">→ 8 各种式（式与证明・高次方程式）（いろいろな式）讲解与练习</a></p></section><section id="f-expressions-equations-vieta"><h2>根与系数的关系</h2><p class="jp-sub">解と係数の関係</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\alpha+\beta=-\frac ba,\ \alpha\beta=\frac ca$$</td><td>二次方程 $ax^2+bx+c=0$；三次：$\alpha+\beta+\gamma=-\frac ba$，$\alpha\beta+\beta\gamma+\gamma\alpha=\frac ca$，$\alpha\beta\gamma=-\frac da$。</td></tr></table></div><p class="more"><a href="../expressions-equations/#vieta">→ 8 各种式（式与证明・高次方程式）（いろいろな式）讲解与练习</a></p></section><section id="f-expressions-equations-remainder"><h2>余数定理</h2><p class="jp-sub">剰余の定理</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$P(x)\div(x-a)\ \text{的余数}=P(a)$$</td><td>除以二次式时余数设为 $px+q$。</td></tr></table></div><p class="more"><a href="../expressions-equations/#remainder">→ 8 各种式（式与证明・高次方程式）（いろいろな式）讲解与练习</a></p></section><section id="f-expressions-equations-proof"><h2>均值不等式</h2><p class="jp-sub">相加平均・相乗平均</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\frac{a+b}{2}\ge\sqrt{ab}$$</td><td>$a,b>0$；等号当且仅当 $a=b$。求最值时必须确认等号能取到。</td></tr></table></div><p class="more"><a href="../expressions-equations/#proof">→ 8 各种式（式与证明・高次方程式）（いろいろな式）讲解与练习</a></p></section><section id="f-coordinate-geometry-distance"><h2>点到直线的距离</h2><p class="jp-sub">点と直線の距離</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$d=\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}$$</td><td>直线写成 $ax+by+c=0$ 的形式。</td></tr></table></div><p class="more"><a href="../coordinate-geometry/#distance">→ 9 图形与方程（図形と方程式）讲解与练习</a></p></section><section id="f-coordinate-geometry-circle"><h2>圆</h2><p class="jp-sub">円</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$(x-a)^2+(y-b)^2=r^2$$</td><td>一般形 $x^2+y^2+lx+my+n=0$ 需配方后 $r^2>0$ 才是圆。</td></tr><tr><td>$$x_1x+y_1y=r^2$$</td><td>圆 $x^2+y^2=r^2$ 上点 $(x_1,y_1)$ 处的切线。</td></tr></table></div><p class="more"><a href="../coordinate-geometry/#circle">→ 9 图形与方程（図形と方程式）讲解与练习</a></p></section><section id="f-exp-log-logprop"><h2>对数</h2><p class="jp-sub">対数</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\log_a MN=\log_a M+\log_a N,\ \log_a M^r=r\log_a M$$</td><td>底 $a>0,\ a\ne1$，真数 $M,N>0$（真数条件）。</td></tr><tr><td>$$\log_a b=\frac{\log_c b}{\log_c a}$$</td><td>换底公式。</td></tr></table></div><p class="more"><a href="../exp-log/#logprop">→ 10 指数函数与对数函数（指数関数・対数関数）讲解与练习</a></p></section><section id="f-exp-log-expfn"><h2>指数・对数不等式</h2><p class="jp-sub">指数・対数不等式</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$a>1:\ a^x<a^y\iff x<y;\quad 0<a<1:\ \text{不等号反向}$$</td><td>对数不等式同理，并先写出真数条件。</td></tr></table></div><p class="more"><a href="../exp-log/#expfn">→ 10 指数函数与对数函数（指数関数・対数関数）讲解与练习</a></p></section><section id="f-trig-functions-addition"><h2>加法定理</h2><p class="jp-sub">加法定理</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\sin(\alpha\pm\beta)=\sin\alpha\cos\beta\pm\cos\alpha\sin\beta$$</td><td></td></tr><tr><td>$$\cos(\alpha\pm\beta)=\cos\alpha\cos\beta\mp\sin\alpha\sin\beta$$</td><td></td></tr></table></div><p class="more"><a href="../trig-functions/#addition">→ 11 三角函数（三角関数）讲解与练习</a></p></section><section id="f-trig-functions-double"><h2>倍角・半角</h2><p class="jp-sub">2倍角・半角</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\sin2\alpha=2\sin\alpha\cos\alpha,\ \cos2\alpha=1-2\sin^2\alpha=2\cos^2\alpha-1$$</td><td></td></tr></table></div><p class="more"><a href="../trig-functions/#double">→ 11 三角函数（三角関数）讲解与练习</a></p></section><section id="f-trig-functions-compose"><h2>合成</h2><p class="jp-sub">三角関数の合成</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$a\sin\theta+b\cos\theta=\sqrt{a^2+b^2}\sin(\theta+\alpha)$$</td><td>$\cos\alpha=\frac{a}{\sqrt{a^2+b^2}},\ \sin\alpha=\frac{b}{\sqrt{a^2+b^2}}$；有 $\theta$ 的范围限制时，最值要看 $\theta+\alpha$ 的范围。</td></tr></table></div><p class="more"><a href="../trig-functions/#compose">→ 11 三角函数（三角関数）讲解与练习</a></p></section><section id="f-sequences-arith"><h2>等差・等比数列</h2><p class="jp-sub">等差・等比数列</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$a_n=a+(n-1)d,\ S_n=\frac n2(a_1+a_n)$$</td><td></td></tr><tr><td>$$a_n=ar^{n-1},\ S_n=\frac{a(1-r^n)}{1-r}\ (r\ne1)$$</td><td>$r=1$ 时 $S_n=na$。</td></tr></table></div><p class="more"><a href="../sequences/#arith">→ 12 数列（数列）讲解与练习</a></p></section><section id="f-sequences-sigma"><h2>Σ 公式</h2><p class="jp-sub">Σ の公式</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\sum_{k=1}^n k^2=\frac{n(n+1)(2n+1)}6,\ \sum_{k=1}^n k^3=\left\{\frac{n(n+1)}2\right\}^2$$</td><td></td></tr></table></div><p class="more"><a href="../sequences/#sigma">→ 12 数列（数列）讲解与练习</a></p></section><section id="f-sequences-diff"><h2>由和求通项</h2><p class="jp-sub">和と一般項</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$a_n=S_n-S_{n-1}\ (n\ge2),\ a_1=S_1$$</td><td>$n=1$ 要单独检验。</td></tr></table></div><p class="more"><a href="../sequences/#diff">→ 12 数列（数列）讲解与练习</a></p></section><section id="f-sequences-recur"><h2>递推式</h2><p class="jp-sub">漸化式</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$a_{n+1}=pa_n+q\Rightarrow a_{n+1}-\alpha=p(a_n-\alpha),\ \alpha=p\alpha+q$$</td><td>$p\ne1$。</td></tr></table></div><p class="more"><a href="../sequences/#recur">→ 12 数列（数列）讲解与练习</a></p></section><section id="f-vectors-dot"><h2>内积</h2><p class="jp-sub">内積</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\vec a\cdot\vec b=|\vec a||\vec b|\cos\theta=a_1b_1+a_2b_2$$</td><td>$\vec a\perp\vec b\iff\vec a\cdot\vec b=0$（两向量都非零）。</td></tr><tr><td>$$S=\tfrac12\sqrt{|\vec a|^2|\vec b|^2-(\vec a\cdot\vec b)^2}$$</td><td>由两边向量求三角形面积。</td></tr></table></div><p class="more"><a href="../vectors/#dot">→ 14 向量（ベクトル）讲解与练习</a></p></section><section id="f-vectors-pos"><h2>分点</h2><p class="jp-sub">内分点・外分点</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\frac{n\vec a+m\vec b}{m+n}$$</td><td>$m:n$ 内分；外分时把 $n$ 换成 $-n$。</td></tr><tr><td>$$\vec p=s\vec a+t\vec b,\ s+t=1$$</td><td>点在直线 AB 上；同时 $s,t\ge0$ 时在线段上。</td></tr></table></div><p class="more"><a href="../vectors/#pos">→ 14 向量（ベクトル）讲解与练习</a></p></section><section id="f-complex-plane-polar"><h2>极形式・棣莫弗</h2><p class="jp-sub">極形式・ド・モアブル</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$z=r(\cos\theta+i\sin\theta),\ z^n=r^n(\cos n\theta+i\sin n\theta)$$</td><td>$|z_1z_2|=|z_1||z_2|$，$\arg z_1z_2=\arg z_1+\arg z_2$。</td></tr></table></div><p class="more"><a href="../complex-plane/#polar">→ 15 复数平面（15 複素数平面）讲解与练习</a></p></section><section id="f-complex-plane-rotation"><h2>旋转</h2><p class="jp-sub">回転</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\frac{\gamma-\alpha}{\beta-\alpha}=\frac{|\gamma-\alpha|}{|\beta-\alpha|}(\cos\theta+i\sin\theta)$$</td><td>纯虚数 ⇔ 垂直；实数 ⇔ 三点共线。</td></tr></table></div><p class="more"><a href="../complex-plane/#rotation">→ 15 复数平面（15 複素数平面）讲解与练习</a></p></section><section id="f-curves-ellipse"><h2>二次曲线</h2><p class="jp-sub">2次曲線</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\ (a>b>0):\ c^2=a^2-b^2$$</td><td>焦点 $(\pm c,0)$，到两焦点距离和 $2a$。</td></tr><tr><td>$$\frac{x^2}{a^2}-\frac{y^2}{b^2}=1:\ c^2=a^2+b^2,\ y=\pm\frac bax$$</td><td>距离差 $2a$；渐近线。</td></tr><tr><td>$$y^2=4px$$</td><td>焦点 $(p,0)$，准线 $x=-p$。</td></tr></table></div><p class="more"><a href="../curves/#ellipse">→ 16 式与曲线（式と曲線）讲解与练习</a></p></section><section id="f-functions-inverse"><h2>反函数</h2><p class="jp-sub">逆関数</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$y=f(x)\Leftrightarrow x=f^{-1}(y)$$</td><td>定义域与值域互换；图像关于 $y=x$ 对称。</td></tr></table></div><p class="more"><a href="../functions/#inverse">→ 17 函数（分式・无理・反函数）（関数）讲解与练习</a></p></section><section id="f-limits-series"><h2>无穷等比级数</h2><p class="jp-sub">無限等比級数</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\sum_{n=1}^\infty ar^{n-1}=\frac a{1-r}\ (|r|<1)$$</td><td>$a=0$ 时也收敛（和为 0）。</td></tr><tr><td>$$\lim_{x\to0}\frac{\sin x}{x}=1,\ \lim_{n\to\infty}\left(1+\frac1n\right)^n=e$$</td><td>$x$ 为弧度。</td></tr></table></div><p class="more"><a href="../limits/#series">→ 18 极限（極限）讲解与练习</a></p></section><section id="f-differentiation-calc"><h2>求导</h2><p class="jp-sub">微分</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$(fg)^{\prime}=f^{\prime}g+fg^{\prime},\ \left(\frac fg\right)^{\prime}=\frac{f^{\prime}g-fg^{\prime}}{g^2}$$</td><td></td></tr><tr><td>$$(\sin x)^{\prime}=\cos x,\ (e^x)^{\prime}=e^x,\ (\log x)^{\prime}=\frac1x$$</td><td>$\log$ 为自然对数，$x>0$。</td></tr><tr><td>$$\{f(g(x))\}^{\prime}=f^{\prime}(g(x))\,g^{\prime}(x)$$</td><td></td></tr></table></div><p class="more"><a href="../differentiation/#calc">→ 0 微分（导数的应用）（微分法の応用）讲解与练习</a></p></section><section id="f-differentiation-tangent"><h2>切线</h2><p class="jp-sub">接線</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$y-f(t)=f^{\prime}(t)(x-t)$$</td><td>从曲线外一点引切线：设切点为 $t$，代入点坐标得关于 $t$ 的方程；切线条数 = 不同实数解 $t$ 的个数（三次函数时）。</td></tr></table></div><p class="more"><a href="../differentiation/#tangent">→ 0 微分（导数的应用）（微分法の応用）讲解与练习</a></p></section><section id="f-differentiation-extrema"><h2>极值</h2><p class="jp-sub">極値</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$f^{\prime}(a)=0\ \text{且}\ f^{\prime}\ \text{在 }a\text{ 前后变号}\iff \text{极值}$$</td><td>$f^{\prime}(a)=0$ 只是必要条件（如 $y=x^3$ 在 $x=0$ 不取极值）。</td></tr></table></div><p class="more"><a href="../differentiation/#extrema">→ 0 微分（导数的应用）（微分法の応用）讲解与练习</a></p></section><section id="f-integration-calc"><h2>积分</h2><p class="jp-sub">積分</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\int x^n dx=\frac{x^{n+1}}{n+1}+C\ (n\ne-1),\ \int\frac1x dx=\log|x|+C$$</td><td></td></tr><tr><td>$$\int_\alpha^\beta(x-\alpha)(x-\beta)dx=-\frac{(\beta-\alpha)^3}6$$</td><td>抛物线与直线所围面积的快速算法。</td></tr><tr><td>$$\int f(g(x))g^{\prime}(x)dx,\quad \int fg^{\prime}=fg-\int f^{\prime}g$$</td><td>换元积分（同时换积分区间）；分部积分。</td></tr></table></div><p class="more"><a href="../integration/#calc">→ 0 积分（面积・体积・积分方程）（積分法の応用）讲解与练习</a></p></section><section id="f-integration-area"><h2>面积・体积</h2><p class="jp-sub">面積・体積</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$S=\int_a^b|f(x)-g(x)|\,dx$$</td><td>交点处分段，上减下。</td></tr><tr><td>$$V=\pi\int_a^b\{f(x)\}^2dx$$</td><td>绕 $x$ 轴旋转。</td></tr></table></div><p class="more"><a href="../integration/#area">→ 0 积分（面积・体积・积分方程）（積分法の応用）讲解与练习</a></p></section><section id="f-integration-equation"><h2>变上限积分</h2><p class="jp-sub">積分方程式</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\frac{d}{dx}\int_a^x f(t)\,dt=f(x)$$</td><td>$a$ 为常数；上限是 $g(x)$ 时乘 $g^{\prime}(x)$。</td></tr></table></div><p class="more"><a href="../integration/#equation">→ 0 积分（面积・体积・积分方程）（積分法の応用）讲解与练习</a></p></section><section id="f-probability-distributions-moments"><h2>期望・方差</h2><p class="jp-sub">期待値・分散</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$V(X)=E(X^2)-\{E(X)\}^2,\ E(aX+b)=aE(X)+b,\ V(aX+b)=a^2V(X)$$</td><td>2026 年起 EJU 课程 2 新增的项目。</td></tr><tr><td>$$X\sim B(n,p):\ E=np,\ V=np(1-p)$$</td><td>二项分布。</td></tr><tr><td>$$E(X+Y)=E(X)+E(Y);\ X,Y\ \text{独立}\Rightarrow V(X+Y)=V(X)+V(Y)$$</td><td>和的期望总是可加；方差只有在独立（或协方差为 0）时可加。</td></tr></table></div><p class="more"><a href="../probability-distributions/#moments">→ 13 概率分布（13 確率分布）讲解与练习</a></p></section><section id="f-probability-distributions-cov"><h2>协方差・相关系数</h2><p class="jp-sub">共分散・相関係数</p><div class="tw"><table class="ftab"><tr><th>公式</th><th>成立条件・注意</th></tr><tr><td>$$\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y),\ r=\frac{\mathrm{Cov}(X,Y)}{\sigma_X\sigma_Y}$$</td><td>$-1\le r\le1$。</td></tr></table></div><p class="more"><a href="../probability-distributions/#cov">→ 13 概率分布（13 確率分布）讲解与练习</a></p></section><footer>原创讲义，非 JASSO 官方内容。按《日本留学試験 数学シラバス（コース2）》编排。</footer></main></div>
+<script>(function(){var b=document.getElementById('theme');function s(t){document.documentElement.setAttribute('data-theme',t);b.textContent=t==='dark'?'浅色':'深色'}s(document.documentElement.getAttribute('data-theme')||'light');b.onclick=function(){var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';s(t);try{localStorage.setItem('eju-theme',t)}catch(e){}};
+var L=[].slice.call(document.querySelectorAll('nav.toc a'));if('IntersectionObserver'in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)L.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})})},{rootMargin:'-20% 0px -70% 0px'});document.querySelectorAll('main section').forEach(function(x){io.observe(x)})}
+window.addEventListener('load',function(){if(!window.renderMathInElement){document.getElementById('cdn-note').hidden=false;return}renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],macros:{'\\B':'\\boxed{\\text{#1}}'},throwOnError:false})})})();</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>
