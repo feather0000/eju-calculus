@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EJU 数学コース2 · 易错点・陷阱</title>
+<meta name="description" content="易错点・陷阱：24 个常见错误与例子">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script><script defer src="../../assets/lazy-katex.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f5ee;
+  --surface: #fffdf8;
+  --surface-2: #f1ece0;
+  --ink: #20242e;
+  --ink-2: #4d5361;
+  --ink-3: #6f7482;
+  --line: #ddd6c6;
+  --accent: #27508f;
+  --accent-soft: #e3e9f4;
+  --warn: #8a4b12;
+  --warn-soft: #f8ecd9;
+  --good: #1e6b52;
+  --good-soft: #e0f1ea;
+  --c1: #2a62b0;
+  --c2: #d0452f;
+  --c3: #7c3fb5;
+  --c4: #00806a;
+  --shade: rgba(42, 98, 176, .18);
+  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171e;
+  --surface: #1c2029;
+  --surface-2: #262b36;
+  --ink: #ebe8e0;
+  --ink-2: #bcbfc8;
+  --ink-3: #989ca8;
+  --line: #363c49;
+  --accent: #93b6ec;
+  --accent-soft: #263349;
+  --warn: #eab676;
+  --warn-soft: #3a2d1c;
+  --good: #79cfae;
+  --good-soft: #1b3a30;
+  --c1: #4f8fe8;
+  --c2: #e5683a;
+  --c3: #ab6cdc;
+  --c4: #30a860;
+  --shade: rgba(110, 164, 238, .24);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
+.skip:focus { left: 8px; }
+
+.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
+.hero-text { flex: 1 1 440px; min-width: 0; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
+.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero-formula .katex-display { margin: .5em 0; }
+
+.layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
+nav.toc { position: sticky; top: 0; align-self: start; padding: 36px 0 16px; }
+.toc-title { font-size: 13px; color: var(--ink-3); margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc a { display: block; padding: 6px 12px; color: var(--ink-2); text-decoration: none; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.5; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.theme-btn { margin-top: 18px; }
+main { min-width: 0; padding-top: 12px; }
+
+section { padding-top: 32px; }
+section + section { margin-top: 28px; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 6px; }
+.jp-sub { color: var(--ink-3); margin: 0 0 18px; font-size: 15px; }
+h3 { font-size: 20px; margin: 30px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.4em; }
+li { margin: 4px 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+.katex { font-size: 1.08em; position: relative; }
+
+.box { border-radius: 8px; padding: 14px 18px; margin: 18px 0; background: var(--accent-soft); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.box strong:first-child { color: var(--accent); }
+.box.warn { background: var(--warn-soft); }
+.box.warn strong:first-child { color: var(--warn); }
+.box.good { background: var(--good-soft); }
+.box.good strong:first-child { color: var(--good); }
+
+.tw { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+th, td { padding: 9px 13px; border-bottom: 1px solid var(--line); text-align: left; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.sign th, table.sign td { text-align: center; white-space: nowrap; border-left: 1px solid var(--line); }
+table.sign th:first-child, table.sign td:first-child { border-left: 0; }
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px 26px; margin: 12px 0; }
+.formula-grid > div { padding: 6px 0; border-bottom: 1px dashed var(--line); overflow-x: auto; overflow-y: hidden; }
+
+figure { margin: 18px 0; }
+figure.plot { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+figcaption { font-size: 14px; color: var(--ink-3); padding: 6px 8px 2px; line-height: 1.6; }
+.fig-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 16px; }
+svg.chart { display: block; width: 100%; }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: .55; }
+svg .axis { stroke: var(--ink-3); stroke-width: 1.2; }
+svg .tick { fill: var(--ink-3); font: 12px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .lbl { fill: var(--ink); font: 13px var(--sans); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .s1, svg .s2, svg .s3, svg .s4, svg .sm { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+svg .s1 { stroke: var(--c1); }
+svg .s2 { stroke: var(--c2); }
+svg .s3 { stroke: var(--c3); stroke-dasharray: 8 5; }
+svg .s4 { stroke: var(--c4); stroke-dasharray: 2 6; }
+svg .sm { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; }
+svg .fillc { fill: var(--shade); stroke: none; }
+svg .disc { fill: var(--shade); stroke: var(--c1); stroke-width: 1.2; }
+svg .dot { fill: var(--c1); stroke: var(--surface); stroke-width: 2; }
+svg .dot2 { fill: var(--c2); stroke: var(--surface); stroke-width: 2.5; }
+svg .dot3 { fill: var(--c3); stroke: var(--surface); stroke-width: 2; }
+
+.explorer { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 18px; }
+.ex-head { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chip { font: inherit; font-size: 15px; min-height: 38px; padding: 4px 13px; border-radius: 19px; border: 1px solid var(--line); background: transparent; color: var(--ink-2); cursor: pointer; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+#ex-svg { touch-action: pan-y; cursor: ew-resize; user-select: none; -webkit-user-select: none; background: var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; color: var(--ink-2); margin: 8px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 24px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.ctrl { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; margin: 8px 0; }
+.ctrl label { font-size: 15px; }
+.ctrl output { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+input[type=range] { width: 100%; min-height: 32px; accent-color: var(--c2); margin: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 6px 0 10px; font-size: 15px; }
+.toggles label { display: inline-flex; gap: 7px; align-items: center; min-height: 32px; cursor: pointer; }
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0; font-size: 14px; color: var(--ink-3); }
+.marks:empty { display: none; }
+.marks .chip { font-size: 14px; min-height: 34px; }
+.read { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 12px; }
+.read > div { background: var(--surface-2); border-radius: 7px; padding: 9px 13px; min-width: 0; overflow-x: auto; overflow-y: hidden; }
+.read .wide { grid-column: 1 / -1; }
+.read > div[hidden] { display: none; }
+.read small { display: block; color: var(--ink-3); font-size: 13px; }
+.status { margin-top: 12px; padding: 10px 14px; border-radius: 7px; background: var(--accent-soft); font-size: 15.5px; }
+
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.q-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3); margin-bottom: 2px; }
+.q-head b { color: var(--accent); font-size: 15.5px; }
+.origin { font-size: 12.5px; color: var(--good); border: 1px solid currentColor; border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.toggle-ans { font: inherit; font-size: 14.5px; min-height: 38px; margin-top: 8px; padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.toggle-ans:hover { background: var(--accent-soft); }
+.toggle-ans[aria-expanded="true"] { background: var(--accent); color: var(--surface); }
+.ans { border-left: 3px solid var(--good); margin-top: 12px; padding: 2px 0 2px 14px; min-width: 0; }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.keys li { margin: 0; background: var(--good-soft); border-radius: 5px; padding: 1px 9px; font-variant-numeric: tabular-nums; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.search { font: inherit; width: min(100%, 320px); padding: 8px 12px; min-height: 42px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search::placeholder { color: var(--ink-3); }
+.group td { background: var(--surface-2); font-weight: 600; color: var(--ink-2); }
+.kana { color: var(--ink-3); font-size: 14px; }
+footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; font-size: 14px; color: var(--ink-3); }
+#cdn-note { background: var(--warn-soft); color: var(--warn); padding: 10px 24px; text-align: center; }
+
+@media (max-width: 900px) {
+  .layout { display: block; padding: 0 16px 56px; }
+  nav.toc { top: 0; z-index: 20; margin: 0 -16px; padding: 6px 12px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .toc-title { display: none; }
+  nav.toc ol { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; }
+  nav.toc a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 7px 9px; }
+  nav.toc a.on { border-bottom-color: var(--accent); }
+  .theme-btn { margin: 0; flex: none; }
+  .hero { padding: 38px 18px; }
+  .hero-formula { border-left: 0; padding-left: 0; flex-basis: 100%; }
+  body { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .explorer { padding: 12px; margin-left: -6px; margin-right: -6px; }
+  .q { padding: 12px 13px; }
+  .ctrl { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  nav.toc, .toggle-ans, .explorer { display: none; }
+  .layout { display: block; }
+  .ans[hidden] { display: block; }
+}
+.back { display: inline-block; color: #c5d3ef; text-decoration: none; font-size: 15px; margin-bottom: 18px; }
+.back:hover { text-decoration: underline; }
+details { margin-top: 10px; }
+details > summary { display: inline-block; cursor: pointer; font-size: 14.5px; min-height: 36px; padding: 4px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary:hover { background: var(--accent-soft); }
+details[open] > summary { background: var(--accent); color: var(--surface); }
+.q-head > span:not(.origin) { font-size: 12.5px; }
+@media print { details > .ans { display: block; } }
+</style>
+<style id="perf">section{content-visibility:auto;contain-intrinsic-size:auto 1200px}.q,.box,.ex,.example,table{content-visibility:auto;contain-intrinsic-size:auto 320px}svg.chart,canvas{contain:layout paint}.cbox{contain:layout style}html{scroll-behavior:auto!important}</style><style id="mathfreq">.mf-tw{overflow-x:auto;-webkit-overflow-scrolling:touch}.mf-t{border-collapse:collapse;width:100%;min-width:420px;margin:8px 0;font-size:15px}.mf-t th,.mf-t td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left}.mf-t th{color:var(--ink-3);font-weight:600;font-size:13px}.mf-n{text-align:right!important;font-variant-numeric:tabular-nums;white-space:nowrap}.mf-bc{width:34%}.mf-bar{display:block;height:10px;border-radius:5px;background:var(--accent)}.mf-stars{color:var(--warn);letter-spacing:1px}.mf-types li{margin:2px 0}.mf-y{color:var(--ink-3);font-size:13px;margin-left:6px}.mf-note{color:var(--ink-3);font-size:13px}.mf-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:10px 0}.mf-kpi div{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px}.mf-kpi b{display:block;font-size:22px;color:var(--accent);font-variant-numeric:tabular-nums}.mf-kpi span{font-size:13px;color:var(--ink-2)}.mf-split{height:10px;border-radius:5px;background:var(--line);overflow:hidden;margin:6px 0 2px}.mf-sm{display:block;height:100%;background:var(--accent)}#freq a{color:var(--accent)}</style><style id="extras">/* —— 速查・术语・搜索（共用） —— */
+.ftab td:first-child { min-width: 46%; } .ftab td { vertical-align: middle; } .ftab .katex-display { margin: .3em 0; }
+p.more { margin: 6px 0 22px; font-size: 14px; } p.more a { display: inline-flex; align-items: center; min-height: 32px; }
+.pit .tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 1px 8px; border-radius: 10px; margin-right: 4px; }
+.pit .tag.bad { background: var(--warn-soft); color: var(--warn); } .pit .tag.ok { background: var(--good-soft); color: var(--good); }
+.tc-bar { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin: 12px 0; }
+.tc-f { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ink-2); }
+.tc-f select, .tc-f input[type=search], .sx-form input { font: inherit; min-height: 44px; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); max-width: 100%; }
+.tc-chk input { width: 22px; height: 22px; }
+.tc-seg { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+main .chip[aria-pressed=true] { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+.tc-bar .chip, .tc-acts .chip, .sx-seg .chip { min-height: 44px; }
+.tc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 10px; }
+.tc-it { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.tc-it .ja { font-size: 19px; font-weight: 700; color: var(--ink); overflow-wrap: anywhere; } .tc-it .kn { color: var(--ink-3); font-size: 13px; }
+.tc-it .zh { color: var(--accent); overflow-wrap: anywhere; } .tc-it .row { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.tc-it .src { font-size: 12px; color: var(--ink-3); } .tc-it button { min-width: 44px; min-height: 44px; border: 0; background: none; color: var(--accent); font-size: 18px; cursor: pointer; }
+.tc-card { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 20px 16px; text-align: center; min-height: 260px; display: flex; flex-direction: column; justify-content: center; }
+.tc-front { font-size: clamp(26px, 6vw, 40px); font-weight: 700; margin: 6px 0; overflow-wrap: anywhere; } .tc-backm { font-size: 24px; color: var(--accent); margin: 6px 0; overflow-wrap: anywhere; }
+.tc-kana { color: var(--ink-3); margin: 0; } .tc-pos, .tc-src { color: var(--ink-3); font-size: 13px; margin: 0; }
+.tc-acts { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+.chip.ok { border-color: var(--good); color: var(--good); } .chip.bad { border-color: var(--warn); color: var(--warn); }
+.sx-form { display: flex; flex-direction: column; gap: 8px; } .sx-form input { width: 100%; font-size: 18px; }
+.sx-seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.sx-res { list-style: none; padding: 0; margin: 12px 0; } .sx-res li { border-bottom: 1px solid var(--line); padding: 10px 0; }
+.sx-res a { font-weight: 700; display: inline-flex; min-height: 32px; align-items: center; } .sx-res .k { font-size: 12px; padding: 1px 7px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); margin-right: 6px; }
+.sx-res p { margin: 2px 0 0; font-size: 14px; color: var(--ink-2); overflow-wrap: anywhere; } .sx-res mark { background: var(--accent-soft); color: inherit; font-weight: 700; }
+main [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
+<header class="hero"><div class="hero-in"><div class="hero-text"><a class="back" href="../../">← 目录</a><p class="eyebrow">EJU 数学コース2 · 速查 · 間違えやすいポイント</p><h1>易错点・陷阱</h1><p class="lead">按错误类型整理：成立条件（真数条件、区间、收敛、等号）、符号与方向、概念混淆、读题。每条有简短例子，并链接到相关讲解与练习。</p></div><div class="hero-formula" aria-hidden="true">$$\sqrt{a^2}=|a|$$$$a_n=S_n-S_{n-1}\ (n\ge2)$$</div></div></header>
+<div class="layout"><nav class="toc" aria-label="目录"><div style="flex:1;min-width:0"><p class="toc-title">目录</p><ol><li><a href="#pf-cond">1 条件・前提</a></li><li><a href="#pf-sign">2 符号・方向</a></li><li><a href="#pf-concept">3 概念混淆</a></li><li><a href="#pf-read">4 读题・图表</a></li></ol></div><button class="chip theme-btn" id="theme" type="button">深色</button></nav>
+<main id="main"><section id="pf-cond"><h2>条件・前提</h2><p class="jp-sub">条件</p><article class="q pit" id="pit1"><div class="q-head"><b>1. √(a²) 直接写成 a</b><span class="origin">条件・前提</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $\sqrt{(x-3)^2}=x-3$。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> $\sqrt{a^2}=|a|$，按 $a$ 的正负分情况。</p><div class="box"><p><strong>例</strong>　$x<3$ 时 $\sqrt{(x-3)^2}=3-x$。</p></div><p class="more">相关：<a href="../numbers-expressions/#real">数与式 · 4 实数与根式</a>　<a href="../numbers-expressions/#abs">数与式 · 5 绝对值</a></p></article><article class="q pit" id="pit2"><div class="q-head"><b>2. 二次函数区间最值不分轴的位置</b><span class="origin">条件・前提</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> 最小值一定在顶点。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 顶点不在区间内时，最值在端点；含参数时按轴在区间的左・中・右分类。</p><div class="box"><p><strong>例</strong>　$y=(x-a)^2$ 在 $0\le x\le2$ 上：$a<0$ 时最小值为 $f(0)=a^2$。</p></div><p class="more">相关：<a href="../quadratic-functions/#maxmin">二次函数 · 2 最大与最小</a>　<a href="../quadratic-functions/#practice">二次函数 · 8 练习题</a></p></article><article class="q pit" id="pit3"><div class="q-head"><b>3. 忘了 x² 系数可能为 0</b><span class="origin">条件・前提</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> “$ax^2+bx+c=0$ 有实根 ⇔ $D\ge0$”，任何 $a$ 都适用。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 判别式只对二次方程（$a\ne0$）适用；$a=0$ 时要另外讨论一次方程。</p><div class="box"><p><strong>例</strong>　$ax^2+2x+1=0$ 有实数解：$a=0$ 时也有解 $x=-\frac12$。</p></div><p class="more">相关：<a href="../quadratic-functions/#discriminant">二次函数 · 5 图像与二次方程</a>　<a href="../quadratic-functions/#equation">二次函数 · 4 二次方程的解</a></p></article><article class="q pit" id="pit4"><div class="q-head"><b>4. 对数的真数条件</b><span class="origin">条件・前提</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> 解完 $\log_2(x-1)+\log_2(x+1)=3$ 直接取两个根。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 先写真数条件（$x-1>0$ 且 $x+1>0$），最后检查。</p><div class="box"><p><strong>例</strong>　$x^2-1=8\Rightarrow x=\pm3$，但只有 $x=3$ 满足真数条件。</p></div><p class="more">相关：<a href="../exp-log/#logprop">指数函数与对数函数 · 3 对数的性质</a>　<a href="../exp-log/#logfn">指数函数与对数函数 · 4 对数函数与图像</a></p></article><article class="q pit" id="pit5"><div class="q-head"><b>5. 换元后忘了新变量的范围</b><span class="origin">条件・前提</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> 令 $t=\sin x+\cos x$ 后，$t$ 取任意实数。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 换元必须同时求出新变量的范围：$t=\sqrt2\sin(x+\frac\pi4)\in[-\sqrt2,\sqrt2]$；$t=2^x>0$。</p><div class="box"><p><strong>例</strong>　$4^x-2^{x+1}$ 的最小值：$t=2^x>0$，$t^2-2t\ge-1$（$t=1$ 时）。</p></div><p class="more">相关：<a href="../trig-functions/#compose">三角函数 · 6 三角函数的合成</a>　<a href="../trig-functions/#practice">三角函数 · 8 练习题</a>　<a href="../exp-log/#practice">指数函数与对数函数 · 7 练习题</a></p></article><article class="q pit" id="pit6"><div class="q-head"><b>6. 等比数列求和忘了 r = 1</b><span class="origin">条件・前提</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $S_n=\frac{a(1-r^n)}{1-r}$ 对所有 $r$。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> $r=1$ 时 $S_n=na$；公比含参数时要分开。</p><div class="box"><p><strong>例</strong>　$1+x+x^2+\cdots+x^{n-1}$：$x=1$ 时为 $n$。</p></div><p class="more">相关：<a href="../sequences/#geom">数列 · 2 等比数列</a></p></article><article class="q pit" id="pit7"><div class="q-head"><b>7. 由 Sₙ 求 aₙ 不检查 n = 1</b><span class="origin">条件・前提</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $a_n=S_n-S_{n-1}$ 对所有 $n$ 成立。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 该式只对 $n\ge2$ 成立；$a_1=S_1$ 要单独检查是否符合同一式子。</p><div class="box"><p><strong>例</strong>　$S_n=n^2+1$：$a_1=2$，$n\ge2$ 时 $a_n=2n-1$（$n=1$ 时不符合）。</p></div><p class="more">相关：<a href="../sequences/#diff">数列 · 3 阶差数列</a>　<a href="../sequences/#eju-style">数列 · 真题风格练习（EJU 题库对照）</a></p></article><article class="q pit" id="pit8"><div class="q-head"><b>8. 无穷等比级数忘了收敛条件</b><span class="origin">条件・前提</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $\sum r^{n-1}=\frac1{1-r}$ 对任意 $r$。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 只在 $|r|<1$ 时收敛（或首项 0）。含参数时先写出收敛条件。</p><div class="box"><p><strong>例</strong>　$\sum_{n=1}^\infty x(1-x)^{n-1}$ 收敛：$x=0$ 或 $0<x<2$。</p></div><p class="more">相关：<a href="../limits/#series">极限 · 2 无穷级数与无穷等比级数</a></p></article><article class="q pit" id="pit9"><div class="q-head"><b>9. 换元积分不换积分区间</b><span class="origin">条件・前提</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $\int_0^1 2x(x^2+1)^3dx$ 令 $t=x^2+1$ 后仍积 $0\to1$。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 积分区间要换成 $t$ 的范围（$1\to2$），或换回 $x$ 再代入。</p><div class="box"><p><strong>例</strong>　$=\int_1^2t^3dt=\frac{15}4$。</p></div><p class="more">相关：<a href="../integration/#calc">积分（面积・体积・积分方程） · 1 定积分的计算</a></p></article><article class="q pit" id="pit10"><div class="q-head"><b>10. 独立性的前提</b><span class="origin">条件・前提</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $V(X+Y)=V(X)+V(Y)$ 总成立。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 和的期望总可加；方差相加需要 $X,Y$ 独立（或协方差为 0）。</p><div class="box"><p><strong>例</strong>　$Y=X$ 时 $V(2X)=4V(X)\ne2V(X)$。</p></div><p class="more">相关：<a href="../probability-distributions/#sum">概率分布 · 5 随机变量的和与期望</a>　<a href="../probability-distributions/#cov">概率分布 · 3 协方差与相关系数</a></p></article><article class="q pit" id="pit11"><div class="q-head"><b>11. 均值不等式的等号条件</b><span class="origin">条件・前提</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $x+\frac4x\ge2\sqrt4=4$，所以最小值 4（不看 $x$ 的范围）。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 需 $x>0$，并确认等号可取（$x=2$）；有范围限制（如 $x\ge3$）时等号取不到，要改用单调性。</p><div class="box"><p><strong>例</strong>　$x\ge3$ 时 $x+\frac4x$ 的最小值是 $\frac{13}3$。</p></div><p class="more">相关：<a href="../expressions-equations/#proof">各种式（式与证明・高次方程式） · 5 等式与不等式的证明</a></p></article><article class="q pit" id="pit12"><div class="q-head"><b>12. 一般式不一定是圆</b><span class="origin">条件・前提</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $x^2+y^2+lx+my+n=0$ 一定表示圆。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 配方后右边须 > 0；= 0 是一点，< 0 无图形。</p><div class="box"><p><strong>例</strong>　$x^2+y^2-2x+4y+k=0$ 表示圆 ⇔ $k<5$。</p></div><p class="more">相关：<a href="../coordinate-geometry/#circle">图形与方程 · 4 圆的方程</a></p></article></section><section id="pf-sign"><h2>符号・方向</h2><p class="jp-sub">符号・向き</p><article class="q pit" id="pit13"><div class="q-head"><b>13. 不等式两边乘负数不变号</b><span class="origin">符号・方向</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $-2x<6\Rightarrow x<-3$。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 乘除负数时不等号反向：$x>-3$。含参数 $a$ 的 $ax>b$ 要按 $a$ 的正负・0 分类。</p><div class="box"><p><strong>例</strong>　$ax>2$：$a>0$ 时 $x>2/a$，$a<0$ 时 $x<2/a$，$a=0$ 时无解。</p></div><p class="more">相关：<a href="../numbers-expressions/#ineq">数与式 · 6 一次不等式</a></p></article><article class="q pit" id="pit14"><div class="q-head"><b>14. 底小于 1 的指数・对数不等式</b><span class="origin">符号・方向</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $\left(\frac12\right)^x>\left(\frac12\right)^3\Rightarrow x>3$。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 底 $0<a<1$ 时函数递减，不等号反向：$x<3$。</p><div class="box"><p><strong>例</strong>　$\log_{1/2}x>1\Rightarrow 0<x<\frac12$。</p></div><p class="more">相关：<a href="../exp-log/#expfn">指数函数与对数函数 · 2 指数函数与图像</a>　<a href="../exp-log/#logfn">指数函数与对数函数 · 4 对数函数与图像</a></p></article><article class="q pit" id="pit15"><div class="q-head"><b>15. 面积用定积分不分上下</b><span class="origin">符号・方向</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> 面积 $=\int_a^b f(x)dx$，结果为负就取绝对值。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 按交点分段，在每一段上用“上方函数 − 下方函数”；曲线穿过 $x$ 轴时正负部分不能抵消。</p><div class="box"><p><strong>例</strong>　$\int_0^{2\pi}\sin x\,dx=0$，但所围面积为 4。</p></div><p class="more">相关：<a href="../integration/#area">积分（面积・体积・积分方程） · 2 面积</a>　<a href="../integration/#practice">积分（面积・体积・积分方程） · 6 真题风格练习</a></p></article><article class="q pit" id="pit16"><div class="q-head"><b>16. 复数的辐角范围</b><span class="origin">符号・方向</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $\arg z$ 只取 $0$–$\pi$，或用 $\tan^{-1}$ 直接求不看象限。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 辐角由实部和虚部的符号确定象限，通常取 $0\le\theta<2\pi$ 或 $-\pi<\theta\le\pi$（看题目指定）。</p><div class="box"><p><strong>例</strong>　$z=-1-i$：$\arg z=\frac54\pi$（不是 $\frac\pi4$）。</p></div><p class="more">相关：<a href="../complex-plane/#polar">复数平面 · 2 极形式</a></p></article></section><section id="pf-concept"><h2>概念混淆</h2><p class="jp-sub">概念</p><article class="q pit" id="pit17"><div class="q-head"><b>17. f′(a) = 0 就是极值</b><span class="origin">概念混淆</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $y=x^3$ 在 $x=0$ 有极值。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 需要 $f^{\prime}$ 在 $a$ 两侧变号。由“在 $x=a$ 取极值”求出参数后要回代检验。</p><div class="box"><p><strong>例</strong>　$y=x^3$：$f^{\prime}(0)=0$ 但单调递增，无极值。</p></div><p class="more">相关：<a href="../differentiation/#extrema">微分（导数的应用） · 3 増減与极值</a>　<a href="../differentiation/#practice">微分（导数的应用） · 6 真题风格练习</a></p></article><article class="q pit" id="pit18"><div class="q-head"><b>18. 方差的线性变换</b><span class="origin">概念混淆</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $V(2X+3)=2V(X)+3$。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> $V(aX+b)=a^2V(X)$，常数平移不改变方差；$\sigma(aX+b)=|a|\sigma(X)$。</p><div class="box"><p><strong>例</strong>　$V(X)=4$ ⇒ $V(2X+3)=16$，$\sigma=4$。</p></div><p class="more">相关：<a href="../probability-distributions/#linear">概率分布 · 4 随机变量的变换 $aX+b$</a>　<a href="../probability-distributions/#moments">概率分布 · 2 期望、方差、标准差</a></p></article><article class="q pit" id="pit19"><div class="q-head"><b>19. 条件概率的分母</b><span class="origin">概念混淆</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $P_A(B)=P(A\cap B)$ 或分母用全事件。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> $P_A(B)=\frac{P(A\cap B)}{P(A)}$：分母是“已知发生的事件”。</p><div class="box"><p><strong>例</strong>　</p></div><p class="more">相关：<a href="../counting-probability/#cond">排列组合与概率 · 6 条件概率</a></p></article><article class="q pit" id="pit20"><div class="q-head"><b>20. 向量垂直与零向量</b><span class="origin">概念混淆</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $\vec a\cdot\vec b=0$ ⇒ 一定 $\vec a\perp\vec b$。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 要求 $\vec a,\vec b$ 都不是零向量；求夹角时也要先确认非零。</p><div class="box"><p><strong>例</strong>　</p></div><p class="more">相关：<a href="../vectors/#dot">向量 · 3 内积</a></p></article></section><section id="pf-read"><h2>读题・图表</h2><p class="jp-sub">読み取り</p><article class="q pit" id="pit21"><div class="q-head"><b>21. 弧度与度混用</b><span class="origin">读题・图表</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $\sin 30=\frac12$；扇形弧长 $r\theta$ 中 $\theta$ 代入度数。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 弧长 $l=r\theta$、面积 $\frac12r^2\theta$ 中 $\theta$ 用弧度；$\lim\frac{\sin x}{x}=1$ 也只对弧度成立。</p><div class="box"><p><strong>例</strong>　$60^\circ=\frac\pi3$，半径 6 的扇形弧长 $2\pi$。</p></div><p class="more">相关：<a href="../trig-functions/#angle">三角函数 · 1 一般角与弧度法</a>　<a href="../limits/#func">极限 · 3 函数的极限</a></p></article><article class="q pit" id="pit22"><div class="q-head"><b>22. “在点处的切线”与“过点的切线”</b><span class="origin">读题・图表</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> 过曲线外一点 $A$ 的切线，直接用 $y-f(a)=f^{\prime}(a)(x-a)$。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> “过点”时切点未知：设切点 $t$，代入 A 的坐标解 $t$。切线条数 = $t$ 的解的个数。</p><div class="box"><p><strong>例</strong>　练习 1：从 $\mathrm A(2,a)$ 向 $y=x^3-3x^2$ 引切线的条数由 $a=g(t)$ 的实数解个数决定。</p></div><p class="more">相关：<a href="../differentiation/#tangent">微分（导数的应用） · 2 切线</a>　<a href="../differentiation/#practice">微分（导数的应用） · 6 真题风格练习</a></p></article><article class="q pit" id="pit23"><div class="q-head"><b>23. “至少一个”直接相加</b><span class="origin">读题・图表</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> 两次掷骰子至少出现一次 6：$\frac16+\frac16$。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> 用余事件：$1-\left(\frac56\right)^2=\frac{11}{36}$。</p><div class="box"><p><strong>例</strong>　</p></div><p class="more">相关：<a href="../counting-probability/#prob">排列组合与概率 · 4 概率的基本性质</a>　<a href="../counting-probability/#indep">排列组合与概率 · 5 独立试验与反复试验</a></p></article><article class="q pit" id="pit24"><div class="q-head"><b>24. 必要条件・充分条件方向反了</b><span class="origin">读题・图表</span></div><p class="pit-x"><span class="tag bad">✗ 常见错误</span> $p\Rightarrow q$ 时 $p$ 是 $q$ 的必要条件。</p><p class="pit-o"><span class="tag ok">✓ 正确做法</span> $p\Rightarrow q$ 成立时：$p$ 是 $q$ 的<b>充分</b>条件，$q$ 是 $p$ 的<b>必要</b>条件。用集合：$P\subset Q$。</p><div class="box"><p><strong>例</strong>　$x=1$ 是 $x^2=1$ 的充分（非必要）条件。</p></div><p class="more">相关：<a href="../sets-logic/#cond">集合与命题 · 4 必要条件与充分条件</a>　<a href="../sets-logic/#practice">集合与命题 · 8 练习题</a></p></article></section><footer>原创讲义，非 JASSO 官方内容。按《日本留学試験 数学シラバス（コース2）》编排。</footer></main></div>
+<script>(function(){var b=document.getElementById('theme');function s(t){document.documentElement.setAttribute('data-theme',t);b.textContent=t==='dark'?'浅色':'深色'}s(document.documentElement.getAttribute('data-theme')||'light');b.onclick=function(){var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';s(t);try{localStorage.setItem('eju-theme',t)}catch(e){}};
+var L=[].slice.call(document.querySelectorAll('nav.toc a'));if('IntersectionObserver'in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)L.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})})},{rootMargin:'-20% 0px -70% 0px'});document.querySelectorAll('main section').forEach(function(x){io.observe(x)})}
+window.addEventListener('load',function(){if(!window.renderMathInElement){document.getElementById('cdn-note').hidden=false;return}renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],macros:{'\\B':'\\boxed{\\text{#1}}'},throwOnError:false})})})();</script>
+<script src="../../assets/nav.js"></script>
+</body>
+</html>
