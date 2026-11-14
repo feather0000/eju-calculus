@@ -1,60 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-site="calculus">
 <head><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light dark">
+<script>(function(){var d=document.documentElement,m=document.querySelector('meta[name="color-scheme"]'),t=null;try{t=localStorage.getItem('eju-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.setAttribute('data-theme',t);if(m)m.content=t})()</script>
+
 <title>EJU 数学コース2 · 站内搜索</title>
+<!--eju-meta--><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="../../assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EJU 数学コース2"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="EJU 数学コース2 · 站内搜索"><meta property="og:description" content="站内搜索：讲解・练习・公式・术语"><meta property="og:url" content="https://feather0000.github.io/eju-calculus/topics/search/"><meta property="og:image" content="https://feather0000.github.io/eju-calculus/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="EJU 数学コース2 · 全专题中文讲义"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="EJU 数学コース2 · 站内搜索"><meta name="twitter:description" content="站内搜索：讲解・练习・公式・术语"><meta name="twitter:image" content="https://feather0000.github.io/eju-calculus/assets/og.png">
+<script defer src="../../assets/eju-ux.js"></script><!--/eju-meta-->
 <meta name="description" content="站内搜索：讲解・练习・公式・术语">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script><script defer src="../../assets/lazy-katex.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script defer src="../../assets/lazy-katex.js"></script>
 <style>
-:root {
-  color-scheme: light;
-  --bg: #f8f5ee;
-  --surface: #fffdf8;
-  --surface-2: #f1ece0;
-  --ink: #20242e;
-  --ink-2: #4d5361;
-  --ink-3: #6f7482;
-  --line: #ddd6c6;
-  --accent: #27508f;
-  --accent-soft: #e3e9f4;
-  --warn: #8a4b12;
-  --warn-soft: #f8ecd9;
-  --good: #1e6b52;
-  --good-soft: #e0f1ea;
-  --c1: #2a62b0;
-  --c2: #d0452f;
-  --c3: #7c3fb5;
-  --c4: #00806a;
-  --shade: rgba(42, 98, 176, .18);
-  --serif: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
-  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
-}
-[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: #14171e;
-  --surface: #1c2029;
-  --surface-2: #262b36;
-  --ink: #ebe8e0;
-  --ink-2: #bcbfc8;
-  --ink-3: #989ca8;
-  --line: #363c49;
-  --accent: #93b6ec;
-  --accent-soft: #263349;
-  --warn: #eab676;
-  --warn-soft: #3a2d1c;
-  --good: #79cfae;
-  --good-soft: #1b3a30;
-  --c1: #4f8fe8;
-  --c2: #e5683a;
-  --c3: #ab6cdc;
-  --c4: #30a860;
-  --shade: rgba(110, 164, 238, .24);
-}
+/* 颜色 token、明暗主题与 color-scheme 见 assets/eju-ds.css */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+html { scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.8 var(--sans); }
 h1, h2, h3 { font-family: var(--serif); line-height: 1.3; }
 a { color: var(--accent); }
@@ -62,13 +24,13 @@ a { color: var(--accent); }
 .skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; z-index: 30; }
 .skip:focus { left: 8px; }
 
-.hero { background: #1d2c4d; color: #f4f1e8; padding: 56px 24px 52px; }
+.hero { background: var(--hero-bg); color: var(--hero-ink); padding: 56px 24px 52px; }
 .hero-in { max-width: 1160px; margin: auto; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: center; justify-content: space-between; }
 .hero-text { flex: 1 1 440px; min-width: 0; }
-.eyebrow { font-size: 14px; letter-spacing: .08em; color: #c5d3ef; margin: 0 0 12px; }
+.eyebrow { font-size: 14px; letter-spacing: .08em; color: var(--accent); margin: 0 0 12px; }
 .hero h1 { font-size: clamp(32px, 6vw, 52px); margin: 0 0 16px; }
-.hero p.lead { margin: 0; color: #dfe4ee; max-width: 36em; }
-.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 2px solid #5f78aa; padding-left: 24px; overflow-x: auto; }
+.hero p.lead { margin: 0; color: var(--hero-ink-2); max-width: 36em; }
+.hero-formula { flex: 0 1 390px; min-width: 0; font-size: 19px; border-left: 1px solid var(--hero-line); padding-left: 24px; overflow-x: auto; }
 .hero-formula .katex-display { margin: .5em 0; }
 
 .layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 196px minmax(0, 1fr); gap: 48px; padding: 0 24px 72px; }
@@ -198,7 +160,7 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px;
   .layout { display: block; }
   .ans[hidden] { display: block; }
 }
-.back { display: inline-block; color: #c5d3ef; text-decoration: none; font-size: 15px; margin-bottom: 18px; }
+.back { display: inline-block; color: var(--hero-ink-2); text-decoration: none; font-size: 15px; margin-bottom: 18px; }
 .back:hover { text-decoration: underline; }
 details { margin-top: 10px; }
 details > summary { display: inline-block; cursor: pointer; font-size: 14.5px; min-height: 36px; padding: 4px 15px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); list-style: none; }
@@ -208,7 +170,7 @@ details[open] > summary { background: var(--accent); color: var(--surface); }
 .q-head > span:not(.origin) { font-size: 12.5px; }
 @media print { details > .ans { display: block; } }
 </style>
-<style id="perf">section{content-visibility:auto;contain-intrinsic-size:auto 1200px}.q,.box,.ex,.example,table{content-visibility:auto;contain-intrinsic-size:auto 320px}svg.chart,canvas{contain:layout paint}.cbox{contain:layout style}html{scroll-behavior:auto!important}</style><style id="mathfreq">.mf-tw{overflow-x:auto;-webkit-overflow-scrolling:touch}.mf-t{border-collapse:collapse;width:100%;min-width:420px;margin:8px 0;font-size:15px}.mf-t th,.mf-t td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left}.mf-t th{color:var(--ink-3);font-weight:600;font-size:13px}.mf-n{text-align:right!important;font-variant-numeric:tabular-nums;white-space:nowrap}.mf-bc{width:34%}.mf-bar{display:block;height:10px;border-radius:5px;background:var(--accent)}.mf-stars{color:var(--warn);letter-spacing:1px}.mf-types li{margin:2px 0}.mf-y{color:var(--ink-3);font-size:13px;margin-left:6px}.mf-note{color:var(--ink-3);font-size:13px}.mf-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:10px 0}.mf-kpi div{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px}.mf-kpi b{display:block;font-size:22px;color:var(--accent);font-variant-numeric:tabular-nums}.mf-kpi span{font-size:13px;color:var(--ink-2)}.mf-split{height:10px;border-radius:5px;background:var(--line);overflow:hidden;margin:6px 0 2px}.mf-sm{display:block;height:100%;background:var(--accent)}#freq a{color:var(--accent)}</style><style>.tip-back{padding-left:1.2em}.tip-back li{margin:4px 0}.tip-back a{display:inline-block;min-height:28px}</style><script>/*TH-INIT*/try{var _t=localStorage.getItem('eju-theme');if(_t)document.documentElement.setAttribute('data-theme',_t)}catch(e){}</script><style id="extras">/* —— 速查・术语・搜索（共用） —— */
+<style id="perf">section{content-visibility:auto;contain-intrinsic-size:auto 1200px}.q,.box,.ex,.example,table{content-visibility:auto;contain-intrinsic-size:auto 320px}svg.chart,canvas{contain:layout paint}.cbox{contain:layout style}html{scroll-behavior:auto!important}</style><style id="mathfreq">.mf-tw{overflow-x:auto;-webkit-overflow-scrolling:touch}.mf-t{border-collapse:collapse;width:100%;min-width:420px;margin:8px 0;font-size:15px}.mf-t th,.mf-t td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left}.mf-t th{color:var(--ink-3);font-weight:600;font-size:13px}.mf-n{text-align:right!important;font-variant-numeric:tabular-nums;white-space:nowrap}.mf-bc{width:34%}.mf-bar{display:block;height:10px;border-radius:5px;background:var(--accent)}.mf-stars{color:var(--warn);letter-spacing:1px}.mf-types li{margin:2px 0}.mf-y{color:var(--ink-3);font-size:13px;margin-left:6px}.mf-note{color:var(--ink-3);font-size:13px}.mf-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:10px 0}.mf-kpi div{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px}.mf-kpi b{display:block;font-size:22px;color:var(--accent);font-variant-numeric:tabular-nums}.mf-kpi span{font-size:13px;color:var(--ink-2)}.mf-split{height:10px;border-radius:5px;background:var(--line);overflow:hidden;margin:6px 0 2px}.mf-sm{display:block;height:100%;background:var(--accent)}#freq a{color:var(--accent)}</style><style>.tip-back{padding-left:1.2em}.tip-back li{margin:4px 0}.tip-back a{display:inline-block;min-height:28px}</style><style id="extras">/* —— 速查・术语・搜索（共用） —— */
 .ftab td:first-child { min-width: 46%; } .ftab td { vertical-align: middle; } .ftab .katex-display { margin: .3em 0; }
 p.more { margin: 6px 0 22px; font-size: 14px; } p.more a { display: inline-flex; align-items: center; min-height: 32px; }
 .pit .tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 1px 8px; border-radius: 10px; margin-right: 4px; }
@@ -241,6 +203,7 @@ main [hidden] { display: none !important; }
 .tip-top10{padding-left:1.4em}.tip-top10 li{margin:6px 0}.tip-top10 a,.tip-back a{display:inline-block;min-height:28px}
 .tip-back{padding-left:1.2em}.tip-back li{margin:4px 0}
 </style>
+<link rel="stylesheet" href="../../assets/eju-ds.css">
 </head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
@@ -249,7 +212,7 @@ main [hidden] { display: none !important; }
 <div class="layout"><nav class="toc" aria-label="目录"><div style="flex:1;min-width:0"><p class="toc-title">目录</p><ol><li><a href="#search">1 站内搜索</a></li></ol></div><button class="chip theme-btn" id="theme" type="button">深色</button></nav>
 <main id="main"><section id="search"><h2>站内搜索</h2><p class="jp-sub">サイト内検索</p><form class="sx-form" role="search" onsubmit="return false"><input id="sx-q" type="search" placeholder="例：饱和蒸气压 / 飽和蒸気圧 / 楞次 / pV=nRT" autocomplete="off" aria-label="搜索"><span class="sx-seg" id="sx-types"></span></form>
 <p class="jp-sub" id="sx-stat">输入关键词（中文、日本語、かな或公式符号都可以），空格分隔多个关键词。</p><ol id="sx-res" class="sx-res"></ol><script src="../../assets/search.js" defer></script></section><footer>原创讲义，非 JASSO 官方内容。按《日本留学試験 数学シラバス（コース2）》编排。</footer></main></div>
-<script>(function(){var b=document.getElementById('theme');function s(t){document.documentElement.setAttribute('data-theme',t);b.textContent=t==='dark'?'浅色':'深色'}s(document.documentElement.getAttribute('data-theme')||'light');b.onclick=function(){var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';s(t);try{localStorage.setItem('eju-theme',t)}catch(e){}};
+<script>(function(){var d=document.documentElement,b=document.getElementById('theme');if(!b)return;function s(t){d.setAttribute('data-theme',t);var m=document.querySelector('meta[name="color-scheme"]');if(m)m.content=t;b.textContent=t==='dark'?'浅色':'深色';b.setAttribute('aria-label',t==='dark'?'切换到浅色主题':'切换到深色主题')}s(d.getAttribute('data-theme')==='dark'?'dark':'light');b.onclick=function(){var t=d.getAttribute('data-theme')==='dark'?'light':'dark';s(t);try{localStorage.setItem('eju-theme',t)}catch(e){}};addEventListener('storage',function(e){if(e.key==='eju-theme'&&(e.newValue==='light'||e.newValue==='dark'))s(e.newValue)});var q=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)');if(q&&q.addEventListener)q.addEventListener('change',function(e){var v=null;try{v=localStorage.getItem('eju-theme')}catch(_){}if(v!=='light'&&v!=='dark')s(e.matches?'dark':'light')})})();</script><script>(function(){
 var L=[].slice.call(document.querySelectorAll('nav.toc a'));if('IntersectionObserver'in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)L.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})})},{rootMargin:'-20% 0px -70% 0px'});document.querySelectorAll('main section').forEach(function(x){io.observe(x)})}
 window.addEventListener('load',function(){if(!window.renderMathInElement){document.getElementById('cdn-note').hidden=false;return}renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],macros:{'\\B':'\\boxed{\\text{#1}}'},throwOnError:false})})})();</script>
 <script src="../../assets/nav.js"></script>
