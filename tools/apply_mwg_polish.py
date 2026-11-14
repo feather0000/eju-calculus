@@ -7,7 +7,7 @@
 #      或 prefers-color-scheme 设 data-theme，并把 meta 改成 light / dark）
 #   3. 内联样式去掉写死的 color-scheme: light 与旧色板 token、hero 的写死深蓝；在 </head> 前链接 assets/eju-ds.css
 #   4. 主题切换函数同步更新 data-theme、meta color-scheme、按钮文案与 aria-label、localStorage（并响应其它标签页）
-#   5. 首页 index.html 与 explorer/ 加上同一个主题开关（同一个 localStorage key：eju-theme）
+#   5. 首页 index.html 与 explorer/ 加上同一个主题开关（同一个 localStorage key：eju-theme）；首页由 tools/build_home.py 生成时（带 HOME_MARK）不改结构
 #   6. （第二轮）<html data-site="calculus">（每站主色 violet，见 eju-ds.css）；favicon；OG / Twitter 分享卡片（og:image 绝对 URL）；
 #      专题页、claude/、explorer/ 加共用交互脚本 assets/eju-ux.js（阅读进度条、横向目录跟随、点击公式复制 LaTeX）
 #   7. （第二轮）根目录 404.html（GitHub Pages 用；资源走站点绝对路径）
@@ -137,7 +137,12 @@ def topic(s, root, path):
     return lazy_img(brand(ds_link(toggle(inline_css(head_meta(sri(s)))), root), root, path))
 
 
+HOME_MARK = '<!--home: tools/build_home.py-->'
+
+
 def home(s):
+    if HOME_MARK in s:  # tools/build_home.py 生成的目次首页：结构与样式顺序（eju-ds.css 之后是 home.css）已定，只做幂等的头部补丁
+        return lazy_img(brand(add_toggle(head_meta(sri(s))), '', '', ux=False))
     s = head_meta(sri(s))
     # 去掉旧的首页色板 + 基础样式（由 eju-ds.css 的 .home 规则接管）；mathfreq 等其余样式保留
     s = re.sub(r'<style>:root\{--bg:#fafaf7;.*?</style>', '', s, count=1, flags=re.S)

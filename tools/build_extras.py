@@ -1,4 +1,4 @@
-# 数学站：生成 公式速查 / 易错点 / 站内搜索 页面与 assets/search.json；更新 nav.js 与首页链接
+# 数学站：生成 公式速查 / 易错点 / 站内搜索 页面与 assets/search.json；更新 nav.js；重新生成首页（tools/build_home.py）
 import re, glob, os, json, html as H, sys
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 sys.dont_write_bytecode = True  # 不在 tools/ 留 __pycache__
@@ -119,13 +119,9 @@ T = json.loads(re.match(r'\(function\(\)\{var T=(.*);$', nav[0]).group(1))
 T = [x for x in T if x['slug'] not in EX] + [dict(n=n, slug=slug, zh=zh, ja=ja, ready=True) for slug, n, zh, ja, *_ in PAGES]
 nav[0] = '(function(){var T=' + json.dumps(T, ensure_ascii=False) + ';'
 open('assets/nav.js', 'w').write('\n'.join(nav))
-# —— 首页 ——
-ix = open('index.html').read()
-blk = '<!--X-BEGIN--><section class="x-tools" style="margin:28px 0"><h2>速查与工具</h2><p><a href="topics/formulas/">📐 公式速查</a>　<a href="topics/pitfalls/">⚠️ 易错点・陷阱（%d 条）</a>　<a href="topics/tips/">⚡ 快速解题技巧（%d 招）</a>　<a href="topics/search/">🔍 站内搜索</a></p></section><!--X-END-->' % (len(PF), len(TIPS))
-ix = re.sub(r'<!--X-BEGIN-->.*?<!--X-END-->', '', ix, flags=re.S)
-print('index ok' if '<!--X-ANCHOR-->' in ix else 'NEED ANCHOR')
-ix = ix.replace('<!--X-ANCHOR-->', '<!--X-ANCHOR-->' + blk, 1)
-open('index.html', 'w').write(ix)
+# —— 首页：整页由 tools/build_home.py 生成（目次、导图、附里的速查工具块、加权排行表、组合热力图），这里重跑一遍，易错点条数与技巧招数随之更新 ——
+import build_home
+build_home.main()
 print(len(TOP), 'topics', len(I), 'index entries', sum(1 for x in I if x[0] == '术语'), 'terms', sum(1 for x in I if x[0] == '题'), 'questions')
 # —— MWG：再跑一遍页面补丁（幂等），保证生成页带 SRI、meta color-scheme、头脚本与设计层 ——
 assert MWG.main() == 0, 'apply_mwg_polish found problems'
