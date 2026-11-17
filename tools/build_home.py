@@ -10,6 +10,7 @@ sys.dont_write_bytecode = True  # 不在 tools/ 留 __pycache__
 sys.path.insert(0, 'tools')
 import apply_mwg_polish as MWG
 from homemap import ico, render
+import mapkids
 from math_data import PF
 from math_tips import TIPS
 E = html.escape
@@ -161,9 +162,12 @@ def _mapdata():
         chs[str(k)] = {'zh': name, 'ja': ja, 'intro': intro, 'href': f'#ch-{k}'}
         for s in slugs:
             top = TOP[s]
-            tps[s] = {'zh': top['zh'], 'ja': top.get('ja') or '', 'intro': _topic_lead(s), 'href': f'topics/{s}/', 'ch': str(k)}
+            tps[s] = {'zh': top['zh'], 'ja': top.get('ja') or '', 'intro': _topic_lead(s), 'href': f'topics/{s}/', 'ch': str(k), 'children': mapkids.kids_from_html(open(os.path.join('topics', s, 'index.html'), encoding='utf-8').read() if os.path.exists(os.path.join('topics', s, 'index.html')) else '', s)}
     s = json.dumps({'subject': '数学', 'chapters': chs, 'topics': tps}, ensure_ascii=False, separators=(',', ':'))
-    return s.replace('<', '\\u003c')
+    out = s.replace('<', '\\u003c')
+    _nk = sum(len(v.get('children') or []) for v in tps.values())
+    print('map kids:', _nk)
+    return out
 
 def knowledge_map():
     chs = [dict(name=name, ja=ja, short=sh, icon=ICONS[k],
