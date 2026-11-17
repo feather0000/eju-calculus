@@ -1,10 +1,12 @@
-# 数学站：生成 公式速查 / 易错点 / 站内搜索 页面与 assets/search.json；更新 nav.js 与首页链接
+# 数学站：生成 公式速查 / 易错点 / 站内搜索 页面与 assets/search.json；更新 nav.js；重新生成首页（tools/build_home.py）
 import re, glob, os, json, html as H, sys
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+sys.dont_write_bytecode = True  # 不在 tools/ 留 __pycache__
 sys.path.insert(0, 'tools')
 from _x import formula_sections, pitfall_sections, search_sections, plain, CATS, tips_sections, tip_backsec, detex
 from math_tips import TIPS
 from math_data import F, PF
+import apply_mwg_polish as MWG  # SRI / meta color-scheme / 头脚本 / 主题切换 / eju-ds.css
 EX = ['formulas', 'pitfalls', 'search', 'tips']
 # —— 读取现有专题页 ——
 TOP = []
@@ -21,6 +23,8 @@ TOP.sort(key=lambda t: t['n'])
 for t in TOP: t['zh'] = re.sub(r'^\d+\s+', '', t['zh'])
 src = open('topics/differentiation/index.html').read()
 HEAD = src[:src.index('</head>')]
+# 设计层链接要排在本页 extras 样式之后，先从复制来的 head 里拿掉，下面再补到 </head> 前
+HEAD = re.sub(r'<link rel="stylesheet" href="\.\./\.\./assets/eju-ds\.css">\n?', '', HEAD)
 XCSS = open('/workspace/eju-common/extras.css').read()
 def page(slug, n, zh, ja, lead, hero, sections, desc):
     head = re.sub(r'<title>.*?</title>', f'<title>EJU 数学コース2 · {zh}</title>', HEAD, count=1)
@@ -29,7 +33,8 @@ def page(slug, n, zh, ja, lead, hero, sections, desc):
     toc = ''.join(f'<li><a href="#{i}">{k+1} {tt}</a></li>' for k, (i, tt, _, _) in enumerate(sections))
     secs = ''.join(f'<section id="{sid}"><h2>{tt}</h2><p class="jp-sub">{j}</p>{body}</section>' for sid, tt, j, body in sections)
     hero = ''.join(f'$${h}$$' for h in hero)
-    return f'''{head}<script>/*TH-INIT*/try{{var _t=localStorage.getItem('eju-theme');if(_t)document.documentElement.setAttribute('data-theme',_t)}}catch(e){{}}</script><style id="extras">{XCSS}</style>
+    return f'''{head}<style id="extras">{XCSS}</style>
+<link rel="stylesheet" href="../../assets/eju-ds.css">
 </head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
@@ -37,7 +42,7 @@ def page(slug, n, zh, ja, lead, hero, sections, desc):
 <header class="hero"><div class="hero-in"><div class="hero-text"><a class="back" href="../../">← 目录</a><p class="eyebrow">EJU 数学コース2 · 速查 · {ja}</p><h1>{zh}</h1><p class="lead">{lead}</p></div><div class="hero-formula" aria-hidden="true">{hero}</div></div></header>
 <div class="layout"><nav class="toc" aria-label="目录"><div style="flex:1;min-width:0"><p class="toc-title">目录</p><ol>{toc}</ol></div><button class="chip theme-btn" id="theme" type="button">深色</button></nav>
 <main id="main">{secs}<footer>原创讲义，非 JASSO 官方内容。按《日本留学試験 数学シラバス（コース2）》编排。</footer></main></div>
-<script>(function(){{var b=document.getElementById('theme');function s(t){{document.documentElement.setAttribute('data-theme',t);b.textContent=t==='dark'?'浅色':'深色'}}s(document.documentElement.getAttribute('data-theme')||'light');b.onclick=function(){{var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';s(t);try{{localStorage.setItem('eju-theme',t)}}catch(e){{}}}};
+{MWG.TOGGLEJS}<script>(function(){{
 var L=[].slice.call(document.querySelectorAll('nav.toc a'));if('IntersectionObserver'in window){{var io=new IntersectionObserver(function(es){{es.forEach(function(e){{if(e.isIntersecting)L.forEach(function(a){{a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)}})}})}},{{rootMargin:'-20% 0px -70% 0px'}});document.querySelectorAll('main section').forEach(function(x){{io.observe(x)}})}}
 window.addEventListener('load',function(){{if(!window.renderMathInElement){{document.getElementById('cdn-note').hidden=false;return}}renderMathInElement(document.body,{{delimiters:[{{left:'$$',right:'$$',display:true}},{{left:'$',right:'$',display:false}}],macros:{{'\\\\B':'\\\\boxed{{\\\\text{{#1}}}}'}},throwOnError:false}})}})}})();</script>
 <script src="../../assets/nav.js"></script>
@@ -114,11 +119,9 @@ T = json.loads(re.match(r'\(function\(\)\{var T=(.*);$', nav[0]).group(1))
 T = [x for x in T if x['slug'] not in EX] + [dict(n=n, slug=slug, zh=zh, ja=ja, ready=True) for slug, n, zh, ja, *_ in PAGES]
 nav[0] = '(function(){var T=' + json.dumps(T, ensure_ascii=False) + ';'
 open('assets/nav.js', 'w').write('\n'.join(nav))
-# —— 首页 ——
-ix = open('index.html').read()
-blk = '<!--X-BEGIN--><section class="x-tools" style="margin:28px 0"><h2>速查与工具</h2><p><a href="topics/formulas/">📐 公式速查</a>　<a href="topics/pitfalls/">⚠️ 易错点・陷阱（%d 条）</a>　<a href="topics/tips/">⚡ 快速解题技巧（%d 招）</a>　<a href="topics/search/">🔍 站内搜索</a></p></section><!--X-END-->' % (len(PF), len(TIPS))
-ix = re.sub(r'<!--X-BEGIN-->.*?<!--X-END-->', '', ix, flags=re.S)
-print('index ok' if '<!--X-ANCHOR-->' in ix else 'NEED ANCHOR')
-ix = ix.replace('<!--X-ANCHOR-->', '<!--X-ANCHOR-->' + blk, 1)
-open('index.html', 'w').write(ix)
+# —— 首页：整页由 tools/build_home.py 生成（目次、导图、附里的速查工具块、加权排行表、组合热力图），这里重跑一遍，易错点条数与技巧招数随之更新 ——
+import build_home
+build_home.main()
 print(len(TOP), 'topics', len(I), 'index entries', sum(1 for x in I if x[0] == '术语'), 'terms', sum(1 for x in I if x[0] == '题'), 'questions')
+# —— MWG：再跑一遍页面补丁（幂等），保证生成页带 SRI、meta color-scheme、头脚本与设计层 ——
+assert MWG.main() == 0, 'apply_mwg_polish found problems'
