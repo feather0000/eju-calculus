@@ -233,7 +233,7 @@ def page():
 </main>
 <footer class="ct-foot"><p class="ct-sites">EJU 理科：{"".join(f'<a href="{u}">{a}</a>' for u, a in SITES)}</p><p>原创讲义与题目，非 JASSO 官方内容。按《日本留学試験 数学シラバス（コース2）》编排。</p></footer>
 </div>
-<script src="assets/map.js"></script>{MWG.TOGGLEJS}<script src="assets/nav.js"></script></body></html>
+<script src="assets/vendor/d3-eju.min.js"></script><script src="assets/map.js"></script>{MWG.TOGGLEJS}<script src="assets/nav.js"></script></body></html>
 '''
     s = MWG.headmeta(head + body, '', '', ux=False)  # favicon、OG / Twitter 卡片（与 apply_mwg_polish 的 brand() 同一函数）
     return s, stat
