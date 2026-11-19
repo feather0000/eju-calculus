@@ -194,7 +194,7 @@ def tables():
                    f'<h2 id="{hid}">{m.group(1)}<span class="ct-chja" lang="ja">{ja}</span></h2><p class="ct-intro">{m.group(2)}</p>{m.group(3)}</div></div></section>')
     return style, ''.join(out)
 
-SITES = [('https://feather0000.github.io/eju-physics/', 'EJU 理科 物理'), ('https://feather0000.github.io/eju-chemistry/', 'EJU 理科 化学'), ('https://feather0000.github.io/eju-biology/', 'EJU 理科 生物')]
+SITES = [('https://eju.feather0.com/', '四科总入口'), ('https://eju.feather0.com/physics/', 'EJU 理科 物理'), ('https://chemistry.eju.feather0.com/', 'EJU 理科 化学'), ('https://biology.eju.feather0.com/', 'EJU 理科 生物')]
 PREFACE = ('这是按 JASSO《日本留学試験 数学シラバス》（2026 年度第 1 回起适用）出题项目 1–20 整理的中文讲义，按教材的顺序合为六章。'
            '建议先读各专题的讲解和例题，再做练习；公式速查、易错点和解题技巧可以随时翻。'
            '右侧的「出现 N 题」是 2005–2025 年过去问中涉及该专题的题数，「加权」按每题各小问的填空数折算（每题合计 1）；拿不准先看哪一章时可以参考它们，详细排行见本页最后的表。')
@@ -210,7 +210,7 @@ def page():
 <a class="skip" href="#chapters">跳到目次</a>
 <div class="ct-wrap">
 <header class="ct-head">
-<div class="ct-top"><p class="ct-kicker">EJU 数学 · コース2</p>{MWG.BTN}</div>
+<div class="ct-top"><p class="ct-kicker"><a href="https://eju.feather0.com/">四科总入口</a> ／ EJU 数学 · コース2</p>{MWG.BTN}</div>
 <h1>数学コース2<br>全专题讲解</h1>
 <div class="ct-preface"><p>{PREFACE}</p>
 <p class="ct-facts">共 20 个出题项目专题，另有 19–20 的微积分讲义；过去问 {NQ} 题已逐题拆分到知识点。</p></div>
@@ -230,7 +230,7 @@ def page():
 <ol class="ct-list">{appendix()}</ol></div></div></section>
 {tbl}
 </main>
-<footer class="ct-foot"><p class="ct-sites">EJU 理科：{"".join(f'<a href="{u}">{a}</a>' for u, a in SITES)}</p><p>原创讲义与题目，非 JASSO 官方内容。按《日本留学試験 数学シラバス（コース2）》编排。</p></footer>
+<footer class="ct-foot"><p class="ct-sites">相关课程：{"".join(f'<a href="{u}">{a}</a>' for u, a in SITES)}</p><p>原创讲义与题目，非 JASSO 官方内容。按《日本留学試験 数学シラバス（コース2）》编排。</p></footer>
 </div>
 <script src="assets/vendor/d3-eju.min.js"></script><script src="assets/map.js"></script>{MWG.TOGGLEJS}<script src="assets/nav.js"></script></body></html>
 '''

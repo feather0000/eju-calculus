@@ -11,7 +11,7 @@ EX = ['formulas', 'pitfalls', 'search', 'tips']
 # —— 读取现有专题页 ——
 TOP = []
 for f in sorted(glob.glob('topics/*/index.html')):
-    slug = f.split('/')[1]
+    slug = os.path.basename(os.path.dirname(f))
     if slug in EX: continue
     s = open(f).read()
     n = re.search(r'"n": (\d+), "slug": "%s"' % slug, open('assets/nav.js').read().split('\n')[0])
@@ -25,7 +25,7 @@ src = open('topics/differentiation/index.html').read()
 HEAD = src[:src.index('</head>')]
 # 设计层链接要排在本页 extras 样式之后，先从复制来的 head 里拿掉，下面再补到 </head> 前
 HEAD = re.sub(r'<link rel="stylesheet" href="\.\./\.\./assets/(?:eju-ds|paper)\.css">\n?', '', HEAD)
-XCSS = open('/workspace/eju-common/extras.css').read()
+XCSS = open('tools/extras.css').read()
 def page(slug, n, zh, ja, lead, hero, sections, desc):
     head = re.sub(r'<title>.*?</title>', f'<title>EJU 数学コース2 · {zh}</title>', HEAD, count=1)
     head = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{H.escape(desc)}">', head, count=1)
@@ -114,7 +114,6 @@ for slug, n, zh, ja, lead, hero, secs, sub in PAGES[:3]:
                 I.append([kind, plain(m.group(2)), plain(m.group(3))[:600], f'topics/{slug}/#{m.group(1)}'])
         else: I.append([kind, f'公式 · {tt}', plain(j + ' ' + body)[:900], f'topics/{slug}/#{sid}'])
 open('assets/search.json', 'w').write(json.dumps(I, ensure_ascii=False, separators=(',', ':')))
-import shutil; shutil.copy('/workspace/eju-common/search.js', 'assets/search.js')
 # —— nav.js ——
 nav = open('assets/nav.js').read().split('\n')
 T = json.loads(re.match(r'\(function\(\)\{var T=(.*);$', nav[0]).group(1))

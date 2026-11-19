@@ -22,7 +22,7 @@ SRI = {'katex.min.css': 'sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU0
 HEADJS = """<script>(function(){var d=document.documentElement,m=document.querySelector('meta[name="color-scheme"]'),t=null;try{t=localStorage.getItem('eju-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.setAttribute('data-theme',t);if(m)m.content=t})()</script>"""
 TOGGLEJS = """<script>(function(){var d=document.documentElement,b=document.getElementById('theme');if(!b)return;function s(t){d.setAttribute('data-theme',t);var m=document.querySelector('meta[name="color-scheme"]');if(m)m.content=t;b.textContent=t==='dark'?'浅色':'深色';b.setAttribute('aria-label',t==='dark'?'切换到浅色主题':'切换到深色主题')}s(d.getAttribute('data-theme')==='dark'?'dark':'light');b.onclick=function(){var t=d.getAttribute('data-theme')==='dark'?'light':'dark';s(t);try{localStorage.setItem('eju-theme',t)}catch(e){}};addEventListener('storage',function(e){if(e.key==='eju-theme'&&(e.newValue==='light'||e.newValue==='dark'))s(e.newValue)});var q=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)');if(q&&q.addEventListener)q.addEventListener('change',function(e){var v=null;try{v=localStorage.getItem('eju-theme')}catch(_){}if(v!=='light'&&v!=='dark')s(e.matches?'dark':'light')})})();</script>"""
 BTN = '<button class="chip theme-btn" id="theme" type="button">深色</button>'
-SITE = 'calculus'; SITE_NAME = 'EJU 数学コース2'; SITE_PATH = '/eju-calculus/'; SITE_URL = 'https://feather0000.github.io' + SITE_PATH
+SITE = 'calculus'; SITE_NAME = 'EJU 数学コース2'; SITE_PATH = '/'; SITE_URL = 'https://math.eju.feather0.com/'
 SITE_DESC = '按 JASSO《日本留学試験 数学シラバス》（2026 年度第 1 回起适用）出题项目 1–20 编排。每页含要点讲解、原创 EJU 风格例题、带答案的练习题和日语术语对照表。'
 META_RE = re.compile(r'<!--eju-meta-->.*?<!--/eju-meta-->\n?', re.S)
 
@@ -180,7 +180,7 @@ def problems(f, s):
 
 def targets():
     os.chdir(ROOT)
-    out = [(f, (lambda s, r='../../', p=f[:-len('index.html')]: topic(s, r, p))) for f in sorted(glob.glob('topics/*/index.html'))]
+    out = [(f, (lambda s, r='../../', p=f[:-len('index.html')]: topic(s, r, p))) for f in sorted(path.replace(os.sep, '/') for path in glob.glob('topics/*/index.html'))]
     out += [('claude/index.html', lambda s: topic(s, '../', 'claude/')), ('index.html', home), ('explorer/index.html', explorer)]
     return [(f, fn) for f, fn in out if os.path.exists(f)]
 
