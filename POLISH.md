@@ -16,12 +16,11 @@ npx -y modern-web-guidance@latest legacy-scan .
 
 ## 一、legacy-scan 修复（改前 50 条：dark-mode-toggle 25、secure-external-subresources 25 → 0）
 
-- **SRI**：所有 KaTeX 0.16.11 的 `<link>` / `<script>`（23 个专题页、claude/、codex/）都带上了 `integrity="sha384-…" crossorigin="anonymous" referrerpolicy="no-referrer"`，原有的 `onload` / `onerror` 属性保留。
+- **SRI**：所有 KaTeX 0.16.11 的 `<link>` / `<script>`（23 个专题页、claude/）都带上了 `integrity="sha384-…" crossorigin="anonymous" referrerpolicy="no-referrer"`，原有的 `onload` / `onerror` 属性保留。
 - **color-scheme**：viewport 之后加 `<meta name="color-scheme" content="light dark">` 和头脚本，与理科三站 build.py 中的 `HEADJS` 相同。原来手写专题页要到 `</body>` 前才设置主题，会先闪一下错误的主题；现在首次绘制前就设置好，并把 meta 改为 light 或 dark。
 - **切换函数**：多行版的 `setTheme()`（专题页、claude/）现在同时更新 meta 和 aria-label，并监听 `storage` 事件；压缩版（extras 页）换成共用的 `TOGGLEJS`。
 - **CSS**：内联样式里的 `:root { color-scheme: light; … }` / `[data-theme="dark"]` 旧 token 块已删除。token 和 color-scheme 现在统一由 `assets/eju-ds.css` 提供：`:root { color-scheme: light dark }`，`[data-theme=light|dark]` 固定主题，JS 未运行时跟随系统。
 - **首页 index.html / explorer/**：原来只用 `prefers-color-scheme`，现在加了与专题页一致的主题开关（同一个 `eju-theme` key）和 meta。从专题页切回首页时主题不会丢。
-- **codex/**：这是另一套只有浅色的设计，只加 SRI 和 `<meta name="color-scheme" content="light">`（如实声明只有浅色），没有改动外观。
 
 ## 二、视觉
 
@@ -49,3 +48,14 @@ npx -y modern-web-guidance@latest legacy-scan .
 8. **性能**：字体全部 `font-display: swap`。仓库里没有 `<img>`，也没有为了转 WebP 去动 canvas。OG 图为兼容各平台保留 PNG，canvas 也不做懒加载。apply_mwg_polish.py 会给以后出现的 `<img>` 自动补 `loading="lazy"`。
 
 favicon 和 OG 图由 `/workspace/eju-polish-work/scripts/make_brand.py`（Pillow）生成，四站用同一套版式。设计层和 `eju-ux.js` 的母版在 `/workspace/eju-polish-work/`，用 `scripts/sync_ds.py` 同步到四站。
+
+## 四、统一视觉、合并重复讲义、顶栏与搜索修复（fix-design-nav-search）
+
+正文、公式、例题、练习题数值与答案都没改。
+
+1. **统一视觉**：新增 `assets/paper.css`（只有数学站有），由 `apply_mwg_polish.ds_link()` 紧跟在 `eju-ds.css` 之后链接到专题页、`claude/`、`explorer/` 和 404。它把中性色换成首页目次同一套纸色（值与 `home.css` 的 `body.contents` 相同，卡片面 `--surface` 略亮一档），并让 `h1`、`main h2` 用首页的衬线 700。主色不变，token 仍是 6 位 hex。`eju-ds.css` 本身没有改，仍与理科三站逐字节相同。`--check` 会检查 `paper.css` 是否已链接。
+2. **重复讲义**：`codex/` 与 `claude/` 覆盖同一范围，且是全站唯一一套绿色设计。`codex/` 目录已整个删除（旧的 `codex/` 链接会落到 404 页），首页「附」里的入口从 `tools/build_home.py` 去掉，`apply_mwg_polish.py` 不再处理它。原页面在 git 历史里（`a0694e7` 及之前）。
+3. **顶栏**：微分、积分、三角函数和四个速查页的内联样式里有不带范围的 `details > summary` 按钮样式，把顶栏的「全部专题」也画成了带边框的大按钮。`assets/nav.js` 注入的样式里加了一条重置。
+4. **搜索**：摘要截取时不再把 `$…$` 公式切成两半，结果写入后交给 KaTeX 渲染（索引在 900 字处截断留下的半个公式不显示）；术语标题的中文与日语之间加「／」；标题外包一层 `<span>`，避免 `inline-flex` 吃掉空格；搜索页抬头不再输出空的公式卡片。
+
+**注意**：`assets/search.js` 和速查页的内联样式由 `tools/build_extras.py` 从仓库外的 `/workspace/eju-common/` 复制。这次直接改了仓库里的 `assets/search.js`、`assets/search.json`（1119 条术语标题）和 `topics/search/index.html`；`build_extras.py` 里术语分隔、空公式卡片、`paper.css` 链接三处已同步，但 `/workspace/eju-common/search.js` 需要手动同步，否则下次运行会把搜索的修改盖回去。

@@ -181,8 +181,7 @@ def appendix():
             ('22', '易错点・陷阱', '間違えやすいポイント', 'topics/pitfalls/', f'{len(PF)} 条常见错误与例子'),
             ('24', '快速解题技巧', '速解テクニック', 'topics/tips/', f'{len(TIPS)} 招 · 按出题频度排序'),
             ('23', '站内搜索', 'サイト内検索', 'topics/search/', '讲解・练习・公式・易错点・术语'),
-            ('—', '过去问知识点浏览', '過去問エクスプローラー', 'explorer/', f'{NQ} 题逐题的知识点构成'),
-            ('—', '微积分 Codex 版（另一种设计）', '別バージョン', 'codex/', '其他版本')]
+            ('—', '过去问知识点浏览', '過去問エクスプローラー', 'explorer/', f'{NQ} 题逐题的知识点构成')]
     return '<!--X-ANCHOR--><!--X-BEGIN-->' + ''.join(_row(*r) for r in rows) + '<!--X-END-->'
 def tables():
     src = open('tools/home_freq.html', encoding='utf-8').read()

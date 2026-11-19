@@ -11,7 +11,6 @@
 #   6. （第二轮）<html data-site="calculus">（每站主色 violet，见 eju-ds.css）；favicon；OG / Twitter 分享卡片（og:image 绝对 URL）；
 #      专题页、claude/、explorer/ 加共用交互脚本 assets/eju-ux.js（阅读进度条、横向目录跟随、点击公式复制 LaTeX）
 #   7. （第二轮）根目录 404.html（GitHub Pages 用；资源走站点绝对路径）
-# codex/ 是另一套只有浅色的设计：只加 SRI、<meta name="color-scheme" content="light">、data-site、favicon 与 OG。
 import re, glob, os, sys, html
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 K = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
@@ -47,8 +46,9 @@ def head_meta(s, scheme='light dark', script=True):
 
 
 def ds_link(s, root):
-    s = re.sub(r'<link rel="stylesheet" href="[./]*assets/eju-ds\.css">\n?', '', s)
-    return s.replace('</head>', f'<link rel="stylesheet" href="{root}assets/eju-ds.css">\n</head>', 1)
+    # 数学站另有纸色层 assets/paper.css（与首页目次同一套纸色、衬线标题），紧跟在设计层之后
+    s = re.sub(r'<link rel="stylesheet" href="[./]*assets/(?:eju-ds|paper)\.css">\n?', '', s)
+    return s.replace('</head>', f'<link rel="stylesheet" href="{root}assets/eju-ds.css">\n<link rel="stylesheet" href="{root}assets/paper.css">\n</head>', 1)
 
 
 def inline_css(s):
@@ -120,7 +120,7 @@ def brand(s, root, path, ux=True):
 
 NOT_FOUND = f'''<!doctype html><html lang="zh-Hans" data-site="{SITE}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light dark">
 {HEADJS}<title>页面不存在 · {SITE_NAME}</title><meta name="robots" content="noindex"><link rel="icon" href="{SITE_PATH}assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="{SITE_PATH}assets/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="{SITE_PATH}assets/apple-touch-icon.png">
-<link rel="stylesheet" href="{SITE_PATH}assets/eju-ds.css"></head><body class="home nf"><main>
+<link rel="stylesheet" href="{SITE_PATH}assets/eju-ds.css"><link rel="stylesheet" href="{SITE_PATH}assets/paper.css"></head><body class="home nf"><main>
 <div class="home-top"><p class="eyebrow">{SITE_NAME}</p>{BTN}</div>
 <p class="nf-code" aria-hidden="true">404</p><h1>页面不存在</h1><p>这个地址没有对应的页面：可能是链接写错了，或者页面已经移动。可以回到首页按专题查找，或用站内搜索。</p>
 <p class="home-links"><a href="{SITE_PATH}">← 回到 {SITE_NAME} 首页</a><a href="{SITE_PATH}topics/search/">站内搜索</a></p></main>
@@ -160,10 +160,6 @@ def explorer(s):
     return lazy_img(brand(add_toggle(ds_link(s, '../')), '../', 'explorer/'))
 
 
-def codex(s):
-    return lazy_img(brand(head_meta(sri(s), scheme='light', script=False), '../', 'codex/', ux=False))
-
-
 def problems(f, s):
     p = []
     for m in re.finditer(r'<(link|script)\b[^>]*katex@[^>]*>', s):
@@ -178,13 +174,14 @@ def problems(f, s):
     if f'property="og:image" content="{SITE_URL}assets/og.png"' not in s or 'name="twitter:card"' not in s: p.append('no og/twitter card')
     if re.search(r'<img\b(?![^>]*\bloading=)', s): p.append('img without loading')
     if f.startswith(('topics/', 'claude/', 'explorer/')) and 'assets/eju-ux.js' not in s: p.append('no eju-ux.js')
+    if f.startswith(('topics/', 'claude/', 'explorer/')) and 'assets/paper.css' not in s: p.append('no paper.css')
     return p
 
 
 def targets():
     os.chdir(ROOT)
     out = [(f, (lambda s, r='../../', p=f[:-len('index.html')]: topic(s, r, p))) for f in sorted(glob.glob('topics/*/index.html'))]
-    out += [('claude/index.html', lambda s: topic(s, '../', 'claude/')), ('index.html', home), ('explorer/index.html', explorer), ('codex/index.html', codex)]
+    out += [('claude/index.html', lambda s: topic(s, '../', 'claude/')), ('index.html', home), ('explorer/index.html', explorer)]
     return [(f, fn) for f, fn in out if os.path.exists(f)]
 
 

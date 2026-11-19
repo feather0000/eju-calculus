@@ -24,7 +24,7 @@ for t in TOP: t['zh'] = re.sub(r'^\d+\s+', '', t['zh'])
 src = open('topics/differentiation/index.html').read()
 HEAD = src[:src.index('</head>')]
 # 设计层链接要排在本页 extras 样式之后，先从复制来的 head 里拿掉，下面再补到 </head> 前
-HEAD = re.sub(r'<link rel="stylesheet" href="\.\./\.\./assets/eju-ds\.css">\n?', '', HEAD)
+HEAD = re.sub(r'<link rel="stylesheet" href="\.\./\.\./assets/(?:eju-ds|paper)\.css">\n?', '', HEAD)
 XCSS = open('/workspace/eju-common/extras.css').read()
 def page(slug, n, zh, ja, lead, hero, sections, desc):
     head = re.sub(r'<title>.*?</title>', f'<title>EJU 数学コース2 · {zh}</title>', HEAD, count=1)
@@ -33,13 +33,15 @@ def page(slug, n, zh, ja, lead, hero, sections, desc):
     toc = ''.join(f'<li><a href="#{i}">{k+1} {tt}</a></li>' for k, (i, tt, _, _) in enumerate(sections))
     secs = ''.join(f'<section id="{sid}"><h2>{tt}</h2><p class="jp-sub">{j}</p>{body}</section>' for sid, tt, j, body in sections)
     hero = ''.join(f'$${h}$$' for h in hero)
+    hero = f'<div class="hero-formula" aria-hidden="true">{hero}</div>' if hero else ''  # 搜索页没有代表式，不留空卡片
     return f'''{head}<style id="extras">{XCSS}</style>
 <link rel="stylesheet" href="../../assets/eju-ds.css">
+<link rel="stylesheet" href="../../assets/paper.css">
 </head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
 <div id="cdn-note" hidden>公式库（KaTeX）未能加载，公式将显示为源码。请联网后刷新页面。</div>
-<header class="hero"><div class="hero-in"><div class="hero-text"><a class="back" href="../../">← 目录</a><p class="eyebrow">EJU 数学コース2 · 速查 · {ja}</p><h1>{zh}</h1><p class="lead">{lead}</p></div><div class="hero-formula" aria-hidden="true">{hero}</div></div></header>
+<header class="hero"><div class="hero-in"><div class="hero-text"><a class="back" href="../../">← 目录</a><p class="eyebrow">EJU 数学コース2 · 速查 · {ja}</p><h1>{zh}</h1><p class="lead">{lead}</p></div>{hero}</div></header>
 <div class="layout"><nav class="toc" aria-label="目录"><div style="flex:1;min-width:0"><p class="toc-title">目录</p><ol>{toc}</ol></div><button class="chip theme-btn" id="theme" type="button">深色</button></nav>
 <main id="main">{secs}<footer>原创讲义，非 JASSO 官方内容。按《日本留学試験 数学シラバス（コース2）》编排。</footer></main></div>
 {MWG.TOGGLEJS}<script>(function(){{
@@ -90,7 +92,7 @@ for t in TOP:
             m2 = re.search(r'var TERMS = \[(.*?)\n  \];', s, re.S)
             rows = TERM.findall(m2.group(1)) if m2 else []
             rows += re.findall(r'<tr><td lang="ja">(.*?)</td><td class="kana" lang="ja">(.*?)</td><td>(.*?)</td></tr>', body)
-            for ja, kana, zh in rows: I.append(['术语', plain(f'{zh}　{ja}'), plain(f'{kana} · {t["zh"]}'), u + '#terms'])
+            for ja, kana, zh in rows: I.append(['术语', plain(zh) + ' ／ ' + plain(ja), plain(f'{kana} · {t["zh"]}'), u + '#terms'])
             continue
         arts = re.findall(r'<article class="q"[^>]*>(.*?)</article>', body, re.S)
         if arts:
