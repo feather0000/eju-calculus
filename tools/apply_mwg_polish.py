@@ -11,7 +11,6 @@
 #   6. （第二轮）<html data-site="calculus">（每站主色 violet，见 eju-ds.css）；favicon；OG / Twitter 分享卡片（og:image 绝对 URL）；
 #      专题页、claude/、explorer/ 加共用交互脚本 assets/eju-ux.js（阅读进度条、横向目录跟随、点击公式复制 LaTeX）
 #   7. （第二轮）根目录 404.html（GitHub Pages 用；资源走站点绝对路径）
-# codex/ 原是另一套绿色设计的微积分讲义，内容与 claude/ 重复，已删除，这里不再处理。
 import re, glob, os, sys, html
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 K = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'

@@ -16,12 +16,11 @@ npx -y modern-web-guidance@latest legacy-scan .
 
 ## 一、legacy-scan 修复（改前 50 条：dark-mode-toggle 25、secure-external-subresources 25 → 0）
 
-- **SRI**：所有 KaTeX 0.16.11 的 `<link>` / `<script>`（23 个专题页、claude/、codex/）都带上了 `integrity="sha384-…" crossorigin="anonymous" referrerpolicy="no-referrer"`，原有的 `onload` / `onerror` 属性保留。
+- **SRI**：所有 KaTeX 0.16.11 的 `<link>` / `<script>`（23 个专题页、claude/）都带上了 `integrity="sha384-…" crossorigin="anonymous" referrerpolicy="no-referrer"`，原有的 `onload` / `onerror` 属性保留。
 - **color-scheme**：viewport 之后加 `<meta name="color-scheme" content="light dark">` 和头脚本，与理科三站 build.py 中的 `HEADJS` 相同。原来手写专题页要到 `</body>` 前才设置主题，会先闪一下错误的主题；现在首次绘制前就设置好，并把 meta 改为 light 或 dark。
 - **切换函数**：多行版的 `setTheme()`（专题页、claude/）现在同时更新 meta 和 aria-label，并监听 `storage` 事件；压缩版（extras 页）换成共用的 `TOGGLEJS`。
 - **CSS**：内联样式里的 `:root { color-scheme: light; … }` / `[data-theme="dark"]` 旧 token 块已删除。token 和 color-scheme 现在统一由 `assets/eju-ds.css` 提供：`:root { color-scheme: light dark }`，`[data-theme=light|dark]` 固定主题，JS 未运行时跟随系统。
 - **首页 index.html / explorer/**：原来只用 `prefers-color-scheme`，现在加了与专题页一致的主题开关（同一个 `eju-theme` key）和 meta。从专题页切回首页时主题不会丢。
-- **codex/**：这是另一套只有浅色的设计，只加 SRI 和 `<meta name="color-scheme" content="light">`（如实声明只有浅色），没有改动外观。
 
 ## 二、视觉
 
