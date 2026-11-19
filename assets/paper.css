@@ -1,0 +1,32 @@
+/* ==== 数学站纸色层（assets/paper.css；只有数学站有，排在 eju-ds.css 之后）
+   让专题页、讲义页、过去问浏览页、404 与首页目次（assets/home.css）用同一套纸色中性色与衬线标题，
+   从首页点进专题不再像换了一个站。主色仍由 eju-ds.css 的 <html data-site="calculus"> 决定。
+   token 一律 6 位 hex（互动演示用 getComputedStyle 读取）。中性色的值与 home.css 的 body.contents 相同；
+   专题页有卡片，所以 --surface 比纸色底略亮一档。三条选择器的顺序与设计层的主题顺序一致。 ==== */
+@font-face { font-family: "Noto Serif SC"; font-style: normal; font-weight: 700; font-display: swap; src: url(https://cdn.jsdelivr.net/fontsource/fonts/noto-serif-sc@5.2.5/latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Noto Serif SC"; font-style: normal; font-weight: 700; font-display: swap; src: url(https://cdn.jsdelivr.net/fontsource/fonts/noto-serif-sc@5.2.5/chinese-simplified-700-normal.woff2) format("woff2"); unicode-range: U+2E80-2FDF, U+3000-303F, U+3100-312F, U+31C0-31EF, U+3200-33FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FE10-FE1F, U+FE30-FE4F, U+FF00-FFEF; }
+:root[data-site="calculus"] { --serif: "Noto Serif SC", "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; }
+
+:root[data-site="calculus"]:not([data-theme="dark"]) {
+  --bg: #fbfaf7; --surface: #fffefb; --surface-2: #f3f1ec; --surface-3: #ebe8e1;
+  --line: #e4e0d7; --line-strong: #c8c2b6;
+  --ink: #2b2a27; --ink-2: #4b4943; --ink-3: #6b675f;
+  --hero-bg: #f3f1ec; --hero-ink: #2b2a27; --hero-ink-2: #4b4943; --hero-line: #d8d3c8;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-site="calculus"]:not([data-theme="light"]) {
+    --bg: #15140f; --surface: #1d1c17; --surface-2: #26241f; --surface-3: #2f2d27;
+    --line: #3a372f; --line-strong: #57534a;
+    --ink: #e8e5de; --ink-2: #c5c1b8; --ink-3: #9d988e;
+    --hero-bg: #1d1c17; --hero-ink: #e8e5de; --hero-ink-2: #c5c1b8; --hero-line: #45413a;
+  }
+}
+:root[data-site="calculus"][data-theme="dark"] {
+  --bg: #15140f; --surface: #1d1c17; --surface-2: #26241f; --surface-3: #2f2d27;
+  --line: #3a372f; --line-strong: #57534a;
+  --ink: #e8e5de; --ink-2: #c5c1b8; --ink-3: #9d988e;
+  --hero-bg: #1d1c17; --hero-ink: #e8e5de; --hero-ink-2: #c5c1b8; --hero-line: #45413a;
+}
+
+/* 标题：与首页的书名、章名一样用衬线 700；h3 与正文仍是无衬线 */
+[data-site="calculus"] h1, [data-site="calculus"] main h2 { font-family: var(--serif); letter-spacing: .02em; }
