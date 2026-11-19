@@ -55,7 +55,7 @@ favicon 和 OG 图由 `/workspace/eju-polish-work/scripts/make_brand.py`（Pillo
 正文、公式、例题、练习题数值与答案都没改。
 
 1. **统一视觉**：新增 `assets/paper.css`（只有数学站有），由 `apply_mwg_polish.ds_link()` 紧跟在 `eju-ds.css` 之后链接到专题页、`claude/`、`explorer/` 和 404。它把中性色换成首页目次同一套纸色（值与 `home.css` 的 `body.contents` 相同，卡片面 `--surface` 略亮一档），并让 `h1`、`main h2` 用首页的衬线 700。主色不变，token 仍是 6 位 hex。`eju-ds.css` 本身没有改，仍与理科三站逐字节相同。`--check` 会检查 `paper.css` 是否已链接。
-2. **重复讲义**：`codex/` 与 `claude/` 覆盖同一范围，且是全站唯一一套绿色设计。`codex/index.html` 改为跳到 `../claude/` 的跳转页（保留锚点），首页「附」里的入口从 `tools/build_home.py` 去掉，`apply_mwg_polish.py` 不再处理它。原页面在 git 历史里（`a0694e7` 及之前）。
+2. **重复讲义**：`codex/` 与 `claude/` 覆盖同一范围，且是全站唯一一套绿色设计。`codex/` 目录已整个删除（旧的 `codex/` 链接会落到 404 页），首页「附」里的入口从 `tools/build_home.py` 去掉，`apply_mwg_polish.py` 不再处理它。原页面在 git 历史里（`a0694e7` 及之前）。
 3. **顶栏**：微分、积分、三角函数和四个速查页的内联样式里有不带范围的 `details > summary` 按钮样式，把顶栏的「全部专题」也画成了带边框的大按钮。`assets/nav.js` 注入的样式里加了一条重置。
 4. **搜索**：摘要截取时不再把 `$…$` 公式切成两半，结果写入后交给 KaTeX 渲染（索引在 900 字处截断留下的半个公式不显示）；术语标题的中文与日语之间加「／」；标题外包一层 `<span>`，避免 `inline-flex` 吃掉空格；搜索页抬头不再输出空的公式卡片。
 
