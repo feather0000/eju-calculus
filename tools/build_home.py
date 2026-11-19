@@ -10,6 +10,7 @@ sys.dont_write_bytecode = True  # 不在 tools/ 留 __pycache__
 sys.path.insert(0, 'tools')
 import apply_mwg_polish as MWG
 from homemap import ico, render
+import mapkids
 from math_data import PF
 from math_tips import TIPS
 E = html.escape
@@ -134,6 +135,40 @@ def _icon_tangent(x, y, s):  # 曲线 + 切线 + 曲线下的面积（竖线排�
 ICONS = [_icon_numline, _icon_parabola, _icon_circle, _icon_dice, _icon_vector, _icon_tangent]
 MAPCFG = dict(subject='数学', subject_ja='数学', cap_ja='図　数学の体系', start=160, MINSEC=1.5,
               W=1300, H=1380, CX=650, CY=666, R0=60, R1=220, R2=400, NR=46, IS=60, FN=16, FF=14.5, FSUB=10.5, FL=14.5, BH=52, GAP=11, FCH=21)
+def _topic_lead(slug):
+    p = os.path.join('topics', slug, 'index.html')
+    if not os.path.exists(p):
+        return ''
+    m = re.search(r'<p class="lead">(.*?)</p>', open(p, encoding='utf-8').read(), re.S)
+    if not m:
+        return ''
+    text = html.unescape(re.sub(r'<[^>]+>', '', m.group(1)))
+    text = ' '.join(text.split())
+    # 去掉各讲义页共用的收尾套话，保留前面的内容本身
+    text = re.split(r'[：。，]每个知识点', text)[0]
+    text = re.sub(r'[：，。](?:再|最后)?用原创的 EJU.*$', '', text)
+    text = re.sub(r'[：，。]日语术语随文标注.*$', '', text)
+    text = text.strip('：:，,、 ')
+    if text and not text.endswith(('。', '！', '？')):
+        text += '。'
+    def _plain(m):
+        x = m.group(1)
+        x = x.replace(r'^\circ', '°').replace(r'\circ', '°').replace(r'\sim', '～').replace(r'\Sigma', 'Σ').replace(r'\cdot', '·')
+        return x
+    return re.sub(r'\$([^$]+)\$', _plain, text)
+def _mapdata():
+    chs, tps = {}, {}
+    for k, (name, ja, _sh, intro, slugs) in enumerate(CHAPTERS, 1):
+        chs[str(k)] = {'zh': name, 'ja': ja, 'intro': intro, 'href': f'#ch-{k}'}
+        for s in slugs:
+            top = TOP[s]
+            tps[s] = {'zh': top['zh'], 'ja': top.get('ja') or '', 'intro': _topic_lead(s), 'href': f'topics/{s}/', 'ch': str(k), 'children': mapkids.kids_from_html(open(os.path.join('topics', s, 'index.html'), encoding='utf-8').read() if os.path.exists(os.path.join('topics', s, 'index.html')) else '', s)}
+    s = json.dumps({'subject': '数学', 'chapters': chs, 'topics': tps}, ensure_ascii=False, separators=(',', ':'))
+    out = s.replace('<', '\\u003c')
+    _nk = sum(len(v.get('children') or []) for v in tps.values())
+    print('map kids:', _nk)
+    return out
+
 def knowledge_map():
     chs = [dict(name=name, ja=ja, short=sh, icon=ICONS[k],
                 topics=[dict(TOP[s], label=MAPL.get(s, TOP[s]['zh']), f=MAPF[s]) for s in slugs])
@@ -167,6 +202,7 @@ PREFACE = ('这是按 JASSO《日本留学試験 数学シラバス》（2026 �
 
 def page():
     svg, legend, stat = knowledge_map()
+    mapdata = _mapdata()
     style, tbl = tables()
     head = (f'<!doctype html>\n<html lang="zh-Hans" data-site="{MWG.SITE}">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
             f'<meta name="color-scheme" content="light dark">\n{MWG.HEADJS}\n<title>EJU 数学コース2 全专题讲解</title>\n'
@@ -185,10 +221,10 @@ def page():
 <ol class="ct-parts">{chapters()}</ol></section>
 <section id="map" aria-labelledby="h-map"><div class="ct-part"><p class="ct-no ct-no-a" aria-hidden="true">图</p><div class="ct-body">
 <h2 id="h-map">知识导图<span class="ct-chja" lang="ja">知識マップ</span></h2>
-<p class="ct-intro">中心「数学」分出六章，每章一色，外圈是 20 个出题项目和一条代表式；虚线弧标出专题之间的重要联系。点节点即可进入对应页。</p></div>
-<figure class="mp"><p class="mp-hint" id="mp-hint">图较宽，可左右滑动查看。</p>
+<p class="ct-intro">中心「数学」分出六章，每章一色，外圈是 20 个出题项目和一条代表式；虚线弧标出专题之间的重要联系。点章节或专题可放大查看简介，再从说明卡进入对应页。</p></div>
+<figure class="mp"><p class="mp-hint" id="mp-hint">点节点可放大查看简介。电脑上按住 Ctrl 或 ⌘ 滚动缩放；点进图中后可拖动。触屏用双指缩放。Esc 或「返回」还原。</p>
 <div class="mp-scroll" role="region" aria-label="知识导图" aria-describedby="mp-hint">{svg}</div>
-<figcaption id="mp-cap">数学知识导图：中心「数学」分出六章，各章外圈列出题项目与代表式。虚线弧所示的联系：<ul class="mp-legend">{legend}</ul></figcaption></figure></div></section>
+<figcaption id="mp-cap">数学知识导图：中心「数学」分出六章，各章外圈列出题项目与代表式。虚线弧所示的联系：<ul class="mp-legend">{legend}</ul></figcaption></figure><script type="application/json" id="mp-data">{mapdata}</script></div></section>
 <section id="appendix" aria-labelledby="h-appendix"><div class="ct-part"><p class="ct-no ct-no-a" aria-hidden="true">附</p><div class="ct-body">
 <h2 id="h-appendix">速查与工具<span class="ct-chja" lang="ja">資料・ツール</span></h2>
 <p class="ct-intro">考前查公式、找易错点、练速解技巧；站内搜索覆盖讲解、练习、公式与术语。过去问浏览器可以按专题筛选每道题的知识点构成。</p>
@@ -197,7 +233,7 @@ def page():
 </main>
 <footer class="ct-foot"><p class="ct-sites">EJU 理科：{"".join(f'<a href="{u}">{a}</a>' for u, a in SITES)}</p><p>原创讲义与题目，非 JASSO 官方内容。按《日本留学試験 数学シラバス（コース2）》编排。</p></footer>
 </div>
-<script src="assets/map.js"></script>{MWG.TOGGLEJS}<script src="assets/nav.js"></script></body></html>
+<script src="assets/vendor/d3-eju.min.js"></script><script src="assets/map.js"></script>{MWG.TOGGLEJS}<script src="assets/nav.js"></script></body></html>
 '''
     s = MWG.headmeta(head + body, '', '', ux=False)  # favicon、OG / Twitter 卡片（与 apply_mwg_polish 的 brand() 同一函数）
     return s, stat
