@@ -235,6 +235,7 @@ def page():
 <script src="assets/vendor/d3-eju.min.js"></script><script src="assets/map.js"></script>{MWG.TOGGLEJS}<script src="assets/nav.js"></script></body></html>
 '''
     s = MWG.headmeta(head + body, '', '', ux=False)  # favicon、OG / Twitter 卡片（与 apply_mwg_polish 的 brand() 同一函数）
+    s = MWG.decorate(s, '')
     return s, stat
 
 def main():
