@@ -202,11 +202,13 @@ def main(check=False, files=None):
         if p: bad += 1; print('FAIL', f, p)
     if not files:
         nf = open('404.html').read() if os.path.exists('404.html') else ''
-        if nf != NOT_FOUND:
+        expected_404 = siteenv.with_banner(CFG, NOT_FOUND, '')
+        if nf != expected_404:
             if check: bad += 1; print('FAIL 404.html out of date')
-            else: open('404.html', 'w').write(siteenv.with_banner(CFG, NOT_FOUND, ''))
+            else: open('404.html', 'w').write(expected_404)
     if not check and not files:
         siteenv.write_robots(CFG)
+        siteenv.finalize_tree(CFG)
     print(('checked' if check else 'patched'), len(targets()), 'pages,', bad, 'with problems')
     return bad
 
