@@ -1,3 +1,4 @@
+/* Source repository: https://github.com/feather0000/eju-calculus */
 /* 首页知识导图（四站同一份 assets/map.js）
    - 悬停 / 键盘经过：无关分支调淡（.mp-off）；聚焦某节点时锁定在该节点
    - 单击章：把该章的专题重新围成一圈（或弧），镜头对准章心，其它章淡出；关联知识点的虚线平滑隐去
