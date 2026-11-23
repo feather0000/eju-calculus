@@ -10,8 +10,9 @@
 #   5. 首页 index.html 与 explorer/ 加上同一个主题开关（同一个 localStorage key：eju-theme）；首页由 tools/build_home.py 生成时（带 HOME_MARK）不改结构
 #   6. （第二轮）<html data-site="calculus">（每站主色 violet，见 eju-ds.css）；favicon；OG / Twitter 分享卡片（og:image 绝对 URL）；
 #      专题页、claude/、explorer/ 加共用交互脚本 assets/eju-ux.js（阅读进度条、横向目录跟随、点击公式复制 LaTeX）
-#   7. （第二轮）根目录 404.html（GitHub Pages 用；资源走站点绝对路径）
+#   7. （第二轮）根目录 404.html（Cloudflare Pages 用；资源走站点绝对路径）
 import re, glob, os, sys, html
+import siteenv
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 K = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
 SRI = {'katex.min.css': 'sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+',
@@ -22,7 +23,8 @@ SRI = {'katex.min.css': 'sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU0
 HEADJS = """<script>(function(){var d=document.documentElement,m=document.querySelector('meta[name="color-scheme"]'),t=null;try{t=localStorage.getItem('eju-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.setAttribute('data-theme',t);if(m)m.content=t})()</script>"""
 TOGGLEJS = """<script>(function(){var d=document.documentElement,b=document.getElementById('theme');if(!b)return;function s(t){d.setAttribute('data-theme',t);var m=document.querySelector('meta[name="color-scheme"]');if(m)m.content=t;b.textContent=t==='dark'?'浅色':'深色';b.setAttribute('aria-label',t==='dark'?'切换到浅色主题':'切换到深色主题')}s(d.getAttribute('data-theme')==='dark'?'dark':'light');b.onclick=function(){var t=d.getAttribute('data-theme')==='dark'?'light':'dark';s(t);try{localStorage.setItem('eju-theme',t)}catch(e){}};addEventListener('storage',function(e){if(e.key==='eju-theme'&&(e.newValue==='light'||e.newValue==='dark'))s(e.newValue)});var q=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)');if(q&&q.addEventListener)q.addEventListener('change',function(e){var v=null;try{v=localStorage.getItem('eju-theme')}catch(_){}if(v!=='light'&&v!=='dark')s(e.matches?'dark':'light')})})();</script>"""
 BTN = '<button class="chip theme-btn" id="theme" type="button">深色</button>'
-SITE = 'calculus'; SITE_NAME = 'EJU 数学コース2'; SITE_PATH = '/'; SITE_URL = 'https://math.eju.feather0.com/'
+CFG = siteenv.load('calculus')
+SITE = 'calculus'; SITE_NAME = 'EJU 数学コース2'; SITE_PATH = CFG.site_path; SITE_URL = CFG.site_url
 SITE_DESC = '按 JASSO《日本留学試験 数学シラバス》（2026 年度第 1 回起适用）出题项目 1–20 编排。每页含要点讲解、原创 EJU 风格例题、带答案的练习题和日语术语对照表。'
 META_RE = re.compile(r'<!--eju-meta-->.*?<!--/eju-meta-->\n?', re.S)
 
@@ -108,14 +110,18 @@ def headmeta(s, root, path, ux=True):
            + f'<meta property="og:type" content="website"><meta property="og:site_name" content="{SITE_NAME}"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="{t}"><meta property="og:description" content="{d}"><meta property="og:url" content="{SITE_URL}{path}">'
            + f'<meta property="og:image" content="{SITE_URL}assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="{SITE_NAME} · 全专题中文讲义">'
            + f'<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{t}"><meta name="twitter:description" content="{d}"><meta name="twitter:image" content="{SITE_URL}assets/og.png">'
+           + siteenv.extra_meta(CFG, path)
            + (f'\n<script defer src="{root}assets/eju-ux.js"></script>' if ux else '') + '<!--/eju-meta-->\n')
     i = s.index('</title>') + len('</title>')
     if s[i:i + 1] == '\n': i += 1
     return s[:i] + blk + s[i:]
 
 
+def decorate(s, path):
+    return siteenv.with_banner(CFG, s, path)
+
 def brand(s, root, path, ux=True):
-    return headmeta(site_attr(s), root, path, ux)
+    return decorate(headmeta(site_attr(s), root, path, ux), path)
 
 
 NOT_FOUND = f'''<!doctype html><html lang="zh-Hans" data-site="{SITE}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light dark">
@@ -172,6 +178,7 @@ def problems(f, s):
     if f'data-site="{SITE}"' not in s[:300]: p.append('no data-site')
     if 'assets/favicon.svg' not in s: p.append('no favicon')
     if f'property="og:image" content="{SITE_URL}assets/og.png"' not in s or 'name="twitter:card"' not in s: p.append('no og/twitter card')
+    if f != '404.html' and 'rel="canonical"' not in s: p.append('no canonical')
     if re.search(r'<img\b(?![^>]*\bloading=)', s): p.append('img without loading')
     if f.startswith(('topics/', 'claude/', 'explorer/')) and 'assets/eju-ux.js' not in s: p.append('no eju-ux.js')
     if f.startswith(('topics/', 'claude/', 'explorer/')) and 'assets/paper.css' not in s: p.append('no paper.css')
@@ -195,9 +202,13 @@ def main(check=False, files=None):
         if p: bad += 1; print('FAIL', f, p)
     if not files:
         nf = open('404.html').read() if os.path.exists('404.html') else ''
-        if nf != NOT_FOUND:
+        expected_404 = siteenv.with_banner(CFG, NOT_FOUND, '')
+        if nf != expected_404:
             if check: bad += 1; print('FAIL 404.html out of date')
-            else: open('404.html', 'w').write(NOT_FOUND)
+            else: open('404.html', 'w').write(expected_404)
+    if not check and not files:
+        siteenv.write_robots(CFG)
+        siteenv.finalize_tree(CFG)
     print(('checked' if check else 'patched'), len(targets()), 'pages,', bad, 'with problems')
     return bad
 
