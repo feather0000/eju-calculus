@@ -10,7 +10,7 @@
 #   5. 首页 index.html 与 explorer/ 加上同一个主题开关（同一个 localStorage key：eju-theme）；首页由 tools/build_home.py 生成时（带 HOME_MARK）不改结构
 #   6. （第二轮）<html data-site="calculus">（每站主色 violet，见 eju-ds.css）；favicon；OG / Twitter 分享卡片（og:image 绝对 URL）；
 #      专题页、claude/、explorer/ 加共用交互脚本 assets/eju-ux.js（阅读进度条、横向目录跟随、点击公式复制 LaTeX）
-#   7. （第二轮）根目录 404.html（GitHub Pages 用；资源走站点绝对路径）
+#   7. （第二轮）根目录 404.html（Cloudflare Pages 用；资源走站点绝对路径）
 import re, glob, os, sys, html
 import siteenv
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
